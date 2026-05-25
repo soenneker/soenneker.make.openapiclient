@@ -22,6 +22,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public List<string> AppNames { get; set; }
 #endif
+        /// <summary>Restrict the search to the specified execution IDs.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? ExecutionIds { get; set; }
+#nullable restore
+#else
+        public List<string> ExecutionIds { get; set; }
+#endif
         /// <summary>&quot;Lower bound of the time window, as a millisecond Unix timestamp.Applied at **UTC-day granularity**: the calendar day of this value is the earliest day searched in the IO-data index, but records earlier within that same day may still be returned. Execution metadata joins use this same bound expanded by one day on each side.&quot;</summary>
         public int? From { get; set; }
         /// <summary>Restrict the search to executions that used any of the listed module names.</summary>
@@ -82,6 +90,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "appNames", n => { AppNames = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "executionIds", n => { ExecutionIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "from", n => { From = n.GetIntValue(); } },
                 { "moduleNames", n => { ModuleNames = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "pageIndex", n => { PageIndex = n.GetIntValue(); } },
@@ -100,6 +109,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("appNames", AppNames);
+            writer.WriteCollectionOfPrimitiveValues<string>("executionIds", ExecutionIds);
             writer.WriteIntValue("from", From);
             writer.WriteCollectionOfPrimitiveValues<string>("moduleNames", ModuleNames);
             writer.WriteIntValue("pageIndex", PageIndex);

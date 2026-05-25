@@ -7,7 +7,9 @@ using Soenneker.Make.OpenApiClient.Models;
 using Soenneker.Make.OpenApiClient.Users.Me.ApiTokens;
 using Soenneker.Make.OpenApiClient.Users.Me.CurrentAuthorization;
 using Soenneker.Make.OpenApiClient.Users.Me.OauthConnections;
+using Soenneker.Make.OpenApiClient.Users.Me.OnboardingSurvey;
 using Soenneker.Make.OpenApiClient.Users.Me.OrganizationInvitations;
+using Soenneker.Make.OpenApiClient.Users.Me.PinnedApps;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -36,10 +38,20 @@ namespace Soenneker.Make.OpenApiClient.Users.Me
         {
             get => new global::Soenneker.Make.OpenApiClient.Users.Me.OauthConnections.OauthConnectionsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The onboardingSurvey property</summary>
+        public global::Soenneker.Make.OpenApiClient.Users.Me.OnboardingSurvey.OnboardingSurveyRequestBuilder OnboardingSurvey
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Users.Me.OnboardingSurvey.OnboardingSurveyRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The organizationInvitations property</summary>
         public global::Soenneker.Make.OpenApiClient.Users.Me.OrganizationInvitations.OrganizationInvitationsRequestBuilder OrganizationInvitations
         {
             get => new global::Soenneker.Make.OpenApiClient.Users.Me.OrganizationInvitations.OrganizationInvitationsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The pinnedApps property</summary>
+        public global::Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.PinnedAppsRequestBuilder PinnedApps
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.PinnedAppsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Users.Me.MeRequestBuilder"/> and sets the default values.

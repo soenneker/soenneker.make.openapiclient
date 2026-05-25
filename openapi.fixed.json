@@ -34553,6 +34553,241 @@
         ]
       }
     },
+    "/users/me/pinned-apps": {
+      "get": {
+        "tags": [
+          "User pins"
+        ],
+        "summary": "List the current user's pinned apps for an organization",
+        "description": "\"Returns every app the current user has any pin under in the specified organization — pinned apps and apps that only have pinned modules. Each entry carries an `isAppPinned` flag: when `true` the app itself is pinned and shows up in the \\\"My apps\\\" tab; when `false` only modules are pinned and the entry is rendered inside the app-detail panel. App and module pins are independent — pinning a module does not pin its app, and unpinning an app leaves its module pins intact (and they reappear if the app is re-pinned). Pins are scoped per (user, organization) and are version-agnostic — the UI resolves the latest available version of each pinned app/module from the catalog. App names follow the convention used by `GET /imt/apps`: SDK apps are surfaced as `app#<name>`, native apps as the bare package name.\n\"",
+        "operationId": "get_users_me_pinned_apps",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUsersMePinnedApps200"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "apps:read"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "User pins"
+        ],
+        "summary": "Pin an app for the current user in an organization",
+        "description": "Pins an app for the authenticated user within the specified organization. Accepts both SDK apps (`appName` prefixed with `app#`) and native apps (bare package name). Pins are version-agnostic — the UI always renders the latest available version. Pinning is idempotent — pinning an already-pinned app is a no-op (no error). The app must exist in the catalog; otherwise a 404 is returned.\n",
+        "operationId": "post_users_me_pinned_apps",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostUsersMePinnedApps"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostUsersMePinnedApps200"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "apps:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/users/me/pinned-apps/{appName}": {
+      "delete": {
+        "tags": [
+          "User pins"
+        ],
+        "summary": "Unpin an app for the current user in an organization",
+        "description": "Removes the user's app pin in the specified organization. Does NOT delete the user's module pins under this app — those rows survive so re-pinning the app restores them. Idempotent — unpinning a non-pinned app is a no-op.\n",
+        "operationId": "delete_users_me_pinned_apps_appName",
+        "parameters": [
+          {
+            "name": "appName",
+            "in": "path",
+            "description": "App name. SDK apps are prefixed with `app#`; native apps are bare package names.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "app#my-sdk-app"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteUsersMePinnedAppsAppName200"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "apps:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/users/me/pinned-apps/{appName}/modules": {
+      "post": {
+        "tags": [
+          "User pins"
+        ],
+        "summary": "Pin a module for the current user in an organization",
+        "description": "Pins a module under the specified `appName` for the current user in the specified organization. Pins are version-agnostic — the UI always renders the latest available version. The module must belong to the app; otherwise a 404 is returned. Idempotent — pinning an already-pinned module is a no-op.\n",
+        "operationId": "post_users_me_pinned_apps_appName_modules",
+        "parameters": [
+          {
+            "name": "appName",
+            "in": "path",
+            "description": "App name. SDK apps are prefixed with `app#`; native apps are bare package names.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "app#my-sdk-app"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostUsersMePinnedAppsAppNameModules"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostUsersMePinnedAppsAppNameModules200"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "apps:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/users/me/pinned-apps/{appName}/modules/{moduleName}": {
+      "delete": {
+        "tags": [
+          "User pins"
+        ],
+        "summary": "Unpin a module for the current user in an organization",
+        "description": "Removes the user's module pin in the specified organization. Does not affect the parent app pin. Idempotent — unpinning a non-pinned module is a no-op.\n",
+        "operationId": "delete_users_me_pinned_apps_appName_modules_moduleName",
+        "parameters": [
+          {
+            "name": "appName",
+            "in": "path",
+            "description": "App name. SDK apps are prefixed with `app#`; native apps are bare package names.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "app#my-sdk-app"
+          },
+          {
+            "name": "moduleName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "send-message"
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteUsersMePinnedAppsAppNameModulesModuleName200"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "apps:write"
+            ]
+          }
+        ]
+      }
+    },
     "/teams": {
       "get": {
         "tags": [
@@ -38097,6 +38332,134 @@
             }
           }
         }
+      }
+    },
+    "/users/me/onboarding-survey": {
+      "get": {
+        "tags": [
+          "Users / Me"
+        ],
+        "summary": "Get onboarding survey status",
+        "description": "Returns whether the authenticated user has a pending onboarding survey. If the survey has been submitted, the response payload is included.",
+        "operationId": "get_users_me_onboarding_survey",
+        "responses": {
+          "200": {
+            "description": "Survey status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUsersMeOnboardingSurvey200"
+                },
+                "examples": {
+                  "pending": {
+                    "summary": "User has not completed the survey",
+                    "value": {
+                      "pending": true
+                    }
+                  },
+                  "completed": {
+                    "summary": "User has completed the survey",
+                    "value": {
+                      "pending": false,
+                      "response": {
+                        "survey_type": "self_serve",
+                        "schema_version": 1,
+                        "answers": [
+                          {
+                            "question": "discovery_source",
+                            "value": "search_engine"
+                          },
+                          {
+                            "question": "technical_proficiency",
+                            "value": "developer"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "no-survey": {
+                    "summary": "User never had a survey (legacy or already completed)",
+                    "value": {
+                      "pending": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "user:read"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Users / Me"
+        ],
+        "summary": "Submit onboarding survey",
+        "description": "Submits the onboarding survey response for the authenticated user.",
+        "operationId": "post_users_me_onboarding_survey",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostUsersMeOnboardingSurvey"
+              },
+              "example": {
+                "survey_type": "self_serve",
+                "schema_version": 1,
+                "answers": [
+                  {
+                    "question": "discovery_source",
+                    "value": "search_engine"
+                  },
+                  {
+                    "question": "technical_proficiency",
+                    "value": "developer"
+                  },
+                  {
+                    "question": "building_for",
+                    "value": "team"
+                  },
+                  {
+                    "question": "org_size",
+                    "value": 1150
+                  },
+                  {
+                    "question": "team_department",
+                    "value": "engineering"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Survey submitted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostUsersMeOnboardingSurvey200"
+                },
+                "example": {
+                  "ok": 1
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "user:write"
+            ]
+          }
+        ]
       }
     },
     "/users/me/organization-invitations": {
@@ -70114,6 +70477,13 @@
             },
             "description": "Restrict the search to executions that used any of the listed module names."
           },
+          "executionIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Restrict the search to the specified execution IDs."
+          },
           "pageSize": {
             "maximum": 500,
             "minimum": 1,
@@ -77005,6 +77375,138 @@
           }
         }
       },
+      "GetUsersMePinnedApps200": {
+        "type": "object",
+        "properties": {
+          "pinnedApps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "appName": {
+                  "type": "string",
+                  "description": "Name of the pinned app. SDK apps are prefixed with `app#`; native apps are bare package names."
+                },
+                "isAppPinned": {
+                  "type": "boolean",
+                  "description": "`true` when the app itself is pinned (it appears in the \"My apps\" tab). `false` when only modules under this app are pinned — the entry is still returned so the UI can render the pinned modules in the app-detail panel.\n"
+                },
+                "pinnedModules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "moduleName": {
+                        "type": "string",
+                        "description": "Module name within the parent app (matches the `name` field in the app's module manifest)."
+                      }
+                    }
+                  },
+                  "description": "Pinned modules under this app, ordered oldest-pinned-first."
+                }
+              }
+            }
+          }
+        }
+      },
+      "PostUsersMePinnedApps": {
+        "required": [
+          "organizationId",
+          "appName"
+        ],
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "integer",
+            "description": "Organization to scope the pin to. The current user must be a member.",
+            "example": 1
+          },
+          "appName": {
+            "maxLength": 132,
+            "type": "string",
+            "description": "App name. SDK apps are prefixed with `app#`; native apps are bare package names.",
+            "example": "app#my-sdk-app"
+          }
+        }
+      },
+      "PostUsersMePinnedApps200": {
+        "type": "object",
+        "properties": {
+          "pinnedApp": {
+            "type": "object",
+            "properties": {
+              "appName": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "DeleteUsersMePinnedAppsAppName200": {
+        "type": "object",
+        "properties": {
+          "pinnedApp": {
+            "type": "object",
+            "properties": {
+              "appName": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "PostUsersMePinnedAppsAppNameModules": {
+        "required": [
+          "organizationId",
+          "moduleName"
+        ],
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "integer",
+            "description": "Organization to scope the pin to. The current user must be a member.",
+            "example": 1
+          },
+          "moduleName": {
+            "maxLength": 128,
+            "type": "string",
+            "description": "Module name within the parent app (matches the `name` field in the app's module manifest).",
+            "example": "send-message"
+          }
+        }
+      },
+      "PostUsersMePinnedAppsAppNameModules200": {
+        "type": "object",
+        "properties": {
+          "pinnedModule": {
+            "type": "object",
+            "properties": {
+              "appName": {
+                "type": "string"
+              },
+              "moduleName": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "DeleteUsersMePinnedAppsAppNameModulesModuleName200": {
+        "type": "object",
+        "properties": {
+          "pinnedModule": {
+            "type": "object",
+            "properties": {
+              "appName": {
+                "type": "string"
+              },
+              "moduleName": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
       "GetTeams200": {
         "type": "object",
         "properties": {
@@ -80333,6 +80835,67 @@
                 "description": "The authentication method that was used"
               }
             }
+          }
+        }
+      },
+      "GetUsersMeOnboardingSurvey200": {
+        "required": [
+          "pending"
+        ],
+        "type": "object",
+        "properties": {
+          "pending": {
+            "type": "boolean",
+            "description": "Whether the user still needs to complete the onboarding survey."
+          },
+          "response": {
+            "type": "object",
+            "description": "The submitted survey response. Only present when `pending` is `false` and a response exists."
+          }
+        }
+      },
+      "PostUsersMeOnboardingSurvey": {
+        "required": [
+          "survey_type",
+          "schema_version",
+          "answers"
+        ],
+        "type": "object",
+        "properties": {
+          "survey_type": {
+            "type": "string",
+            "description": "The type of survey being submitted (e.g., `self_serve`, `enterprise`)."
+          },
+          "schema_version": {
+            "type": "number",
+            "description": "Version of the survey schema. Allows consumers to interpret the answers array."
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "question": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "The user's answers to the survey questions."
+          }
+        }
+      },
+      "PostUsersMeOnboardingSurvey200": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "enum": [
+              1
+            ],
+            "type": "number",
+            "additionalProperties": false
           }
         }
       },
