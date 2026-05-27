@@ -7,6 +7,7 @@ using Soenneker.Make.OpenApiClient.Internal.Devices;
 using Soenneker.Make.OpenApiClient.Internal.Organizations;
 using Soenneker.Make.OpenApiClient.Internal.Scenarios;
 using Soenneker.Make.OpenApiClient.Internal.Settings;
+using Soenneker.Make.OpenApiClient.Internal.Teams;
 using Soenneker.Make.OpenApiClient.Internal.Users;
 using System.Collections.Generic;
 using System.IO;
@@ -44,6 +45,11 @@ namespace Soenneker.Make.OpenApiClient.Internal
         public global::Soenneker.Make.OpenApiClient.Internal.Settings.SettingsRequestBuilder Settings
         {
             get => new global::Soenneker.Make.OpenApiClient.Internal.Settings.SettingsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The teams property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Teams.TeamsRequestBuilder Teams
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Teams.TeamsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The users property</summary>
         public global::Soenneker.Make.OpenApiClient.Internal.Users.UsersRequestBuilder Users

@@ -56,8 +56,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>ID of the user&apos;s personal space (team) within the organization, if any.</summary>
-        public int? PersonalSpaceId { get; set; }
+        /// <summary>ID of the user&apos;s private space (team) within the organization, if any.</summary>
+        public int? PrivateSpaceId { get; set; }
         /// <summary>ID of the user&apos;s timezone.</summary>
         public int? TimezoneId { get; set; }
         /// <summary>
@@ -94,7 +94,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "lastLogin", n => { LastLogin = n.GetDateTimeOffsetValue(); } },
                 { "localeId", n => { LocaleId = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "personalSpaceId", n => { PersonalSpaceId = n.GetIntValue(); } },
+                { "privateSpaceId", n => { PrivateSpaceId = n.GetIntValue(); } },
                 { "timezoneId", n => { TimezoneId = n.GetIntValue(); } },
             };
         }
@@ -114,7 +114,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("lastLogin", LastLogin);
             writer.WriteIntValue("localeId", LocaleId);
             writer.WriteStringValue("name", Name);
-            writer.WriteIntValue("personalSpaceId", PersonalSpaceId);
+            writer.WriteIntValue("privateSpaceId", PrivateSpaceId);
             writer.WriteIntValue("timezoneId", TimezoneId);
             writer.WriteAdditionalData(AdditionalData);
         }

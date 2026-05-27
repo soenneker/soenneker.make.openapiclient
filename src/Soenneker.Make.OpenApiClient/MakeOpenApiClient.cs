@@ -37,8 +37,8 @@ using Soenneker.Make.OpenApiClient.Mailhub;
 using Soenneker.Make.OpenApiClient.Notifications;
 using Soenneker.Make.OpenApiClient.Oauth;
 using Soenneker.Make.OpenApiClient.Organizations;
-using Soenneker.Make.OpenApiClient.PersonalSpaces;
 using Soenneker.Make.OpenApiClient.Ping;
+using Soenneker.Make.OpenApiClient.PrivateSpaces;
 using Soenneker.Make.OpenApiClient.Rpcs;
 using Soenneker.Make.OpenApiClient.Scenarios;
 using Soenneker.Make.OpenApiClient.ScenariosFolders;
@@ -215,15 +215,15 @@ namespace Soenneker.Make.OpenApiClient
         {
             get => new global::Soenneker.Make.OpenApiClient.Organizations.OrganizationsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The personalSpaces property</summary>
-        public global::Soenneker.Make.OpenApiClient.PersonalSpaces.PersonalSpacesRequestBuilder PersonalSpaces
-        {
-            get => new global::Soenneker.Make.OpenApiClient.PersonalSpaces.PersonalSpacesRequestBuilder(PathParameters, RequestAdapter);
-        }
         /// <summary>The ping property</summary>
         public global::Soenneker.Make.OpenApiClient.Ping.PingRequestBuilder Ping
         {
             get => new global::Soenneker.Make.OpenApiClient.Ping.PingRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The privateSpaces property</summary>
+        public global::Soenneker.Make.OpenApiClient.PrivateSpaces.PrivateSpacesRequestBuilder PrivateSpaces
+        {
+            get => new global::Soenneker.Make.OpenApiClient.PrivateSpaces.PrivateSpacesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The rpcs property</summary>
         public global::Soenneker.Make.OpenApiClient.Rpcs.RpcsRequestBuilder Rpcs

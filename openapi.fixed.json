@@ -1617,6 +1617,145 @@
         ]
       }
     },
+    "/admin/sdk/apps/{app}/connections/{connection}/rename": {
+      "post": {
+        "tags": [
+          "Admin / SDK Apps / Connections"
+        ],
+        "summary": "Rename Connection",
+        "description": "Renames a connection of a custom SDK app. The new `name` must be a kebab-case slug and must be globally unique across all connections. Only private or published apps can be renamed; approved (public) apps are not eligible.\n",
+        "operationId": "post_admin_sdk_apps_app_connections_connection_rename",
+        "parameters": [
+          {
+            "name": "app",
+            "in": "path",
+            "description": "The SDK app name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-custom-app"
+          },
+          {
+            "name": "connection",
+            "in": "path",
+            "description": "The current connection name (slug).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-custom-app-1"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostAdminSdkAppsAppConnectionsConnectionRename"
+              },
+              "example": {
+                "name": "my-custom-app-renamed"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminSdkAppsAppConnectionsConnectionRename200"
+                },
+                "examples": {
+                  "rename-connection": {
+                    "summary": "Rename Connection",
+                    "value": {
+                      "appConnection": {
+                        "name": "my-custom-app-renamed"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input — either the new `name` is invalid or already used by another connection within the app, or the app is approved (public) and therefore not eligible for connection renaming.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminSdkAppsAppConnectionsConnectionRename400"
+                },
+                "examples": {
+                  "approved-app": {
+                    "summary": "App is approved and cannot have its connections renamed",
+                    "value": {
+                      "code": "IM005",
+                      "message": "You can only rename connections of non-approved apps."
+                    }
+                  },
+                  "name-already-used": {
+                    "summary": "New connection name is already used by another connection globally",
+                    "value": {
+                      "code": "IM005",
+                      "message": "A connection with the same name already exists."
+                    }
+                  },
+                  "invalid-name": {
+                    "summary": "Invalid `name` value",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Invalid input parameters",
+                      "detail": [
+                        "Validation failed for 1 parameter(s).",
+                        "Parameter `name` must match pattern ^[a-z][0-9a-z-]+[0-9a-z]$."
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller does not have permission to perform the action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminSdkAppsAppConnectionsConnectionRename403"
+                },
+                "example": {
+                  "code": "SC403",
+                  "message": "Forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The app or connection does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminSdkAppsAppConnectionsConnectionRename404"
+                },
+                "example": {
+                  "code": "SC404",
+                  "message": "Connection not found."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:write",
+              "sdk-apps:write"
+            ]
+          }
+        ]
+      }
+    },
     "/admin/users-detail": {
       "get": {
         "tags": [
@@ -17863,6 +18002,64 @@
         ]
       }
     },
+    "/imt/apps": {
+      "get": {
+        "tags": [
+          "IMT"
+        ],
+        "summary": "List of apps+modules available to the current user for the scenario editor app search.",
+        "description": "Returns the apps catalog used by the scenario editor's app search. Two response shapes are\nsupported via the `scoredSearch` query flag:\n\n- **Default (no `scoredSearch`)** — flat list of `SearchAppVersion` entries (one per native/SDK\n  package) plus `AddonApp` entries.\n- **`scoredSearch=true`** — apps are scored against zone-level and team-level usage to rank\n  common picks higher. Each app aggregates its versions and modules under\n  `versions[].modules[]`, and `versions[].groups[]` carries the rendered grouping for the UI.\n\nThe scored response is transformed before being returned:\n\n1. **Group normalization** — `versions[].groups` is normalized so the response always exposes\n   a well-formed grouping. Authored groupings with fewer than 2 groups are discarded and\n   replaced with per-type default groups (`'actions'`, `'triggers'`, …); otherwise authored\n   groups are preserved and orphan modules (those not referenced by any group) are appended\n   to per-type defaults.\n2. **Module reorganization** — modules can be copied or moved across apps according to\n   product-managed rules. A relocated module appears in the target app's `versions[].modules[]`\n   carrying `appName`, `appVersion`, and `theme` fields that point at its **source** package.\n   The frontend must use these fields (when present) to load the correct source manifest and\n   render the module in its original app's branding, because a module's unique identity is\n   `(parentApp.name, module.name)`.\n",
+        "operationId": "get_imt_apps",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "query",
+            "description": "Organization context for filtering custom (SDK) apps and resolving feature controls.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "scoredSearch",
+            "in": "query",
+            "description": "If `true`, the response is enriched with scoring (zone + team usage) and modules are\naggregated per version. Requires `teamId`. When omitted, a non-scored shape is returned.\n",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "Team whose usage drives team-level module scoring. **Required when `scoredSearch=true`**;\nignored otherwise.\n",
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetImtApps200"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "apps:read"
+            ]
+          }
+        ]
+      }
+    },
     "/imt/apps-meta": {
       "get": {
         "tags": [
@@ -18336,6 +18533,48 @@
                 "schema": {
                   "type": "object",
                   "description": "Key value pairs of system settings."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/teams/{teamId}/connections": {
+      "post": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Internal - Create a team connection",
+        "description": "Creates a new team connection (TAC) for the specified team. Does not handle the OAuth authorize/callback flow — only non-OAuth connection types are supported.",
+        "operationId": "post_internal_teams_teamId_connections",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The ID of the team to create the connection for.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostInternalTeamsTeamIdConnections"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Connection created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalTeamsTeamIdConnections200"
                 }
               }
             }
@@ -34044,14 +34283,14 @@
         ]
       }
     },
-    "/personal-spaces": {
+    "/private-spaces": {
       "get": {
         "tags": [
-          "Personal spaces"
+          "Private spaces"
         ],
-        "summary": "List personal spaces",
-        "description": "Gets the list of personal spaces in the organization with specified `organizationId`.",
-        "operationId": "get_personal_spaces",
+        "summary": "List private spaces",
+        "description": "Gets the list of private spaces in the organization with specified `organizationId`.",
+        "operationId": "get_private_spaces",
         "parameters": [
           {
             "name": "organizationId",
@@ -34066,7 +34305,7 @@
           {
             "name": "externalId",
             "in": "query",
-            "description": "Filter personal spaces by external ID.",
+            "description": "Filter private spaces by external ID.",
             "schema": {
               "type": "string"
             },
@@ -34127,21 +34366,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetPersonalSpaces200"
+                  "$ref": "#/components/schemas/GetPrivateSpaces200"
                 },
                 "example": {
                   "default-cols": {
-                    "summary": "List personal spaces with default columns",
-                    "personalSpaces": [
+                    "summary": "List private spaces with default columns",
+                    "privateSpaces": [
                       {
                         "id": 10,
-                        "name": "John's Personal Space",
+                        "name": "John's private space",
                         "organizationId": 1,
                         "globalAgentsEnabled": false,
                         "type": "personal",
-                        "personalSpaceOwnerName": "John Doe",
-                        "personalSpaceOwnerEmail": "john.doe@example.com",
-                        "personalSpaceOwnerId": 42
+                        "privateSpaceOwnerName": "John Doe",
+                        "privateSpaceOwnerEmail": "john.doe@example.com",
+                        "privateSpaceOwnerId": 42
                       }
                     ],
                     "pg": {
@@ -34152,17 +34391,17 @@
                     }
                   },
                   "all-cols": {
-                    "summary": "List personal spaces with all columns",
-                    "personalSpaces": [
+                    "summary": "List private spaces with all columns",
+                    "privateSpaces": [
                       {
                         "id": 10,
-                        "name": "John's Personal Space",
+                        "name": "John's private space",
                         "organizationId": 1,
                         "globalAgentsEnabled": false,
                         "type": "personal",
-                        "personalSpaceOwnerName": "John Doe",
-                        "personalSpaceOwnerEmail": "john.doe@example.com",
-                        "personalSpaceOwnerId": 42,
+                        "privateSpaceOwnerName": "John Doe",
+                        "privateSpaceOwnerEmail": "john.doe@example.com",
+                        "privateSpaceOwnerId": 42,
                         "operationsLimit": 10000,
                         "transferLimit": "536870912",
                         "consumedOperations": 42,
@@ -34193,16 +34432,16 @@
       },
       "post": {
         "tags": [
-          "Personal spaces"
+          "Private spaces"
         ],
-        "summary": "Create a personal space",
-        "description": "Creates a new personal space in the organization. The specified user becomes the space owner with the Team Member role. Organization admins are automatically added with the Team Monitoring role.",
-        "operationId": "post_personal_spaces",
+        "summary": "Create a private space",
+        "description": "Creates a new private space in the organization. The specified user becomes the space owner with the Team Member role. Organization admins are automatically added with the Team Monitoring role.",
+        "operationId": "post_private_spaces",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PostPersonalSpaces"
+                "$ref": "#/components/schemas/PostPrivateSpaces"
               }
             }
           }
@@ -34213,20 +34452,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostPersonalSpaces200"
+                  "$ref": "#/components/schemas/PostPrivateSpaces200"
                 },
                 "example": {
-                  "personalSpace": {
+                  "privateSpace": {
                     "id": 10,
-                    "name": "John Doe's personal space",
+                    "name": "John Doe's private space",
                     "organizationId": 1,
                     "deleted": false,
                     "externalId": null,
                     "globalAgentsEnabled": false,
                     "type": "personal",
-                    "personalSpaceOwnerName": "John Doe",
-                    "personalSpaceOwnerEmail": "john.doe@example.com",
-                    "personalSpaceOwnerId": 42,
+                    "privateSpaceOwnerName": "John Doe",
+                    "privateSpaceOwnerEmail": "john.doe@example.com",
+                    "privateSpaceOwnerId": 42,
                     "operationsLimit": 10000,
                     "transferLimit": "536870912",
                     "consumedOperations": 0,
@@ -34248,19 +34487,19 @@
         ]
       }
     },
-    "/personal-spaces/{personalSpaceId}": {
+    "/private-spaces/{privateSpaceId}": {
       "delete": {
         "tags": [
-          "Personal spaces"
+          "Private spaces"
         ],
-        "summary": "Delete a personal space",
-        "description": "Deletes a personal space. All linked scenarios are stopped and deleted. Templates attached to the space are detached. Always requires confirmation — send `confirmed=true` to proceed.",
-        "operationId": "delete_personal_spaces_personalSpaceId",
+        "summary": "Delete a private space",
+        "description": "Deletes a private space. All linked scenarios are stopped and deleted. Templates attached to the space are detached. Always requires confirmation — send `confirmed=true` to proceed.",
+        "operationId": "delete_private_spaces_privateSpaceId",
         "parameters": [
           {
-            "name": "personalSpaceId",
+            "name": "privateSpaceId",
             "in": "path",
-            "description": "The ID of the personal space to delete.",
+            "description": "The ID of the private space to delete.",
             "required": true,
             "schema": {
               "type": "integer"
@@ -34282,10 +34521,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeletePersonalSpacesPersonalSpaceId200"
+                  "$ref": "#/components/schemas/DeletePrivateSpacesPrivateSpaceId200"
                 },
                 "example": {
-                  "personalSpaceId": 10
+                  "privateSpaceId": 10
                 }
               }
             }
@@ -34295,21 +34534,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeletePersonalSpacesPersonalSpaceId400"
+                  "$ref": "#/components/schemas/DeletePrivateSpacesPrivateSpaceId400"
                 },
                 "examples": {
                   "lockedByDowngrade": {
                     "summary": "Space locked by an ongoing downgrade process",
                     "value": {
                       "code": "IM005",
-                      "message": "Personal space cannot be deleted because it was locked by an ongoing downgrade process."
+                      "message": "Private space cannot be deleted because it was locked by an ongoing downgrade process."
                     }
                   },
                   "hasRelayedHooks": {
                     "summary": "Space has forwarded (relayed) hooks",
                     "value": {
                       "code": "IM005",
-                      "message": "Personal space can't be deleted because there are forwarded hooks inside. Stop the forwarding first."
+                      "message": "Private space can't be deleted because there are forwarded hooks inside. Stop the forwarding first."
                     }
                   }
                 }
@@ -34321,7 +34560,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeletePersonalSpacesPersonalSpaceId401"
+                  "$ref": "#/components/schemas/DeletePrivateSpacesPrivateSpaceId401"
                 },
                 "example": {
                   "code": "IM015",
@@ -34335,7 +34574,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeletePersonalSpacesPersonalSpaceId403"
+                  "$ref": "#/components/schemas/DeletePrivateSpacesPrivateSpaceId403"
                 },
                 "example": {
                   "code": "SC403",
@@ -34345,15 +34584,15 @@
             }
           },
           "404": {
-            "description": "Personal space not found",
+            "description": "Private space not found",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeletePersonalSpacesPersonalSpaceId404"
+                  "$ref": "#/components/schemas/DeletePrivateSpacesPrivateSpaceId404"
                 },
                 "example": {
                   "code": "SC404",
-                  "message": "Personal space not found."
+                  "message": "Private space not found."
                 }
               }
             }
@@ -34363,7 +34602,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeletePersonalSpacesPersonalSpaceId406"
+                  "$ref": "#/components/schemas/DeletePrivateSpacesPrivateSpaceId406"
                 },
                 "examples": {
                   "confirmationRequired": {
@@ -34416,16 +34655,16 @@
       },
       "get": {
         "tags": [
-          "Personal spaces"
+          "Private spaces"
         ],
-        "summary": "Get a personal space",
-        "description": "Returns the details of a single personal space. Requires the `personal team own view` organization permission. Non-members receive a 403.",
-        "operationId": "get_personal_spaces_personalSpaceId",
+        "summary": "Get a private space",
+        "description": "Returns the details of a single private space. Requires the `personal team own view` organization permission. Non-members receive a 404.",
+        "operationId": "get_private_spaces_privateSpaceId",
         "parameters": [
           {
-            "name": "personalSpaceId",
+            "name": "privateSpaceId",
             "in": "path",
-            "description": "The ID of the personal space.",
+            "description": "The ID of the private space.",
             "required": true,
             "schema": {
               "type": "integer"
@@ -34450,18 +34689,18 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetPersonalSpacesPersonalSpaceId200"
+                  "$ref": "#/components/schemas/GetPrivateSpacesPrivateSpaceId200"
                 },
                 "example": {
-                  "personalSpace": {
+                  "privateSpace": {
                     "id": 10,
-                    "name": "John Doe's personal space",
+                    "name": "John's private space",
                     "organizationId": 1,
                     "globalAgentsEnabled": false,
                     "type": "personal",
-                    "personalSpaceOwnerName": "John Doe",
-                    "personalSpaceOwnerEmail": "john.doe@example.com",
-                    "personalSpaceOwnerId": 42
+                    "privateSpaceOwnerName": "John Doe",
+                    "privateSpaceOwnerEmail": "john.doe@example.com",
+                    "privateSpaceOwnerId": 42
                   }
                 }
               }
@@ -34478,16 +34717,16 @@
       },
       "patch": {
         "tags": [
-          "Personal spaces"
+          "Private spaces"
         ],
-        "summary": "Update a personal space",
-        "description": "Updates a personal space. Currently supports changing the operations limit (credit limit). Requires the `personal team manage` organization permission.",
-        "operationId": "patch_personal_spaces_personalSpaceId",
+        "summary": "Update a private space",
+        "description": "Updates a private space. Currently supports changing the operations limit (credit limit). Requires the `personal team manage` organization permission.",
+        "operationId": "patch_private_spaces_privateSpaceId",
         "parameters": [
           {
-            "name": "personalSpaceId",
+            "name": "privateSpaceId",
             "in": "path",
-            "description": "The ID of the personal space.",
+            "description": "The ID of the private space.",
             "required": true,
             "schema": {
               "type": "integer"
@@ -34497,7 +34736,7 @@
           {
             "name": "confirmed",
             "in": "query",
-            "description": "When `true`, confirms the operation even if the new limit is below the current consumption. This will pause the personal space.",
+            "description": "When `true`, confirms the operation even if the new limit is below the current consumption. This will pause the private space.",
             "schema": {
               "type": "boolean"
             }
@@ -34507,7 +34746,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchPersonalSpacesPersonalSpaceId"
+                "$ref": "#/components/schemas/PatchPrivateSpacesPrivateSpaceId"
               }
             }
           }
@@ -34518,20 +34757,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PatchPersonalSpacesPersonalSpaceId200"
+                  "$ref": "#/components/schemas/PatchPrivateSpacesPrivateSpaceId200"
                 },
                 "example": {
-                  "personalSpace": {
+                  "privateSpace": {
                     "id": 10,
-                    "name": "John Doe's personal space",
+                    "name": "John's private space",
                     "organizationId": 1,
                     "deleted": false,
                     "externalId": null,
                     "globalAgentsEnabled": false,
                     "type": "personal",
-                    "personalSpaceOwnerName": "John Doe",
-                    "personalSpaceOwnerEmail": "john.doe@example.com",
-                    "personalSpaceOwnerId": 42,
+                    "privateSpaceOwnerName": "John Doe",
+                    "privateSpaceOwnerEmail": "john.doe@example.com",
+                    "privateSpaceOwnerId": 42,
                     "operationsLimit": 10000,
                     "transferLimit": "536870912",
                     "consumedOperations": 42,
@@ -39192,7 +39431,7 @@
                   "id",
                   "name",
                   "email",
-                  "personalSpaceId",
+                  "privateSpaceId",
                   "language",
                   "timezoneId",
                   "localeId",
@@ -56658,6 +56897,77 @@
           }
         }
       },
+      "PostAdminSdkAppsAppConnectionsConnectionRename": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 32,
+            "minLength": 3,
+            "pattern": "^[a-z][0-9a-z-]+[0-9a-z]$",
+            "type": "string",
+            "description": "The new connection name as a kebab-case slug. Must be globally unique across all connections."
+          }
+        }
+      },
+      "PostAdminSdkAppsAppConnectionsConnectionRename200": {
+        "type": "object",
+        "properties": {
+          "appConnection": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The new connection name."
+              }
+            }
+          }
+        }
+      },
+      "PostAdminSdkAppsAppConnectionsConnectionRename400": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Application error code."
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message."
+          },
+          "detail": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Validation error details."
+          }
+        }
+      },
+      "PostAdminSdkAppsAppConnectionsConnectionRename403": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "PostAdminSdkAppsAppConnectionsConnectionRename404": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
       "GetAdminUsersDetail200": {
         "type": "object",
         "properties": {
@@ -67708,6 +68018,217 @@
           }
         }
       },
+      "GetImtApps200": {
+        "required": [
+          "apps"
+        ],
+        "type": "object",
+        "properties": {
+          "apps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "oneOf": [
+                {
+                  "required": [
+                    "name",
+                    "label",
+                    "theme",
+                    "icon",
+                    "type",
+                    "score",
+                    "versions"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "App package name."
+                    },
+                    "label": {
+                      "type": "string",
+                      "description": "App display label."
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "theme": {
+                      "type": "string",
+                      "description": "Hex color of the app's branding (e.g. `'#18bfff'`).",
+                      "nullable": true
+                    },
+                    "icon": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "comingSoon": {
+                      "type": "boolean"
+                    },
+                    "premiumTier": {
+                      "type": "integer",
+                      "description": "Premium level [0-10]; SDK apps default to 0."
+                    },
+                    "keywords": {
+                      "type": "string",
+                      "description": "Comma-separated keywords for app search."
+                    },
+                    "type": {
+                      "enum": [
+                        "native",
+                        "sdk"
+                      ],
+                      "type": "string",
+                      "additionalProperties": false,
+                      "description": "App kind. Addon apps use the `AddonApp` schema."
+                    },
+                    "score": {
+                      "type": "number",
+                      "description": "Aggregate score combining zone- and team-level usage."
+                    },
+                    "versions": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "version",
+                          "public",
+                          "modules"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "version": {
+                            "type": "string",
+                            "description": "Full semver version of the package (e.g. `'1.2.0'`)."
+                          },
+                          "public": {
+                            "type": "boolean"
+                          },
+                          "beta": {
+                            "type": "boolean"
+                          },
+                          "foreign": {
+                            "type": "boolean",
+                            "description": "True when the app is installed from an invite link."
+                          },
+                          "approved": {
+                            "type": "boolean"
+                          },
+                          "supportsAgent": {
+                            "type": "boolean"
+                          },
+                          "modules": {
+                            "type": "array",
+                            "items": {
+                              "required": [
+                                "name",
+                                "label",
+                                "type",
+                                "score"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "label": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string",
+                                  "description": "Module kind (e.g. `'action'`, `'trigger'`, `'search'`, …)."
+                                },
+                                "score": {
+                                  "type": "number"
+                                },
+                                "listener": {
+                                  "type": "boolean"
+                                },
+                                "acid": {
+                                  "type": "boolean"
+                                },
+                                "public": {
+                                  "type": "boolean"
+                                },
+                                "deprecated": {
+                                  "type": "boolean"
+                                },
+                                "approved": {
+                                  "type": "boolean"
+                                },
+                                "supportsAgent": {
+                                  "type": "boolean"
+                                },
+                                "centicreditsFormula": {
+                                  "type": "string"
+                                },
+                                "centicreditsFormulaDescription": {
+                                  "type": "string"
+                                },
+                                "centicreditsFormulaDocumentationUrl": {
+                                  "type": "string"
+                                },
+                                "centicreditsFormulaMeta": {
+                                  "type": "object"
+                                },
+                                "appName": {
+                                  "type": "string",
+                                  "description": "Present only on **relocated** modules. Name of the source app package this module\noriginally belongs to. Frontend MUST use this (when present) as the package identifier\nwhen materializing the module into a scenario blueprint.\n"
+                                },
+                                "appVersion": {
+                                  "type": "string",
+                                  "description": "Present only on relocated modules. Full semver version of the source package\n(e.g. `'1.0.0'`). Used together with `appName` to load the source manifest.\n"
+                                },
+                                "theme": {
+                                  "type": "string",
+                                  "description": "Present only on relocated modules. Hex color theme of the source package, so the\nfrontend can render the module in its original app's branding.\n"
+                                }
+                              },
+                              "description": "A module under a scored app version. May be either a native module of the parent app, or\na module **relocated** from a different source app by the product-managed reorganizer.\nWhen relocated, `appName`/`appVersion`/`theme` identify the *source* package — see the\nendpoint description.\n"
+                            }
+                          },
+                          "groups": {
+                            "type": "array",
+                            "items": {
+                              "required": [
+                                "label",
+                                "modules"
+                              ],
+                              "type": "object",
+                              "properties": {
+                                "label": {
+                                  "type": "string",
+                                  "description": "Authored group label, or a per-type default like `'actions'`, `'triggers'`,\n`'searches'`, `'transformers'`, `'routers'`, etc.\n"
+                                },
+                                "modules": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "description": "Module names belonging to this group (references into `modules[]`)."
+                                }
+                              }
+                            },
+                            "description": "Always present after the group normalization step (see endpoint description).\nEither authored groups (≥ 2 of them) plus any per-type defaults for orphan modules,\nor per-type default groups if the app had no real authored grouping.\n"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "description": "A native or SDK app with version/module aggregation and zone+team scoring applied.\nReturned only when `scoredSearch=true`.\n"
+                },
+                {
+                  "type": "object",
+                  "description": "Addon entries returned alongside native/SDK apps. Shape is preserved from\n`req.app.get('addonApps')` (provided by the `load-addon.apps.js` loader).\n"
+                }
+              ]
+            },
+            "description": "When `scoredSearch=true`, items are `ScoredSearchApp` (native/SDK) or\n`AddonApp`. When `scoredSearch` is omitted/false, items are the non-scored\nmanifest shapes (not documented here).\n"
+          }
+        }
+      },
       "GetImtAppsMeta200": {
         "type": "object",
         "properties": {
@@ -68078,6 +68599,60 @@
         "example": {
           "brand_title": "Make",
           "brand_color": "violet"
+        }
+      },
+      "PostInternalTeamsTeamIdConnections": {
+        "required": [
+          "accountName",
+          "accountType",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "The connection type identifier (e.g. 'ai-provider')."
+          },
+          "accountType": {
+            "type": "string",
+            "description": "The account type identifier, usually same as accountName."
+          },
+          "userId": {
+            "type": "integer",
+            "description": "The ID of the user creating the connection. Must have 'account add' permission on the team."
+          },
+          "data": {
+            "type": "object",
+            "description": "Optional connection data/credentials."
+          }
+        }
+      },
+      "PostInternalTeamsTeamIdConnections200": {
+        "type": "object",
+        "properties": {
+          "connection": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              },
+              "accountName": {
+                "type": "string"
+              },
+              "accountType": {
+                "type": "string"
+              },
+              "oauth": {
+                "type": "boolean"
+              },
+              "teamId": {
+                "type": "integer"
+              }
+            }
+          }
         }
       },
       "GetInternalDataStructuresDataStructureId200": {
@@ -76913,29 +77488,29 @@
         "type": "object",
         "description": "An empty object is returned on successful recreation."
       },
-      "GetPersonalSpaces200": {
+      "GetPrivateSpaces200": {
         "type": "object",
         "properties": {
-          "personalSpaces": {
+          "privateSpaces": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
                 "id": {
                   "type": "integer",
-                  "description": "The ID of the personal space."
+                  "description": "The ID of the private space."
                 },
                 "name": {
                   "type": "string",
-                  "description": "The name of the personal space."
+                  "description": "The name of the private space."
                 },
                 "organizationId": {
                   "type": "integer",
-                  "description": "The ID of the organization the personal space belongs to."
+                  "description": "The ID of the organization the private space belongs to."
                 },
                 "globalAgentsEnabled": {
                   "type": "boolean",
-                  "description": "Whether global agents are enabled for this personal space."
+                  "description": "Whether global agents are enabled for this private space."
                 },
                 "type": {
                   "enum": [
@@ -76945,18 +77520,18 @@
                   "additionalProperties": false,
                   "description": "The type of the space. Always `personal`."
                 },
-                "personalSpaceOwnerName": {
+                "privateSpaceOwnerName": {
                   "type": "string",
-                  "description": "The name of the personal space owner."
+                  "description": "The name of the private space owner."
                 },
-                "personalSpaceOwnerEmail": {
+                "privateSpaceOwnerEmail": {
                   "type": "string",
-                  "description": "The email address of the personal space owner.",
+                  "description": "The email address of the private space owner.",
                   "format": "email"
                 },
-                "personalSpaceOwnerId": {
+                "privateSpaceOwnerId": {
                   "type": "integer",
-                  "description": "The ID of the personal space owner."
+                  "description": "The ID of the private space owner."
                 },
                 "operationsLimit": {
                   "type": "integer",
@@ -76980,7 +77555,7 @@
                 },
                 "isPaused": {
                   "type": "boolean",
-                  "description": "Whether the personal space is paused due to exceeding limits.",
+                  "description": "Whether the private space is paused due to exceeding limits.",
                   "nullable": true
                 },
                 "consumedCenticredits": {
@@ -77016,7 +77591,7 @@
           }
         }
       },
-      "PostPersonalSpaces": {
+      "PostPrivateSpaces": {
         "required": [
           "organizationId",
           "userId",
@@ -77026,51 +77601,51 @@
         "properties": {
           "organizationId": {
             "type": "integer",
-            "description": "The ID of the organization to create the personal space in.",
+            "description": "The ID of the organization to create the private space in.",
             "example": 1
           },
           "userId": {
             "type": "integer",
-            "description": "The ID of the user who will own the personal space.",
+            "description": "The ID of the user who will own the private space.",
             "example": 42
           },
           "operationsLimit": {
             "type": "integer",
-            "description": "The operations limit for the personal space. Transfer limit is auto-calculated.",
+            "description": "The operations limit for the private space. Transfer limit is auto-calculated.",
             "example": 10000
           }
         }
       },
-      "PostPersonalSpaces200": {
+      "PostPrivateSpaces200": {
         "type": "object",
         "properties": {
-          "personalSpace": {
+          "privateSpace": {
             "type": "object",
             "properties": {
               "id": {
                 "type": "integer",
-                "description": "The ID of the created personal space."
+                "description": "The ID of the created private space."
               },
               "name": {
                 "type": "string",
-                "description": "The auto-generated name of the personal space."
+                "description": "The auto-generated name of the private space."
               },
               "organizationId": {
                 "type": "integer",
-                "description": "The ID of the organization the personal space belongs to."
+                "description": "The ID of the organization the private space belongs to."
               },
               "deleted": {
                 "type": "boolean",
-                "description": "Whether the personal space is deleted."
+                "description": "Whether the private space is deleted."
               },
               "externalId": {
                 "type": "string",
-                "description": "The external ID of the personal space.",
+                "description": "The external ID of the private space.",
                 "nullable": true
               },
               "globalAgentsEnabled": {
                 "type": "boolean",
-                "description": "Whether global agents are enabled for this personal space."
+                "description": "Whether global agents are enabled for this private space."
               },
               "type": {
                 "enum": [
@@ -77079,17 +77654,17 @@
                 "type": "string",
                 "additionalProperties": false
               },
-              "personalSpaceOwnerName": {
+              "privateSpaceOwnerName": {
                 "type": "string",
-                "description": "The name of the personal space owner."
+                "description": "The name of the private space owner."
               },
-              "personalSpaceOwnerEmail": {
+              "privateSpaceOwnerEmail": {
                 "type": "string",
-                "description": "The email of the personal space owner."
+                "description": "The email of the private space owner."
               },
-              "personalSpaceOwnerId": {
+              "privateSpaceOwnerId": {
                 "type": "integer",
-                "description": "The ID of the personal space owner."
+                "description": "The ID of the private space owner."
               },
               "operationsLimit": {
                 "type": "integer",
@@ -77111,7 +77686,7 @@
               },
               "isPaused": {
                 "type": "boolean",
-                "description": "Whether the personal space is paused."
+                "description": "Whether the private space is paused."
               },
               "consumedCenticredits": {
                 "type": "integer",
@@ -77121,16 +77696,16 @@
           }
         }
       },
-      "DeletePersonalSpacesPersonalSpaceId200": {
+      "DeletePrivateSpacesPrivateSpaceId200": {
         "type": "object",
         "properties": {
-          "personalSpaceId": {
+          "privateSpaceId": {
             "type": "integer",
-            "description": "The ID of the deleted personal space."
+            "description": "The ID of the deleted private space."
           }
         }
       },
-      "DeletePersonalSpacesPersonalSpaceId400": {
+      "DeletePrivateSpacesPrivateSpaceId400": {
         "type": "object",
         "properties": {
           "message": {
@@ -77141,7 +77716,7 @@
           }
         }
       },
-      "DeletePersonalSpacesPersonalSpaceId401": {
+      "DeletePrivateSpacesPrivateSpaceId401": {
         "type": "object",
         "properties": {
           "message": {
@@ -77152,7 +77727,7 @@
           }
         }
       },
-      "DeletePersonalSpacesPersonalSpaceId403": {
+      "DeletePrivateSpacesPrivateSpaceId403": {
         "type": "object",
         "properties": {
           "message": {
@@ -77163,7 +77738,7 @@
           }
         }
       },
-      "DeletePersonalSpacesPersonalSpaceId404": {
+      "DeletePrivateSpacesPrivateSpaceId404": {
         "type": "object",
         "properties": {
           "message": {
@@ -77174,7 +77749,7 @@
           }
         }
       },
-      "DeletePersonalSpacesPersonalSpaceId406": {
+      "DeletePrivateSpacesPrivateSpaceId406": {
         "type": "object",
         "properties": {
           "message": {
@@ -77191,27 +77766,27 @@
           }
         }
       },
-      "GetPersonalSpacesPersonalSpaceId200": {
+      "GetPrivateSpacesPrivateSpaceId200": {
         "type": "object",
         "properties": {
-          "personalSpace": {
+          "privateSpace": {
             "type": "object",
             "properties": {
               "id": {
                 "type": "integer",
-                "description": "The ID of the personal space."
+                "description": "The ID of the private space."
               },
               "name": {
                 "type": "string",
-                "description": "The name of the personal space."
+                "description": "The name of the private space."
               },
               "organizationId": {
                 "type": "integer",
-                "description": "The ID of the organization the personal space belongs to."
+                "description": "The ID of the organization the private space belongs to."
               },
               "globalAgentsEnabled": {
                 "type": "boolean",
-                "description": "Whether global agents are enabled for this personal space."
+                "description": "Whether global agents are enabled for this private space."
               },
               "type": {
                 "enum": [
@@ -77221,18 +77796,18 @@
                 "additionalProperties": false,
                 "description": "The type of the space. Always `personal`."
               },
-              "personalSpaceOwnerName": {
+              "privateSpaceOwnerName": {
                 "type": "string",
-                "description": "The name of the personal space owner."
+                "description": "The name of the private space owner."
               },
-              "personalSpaceOwnerEmail": {
+              "privateSpaceOwnerEmail": {
                 "type": "string",
-                "description": "The email address of the personal space owner.",
+                "description": "The email address of the private space owner.",
                 "format": "email"
               },
-              "personalSpaceOwnerId": {
+              "privateSpaceOwnerId": {
                 "type": "integer",
-                "description": "The ID of the personal space owner."
+                "description": "The ID of the private space owner."
               },
               "operationsLimit": {
                 "type": "integer",
@@ -77256,7 +77831,7 @@
               },
               "isPaused": {
                 "type": "boolean",
-                "description": "Whether the personal space is paused due to exceeding limits.",
+                "description": "Whether the private space is paused due to exceeding limits.",
                 "nullable": true
               },
               "consumedCenticredits": {
@@ -77280,7 +77855,7 @@
           }
         }
       },
-      "PatchPersonalSpacesPersonalSpaceId": {
+      "PatchPrivateSpacesPrivateSpaceId": {
         "required": [
           "operationsLimit"
         ],
@@ -77289,42 +77864,42 @@
           "operationsLimit": {
             "minimum": 0,
             "type": "integer",
-            "description": "The new operations limit for the personal space. Transfer limit is auto-calculated. Set to `null` to remove limits.",
+            "description": "The new operations limit for the private space. Transfer limit is auto-calculated. Set to `null` to remove limits.",
             "nullable": true,
             "example": 10000
           }
         }
       },
-      "PatchPersonalSpacesPersonalSpaceId200": {
+      "PatchPrivateSpacesPrivateSpaceId200": {
         "type": "object",
         "properties": {
-          "personalSpace": {
+          "privateSpace": {
             "type": "object",
             "properties": {
               "id": {
                 "type": "integer",
-                "description": "The ID of the personal space."
+                "description": "The ID of the private space."
               },
               "name": {
                 "type": "string",
-                "description": "The name of the personal space."
+                "description": "The name of the private space."
               },
               "organizationId": {
                 "type": "integer",
-                "description": "The ID of the organization the personal space belongs to."
+                "description": "The ID of the organization the private space belongs to."
               },
               "deleted": {
                 "type": "boolean",
-                "description": "Whether the personal space is deleted."
+                "description": "Whether the private space is deleted."
               },
               "externalId": {
                 "type": "string",
-                "description": "The external ID of the personal space.",
+                "description": "The external ID of the private space.",
                 "nullable": true
               },
               "globalAgentsEnabled": {
                 "type": "boolean",
-                "description": "Whether global agents are enabled for this personal space."
+                "description": "Whether global agents are enabled for this private space."
               },
               "type": {
                 "enum": [
@@ -77333,17 +77908,17 @@
                 "type": "string",
                 "additionalProperties": false
               },
-              "personalSpaceOwnerName": {
+              "privateSpaceOwnerName": {
                 "type": "string",
-                "description": "The name of the personal space owner."
+                "description": "The name of the private space owner."
               },
-              "personalSpaceOwnerEmail": {
+              "privateSpaceOwnerEmail": {
                 "type": "string",
-                "description": "The email of the personal space owner."
+                "description": "The email of the private space owner."
               },
-              "personalSpaceOwnerId": {
+              "privateSpaceOwnerId": {
                 "type": "integer",
-                "description": "The ID of the personal space owner."
+                "description": "The ID of the private space owner."
               },
               "operationsLimit": {
                 "type": "integer",
@@ -77365,7 +77940,7 @@
               },
               "isPaused": {
                 "type": "boolean",
-                "description": "Whether the personal space is paused."
+                "description": "Whether the private space is paused."
               },
               "consumedCenticredits": {
                 "type": "integer",
@@ -81243,9 +81818,9 @@
                   "description": "Email address of the user.",
                   "example": "john.doe@example.com"
                 },
-                "personalSpaceId": {
+                "privateSpaceId": {
                   "type": "integer",
-                  "description": "ID of the user's personal space (team) within the organization, if any.",
+                  "description": "ID of the user's private space (team) within the organization, if any.",
                   "nullable": true,
                   "example": 42
                 },
@@ -92882,8 +93457,8 @@
       "description": "The following endpoints allow you to manage child organizations."
     },
     {
-      "name": "Personal spaces",
-      "description": "The following endpoints allow you to manage personal spaces in your organization."
+      "name": "Private spaces",
+      "description": "The following endpoints allow you to manage private spaces in your organization."
     },
     {
       "name": "Remote procedures"

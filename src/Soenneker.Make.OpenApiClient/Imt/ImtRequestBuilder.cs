@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Imt.Apps;
 using Soenneker.Make.OpenApiClient.Imt.AppsMeta;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,11 @@ namespace Soenneker.Make.OpenApiClient.Imt
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImtRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The apps property</summary>
+        public global::Soenneker.Make.OpenApiClient.Imt.Apps.AppsRequestBuilder Apps
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Imt.Apps.AppsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The appsMeta property</summary>
         public global::Soenneker.Make.OpenApiClient.Imt.AppsMeta.AppsMetaRequestBuilder AppsMeta
         {
