@@ -7,6 +7,7 @@ using Soenneker.Make.OpenApiClient.Models;
 using Soenneker.Make.OpenApiClient.Scenarios.AiAgents;
 using Soenneker.Make.OpenApiClient.Scenarios.Consumptions;
 using Soenneker.Make.OpenApiClient.Scenarios.Item;
+using Soenneker.Make.OpenApiClient.Scenarios.Logs;
 using Soenneker.Make.OpenApiClient.Scenarios.Modules;
 using Soenneker.Make.OpenApiClient.Scenarios.ReplayableExecutions;
 using Soenneker.Make.OpenApiClient.Scenarios.Tools;
@@ -32,6 +33,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         public global::Soenneker.Make.OpenApiClient.Scenarios.Consumptions.ConsumptionsRequestBuilder Consumptions
         {
             get => new global::Soenneker.Make.OpenApiClient.Scenarios.Consumptions.ConsumptionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The logs property</summary>
+        public global::Soenneker.Make.OpenApiClient.Scenarios.Logs.LogsRequestBuilder Logs
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Scenarios.Logs.LogsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The modules property</summary>
         public global::Soenneker.Make.OpenApiClient.Scenarios.Modules.ModulesRequestBuilder Modules

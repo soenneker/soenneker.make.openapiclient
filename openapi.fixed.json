@@ -25225,6 +25225,89 @@
         ]
       }
     },
+    "/scenarios/logs": {
+      "get": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Cross-scenario execution feed (Pointee integration, undocumented)",
+        "description": "Returns completed execution summaries across all scenarios visible to the API token,\nordered ascending by completion time. Designed for polling integrations that need a\nsingle feed of \"what completed since last poll\" across the full scenario fleet.\n\n**Filtering:** Only `EXECUTION_END` records are returned (in-progress executions excluded).\n\n**Pagination:** Use `since` as the cursor — store `max(timestamp)` from the last response\nand pass it as `since` on the next poll.\n\n**Limit:** `since` must not be older than 90 days.\n",
+        "operationId": "get_scenarios_logs",
+        "parameters": [
+          {
+            "name": "since",
+            "in": "query",
+            "description": "ISO8601 UTC timestamp. The server returns only executions whose completion time is\n**strictly greater than** this value. Store `max(timestamp)` from the last response\nas the next `since` cursor.\n",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2026-05-25T10:00:00Z"
+          },
+          {
+            "name": "until",
+            "in": "query",
+            "description": "ISO8601 UTC timestamp upper bound (inclusive). Defaults to the current server time\nwhen omitted.\n",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2026-05-25T11:00:00Z"
+          },
+          {
+            "name": "pg[limit]",
+            "in": "query",
+            "description": "Maximum number of execution summaries to return. Capped at 200.",
+            "schema": {
+              "maximum": 200,
+              "minimum": 1,
+              "type": "integer",
+              "default": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetScenariosLogs200"
+                },
+                "example": {
+                  "scenarioLogs": [
+                    {
+                      "imtId": "1716624000000_8c4f2a1b3d5e6f7a8b9c0d1e2f3a4b5c",
+                      "id": "8c4f2a1b3d5e6f7a8b9c0d1e2f3a4b5c",
+                      "scenarioId": 123,
+                      "organizationId": 1,
+                      "teamId": 7,
+                      "timestamp": "2026-05-25T10:00:00Z",
+                      "status": 1,
+                      "duration": 1234,
+                      "operations": 5,
+                      "centicredits": 50,
+                      "transfer": 102400,
+                      "eventType": "EXECUTION_END",
+                      "type": "auto",
+                      "instant": false
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:read"
+            ]
+          }
+        ]
+      }
+    },
     "/scenarios/{scenarioId}/logs": {
       "get": {
         "tags": [
@@ -43040,6 +43123,10 @@
           "name": {
             "type": "string"
           },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "serviceName": {
             "type": "string"
           },
@@ -56358,6 +56445,10 @@
               "name": {
                 "type": "string"
               },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
               "serviceName": {
                 "type": "string"
               },
@@ -56484,6 +56575,10 @@
               },
               "name": {
                 "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
               },
               "serviceName": {
                 "type": "string"
@@ -69084,6 +69179,10 @@
                 "name": {
                   "type": "string"
                 },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
                 "serviceName": {
                   "type": "string"
                 },
@@ -69228,6 +69327,10 @@
               },
               "name": {
                 "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
               },
               "serviceName": {
                 "type": "string"
@@ -69521,6 +69624,10 @@
               "name": {
                 "type": "string"
               },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
               "serviceName": {
                 "type": "string"
               },
@@ -69631,6 +69738,10 @@
               },
               "name": {
                 "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
               },
               "serviceName": {
                 "type": "string"
@@ -72779,6 +72890,78 @@
           "scenarioId": {
             "type": "integer",
             "description": "The ID of the scenario"
+          }
+        }
+      },
+      "GetScenariosLogs200": {
+        "type": "object",
+        "properties": {
+          "scenarioLogs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "imtId": {
+                  "type": "string",
+                  "description": "Opaque cursor combining epoch ms and execution id."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Execution ID (32-char hex)."
+                },
+                "scenarioId": {
+                  "type": "integer"
+                },
+                "organizationId": {
+                  "type": "integer"
+                },
+                "teamId": {
+                  "type": "integer",
+                  "nullable": true
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "status": {
+                  "enum": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "type": "integer",
+                  "additionalProperties": false,
+                  "description": "1 = success, 2 = warning, 3 = error"
+                },
+                "duration": {
+                  "type": "integer",
+                  "description": "Execution duration in milliseconds."
+                },
+                "operations": {
+                  "type": "integer"
+                },
+                "centicredits": {
+                  "type": "integer"
+                },
+                "transfer": {
+                  "type": "integer",
+                  "description": "Data transfer in bytes."
+                },
+                "eventType": {
+                  "enum": [
+                    "EXECUTION_END"
+                  ],
+                  "type": "string",
+                  "additionalProperties": false
+                },
+                "type": {
+                  "type": "string"
+                },
+                "instant": {
+                  "type": "boolean"
+                }
+              }
+            }
           }
         }
       },

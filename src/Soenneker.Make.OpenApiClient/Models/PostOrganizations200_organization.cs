@@ -18,6 +18,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The countryId property</summary>
         public int? CountryId { get; set; }
+        /// <summary>The createdAt property</summary>
+        public DateTimeOffset? CreatedAt { get; set; }
         /// <summary>The deleted property</summary>
         public bool? Deleted { get; set; }
         /// <summary>The featureControls property</summary>
@@ -125,6 +127,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "activeScenarios", n => { ActiveScenarios = n.GetIntValue(); } },
                 { "countryId", n => { CountryId = n.GetIntValue(); } },
+                { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "deleted", n => { Deleted = n.GetBoolValue(); } },
                 { "featureControls", n => { FeatureControls = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200_organization_featureControls>(global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200_organization_featureControls.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
@@ -152,6 +155,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("activeScenarios", ActiveScenarios);
             writer.WriteIntValue("countryId", CountryId);
+            writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteBoolValue("deleted", Deleted);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200_organization_featureControls>("featureControls", FeatureControls);
             writer.WriteIntValue("id", Id);
