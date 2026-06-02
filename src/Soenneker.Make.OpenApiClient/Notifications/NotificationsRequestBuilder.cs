@@ -55,40 +55,40 @@ namespace Soenneker.Make.OpenApiClient.Notifications
         /// <summary>
         /// Deletes notifications with given IDs and returns their IDs in the response. This endpoint allows deleting one or more notifications at once.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications200?> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications200Response?> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteNotificationsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications200> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications200Response> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteNotificationsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all notifications for the authenticated user. Returned notifications are sorted by ID in descending order.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetNotifications200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetNotifications200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetNotifications200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetNotifications200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetNotifications200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetNotifications200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetNotifications200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetNotifications200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetNotifications200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetNotifications200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes notifications with given IDs and returns their IDs in the response. This endpoint allows deleting one or more notifications at once.
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.Notifications
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteNotificationsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteNotifications body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteNotificationsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -167,10 +167,10 @@ namespace Soenneker.Make.OpenApiClient.Notifications
             public int? Pgoffset { get; set; }
             /// <summary>The value that will be used to sort returned entities by. Notifications can be currently sorted only by ID.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.Notifications.GetPgSortByQueryParameterType? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetNotificationsPgSortByParameter? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Notifications.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetNotificationsPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>If set to `true`, this parameter returns only the unread notifications.</summary>
             [QueryParameter("unreadOnly")]
             public bool? UnreadOnly { get; set; }

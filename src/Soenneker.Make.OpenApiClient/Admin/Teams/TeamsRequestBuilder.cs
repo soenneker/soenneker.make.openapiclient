@@ -49,40 +49,40 @@ namespace Soenneker.Make.OpenApiClient.Admin.Teams
         /// <summary>
         /// Gets the list of teams in the organization with the specified `organizationId`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Teams.TeamsRequestBuilder.TeamsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Teams.TeamsRequestBuilder.TeamsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Teams.TeamsRequestBuilder.TeamsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Teams.TeamsRequestBuilder.TeamsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new team in the specified organization.You can set the team admin with the parameter `userTeamAdmin` in the request body. If you don&apos;t use the `userTeamAdmin` parameter and you are part of the organization, then Make sets you as the team admin.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminTeamsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminTeamsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the list of teams in the organization with the specified `organizationId`.
@@ -111,11 +111,11 @@ namespace Soenneker.Make.OpenApiClient.Admin.Teams
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAdminTeamsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAdminTeamsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -161,10 +161,10 @@ namespace Soenneker.Make.OpenApiClient.Admin.Teams
             public int? Pgoffset { get; set; }
             /// <summary>The value that will be used to sort returned entities by.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.Admin.Teams.GetPgSortByQueryParameterType? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetAdminTeamsPgSortByParameter? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Admin.Teams.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetAdminTeamsPgSortDirParameter? PgsortDir { get; set; }
         }
     }
 }

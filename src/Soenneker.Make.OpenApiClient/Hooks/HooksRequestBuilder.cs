@@ -49,40 +49,40 @@ namespace Soenneker.Make.OpenApiClient.Hooks
         /// <summary>
         /// Retrieves a collection of all hooks for a team with a given ID. Returned hooks are sorted by ID in ascending order by default. Use `pg[sortBy]` to sort by `name` or `hookName`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHooks200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHooks200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooks200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.HooksRequestBuilder.HooksRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooks200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.HooksRequestBuilder.HooksRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooks200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.HooksRequestBuilder.HooksRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooks200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.HooksRequestBuilder.HooksRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooks200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooks200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooks200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooks200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new hook with data passed in the request body. In the response, it returns all details of the created hook.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostHooks200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostHooks200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostHooks200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostHooks body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostHooks200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostHooksRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostHooks200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostHooks body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostHooks200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostHooksRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostHooks200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostHooks200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostHooks200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostHooks200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all hooks for a team with a given ID. Returned hooks are sorted by ID in ascending order by default. Use `pg[sortBy]` to sort by `name` or `hookName`.
@@ -111,11 +111,11 @@ namespace Soenneker.Make.OpenApiClient.Hooks
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostHooks body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostHooksRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostHooks body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostHooksRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

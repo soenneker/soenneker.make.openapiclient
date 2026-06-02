@@ -42,20 +42,20 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.Item
         /// <summary>
         /// Removes the user&apos;s app pin in the specified organization. Does NOT delete the user&apos;s module pins under this app — those rows survive so re-pinning the app restores them. Idempotent — unpinning a non-pinned app is a no-op.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsAppName200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsAppName200?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.Item.WithAppNameItemRequestBuilder.WithAppNameItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200Response?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.Item.WithAppNameItemRequestBuilder.WithAppNameItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsAppName200> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.Item.WithAppNameItemRequestBuilder.WithAppNameItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200Response> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.Item.WithAppNameItemRequestBuilder.WithAppNameItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsAppName200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsAppName200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Removes the user&apos;s app pin in the specified organization. Does NOT delete the user&apos;s module pins under this app — those rows survive so re-pinning the app restores them. Idempotent — unpinning a non-pinned app is a no-op.

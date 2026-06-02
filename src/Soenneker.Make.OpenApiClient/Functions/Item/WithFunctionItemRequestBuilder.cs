@@ -42,58 +42,58 @@ namespace Soenneker.Make.OpenApiClient.Functions.Item
         /// <summary>
         /// Deletes the custom function. The response contains information whether the custom function is deleted or not.If you or any of your team members use the custom function in a scenario you have to use the `confirmed` parameter to confirm the custom function deletion. Otherwise, you get an error with a list of scenarios that use the custom function.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsFunctionId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsByFunctionId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsFunctionId200?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Item.WithFunctionItemRequestBuilder.WithFunctionItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsByFunctionId200Response?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Item.WithFunctionItemRequestBuilder.WithFunctionItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsFunctionId200> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Item.WithFunctionItemRequestBuilder.WithFunctionItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsByFunctionId200Response> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Item.WithFunctionItemRequestBuilder.WithFunctionItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsFunctionId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsFunctionId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsByFunctionId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsByFunctionId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets detailed information about a custom function. The response contains function `name`, `code`,  a list of scenarios which use the custom function and the custom function&apos;s history of updates.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetFunctionsFunctionId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsFunctionId200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Item.WithFunctionItemRequestBuilder.WithFunctionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Item.WithFunctionItemRequestBuilder.WithFunctionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsFunctionId200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Item.WithFunctionItemRequestBuilder.WithFunctionItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Item.WithFunctionItemRequestBuilder.WithFunctionItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsFunctionId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetFunctionsFunctionId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates custom functions `description` or `code`. You cannot change the `name` of the custom function.Make sure to use the same function name in the function&apos;s `code`. Otherwise, you get an IM005 error.Make validates the custom function&apos;s code first. You get an IM005 error if the code validation fails. The validation might fail because of a syntax error in the function&apos;s code or when the code uses a JavaScript feature that Make doesn&apos;t support. Check the [custom functions limitations](https://www.make.com/en/help/functions/custom-functions#limitations-of-custom-functions) in the Make Help center.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsFunctionId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionId200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsFunctionId200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsFunctionId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionId200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsFunctionId200> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsFunctionId body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionId200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsFunctionId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsFunctionId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes the custom function. The response contains information whether the custom function is deleted or not.If you or any of your team members use the custom function in a scenario you have to use the `confirmed` parameter to confirm the custom function deletion. Otherwise, you get an error with a list of scenarios that use the custom function.
@@ -141,11 +141,11 @@ namespace Soenneker.Make.OpenApiClient.Functions.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsFunctionId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsFunctionId body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

@@ -36,22 +36,22 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Clone
         /// <summary>
         /// Clones the specified scenario. The response contains all information about the scenario clone.You have to know which app integrations the scenario contains. You can get a list of apps used in the scenario with the API call `GET /scenarios/{scenarioId}` in the `usedPackages` array.If you are cloning the scenario to a different team and the scenario contains an app module, webhook or data store, you have to either:- map the entity ID to a different entity with the correct properties. For example, you can map an app module connection to a different connection of the same app with the same scopes, or - use the `notAnalyze` query parameter to turn off the scenario clone blueprint analysis.When you turn off the scenario blueprint analysis you can map the entity ID to the `null` value, which omits the entity settings.The scenario blueprint analysis makes sure that the scenario clone will work without further changes. If you turn off the scenario blueprint analysis, check the configuration of all entities in the scenario clone.If you are cloning the scenario to a different team and the scenario contains a custom app or a custom function, which is not available for the users in the team, use the `confirmed` query parameter to confirm cloning of the scenario. Otherwise, you get an error listing the custom function that you have to create in the team.Refer to the request body parameters description and examples for more information.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdClone200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdClone200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdClone200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdClone body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Clone.CloneRequestBuilder.CloneRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdClone200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Clone.CloneRequestBuilder.CloneRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdClone200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdClone body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Clone.CloneRequestBuilder.CloneRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdClone200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Clone.CloneRequestBuilder.CloneRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdClone200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdClone200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdClone200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdClone200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Clones the specified scenario. The response contains all information about the scenario clone.You have to know which app integrations the scenario contains. You can get a list of apps used in the scenario with the API call `GET /scenarios/{scenarioId}` in the `usedPackages` array.If you are cloning the scenario to a different team and the scenario contains an app module, webhook or data store, you have to either:- map the entity ID to a different entity with the correct properties. For example, you can map an app module connection to a different connection of the same app with the same scopes, or - use the `notAnalyze` query parameter to turn off the scenario clone blueprint analysis.When you turn off the scenario blueprint analysis you can map the entity ID to the `null` value, which omits the entity settings.The scenario blueprint analysis makes sure that the scenario clone will work without further changes. If you turn off the scenario blueprint analysis, check the configuration of all entities in the scenario clone.If you are cloning the scenario to a different team and the scenario contains a custom app or a custom function, which is not available for the users in the team, use the `confirmed` query parameter to confirm cloning of the scenario. Otherwise, you get an error listing the custom function that you have to create in the team.Refer to the request body parameters description and examples for more information.
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Clone
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdClone body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Clone.CloneRequestBuilder.CloneRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Clone.CloneRequestBuilder.CloneRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdClone body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Clone.CloneRequestBuilder.CloneRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Clone.CloneRequestBuilder.CloneRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -94,11 +94,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Clone
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.Item.Clone.PostColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.Item.Clone.PostColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>If the scenario contains a custom app or a custom function, that is not available in the team, you have to set the `confirmed` parameter to `true` to clone the scenario. Otherwise you get an error and the scenario is not cloned.</summary>
             [QueryParameter("confirmed")]

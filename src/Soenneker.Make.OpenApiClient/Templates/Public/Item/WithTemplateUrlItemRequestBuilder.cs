@@ -42,20 +42,20 @@ namespace Soenneker.Make.OpenApiClient.Templates.Public.Item
         /// <summary>
         /// Retrieves details of a public (approved) template with a given `publicUrl`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicTemplateUrl200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrl200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicTemplateUrl200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Public.Item.WithTemplateUrlItemRequestBuilder.WithTemplateUrlItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrl200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Public.Item.WithTemplateUrlItemRequestBuilder.WithTemplateUrlItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicTemplateUrl200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Public.Item.WithTemplateUrlItemRequestBuilder.WithTemplateUrlItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrl200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Public.Item.WithTemplateUrlItemRequestBuilder.WithTemplateUrlItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicTemplateUrl200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicTemplateUrl200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrl200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrl200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves details of a public (approved) template with a given `publicUrl`.
@@ -95,11 +95,11 @@ namespace Soenneker.Make.OpenApiClient.Templates.Public.Item
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Templates.Public.Item.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrlColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Templates.Public.Item.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrlColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>&quot;The unique ID of the public version of the approved template. It can be retrieved from the [List templates](/api-reference/templates/get--templates.md) endpoint as one of the following IDs: `publishedId` for all published templates that are waiting for approval or not, or `approvedId` for approved templates.&quot;</summary>
             [QueryParameter("templatePublicId")]

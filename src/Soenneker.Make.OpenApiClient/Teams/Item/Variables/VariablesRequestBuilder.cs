@@ -49,40 +49,40 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Variables
         /// <summary>
         /// &quot;Retrieves the collection of team variables. The response contains all team variables if your account has the custom variables feature available. Otherwise, the response contains only Make system variables.Check availability of the custom variables feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsTeamIdVariables200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamsTeamIdVariables200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamsTeamIdVariables200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamsTeamIdVariables200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamsTeamIdVariables200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Creates new team variable. You can check the availability of the custom variables feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the API call response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.A successful response contains all information about the new variable. If you don&apos;t have the custom variables feature available then the API call returns the error 404.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdVariables200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdVariables200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdVariables200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdVariables body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdVariables200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdVariables200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdVariables body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdVariables200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdVariables200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdVariables200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Retrieves the collection of team variables. The response contains all team variables if your account has the custom variables feature available. Otherwise, the response contains only Make system variables.Check availability of the custom variables feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
@@ -111,11 +111,11 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Variables
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdVariables body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdVariables body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

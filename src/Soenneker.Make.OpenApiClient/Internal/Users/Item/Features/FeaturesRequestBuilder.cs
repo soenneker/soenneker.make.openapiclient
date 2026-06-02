@@ -36,27 +36,27 @@ namespace Soenneker.Make.OpenApiClient.Internal.Users.Item.Features
         /// <summary>
         /// Retrieves the features enabled for a specific user by their `userId`. This endpoint is for internal service-to-service communication using ISC authorization.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersUserIdFeatures200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersByUserIdFeatures200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersUserIdFeatures401">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersUserIdFeatures404">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersByUserIdFeatures401Response">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersByUserIdFeatures404Response">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersUserIdFeatures200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersByUserIdFeatures200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersUserIdFeatures200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersByUserIdFeatures200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "401", global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersUserIdFeatures401.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersUserIdFeatures404.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersByUserIdFeatures401Response.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersByUserIdFeatures404Response.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersUserIdFeatures200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersUserIdFeatures200.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersByUserIdFeatures200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersByUserIdFeatures200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the features enabled for a specific user by their `userId`. This endpoint is for internal service-to-service communication using ISC authorization.

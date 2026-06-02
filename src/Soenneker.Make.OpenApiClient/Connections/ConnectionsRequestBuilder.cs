@@ -49,40 +49,40 @@ namespace Soenneker.Make.OpenApiClient.Connections
         /// <summary>
         /// Retrieves a collection of all connections for a team with a given ID. Returned connections are sorted by name in ascending order.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetConnections200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetConnections200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetConnections200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder.ConnectionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetConnections200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder.ConnectionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetConnections200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder.ConnectionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetConnections200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder.ConnectionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetConnections200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetConnections200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetConnections200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetConnections200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new connection with data passed in the request body. In the response, it returns all details of the created connection.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostConnections200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostConnections200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostConnections200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostConnections body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder.ConnectionsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostConnections200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostConnectionsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder.ConnectionsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostConnections200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostConnections body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder.ConnectionsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostConnections200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostConnectionsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder.ConnectionsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostConnections200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostConnections200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostConnections200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostConnections200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all connections for a team with a given ID. Returned connections are sorted by name in ascending order.
@@ -111,11 +111,11 @@ namespace Soenneker.Make.OpenApiClient.Connections
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostConnections body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder.ConnectionsRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostConnectionsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder.ConnectionsRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostConnections body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder.ConnectionsRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostConnectionsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder.ConnectionsRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -144,11 +144,11 @@ namespace Soenneker.Make.OpenApiClient.Connections
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Connections.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetConnectionsColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Connections.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetConnectionsColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>Allows utilizing the scopes check. The particular connection type (`&lt;connectionType&gt;`) should be one of the types specified in the `type[]` parameter. The values are the scopes to check for the given connection type. You can send multiple `&lt;connectionType&gt;` values with corresponding arrays to check multiple connection types scopes at once. The result of the check is reflected in the `scoped` property of the returned connection object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

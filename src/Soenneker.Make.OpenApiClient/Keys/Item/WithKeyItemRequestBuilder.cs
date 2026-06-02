@@ -36,58 +36,58 @@ namespace Soenneker.Make.OpenApiClient.Keys.Item
         /// <summary>
         /// Deletes the specified key. Use the `confirmed` parameter to confirm deleting the key. Otherwise, you get an error and the key is not deleted.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteKeysKeyId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteKeysByKeyId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteKeysKeyId200?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyItemRequestBuilder.WithKeyItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteKeysByKeyId200Response?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyItemRequestBuilder.WithKeyItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteKeysKeyId200> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyItemRequestBuilder.WithKeyItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteKeysByKeyId200Response> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyItemRequestBuilder.WithKeyItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteKeysKeyId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteKeysKeyId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteKeysByKeyId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteKeysByKeyId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets details of the specified key.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetKeysKeyId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetKeysKeyId200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyItemRequestBuilder.WithKeyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyItemRequestBuilder.WithKeyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetKeysKeyId200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyItemRequestBuilder.WithKeyItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyItemRequestBuilder.WithKeyItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetKeysKeyId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetKeysKeyId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a key `name`, connection parameters, or both with the data specified in the request body. If you don&apos;t specify a parameter, Make keeps the original value.Use the `GET /key-types` API call to find out which parameters you need to specify in the `parameters` object based on the key type.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchKeysKeyId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchKeysKeyId200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyIdRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchKeysKeyId200> PatchAsync(global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyIdRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchKeysKeyId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchKeysKeyId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes the specified key. Use the `confirmed` parameter to confirm deleting the key. Otherwise, you get an error and the key is not deleted.
@@ -135,11 +135,11 @@ namespace Soenneker.Make.OpenApiClient.Keys.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyIdRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyIdRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -178,11 +178,11 @@ namespace Soenneker.Make.OpenApiClient.Keys.Item
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Keys.Item.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyIdColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Keys.Item.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyIdColsParameterItem[] Cols { get; set; }
 #endif
         }
     }

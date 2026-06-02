@@ -49,22 +49,22 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Data
         /// <summary>
         /// **Why the docs are internal:**It&apos;s not clear how to use this EP. The example suggest that the EP can only change the trigger epoch.But the EP&apos;s SQL routine and original documentation suggest that the EP is supposed to update any module.I wasn&apos;t able to reproduce that use case even with the simplest modules. Furthermore, the EP always returns successful response, even though it didn&apos;t update anything.This causes a lot of confusion and frustration ot the users. So until the usage of the EP is clear the docs should be hidden.2023-06-06, agreed with Ondrej Vesely.**Original docs:**Sets the module data for a scenario with a given ID by passing new values in the request body. It replaces the entire resource with the new values. In the response, it returns the confirmation if the scenario was updated.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdData200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdData200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdData200?> PutAsync(global::Soenneker.Make.OpenApiClient.Scenarios.Item.Data.DataPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdData200Response?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdDataRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdData200> PutAsync(global::Soenneker.Make.OpenApiClient.Scenarios.Item.Data.DataPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdData200Response> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdDataRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdData200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdData200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdData200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdData200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Why the docs are internal:**It&apos;s not clear how to use this EP. The example suggest that the EP can only change the trigger epoch.But the EP&apos;s SQL routine and original documentation suggest that the EP is supposed to update any module.I wasn&apos;t able to reproduce that use case even with the simplest modules. Furthermore, the EP always returns successful response, even though it didn&apos;t update anything.This causes a lot of confusion and frustration ot the users. So until the usage of the EP is clear the docs should be hidden.2023-06-06, agreed with Ondrej Vesely.**Original docs:**Sets the module data for a scenario with a given ID by passing new values in the request body. It replaces the entire resource with the new values. In the response, it returns the confirmation if the scenario was updated.
@@ -74,11 +74,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Data
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Scenarios.Item.Data.DataPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdDataRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Scenarios.Item.Data.DataPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdDataRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

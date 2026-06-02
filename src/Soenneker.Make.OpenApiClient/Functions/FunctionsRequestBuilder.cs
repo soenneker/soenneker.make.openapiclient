@@ -55,40 +55,40 @@ namespace Soenneker.Make.OpenApiClient.Functions
         /// <summary>
         /// &quot;Retrieves a list of custom functions available in the team. The response contains `id`, `name`, `description` and a brief updates history of all custom functions available in the team.Check availability of the custom functions feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the response contains `\&quot;customFunctions\&quot;: true` pair in the `license` object then you have access to the custom functions feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetFunctions200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetFunctions200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetFunctions200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetFunctions200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetFunctions200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetFunctions200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetFunctions200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetFunctions200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetFunctions200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetFunctions200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Creates a custom function. Specify function `name`, `description` and `code` in the request body.You cannot use a JavaScript reserved word for the function `name`. Check the [list of JavaScript reserved words](https://www.w3schools.com/js/js_reserved.asp).Make sure to use the same function name in the `name` field and in the function&apos;s `code`. Otherwise, you get the IM005 error.Make validates the custom function&apos;s code first. You get an IM005 error if the code validation fails. The validation might fail because of a syntax error in the function&apos;s code or when the code uses a JavaScript feature that Make doesn&apos;t support. Check the [custom functions limitations](https://www.make.com/en/help/functions/custom-functions#limitations-of-custom-functions) in the Make Help center.Check availability of the custom functions feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the response contains `\&quot;customFunctions\&quot;: true` pair in the `license` object then you have access to the custom functions feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostFunctions200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostFunctions200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostFunctions200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostFunctions body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostFunctions200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostFunctionsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostFunctions200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostFunctions body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostFunctions200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostFunctionsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostFunctions200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostFunctions200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostFunctions200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostFunctions200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Retrieves a list of custom functions available in the team. The response contains `id`, `name`, `description` and a brief updates history of all custom functions available in the team.Check availability of the custom functions feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the response contains `\&quot;customFunctions\&quot;: true` pair in the `license` object then you have access to the custom functions feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
@@ -117,11 +117,11 @@ namespace Soenneker.Make.OpenApiClient.Functions
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostFunctions body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostFunctionsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostFunctions body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostFunctionsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.FunctionsRequestBuilder.FunctionsRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

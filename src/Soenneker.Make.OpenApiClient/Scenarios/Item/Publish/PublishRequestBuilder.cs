@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Publish
         /// <summary>
         /// This endpoint is set to internal because the scenario drafts feature is available only on the Celonis platform. In Make, this endpoint has no functionality.Original description:Publishes a draft of a scenario with a given ID. In the response, it returns all details of the published scenario.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdPublish200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdPublish200?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200Response?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdPublish200> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200Response> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdPublish200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdPublish200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// This endpoint is set to internal because the scenario drafts feature is available only on the Celonis platform. In Make, this endpoint has no functionality.Original description:Publishes a draft of a scenario with a given ID. In the response, it returns all details of the published scenario.

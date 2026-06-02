@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Internal.Devices.Enrichments
         /// <summary>
         /// Retrieves basic enrichment data for a list of device IDs. This endpoint is designed for internal servicesthat need to enrich their data with device information including device ID, UDID, and associated team ID.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Internal.Devices.Enrichments.EnrichmentsRequestBuilder.EnrichmentsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Internal.Devices.Enrichments.EnrichmentsRequestBuilder.EnrichmentsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Internal.Devices.Enrichments.EnrichmentsRequestBuilder.EnrichmentsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Internal.Devices.Enrichments.EnrichmentsRequestBuilder.EnrichmentsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves basic enrichment data for a list of device IDs. This endpoint is designed for internal servicesthat need to enrich their data with device information including device ID, UDID, and associated team ID.

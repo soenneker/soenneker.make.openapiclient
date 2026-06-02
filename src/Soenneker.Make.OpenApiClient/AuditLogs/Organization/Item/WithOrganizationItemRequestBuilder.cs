@@ -42,20 +42,20 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item
         /// <summary>
         /// Gets a list of all audit log entries for the specified organization.The audit log entries in the response are sorted by the `triggeredAt` property in descending order by default. You can use pagination to navigate through a large number of entries.You can get the audit log entries only for organizations in which you have the &quot;Admin&quot; or &quot;Owner&quot; roles. Otherwise, you get the 403 error.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets a list of all audit log entries for the specified organization.The audit log entries in the response are sorted by the `triggeredAt` property in descending order by default. You can use pagination to navigate through a large number of entries.You can get the audit log entries only for organizations in which you have the &quot;Admin&quot; or &quot;Owner&quot; roles. Otherwise, you get the 403 error.
@@ -131,10 +131,10 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item
             public bool? PgreturnTotalCount { get; set; }
             /// <summary>Specify the response property values that Make will use to sort the audit log entries in the response. The default is `triggeredAt`.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.GetPgSortByQueryParameterType? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogsPgSortByParameter? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogsPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>The identification of the teams for which you want to get the audit log entries. You can use either team IDs or team names.The team name can contain any valid UTF8 symbols and spaces.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

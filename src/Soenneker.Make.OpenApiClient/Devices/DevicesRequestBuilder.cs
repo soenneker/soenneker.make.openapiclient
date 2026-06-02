@@ -55,20 +55,20 @@ namespace Soenneker.Make.OpenApiClient.Devices
         /// <summary>
         /// Get a list of devices of a given team.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDevices200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDevices200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDevices200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Devices.DevicesRequestBuilder.DevicesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDevices200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Devices.DevicesRequestBuilder.DevicesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDevices200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Devices.DevicesRequestBuilder.DevicesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDevices200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Devices.DevicesRequestBuilder.DevicesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDevices200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDevices200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDevices200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDevices200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Get a list of devices of a given team.
@@ -110,20 +110,20 @@ namespace Soenneker.Make.OpenApiClient.Devices
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Devices.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDevicesColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Devices.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDevicesColsParameterItem[] Cols { get; set; }
 #endif
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("scope%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Devices.GetScopeQueryParameterType[]? Scope { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDevicesScopeParameterItem[]? Scope { get; set; }
 #nullable restore
 #else
             [QueryParameter("scope%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Devices.GetScopeQueryParameterType[] Scope { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDevicesScopeParameterItem[] Scope { get; set; }
 #endif
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }

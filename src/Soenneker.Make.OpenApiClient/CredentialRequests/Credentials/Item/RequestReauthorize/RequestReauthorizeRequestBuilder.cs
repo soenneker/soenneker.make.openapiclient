@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.Reque
         /// <summary>
         /// Tests the OAuth connection and transitions to reauthorizing state if invalid. Returns an error if the connection is still valid.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsCredentialIdRequestReauthorize200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdRequestReauthorize200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsCredentialIdRequestReauthorize200?> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.RequestReauthorize.RequestReauthorizeRequestBuilder.RequestReauthorizeRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdRequestReauthorize200Response?> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.RequestReauthorize.RequestReauthorizeRequestBuilder.RequestReauthorizeRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsCredentialIdRequestReauthorize200> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.RequestReauthorize.RequestReauthorizeRequestBuilder.RequestReauthorizeRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdRequestReauthorize200Response> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.RequestReauthorize.RequestReauthorizeRequestBuilder.RequestReauthorizeRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsCredentialIdRequestReauthorize200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsCredentialIdRequestReauthorize200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdRequestReauthorize200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdRequestReauthorize200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Tests the OAuth connection and transitions to reauthorizing state if invalid. Returns an error if the connection is still valid.
@@ -89,11 +89,11 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.Reque
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols")]
-            public global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.RequestReauthorize.PostColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdRequestReauthorizeColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols")]
-            public global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.RequestReauthorize.PostColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdRequestReauthorizeColsParameterItem[] Cols { get; set; }
 #endif
         }
     }

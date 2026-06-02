@@ -55,40 +55,40 @@ namespace Soenneker.Make.OpenApiClient.CustomPropertyStructures
         /// <summary>
         /// Gets a list of custom properties structures in the organization.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CustomPropertyStructures.CustomPropertyStructuresRequestBuilder.CustomPropertyStructuresRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CustomPropertyStructures.CustomPropertyStructuresRequestBuilder.CustomPropertyStructuresRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CustomPropertyStructures.CustomPropertyStructuresRequestBuilder.CustomPropertyStructuresRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CustomPropertyStructures.CustomPropertyStructuresRequestBuilder.CustomPropertyStructuresRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Creates a custom properties structure. You can have only one custom properties structure for each combination of `associatedType`, `belongerType`and `belongerId` values.For example, you can create only one custom properties structure for scenarios in a specific organization.To create a structure for custom scenario properties, fill in the request body:- `associatedType`: `scenario`- `belongerType`: `organization`Check out the example API call.To define the custom properties structure items, use the API call [to create custom properties structure item](./structure-items/post--custom-property-structures--custompropertystructureid--custom-property-structure-items.md).&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets a list of custom properties structures in the organization.
@@ -117,11 +117,11 @@ namespace Soenneker.Make.OpenApiClient.CustomPropertyStructures
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

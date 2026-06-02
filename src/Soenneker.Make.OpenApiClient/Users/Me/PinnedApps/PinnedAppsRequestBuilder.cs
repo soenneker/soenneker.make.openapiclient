@@ -49,40 +49,40 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.PinnedApps
         /// <summary>
         /// &quot;Returns every app the current user has any pin under in the specified organization — pinned apps and apps that only have pinned modules. Each entry carries an `isAppPinned` flag: when `true` the app itself is pinned and shows up in the \&quot;My apps\&quot; tab; when `false` only modules are pinned and the entry is rendered inside the app-detail panel. App and module pins are independent — pinning a module does not pin its app, and unpinning an app leaves its module pins intact (and they reappear if the app is re-pinned). Pins are scoped per (user, organization) and are version-agnostic — the UI resolves the latest available version of each pinned app/module from the catalog. App names follow the convention used by `GET /imt/apps`: SDK apps are surfaced as `app#&lt;name&gt;`, native apps as the bare package name.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.PinnedAppsRequestBuilder.PinnedAppsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.PinnedAppsRequestBuilder.PinnedAppsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.PinnedAppsRequestBuilder.PinnedAppsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.PinnedAppsRequestBuilder.PinnedAppsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Pins an app for the authenticated user within the specified organization. Accepts both SDK apps (`appName` prefixed with `app#`) and native apps (bare package name). Pins are version-agnostic — the UI always renders the latest available version. Pinning is idempotent — pinning an already-pinned app is a no-op (no error). The app must exist in the catalog; otherwise a 404 is returned.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedAppsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedAppsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Returns every app the current user has any pin under in the specified organization — pinned apps and apps that only have pinned modules. Each entry carries an `isAppPinned` flag: when `true` the app itself is pinned and shows up in the \&quot;My apps\&quot; tab; when `false` only modules are pinned and the entry is rendered inside the app-detail panel. App and module pins are independent — pinning a module does not pin its app, and unpinning an app leaves its module pins intact (and they reappear if the app is re-pinned). Pins are scoped per (user, organization) and are version-agnostic — the UI resolves the latest available version of each pinned app/module from the catalog. App names follow the convention used by `GET /imt/apps`: SDK apps are surfaced as `app#&lt;name&gt;`, native apps as the bare package name.&quot;
@@ -111,11 +111,11 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.PinnedApps
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedAppsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedApps body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedAppsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

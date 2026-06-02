@@ -42,58 +42,58 @@ namespace Soenneker.Make.OpenApiClient.DataStructures.Item
         /// <summary>
         /// Deletes a data structure with a given ID and returns the ID in the response.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresDataStructureId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresByDataStructureId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresDataStructureId200?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStructures.Item.WithDataStructureItemRequestBuilder.WithDataStructureItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresByDataStructureId200Response?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStructures.Item.WithDataStructureItemRequestBuilder.WithDataStructureItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresDataStructureId200> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStructures.Item.WithDataStructureItemRequestBuilder.WithDataStructureItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresByDataStructureId200Response> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStructures.Item.WithDataStructureItemRequestBuilder.WithDataStructureItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresDataStructureId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresDataStructureId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresByDataStructureId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresByDataStructureId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a data structure with a given ID
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresDataStructureId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresDataStructureId200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStructures.Item.WithDataStructureItemRequestBuilder.WithDataStructureItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStructures.Item.WithDataStructureItemRequestBuilder.WithDataStructureItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresDataStructureId200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStructures.Item.WithDataStructureItemRequestBuilder.WithDataStructureItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStructures.Item.WithDataStructureItemRequestBuilder.WithDataStructureItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresDataStructureId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresDataStructureId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates the specified data structure. Make updates only parameters you send in the request body.Note that when you update the data structure specification with the `spec` parameter, you have to provide all structure fields you want to use. Make replaces the old structure specification with the new one.The response contains all details about the updated data structure.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresDataStructureId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureId200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresDataStructureId200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresDataStructureId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureId200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresDataStructureId200> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresDataStructureId body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureId200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresDataStructureId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresDataStructureId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes a data structure with a given ID and returns the ID in the response.
@@ -141,11 +141,11 @@ namespace Soenneker.Make.OpenApiClient.DataStructures.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresDataStructureId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresDataStructureId body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -184,11 +184,11 @@ namespace Soenneker.Make.OpenApiClient.DataStructures.Item
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.DataStructures.Item.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureIdColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.DataStructures.Item.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureIdColsParameterItem[] Cols { get; set; }
 #endif
         }
     }

@@ -18,7 +18,7 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Apps.Item
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.credentialRequests.apps.item.item collection</summary>
         /// <param name="position">The major version of the app. Use a specific version number (e.g., `1`, `2`, `4`) or `latest` to get the most recent version.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.CredentialRequests.Apps.Item.Item.WithVersionItemRequestBuilder"/></returns>
-        public global::Soenneker.Make.OpenApiClient.CredentialRequests.Apps.Item.Item.WithVersionItemRequestBuilder this[string position]
+        public global::Soenneker.Make.OpenApiClient.CredentialRequests.Apps.Item.Item.WithVersionItemRequestBuilder this[int position]
         {
             get
             {

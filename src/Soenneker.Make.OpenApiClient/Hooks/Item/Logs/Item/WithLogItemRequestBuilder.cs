@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Logs.Item
         /// <summary>
         /// &quot;Retrieves the specified webhook execution log. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log - `data`: information about the request, header, and payload sent to the webhook.Some webhooks don&apos;t return the `data` object due to their implementation. Most common examples include instant triggers for Slack, Zoom, Intercom and Facebook lead ads apps.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdLogsLogId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogsByLogId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdLogsLogId200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Logs.Item.WithLogItemRequestBuilder.WithLogItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogsByLogId200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Logs.Item.WithLogItemRequestBuilder.WithLogItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdLogsLogId200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Logs.Item.WithLogItemRequestBuilder.WithLogItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogsByLogId200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Logs.Item.WithLogItemRequestBuilder.WithLogItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdLogsLogId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdLogsLogId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogsByLogId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogsByLogId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Retrieves the specified webhook execution log. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log - `data`: information about the request, header, and payload sent to the webhook.Some webhooks don&apos;t return the `data` object due to their implementation. Most common examples include instant triggers for Slack, Zoom, Intercom and Facebook lead ads apps.&quot;
@@ -103,7 +103,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Logs.Item
 #endif
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Hooks.Item.Logs.Item.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogsByLogIdPgSortDirParameter? PgsortDir { get; set; }
         }
     }
 }

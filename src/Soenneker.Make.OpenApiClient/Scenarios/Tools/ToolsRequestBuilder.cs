@@ -49,22 +49,22 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Tools
         /// <summary>
         /// Creates a new tool with data passed in the request body. In the response, it returns all details of the created scenario including its blueprint.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.ToolsRequestBuilder.ToolsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosToolsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.ToolsRequestBuilder.ToolsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.ToolsRequestBuilder.ToolsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosToolsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.ToolsRequestBuilder.ToolsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new tool with data passed in the request body. In the response, it returns all details of the created scenario including its blueprint.
@@ -74,11 +74,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Tools
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.ToolsRequestBuilder.ToolsRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosToolsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.ToolsRequestBuilder.ToolsRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosTools body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.ToolsRequestBuilder.ToolsRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosToolsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.ToolsRequestBuilder.ToolsRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -107,11 +107,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Tools
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.Tools.PostColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostScenariosToolsColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.Tools.PostColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostScenariosToolsColsParameterItem[] Cols { get; set; }
 #endif
         }
     }

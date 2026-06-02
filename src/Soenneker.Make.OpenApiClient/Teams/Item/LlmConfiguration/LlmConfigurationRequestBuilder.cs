@@ -36,40 +36,40 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.LlmConfiguration
         /// <summary>
         /// Gets the LLM configuration for the specified team, including AI mapping and AI toolkit settings with builtin tier information.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsTeamIdLlmConfiguration200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamsTeamIdLlmConfiguration200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamsTeamIdLlmConfiguration200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamsTeamIdLlmConfiguration200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamsTeamIdLlmConfiguration200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates the LLM configuration for the specified team. Supports partial updates for AI mapping and AI toolkit settings.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsTeamIdLlmConfiguration200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdLlmConfiguration200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsTeamIdLlmConfiguration200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchTeamsTeamIdLlmConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdLlmConfiguration200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdLlmConfigurationRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsTeamIdLlmConfiguration200> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchTeamsTeamIdLlmConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdLlmConfiguration200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdLlmConfigurationRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsTeamIdLlmConfiguration200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchTeamsTeamIdLlmConfiguration200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdLlmConfiguration200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdLlmConfiguration200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the LLM configuration for the specified team, including AI mapping and AI toolkit settings with builtin tier information.
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.LlmConfiguration
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchTeamsTeamIdLlmConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdLlmConfigurationRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchTeamsTeamIdLlmConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdLlmConfigurationRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

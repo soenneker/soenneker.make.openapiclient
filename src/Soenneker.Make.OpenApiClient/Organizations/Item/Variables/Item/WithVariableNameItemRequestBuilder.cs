@@ -42,40 +42,40 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Variables.Item
         /// <summary>
         /// &quot;Deletes organization variable.If you don&apos;t have the custom variables feature available then the API call returns the error 404. Check the availability of the custom variables feature with the API call `GET /organizations/{organizationId}`. If the response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsOrganizationIdVariablesVariableName200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationIdVariablesByVariableName200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsOrganizationIdVariablesVariableName200?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Variables.Item.WithVariableNameItemRequestBuilder.WithVariableNameItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationIdVariablesByVariableName200Response?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Variables.Item.WithVariableNameItemRequestBuilder.WithVariableNameItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsOrganizationIdVariablesVariableName200> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Variables.Item.WithVariableNameItemRequestBuilder.WithVariableNameItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationIdVariablesByVariableName200Response> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Variables.Item.WithVariableNameItemRequestBuilder.WithVariableNameItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsOrganizationIdVariablesVariableName200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsOrganizationIdVariablesVariableName200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationIdVariablesByVariableName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationIdVariablesByVariableName200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Updates custom organization variable with the specified variable `name`. Only parameters specified in the request body are updated.You can check the availability of the custom variables feature with the API call `GET /organizations/{organizationId}`. If the response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.A successful response contains all information about the updated variable. If you don&apos;t have the custom variables feature available then the API call returns the error 404.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for the Make pricing plans overview.Update the variable `typeId` accordingly when you are updating the variable `value`. Make checks whether the variable type and value match in the request body. There is no check for incorrect variable type when you update only variable value and _vice versa_.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdVariablesVariableName200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableName200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdVariablesVariableName200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdVariablesVariableName body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableName200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdVariablesVariableName200> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdVariablesVariableName body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableName200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdVariablesVariableName200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdVariablesVariableName200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableName200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Deletes organization variable.If you don&apos;t have the custom variables feature available then the API call returns the error 404. Check the availability of the custom variables feature with the API call `GET /organizations/{organizationId}`. If the response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
@@ -104,11 +104,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Variables.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdVariablesVariableName body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdVariablesVariableName body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

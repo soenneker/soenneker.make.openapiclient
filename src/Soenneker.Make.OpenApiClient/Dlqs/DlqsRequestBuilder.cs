@@ -55,40 +55,40 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
         /// <summary>
         /// &quot;Deletes incomplete executions of the specified scenario. Specify the incomplete execution ID values in the `ids` array in the request body to delete the specified incomplete executions.You can set the `\&quot;all\&quot;: true` pair to delete all incomplete executions of the specified scenario. If you use the `\&quot;all\&quot;: true` parameter, you have to specify the `confirmed=true` query parameter to confirm the deletion. Otherwise, the API call returns the error IM004 (406).Add the `exceptIds` array to the request body to specify items you don&apos;t want to delete.You get an error if you try to delete incomplete executions which are being processed. The rest of the specified items is still deleted.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200?> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder.DlqsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200Response?> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteDlqsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder.DlqsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder.DlqsRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200Response> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteDlqsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder.DlqsRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the list of incomplete executions of the specified scenario.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDlqs200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDlqs200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDlqs200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder.DlqsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDlqs200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder.DlqsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDlqs200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder.DlqsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDlqs200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder.DlqsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDlqs200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDlqs200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDlqs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDlqs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Deletes incomplete executions of the specified scenario. Specify the incomplete execution ID values in the `ids` array in the request body to delete the specified incomplete executions.You can set the `\&quot;all\&quot;: true` pair to delete all incomplete executions of the specified scenario. If you use the `\&quot;all\&quot;: true` parameter, you have to specify the `confirmed=true` query parameter to confirm the deletion. Otherwise, the API call returns the error IM004 (406).Add the `exceptIds` array to the request body to specify items you don&apos;t want to delete.You get an error if you try to delete incomplete executions which are being processed. The rest of the specified items is still deleted.&quot;
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder.DlqsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteDlqsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder.DlqsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder.DlqsRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteDlqsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder.DlqsRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

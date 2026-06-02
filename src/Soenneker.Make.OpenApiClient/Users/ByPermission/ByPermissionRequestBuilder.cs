@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Users.ByPermission
         /// <summary>
         /// &quot;Returns users who have a specific permission within an organization or team.Use `type: organization` with `organizationId` to find users that hold a given organization-level permission.Use `type: company` with `teamId` to find users that hold a given team-level permission.Requires the `organization users view` permission on the resolved organization.When `type` is `company`, additionally requires the `team view` permission on the specified team.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.ByPermission.ByPermissionRequestBuilder.ByPermissionRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.ByPermission.ByPermissionRequestBuilder.ByPermissionRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.ByPermission.ByPermissionRequestBuilder.ByPermissionRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.ByPermission.ByPermissionRequestBuilder.ByPermissionRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Returns users who have a specific permission within an organization or team.Use `type: organization` with `organizationId` to find users that hold a given organization-level permission.Use `type: company` with `teamId` to find users that hold a given team-level permission.Requires the `organization users view` permission on the resolved organization.When `type` is `company`, additionally requires the `team view` permission on the specified team.&quot;
@@ -113,7 +113,7 @@ namespace Soenneker.Make.OpenApiClient.Users.ByPermission
             public int? TeamId { get; set; }
             /// <summary>Whether to filter by an organization-level or team-level (company) permission.When `organization`, supply `organizationId`.When `company`, supply `teamId`.</summary>
             [QueryParameter("type")]
-            public global::Soenneker.Make.OpenApiClient.Users.ByPermission.GetTypeQueryParameterType? Type { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermissionTypeParameter? Type { get; set; }
         }
     }
 }

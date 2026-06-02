@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Affiliate.Commissions
         /// <summary>
         /// Retrieves detailed data about individual commisions of the current user.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissions200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissions200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissions200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Affiliate.Commissions.CommissionsRequestBuilder.CommissionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissions200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Affiliate.Commissions.CommissionsRequestBuilder.CommissionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissions200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Affiliate.Commissions.CommissionsRequestBuilder.CommissionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissions200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Affiliate.Commissions.CommissionsRequestBuilder.CommissionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissions200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissions200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissions200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissions200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves detailed data about individual commisions of the current user.
@@ -107,7 +107,7 @@ namespace Soenneker.Make.OpenApiClient.Affiliate.Commissions
 #endif
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Affiliate.Commissions.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissionsPgSortDirParameter? PgsortDir { get; set; }
             [QueryParameter("statusId")]
             public int? StatusId { get; set; }
         }

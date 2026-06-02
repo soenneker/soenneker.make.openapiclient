@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Commit
 {
     /// <summary>
-    /// Builds and executes requests for operations under \sdk\apps\{SDK_appName}\{SDK_appVersion}\commit
+    /// Builds and executes requests for operations under \sdk\apps\{sdkAppName}\{sdkAppVersion}\commit
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CommitRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Commit
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CommitRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/{SDK_appVersion}/commit", pathParameters)
+        public CommitRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/commit", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Commit
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CommitRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/{SDK_appVersion}/commit", rawUrl)
+        public CommitRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/commit", rawUrl)
         {
         }
         /// <summary>
@@ -42,11 +42,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Commit
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<bool?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameSDKAppVersionCommit body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<bool?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionCommitRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<bool?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameSDKAppVersionCommit body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<bool?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionCommitRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Commit
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameSDKAppVersionCommit body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionCommitRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameSDKAppVersionCommit body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionCommitRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

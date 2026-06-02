@@ -36,40 +36,40 @@ namespace Soenneker.Make.OpenApiClient.Mailhub.Users.Item.Organizations.Item.Tea
         /// <summary>
         /// Get team preferences
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Update team preferences
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferencesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences200> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferencesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Get team preferences
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.Mailhub.Users.Item.Organizations.Item.Tea
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferencesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersUserIdOrganizationsOrganizationIdTeamsTeamIdPreferences body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferencesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.Users.Roles.Item;
 using Soenneker.Make.OpenApiClient.Users.Roles.Permissions;
 using System.Collections.Generic;
 using System.IO;
@@ -23,12 +24,24 @@ namespace Soenneker.Make.OpenApiClient.Users.Roles
         {
             get => new global::Soenneker.Make.OpenApiClient.Users.Roles.Permissions.PermissionsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.users.roles.item collection</summary>
+        /// <param name="position">The ID of the role.</param>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Users.Roles.Item.WithRoleItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Users.Roles.Item.WithRoleItemRequestBuilder this[int position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("roleId", position);
+                return new global::Soenneker.Make.OpenApiClient.Users.Roles.Item.WithRoleItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Users.Roles.RolesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RolesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/roles{?category*,cols*}", pathParameters)
+        public RolesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/roles{?category*,cols*,excludeRole%5B%5D*,organizationId*,roleId*,teamId*}", pathParameters)
         {
         }
         /// <summary>
@@ -36,29 +49,29 @@ namespace Soenneker.Make.OpenApiClient.Users.Roles
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RolesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/roles{?category*,cols*}", rawUrl)
+        public RolesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/roles{?category*,cols*,excludeRole%5B%5D*,organizationId*,roleId*,teamId*}", rawUrl)
         {
         }
         /// <summary>
-        /// Gets list of all existing user role names and IDs. Set the user roles in an organization with the `POST /users/{userId}/user-organization-roles/{organizationId}` API call. Use the `POST /users/{userId}/user-team-roles/{teamId}` API call to set user roles in a team.
+        /// Gets list of all existing user role names and IDs. Optionally filter by `category`, a specific `roleId`, or pass `organizationId`/`teamId` to include custom roles for that organization. Set the user roles in an organization with the `POST /users/{userId}/user-organization-roles/{organizationId}` API call. Use the `POST /users/{userId}/user-team-roles/{teamId}` API call to set user roles in a team.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Roles.RolesRequestBuilder.RolesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Roles.RolesRequestBuilder.RolesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Roles.RolesRequestBuilder.RolesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Roles.RolesRequestBuilder.RolesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Gets list of all existing user role names and IDs. Set the user roles in an organization with the `POST /users/{userId}/user-organization-roles/{organizationId}` API call. Use the `POST /users/{userId}/user-team-roles/{teamId}` API call to set user roles in a team.
+        /// Gets list of all existing user role names and IDs. Optionally filter by `category`, a specific `roleId`, or pass `organizationId`/`teamId` to include custom roles for that organization. Set the user roles in an organization with the `POST /users/{userId}/user-organization-roles/{organizationId}` API call. Use the `POST /users/{userId}/user-team-roles/{teamId}` API call to set user roles in a team.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -86,14 +99,14 @@ namespace Soenneker.Make.OpenApiClient.Users.Roles
             return new global::Soenneker.Make.OpenApiClient.Users.Roles.RolesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Gets list of all existing user role names and IDs. Set the user roles in an organization with the `POST /users/{userId}/user-organization-roles/{organizationId}` API call. Use the `POST /users/{userId}/user-team-roles/{teamId}` API call to set user roles in a team.
+        /// Gets list of all existing user role names and IDs. Optionally filter by `category`, a specific `roleId`, or pass `organizationId`/`teamId` to include custom roles for that organization. Set the user roles in an organization with the `POST /users/{userId}/user-organization-roles/{organizationId}` API call. Use the `POST /users/{userId}/user-team-roles/{teamId}` API call to set user roles in a team.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RolesRequestBuilderGetQueryParameters 
         {
             /// <summary>Set this parameter to `organization` or `team` to get user roles in an organization or in a team.</summary>
             [QueryParameter("category")]
-            public global::Soenneker.Make.OpenApiClient.Users.Roles.GetCategoryQueryParameterType? Category { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesCategoryParameter? Category { get; set; }
             /// <summary>Specifies columns that are returned in the response. Use the `cols[]` parameter for every column that you want to return in the response. For example `GET /endpoint?cols[]=key1&amp;cols[]=key2` to get both `key1` and `key2` columns in the response.[Check the &quot;Filtering&quot; section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -104,6 +117,25 @@ namespace Soenneker.Make.OpenApiClient.Users.Roles
             [QueryParameter("cols")]
             public string[] Cols { get; set; }
 #endif
+            /// <summary>Exclude roles with these IDs from the response.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("excludeRole%5B%5D")]
+            public int?[]? ExcludeRole { get; set; }
+#nullable restore
+#else
+            [QueryParameter("excludeRole%5B%5D")]
+            public int?[] ExcludeRole { get; set; }
+#endif
+            /// <summary>Include custom roles belonging to this organization. Cannot be used together with `teamId`. Requires the `customRoles` license.</summary>
+            [QueryParameter("organizationId")]
+            public int? OrganizationId { get; set; }
+            /// <summary>Filter the response to a single role by its ID.</summary>
+            [QueryParameter("roleId")]
+            public int? RoleId { get; set; }
+            /// <summary>Include custom roles belonging to the organization that owns this team. Cannot be used together with `organizationId`. Requires the `customRoles` license.</summary>
+            [QueryParameter("teamId")]
+            public int? TeamId { get; set; }
         }
     }
 }

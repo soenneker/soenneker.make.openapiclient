@@ -55,20 +55,20 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Requests
         /// <summary>
         /// Retrieves a list of Credential Requests.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequests200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequests200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequests200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Requests.RequestsRequestBuilder.RequestsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequests200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Requests.RequestsRequestBuilder.RequestsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequests200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Requests.RequestsRequestBuilder.RequestsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequests200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Requests.RequestsRequestBuilder.RequestsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequests200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequests200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequests200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequests200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a list of Credential Requests.
@@ -108,11 +108,11 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Requests
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols")]
-            public global::Soenneker.Make.OpenApiClient.CredentialRequests.Requests.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequestsColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols")]
-            public global::Soenneker.Make.OpenApiClient.CredentialRequests.Requests.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequestsColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>Make Provider ID to filter credential requests.</summary>
             [QueryParameter("makeProviderId")]
@@ -129,7 +129,7 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Requests
 #endif
             /// <summary>Status to filter credential requests.</summary>
             [QueryParameter("status")]
-            public global::Soenneker.Make.OpenApiClient.CredentialRequests.Requests.GetStatusQueryParameterType? Status { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequestsStatusParameter? Status { get; set; }
             /// <summary>Team ID to filter credential requests.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }

@@ -13,21 +13,21 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Icon
 {
     /// <summary>
-    /// Builds and executes requests for operations under \sdk\apps\{SDK_appName}\{SDK_appVersion}\icon
+    /// Builds and executes requests for operations under \sdk\apps\{sdkAppName}\{sdkAppVersion}\icon
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class IconRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.sdk.apps.item.item.icon.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Icon.Item.WithSDK_appIconSizeItemRequestBuilder"/></returns>
-        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Icon.Item.WithSDK_appIconSizeItemRequestBuilder this[int position]
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Icon.Item.WithSdkAppIconSizeItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Icon.Item.WithSdkAppIconSizeItemRequestBuilder this[int position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("SDK_appIconSize", position);
-                return new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Icon.Item.WithSDK_appIconSizeItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("sdkAppIconSize", position);
+                return new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Icon.Item.WithSdkAppIconSizeItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>
@@ -35,7 +35,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Icon
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public IconRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/{SDK_appVersion}/icon", pathParameters)
+        public IconRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/icon", pathParameters)
         {
         }
         /// <summary>
@@ -43,28 +43,28 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Icon
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public IconRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/{SDK_appVersion}/icon", rawUrl)
+        public IconRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/icon", rawUrl)
         {
         }
         /// <summary>
         /// Set App Logo
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionIcon200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionIcon200Response"/></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionIcon200?> PutAsync(Stream body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionIcon200Response?> PutAsync(Stream body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionIcon200> PutAsync(Stream body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionIcon200Response> PutAsync(Stream body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionIcon200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionIcon200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionIcon200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionIcon200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Set App Logo

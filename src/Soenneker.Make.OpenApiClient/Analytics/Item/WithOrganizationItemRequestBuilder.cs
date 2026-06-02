@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Analytics.Item
         /// <summary>
         /// Gets analytics data for the specified organization. This feature is available only for organizations with the Enterprise plan. You can get analytics data only for organizations where you have the &quot;Owner&quot; organization role. Otherwise, you get the 403 error.The data entries in the response are sorted by the amount of operations used by a scenario in ascending order. Specify different sorting with the `sortBy` parameter. You can use query parameters (like `timeframe[dateFrom]`, `timeframe[dateTo]` or `teamId`) to refine the results and pagination to navigate through a large number of entries.Make keeps the analytics data for a maximum of one year. One year is also the default time frame for the analytics data you get the response.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsOrganizationId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsByOrganizationId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsOrganizationId200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Analytics.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsByOrganizationId200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Analytics.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsOrganizationId200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Analytics.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsByOrganizationId200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Analytics.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsOrganizationId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsOrganizationId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsByOrganizationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsByOrganizationId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets analytics data for the specified organization. This feature is available only for organizations with the Enterprise plan. You can get analytics data only for organizations where you have the &quot;Owner&quot; organization role. Otherwise, you get the 403 error.The data entries in the response are sorted by the amount of operations used by a scenario in ascending order. Specify different sorting with the `sortBy` parameter. You can use query parameters (like `timeframe[dateFrom]`, `timeframe[dateTo]` or `teamId`) to refine the results and pagination to navigate through a large number of entries.Make keeps the analytics data for a maximum of one year. One year is also the default time frame for the analytics data you get the response.
@@ -86,15 +86,8 @@ namespace Soenneker.Make.OpenApiClient.Analytics.Item
         public partial class WithOrganizationItemRequestBuilderGetQueryParameters 
         {
             /// <summary>IDs of the scenario folders for which you want to get the analytics data.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("folderId")]
-            public string? FolderId { get; set; }
-#nullable restore
-#else
-            [QueryParameter("folderId")]
-            public string FolderId { get; set; }
-#endif
+            public int? FolderId { get; set; }
             /// <summary>The last retrieved key. In response, you get only entries that follow after the key.</summary>
             [QueryParameter("pg%5Blast%5D")]
             public int? Pglast { get; set; }
@@ -109,10 +102,10 @@ namespace Soenneker.Make.OpenApiClient.Analytics.Item
             public bool? PgreturnTotalCount { get; set; }
             /// <summary>Specify which property Make will use to sort the analytics entries in the response. The default is `operations`.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.Analytics.Item.GetPgSortByQueryParameterType? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsByOrganizationIdPgSortByParameter? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Analytics.Item.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsByOrganizationIdPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>&quot;You can use the `status` parameter to get analytics data about scenarios with specific scenario statuses. The available scenario statuses are:- `active`: scenario is enabled- `inactive`: scenario is disabled- `invalid`: scenario is disabled due to errors&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -124,15 +117,8 @@ namespace Soenneker.Make.OpenApiClient.Analytics.Item
             public string Status { get; set; }
 #endif
             /// <summary>IDs of the teams for which you want to get the analytics data.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("teamId")]
-            public string? TeamId { get; set; }
-#nullable restore
-#else
-            [QueryParameter("teamId")]
-            public string TeamId { get; set; }
-#endif
+            public int? TeamId { get; set; }
             /// <summary>Use the `timeframe[dateFrom]` parameter to get analytics data from the specified date. Specify the date and time in the ISO 8601 compliant format.The default is the date since one year from today. You can&apos;t use a date older than a year from today.</summary>
             [QueryParameter("timeframe%5BdateFrom%5D")]
             public DateTimeOffset? TimeframedateFrom { get; set; }

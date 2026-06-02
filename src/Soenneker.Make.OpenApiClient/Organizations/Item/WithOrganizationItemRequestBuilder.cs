@@ -150,58 +150,58 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item
         /// <summary>
         /// &quot;Deletes the organization with the specified `organizationId`. Make also deletes all the teams in the organization.  You can only delete organizations that are associated with your current Make zone. Your current Make zone is specified in the API call URL. Currently, it is either:  - `eu1.make.com`  - `us1.make.com`&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsOrganizationId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsOrganizationId200?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationId200Response?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsOrganizationId200> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationId200Response> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsOrganizationId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsOrganizationId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves detail information of the organization with the specified `organizationId`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsOrganizationId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsOrganizationId200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationId200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsOrganizationId200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationId200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsOrganizationId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsOrganizationId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates the organization data with the values in the request body. If you don&apos;t use a parameter in the request body, Make won&apos;t change its value. You can update organization name, timezone, and country with the `name`, `timezoneId`, and `countryId` parameters.Check the available values for the `timezoneId` and `countryId` parameters with the API calls `GET /enums/timezones` and `GET /enums/countries`.The request response returns all organization data.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationId200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationId200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationId200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationId200> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationId body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationId200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Deletes the organization with the specified `organizationId`. Make also deletes all the teams in the organization.  You can only delete organizations that are associated with your current Make zone. Your current Make zone is specified in the API call URL. Currently, it is either:  - `eu1.make.com`  - `us1.make.com`&quot;
@@ -249,11 +249,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationId body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

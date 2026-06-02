@@ -36,22 +36,22 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.CheckEmailIsMember
         /// <summary>
         /// Checks if every given e-mail is an active member of the team. Evaluates to false if any of the input e-mails are not part of the team. This endpoint uses JWT authorization.Please note that JWT authorization is not available in our open API, use tools like Postman for testing.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdCheckEmailIsMember200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMember200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdCheckEmailIsMember200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdCheckEmailIsMember body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMember200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMemberRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdCheckEmailIsMember200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdCheckEmailIsMember body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMember200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMemberRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdCheckEmailIsMember200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdCheckEmailIsMember200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMember200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMember200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Checks if every given e-mail is an active member of the team. Evaluates to false if any of the input e-mails are not part of the team. This endpoint uses JWT authorization.Please note that JWT authorization is not available in our open API, use tools like Postman for testing.
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.CheckEmailIsMember
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdCheckEmailIsMember body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMemberRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostTeamsTeamIdCheckEmailIsMember body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMemberRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

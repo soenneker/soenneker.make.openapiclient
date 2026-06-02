@@ -55,40 +55,40 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Incomings
         /// <summary>
         /// &quot;Deletes items from the processing queue of the specified webhook. Specify the payload ID values that you want to delete in the request body in the `ids` array.You can set the `\&quot;all\&quot;: true` pair to delete all items from the webhook processing queue. If you use the `\&quot;all\&quot;: true` parameter, you have to specify the `confirmed=true` query parameter to confirm the deletion. Otherwise the API call returns the error IM004 (406).Add the `exceptIds` array to the request body to specify items you don&apos;t want to delete.The API call response will contain an error message if some of the specified queue items cannot be deleted. The rest of the specified items will be deleted. Deleting a webhook queue item is not allowed when the item is already being processed by the webhook.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteHooksHookIdIncomings200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomings200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteHooksHookIdIncomings200?> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteHooksHookIdIncomings body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomings200Response?> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomingsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteHooksHookIdIncomings200> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteHooksHookIdIncomings body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomings200Response> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomingsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteHooksHookIdIncomings200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteHooksHookIdIncomings200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomings200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a list of webhook queue items waiting for processing with the specified webhook. The request response contains:- the incoming payload hash - incoming data scope - the size of the data in bytes - timestamp of the moment when the data were placed in the processing queue
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdIncomings200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomings200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdIncomings200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomings200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdIncomings200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomings200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdIncomings200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdIncomings200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomings200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Deletes items from the processing queue of the specified webhook. Specify the payload ID values that you want to delete in the request body in the `ids` array.You can set the `\&quot;all\&quot;: true` pair to delete all items from the webhook processing queue. If you use the `\&quot;all\&quot;: true` parameter, you have to specify the `confirmed=true` query parameter to confirm the deletion. Otherwise the API call returns the error IM004 (406).Add the `exceptIds` array to the request body to specify items you don&apos;t want to delete.The API call response will contain an error message if some of the specified queue items cannot be deleted. The rest of the specified items will be deleted. Deleting a webhook queue item is not allowed when the item is already being processed by the webhook.&quot;
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Incomings
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteHooksHookIdIncomings body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomingsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteHooksHookIdIncomings body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomingsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -174,7 +174,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Incomings
 #endif
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomingsPgSortDirParameter? PgsortDir { get; set; }
         }
     }
 }

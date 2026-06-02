@@ -49,20 +49,20 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Logs
         /// <summary>
         /// &quot;Retrieves a list of the specified webhook execution logs. Use the `to` and `from` parameters to filter the returned logs. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdLogs200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogs200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdLogs200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Logs.LogsRequestBuilder.LogsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogs200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Logs.LogsRequestBuilder.LogsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdLogs200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Logs.LogsRequestBuilder.LogsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogs200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.Logs.LogsRequestBuilder.LogsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdLogs200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksHookIdLogs200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Retrieves a list of the specified webhook execution logs. Use the `to` and `from` parameters to filter the returned logs. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log&quot;
@@ -119,7 +119,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Logs
 #endif
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Hooks.Item.Logs.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogsPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>Limits data in the response to entries older than the specified timestamp. Use the [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) format in milliseconds.</summary>
             [QueryParameter("to")]
             public int? To { get; set; }

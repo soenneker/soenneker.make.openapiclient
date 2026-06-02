@@ -36,42 +36,42 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item
         /// <summary>
         /// Updates a data store record with a given key by passing new data in the request body. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated data including properties that were not changed.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreIdDataDataStoreKeyRecord200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response"/></returns>
         /// <param name="body">The data is different for each data store so there are no predefined body properties to use. Please see the request example for more details.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreIdDataDataStoreKeyRecord200?> PatchAsync(global::Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item.WithDataStoreKeyRecordPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecordRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreIdDataDataStoreKeyRecord200> PatchAsync(global::Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item.WithDataStoreKeyRecordPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecordRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreIdDataDataStoreKeyRecord200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreIdDataDataStoreKeyRecord200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a data store record with a given key by passing new data in the request body. It replaces the entire resource with the new values. In the response, this endpoint returns all details of the updated data.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutDataStoresDataStoreIdDataDataStoreKeyRecord200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response"/></returns>
         /// <param name="body">The data is different for each data store so there are no predefined body properties to use. Please see the request example for more details.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutDataStoresDataStoreIdDataDataStoreKeyRecord200?> PutAsync(global::Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item.WithDataStoreKeyRecordPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecordRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutDataStoresDataStoreIdDataDataStoreKeyRecord200> PutAsync(global::Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item.WithDataStoreKeyRecordPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecordRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutDataStoresDataStoreIdDataDataStoreKeyRecord200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutDataStoresDataStoreIdDataDataStoreKeyRecord200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a data store record with a given key by passing new data in the request body. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated data including properties that were not changed.
@@ -81,11 +81,11 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item.WithDataStoreKeyRecordPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecordRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item.WithDataStoreKeyRecordPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecordRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -103,11 +103,11 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item.WithDataStoreKeyRecordPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecordRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item.WithDataStoreKeyRecordPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecordRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

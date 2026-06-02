@@ -36,40 +36,40 @@ namespace Soenneker.Make.OpenApiClient.CustomPropertyStructures.CustomPropertySt
         /// <summary>
         /// Deletes the specified custom property structure item. Use the `confirmed` parameter to confirm deleting the structure item.When you delete a custom property item, Make deletes the data filled in the item as well. Deleting custom property item data is irreversible.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId200?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CustomPropertyStructures.CustomPropertyStructureItems.Item.WithCustomPropertyStructureItemItemRequestBuilder.WithCustomPropertyStructureItemItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200Response?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CustomPropertyStructures.CustomPropertyStructureItems.Item.WithCustomPropertyStructureItemItemRequestBuilder.WithCustomPropertyStructureItemItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId200> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CustomPropertyStructures.CustomPropertyStructureItems.Item.WithCustomPropertyStructureItemItemRequestBuilder.WithCustomPropertyStructureItemItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200Response> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CustomPropertyStructures.CustomPropertyStructureItems.Item.WithCustomPropertyStructureItemItemRequestBuilder.WithCustomPropertyStructureItemItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates the specified item of a custom property structure. Specify the attributes you want to update in the request body.You cannot update the item `name` and `type`.You can get the item ID with an API call to [list custom property structure items](./get--custom-property-structures--custompropertystructureid--custom-property-structure-items.md).When you want to update the `options` of a `multiselect` or `dropdown` item, specify all the options for the property. The new set of options replaces the current options.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId200> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes the specified custom property structure item. Use the `confirmed` parameter to confirm deleting the structure item.When you delete a custom property item, Make deletes the data filled in the item as well. Deleting custom property item data is irreversible.
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.CustomPropertyStructures.CustomPropertySt
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsCustomPropertyStructureItemId body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

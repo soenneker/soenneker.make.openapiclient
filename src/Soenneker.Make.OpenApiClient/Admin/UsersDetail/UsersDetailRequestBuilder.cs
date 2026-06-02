@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Admin.UsersDetail
         /// <summary>
         /// Retrieves a collection of all users in your Make White Label instance. Use the API call query parameters to limit the results to a user name or user email.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.UsersDetail.UsersDetailRequestBuilder.UsersDetailRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.UsersDetail.UsersDetailRequestBuilder.UsersDetailRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.UsersDetail.UsersDetailRequestBuilder.UsersDetailRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.UsersDetail.UsersDetailRequestBuilder.UsersDetailRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all users in your Make White Label instance. Use the API call query parameters to limit the results to a user name or user email.
@@ -126,10 +126,10 @@ namespace Soenneker.Make.OpenApiClient.Admin.UsersDetail
             public int? Pgoffset { get; set; }
             /// <summary>Sort the results in the APi call response by the values in the specified column.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.Admin.UsersDetail.GetPgSortByQueryParameterType? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetailPgSortByParameter? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Admin.UsersDetail.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetailPgSortDirParameter? PgsortDir { get; set; }
         }
     }
 }

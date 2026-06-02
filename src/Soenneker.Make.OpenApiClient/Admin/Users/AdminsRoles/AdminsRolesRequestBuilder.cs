@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.AdminsRoles
         /// <summary>
         /// Gets the list of available admin roles. Admin roles define the permissions that users have at the instance level in the Make White Label product.Refer to the [user admin roles documentation](https://www.make.com/en/help/white-label/manage-organizations#instance-level-roles-1628394) for the full breakdown of the user admin roles permissions.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.AdminsRoles.AdminsRolesRequestBuilder.AdminsRolesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.AdminsRoles.AdminsRolesRequestBuilder.AdminsRolesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.AdminsRoles.AdminsRolesRequestBuilder.AdminsRolesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.AdminsRoles.AdminsRolesRequestBuilder.AdminsRolesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the list of available admin roles. Admin roles define the permissions that users have at the instance level in the Make White Label product.Refer to the [user admin roles documentation](https://www.make.com/en/help/white-label/manage-organizations#instance-level-roles-1628394) for the full breakdown of the user admin roles permissions.
@@ -87,7 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.AdminsRoles
         {
             /// <summary>Filter roles by category.</summary>
             [QueryParameter("category")]
-            public global::Soenneker.Make.OpenApiClient.Admin.Users.AdminsRoles.GetCategoryQueryParameterType? Category { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRolesCategoryParameter? Category { get; set; }
             /// <summary>Specifies columns that are returned in the response. Use the `cols[]` parameter for every column that you want to return in the response. For example `GET /endpoint?cols[]=key1&amp;cols[]=key2` to get both `key1` and `key2` columns in the response.[Check the &quot;Filtering&quot; section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

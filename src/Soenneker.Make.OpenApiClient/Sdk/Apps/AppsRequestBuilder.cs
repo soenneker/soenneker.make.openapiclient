@@ -44,14 +44,14 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps
         }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.sdk.apps.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.WithSDK_appNameItemRequestBuilder"/></returns>
-        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.WithSDK_appNameItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.WithSdkAppNameItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.WithSdkAppNameItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("SDK_appName", position);
-                return new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.WithSDK_appNameItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("sdkAppName", position);
+                return new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.WithSdkAppNameItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>
@@ -73,40 +73,40 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps
         /// <summary>
         /// Retrieves a collection of all apps available to the authenticated user.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkApps200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkApps200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetSdkApps200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Sdk.Apps.AppsRequestBuilder.AppsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetSdkApps200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Sdk.Apps.AppsRequestBuilder.AppsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetSdkApps200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Sdk.Apps.AppsRequestBuilder.AppsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetSdkApps200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Sdk.Apps.AppsRequestBuilder.AppsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkApps200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkApps200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkApps200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkApps200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new app with data passed in the request body. In the response, it returns all details of the created app.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkApps200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkApps200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkApps200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkApps body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkApps200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkApps200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkApps body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkApps200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostSdkApps200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostSdkApps200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostSdkApps200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostSdkApps200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all apps available to the authenticated user.
@@ -135,11 +135,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostSdkApps body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostSdkApps body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -168,11 +168,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Sdk.Apps.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Sdk.Apps.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>If set to `true`, this parameter returns apps available to all users. If set to `false`, it retrieves the apps available to the authenticated user.</summary>
             [QueryParameter("opensource")]

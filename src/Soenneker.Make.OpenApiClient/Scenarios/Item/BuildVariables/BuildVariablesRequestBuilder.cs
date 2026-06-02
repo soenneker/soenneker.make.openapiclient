@@ -36,78 +36,78 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
         /// <summary>
         /// Deletes a buildtime variable with a given value for a scenario with a given ID and returns `OK` in the response.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosScenarioIdBuildVariables200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdBuildVariables200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosScenarioIdBuildVariables200?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables.BuildVariablesRequestBuilder.BuildVariablesRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdBuildVariables200Response?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables.BuildVariablesRequestBuilder.BuildVariablesRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosScenarioIdBuildVariables200> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables.BuildVariablesRequestBuilder.BuildVariablesRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdBuildVariables200Response> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables.BuildVariablesRequestBuilder.BuildVariablesRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosScenarioIdBuildVariables200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosScenarioIdBuildVariables200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves buildtime variables of a scenario with the given ID. Buildtime variables could be team or user defined, team defined ones are prefixed with a `TAC_` and user defined variables are prefixed with a `PAC_`. `TAC_`s can be used within the scenario as per its input spec by the entire team, whereas `PAC_`s can only be used within the scenario by the user who added them.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdBuildVariables200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBuildVariables200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdBuildVariables200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBuildVariables200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdBuildVariables200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBuildVariables200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdBuildVariables200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdBuildVariables200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Adds new buildtime team or user defined variable/s. Buildtime variables should be prefixed either with a `TAC_` (for team defined variables) or with a `PAC_` (for personal user defined variables), followed by the connection value. If a variable already exists, an error will be thrown. If a variable&apos;s name is not within scenario input specification, an error will be thrown. If the adding of new variables was successful the reponse would be `OK`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdBuildVariables200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdBuildVariables200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdBuildVariables body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdBuildVariables200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdBuildVariables body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdBuildVariables200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdBuildVariables200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates team or user defined buildtime variable/s. The endpoint updates and overwrites exsiting records with the newly provided values, meaning any existing buildtime variable which is not provided through the payload will be overwritten. Buildtime variables should be prefixed either with a `TAC_` (for team defined variables) or with a `PAC_` (for personal user defined variables), followed by the connection value. If a variable doesn&apos;t exist, it will be added provided that its name is within the scenario input specification. If the updating of variables was successful the reponse would be `OK`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdBuildVariables200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdBuildVariables200?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdBuildVariables body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables200Response?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdBuildVariables200> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdBuildVariables body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables200Response> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdBuildVariables200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdBuildVariables200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes a buildtime variable with a given value for a scenario with a given ID and returns `OK` in the response.
@@ -155,11 +155,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdBuildVariables body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdBuildVariables body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -177,11 +177,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdBuildVariables body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdBuildVariables body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

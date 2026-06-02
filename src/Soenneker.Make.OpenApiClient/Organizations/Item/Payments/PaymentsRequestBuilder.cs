@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Payments
         /// <summary>
         /// Get list of past payments
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsOrganizationIdPayments200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPayments200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsOrganizationIdPayments200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Payments.PaymentsRequestBuilder.PaymentsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPayments200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Payments.PaymentsRequestBuilder.PaymentsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsOrganizationIdPayments200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Payments.PaymentsRequestBuilder.PaymentsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPayments200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Payments.PaymentsRequestBuilder.PaymentsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsOrganizationIdPayments200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsOrganizationIdPayments200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPayments200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPayments200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Get list of past payments
@@ -103,7 +103,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Payments
 #endif
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Organizations.Item.Payments.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPaymentsPgSortDirParameter? PgsortDir { get; set; }
         }
     }
 }

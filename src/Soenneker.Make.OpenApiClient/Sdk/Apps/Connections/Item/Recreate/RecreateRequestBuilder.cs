@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Recreate
 {
     /// <summary>
-    /// Builds and executes requests for operations under \sdk\apps\connections\{SDK_connectionName}\recreate
+    /// Builds and executes requests for operations under \sdk\apps\connections\{sdkConnectionName}\recreate
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RecreateRequestBuilder : BaseRequestBuilder
@@ -21,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Recreate
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RecreateRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/connections/{SDK_connectionName}/recreate", pathParameters)
+        public RecreateRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/connections/{sdkConnectionName}/recreate", pathParameters)
         {
         }
         /// <summary>
@@ -29,26 +30,26 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Recreate
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RecreateRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/connections/{SDK_connectionName}/recreate", rawUrl)
+        public RecreateRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/connections/{sdkConnectionName}/recreate", rawUrl)
         {
         }
         /// <summary>
         /// Recreates an existing app connection and synchronises it with HQ.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Recreate.RecreatePostResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseResponseJson"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Recreate.RecreatePostResponse?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseResponseJson?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Recreate.RecreatePostResponse> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseResponseJson> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Recreate.RecreatePostResponse>(requestInfo, global::Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Recreate.RecreatePostResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseResponseJson>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseResponseJson.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Recreates an existing app connection and synchronises it with HQ.

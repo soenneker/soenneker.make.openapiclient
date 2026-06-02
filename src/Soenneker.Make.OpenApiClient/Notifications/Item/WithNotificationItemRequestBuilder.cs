@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Notifications.Item
         /// <summary>
         /// Retrieves details and full content of a notification with a given ID.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetNotificationsNotificationId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetNotificationsByNotificationId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetNotificationsNotificationId200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.Item.WithNotificationItemRequestBuilder.WithNotificationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetNotificationsByNotificationId200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.Item.WithNotificationItemRequestBuilder.WithNotificationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetNotificationsNotificationId200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.Item.WithNotificationItemRequestBuilder.WithNotificationItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetNotificationsByNotificationId200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.Item.WithNotificationItemRequestBuilder.WithNotificationItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetNotificationsNotificationId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetNotificationsNotificationId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetNotificationsByNotificationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetNotificationsByNotificationId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves details and full content of a notification with a given ID.

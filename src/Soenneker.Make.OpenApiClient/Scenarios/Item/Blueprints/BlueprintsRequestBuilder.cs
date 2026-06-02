@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Blueprints
         /// <summary>
         /// Retrieves a collection of all blueprints versions for a scenario with a given ID. Due to the regular archiving process, only the versions that are not older than 60 days can be retrieved. Each returned blueprint version consists of the date and time of the blueprint creation, IDs of the blueprint version and related scenario, and the information if the blueprint was created for the draft or live scenario version.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdBlueprints200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdBlueprints200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdBlueprints200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdBlueprints200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdBlueprints200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all blueprints versions for a scenario with a given ID. Due to the regular archiving process, only the versions that are not older than 60 days can be retrieved. Each returned blueprint version consists of the date and time of the blueprint creation, IDs of the blueprint version and related scenario, and the information if the blueprint was created for the draft or live scenario version.

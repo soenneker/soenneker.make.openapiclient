@@ -42,11 +42,11 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.Run.StreamNamespa
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsAgentIdRunStream body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.Run.StreamNamespace.StreamRequestBuilder.StreamRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.Run.StreamNamespace.StreamRequestBuilder.StreamRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsAgentIdRunStream body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.Run.StreamNamespace.StreamRequestBuilder.StreamRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.Run.StreamNamespace.StreamRequestBuilder.StreamRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.Run.StreamNamespa
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsAgentIdRunStream body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.Run.StreamNamespace.StreamRequestBuilder.StreamRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.Run.StreamNamespace.StreamRequestBuilder.StreamRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsAgentIdRunStream body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.Run.StreamNamespace.StreamRequestBuilder.StreamRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.Run.StreamNamespace.StreamRequestBuilder.StreamRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

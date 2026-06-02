@@ -36,22 +36,22 @@ namespace Soenneker.Make.OpenApiClient.Functions.Eval
         /// <summary>
         /// &quot;Checks the custom functions code. The response contains information whether Make validated the custom functions code successfully or whether there was an error.The code validation might fail because of an syntax error in the function&apos;s code or when the code uses a JavaScript feature that Make doesn&apos;t support. Check the [custom functions limitations](https://www.make.com/en/help/functions/custom-functions#limitations-of-custom-functions) in the Make Help center.Check availability of the custom functions feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the response contains `\&quot;customFunctions\&quot;: true` pair in the `license` object then you have access to the custom functions feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Eval.EvalRequestBuilder.EvalRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEvalRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Eval.EvalRequestBuilder.EvalRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Eval.EvalRequestBuilder.EvalRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEvalRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Eval.EvalRequestBuilder.EvalRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Checks the custom functions code. The response contains information whether Make validated the custom functions code successfully or whether there was an error.The code validation might fail because of an syntax error in the function&apos;s code or when the code uses a JavaScript feature that Make doesn&apos;t support. Check the [custom functions limitations](https://www.make.com/en/help/functions/custom-functions#limitations-of-custom-functions) in the Make Help center.Check availability of the custom functions feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the response contains `\&quot;customFunctions\&quot;: true` pair in the `license` object then you have access to the custom functions feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.Functions.Eval
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Eval.EvalRequestBuilder.EvalRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEvalRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Eval.EvalRequestBuilder.EvalRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEval body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Eval.EvalRequestBuilder.EvalRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostFunctionsEvalRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.Eval.EvalRequestBuilder.EvalRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

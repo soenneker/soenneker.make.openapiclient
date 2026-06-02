@@ -10,21 +10,21 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Changes
 {
     /// <summary>
-    /// Builds and executes requests for operations under \sdk\apps\{SDK_appName}\{SDK_appVersion}\changes
+    /// Builds and executes requests for operations under \sdk\apps\{sdkAppName}\{sdkAppVersion}\changes
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ChangesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.sdk.apps.item.item.changes.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Changes.Item.WithSDK_changeItemRequestBuilder"/></returns>
-        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Changes.Item.WithSDK_changeItemRequestBuilder this[int position]
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Changes.Item.WithSdkChangeItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Changes.Item.WithSdkChangeItemRequestBuilder this[int position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("SDK_changeId", position);
-                return new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Changes.Item.WithSDK_changeItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("sdkChangeId", position);
+                return new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Changes.Item.WithSdkChangeItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>
@@ -32,7 +32,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Changes
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ChangesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/{SDK_appVersion}/changes", pathParameters)
+        public ChangesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/changes", pathParameters)
         {
         }
         /// <summary>
@@ -40,7 +40,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Changes
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ChangesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/{SDK_appVersion}/changes", rawUrl)
+        public ChangesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/changes", rawUrl)
         {
         }
     }

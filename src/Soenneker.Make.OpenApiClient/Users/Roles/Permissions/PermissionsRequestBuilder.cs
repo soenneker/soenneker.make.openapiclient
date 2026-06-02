@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Users.Roles.Permissions
         /// <summary>
         /// Gets a list of all available permissions that can be assigned to user roles. Use the `roleCategory` parameter to filter permissions by team or organization roles.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Roles.Permissions.PermissionsRequestBuilder.PermissionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Roles.Permissions.PermissionsRequestBuilder.PermissionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Roles.Permissions.PermissionsRequestBuilder.PermissionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.Roles.Permissions.PermissionsRequestBuilder.PermissionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets a list of all available permissions that can be assigned to user roles. Use the `roleCategory` parameter to filter permissions by team or organization roles.
@@ -87,7 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Roles.Permissions
         {
             /// <summary>Filter permissions by role category. Use `team` for team role permissions or `organization` for organization role permissions.</summary>
             [QueryParameter("roleCategory")]
-            public global::Soenneker.Make.OpenApiClient.Users.Roles.Permissions.GetRoleCategoryQueryParameterType? RoleCategory { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissionsRoleCategoryParameter? RoleCategory { get; set; }
         }
     }
 }

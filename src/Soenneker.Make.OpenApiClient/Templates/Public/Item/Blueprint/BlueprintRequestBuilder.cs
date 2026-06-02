@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Templates.Public.Item.Blueprint
         /// <summary>
         /// Retrieves a blueprint of a public (approved) template with a given `publicUrl`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicTemplateUrlBlueprint200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrlBlueprint200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicTemplateUrlBlueprint200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Public.Item.Blueprint.BlueprintRequestBuilder.BlueprintRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrlBlueprint200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Public.Item.Blueprint.BlueprintRequestBuilder.BlueprintRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicTemplateUrlBlueprint200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Public.Item.Blueprint.BlueprintRequestBuilder.BlueprintRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrlBlueprint200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Public.Item.Blueprint.BlueprintRequestBuilder.BlueprintRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicTemplateUrlBlueprint200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicTemplateUrlBlueprint200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrlBlueprint200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrlBlueprint200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a blueprint of a public (approved) template with a given `publicUrl`.

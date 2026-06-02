@@ -36,40 +36,40 @@ namespace Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item
         /// <summary>
         /// Process action
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsAppNameAppVersionRpcName200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsByAppNameByAppVersionByRpcName200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsAppNameAppVersionRpcName200?> OptionsAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsByAppNameByAppVersionByRpcName200Response?> OptionsAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsAppNameAppVersionRpcName200> OptionsAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsByAppNameByAppVersionByRpcName200Response> OptionsAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToOptionsRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsAppNameAppVersionRpcName200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsAppNameAppVersionRpcName200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsByAppNameByAppVersionByRpcName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsByAppNameByAppVersionByRpcName200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Call RPC
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item.WithRpcNamePostResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson11"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item.WithRpcNamePostResponse?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostRpcsAppNameAppVersionRpcName body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson11?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item.WithRpcNamePostResponse> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostRpcsAppNameAppVersionRpcName body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson11> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item.WithRpcNamePostResponse>(requestInfo, global::Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item.WithRpcNamePostResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson11>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson11.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Process action
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostRpcsAppNameAppVersionRpcName body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostRpcsAppNameAppVersionRpcName body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

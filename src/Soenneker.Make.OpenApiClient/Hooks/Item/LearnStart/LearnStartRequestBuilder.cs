@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.LearnStart
         /// <summary>
         /// Starts the process of learning the request body structure by a hook with a given ID. When you send to the hook address a request with data in its body, you can use this endpoint to force the hook to start determining the payload data structure which will later be suggested in the scenario as the output of the hook. The data structure learning process also starts automatically when a new hook is created and stops once the data structure is determined. If you want to stop this process, you can use the [Learn stop](./post--hooks--hookid--learn-stop.md) endpoint.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostHooksHookIdLearnStart200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdLearnStart200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostHooksHookIdLearnStart200?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdLearnStart200Response?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostHooksHookIdLearnStart200> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdLearnStart200Response> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostHooksHookIdLearnStart200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostHooksHookIdLearnStart200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdLearnStart200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdLearnStart200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Starts the process of learning the request body structure by a hook with a given ID. When you send to the hook address a request with data in its body, you can use this endpoint to force the hook to start determining the payload data structure which will later be suggested in the scenario as the output of the hook. The data structure learning process also starts automatically when a new hook is created and stops once the data structure is determined. If you want to stop this process, you can use the [Learn stop](./post--hooks--hookid--learn-stop.md) endpoint.

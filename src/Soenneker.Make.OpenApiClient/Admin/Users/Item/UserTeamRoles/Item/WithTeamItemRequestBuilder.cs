@@ -36,22 +36,22 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item.UserTeamRoles.Item
         /// <summary>
         /// Sets the user role in the team. Specify the user team role ID in the request body. The user has to be already a member of the team&apos;s organization.Get all available user role IDs and the corresponding user role names with the API call `GET /users/roles`.If the user is not a member of the team, the API call adds the user to the team with the specified role.If you send an empty request body, the API call removes the user with the specified `userId` from the team, setting the user&apos;s team role to &quot;None&quot;.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersUserIdUserTeamRolesTeamId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersByUserIdUserTeamRolesByTeamId200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersUserIdUserTeamRolesTeamId200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersUserIdUserTeamRolesTeamId body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.Item.UserTeamRoles.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersByUserIdUserTeamRolesByTeamId200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersByUserIdUserTeamRolesByTeamIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.Item.UserTeamRoles.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersUserIdUserTeamRolesTeamId200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersUserIdUserTeamRolesTeamId body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.Item.UserTeamRoles.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersByUserIdUserTeamRolesByTeamId200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersByUserIdUserTeamRolesByTeamIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.Item.UserTeamRoles.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersUserIdUserTeamRolesTeamId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersUserIdUserTeamRolesTeamId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersByUserIdUserTeamRolesByTeamId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersByUserIdUserTeamRolesByTeamId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Sets the user role in the team. Specify the user team role ID in the request body. The user has to be already a member of the team&apos;s organization.Get all available user role IDs and the corresponding user role names with the API call `GET /users/roles`.If the user is not a member of the team, the API call adds the user to the team with the specified role.If you send an empty request body, the API call removes the user with the specified `userId` from the team, setting the user&apos;s team role to &quot;None&quot;.
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item.UserTeamRoles.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersUserIdUserTeamRolesTeamId body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.Item.UserTeamRoles.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersByUserIdUserTeamRolesByTeamIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.Item.UserTeamRoles.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersUserIdUserTeamRolesTeamId body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.Item.UserTeamRoles.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersByUserIdUserTeamRolesByTeamIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.Item.UserTeamRoles.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

@@ -36,22 +36,22 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.UserOrganizationRoles.
         /// <summary>
         /// Transfer organization ownership to the specified user. Only the user that has the user role &quot;Owner&quot; in the organization can transfer ownership.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdUserOrganizationRolesTransfer200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUserOrganizationRolesTransfer200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdUserOrganizationRolesTransfer200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdUserOrganizationRolesTransfer body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUserOrganizationRolesTransfer200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUserOrganizationRolesTransferRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdUserOrganizationRolesTransfer200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdUserOrganizationRolesTransfer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUserOrganizationRolesTransfer200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUserOrganizationRolesTransferRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdUserOrganizationRolesTransfer200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdUserOrganizationRolesTransfer200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUserOrganizationRolesTransfer200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUserOrganizationRolesTransfer200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Transfer organization ownership to the specified user. Only the user that has the user role &quot;Owner&quot; in the organization can transfer ownership.
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.UserOrganizationRoles.
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdUserOrganizationRolesTransfer body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUserOrganizationRolesTransferRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdUserOrganizationRolesTransfer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUserOrganizationRolesTransferRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

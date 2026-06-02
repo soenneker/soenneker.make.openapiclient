@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Connections
 {
     /// <summary>
-    /// Builds and executes requests for operations under \sdk\apps\{SDK_appName}\connections
+    /// Builds and executes requests for operations under \sdk\apps\{sdkAppName}\connections
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ConnectionsRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Connections
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ConnectionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/connections", pathParameters)
+        public ConnectionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/connections", pathParameters)
         {
         }
         /// <summary>
@@ -30,46 +30,46 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Connections
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ConnectionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/connections", rawUrl)
+        public ConnectionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/connections", rawUrl)
         {
         }
         /// <summary>
         /// List App Connections
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsSDKAppNameConnections200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameConnections200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsSDKAppNameConnections200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameConnections200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsSDKAppNameConnections200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameConnections200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsSDKAppNameConnections200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsSDKAppNameConnections200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameConnections200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameConnections200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create Connection
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameConnections200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameConnections200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameConnections200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameConnections body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameConnections200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameConnectionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameConnections200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameConnections body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameConnections200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameConnectionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameConnections200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameConnections200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameConnections200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameConnections200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// List App Connections
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Connections
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameConnections body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameConnectionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsSDKAppNameConnections body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameConnectionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

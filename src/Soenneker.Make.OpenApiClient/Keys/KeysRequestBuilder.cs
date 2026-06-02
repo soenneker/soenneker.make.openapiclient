@@ -55,40 +55,40 @@ namespace Soenneker.Make.OpenApiClient.Keys
         /// <summary>
         /// Gets the list of keys in your custom keychain. You can use the `typeName` query parameter to filter your keys based on their type. Run the [list of key types](./get--keys--types.md) API call to get a list of available key types.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetKeys200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetKeys200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetKeys200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.KeysRequestBuilder.KeysRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetKeys200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.KeysRequestBuilder.KeysRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetKeys200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.KeysRequestBuilder.KeysRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetKeys200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.KeysRequestBuilder.KeysRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetKeys200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetKeys200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetKeys200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetKeys200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a key in your keychain. Use the [list of key types](./get--keys--types.md) API call to get a list of available key types for the `typeName` parameter. Specify additional parameters in the `parameters` object based on the key type.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostKeys200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostKeys200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostKeys200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostKeys body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostKeys200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostKeysRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostKeys200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostKeys body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostKeys200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostKeysRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostKeys200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostKeys200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostKeys200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostKeys200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the list of keys in your custom keychain. You can use the `typeName` query parameter to filter your keys based on their type. Run the [list of key types](./get--keys--types.md) API call to get a list of available key types.
@@ -117,11 +117,11 @@ namespace Soenneker.Make.OpenApiClient.Keys
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostKeys body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostKeysRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostKeys body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostKeysRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -150,18 +150,18 @@ namespace Soenneker.Make.OpenApiClient.Keys
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Keys.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetKeysColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Keys.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetKeysColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>The ID of the team.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }
             /// <summary>Use the key type to get only keys with the specified type. You can use the API call `GET /keys/types` to list available key types.</summary>
             [QueryParameter("typeName")]
-            public global::Soenneker.Make.OpenApiClient.Keys.GetTypeNameQueryParameterType? TypeName { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetKeysTypeNameParameter? TypeName { get; set; }
         }
     }
 }

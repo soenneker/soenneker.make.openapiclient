@@ -49,40 +49,40 @@ namespace Soenneker.Make.OpenApiClient.DataStructures
         /// <summary>
         /// Retrieves a collection of all data structures for a team with a given ID. Returned data structures are sorted by name in ascending order.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructures200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructures200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStructures200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStructures.DataStructuresRequestBuilder.DataStructuresRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStructures200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStructures.DataStructuresRequestBuilder.DataStructuresRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStructures200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStructures.DataStructuresRequestBuilder.DataStructuresRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStructures200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStructures.DataStructuresRequestBuilder.DataStructuresRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStructures200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStructures200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStructures200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStructures200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new data structure with data passed in the request body. In the response, it returns all details of the created data structure including its full specification.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStructures body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStructures body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all data structures for a team with a given ID. Returned data structures are sorted by name in ascending order.
@@ -111,11 +111,11 @@ namespace Soenneker.Make.OpenApiClient.DataStructures
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDataStructures body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDataStructures body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -144,11 +144,11 @@ namespace Soenneker.Make.OpenApiClient.DataStructures
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.DataStructures.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.DataStructures.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>Sets the maximum number of results per page in the API call response. For example, `pg[limit]=100`. The default number varies with different API endpoints.</summary>
             [QueryParameter("pg%5Blimit%5D")]
@@ -158,10 +158,10 @@ namespace Soenneker.Make.OpenApiClient.DataStructures
             public int? Pgoffset { get; set; }
             /// <summary>The value that will be used to sort returned entities by.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.DataStructures.GetPgSortByQueryParameterType? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresPgSortByParameter? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.DataStructures.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>The unique ID of the team whose data structures will be retrieved.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }

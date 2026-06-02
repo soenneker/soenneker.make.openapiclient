@@ -49,40 +49,40 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Agents
         /// <summary>
         /// Retrieve a list of all agents
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Agents200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Agents200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Agents200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.AgentsRequestBuilder.AgentsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Agents200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.AgentsRequestBuilder.AgentsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Agents200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.AgentsRequestBuilder.AgentsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Agents200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.AgentsRequestBuilder.AgentsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Agents200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Agents200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Agents200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Agents200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create a new agent
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents201"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents201Response"/></returns>
         /// <param name="body">Request body for creating a new agent.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents201?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.AgentsRequestBuilder.AgentsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents201Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.AgentsRequestBuilder.AgentsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents201> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.AgentsRequestBuilder.AgentsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents201Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.AgentsRequestBuilder.AgentsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents201>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents201.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents201Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents201Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve a list of all agents
@@ -111,11 +111,11 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Agents
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.AgentsRequestBuilder.AgentsRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.AgentsRequestBuilder.AgentsRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.AgentsRequestBuilder.AgentsRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.AgentsRequestBuilder.AgentsRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

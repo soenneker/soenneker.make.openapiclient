@@ -85,40 +85,40 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// <summary>
         /// Retrieves a collection of all scenarios for a team or an organization with a given ID. Returned scenarios are sorted by proprietary setting in descending order.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarios200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarios200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenarios200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenarios200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new scenario with data passed in the request body. In the response, it returns all details of the created scenario including its blueprint.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenarios200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenarios200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenarios200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenarios body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenarios200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenarios200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenarios body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenarios200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenarios200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenarios200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenarios200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenarios200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all scenarios for a team or an organization with a given ID. Returned scenarios are sorted by proprietary setting in descending order.
@@ -147,11 +147,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenarios body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenarios body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -180,11 +180,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetScenariosColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetScenariosColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>If set to `true`, the response contains only scenario concepts.</summary>
             [QueryParameter("concept")]
@@ -220,16 +220,16 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
             public int? Pgoffset { get; set; }
             /// <summary>The value that will be used to sort returned entities by.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.GetPgSortByQueryParameterType? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetScenariosPgSortByParameter? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetScenariosPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>The unique ID of the team whose scenarios will be retrieved. If this parameter is set, the `organizationId` parameter must be skipped. For each request either `teamId` or `organizationId` must be defined.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }
             /// <summary>Limits the type of scenarios to be retrieved.</summary>
             [QueryParameter("type")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.GetTypeQueryParameterType? Type { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetScenariosTypeParameter? Type { get; set; }
         }
         /// <summary>
         /// Creates a new scenario with data passed in the request body. In the response, it returns all details of the created scenario including its blueprint.
@@ -241,11 +241,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.PostColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostScenariosColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.PostColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostScenariosColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>If set to `true` this parameter confirms the scenario creation when the scenario contains the app that is used in the organization for the first time and needs installation. If the parameter is missing or it is set to `false` an error code is returned and the scenario is not created.</summary>
             [QueryParameter("confirmed")]

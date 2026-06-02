@@ -42,20 +42,20 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Team.Item
         /// <summary>
         /// Gets a list of all audit log entries for the specified team.The audit log entries in the response are sorted by the `triggeredAt` property in descending order by default. You can use pagination to navigate through a large number of entries.You can get the audit log entries only for teams in which you have the &quot;Team Admin&quot; role. Otherwise, you get the 403 error.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AuditLogs.Team.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AuditLogs.Team.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AuditLogs.Team.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AuditLogs.Team.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets a list of all audit log entries for the specified team.The audit log entries in the response are sorted by the `triggeredAt` property in descending order by default. You can use pagination to navigate through a large number of entries.You can get the audit log entries only for teams in which you have the &quot;Team Admin&quot; role. Otherwise, you get the 403 error.
@@ -131,10 +131,10 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Team.Item
             public bool? PgreturnTotalCount { get; set; }
             /// <summary>Specify the response property values that Make will use to sort the audit log entries in the response. The default is `triggeredAt`.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.AuditLogs.Team.Item.GetPgSortByQueryParameterType? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogsPgSortByParameter? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.AuditLogs.Team.Item.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogsPgSortDirParameter? PgsortDir { get; set; }
         }
     }
 }

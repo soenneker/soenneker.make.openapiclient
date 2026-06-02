@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Connections.Item.Test
         /// <summary>
         /// Verifies the connection status. This endpoint usually communicates with the API of the app that includes the given connection and verifies if credentials saved in Make are still valid. It returns the confirmation if the connection is verified (`true`) or not (`false`).
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostConnectionsConnectionIdTest200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdTest200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsConnectionIdTest200?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdTest200Response?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsConnectionIdTest200> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdTest200Response> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsConnectionIdTest200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostConnectionsConnectionIdTest200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdTest200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdTest200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Verifies the connection status. This endpoint usually communicates with the API of the app that includes the given connection and verifies if credentials saved in Make are still valid. It returns the confirmation if the connection is verified (`true`) or not (`false`).

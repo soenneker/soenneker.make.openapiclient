@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Functions.Item.Test
 {
     /// <summary>
-    /// Builds and executes requests for operations under \sdk\apps\{SDK_appName}\{SDK_appVersion}\functions\{SDK_functionName}\test
+    /// Builds and executes requests for operations under \sdk\apps\{sdkAppName}\{sdkAppVersion}\functions\{sdkFunctionName}\test
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TestRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Functions.Item.Test
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TestRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/{SDK_appVersion}/functions/{SDK_functionName}/test", pathParameters)
+        public TestRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/functions/{sdkFunctionName}/test", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Functions.Item.Test
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TestRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/{SDK_appVersion}/functions/{SDK_functionName}/test", rawUrl)
+        public TestRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/functions/{sdkFunctionName}/test", rawUrl)
         {
         }
         /// <summary>
@@ -54,22 +54,22 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Functions.Item.Test
         /// <summary>
         /// Set Function Test
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionFunctionsSDKFunctionNameTest200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTest200Response"/></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionFunctionsSDKFunctionNameTest200?> PutAsync(Stream body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTest200Response?> PutAsync(Stream body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionFunctionsSDKFunctionNameTest200> PutAsync(Stream body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTest200Response> PutAsync(Stream body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionFunctionsSDKFunctionNameTest200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionFunctionsSDKFunctionNameTest200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTest200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTest200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Get Function Test

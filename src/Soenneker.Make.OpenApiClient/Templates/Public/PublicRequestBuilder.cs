@@ -49,20 +49,20 @@ namespace Soenneker.Make.OpenApiClient.Templates.Public
         /// <summary>
         /// Retrieves a collection of all public (approved) templates that are available for anyone. Returned templates are sorted by usage in descending order.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublic200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublic200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublic200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Public.PublicRequestBuilder.PublicRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublic200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Public.PublicRequestBuilder.PublicRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublic200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Public.PublicRequestBuilder.PublicRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublic200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Public.PublicRequestBuilder.PublicRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublic200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublic200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublic200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublic200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all public (approved) templates that are available for anyone. Returned templates are sorted by usage in descending order.
@@ -102,11 +102,11 @@ namespace Soenneker.Make.OpenApiClient.Templates.Public
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Templates.Public.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Templates.Public.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>If this parameter is set to `true`, it means English templates should be included in the response. This is relevant only if the user&apos;s language is not English.</summary>
             [QueryParameter("includeEn")]
@@ -139,7 +139,7 @@ namespace Soenneker.Make.OpenApiClient.Templates.Public
 #endif
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Templates.Public.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>The array with the text IDs of the apps used in the templates. This parameter allows you to get only the templates containing specific apps.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

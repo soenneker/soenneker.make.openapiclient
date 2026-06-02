@@ -61,40 +61,40 @@ namespace Soenneker.Make.OpenApiClient.Organizations
         /// <summary>
         /// Retrieves a collection of all organizations, in which the user has membership. The response contains information about the organization `name`, `organizationId` and `timezoneId`. You can get more data about the user organizations with specifying the `cols[]` query parameter.However, the values for parameters `license`, `serviceName` and `isPaused` are returned only for organizations in your current Make zone.Returned organizations are sorted by the organization name in ascending order by default. You can specify sorting order with the query parameter `pg[sortBy].`
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.OrganizationsRequestBuilder.OrganizationsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.OrganizationsRequestBuilder.OrganizationsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.OrganizationsRequestBuilder.OrganizationsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.OrganizationsRequestBuilder.OrganizationsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create a new organization using the data sent in the request body. Successful response contains all information about the created organization.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizations body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizations body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all organizations, in which the user has membership. The response contains information about the organization `name`, `organizationId` and `timezoneId`. You can get more data about the user organizations with specifying the `cols[]` query parameter.However, the values for parameters `license`, `serviceName` and `isPaused` are returned only for organizations in your current Make zone.Returned organizations are sorted by the organization name in ascending order by default. You can specify sorting order with the query parameter `pg[sortBy].`
@@ -123,11 +123,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizations body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizations body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -190,7 +190,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations
 #endif
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Organizations.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>The URL of your Make instance domain.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -42,40 +42,40 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item
         /// <summary>
         /// Retrieves details of a data store with a given ID.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStoresDataStoreId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresDataStoreId200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.Item.WithDataStoreItemRequestBuilder.WithDataStoreItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreId200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.Item.WithDataStoreItemRequestBuilder.WithDataStoreItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresDataStoreId200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.Item.WithDataStoreItemRequestBuilder.WithDataStoreItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreId200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.Item.WithDataStoreItemRequestBuilder.WithDataStoreItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresDataStoreId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStoresDataStoreId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates properties of a data store with a given ID in a team with a given ID by passing new values in the request body. In the response, it returns all details of the updated data store including properties that were not changed. Any property that is not provided will be left unchanged. This endpoint cannot be used to update data included in the data store - for this use the [endpoints for managing data stores data](./data/get--data-stores--datastoreid--data.md).
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreId200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreId200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreId200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreId200> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreId body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreId200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves details of a data store with a given ID.
@@ -104,11 +104,11 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresDataStoreId body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -137,11 +137,11 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.DataStores.Item.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.DataStores.Item.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdColsParameterItem[] Cols { get; set; }
 #endif
         }
     }

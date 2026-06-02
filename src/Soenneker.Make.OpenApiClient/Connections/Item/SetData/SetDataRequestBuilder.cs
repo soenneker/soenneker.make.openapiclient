@@ -36,22 +36,22 @@ namespace Soenneker.Make.OpenApiClient.Connections.Item.SetData
         /// <summary>
         /// Updates the specified connection with data in the request body. Check which data you need to send to update the connection with the API call `GET /connections/{connectionId}/editable-data-schema`. The data might be different for each app and connection type.The new connection data replace the original connection data. Make sure to provide all relevant data. If a field is missing in the request body, Make replaces the field in the new connection with an empty value.For OAuth connections, you need to log in to Make and confirm the changes with the **Reauthorize** button. For the rest of the connection types, Make starts using the new connection data immediately.If the connection cannot be updated then the API call returns the error message &quot;Cannot edit this connection.&quot; When this happens, create a new connection instead.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostConnectionsConnectionIdSetData200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdSetData200Response"/></returns>
         /// <param name="body">The request body has to contain the parameters listed in the response from the API call `GET /connections/{connectionId}/editable-data-schema` and the new values associated with them.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsConnectionIdSetData200?> PostAsync(global::Soenneker.Make.OpenApiClient.Connections.Item.SetData.SetDataPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdSetData200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdSetDataRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsConnectionIdSetData200> PostAsync(global::Soenneker.Make.OpenApiClient.Connections.Item.SetData.SetDataPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdSetData200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdSetDataRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsConnectionIdSetData200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostConnectionsConnectionIdSetData200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdSetData200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdSetData200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates the specified connection with data in the request body. Check which data you need to send to update the connection with the API call `GET /connections/{connectionId}/editable-data-schema`. The data might be different for each app and connection type.The new connection data replace the original connection data. Make sure to provide all relevant data. If a field is missing in the request body, Make replaces the field in the new connection with an empty value.For OAuth connections, you need to log in to Make and confirm the changes with the **Reauthorize** button. For the rest of the connection types, Make starts using the new connection data immediately.If the connection cannot be updated then the API call returns the error message &quot;Cannot edit this connection.&quot; When this happens, create a new connection instead.
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.Connections.Item.SetData
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Connections.Item.SetData.SetDataPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdSetDataRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Connections.Item.SetData.SetDataPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdSetDataRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

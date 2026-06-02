@@ -36,22 +36,22 @@ namespace Soenneker.Make.OpenApiClient.Dlqs.Retry
         /// <summary>
         /// Triggers a retry of the specified incomplete executions. You can either use the `all` parameter to retry all incomplete executions of the scenario, or specify a list of incomplete execution IDs in the `ids` property.You can use the `exceptIds` parameter to exclude incomplete executions from retrying.The incomplete executions run with the blueprint from when the error happened. If you need to update the blueprint first, use the endpoint `PATCH /dlqs/{dlqId}`.Make puts the incomplete executions in a queue. If you are retrying a large number of incomplete executions, there might be a delay between receiving the response and Make retrying the incomplete execution.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.Retry.RetryRequestBuilder.RetryRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetryRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.Retry.RetryRequestBuilder.RetryRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.Retry.RetryRequestBuilder.RetryRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetryRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.Retry.RetryRequestBuilder.RetryRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Triggers a retry of the specified incomplete executions. You can either use the `all` parameter to retry all incomplete executions of the scenario, or specify a list of incomplete execution IDs in the `ids` property.You can use the `exceptIds` parameter to exclude incomplete executions from retrying.The incomplete executions run with the blueprint from when the error happened. If you need to update the blueprint first, use the endpoint `PATCH /dlqs/{dlqId}`.Make puts the incomplete executions in a queue. If you are retrying a large number of incomplete executions, there might be a delay between receiving the response and Make retrying the incomplete execution.
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.Dlqs.Retry
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.Retry.RetryRequestBuilder.RetryRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetryRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.Retry.RetryRequestBuilder.RetryRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetry body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.Retry.RetryRequestBuilder.RetryRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDlqsRetryRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Dlqs.Retry.RetryRequestBuilder.RetryRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

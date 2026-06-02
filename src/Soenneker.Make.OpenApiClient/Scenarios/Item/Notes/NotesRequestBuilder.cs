@@ -49,40 +49,40 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Notes
         /// <summary>
         /// Retrieves a collection of all scenario notes for a team and organization with a given ID. Returned notes are sorted by the order of modules and notes&apos; id in descending order.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdNotes200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdNotes200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdNotes200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Notes.NotesRequestBuilder.NotesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdNotes200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Notes.NotesRequestBuilder.NotesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdNotes200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Notes.NotesRequestBuilder.NotesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdNotes200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Notes.NotesRequestBuilder.NotesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdNotes200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdNotes200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdNotes200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdNotes200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new scenario note with data passed in the request body. As the response, it returns all details of the created scenario note.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdNotes200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdNotes200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdNotes200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdNotes body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdNotes200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdNotesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdNotes200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdNotes body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdNotes200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdNotesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdNotes200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdNotes200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdNotes200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdNotes200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all scenario notes for a team and organization with a given ID. Returned notes are sorted by the order of modules and notes&apos; id in descending order.
@@ -111,11 +111,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Notes
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdNotes body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdNotesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosScenarioIdNotes body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdNotesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

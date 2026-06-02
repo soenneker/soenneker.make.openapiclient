@@ -36,25 +36,25 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Apps.Item.Item.Modules
         /// <summary>
         /// &quot;Retrieves all modules with credential requirements for a specific app and version.For each module, this endpoint returns:- Module identification (`id`, `name`, `label`)- Required credential type (e.g., `account:slack2`)- OAuth scopes required by the module- Whether the module is a hook-based trigger**Custom/SDK Apps**: To query custom (SDK) apps, prefix the app name with `app#` (URL-encoded as `app%23`).For example: `/credential-requests/apps/app%23my-custom-app/1/modules-with-credentials`&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsNameVersionModulesWithCredentials200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsByNameByVersionModulesWithCredentials200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsNameVersionModulesWithCredentials404">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsByNameByVersionModulesWithCredentials404Response">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsNameVersionModulesWithCredentials200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsByNameByVersionModulesWithCredentials200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsNameVersionModulesWithCredentials200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsByNameByVersionModulesWithCredentials200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "404", global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsNameVersionModulesWithCredentials404.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsByNameByVersionModulesWithCredentials404Response.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsNameVersionModulesWithCredentials200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsNameVersionModulesWithCredentials200.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsByNameByVersionModulesWithCredentials200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsByNameByVersionModulesWithCredentials200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Retrieves all modules with credential requirements for a specific app and version.For each module, this endpoint returns:- Module identification (`id`, `name`, `label`)- Required credential type (e.g., `account:slack2`)- OAuth scopes required by the module- Whether the module is a hook-based trigger**Custom/SDK Apps**: To query custom (SDK) apps, prefix the app name with `app#` (URL-encoded as `app%23`).For example: `/credential-requests/apps/app%23my-custom-app/1/modules-with-credentials`&quot;

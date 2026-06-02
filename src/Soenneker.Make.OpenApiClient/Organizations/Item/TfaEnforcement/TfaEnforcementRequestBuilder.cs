@@ -36,31 +36,31 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.TfaEnforcement
         /// <summary>
         /// Enables or disables two-factor authentication (TFA) enforcement for the specified organization.When TFA enforcement is enabled, all users in the organization are required to have two-factor authentication configured.Users who do. not have TFA enabled will be automatically logged out.**Note:** This endpoint is available only for organizations with a plan that supports TFA enforcement.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement400">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement402">When receiving a 402 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement403">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement400Response">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement402Response">When receiving a 402 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement403Response">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcementRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement200> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcementRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement400.CreateFromDiscriminatorValue },
-                { "402", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement402.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement403.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement400Response.CreateFromDiscriminatorValue },
+                { "402", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement402Response.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement403Response.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement200.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Enables or disables two-factor authentication (TFA) enforcement for the specified organization.When TFA enforcement is enabled, all users in the organization are required to have two-factor authentication configured.Users who do. not have TFA enabled will be automatically logged out.**Note:** This endpoint is available only for organizations with a plan that supports TFA enforcement.
@@ -70,11 +70,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.TfaEnforcement
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcementRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsOrganizationIdTfaEnforcement body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcementRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

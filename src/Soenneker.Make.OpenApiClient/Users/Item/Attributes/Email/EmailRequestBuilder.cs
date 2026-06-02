@@ -36,22 +36,22 @@ namespace Soenneker.Make.OpenApiClient.Users.Item.Attributes.Email
         /// <summary>
         /// Updates an email for a user with a given ID by passing new data in the request body. It replaces the entire resource with the new values. In the response, it returns the confirmation if the email was changed.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdAttributesEmail200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmail200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdAttributesEmail200?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdAttributesEmail body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmail200Response?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmailRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdAttributesEmail200> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdAttributesEmail body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmail200Response> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmailRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdAttributesEmail200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdAttributesEmail200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmail200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmail200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates an email for a user with a given ID by passing new data in the request body. It replaces the entire resource with the new values. In the response, it returns the confirmation if the email was changed.
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.Users.Item.Attributes.Email
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdAttributesEmail body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmailRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdAttributesEmail body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmailRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

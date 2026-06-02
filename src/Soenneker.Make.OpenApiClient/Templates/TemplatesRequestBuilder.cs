@@ -55,40 +55,40 @@ namespace Soenneker.Make.OpenApiClient.Templates
         /// <summary>
         /// Retrieves a collection of all templates for a team with a given ID. Returned templates are sorted by ID in ascending order.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTemplates200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTemplates200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplates200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.TemplatesRequestBuilder.TemplatesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplates200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.TemplatesRequestBuilder.TemplatesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplates200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.TemplatesRequestBuilder.TemplatesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTemplates200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.TemplatesRequestBuilder.TemplatesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTemplates200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTemplates200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTemplates200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTemplates200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new template with data passed in the request body. In the response, it returns all details of the created template.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostTemplates200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostTemplates200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTemplates200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostTemplates body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.TemplatesRequestBuilder.TemplatesRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTemplates200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostTemplatesRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.TemplatesRequestBuilder.TemplatesRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTemplates200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostTemplates body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.TemplatesRequestBuilder.TemplatesRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTemplates200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostTemplatesRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.TemplatesRequestBuilder.TemplatesRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTemplates200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTemplates200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTemplates200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTemplates200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all templates for a team with a given ID. Returned templates are sorted by ID in ascending order.
@@ -117,11 +117,11 @@ namespace Soenneker.Make.OpenApiClient.Templates
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostTemplates body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.TemplatesRequestBuilder.TemplatesRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostTemplatesRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.TemplatesRequestBuilder.TemplatesRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostTemplates body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.TemplatesRequestBuilder.TemplatesRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostTemplatesRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.TemplatesRequestBuilder.TemplatesRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -150,11 +150,11 @@ namespace Soenneker.Make.OpenApiClient.Templates
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Templates.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetTemplatesColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Templates.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetTemplatesColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>Sets the maximum number of results per page in the API call response. For example, `pg[limit]=100`. The default number varies with different API endpoints.</summary>
             [QueryParameter("pg%5Blimit%5D")]
@@ -174,7 +174,7 @@ namespace Soenneker.Make.OpenApiClient.Templates
 #endif
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Templates.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>Indicates if the template is public which means that it was published and approved, and can be accessed by anyone.</summary>
             [QueryParameter("public")]
             public bool? Public { get; set; }
@@ -202,11 +202,11 @@ namespace Soenneker.Make.OpenApiClient.Templates
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Templates.PostColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostTemplatesColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Templates.PostColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostTemplatesColsParameterItem[] Cols { get; set; }
 #endif
         }
     }

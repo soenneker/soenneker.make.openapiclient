@@ -36,40 +36,40 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Tools.Item
         /// <summary>
         /// Retrieves the tool configuration from the underlaying scenario.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsScenarioId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsByScenarioId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsScenarioId200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsByScenarioId200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsScenarioId200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsByScenarioId200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsScenarioId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsScenarioId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsByScenarioId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a tool configuration with a given scenario ID by passing new values in the request body. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated tool underlaying scenario including properties that were not changed.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsScenarioId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsScenarioId200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsScenarioId body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.Item.WithScenarioItemRequestBuilder.WithScenarioItemRequestBuilderPatchQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.Item.WithScenarioItemRequestBuilder.WithScenarioItemRequestBuilderPatchQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsScenarioId200> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsScenarioId body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.Item.WithScenarioItemRequestBuilder.WithScenarioItemRequestBuilderPatchQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.Item.WithScenarioItemRequestBuilder.WithScenarioItemRequestBuilderPatchQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsScenarioId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsScenarioId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the tool configuration from the underlaying scenario.
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Tools.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsScenarioId body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.Item.WithScenarioItemRequestBuilder.WithScenarioItemRequestBuilderPatchQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.Item.WithScenarioItemRequestBuilder.WithScenarioItemRequestBuilderPatchQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsScenarioId body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.Item.WithScenarioItemRequestBuilder.WithScenarioItemRequestBuilderPatchQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Tools.Item.WithScenarioItemRequestBuilder.WithScenarioItemRequestBuilderPatchQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -131,11 +131,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Tools.Item
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.Tools.Item.PatchColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioIdColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Scenarios.Tools.Item.PatchColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioIdColsParameterItem[] Cols { get; set; }
 #endif
         }
     }

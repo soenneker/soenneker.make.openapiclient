@@ -17,14 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Invites
     {
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.sdk.apps.invites.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Invites.Item.WithSDK_appInviteTokenItemRequestBuilder"/></returns>
-        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Invites.Item.WithSDK_appInviteTokenItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Invites.Item.WithSdkAppInviteTokenItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Invites.Item.WithSdkAppInviteTokenItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("SDK_appInviteToken", position);
-                return new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Invites.Item.WithSDK_appInviteTokenItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("sdkAppInviteToken", position);
+                return new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Invites.Item.WithSdkAppInviteTokenItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

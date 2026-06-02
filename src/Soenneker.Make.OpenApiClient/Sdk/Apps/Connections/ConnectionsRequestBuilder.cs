@@ -17,14 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections
     {
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.sdk.apps.connections.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.WithSDK_connectionNameItemRequestBuilder"/></returns>
-        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.WithSDK_connectionNameItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.WithSdkConnectionNameItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.WithSdkConnectionNameItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("SDK_connectionName", position);
-                return new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.WithSDK_connectionNameItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("sdkConnectionName", position);
+                return new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.WithSdkConnectionNameItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

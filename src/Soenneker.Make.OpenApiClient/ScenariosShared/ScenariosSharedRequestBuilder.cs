@@ -49,29 +49,29 @@ namespace Soenneker.Make.OpenApiClient.ScenariosShared
         /// <summary>
         /// &quot;Returns a paginated list of shared scenarios for a specified organization or team.Supports filtering by title, scenario name, and folder ID.**Note**: Either `organizationId` or `teamId` must be provided, but not both.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList400">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList401">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList403">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList400Response">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList401Response">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList403Response">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosShared.ScenariosSharedRequestBuilder.ScenariosSharedRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosShared.ScenariosSharedRequestBuilder.ScenariosSharedRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosShared.ScenariosSharedRequestBuilder.ScenariosSharedRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosShared.ScenariosSharedRequestBuilder.ScenariosSharedRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList400.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList401.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList403.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList400Response.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList401Response.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList403Response.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Returns a paginated list of shared scenarios for a specified organization or team.Supports filtering by title, scenario name, and folder ID.**Note**: Either `organizationId` or `teamId` must be provided, but not both.&quot;
@@ -124,10 +124,10 @@ namespace Soenneker.Make.OpenApiClient.ScenariosShared
             public bool? PgreturnTotalCount { get; set; }
             /// <summary>Column to sort results by.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.ScenariosShared.GetPgSortByQueryParameterType? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesListPgSortByParameter? PgsortBy { get; set; }
             /// <summary>Sort direction (ascending or descending).</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.ScenariosShared.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesListPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>Filter results by multiple scenario IDs. Accepts an array of scenario IDs to match.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

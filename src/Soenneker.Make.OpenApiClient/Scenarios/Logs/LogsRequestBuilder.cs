@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Logs
         /// <summary>
         /// Returns completed execution summaries across all scenarios visible to the API token,ordered ascending by completion time. Designed for polling integrations that need asingle feed of &quot;what completed since last poll&quot; across the full scenario fleet.**Filtering:** Only `EXECUTION_END` records are returned (in-progress executions excluded).**Pagination:** Use `since` as the cursor — store `max(timestamp)` from the last responseand pass it as `since` on the next poll.**Limit:** `since` must not be older than 90 days.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Logs.LogsRequestBuilder.LogsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Logs.LogsRequestBuilder.LogsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Logs.LogsRequestBuilder.LogsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Logs.LogsRequestBuilder.LogsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns completed execution summaries across all scenarios visible to the API token,ordered ascending by completion time. Designed for polling integrations that need asingle feed of &quot;what completed since last poll&quot; across the full scenario fleet.**Filtering:** Only `EXECUTION_END` records are returned (in-progress executions excluded).**Pagination:** Use `since` as the cursor — store `max(timestamp)` from the last responseand pass it as `since` on the next poll.**Limit:** `since` must not be older than 90 days.

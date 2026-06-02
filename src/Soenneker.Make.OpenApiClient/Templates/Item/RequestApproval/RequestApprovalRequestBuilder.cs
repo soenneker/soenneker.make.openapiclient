@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Templates.Item.RequestApproval
         /// <summary>
         /// Requests approval of the published template with the given IDs of its private and published versions. In the response, it returns all details of the template.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostTemplatesTemplateIdRequestApproval200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostTemplatesByTemplateIdRequestApproval200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTemplatesTemplateIdRequestApproval200?> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Item.RequestApproval.RequestApprovalRequestBuilder.RequestApprovalRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTemplatesByTemplateIdRequestApproval200Response?> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Item.RequestApproval.RequestApprovalRequestBuilder.RequestApprovalRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTemplatesTemplateIdRequestApproval200> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Item.RequestApproval.RequestApprovalRequestBuilder.RequestApprovalRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostTemplatesByTemplateIdRequestApproval200Response> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Item.RequestApproval.RequestApprovalRequestBuilder.RequestApprovalRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTemplatesTemplateIdRequestApproval200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTemplatesTemplateIdRequestApproval200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTemplatesByTemplateIdRequestApproval200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTemplatesByTemplateIdRequestApproval200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Requests approval of the published template with the given IDs of its private and published versions. In the response, it returns all details of the template.
@@ -89,11 +89,11 @@ namespace Soenneker.Make.OpenApiClient.Templates.Item.RequestApproval
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Templates.Item.RequestApproval.PostColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostTemplatesByTemplateIdRequestApprovalColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Templates.Item.RequestApproval.PostColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostTemplatesByTemplateIdRequestApprovalColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>&quot;The unique ID of the public version of the approved template. It can be retrieved from the [List templates](/api-reference/templates/get--templates.md) endpoint as one of the following IDs: `publishedId` for all published templates that are waiting for approval or not, or `approvedId` for approved templates.&quot;</summary>
             [QueryParameter("templatePublicId")]

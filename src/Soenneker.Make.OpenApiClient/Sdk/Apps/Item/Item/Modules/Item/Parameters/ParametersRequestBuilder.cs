@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Modules.Item.Parameters
 {
     /// <summary>
-    /// Builds and executes requests for operations under \sdk\apps\{SDK_appName}\{SDK_appVersion}\modules\{SDK_moduleName}\parameters
+    /// Builds and executes requests for operations under \sdk\apps\{sdkAppName}\{sdkAppVersion}\modules\{sdkModuleName}\parameters
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ParametersRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Modules.Item.Parameter
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ParametersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/{SDK_appVersion}/modules/{SDK_moduleName}/parameters", pathParameters)
+        public ParametersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/modules/{sdkModuleName}/parameters", pathParameters)
         {
         }
         /// <summary>
@@ -30,28 +30,28 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Modules.Item.Parameter
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ParametersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/{SDK_appVersion}/modules/{SDK_moduleName}/parameters", rawUrl)
+        public ParametersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/modules/{sdkModuleName}/parameters", rawUrl)
         {
         }
         /// <summary>
         /// &quot;Available sections: api, epoch, parameters, expect, interface, samples, scope&lt;br /&gt;&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionModulesSDKModuleNameParameters200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionModulesSDKModuleNameParameters200?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.Put_sdk_apps_SDK_appName_SDK_appVersion_modules_SDK_moduleName_parametersapplication_json_Body body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters200Response?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParametersJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionModulesSDKModuleNameParameters200> PutAsync(global::Soenneker.Make.OpenApiClient.Models.Put_sdk_apps_SDK_appName_SDK_appVersion_modules_SDK_moduleName_parametersapplication_json_Body body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters200Response> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParametersJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionModulesSDKModuleNameParameters200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsSDKAppNameSDKAppVersionModulesSDKModuleNameParameters200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Available sections: api, epoch, parameters, expect, interface, samples, scope&lt;br /&gt;&quot;
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Modules.Item.Parameter
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.Put_sdk_apps_SDK_appName_SDK_appVersion_modules_SDK_moduleName_parametersapplication_json_Body body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParametersJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.Put_sdk_apps_SDK_appName_SDK_appVersion_modules_SDK_moduleName_parametersapplication_json_Body body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParametersJsonRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

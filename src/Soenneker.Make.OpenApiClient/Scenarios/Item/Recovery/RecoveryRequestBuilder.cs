@@ -36,58 +36,58 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery
         /// <summary>
         /// Discards a scenario recovery snapshot for a given scenario. scenarioId = 0 is a sentinel for unsaved draft scenarios (no ownership check required). Deletes the team-scoped recovery key.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosScenarioIdRecovery200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdRecovery200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosScenarioIdRecovery200?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdRecovery200Response?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosScenarioIdRecovery200> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdRecovery200Response> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosScenarioIdRecovery200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosScenarioIdRecovery200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdRecovery200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdRecovery200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a scenario recovery snapshot if it exists for a given scenario. scenarioId = 0 is a sentinel for unsaved draft scenarios (no ownership check required). Uses team-scoped storage for cross-team draft isolation.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdRecovery200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdRecovery200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdRecovery200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdRecovery200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdRecovery200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Saves a scenario recovery snapshot for a given scenario and removes the present one if it exists. scenarioId = 0 is a sentinel for unsaved draft scenarios (no ownership check required). Uses team-scoped storage for cross-team draft isolation.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryPutResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecovery200ResponseResponseJson"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryPutResponse?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdRecovery body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderPutQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecovery200ResponseResponseJson?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecoveryRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderPutQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryPutResponse> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdRecovery body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderPutQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecovery200ResponseResponseJson> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecoveryRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderPutQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryPutResponse>(requestInfo, global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryPutResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecovery200ResponseResponseJson>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecovery200ResponseResponseJson.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Discards a scenario recovery snapshot for a given scenario. scenarioId = 0 is a sentinel for unsaved draft scenarios (no ownership check required). Deletes the team-scoped recovery key.
@@ -135,11 +135,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdRecovery body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderPutQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecoveryRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderPutQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutScenariosScenarioIdRecovery body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderPutQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecoveryRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery.RecoveryRequestBuilder.RecoveryRequestBuilderPutQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

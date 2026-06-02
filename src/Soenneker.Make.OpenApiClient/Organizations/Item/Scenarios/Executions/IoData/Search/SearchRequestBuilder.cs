@@ -36,22 +36,22 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.I
         /// <summary>
         /// &quot;Searches the module input/output (IO) data produced by scenario executions across the organization (or a specific team) using a free-text `query`. Matches are grouped by execution: each result contains up to 5 IO-data records that matched the query together with the metadata of the parent execution.Use the optional filters to restrict the search to specific teams, scenarios, apps, modules, or a time window.**The `from` and `to` bounds are applied at UTC-day granularity** — only the calendar-day portion of each timestamp is honored. IO-data records earlier or later within the same UTC day as a supplied bound may still appear in the results, and the execution metadata attached to each match may include executions from the immediately adjacent UTC days.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdScenariosExecutionsIoDataSearch200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdScenariosExecutionsIoDataSearch200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdScenariosExecutionsIoDataSearch body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearchRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdScenariosExecutionsIoDataSearch200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdScenariosExecutionsIoDataSearch body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearchRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdScenariosExecutionsIoDataSearch200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdScenariosExecutionsIoDataSearch200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Searches the module input/output (IO) data produced by scenario executions across the organization (or a specific team) using a free-text `query`. Matches are grouped by execution: each result contains up to 5 IO-data records that matched the query together with the metadata of the parent execution.Use the optional filters to restrict the search to specific teams, scenarios, apps, modules, or a time window.**The `from` and `to` bounds are applied at UTC-day granularity** — only the calendar-day portion of each timestamp is honored. IO-data records earlier or later within the same UTC day as a supplied bound may still appear in the results, and the execution metadata attached to each match may include executions from the immediately adjacent UTC days.&quot;
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.I
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdScenariosExecutionsIoDataSearch body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearchRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdScenariosExecutionsIoDataSearch body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearchRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

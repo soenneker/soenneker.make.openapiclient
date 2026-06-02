@@ -49,60 +49,60 @@ namespace Soenneker.Make.OpenApiClient.DataStores
         /// <summary>
         /// Deletes data stores with given IDs and returns their IDs in the response. This endpoint allows deleting one or more data stores at once.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores200?> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores200Response?> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores200> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores200Response> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all data stores for a team with a given ID. Returned data stores are sorted by name in ascending order.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStores200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStores200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStores200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStores200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStores200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStores200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStores200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStores200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStores200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStores200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new data store with data passed in the request body. In the response, it returns all details of the created data store.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStores200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStores200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStores200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStores body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStores200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStoresRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStores200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStores body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStores200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStoresRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDataStores200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDataStores200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDataStores200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDataStores200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes data stores with given IDs and returns their IDs in the response. This endpoint allows deleting one or more data stores at once.
@@ -112,11 +112,11 @@ namespace Soenneker.Make.OpenApiClient.DataStores
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteDataStores body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -153,11 +153,11 @@ namespace Soenneker.Make.OpenApiClient.DataStores
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDataStores body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDataStoresRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDataStores body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDataStoresRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -199,11 +199,11 @@ namespace Soenneker.Make.OpenApiClient.DataStores
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.DataStores.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.DataStores.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>The maximum number of entities you want to get in the response.</summary>
             [QueryParameter("pg%5Blimit%5D")]
@@ -213,10 +213,10 @@ namespace Soenneker.Make.OpenApiClient.DataStores
             public int? Pgoffset { get; set; }
             /// <summary>The value that will be used to sort returned entities by.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.DataStores.GetPgSortByQueryParameterType? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresPgSortByParameter? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.DataStores.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>The unique ID of the team whose data stores will be retrieved.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }

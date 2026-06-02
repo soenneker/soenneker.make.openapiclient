@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.Delet
         /// <summary>
         /// Deletes a credential from the remote platform (Make Web API) and resets its state to pending. The credential can then be re-created through the normal creation flow.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsCredentialIdDeleteRemote200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdDeleteRemote200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsCredentialIdDeleteRemote200?> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.DeleteRemote.DeleteRemoteRequestBuilder.DeleteRemoteRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdDeleteRemote200Response?> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.DeleteRemote.DeleteRemoteRequestBuilder.DeleteRemoteRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsCredentialIdDeleteRemote200> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.DeleteRemote.DeleteRemoteRequestBuilder.DeleteRemoteRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdDeleteRemote200Response> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.DeleteRemote.DeleteRemoteRequestBuilder.DeleteRemoteRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsCredentialIdDeleteRemote200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsCredentialIdDeleteRemote200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdDeleteRemote200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdDeleteRemote200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes a credential from the remote platform (Make Web API) and resets its state to pending. The credential can then be re-created through the normal creation flow.
@@ -89,11 +89,11 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.Delet
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols")]
-            public global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.DeleteRemote.PostColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdDeleteRemoteColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols")]
-            public global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.DeleteRemote.PostColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdDeleteRemoteColsParameterItem[] Cols { get; set; }
 #endif
         }
     }

@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.SubscriptionFree
         /// <summary>
         /// Sets Free plan subscription
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdSubscriptionFree200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdSubscriptionFree200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdSubscriptionFree200?> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.SubscriptionFree.SubscriptionFreeRequestBuilder.SubscriptionFreeRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdSubscriptionFree200Response?> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.SubscriptionFree.SubscriptionFreeRequestBuilder.SubscriptionFreeRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdSubscriptionFree200> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.SubscriptionFree.SubscriptionFreeRequestBuilder.SubscriptionFreeRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdSubscriptionFree200Response> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.SubscriptionFree.SubscriptionFreeRequestBuilder.SubscriptionFreeRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdSubscriptionFree200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsOrganizationIdSubscriptionFree200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdSubscriptionFree200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdSubscriptionFree200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Sets Free plan subscription

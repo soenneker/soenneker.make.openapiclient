@@ -36,40 +36,40 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Interface
         /// <summary>
         /// Retrieves the scenario inputs and outputs specification for the specified scenario. Check out the [scenario inputs and outputs documentation](https://help.make.com/scenario-inputs-and-outputs) in the Make help center.The scenario inputs and outputs feature is available with all plans. [Read more about Make pricing.](https://www.make.com/en/pricing)
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdInterface200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdInterface200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdInterface200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdInterface200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdInterface200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdInterface200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdInterface200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdInterface200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdInterface200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdInterface200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Updates specification of the scenario inputs. Check out the [scenario inputs documentation](https://www.make.com/en/help/scenarios/scenario-inputs) in the Make help center.If you want to enable the scenario inputs you have to set the scenario scheduling to \&quot;On demand\&quot; first, otherwise you get error 422 (IM016). You can use the API call:`PATCH /scenarios/{scenarioId}?confirmed=true`with the request body:`{\&quot;scheduling\&quot;: \&quot;{\\&quot;type\\&quot;:\\&quot;on-demand\\&quot;}\&quot;}`You can disable inputs for the specified scenario by sending a payload with an empty `input` array.The response contains the updated scenario inputs specification.The scenario inputs feature requires your account to have the pricing plan **Pro** or higher. [Read more about Make pricing.](https://www.make.com/en/pricing)&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchScenariosScenarioIdInterface200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterface200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosScenarioIdInterface200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosScenarioIdInterface body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterface200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterfaceRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosScenarioIdInterface200> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosScenarioIdInterface body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterface200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterfaceRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosScenarioIdInterface200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosScenarioIdInterface200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterface200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterface200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the scenario inputs and outputs specification for the specified scenario. Check out the [scenario inputs and outputs documentation](https://help.make.com/scenario-inputs-and-outputs) in the Make help center.The scenario inputs and outputs feature is available with all plans. [Read more about Make pricing.](https://www.make.com/en/pricing)
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Interface
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosScenarioIdInterface body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterfaceRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosScenarioIdInterface body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterfaceRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

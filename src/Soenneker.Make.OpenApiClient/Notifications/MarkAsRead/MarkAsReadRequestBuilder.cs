@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Notifications.MarkAsRead
         /// <summary>
         /// Marks all notifications as read and returns the IDs of the updated notifications in the response.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200?> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.MarkAsRead.MarkAsReadRequestBuilder.MarkAsReadRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200Response?> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.MarkAsRead.MarkAsReadRequestBuilder.MarkAsReadRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.MarkAsRead.MarkAsReadRequestBuilder.MarkAsReadRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200Response> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.MarkAsRead.MarkAsReadRequestBuilder.MarkAsReadRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Marks all notifications as read and returns the IDs of the updated notifications in the response.

@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog
 {
     /// <summary>
-    /// Builds and executes requests for operations under \sdk\apps\{SDK_appName}\{SDK_appVersion}\events-log
+    /// Builds and executes requests for operations under \sdk\apps\{sdkAppName}\{sdkAppVersion}\events-log
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class EventsLogRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public EventsLogRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/{SDK_appVersion}/events-log{?cols%5B%5D*}", pathParameters)
+        public EventsLogRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/events-log{?cols%5B%5D*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,26 +30,26 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public EventsLogRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{SDK_appName}/{SDK_appVersion}/events-log{?cols%5B%5D*}", rawUrl)
+        public EventsLogRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/events-log{?cols%5B%5D*}", rawUrl)
         {
         }
         /// <summary>
         /// Get App Events Log
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsSDKAppNameSDKAppVersionEventsLog200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEventsLog200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsSDKAppNameSDKAppVersionEventsLog200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog.EventsLogRequestBuilder.EventsLogRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEventsLog200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog.EventsLogRequestBuilder.EventsLogRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsSDKAppNameSDKAppVersionEventsLog200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog.EventsLogRequestBuilder.EventsLogRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEventsLog200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog.EventsLogRequestBuilder.EventsLogRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsSDKAppNameSDKAppVersionEventsLog200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsSDKAppNameSDKAppVersionEventsLog200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEventsLog200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEventsLog200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -85,11 +85,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog.GetColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEventsLogColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog.GetColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEventsLogColsParameterItem[] Cols { get; set; }
 #endif
         }
     }

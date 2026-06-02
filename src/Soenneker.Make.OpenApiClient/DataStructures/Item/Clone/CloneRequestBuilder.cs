@@ -36,22 +36,22 @@ namespace Soenneker.Make.OpenApiClient.DataStructures.Item.Clone
         /// <summary>
         /// Clones the specified data structure. Use the `targetTeamId` to clone the data structure to the specified team.The response contains all details of the data structure clone with data structure full specification.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresDataStructureIdClone200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresDataStructureIdClone200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresDataStructureIdClone body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdCloneRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresDataStructureIdClone200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresDataStructureIdClone body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdCloneRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresDataStructureIdClone200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresDataStructureIdClone200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Clones the specified data structure. Use the `targetTeamId` to clone the data structure to the specified team.The response contains all details of the data structure clone with data structure full specification.
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.DataStructures.Item.Clone
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresDataStructureIdClone body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdCloneRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresDataStructureIdClone body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdCloneRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

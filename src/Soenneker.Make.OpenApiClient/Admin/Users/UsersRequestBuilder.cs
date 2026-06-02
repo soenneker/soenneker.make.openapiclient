@@ -55,40 +55,40 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users
         /// <summary>
         /// Gets the list of users in a team or an organization.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;Creates a new user. Specify the user&apos;s `name` and `email` in the request body.You have to either send an invitation mail to the user with the `sendEmail: true` or you have to specify the user password in the `password` field in the request body. If you send the invitation mail, the mail contains automatically generated password. The user has to change their password right after logging in.You can also set the user&apos;s country, locale and timezone with the request body parameters. If you don&apos;t specify the user&apos;s country, locale or timezone Make uses your account&apos;s country, locale or timezone.&quot;
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the list of users in a team or an organization.
@@ -117,11 +117,11 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -190,10 +190,10 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users
             public int? Pgoffset { get; set; }
             /// <summary>Sort the results in the APi call response by the values in the specified column.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.Admin.Users.GetPgSortByQueryParameterType? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersPgSortByParameter? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
-            public global::Soenneker.Make.OpenApiClient.Admin.Users.GetPgSortDirQueryParameterType? PgsortDir { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>The ID of the team.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }

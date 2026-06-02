@@ -49,20 +49,20 @@ namespace Soenneker.Make.OpenApiClient.Users.Item.UserTeamNotifications.Item
         /// <summary>
         /// Gets settings for user notifications for a user specified by the `userId` and a team specified by the `teamId`. Get the mapping of the `notificationId` and the team notification setting type with the API call `GET /enums/user-email-notifications`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersUserIdUserTeamNotificationsTeamId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamNotificationsByTeamId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersUserIdUserTeamNotificationsTeamId200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamNotificationsByTeamId200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersUserIdUserTeamNotificationsTeamId200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamNotificationsByTeamId200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersUserIdUserTeamNotificationsTeamId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersUserIdUserTeamNotificationsTeamId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamNotificationsByTeamId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamNotificationsByTeamId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets settings for user notifications for a user specified by the `userId` and a team specified by the `teamId`. Get the mapping of the `notificationId` and the team notification setting type with the API call `GET /enums/user-email-notifications`.

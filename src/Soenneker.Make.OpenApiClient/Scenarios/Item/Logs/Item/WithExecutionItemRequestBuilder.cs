@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.Scenarios.Item.Logs.Item.P;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,6 +18,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Logs.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithExecutionItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The p property</summary>
+        public global::Soenneker.Make.OpenApiClient.Scenarios.Item.Logs.Item.P.PRequestBuilder P
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Scenarios.Item.Logs.Item.P.PRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Scenarios.Item.Logs.Item.WithExecutionItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -36,20 +42,20 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Logs.Item
         /// <summary>
         /// Retrieves an execution log with a given ID for a scenario with a given ID. It returns the execution details such as execution duration, type, and status.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdLogsExecutionId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdLogsExecutionId200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdLogsExecutionId200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdLogsExecutionId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdLogsExecutionId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves an execution log with a given ID for a scenario with a given ID. It returns the execution details such as execution duration, type, and status.

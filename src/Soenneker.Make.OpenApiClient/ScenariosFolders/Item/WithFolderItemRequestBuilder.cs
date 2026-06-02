@@ -36,40 +36,40 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders.Item
         /// <summary>
         /// Deletes a scenario folder with a given ID and returns the ID in the response.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersFolderId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersByFolderId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersFolderId200?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersByFolderId200Response?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersFolderId200> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersByFolderId200Response> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersFolderId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersFolderId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersByFolderId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersByFolderId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a scenario folder with a given ID by passing new values in the request body. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated folder including properties that were not changed.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersFolderId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderId200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersFolderId200?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersFolderId body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosFolders.Item.WithFolderItemRequestBuilder.WithFolderItemRequestBuilderPatchQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderId200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosFolders.Item.WithFolderItemRequestBuilder.WithFolderItemRequestBuilderPatchQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersFolderId200> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersFolderId body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosFolders.Item.WithFolderItemRequestBuilder.WithFolderItemRequestBuilderPatchQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderId200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosFolders.Item.WithFolderItemRequestBuilder.WithFolderItemRequestBuilderPatchQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersFolderId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersFolderId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes a scenario folder with a given ID and returns the ID in the response.
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersFolderId body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosFolders.Item.WithFolderItemRequestBuilder.WithFolderItemRequestBuilderPatchQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosFolders.Item.WithFolderItemRequestBuilder.WithFolderItemRequestBuilderPatchQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersFolderId body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosFolders.Item.WithFolderItemRequestBuilder.WithFolderItemRequestBuilderPatchQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosFolders.Item.WithFolderItemRequestBuilder.WithFolderItemRequestBuilderPatchQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -131,11 +131,11 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders.Item
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.ScenariosFolders.Item.PatchColsQueryParameterType[]? Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderIdColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
             [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.ScenariosFolders.Item.PatchColsQueryParameterType[] Cols { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderIdColsParameterItem[] Cols { get; set; }
 #endif
         }
     }

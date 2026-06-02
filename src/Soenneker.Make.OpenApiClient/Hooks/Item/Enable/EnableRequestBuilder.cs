@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Enable
         /// <summary>
         /// Enables a disabled hook with a given ID. Newly created hooks are enabled by default which means they are ready to accept data. In response, this endpoint returns the confirmation that the hook was successfully enabled.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostHooksHookIdEnable200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdEnable200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostHooksHookIdEnable200?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdEnable200Response?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostHooksHookIdEnable200> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdEnable200Response> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostHooksHookIdEnable200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostHooksHookIdEnable200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdEnable200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdEnable200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Enables a disabled hook with a given ID. Newly created hooks are enabled by default which means they are ready to accept data. In response, this endpoint returns the confirmation that the hook was successfully enabled.

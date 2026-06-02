@@ -17,14 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Webhooks
     {
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.sdk.apps.webhooks.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Webhooks.Item.WithSDK_webhookNameItemRequestBuilder"/></returns>
-        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Webhooks.Item.WithSDK_webhookNameItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Webhooks.Item.WithSdkWebhookNameItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Webhooks.Item.WithSdkWebhookNameItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("SDK_webhookName", position);
-                return new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Webhooks.Item.WithSDK_webhookNameItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("sdkWebhookName", position);
+                return new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Webhooks.Item.WithSdkWebhookNameItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

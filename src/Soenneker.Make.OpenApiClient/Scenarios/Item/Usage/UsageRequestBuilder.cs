@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Usage
         /// <summary>
         /// Retrieves a list of daily centicredits, operations, and data transfer usage for a specified scenario over the past 30 days.By default, the endpoint uses the timezone of the user making the API call to define the start and end of each day in the 30-day timeframe.To use the organization&apos;s timezone instead, set the `organizationTimezone` parameter to `true`. This ensures that the daily aggregates align with the organization&apos;s operational hours. This is especially useful for scenarios where aggregated data needs to align with the organization&apos;s operational hours.For instance, a remote data analyst in India working for a Czech company can set `organizationTimezone=true` to ensure the usage data reflects the company&apos;s timezone, providing more relevant and accurate insights for organizational reporting and analysis.For more information on timezones in Make, please refer to our [Help Center article](https://www.make.com/en/help/general/manage-time-zones).
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdUsage200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdUsage200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdUsage200?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Usage.UsageRequestBuilder.UsageRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdUsage200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Usage.UsageRequestBuilder.UsageRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdUsage200> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Usage.UsageRequestBuilder.UsageRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdUsage200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.Usage.UsageRequestBuilder.UsageRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdUsage200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosScenarioIdUsage200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdUsage200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdUsage200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a list of daily centicredits, operations, and data transfer usage for a specified scenario over the past 30 days.By default, the endpoint uses the timezone of the user making the API call to define the start and end of each day in the 30-day timeframe.To use the organization&apos;s timezone instead, set the `organizationTimezone` parameter to `true`. This ensures that the daily aggregates align with the organization&apos;s operational hours. This is especially useful for scenarios where aggregated data needs to align with the organization&apos;s operational hours.For instance, a remote data analyst in India working for a Czech company can set `organizationTimezone=true` to ensure the usage data reflects the company&apos;s timezone, providing more relevant and accurate insights for organizational reporting and analysis.For more information on timezones in Make, please refer to our [Help Center article](https://www.make.com/en/help/general/manage-time-zones).

@@ -36,40 +36,40 @@ namespace Soenneker.Make.OpenApiClient.Users.Item.UserTeamNotifications.Item.Ite
         /// <summary>
         /// Checks team notification settings for specific user, team and notification type with the specified `userId`, `teamId` and `notificationId`. Get the mapping of the `notificationId` and the team notification setting type with the API call `GET /enums/user-email-notifications`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersUserIdUserTeamNotificationsTeamIdNotificationId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersUserIdUserTeamNotificationsTeamIdNotificationId200?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersUserIdUserTeamNotificationsTeamIdNotificationId200> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersUserIdUserTeamNotificationsTeamIdNotificationId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersUserIdUserTeamNotificationsTeamIdNotificationId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates team notification settings for the user identified with the `userId`, `teamId` and `notificationId`.Get the mapping of the `notificationId` and the team notification setting type with the API call `GET /enums/user-email-notifications`.Note that you can only update notification settings for the user associated with the API key used for authentication.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdUserTeamNotificationsTeamIdNotificationId200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdUserTeamNotificationsTeamIdNotificationId200?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdUserTeamNotificationsTeamIdNotificationId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdUserTeamNotificationsTeamIdNotificationId200> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdUserTeamNotificationsTeamIdNotificationId body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdUserTeamNotificationsTeamIdNotificationId200>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdUserTeamNotificationsTeamIdNotificationId200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Checks team notification settings for specific user, team and notification type with the specified `userId`, `teamId` and `notificationId`. Get the mapping of the `notificationId` and the team notification setting type with the API call `GET /enums/user-email-notifications`.
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.Users.Item.UserTeamNotifications.Item.Ite
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdUserTeamNotificationsTeamIdNotificationId body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutUsersUserIdUserTeamNotificationsTeamIdNotificationId body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
