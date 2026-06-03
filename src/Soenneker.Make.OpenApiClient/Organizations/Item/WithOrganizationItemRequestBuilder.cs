@@ -12,6 +12,7 @@ using Soenneker.Make.OpenApiClient.Organizations.Item.Invite;
 using Soenneker.Make.OpenApiClient.Organizations.Item.ManagedOrganizations;
 using Soenneker.Make.OpenApiClient.Organizations.Item.ManagedOrganizationsConsumption;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Payments;
+using Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios;
 using Soenneker.Make.OpenApiClient.Organizations.Item.SsoCertificates;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Subscription;
@@ -76,6 +77,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item
         {
             get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.Payments.PaymentsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The privateSpacesSettings property</summary>
+        public global::Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings.PrivateSpacesSettingsRequestBuilder PrivateSpacesSettings
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings.PrivateSpacesSettingsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The scenarios property</summary>
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.ScenariosRequestBuilder Scenarios
         {
@@ -136,7 +142,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithOrganizationItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/organizations/{organizationId}{?confirmed*,wait*}", pathParameters)
+        public WithOrganizationItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "", pathParameters)
         {
         }
         /// <summary>
@@ -144,7 +150,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithOrganizationItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/organizations/{organizationId}{?confirmed*,wait*}", rawUrl)
+        public WithOrganizationItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "", rawUrl)
         {
         }
         /// <summary>

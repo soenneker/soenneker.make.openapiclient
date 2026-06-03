@@ -141,6 +141,16 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string Url { get; set; }
 #endif
         /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item"/> and sets the default values.
+        /// </summary>
+        public PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item()
+        {
+            EncodeUrl = true;
+            FollowAllRedirects = true;
+            FollowRedirects = true;
+            Gzip = false;
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item"/></returns>

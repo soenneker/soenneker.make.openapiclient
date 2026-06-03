@@ -79,10 +79,6 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 result.PatchTeamsByTeamIdVariablesByVariableName200ResponseTeamVariableValueBranch5 = new global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableName200ResponseTeamVariableValueBranch5();
             }
-            else if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.PatchTeamsByTeamIdVariablesByVariableName200ResponseTeamVariableValueMember1 = new global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableName200ResponseTeamVariableValueMember1();
-            }
             return result;
         }
         /// <summary>

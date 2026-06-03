@@ -37,6 +37,7 @@ using Soenneker.Make.OpenApiClient.Mailhub;
 using Soenneker.Make.OpenApiClient.Notifications;
 using Soenneker.Make.OpenApiClient.Oauth;
 using Soenneker.Make.OpenApiClient.Organizations;
+using Soenneker.Make.OpenApiClient.OutboundWebhooks;
 using Soenneker.Make.OpenApiClient.Ping;
 using Soenneker.Make.OpenApiClient.PrivateSpaces;
 using Soenneker.Make.OpenApiClient.Rpcs;
@@ -214,6 +215,11 @@ namespace Soenneker.Make.OpenApiClient
         public global::Soenneker.Make.OpenApiClient.Organizations.OrganizationsRequestBuilder Organizations
         {
             get => new global::Soenneker.Make.OpenApiClient.Organizations.OrganizationsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The outboundWebhooks property</summary>
+        public global::Soenneker.Make.OpenApiClient.OutboundWebhooks.OutboundWebhooksRequestBuilder OutboundWebhooks
+        {
+            get => new global::Soenneker.Make.OpenApiClient.OutboundWebhooks.OutboundWebhooksRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The ping property</summary>
         public global::Soenneker.Make.OpenApiClient.Ping.PingRequestBuilder Ping

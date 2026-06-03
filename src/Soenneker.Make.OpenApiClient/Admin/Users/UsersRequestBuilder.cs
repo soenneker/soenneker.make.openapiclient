@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Admin.Users.AdminsRoles;
 using Soenneker.Make.OpenApiClient.Admin.Users.Item;
+using Soenneker.Make.OpenApiClient.Admin.Users.Lookup;
 using Soenneker.Make.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +25,11 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users
         {
             get => new global::Soenneker.Make.OpenApiClient.Admin.Users.AdminsRoles.AdminsRolesRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The lookup property</summary>
+        public global::Soenneker.Make.OpenApiClient.Admin.Users.Lookup.LookupRequestBuilder Lookup
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Admin.Users.Lookup.LookupRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.admin.users.item collection</summary>
         /// <param name="position">The ID of the user.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Admin.Users.Item.WithUserItemRequestBuilder"/></returns>
@@ -41,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public UsersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/users{?cols*,email*,name*,organizationId*,organizationRoleId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,teamId*,teamRoleId*,tfaStatus*}", pathParameters)
+        public UsersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "", pathParameters)
         {
         }
         /// <summary>
@@ -49,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public UsersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/users{?cols*,email*,name*,organizationId*,organizationRoleId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,teamId*,teamRoleId*,tfaStatus*}", rawUrl)
+        public UsersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "", rawUrl)
         {
         }
         /// <summary>

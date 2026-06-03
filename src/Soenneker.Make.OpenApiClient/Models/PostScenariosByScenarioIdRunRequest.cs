@@ -38,6 +38,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public PostScenariosByScenarioIdRunRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            Responsive = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

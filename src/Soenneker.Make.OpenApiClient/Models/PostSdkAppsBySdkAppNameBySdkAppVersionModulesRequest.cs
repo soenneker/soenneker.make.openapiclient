@@ -81,6 +81,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             AdditionalData = new Dictionary<string, object>();
             ModuleInitMode = global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesRequestModuleInitMode.Blank;
+            TypeId = 4;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

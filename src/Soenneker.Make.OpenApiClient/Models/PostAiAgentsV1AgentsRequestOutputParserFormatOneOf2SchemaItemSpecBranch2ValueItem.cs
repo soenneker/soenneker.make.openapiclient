@@ -46,6 +46,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public PostAiAgentsV1AgentsRequestOutputParserFormatOneOf2SchemaItemSpecBranch2ValueItem()
         {
             AdditionalData = new Dictionary<string, object>();
+            Required = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

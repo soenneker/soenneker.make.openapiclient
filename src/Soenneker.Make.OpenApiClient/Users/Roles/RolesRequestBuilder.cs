@@ -127,13 +127,13 @@ namespace Soenneker.Make.OpenApiClient.Users.Roles
             [QueryParameter("excludeRole%5B%5D")]
             public int?[] ExcludeRole { get; set; }
 #endif
-            /// <summary>Include custom roles belonging to this organization. Cannot be used together with `teamId`. Requires the `customRoles` license.</summary>
+            /// <summary>Include custom roles belonging to this organization. Cannot be used together with `teamId`. If the organization does not have the `customRoles` license, custom roles are silently excluded from the response.</summary>
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
             /// <summary>Filter the response to a single role by its ID.</summary>
             [QueryParameter("roleId")]
             public int? RoleId { get; set; }
-            /// <summary>Include custom roles belonging to the organization that owns this team. Cannot be used together with `organizationId`. Requires the `customRoles` license.</summary>
+            /// <summary>Include custom roles belonging to the organization that owns this team. Cannot be used together with `organizationId`. If the organization does not have the `customRoles` license, custom roles are silently excluded from the response.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }
         }

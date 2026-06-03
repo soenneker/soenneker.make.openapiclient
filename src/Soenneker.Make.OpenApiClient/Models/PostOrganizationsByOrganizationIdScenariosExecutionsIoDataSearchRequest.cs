@@ -70,6 +70,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearchRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            PageIndex = 0;
+            PageSize = 20;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

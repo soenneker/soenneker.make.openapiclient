@@ -48,6 +48,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public GetAiAgentsV1AgentsByAgentId200ResponseOutputParserSchemaItem()
         {
             AdditionalData = new Dictionary<string, object>();
+            Required = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

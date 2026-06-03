@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithPrivateSpaceItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/private-spaces/{privateSpaceId}{?cols*,confirmed*}", pathParameters)
+        public WithPrivateSpaceItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/private-spaces/{privateSpaceId}{?confirmed*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithPrivateSpaceItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/private-spaces/{privateSpaceId}{?cols*,confirmed*}", rawUrl)
+        public WithPrivateSpaceItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/private-spaces/{privateSpaceId}{?confirmed*}", rawUrl)
         {
         }
         /// <summary>

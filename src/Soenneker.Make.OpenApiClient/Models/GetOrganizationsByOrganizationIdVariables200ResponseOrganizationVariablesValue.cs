@@ -79,10 +79,6 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 result.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5 = new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5();
             }
-            else if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1 = new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1();
-            }
             return result;
         }
         /// <summary>

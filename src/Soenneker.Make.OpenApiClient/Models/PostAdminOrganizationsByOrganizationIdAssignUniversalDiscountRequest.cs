@@ -45,6 +45,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public PostAdminOrganizationsByOrganizationIdAssignUniversalDiscountRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            ActivateImmediately = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

@@ -46,6 +46,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public PostScenariosSharedByScenarioIdRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            IsEnabled = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
