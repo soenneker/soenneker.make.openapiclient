@@ -98,7 +98,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Organizations
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Organizations.OrganizationsRequestBuilder.OrganizationsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/admin/organizations{?cols*,externalId*,id*,name*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -119,7 +119,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Organizations
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/admin/organizations", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

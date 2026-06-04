@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Users.PasswordReset
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.PasswordReset.PasswordResetRequestBuilder.PasswordResetRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/users/password-reset{?hash*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -106,7 +106,7 @@ namespace Soenneker.Make.OpenApiClient.Users.PasswordReset
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/users/password-reset", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

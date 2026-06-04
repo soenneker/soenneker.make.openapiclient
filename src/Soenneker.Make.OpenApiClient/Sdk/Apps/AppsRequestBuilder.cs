@@ -122,7 +122,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Sdk.Apps.AppsRequestBuilder.AppsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/sdk/apps{?cols%5B%5D*,opensource*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -143,7 +143,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/sdk/apps", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

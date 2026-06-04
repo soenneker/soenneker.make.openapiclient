@@ -151,7 +151,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Hooks.Item.WithHookItemRequestBuilder.WithHookItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/hooks/{hookId}{?confirmed*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

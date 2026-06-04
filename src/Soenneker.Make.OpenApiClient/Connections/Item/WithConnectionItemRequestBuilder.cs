@@ -127,7 +127,7 @@ namespace Soenneker.Make.OpenApiClient.Connections.Item
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Connections.Item.WithConnectionItemRequestBuilder.WithConnectionItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/connections/{connectionId}{?confirmed*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

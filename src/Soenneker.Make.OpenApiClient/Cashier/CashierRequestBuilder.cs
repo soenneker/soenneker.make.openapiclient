@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Cashier.Prices;
 using Soenneker.Make.OpenApiClient.Cashier.Products;
+using Soenneker.Make.OpenApiClient.Cashier.VatValidation;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -25,6 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Cashier
         public global::Soenneker.Make.OpenApiClient.Cashier.Products.ProductsRequestBuilder Products
         {
             get => new global::Soenneker.Make.OpenApiClient.Cashier.Products.ProductsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The vatValidation property</summary>
+        public global::Soenneker.Make.OpenApiClient.Cashier.VatValidation.VatValidationRequestBuilder VatValidation
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Cashier.VatValidation.VatValidationRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Cashier.CashierRequestBuilder"/> and sets the default values.

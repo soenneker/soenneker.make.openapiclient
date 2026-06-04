@@ -103,7 +103,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Users.Item.WithUserItemRequestBuilder.WithUserItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/admin/users/{userId}{?confirmed*,deleteConnections*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -124,7 +124,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/admin/users/{userId}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

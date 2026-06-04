@@ -139,7 +139,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Teams.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/teams/{teamId}{?confirmed*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -121,7 +121,7 @@ namespace Soenneker.Make.OpenApiClient.Templates.Item
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Item.WithTemplateItemRequestBuilder.WithTemplateItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/templates/{templateId}{?confirmed*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -140,7 +140,7 @@ namespace Soenneker.Make.OpenApiClient.Templates.Item
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Templates.Item.WithTemplateItemRequestBuilder.WithTemplateItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/templates/{templateId}{?cols%5B%5D*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -161,7 +161,7 @@ namespace Soenneker.Make.OpenApiClient.Templates.Item
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/templates/{templateId}{?cols%5B%5D*,templatePublicId*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

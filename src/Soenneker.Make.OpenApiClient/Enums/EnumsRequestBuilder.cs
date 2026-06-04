@@ -13,6 +13,7 @@ using Soenneker.Make.OpenApiClient.Enums.Locales;
 using Soenneker.Make.OpenApiClient.Enums.ModuleTypes;
 using Soenneker.Make.OpenApiClient.Enums.OrganizationFeatures;
 using Soenneker.Make.OpenApiClient.Enums.Timezones;
+using Soenneker.Make.OpenApiClient.Enums.UsStates;
 using Soenneker.Make.OpenApiClient.Enums.UserApiTokenScopes;
 using Soenneker.Make.OpenApiClient.Enums.UserEmailNotifications;
 using Soenneker.Make.OpenApiClient.Enums.UserFeatures;
@@ -98,6 +99,11 @@ namespace Soenneker.Make.OpenApiClient.Enums
         public global::Soenneker.Make.OpenApiClient.Enums.UserFeatures.UserFeaturesRequestBuilder UserFeatures
         {
             get => new global::Soenneker.Make.OpenApiClient.Enums.UserFeatures.UserFeaturesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The usStates property</summary>
+        public global::Soenneker.Make.OpenApiClient.Enums.UsStates.UsStatesRequestBuilder UsStates
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Enums.UsStates.UsStatesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The variableTypes property</summary>
         public global::Soenneker.Make.OpenApiClient.Enums.VariableTypes.VariableTypesRequestBuilder VariableTypes

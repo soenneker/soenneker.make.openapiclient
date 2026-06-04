@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.IoData.Counts;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.IoData.Search;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.I
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class IoDataRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The counts property</summary>
+        public global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.IoData.Counts.CountsRequestBuilder Counts
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.IoData.Counts.CountsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The search property</summary>
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.IoData.Search.SearchRequestBuilder Search
         {

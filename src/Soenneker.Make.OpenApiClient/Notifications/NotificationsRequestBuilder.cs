@@ -106,7 +106,7 @@ namespace Soenneker.Make.OpenApiClient.Notifications
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/notifications{?imtZoneId*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
@@ -126,7 +126,7 @@ namespace Soenneker.Make.OpenApiClient.Notifications
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder.NotificationsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/notifications{?imtZoneId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,unreadOnly*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

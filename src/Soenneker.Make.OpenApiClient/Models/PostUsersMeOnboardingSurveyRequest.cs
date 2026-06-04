@@ -14,13 +14,13 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The user&apos;s answers to the survey questions.</summary>
+        /// <summary>The user&apos;s answers to the survey questions, keyed by question name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswersItem>? Answers { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers? Answers { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswersItem> Answers { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers Answers { get; set; }
 #endif
         /// <summary>Version of the survey schema. Allows consumers to interpret the answers array.</summary>
         public double? SchemaVersion { get; set; }
@@ -57,7 +57,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "answers", n => { Answers = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswersItem>(global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswersItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "answers", n => { Answers = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers>(global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers.CreateFromDiscriminatorValue); } },
                 { "schema_version", n => { SchemaVersion = n.GetDoubleValue(); } },
                 { "survey_type", n => { SurveyType = n.GetStringValue(); } },
             };
@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswersItem>("answers", Answers);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers>("answers", Answers);
             writer.WriteDoubleValue("schema_version", SchemaVersion);
             writer.WriteStringValue("survey_type", SurveyType);
             writer.WriteAdditionalData(AdditionalData);

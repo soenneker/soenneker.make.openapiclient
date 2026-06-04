@@ -123,7 +123,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables.BuildVariablesRequestBuilder.BuildVariablesRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/scenarios/{scenarioId}/build-variables{?value*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

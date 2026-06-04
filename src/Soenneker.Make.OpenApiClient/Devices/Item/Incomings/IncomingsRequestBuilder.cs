@@ -106,7 +106,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Incomings
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/devices/{deviceId}/incomings{?confirmed*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
@@ -126,7 +126,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Incomings
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Devices.Item.Incomings.IncomingsRequestBuilder.IncomingsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/devices/{deviceId}/incomings{?pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,scope*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

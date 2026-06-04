@@ -135,7 +135,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.PrivateSpaces.Item.WithPrivateSpaceItemRequestBuilder.WithPrivateSpaceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/private-spaces/{privateSpaceId}{?cols*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

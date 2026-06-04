@@ -91,7 +91,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Variables.Item
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Teams.Item.Variables.Item.WithVariableNameItemRequestBuilder.WithVariableNameItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/teams/{teamId}/variables/{variableName}{?confirmed*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -112,7 +112,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Variables.Item
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/teams/{teamId}/variables/{variableName}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

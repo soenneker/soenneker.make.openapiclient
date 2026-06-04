@@ -86,7 +86,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Review
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/review", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -105,7 +105,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Review
         public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Review.ReviewRequestBuilder.ReviewRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}/review{?all*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

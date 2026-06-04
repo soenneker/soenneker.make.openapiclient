@@ -154,7 +154,7 @@ namespace Soenneker.Make.OpenApiClient.Users
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
@@ -174,7 +174,7 @@ namespace Soenneker.Make.OpenApiClient.Users
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/users{?cols%5B%5D*,email*,filterByTeamId*,name*,organizationId*,organizationRoleId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,teamId*,teamRoleId*,tfaStatus*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

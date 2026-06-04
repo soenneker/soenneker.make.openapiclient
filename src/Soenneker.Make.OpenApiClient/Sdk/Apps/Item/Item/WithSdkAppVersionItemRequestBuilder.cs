@@ -243,7 +243,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.WithSdkAppVersionItemRequestBuilder.WithSdkAppVersionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}{?cols%5B%5D*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
