@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.IoData;
+using Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.Modules;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.Search;
 using System.Collections.Generic;
 using System.IO;
@@ -20,6 +21,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.IoData.IoDataRequestBuilder IoData
         {
             get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.IoData.IoDataRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The modules property</summary>
+        public global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.Modules.ModulesRequestBuilder Modules
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.Modules.ModulesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The search property</summary>
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.Search.SearchRequestBuilder Search

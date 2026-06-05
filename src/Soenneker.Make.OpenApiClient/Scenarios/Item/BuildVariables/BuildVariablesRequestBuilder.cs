@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public BuildVariablesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios/{scenarioId}/build-variables", pathParameters)
+        public BuildVariablesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios/{scenarioId}/build-variables{?value*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public BuildVariablesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios/{scenarioId}/build-variables", rawUrl)
+        public BuildVariablesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios/{scenarioId}/build-variables{?value*}", rawUrl)
         {
         }
         /// <summary>
@@ -123,7 +123,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables.BuildVariablesRequestBuilder.BuildVariablesRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/scenarios/{scenarioId}/build-variables{?value*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -14,8 +14,24 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The ok property</summary>
-        public double? Ok { get; set; }
+        /// <summary>Result of each app pin attempt. Empty array if no `preferred_apps` were provided.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem>? PinnedApps { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem> PinnedApps { get; set; }
+#endif
+        /// <summary>The SWARM response from HQ confirming the submission.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult? Result { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult Result { get; set; }
+#endif
+        /// <summary>Whether the core survey submission succeeded.</summary>
+        public bool? Success { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200Response"/> and sets the default values.
         /// </summary>
@@ -41,7 +57,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "ok", n => { Ok = n.GetDoubleValue(); } },
+                { "pinnedApps", n => { PinnedApps = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem>(global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "result", n => { Result = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult>(global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult.CreateFromDiscriminatorValue); } },
+                { "success", n => { Success = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -51,7 +69,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteDoubleValue("ok", Ok);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem>("pinnedApps", PinnedApps);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult>("result", Result);
+            writer.WriteBoolValue("success", Success);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

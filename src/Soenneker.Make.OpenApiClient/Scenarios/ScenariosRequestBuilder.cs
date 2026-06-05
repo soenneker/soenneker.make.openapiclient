@@ -71,7 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "", pathParameters)
+        public ScenariosRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,folderId*,id%5B%5D*,isActive*,islinked*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*}", pathParameters)
         {
         }
         /// <summary>
@@ -79,7 +79,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "", rawUrl)
+        public ScenariosRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,folderId*,id%5B%5D*,isActive*,islinked*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*}", rawUrl)
         {
         }
         /// <summary>
@@ -155,7 +155,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/scenarios{?cols%5B%5D*,confirmed*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

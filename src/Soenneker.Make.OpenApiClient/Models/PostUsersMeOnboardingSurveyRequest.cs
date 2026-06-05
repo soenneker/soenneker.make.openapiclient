@@ -22,7 +22,15 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers Answers { get; set; }
 #endif
-        /// <summary>Version of the survey schema. Allows consumers to interpret the answers array.</summary>
+        /// <summary>Optional list of native app package names to pin for the user. Apps that do not exist are reported as failed without blocking the submission.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? PreferredApps { get; set; }
+#nullable restore
+#else
+        public List<string> PreferredApps { get; set; }
+#endif
+        /// <summary>Version of the survey schema. Allows consumers to interpret the answers.</summary>
         public double? SchemaVersion { get; set; }
         /// <summary>The type of survey being submitted (e.g., `self_serve`, `enterprise`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -58,6 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "answers", n => { Answers = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers>(global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers.CreateFromDiscriminatorValue); } },
+                { "preferred_apps", n => { PreferredApps = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "schema_version", n => { SchemaVersion = n.GetDoubleValue(); } },
                 { "survey_type", n => { SurveyType = n.GetStringValue(); } },
             };
@@ -70,6 +79,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers>("answers", Answers);
+            writer.WriteCollectionOfPrimitiveValues<string>("preferred_apps", PreferredApps);
             writer.WriteDoubleValue("schema_version", SchemaVersion);
             writer.WriteStringValue("survey_type", SurveyType);
             writer.WriteAdditionalData(AdditionalData);

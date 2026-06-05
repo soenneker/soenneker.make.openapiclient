@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PrivateSpacesSettingsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "", pathParameters)
+        public PrivateSpacesSettingsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/organizations/{organizationId}/private-spaces-settings{?confirmed*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +30,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PrivateSpacesSettingsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "", rawUrl)
+        public PrivateSpacesSettingsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/organizations/{organizationId}/private-spaces-settings{?confirmed*}", rawUrl)
         {
         }
         /// <summary>
-        /// Returns the private-spaces settings for the organization.When the organization has no private-spaces settings configured yet, defaults are returned:- `privateSpacesAutoCreationEnabled` defaults to `false`- `defaultOperationsLimit` defaults to `1000`Once configured, the stored value is returned as-is — including an explicit `null`, which means **unlimited** operations (distinct from the never-configured default of `1000`).
+        /// Returns the private-spaces settings for the organization.When the organization has no private-spaces settings configured yet, defaults are returned:- `privateSpacesAutoCreationEnabled` defaults to `false`- `defaultOperationsLimit` defaults to `1000`- `addAdminsAsObservers` defaults to `false`Once configured, the stored value is returned as-is — including an explicit `null`, which means **unlimited** operations (distinct from the never-configured default of `1000`).
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPrivateSpacesSettings200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,13 +59,14 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPrivateSpacesSettings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPrivateSpacesSettings200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Updates the organization&apos;s private-spaces settings. All body fields are optional — only the keys provided are written.### Confirmation requirementThe `?confirmed=true` query parameter is required when the request includes any of these destructive operations, otherwise the endpoint responds with `IM004`:- `privateSpacesAutoCreationEnabled: false` — **also deletes every existing private-space team in the organization.**- `bulkUpdateExistingLimits: true` — overwrites `limits.operations` on every existing private-space team in the organization to match the `defaultOperationsLimit`, and re-evaluates each team&apos;s pause state. `defaultOperationsLimit` **must be provided in the same request** when `bulkUpdateExistingLimits` is `true` (a number, or `null` for unlimited), otherwise the request is rejected with `IM005`. This ensures the value applied org-wide is stated explicitly rather than implicitly inherited from the org&apos;s currently stored setting.Changing `defaultOperationsLimit` alone (to any value, including `null` / `0` / lower) only affects future creations and does NOT require confirmation.&quot;
+        /// &quot;Updates the organization&apos;s private-spaces settings. All body fields are optional — only the keys provided are written.### Confirmation requirementThe `?confirmed=true` query parameter is required when the request includes any of these bulk operations, otherwise the endpoint responds with `IM004`:- `privateSpacesAutoCreationEnabled: true` — **bulk-creates a private space for every eligible organization member** (those holding the `personal team own view` permission) that does not already own one.- `privateSpacesAutoCreationEnabled: false` — **also deletes every existing private-space team in the organization.**- `addAdminsAsObservers: true` / `false` — **reconciles every existing private-space team**: enabling adds org admins/owner as `Team Observer`; disabling removes those implicit observers.- `bulkUpdateExistingLimits: true` — overwrites `limits.operations` on every existing private-space team in the organization to match the `defaultOperationsLimit`, and re-evaluates each team&apos;s pause state. `defaultOperationsLimit` **must be provided in the same request** when `bulkUpdateExistingLimits` is `true` (a number, or `null` for unlimited), otherwise the request is rejected with `IM005`. This ensures the value applied org-wide is stated explicitly rather than implicitly inherited from the org&apos;s currently stored setting.Changing `defaultOperationsLimit` alone (to any value, including `null` / `0` / lower) only affects future creations and does NOT require confirmation.### License requirementEnabling `addAdminsAsObservers` requires the organization to hold the `privateSpacesObservability` license parameter. Without it, the request is rejected with `SC402`.&quot;
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings400Response">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings402Response">When receiving a 402 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings403Response">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings406Response">When receiving a 406 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -82,13 +83,14 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "400", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings400Response.CreateFromDiscriminatorValue },
+                { "402", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings402Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings403Response.CreateFromDiscriminatorValue },
                 { "406", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings406Response.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the private-spaces settings for the organization.When the organization has no private-spaces settings configured yet, defaults are returned:- `privateSpacesAutoCreationEnabled` defaults to `false`- `defaultOperationsLimit` defaults to `1000`Once configured, the stored value is returned as-is — including an explicit `null`, which means **unlimited** operations (distinct from the never-configured default of `1000`).
+        /// Returns the private-spaces settings for the organization.When the organization has no private-spaces settings configured yet, defaults are returned:- `privateSpacesAutoCreationEnabled` defaults to `false`- `defaultOperationsLimit` defaults to `1000`- `addAdminsAsObservers` defaults to `false`Once configured, the stored value is returned as-is — including an explicit `null`, which means **unlimited** operations (distinct from the never-configured default of `1000`).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -101,13 +103,13 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/organizations/{organizationId}/private-spaces-settings", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Updates the organization&apos;s private-spaces settings. All body fields are optional — only the keys provided are written.### Confirmation requirementThe `?confirmed=true` query parameter is required when the request includes any of these destructive operations, otherwise the endpoint responds with `IM004`:- `privateSpacesAutoCreationEnabled: false` — **also deletes every existing private-space team in the organization.**- `bulkUpdateExistingLimits: true` — overwrites `limits.operations` on every existing private-space team in the organization to match the `defaultOperationsLimit`, and re-evaluates each team&apos;s pause state. `defaultOperationsLimit` **must be provided in the same request** when `bulkUpdateExistingLimits` is `true` (a number, or `null` for unlimited), otherwise the request is rejected with `IM005`. This ensures the value applied org-wide is stated explicitly rather than implicitly inherited from the org&apos;s currently stored setting.Changing `defaultOperationsLimit` alone (to any value, including `null` / `0` / lower) only affects future creations and does NOT require confirmation.&quot;
+        /// &quot;Updates the organization&apos;s private-spaces settings. All body fields are optional — only the keys provided are written.### Confirmation requirementThe `?confirmed=true` query parameter is required when the request includes any of these bulk operations, otherwise the endpoint responds with `IM004`:- `privateSpacesAutoCreationEnabled: true` — **bulk-creates a private space for every eligible organization member** (those holding the `personal team own view` permission) that does not already own one.- `privateSpacesAutoCreationEnabled: false` — **also deletes every existing private-space team in the organization.**- `addAdminsAsObservers: true` / `false` — **reconciles every existing private-space team**: enabling adds org admins/owner as `Team Observer`; disabling removes those implicit observers.- `bulkUpdateExistingLimits: true` — overwrites `limits.operations` on every existing private-space team in the organization to match the `defaultOperationsLimit`, and re-evaluates each team&apos;s pause state. `defaultOperationsLimit` **must be provided in the same request** when `bulkUpdateExistingLimits` is `true` (a number, or `null` for unlimited), otherwise the request is rejected with `IM005`. This ensures the value applied org-wide is stated explicitly rather than implicitly inherited from the org&apos;s currently stored setting.Changing `defaultOperationsLimit` alone (to any value, including `null` / `0` / lower) only affects future creations and does NOT require confirmation.### License requirementEnabling `addAdminsAsObservers` requires the organization to hold the `privateSpacesObservability` license parameter. Without it, the request is rejected with `SC402`.&quot;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -122,7 +124,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/organizations/{organizationId}/private-spaces-settings{?confirmed*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
@@ -138,12 +140,12 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings
             return new global::Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings.PrivateSpacesSettingsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// &quot;Updates the organization&apos;s private-spaces settings. All body fields are optional — only the keys provided are written.### Confirmation requirementThe `?confirmed=true` query parameter is required when the request includes any of these destructive operations, otherwise the endpoint responds with `IM004`:- `privateSpacesAutoCreationEnabled: false` — **also deletes every existing private-space team in the organization.**- `bulkUpdateExistingLimits: true` — overwrites `limits.operations` on every existing private-space team in the organization to match the `defaultOperationsLimit`, and re-evaluates each team&apos;s pause state. `defaultOperationsLimit` **must be provided in the same request** when `bulkUpdateExistingLimits` is `true` (a number, or `null` for unlimited), otherwise the request is rejected with `IM005`. This ensures the value applied org-wide is stated explicitly rather than implicitly inherited from the org&apos;s currently stored setting.Changing `defaultOperationsLimit` alone (to any value, including `null` / `0` / lower) only affects future creations and does NOT require confirmation.&quot;
+        /// &quot;Updates the organization&apos;s private-spaces settings. All body fields are optional — only the keys provided are written.### Confirmation requirementThe `?confirmed=true` query parameter is required when the request includes any of these bulk operations, otherwise the endpoint responds with `IM004`:- `privateSpacesAutoCreationEnabled: true` — **bulk-creates a private space for every eligible organization member** (those holding the `personal team own view` permission) that does not already own one.- `privateSpacesAutoCreationEnabled: false` — **also deletes every existing private-space team in the organization.**- `addAdminsAsObservers: true` / `false` — **reconciles every existing private-space team**: enabling adds org admins/owner as `Team Observer`; disabling removes those implicit observers.- `bulkUpdateExistingLimits: true` — overwrites `limits.operations` on every existing private-space team in the organization to match the `defaultOperationsLimit`, and re-evaluates each team&apos;s pause state. `defaultOperationsLimit` **must be provided in the same request** when `bulkUpdateExistingLimits` is `true` (a number, or `null` for unlimited), otherwise the request is rejected with `IM005`. This ensures the value applied org-wide is stated explicitly rather than implicitly inherited from the org&apos;s currently stored setting.Changing `defaultOperationsLimit` alone (to any value, including `null` / `0` / lower) only affects future creations and does NOT require confirmation.### License requirementEnabling `addAdminsAsObservers` requires the organization to hold the `privateSpacesObservability` license parameter. Without it, the request is rejected with `SC402`.&quot;
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PrivateSpacesSettingsRequestBuilderPatchQueryParameters 
         {
-            /// <summary>Required when disabling auto-creation or bulk-updating existing limits.</summary>
+            /// <summary>Required when enabling/disabling auto-creation, toggling admin observers, or bulk-updating existing limits.</summary>
             [QueryParameter("confirmed")]
             public bool? Confirmed { get; set; }
         }

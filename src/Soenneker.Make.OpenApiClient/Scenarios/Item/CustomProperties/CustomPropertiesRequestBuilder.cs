@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.CustomProperties
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CustomPropertiesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios/{scenarioId}/custom-properties", pathParameters)
+        public CustomPropertiesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios/{scenarioId}/custom-properties{?confirmed*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.CustomProperties
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CustomPropertiesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios/{scenarioId}/custom-properties", rawUrl)
+        public CustomPropertiesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios/{scenarioId}/custom-properties{?confirmed*}", rawUrl)
         {
         }
         /// <summary>
@@ -143,7 +143,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.CustomProperties
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.Item.CustomProperties.CustomPropertiesRequestBuilder.CustomPropertiesRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/scenarios/{scenarioId}/custom-properties{?confirmed*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

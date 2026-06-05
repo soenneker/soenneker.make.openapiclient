@@ -149,7 +149,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithSdkAppVersionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}", pathParameters)
+        public WithSdkAppVersionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}{?cols%5B%5D*}", pathParameters)
         {
         }
         /// <summary>
@@ -157,7 +157,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithSdkAppVersionItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}", rawUrl)
+        public WithSdkAppVersionItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}{?cols%5B%5D*}", rawUrl)
         {
         }
         /// <summary>
@@ -243,7 +243,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.WithSdkAppVersionItemRequestBuilder.WithSdkAppVersionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/sdk/apps/{sdkAppName}/{sdkAppVersion}{?cols%5B%5D*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.OnboardingSurvey
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOnboardingSurvey200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOnboardingSurvey200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Submits the onboarding survey response for the authenticated user.
+        /// Submits the onboarding survey response for the authenticated user. Optionally pins preferred apps for the user in their organization.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -91,7 +91,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.OnboardingSurvey
             return requestInfo;
         }
         /// <summary>
-        /// Submits the onboarding survey response for the authenticated user.
+        /// Submits the onboarding survey response for the authenticated user. Optionally pins preferred apps for the user in their organization.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

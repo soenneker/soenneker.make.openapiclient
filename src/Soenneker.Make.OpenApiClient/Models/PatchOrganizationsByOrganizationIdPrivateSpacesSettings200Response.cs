@@ -14,6 +14,14 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>IDs of private-space teams created by enabling auto-creation. Empty unless `privateSpacesAutoCreationEnabled` was set to `true`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<int?>? BulkCreatedTeamIds { get; set; }
+#nullable restore
+#else
+        public List<int?> BulkCreatedTeamIds { get; set; }
+#endif
         /// <summary>IDs of private-space teams that were deleted as part of disabling auto-creation. Empty unless `privateSpacesAutoCreationEnabled` was set to `false`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -29,6 +37,22 @@ namespace Soenneker.Make.OpenApiClient.Models
 #nullable restore
 #else
         public List<int?> BulkUpdatedTeamIds { get; set; }
+#endif
+        /// <summary>IDs of private-space teams that gained admin `Team Observer` memberships. Empty unless `addAdminsAsObservers` was set to `true`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<int?>? ObserversAddedTeamIds { get; set; }
+#nullable restore
+#else
+        public List<int?> ObserversAddedTeamIds { get; set; }
+#endif
+        /// <summary>IDs of private-space teams that had admin `Team Observer` memberships removed. Empty unless `addAdminsAsObservers` was set to `false`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<int?>? ObserversRemovedTeamIds { get; set; }
+#nullable restore
+#else
+        public List<int?> ObserversRemovedTeamIds { get; set; }
 #endif
         /// <summary>The privateSpacesSettings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -63,8 +87,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "bulkCreatedTeamIds", n => { BulkCreatedTeamIds = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
                 { "bulkDeletedTeamIds", n => { BulkDeletedTeamIds = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
                 { "bulkUpdatedTeamIds", n => { BulkUpdatedTeamIds = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
+                { "observersAddedTeamIds", n => { ObserversAddedTeamIds = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
+                { "observersRemovedTeamIds", n => { ObserversRemovedTeamIds = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
                 { "privateSpacesSettings", n => { PrivateSpacesSettings = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings>(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings.CreateFromDiscriminatorValue); } },
             };
         }
@@ -75,8 +102,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfPrimitiveValues<int?>("bulkCreatedTeamIds", BulkCreatedTeamIds);
             writer.WriteCollectionOfPrimitiveValues<int?>("bulkDeletedTeamIds", BulkDeletedTeamIds);
             writer.WriteCollectionOfPrimitiveValues<int?>("bulkUpdatedTeamIds", BulkUpdatedTeamIds);
+            writer.WriteCollectionOfPrimitiveValues<int?>("observersAddedTeamIds", ObserversAddedTeamIds);
+            writer.WriteCollectionOfPrimitiveValues<int?>("observersRemovedTeamIds", ObserversRemovedTeamIds);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings>("privateSpacesSettings", PrivateSpacesSettings);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -12,6 +12,8 @@ namespace Soenneker.Make.OpenApiClient.Models
     public partial class GetOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>When `true`, organization admins and the owner are added as `Team Observer` to private spaces. Defaults to `false`.</summary>
+        public bool? AddAdminsAsObservers { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Default operations limit applied when a private space is auto-created. `null` means unlimited. Defaults to `1000` when never configured.</summary>
@@ -43,6 +45,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "addAdminsAsObservers", n => { AddAdminsAsObservers = n.GetBoolValue(); } },
                 { "defaultOperationsLimit", n => { DefaultOperationsLimit = n.GetIntValue(); } },
                 { "privateSpacesAutoCreationEnabled", n => { PrivateSpacesAutoCreationEnabled = n.GetBoolValue(); } },
             };
@@ -54,6 +57,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("addAdminsAsObservers", AddAdminsAsObservers);
             writer.WriteIntValue("defaultOperationsLimit", DefaultOperationsLimit);
             writer.WriteBoolValue("privateSpacesAutoCreationEnabled", PrivateSpacesAutoCreationEnabled);
             writer.WriteAdditionalData(AdditionalData);

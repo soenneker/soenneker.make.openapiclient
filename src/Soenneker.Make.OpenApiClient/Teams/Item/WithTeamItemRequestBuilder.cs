@@ -58,7 +58,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTeamItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{teamId}{?cols*}", pathParameters)
+        public WithTeamItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{teamId}{?cols*,confirmed*}", pathParameters)
         {
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTeamItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{teamId}{?cols*}", rawUrl)
+        public WithTeamItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{teamId}{?cols*,confirmed*}", rawUrl)
         {
         }
         /// <summary>
@@ -139,7 +139,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Teams.Item.WithTeamItemRequestBuilder.WithTeamItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/teams/{teamId}{?confirmed*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

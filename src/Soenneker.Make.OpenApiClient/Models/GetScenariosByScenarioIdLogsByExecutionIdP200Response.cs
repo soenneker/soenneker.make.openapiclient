@@ -22,6 +22,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBlueprint Blueprint { get; set; }
 #endif
+        /// <summary>Present when `include=bundles`. Input/output bundles keyed by module id;each value is an array of records. Non-agent modules emit one record perstored bundle; AI-agent modules collapse a cycle&apos;s input + output into onerecord with an `agent` object (structural-only — message bodies omitted).Each `data[]` element is a stringified bundle capped at 256 KB; oversizedelements are sliced and suffixed with ` ... `, so the snippet may not bevalid JSON.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBundles? Bundles { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBundles Bundles { get; set; }
+#endif
         /// <summary>The centicredits property</summary>
         public int? Centicredits { get; set; }
         /// <summary>Execution duration in milliseconds</summary>
@@ -76,6 +84,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "blueprint", n => { Blueprint = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBlueprint>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBlueprint.CreateFromDiscriminatorValue); } },
+                { "bundles", n => { Bundles = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBundles>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBundles.CreateFromDiscriminatorValue); } },
                 { "centicredits", n => { Centicredits = n.GetIntValue(); } },
                 { "duration", n => { Duration = n.GetIntValue(); } },
                 { "events", n => { Events = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseEventsItem>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseEventsItem.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -94,6 +103,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBlueprint>("blueprint", Blueprint);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBundles>("bundles", Bundles);
             writer.WriteIntValue("centicredits", Centicredits);
             writer.WriteIntValue("duration", Duration);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseEventsItem>("events", Events);
