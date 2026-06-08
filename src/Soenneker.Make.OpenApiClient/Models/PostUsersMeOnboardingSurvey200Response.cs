@@ -14,6 +14,14 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Result of each team-invite attempt. Empty array if no `team_invite` was provided. Invites are best-effort, so per-invitee failures do not fail the submission.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseInvitedUsersItem>? InvitedUsers { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseInvitedUsersItem> InvitedUsers { get; set; }
+#endif
         /// <summary>Result of each app pin attempt. Empty array if no `preferred_apps` were provided.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -57,6 +65,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "invitedUsers", n => { InvitedUsers = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseInvitedUsersItem>(global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseInvitedUsersItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "pinnedApps", n => { PinnedApps = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem>(global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "result", n => { Result = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult>(global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult.CreateFromDiscriminatorValue); } },
                 { "success", n => { Success = n.GetBoolValue(); } },
@@ -69,6 +78,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseInvitedUsersItem>("invitedUsers", InvitedUsers);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem>("pinnedApps", PinnedApps);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult>("result", Result);
             writer.WriteBoolValue("success", Success);
