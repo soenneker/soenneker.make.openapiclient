@@ -38,7 +38,15 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PostInternalTeamsByTeamIdConnectionsRequestData Data { get; set; }
 #endif
-        /// <summary>The ID of the user creating the connection. Must have &apos;account add&apos; permission on the team.</summary>
+        /// <summary>Language code for localized labels (e.g. &apos;en&apos;, &apos;cs&apos;). Defaults to &apos;en&apos;.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Language { get; set; }
+#nullable restore
+#else
+        public string Language { get; set; }
+#endif
+        /// <summary>The ID of the user creating the connection. Must exist and have &apos;account add&apos; permission on the team.</summary>
         public int? UserId { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalTeamsByTeamIdConnectionsRequest"/> and sets the default values.
@@ -68,6 +76,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "accountName", n => { AccountName = n.GetStringValue(); } },
                 { "accountType", n => { AccountType = n.GetStringValue(); } },
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostInternalTeamsByTeamIdConnectionsRequestData>(global::Soenneker.Make.OpenApiClient.Models.PostInternalTeamsByTeamIdConnectionsRequestData.CreateFromDiscriminatorValue); } },
+                { "language", n => { Language = n.GetStringValue(); } },
                 { "userId", n => { UserId = n.GetIntValue(); } },
             };
         }
@@ -81,6 +90,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("accountName", AccountName);
             writer.WriteStringValue("accountType", AccountType);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostInternalTeamsByTeamIdConnectionsRequestData>("data", Data);
+            writer.WriteStringValue("language", Language);
             writer.WriteIntValue("userId", UserId);
             writer.WriteAdditionalData(AdditionalData);
         }

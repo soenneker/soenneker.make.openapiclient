@@ -26,6 +26,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The ID of the scenario to break down by module.</summary>
         public int? ScenarioId { get; set; }
+        /// <summary>Which execution outcome&apos;s IO data to full-text search. `1` searches successful (`data`) records, `2` searches warning records, and `3` searches error (`err`) records. Multiple values may be combined. Defaults to `[1, 2, 3]` (all outcomes) when omitted.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<int?>? Status { get; set; }
+#nullable restore
+#else
+        public List<int?> Status { get; set; }
+#endif
         /// <summary>Restrict the search to a single team within the organization. When omitted, all teams the authenticated user has access to are searched.</summary>
         public int? TeamId { get; set; }
         /// <summary>Upper bound of the time window, as a millisecond Unix timestamp.Applied at **UTC-day granularity**.</summary>
@@ -58,6 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "from", n => { From = n.GetIntValue(); } },
                 { "query", n => { Query = n.GetStringValue(); } },
                 { "scenarioId", n => { ScenarioId = n.GetIntValue(); } },
+                { "status", n => { Status = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
                 { "to", n => { To = n.GetIntValue(); } },
             };
@@ -72,6 +81,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("from", From);
             writer.WriteStringValue("query", Query);
             writer.WriteIntValue("scenarioId", ScenarioId);
+            writer.WriteCollectionOfPrimitiveValues<int?>("status", Status);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteIntValue("to", To);
             writer.WriteAdditionalData(AdditionalData);

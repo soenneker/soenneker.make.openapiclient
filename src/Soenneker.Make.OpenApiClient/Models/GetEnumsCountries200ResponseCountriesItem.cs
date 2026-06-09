@@ -14,6 +14,22 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The code property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Code { get; set; }
+#nullable restore
+#else
+        public string Code { get; set; }
+#endif
+        /// <summary>The code2 property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Code2 { get; set; }
+#nullable restore
+#else
+        public string Code2 { get; set; }
+#endif
         /// <summary>The id property</summary>
         public int? Id { get; set; }
         /// <summary>The name property</summary>
@@ -23,6 +39,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>The stripeRegion property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StripeRegion { get; set; }
+#nullable restore
+#else
+        public string StripeRegion { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetEnumsCountries200ResponseCountriesItem"/> and sets the default values.
@@ -49,8 +73,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "code", n => { Code = n.GetStringValue(); } },
+                { "code2", n => { Code2 = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "stripeRegion", n => { StripeRegion = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -60,8 +87,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("code", Code);
+            writer.WriteStringValue("code2", Code2);
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("stripeRegion", StripeRegion);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

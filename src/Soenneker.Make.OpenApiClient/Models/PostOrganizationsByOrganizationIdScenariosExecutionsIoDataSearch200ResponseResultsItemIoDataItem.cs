@@ -22,13 +22,13 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string ExecutionId { get; set; }
 #endif
-        /// <summary>Snippets from the `data` field that matched `query`, with the matched substring wrapped in `&lt;em&gt;` markers. Snippets are not remapped to per-bundle paths.</summary>
+        /// <summary>Snippets from the matched field (`data`, `warning.message`, or `err.message`) that matched `query`, with the matched substring wrapped in `&lt;em&gt;` markers. Empty when nothing matched. Snippets are not remapped to per-bundle paths.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemHighlight? Highlight { get; set; }
+        public List<string>? Highlight { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemHighlight Highlight { get; set; }
+        public List<string> Highlight { get; set; }
 #endif
         /// <summary>The kind of the IO record (for example `input`, `output`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -74,7 +74,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "executionId", n => { ExecutionId = n.GetStringValue(); } },
-                { "highlight", n => { Highlight = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemHighlight>(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemHighlight.CreateFromDiscriminatorValue); } },
+                { "highlight", n => { Highlight = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "kind", n => { Kind = n.GetStringValue(); } },
                 { "kindId", n => { KindId = n.GetIntValue(); } },
                 { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMetadata>(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMetadata.CreateFromDiscriminatorValue); } },
@@ -88,7 +88,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("executionId", ExecutionId);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemHighlight>("highlight", Highlight);
+            writer.WriteCollectionOfPrimitiveValues<string>("highlight", Highlight);
             writer.WriteStringValue("kind", Kind);
             writer.WriteIntValue("kindId", KindId);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMetadata>("metadata", Metadata);

@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Internal.Scenarios.Executions;
 using Soenneker.Make.OpenApiClient.Internal.Scenarios.Item;
+using Soenneker.Make.OpenApiClient.Internal.Scenarios.ListForTeam;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -20,6 +21,11 @@ namespace Soenneker.Make.OpenApiClient.Internal.Scenarios
         public global::Soenneker.Make.OpenApiClient.Internal.Scenarios.Executions.ExecutionsRequestBuilder Executions
         {
             get => new global::Soenneker.Make.OpenApiClient.Internal.Scenarios.Executions.ExecutionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The listForTeam property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Scenarios.ListForTeam.ListForTeamRequestBuilder ListForTeam
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Scenarios.ListForTeam.ListForTeamRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.internal.scenarios.item collection</summary>
         /// <param name="position">The ID of the scenario. You can get the `scenarioId` with the [List scenarios](/api-reference/scenarios/get--scenarios.md) API call.</param>

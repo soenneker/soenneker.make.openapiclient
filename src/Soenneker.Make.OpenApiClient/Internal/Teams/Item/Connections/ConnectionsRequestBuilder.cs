@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Teams.Item.Connections
         {
         }
         /// <summary>
-        /// Creates a new team connection (TAC) for the specified team. Does not handle the OAuth authorize/callback flow — only non-OAuth connection types are supported.
+        /// Creates a new team connection (TAC) for the specified team. Non-OAuth connections are automatically tested after creation via the ConnectionWorker validate/test lifecycle — on success the connection is marked as valid and credentials are persisted. If the test fails, the connection is deleted and a 422 is returned. OAuth connections are created but left unauthorized — the caller must complete the OAuth flow separately.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalTeamsByTeamIdConnections200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -54,7 +54,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Teams.Item.Connections
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostInternalTeamsByTeamIdConnections200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostInternalTeamsByTeamIdConnections200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a new team connection (TAC) for the specified team. Does not handle the OAuth authorize/callback flow — only non-OAuth connection types are supported.
+        /// Creates a new team connection (TAC) for the specified team. Non-OAuth connections are automatically tested after creation via the ConnectionWorker validate/test lifecycle — on success the connection is marked as valid and credentials are persisted. If the test fails, the connection is deleted and a 422 is returned. OAuth connections are created but left unauthorized — the caller must complete the OAuth flow separately.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
