@@ -62,6 +62,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>The user&apos;s personal private space in the organization. Only returned when explicitly requested via cols[]=privateSpace with organizationId on a public instance.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpace? PrivateSpace { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpace PrivateSpace { get; set; }
+#endif
         /// <summary>Whether the user is eligible for contact support. False if all user&apos;s organizations are on Free plan and account is older than 90 days.</summary>
         public bool? SupportEligible { get; set; }
         /// <summary>&quot;Two-factor authentication status:- 0: No TFA set- 1: TFA active (authenticator app)- 2: External authentication (Social SSO)It is only supported on Make&apos;s public cloud instances.&quot;</summary>
@@ -110,6 +118,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "lastLogin", n => { LastLogin = n.GetDateTimeOffsetValue(); } },
                 { "localeId", n => { LocaleId = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "privateSpace", n => { PrivateSpace = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpace>(global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpace.CreateFromDiscriminatorValue); } },
                 { "supportEligible", n => { SupportEligible = n.GetBoolValue(); } },
                 { "tfaStatus", n => { TfaStatus = n.GetIntValue(); } },
                 { "timezoneId", n => { TimezoneId = n.GetIntValue(); } },
@@ -132,6 +141,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("lastLogin", LastLogin);
             writer.WriteIntValue("localeId", LocaleId);
             writer.WriteStringValue("name", Name);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpace>("privateSpace", PrivateSpace);
             writer.WriteBoolValue("supportEligible", SupportEligible);
             writer.WriteIntValue("tfaStatus", TfaStatus);
             writer.WriteIntValue("timezoneId", TimezoneId);

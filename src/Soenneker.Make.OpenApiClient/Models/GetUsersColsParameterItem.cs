@@ -56,5 +56,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         UserTeamIds,
         #pragma warning restore CS1591
+        [EnumMember(Value = "privateSpace")]
+        #pragma warning disable CS1591
+        PrivateSpace,
+        #pragma warning restore CS1591
     }
 }
