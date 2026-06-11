@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Cashier.VatValidation.Patterns
         {
         }
         /// <summary>
-        /// Proxies imt-cashier&apos;s VAT-ID format patterns (EU + Northern Ireland). Each entry is keyed by ISO 3166-1 alpha-2 country code (plus `XI` for Northern Ireland) and contains a `regex` matching the part after the country-code prefix, plus a human-readable `description`. Intended for client-side VAT ID format validation.
+        /// &quot;Proxies imt-cashier&apos;s VAT-ID format patterns (EU + Northern Ireland). Each entry is keyed by ISO 3166-1 alpha-2 country code (Northern Ireland is keyed under `GB`, Greece under `GR`) and contains: `prefix` — the VAT-ID prefix used in the full ID (equals the ISO code except `GB` → `XI` and `GR` → `EL`); `regex` — an anchored (`^…$`) regex matching the **full** VAT ID including the optional prefix, safe to use directly via `new RegExp(regex)`; `description` — a human-readable format hint; and `example` — an example VAT ID suitable as a placeholder. Intended for client-side VAT ID format validation.&quot;
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCashierVatValidationPatterns200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Cashier.VatValidation.Patterns
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCashierVatValidationPatterns200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCashierVatValidationPatterns200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Proxies imt-cashier&apos;s VAT-ID format patterns (EU + Northern Ireland). Each entry is keyed by ISO 3166-1 alpha-2 country code (plus `XI` for Northern Ireland) and contains a `regex` matching the part after the country-code prefix, plus a human-readable `description`. Intended for client-side VAT ID format validation.
+        /// &quot;Proxies imt-cashier&apos;s VAT-ID format patterns (EU + Northern Ireland). Each entry is keyed by ISO 3166-1 alpha-2 country code (Northern Ireland is keyed under `GB`, Greece under `GR`) and contains: `prefix` — the VAT-ID prefix used in the full ID (equals the ISO code except `GB` → `XI` and `GR` → `EL`); `regex` — an anchored (`^…$`) regex matching the **full** VAT ID including the optional prefix, safe to use directly via `new RegExp(regex)`; `description` — a human-readable format hint; and `example` — an example VAT ID suitable as a placeholder. Intended for client-side VAT ID format validation.&quot;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

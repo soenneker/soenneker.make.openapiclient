@@ -89,7 +89,7 @@ namespace Soenneker.Make.OpenApiClient.Users
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public UsersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users{?cols%5B%5D*,email*,filterByTeamId*,name*,organizationId*,organizationRoleId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,teamId*,teamRoleId*,tfaStatus*}", pathParameters)
+        public UsersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users{?cols%5B%5D*,email*,filterByTeamId*,ids*,name*,organizationId*,organizationRoleId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,teamId*,teamRoleId*,tfaStatus*}", pathParameters)
         {
         }
         /// <summary>
@@ -97,7 +97,7 @@ namespace Soenneker.Make.OpenApiClient.Users
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public UsersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users{?cols%5B%5D*,email*,filterByTeamId*,name*,organizationId*,organizationRoleId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,teamId*,teamRoleId*,tfaStatus*}", rawUrl)
+        public UsersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users{?cols%5B%5D*,email*,filterByTeamId*,ids*,name*,organizationId*,organizationRoleId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,teamId*,teamRoleId*,tfaStatus*}", rawUrl)
         {
         }
         /// <summary>
@@ -217,6 +217,16 @@ namespace Soenneker.Make.OpenApiClient.Users
             /// <summary>Filter by team ID. Use 0 to find users not assigned to any team. Requires organizationId.</summary>
             [QueryParameter("filterByTeamId")]
             public int? FilterByTeamId { get; set; }
+            /// <summary>Optional filter parameter. Restricts the result to users whose ID is in the given list.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("ids")]
+            public int?[]? Ids { get; set; }
+#nullable restore
+#else
+            [QueryParameter("ids")]
+            public int?[] Ids { get; set; }
+#endif
             /// <summary>Optional filter parameter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

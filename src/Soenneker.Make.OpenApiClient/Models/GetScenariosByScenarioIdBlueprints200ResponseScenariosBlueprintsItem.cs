@@ -22,6 +22,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public int? ScenarioId { get; set; }
         /// <summary>The version property</summary>
         public int? Version { get; set; }
+        /// <summary>The versionDescription property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? VersionDescription { get; set; }
+#nullable restore
+#else
+        public string VersionDescription { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200ResponseScenariosBlueprintsItem"/> and sets the default values.
         /// </summary>
@@ -51,6 +59,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "draft", n => { Draft = n.GetBoolValue(); } },
                 { "scenarioId", n => { ScenarioId = n.GetIntValue(); } },
                 { "version", n => { Version = n.GetIntValue(); } },
+                { "versionDescription", n => { VersionDescription = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -64,6 +73,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("draft", Draft);
             writer.WriteIntValue("scenarioId", ScenarioId);
             writer.WriteIntValue("version", Version);
+            writer.WriteStringValue("versionDescription", VersionDescription);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
