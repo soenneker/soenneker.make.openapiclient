@@ -14,6 +14,12 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>True while the pause is in effect (subscription.pause_applied is true).</summary>
+        public bool? IsSubscriptionPaused { get; set; }
+        /// <summary>Scheduled auto-resume date. Null when not paused.</summary>
+        public DateTimeOffset? PauseEndsAt { get; set; }
+        /// <summary>When the pause becomes effective (end of the current paid period). Null when not paused.</summary>
+        public DateTimeOffset? PauseStartsAt { get; set; }
         /// <summary>The product property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,6 +53,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "isSubscriptionPaused", n => { IsSubscriptionPaused = n.GetBoolValue(); } },
+                { "pauseEndsAt", n => { PauseEndsAt = n.GetDateTimeOffsetValue(); } },
+                { "pauseStartsAt", n => { PauseStartsAt = n.GetDateTimeOffsetValue(); } },
                 { "product", n => { Product = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscription200ResponseProduct>(global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscription200ResponseProduct.CreateFromDiscriminatorValue); } },
             };
         }
@@ -57,6 +66,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("isSubscriptionPaused", IsSubscriptionPaused);
+            writer.WriteDateTimeOffsetValue("pauseEndsAt", PauseEndsAt);
+            writer.WriteDateTimeOffsetValue("pauseStartsAt", PauseStartsAt);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscription200ResponseProduct>("product", Product);
             writer.WriteAdditionalData(AdditionalData);
         }

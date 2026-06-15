@@ -4,8 +4,10 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.Pause;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.PaymentMethodTypes;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.PaymentMethods;
+using Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.Unpause;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +21,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Subscription
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SubscriptionRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The pause property</summary>
+        public global::Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.Pause.PauseRequestBuilder Pause
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.Pause.PauseRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The paymentMethods property</summary>
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.PaymentMethods.PaymentMethodsRequestBuilder PaymentMethods
         {
@@ -28,6 +35,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Subscription
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.PaymentMethodTypes.PaymentMethodTypesRequestBuilder PaymentMethodTypes
         {
             get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.PaymentMethodTypes.PaymentMethodTypesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The unpause property</summary>
+        public global::Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.Unpause.UnpauseRequestBuilder Unpause
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.Unpause.UnpauseRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.SubscriptionRequestBuilder"/> and sets the default values.
