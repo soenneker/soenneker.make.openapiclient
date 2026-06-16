@@ -26,6 +26,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Identifier { get; set; }
 #endif
+        /// <summary>The management type of the admin role.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200ResponseUsersAdminsRolesItemManagementType? ManagementType { get; set; }
         /// <summary>The name of the admin role.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -70,6 +72,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "category", n => { Category = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200ResponseUsersAdminsRolesItemCategory>(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "identifier", n => { Identifier = n.GetStringValue(); } },
+                { "managementType", n => { ManagementType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200ResponseUsersAdminsRolesItemManagementType>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "permissions", n => { Permissions = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -84,6 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200ResponseUsersAdminsRolesItemCategory>("category", Category);
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("identifier", Identifier);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200ResponseUsersAdminsRolesItemManagementType>("managementType", ManagementType);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfPrimitiveValues<string>("permissions", Permissions);
             writer.WriteAdditionalData(AdditionalData);
