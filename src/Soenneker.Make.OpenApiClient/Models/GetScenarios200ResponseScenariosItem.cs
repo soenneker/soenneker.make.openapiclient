@@ -24,6 +24,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponseScenariosItemCreatedByUser CreatedByUser { get; set; }
 #endif
+        /// <summary>Whether the scenario is currently soft-deleted (in the trash). Returned only when requested via `cols[]`.</summary>
+        public bool? Deleted { get; set; }
+        /// <summary>When the scenario was moved to the trash, or `null` if it is not deleted. Returned only when requested via `cols[]`.</summary>
+        public DateTimeOffset? DeletedAt { get; set; }
         /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -144,6 +148,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "created", n => { Created = n.GetDateTimeOffsetValue(); } },
                 { "createdByUser", n => { CreatedByUser = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponseScenariosItemCreatedByUser>(global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponseScenariosItemCreatedByUser.CreateFromDiscriminatorValue); } },
+                { "deleted", n => { Deleted = n.GetBoolValue(); } },
+                { "deletedAt", n => { DeletedAt = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "deviceId", n => { DeviceId = n.GetIntValue(); } },
                 { "deviceScope", n => { DeviceScope = n.GetStringValue(); } },
@@ -179,6 +185,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("created", Created);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponseScenariosItemCreatedByUser>("createdByUser", CreatedByUser);
+            writer.WriteBoolValue("deleted", Deleted);
+            writer.WriteDateTimeOffsetValue("deletedAt", DeletedAt);
             writer.WriteStringValue("description", Description);
             writer.WriteIntValue("deviceId", DeviceId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponseScenariosItemDevicesItem>("devices", Devices);

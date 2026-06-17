@@ -100,5 +100,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         ModuleSequenceId,
         #pragma warning restore CS1591
+        [EnumMember(Value = "deleted")]
+        #pragma warning disable CS1591
+        Deleted,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "deletedAt")]
+        #pragma warning disable CS1591
+        DeletedAt,
+        #pragma warning restore CS1591
     }
 }

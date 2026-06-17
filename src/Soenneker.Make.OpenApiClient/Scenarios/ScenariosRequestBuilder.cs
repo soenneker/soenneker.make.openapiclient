@@ -11,6 +11,7 @@ using Soenneker.Make.OpenApiClient.Scenarios.Logs;
 using Soenneker.Make.OpenApiClient.Scenarios.Modules;
 using Soenneker.Make.OpenApiClient.Scenarios.ReplayableExecutions;
 using Soenneker.Make.OpenApiClient.Scenarios.Tools;
+using Soenneker.Make.OpenApiClient.Scenarios.Trash;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -54,6 +55,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         {
             get => new global::Soenneker.Make.OpenApiClient.Scenarios.Tools.ToolsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The trash property</summary>
+        public global::Soenneker.Make.OpenApiClient.Scenarios.Trash.TrashRequestBuilder Trash
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Scenarios.Trash.TrashRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.scenarios.item collection</summary>
         /// <param name="position">The ID of the scenario. You can get the `scenarioId` with the [List scenarios](/api-reference/scenarios/get--scenarios.md) API call.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Scenarios.Item.WithScenarioItemRequestBuilder"/></returns>
@@ -71,7 +77,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,folderId*,id%5B%5D*,isActive*,islinked*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*}", pathParameters)
+        public ScenariosRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,deleted*,folderId*,id%5B%5D*,isActive*,islinked*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*}", pathParameters)
         {
         }
         /// <summary>
@@ -79,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,folderId*,id%5B%5D*,isActive*,islinked*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*}", rawUrl)
+        public ScenariosRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,deleted*,folderId*,id%5B%5D*,isActive*,islinked*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*}", rawUrl)
         {
         }
         /// <summary>
@@ -134,7 +140,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios?teamId={teamId}{&cols%5B%5D*,concept*,folderId*,id%5B%5D*,isActive*,islinked*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios?teamId={teamId}{&cols%5B%5D*,concept*,deleted*,folderId*,id%5B%5D*,isActive*,islinked*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -189,6 +195,9 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
             /// <summary>If set to `true`, the response contains only scenario concepts.</summary>
             [QueryParameter("concept")]
             public bool? Concept { get; set; }
+            /// <summary>Set this parameter to `true` to list scenarios currently in the trash — scenarios thatwere deleted and are still within the 30-day recovery window. When omitted (the default),deleted scenarios are excluded from the response.</summary>
+            [QueryParameter("deleted")]
+            public bool? Deleted { get; set; }
             /// <summary>The unique ID of the folder containing scenarios you want to retrieve.</summary>
             [QueryParameter("folderId")]
             public int? FolderId { get; set; }
