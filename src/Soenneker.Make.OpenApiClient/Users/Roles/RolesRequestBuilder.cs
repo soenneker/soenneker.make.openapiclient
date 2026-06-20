@@ -127,13 +127,13 @@ namespace Soenneker.Make.OpenApiClient.Users.Roles
             [QueryParameter("excludeRole%5B%5D")]
             public int?[] ExcludeRole { get; set; }
 #endif
-            /// <summary>Include custom roles belonging to this organization. Cannot be used together with `teamId`. If the organization does not have the `customRoles` license, custom roles are silently excluded from the response.</summary>
+            /// <summary>Include custom roles belonging to this organization. Can be combined with `teamId`; if both are provided and the team does not belong to the organization, the request returns `400`. If the organization does not have the `customRoles` license, or the caller lacks permission to view that organization&apos;s users, custom roles are silently excluded from the response while the system roles are still returned.</summary>
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
             /// <summary>Filter the response to a single role by its ID.</summary>
             [QueryParameter("roleId")]
             public int? RoleId { get; set; }
-            /// <summary>Include custom roles belonging to the organization that owns this team. Cannot be used together with `organizationId`. If the organization does not have the `customRoles` license, custom roles are silently excluded from the response.</summary>
+            /// <summary>Include custom roles belonging to the organization that owns this team. Can be combined with `organizationId`; if both are provided and the team does not belong to the organization, the request returns `400`. If the organization does not have the `customRoles` license, or the caller lacks permission to view that organization&apos;s users, custom roles are silently excluded from the response while the system roles are still returned.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }
         }
