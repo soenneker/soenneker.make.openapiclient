@@ -19,6 +19,7 @@ using Soenneker.Make.OpenApiClient.Scenarios.Item.Notes;
 using Soenneker.Make.OpenApiClient.Scenarios.Item.Publish;
 using Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery;
 using Soenneker.Make.OpenApiClient.Scenarios.Item.Replay;
+using Soenneker.Make.OpenApiClient.Scenarios.Item.Restore;
 using Soenneker.Make.OpenApiClient.Scenarios.Item.Run;
 using Soenneker.Make.OpenApiClient.Scenarios.Item.Start;
 using Soenneker.Make.OpenApiClient.Scenarios.Item.Stop;
@@ -111,6 +112,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item
         public global::Soenneker.Make.OpenApiClient.Scenarios.Item.Replay.ReplayRequestBuilder Replay
         {
             get => new global::Soenneker.Make.OpenApiClient.Scenarios.Item.Replay.ReplayRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The restore property</summary>
+        public global::Soenneker.Make.OpenApiClient.Scenarios.Item.Restore.RestoreRequestBuilder Restore
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Scenarios.Item.Restore.RestoreRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The run property</summary>
         public global::Soenneker.Make.OpenApiClient.Scenarios.Item.Run.RunRequestBuilder Run
