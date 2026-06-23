@@ -34,37 +34,6 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
         {
         }
         /// <summary>
-        /// Deletes a private space. All linked scenarios are stopped and deleted. Templates attached to the space are detached. Always requires confirmation — send `confirmed=true` to proceed.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId200Response"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId400Response">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId401Response">When receiving a 401 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId403Response">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId404Response">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId406Response">When receiving a 406 status code</exception>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId200Response?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.PrivateSpaces.Item.WithPrivateSpaceItemRequestBuilder.WithPrivateSpaceItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId200Response> DeleteAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.PrivateSpaces.Item.WithPrivateSpaceItemRequestBuilder.WithPrivateSpaceItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId400Response.CreateFromDiscriminatorValue },
-                { "401", global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId401Response.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId403Response.CreateFromDiscriminatorValue },
-                { "404", global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId404Response.CreateFromDiscriminatorValue },
-                { "406", global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId406Response.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeletePrivateSpacesByPrivateSpaceId200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
         /// Returns the details of a single private space. Requires the `personal team own view` organization permission. Non-members receive a 404.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200Response"/></returns>
@@ -101,25 +70,6 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Deletes a private space. All linked scenarios are stopped and deleted. Templates attached to the space are detached. Always requires confirmation — send `confirmed=true` to proceed.
-        /// </summary>
-        /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.PrivateSpaces.Item.WithPrivateSpaceItemRequestBuilder.WithPrivateSpaceItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
-        {
-#nullable restore
-#else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.PrivateSpaces.Item.WithPrivateSpaceItemRequestBuilder.WithPrivateSpaceItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
-        {
-#endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
-            requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
-            return requestInfo;
         }
         /// <summary>
         /// Returns the details of a single private space. Requires the `personal team own view` organization permission. Non-members receive a 404.
@@ -170,16 +120,6 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
         public global::Soenneker.Make.OpenApiClient.PrivateSpaces.Item.WithPrivateSpaceItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Make.OpenApiClient.PrivateSpaces.Item.WithPrivateSpaceItemRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Deletes a private space. All linked scenarios are stopped and deleted. Templates attached to the space are detached. Always requires confirmation — send `confirmed=true` to proceed.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithPrivateSpaceItemRequestBuilderDeleteQueryParameters 
-        {
-            /// <summary>When `true`, confirms the deletion.</summary>
-            [QueryParameter("confirmed")]
-            public bool? Confirmed { get; set; }
         }
         /// <summary>
         /// Returns the details of a single private space. Requires the `personal team own view` organization permission. Non-members receive a 404.

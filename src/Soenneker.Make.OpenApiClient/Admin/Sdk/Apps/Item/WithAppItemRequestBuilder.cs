@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Connections;
+using Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Webhooks;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item
         public global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Connections.ConnectionsRequestBuilder Connections
         {
             get => new global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Connections.ConnectionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The webhooks property</summary>
+        public global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Webhooks.WebhooksRequestBuilder Webhooks
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Webhooks.WebhooksRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.WithAppItemRequestBuilder"/> and sets the default values.
