@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
 using Soenneker.Make.OpenApiClient.ScenariosFolders.Item;
+using Soenneker.Make.OpenApiClient.ScenariosFolders.MoveScenarios;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -18,6 +19,11 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ScenariosFoldersRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The moveScenarios property</summary>
+        public global::Soenneker.Make.OpenApiClient.ScenariosFolders.MoveScenarios.MoveScenariosRequestBuilder MoveScenarios
+        {
+            get => new global::Soenneker.Make.OpenApiClient.ScenariosFolders.MoveScenarios.MoveScenariosRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.scenariosFolders.item collection</summary>
         /// <param name="position">The unique ID of the scenario folder. It can be retrieved from the [List scenarios folders](/api-reference/scenarios-folders/get--scenarios-folders.md) endpoint.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.ScenariosFolders.Item.WithFolderItemRequestBuilder"/></returns>

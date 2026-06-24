@@ -11,6 +11,7 @@ using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.CloneMajor;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Closedsource;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Commit;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Common;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Functions;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Groups;
@@ -71,6 +72,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Common.CommonRequestBuilder Common
         {
             get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Common.CommonRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The endpoints property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints.EndpointsRequestBuilder Endpoints
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints.EndpointsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The eventsLog property</summary>
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog.EventsLogRequestBuilder EventsLog
