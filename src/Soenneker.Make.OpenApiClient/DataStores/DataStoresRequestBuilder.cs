@@ -211,7 +211,7 @@ namespace Soenneker.Make.OpenApiClient.DataStores
             /// <summary>The number of entities you want to skip before getting entities you want.</summary>
             [QueryParameter("pg%5Boffset%5D")]
             public int? Pgoffset { get; set; }
-            /// <summary>The value that will be used to sort returned entities by.</summary>
+            /// <summary>The value that will be used to sort returned entities by. Data stores can be currently sorted only by name.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresPgSortByParameter? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>

@@ -91,7 +91,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.AiAgents
             /// <summary>The number of entities you want to skip before getting entities you want.</summary>
             [QueryParameter("pg%5Boffset%5D")]
             public int? Pgoffset { get; set; }
-            /// <summary>The unique ID of the team whose scenarios folders will be retrieved.</summary>
+            /// <summary>The unique ID of the team whose AI agent scenarios will be retrieved.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }
         }

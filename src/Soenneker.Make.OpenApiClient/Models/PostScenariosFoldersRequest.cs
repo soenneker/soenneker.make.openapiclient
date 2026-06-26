@@ -22,6 +22,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>The unique ID of the parent scenario folder. Omit or pass null to create a top-level folder.</summary>
+        public int? ParentId { get; set; }
         /// <summary>The unique ID of the team in which the scenario folder will be created.</summary>
         public int? TeamId { get; set; }
         /// <summary>
@@ -50,6 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "parentId", n => { ParentId = n.GetIntValue(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
             };
         }
@@ -61,6 +64,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("name", Name);
+            writer.WriteIntValue("parentId", ParentId);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteAdditionalData(AdditionalData);
         }

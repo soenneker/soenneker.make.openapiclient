@@ -35,7 +35,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.UserTeamRoles
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public UserTeamRolesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{teamId}/user-team-roles{?cols*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*}", pathParameters)
+        public UserTeamRolesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{teamId}/user-team-roles{?cols%5B%5D*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.UserTeamRoles
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public UserTeamRolesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{teamId}/user-team-roles{?cols*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*}", rawUrl)
+        public UserTeamRolesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{teamId}/user-team-roles{?cols%5B%5D*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*}", rawUrl)
         {
         }
         /// <summary>
@@ -101,12 +101,12 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.UserTeamRoles
             /// <summary>Specifies columns that are returned in the response. Use the `cols[]` parameter for every column that you want to return in the response. For example `GET /endpoint?cols[]=key1&amp;cols[]=key2` to get both `key1` and `key2` columns in the response.[Check the &quot;Filtering&quot; section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            [QueryParameter("cols")]
-            public string[]? Cols { get; set; }
+            [QueryParameter("cols%5B%5D")]
+            public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdUserTeamRolesColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
-            [QueryParameter("cols")]
-            public string[] Cols { get; set; }
+            [QueryParameter("cols%5B%5D")]
+            public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdUserTeamRolesColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>Sets the maximum number of results per page in the API call response. For example, `pg[limit]=100`. The default number varies with different API endpoints.</summary>
             [QueryParameter("pg%5Blimit%5D")]

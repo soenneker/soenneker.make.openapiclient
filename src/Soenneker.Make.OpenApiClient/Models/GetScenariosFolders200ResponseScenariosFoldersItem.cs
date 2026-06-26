@@ -14,6 +14,16 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Direct child folders of this folder.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosFolders200ResponseScenariosFoldersItemChildrenItem>? Children { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosFolders200ResponseScenariosFoldersItemChildrenItem> Children { get; set; }
+#endif
+        /// <summary>Whether this folder has direct child folders. Use parentId to retrieve them.</summary>
+        public bool? HasChildren { get; set; }
         /// <summary>The id property</summary>
         public int? Id { get; set; }
         /// <summary>The name property</summary>
@@ -24,8 +34,16 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The scenariosTotal property</summary>
+        /// <summary>The parentId property</summary>
+        public int? ParentId { get; set; }
+        /// <summary>The position property</summary>
+        public int? Position { get; set; }
+        /// <summary>Number of deleted scenarios directly assigned to this folder. Available to admin callers.</summary>
+        public int? ScenariosDeleted { get; set; }
+        /// <summary>Number of scenarios directly assigned to this folder.</summary>
         public int? ScenariosTotal { get; set; }
+        /// <summary>The unique ID of the team that owns the folder. Returned when listing folders by organization.</summary>
+        public int? TeamId { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosFolders200ResponseScenariosFoldersItem"/> and sets the default values.
         /// </summary>
@@ -51,9 +69,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "children", n => { Children = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetScenariosFolders200ResponseScenariosFoldersItemChildrenItem>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosFolders200ResponseScenariosFoldersItemChildrenItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "hasChildren", n => { HasChildren = n.GetBoolValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "parentId", n => { ParentId = n.GetIntValue(); } },
+                { "position", n => { Position = n.GetIntValue(); } },
+                { "scenariosDeleted", n => { ScenariosDeleted = n.GetIntValue(); } },
                 { "scenariosTotal", n => { ScenariosTotal = n.GetIntValue(); } },
+                { "teamId", n => { TeamId = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -63,9 +87,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetScenariosFolders200ResponseScenariosFoldersItemChildrenItem>("children", Children);
+            writer.WriteBoolValue("hasChildren", HasChildren);
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("name", Name);
+            writer.WriteIntValue("parentId", ParentId);
+            writer.WriteIntValue("position", Position);
+            writer.WriteIntValue("scenariosDeleted", ScenariosDeleted);
             writer.WriteIntValue("scenariosTotal", ScenariosTotal);
+            writer.WriteIntValue("teamId", TeamId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

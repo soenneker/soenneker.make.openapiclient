@@ -88,7 +88,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Consumptions
             /// <summary>The ID of the organization.</summary>
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
-            /// <summary>The unique ID of the team whose scenarios folders will be retrieved.</summary>
+            /// <summary>The ID of the team.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }
         }

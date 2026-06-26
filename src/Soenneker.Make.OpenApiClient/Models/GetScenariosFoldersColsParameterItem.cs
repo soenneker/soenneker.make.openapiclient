@@ -16,9 +16,29 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         Name,
         #pragma warning restore CS1591
+        [EnumMember(Value = "parentId")]
+        #pragma warning disable CS1591
+        ParentId,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "position")]
+        #pragma warning disable CS1591
+        Position,
+        #pragma warning restore CS1591
         [EnumMember(Value = "scenariosTotal")]
         #pragma warning disable CS1591
         ScenariosTotal,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "scenariosDeleted")]
+        #pragma warning disable CS1591
+        ScenariosDeleted,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "hasChildren")]
+        #pragma warning disable CS1591
+        HasChildren,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "children")]
+        #pragma warning disable CS1591
+        Children,
         #pragma warning restore CS1591
     }
 }

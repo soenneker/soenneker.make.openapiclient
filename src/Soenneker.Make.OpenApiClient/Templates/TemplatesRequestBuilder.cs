@@ -162,7 +162,7 @@ namespace Soenneker.Make.OpenApiClient.Templates
             /// <summary>The value of entities you want to skip before getting entities you need.</summary>
             [QueryParameter("pg%5Boffset%5D")]
             public int? Pgoffset { get; set; }
-            /// <summary>The value that will be used to sort returned entities by.</summary>
+            /// <summary>The value that will be used to sort returned entities by. Templates can be currently sorted only by ID or name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("pg%5BsortBy%5D")]

@@ -96,15 +96,8 @@ namespace Soenneker.Make.OpenApiClient.Affiliate.Commissions
             [QueryParameter("pg%5Boffset%5D")]
             public int? Pgoffset { get; set; }
             /// <summary>The value that will be used to sort returned entities by.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("pg%5BsortBy%5D")]
-            public string? PgsortBy { get; set; }
-#nullable restore
-#else
-            [QueryParameter("pg%5BsortBy%5D")]
-            public string PgsortBy { get; set; }
-#endif
+            public global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissionsPgSortByParameter? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissionsPgSortDirParameter? PgsortDir { get; set; }

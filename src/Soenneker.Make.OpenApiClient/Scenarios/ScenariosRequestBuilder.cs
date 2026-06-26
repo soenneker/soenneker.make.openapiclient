@@ -230,7 +230,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
             /// <summary>The value that will be used to sort returned entities by.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetScenariosPgSortByParameter? PgsortBy { get; set; }
-            /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
+            /// <summary>The only allowed value for this parameter is `desc` that sorts scenarios in descending direction. Ascendent sorting direction is **not allowed** for this endpoint.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetScenariosPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>The unique ID of the team whose scenarios will be retrieved. If this parameter is set, the `organizationId` parameter must be skipped. For each request either `teamId` or `organizationId` must be defined.</summary>

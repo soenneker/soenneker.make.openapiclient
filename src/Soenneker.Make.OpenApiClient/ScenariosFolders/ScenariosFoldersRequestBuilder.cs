@@ -41,7 +41,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosFoldersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios-folders{?cols%5B%5D*}", pathParameters)
+        public ScenariosFoldersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios-folders{?cols%5B%5D*,organizationId*,parentId*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,11 +49,11 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosFoldersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios-folders{?cols%5B%5D*}", rawUrl)
+        public ScenariosFoldersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios-folders{?cols%5B%5D*,organizationId*,parentId*}", rawUrl)
         {
         }
         /// <summary>
-        /// Retrieves a collection of all scenarios folders for a team with a given ID. Returned folders are sorted by name in ascending order.
+        /// Retrieves direct scenario folder children for a team or organization. Provide teamId or organizationId. If both are provided, teamId is used. Omit parentId to return top-level folders.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosFolders200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -91,7 +91,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosFolders200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosFolders200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves a collection of all scenarios folders for a team with a given ID. Returned folders are sorted by name in ascending order.
+        /// Retrieves direct scenario folder children for a team or organization. Provide teamId or organizationId. If both are provided, teamId is used. Omit parentId to return top-level folders.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -104,7 +104,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosFolders.ScenariosFoldersRequestBuilder.ScenariosFoldersRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios-folders?teamId={teamId}{&cols%5B%5D*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios-folders?teamId={teamId}{&cols%5B%5D*,organizationId*,parentId*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -141,7 +141,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
             return new global::Soenneker.Make.OpenApiClient.ScenariosFolders.ScenariosFoldersRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieves a collection of all scenarios folders for a team with a given ID. Returned folders are sorted by name in ascending order.
+        /// Retrieves direct scenario folder children for a team or organization. Provide teamId or organizationId. If both are provided, teamId is used. Omit parentId to return top-level folders.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ScenariosFoldersRequestBuilderGetQueryParameters 
@@ -156,6 +156,12 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
             [QueryParameter("cols%5B%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetScenariosFoldersColsParameterItem[] Cols { get; set; }
 #endif
+            /// <summary>The unique ID of the organization whose scenario folders should be returned.</summary>
+            [QueryParameter("organizationId")]
+            public int? OrganizationId { get; set; }
+            /// <summary>The parent folder whose direct children should be returned. Omit to return top-level folders.</summary>
+            [QueryParameter("parentId")]
+            public int? ParentId { get; set; }
             /// <summary>Unique ID of the Team.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }

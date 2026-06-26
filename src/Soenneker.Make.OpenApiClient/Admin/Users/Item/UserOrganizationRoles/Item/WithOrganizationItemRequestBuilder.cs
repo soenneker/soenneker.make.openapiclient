@@ -28,7 +28,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item.UserOrganizationRoles.It
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithOrganizationItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/users/{userId}/user-organization-roles/{organizationId}{?cols*,confirmed*,deleteConnections*}", pathParameters)
+        public WithOrganizationItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/users/{userId}/user-organization-roles/{organizationId}{?cols%5B%5D*,confirmed*,deleteConnections*}", pathParameters)
         {
         }
         /// <summary>
@@ -36,7 +36,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item.UserOrganizationRoles.It
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithOrganizationItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/users/{userId}/user-organization-roles/{organizationId}{?cols*,confirmed*,deleteConnections*}", rawUrl)
+        public WithOrganizationItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/users/{userId}/user-organization-roles/{organizationId}{?cols%5B%5D*,confirmed*,deleteConnections*}", rawUrl)
         {
         }
         /// <summary>
@@ -99,12 +99,12 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item.UserOrganizationRoles.It
             /// <summary>Specifies columns that are returned in the response. Use the `cols[]` parameter for every column that you want to return in the response. For example `GET /endpoint?cols[]=key1&amp;cols[]=key2` to get both `key1` and `key2` columns in the response.[Check the &quot;Filtering&quot; section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            [QueryParameter("cols")]
-            public string[]? Cols { get; set; }
+            [QueryParameter("cols%5B%5D")]
+            public global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersByUserIdUserOrganizationRolesByOrganizationIdColsParameterItem[]? Cols { get; set; }
 #nullable restore
 #else
-            [QueryParameter("cols")]
-            public string[] Cols { get; set; }
+            [QueryParameter("cols%5B%5D")]
+            public global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersByUserIdUserOrganizationRolesByOrganizationIdColsParameterItem[] Cols { get; set; }
 #endif
             /// <summary>Set to `true` to confirm deleting the user&apos;s connections in combination with the `deleteConnections` parameter. Otherwise, the API call fails with error requiring confirmation.</summary>
             [QueryParameter("confirmed")]
