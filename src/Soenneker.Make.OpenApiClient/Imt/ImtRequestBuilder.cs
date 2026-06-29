@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Imt.Apps;
 using Soenneker.Make.OpenApiClient.Imt.AppsMeta;
+using Soenneker.Make.OpenApiClient.Imt.EndpointsUsable;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -25,6 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Imt
         public global::Soenneker.Make.OpenApiClient.Imt.AppsMeta.AppsMetaRequestBuilder AppsMeta
         {
             get => new global::Soenneker.Make.OpenApiClient.Imt.AppsMeta.AppsMetaRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The endpointsUsable property</summary>
+        public global::Soenneker.Make.OpenApiClient.Imt.EndpointsUsable.EndpointsUsableRequestBuilder EndpointsUsable
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Imt.EndpointsUsable.EndpointsUsableRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Imt.ImtRequestBuilder"/> and sets the default values.

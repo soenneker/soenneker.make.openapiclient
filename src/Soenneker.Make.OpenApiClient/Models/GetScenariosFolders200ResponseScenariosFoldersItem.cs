@@ -14,7 +14,7 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Direct child folders of this folder.</summary>
+        /// <summary>Direct child folders of this folder. Contains all descendants when childrenDepth is set to `all`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosFolders200ResponseScenariosFoldersItemChildrenItem>? Children { get; set; }

@@ -41,7 +41,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosFoldersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios-folders{?cols%5B%5D*,organizationId*,parentId*}", pathParameters)
+        public ScenariosFoldersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios-folders{?childrenDepth*,cols%5B%5D*,organizationId*,parentId*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosFoldersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios-folders{?cols%5B%5D*,organizationId*,parentId*}", rawUrl)
+        public ScenariosFoldersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios-folders{?childrenDepth*,cols%5B%5D*,organizationId*,parentId*}", rawUrl)
         {
         }
         /// <summary>
@@ -104,7 +104,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.ScenariosFolders.ScenariosFoldersRequestBuilder.ScenariosFoldersRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios-folders?teamId={teamId}{&cols%5B%5D*,organizationId*,parentId*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios-folders?teamId={teamId}{&childrenDepth*,cols%5B%5D*,organizationId*,parentId*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -146,6 +146,9 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ScenariosFoldersRequestBuilderGetQueryParameters 
         {
+            /// <summary>Set to `all` to return all descendants under `children`. By default, `children` includes only one direct child level.</summary>
+            [QueryParameter("childrenDepth")]
+            public global::Soenneker.Make.OpenApiClient.Models.GetScenariosFoldersChildrenDepthParameter? ChildrenDepth { get; set; }
             /// <summary>Specifies the group of values to return. For example, you may want to receive in response only the names and IDs of folders.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
