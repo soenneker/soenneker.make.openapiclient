@@ -42,6 +42,7 @@ using Soenneker.Make.OpenApiClient.OutboundWebhooks;
 using Soenneker.Make.OpenApiClient.Ping;
 using Soenneker.Make.OpenApiClient.PrivateSpaces;
 using Soenneker.Make.OpenApiClient.Rpcs;
+using Soenneker.Make.OpenApiClient.ScenarioLabels;
 using Soenneker.Make.OpenApiClient.Scenarios;
 using Soenneker.Make.OpenApiClient.ScenariosFolders;
 using Soenneker.Make.OpenApiClient.ScenariosShared;
@@ -241,6 +242,11 @@ namespace Soenneker.Make.OpenApiClient
         public global::Soenneker.Make.OpenApiClient.Rpcs.RpcsRequestBuilder Rpcs
         {
             get => new global::Soenneker.Make.OpenApiClient.Rpcs.RpcsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The scenarioLabels property</summary>
+        public global::Soenneker.Make.OpenApiClient.ScenarioLabels.ScenarioLabelsRequestBuilder ScenarioLabels
+        {
+            get => new global::Soenneker.Make.OpenApiClient.ScenarioLabels.ScenarioLabelsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The scenarios property</summary>
         public global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder Scenarios
