@@ -106,12 +106,13 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates one or more metadata fields of an endpoint. At least one field must be provided. On an approved app, the versioned fields (`context`, `annotations`, `attachedAccounts`) are recorded as pending changes instead of being applied immediately.
+        /// Updates one or more metadata fields of an endpoint. At least one field must be provided. On an approved app, the versioned fields (`context`, `annotations`, `attachedAccounts`) are recorded as pending changes instead of being applied immediately. When `attachedAccounts` is supplied, every connection it lists must belong to the app, otherwise the request is rejected.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName400ResponseResponseJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -123,7 +124,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName400ResponseResponseJson.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes an endpoint. Only possible while the app is **not public** — once the app is public, endpoints can no longer be deleted; archive them instead.
@@ -164,7 +169,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints.Item
             return requestInfo;
         }
         /// <summary>
-        /// Updates one or more metadata fields of an endpoint. At least one field must be provided. On an approved app, the versioned fields (`context`, `annotations`, `attachedAccounts`) are recorded as pending changes instead of being applied immediately.
+        /// Updates one or more metadata fields of an endpoint. At least one field must be provided. On an approved app, the versioned fields (`context`, `annotations`, `attachedAccounts`) are recorded as pending changes instead of being applied immediately. When `attachedAccounts` is supplied, every connection it lists must belong to the app, otherwise the request is rejected.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

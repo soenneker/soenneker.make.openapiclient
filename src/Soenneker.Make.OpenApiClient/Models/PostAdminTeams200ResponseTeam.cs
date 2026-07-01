@@ -36,6 +36,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200ResponseTeamTransferLimit TransferLimit { get; set; }
 #endif
+        /// <summary>Distinguishes a standard team from a private space (`personal`). Only returned when requested via`cols[]=type`. Private spaces are included in the list only when `includePrivateSpaces=true`.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200ResponseTeamType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200ResponseTeam"/> and sets the default values.
         /// </summary>
@@ -66,6 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "operationsLimit", n => { OperationsLimit = n.GetIntValue(); } },
                 { "organizationId", n => { OrganizationId = n.GetIntValue(); } },
                 { "transferLimit", n => { TransferLimit = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200ResponseTeamTransferLimit>(global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200ResponseTeamTransferLimit.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200ResponseTeamType>(); } },
             };
         }
         /// <summary>
@@ -80,6 +83,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("operationsLimit", OperationsLimit);
             writer.WriteIntValue("organizationId", OrganizationId);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200ResponseTeamTransferLimit>("transferLimit", TransferLimit);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200ResponseTeamType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

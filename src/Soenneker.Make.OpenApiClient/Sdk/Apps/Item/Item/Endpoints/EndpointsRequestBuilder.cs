@@ -65,7 +65,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEndpoints200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEndpoints200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a new, blank endpoint on the app version. The endpoint starts private and unapproved; its sections are initialized empty and can be edited via the section endpoints. The `name` must be alphanumeric, start with a letter, be 3 to 128 characters long, unique within the app version, and not a reserved keyword.
+        /// &quot;Creates a new endpoint on the app version. The endpoint starts private and unapproved. By default (`endpointInitMode: example`) its sections (`api`, `inputParameters`, `outputParameters`) and `context` are seeded from the built-in endpoint template; pass `endpointInitMode: blank` to start with empty sections instead. All sections can be edited afterwards via the section endpoints. The `name` must be alphanumeric, start with a letter, be 3 to 128 characters long, unique within the app version, and not a reserved keyword. `attachedAccounts` is optional; every connection it lists must belong to the app, otherwise the request is rejected.&quot;
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpoints200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -109,7 +109,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints
             return requestInfo;
         }
         /// <summary>
-        /// Creates a new, blank endpoint on the app version. The endpoint starts private and unapproved; its sections are initialized empty and can be edited via the section endpoints. The `name` must be alphanumeric, start with a letter, be 3 to 128 characters long, unique within the app version, and not a reserved keyword.
+        /// &quot;Creates a new endpoint on the app version. The endpoint starts private and unapproved. By default (`endpointInitMode: example`) its sections (`api`, `inputParameters`, `outputParameters`) and `context` are seeded from the built-in endpoint template; pass `endpointInitMode: blank` to start with empty sections instead. All sections can be edited afterwards via the section endpoints. The `name` must be alphanumeric, start with a letter, be 3 to 128 characters long, unique within the app version, and not a reserved keyword. `attachedAccounts` is optional; every connection it lists must belong to the app, otherwise the request is rejected.&quot;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

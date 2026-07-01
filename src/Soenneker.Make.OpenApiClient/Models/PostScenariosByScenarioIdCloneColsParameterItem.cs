@@ -108,5 +108,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         DeletedAt,
         #pragma warning restore CS1591
+        [EnumMember(Value = "labels")]
+        #pragma warning disable CS1591
+        Labels,
+        #pragma warning restore CS1591
     }
 }

@@ -14,6 +14,14 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Names of connections to attach to the endpoint. Each must belong to the app.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? AttachedAccounts { get; set; }
+#nullable restore
+#else
+        public List<string> AttachedAccounts { get; set; }
+#endif
         /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -22,6 +30,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Description { get; set; }
 #endif
+        /// <summary>How the endpoint&apos;s sections are initialized. `example` (default) seeds them from the built-in endpoint template; `blank` starts with empty sections.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestEndpointInitMode? EndpointInitMode { get; set; }
         /// <summary>The label property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -44,6 +54,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            EndpointInitMode = global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestEndpointInitMode.Example;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -63,7 +74,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "attachedAccounts", n => { AttachedAccounts = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
+                { "endpointInitMode", n => { EndpointInitMode = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestEndpointInitMode>(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
             };
@@ -75,7 +88,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfPrimitiveValues<string>("attachedAccounts", AttachedAccounts);
             writer.WriteStringValue("description", Description);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestEndpointInitMode>("endpointInitMode", EndpointInitMode);
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("name", Name);
             writer.WriteAdditionalData(AdditionalData);

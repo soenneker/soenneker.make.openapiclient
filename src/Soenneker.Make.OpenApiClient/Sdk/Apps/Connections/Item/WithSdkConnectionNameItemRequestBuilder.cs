@@ -59,11 +59,12 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item
         {
         }
         /// <summary>
-        /// Delete Connection
+        /// Deletes a connection. The connection must not be in use (e.g. referenced by a webhook/module/RPC or attached to an endpoint), otherwise the request is rejected.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsConnectionsBySdkConnectionName200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsConnectionsBySdkConnectionName400ResponseResponseJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsConnectionsBySdkConnectionName200Response?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -74,7 +75,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsConnectionsBySdkConnectionName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsConnectionsBySdkConnectionName200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsConnectionsBySdkConnectionName400ResponseResponseJson.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsConnectionsBySdkConnectionName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsConnectionsBySdkConnectionName200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Get Connection
@@ -115,7 +120,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsConnectionsBySdkConnectionName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsConnectionsBySdkConnectionName200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Delete Connection
+        /// Deletes a connection. The connection must not be in use (e.g. referenced by a webhook/module/RPC or attached to an endpoint), otherwise the request is rejected.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

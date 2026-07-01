@@ -77,6 +77,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public bool? IsPaused { get; set; }
         /// <summary>The iswaiting property</summary>
         public bool? Iswaiting { get; set; }
+        /// <summary>Team labels assigned to the scenario, sorted by label name case-insensitively.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioId200ResponseScenarioLabelsItem>? Labels { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioId200ResponseScenarioLabelsItem> Labels { get; set; }
+#endif
         /// <summary>The lastEdit property</summary>
         public DateTimeOffset? LastEdit { get; set; }
         /// <summary>The moduleSequenceId property</summary>
@@ -164,6 +172,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "islinked", n => { Islinked = n.GetBoolValue(); } },
                 { "islocked", n => { Islocked = n.GetBoolValue(); } },
                 { "iswaiting", n => { Iswaiting = n.GetBoolValue(); } },
+                { "labels", n => { Labels = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioId200ResponseScenarioLabelsItem>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioId200ResponseScenarioLabelsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "lastEdit", n => { LastEdit = n.GetDateTimeOffsetValue(); } },
                 { "moduleSequenceId", n => { ModuleSequenceId = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -201,6 +210,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("islocked", Islocked);
             writer.WriteBoolValue("isPaused", IsPaused);
             writer.WriteBoolValue("iswaiting", Iswaiting);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioId200ResponseScenarioLabelsItem>("labels", Labels);
             writer.WriteDateTimeOffsetValue("lastEdit", LastEdit);
             writer.WriteIntValue("moduleSequenceId", ModuleSequenceId);
             writer.WriteStringValue("name", Name);

@@ -39,6 +39,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>This property is deprecated. It is only supported on private instances and ignored on Make&apos;s public cloud.</summary>
         [Obsolete("")]
         public bool? ScenarioDrafts { get; set; }
+        /// <summary>Distinguishes a standard team from a private space (`personal`). Only returned when requested via`cols[]=type`. Private spaces are included in the list only when `includePrivateSpaces=true`.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PatchAdminTeamsByTeamId200ResponseTeamType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchAdminTeamsByTeamId200ResponseTeam"/> and sets the default values.
         /// </summary>
@@ -70,6 +72,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "organizationId", n => { OrganizationId = n.GetIntValue(); } },
                 { "scenarioDrafts", n => { ScenarioDrafts = n.GetBoolValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchAdminTeamsByTeamId200ResponseTeamType>(); } },
             };
         }
         /// <summary>
@@ -85,6 +88,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("organizationId", OrganizationId);
             writer.WriteBoolValue("scenarioDrafts", ScenarioDrafts);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchAdminTeamsByTeamId200ResponseTeamType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

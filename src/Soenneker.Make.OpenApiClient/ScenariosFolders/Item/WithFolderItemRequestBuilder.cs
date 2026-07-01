@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders.Item
         {
         }
         /// <summary>
-        /// Deletes a scenario folder with a given ID and returns the ID in the response.
+        /// Deletes a scenario folder with a given ID and returns the ID in the response. Scenarios in the deleted folder and its subfolders are moved to the deleted folder&apos;s parent, or uncategorized when deleting a top-level folder. Descendant folders are deleted.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersByFolderId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersByFolderId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersByFolderId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates a scenario folder with a given ID by passing new values in the request body. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated folder including properties that were not changed.
+        /// Updates a scenario folder with a given ID by passing a new name, a new parent folder, or both in the request body. Use parentId null to move the folder to the top level. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated folder including properties that were not changed.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderId200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -72,7 +72,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deletes a scenario folder with a given ID and returns the ID in the response.
+        /// Deletes a scenario folder with a given ID and returns the ID in the response. Scenarios in the deleted folder and its subfolders are moved to the deleted folder&apos;s parent, or uncategorized when deleting a top-level folder. Descendant folders are deleted.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -91,7 +91,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders.Item
             return requestInfo;
         }
         /// <summary>
-        /// Updates a scenario folder with a given ID by passing new values in the request body. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated folder including properties that were not changed.
+        /// Updates a scenario folder with a given ID by passing a new name, a new parent folder, or both in the request body. Use parentId null to move the folder to the top level. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated folder including properties that were not changed.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -122,7 +122,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders.Item
             return new global::Soenneker.Make.OpenApiClient.ScenariosFolders.Item.WithFolderItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Updates a scenario folder with a given ID by passing new values in the request body. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated folder including properties that were not changed.
+        /// Updates a scenario folder with a given ID by passing a new name, a new parent folder, or both in the request body. Use parentId null to move the folder to the top level. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated folder including properties that were not changed.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithFolderItemRequestBuilderPatchQueryParameters 

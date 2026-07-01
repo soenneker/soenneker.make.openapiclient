@@ -54,12 +54,13 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints.Item.Connect
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Adds a connection (account) to the endpoint&apos;s list of attached connections.
+        /// Adds a connection (account) to the endpoint&apos;s list of attached connections. The connection must belong to the app, otherwise the request is rejected.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections400ResponseResponseJson">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnectionsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -71,7 +72,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints.Item.Connect
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections400ResponseResponseJson.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Removes a connection (account) from the endpoint&apos;s list of attached connections.
@@ -96,7 +101,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints.Item.Connect
             return requestInfo;
         }
         /// <summary>
-        /// Adds a connection (account) to the endpoint&apos;s list of attached connections.
+        /// Adds a connection (account) to the endpoint&apos;s list of attached connections. The connection must belong to the app, otherwise the request is rejected.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

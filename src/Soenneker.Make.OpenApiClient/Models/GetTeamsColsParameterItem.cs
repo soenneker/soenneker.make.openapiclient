@@ -44,5 +44,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         ConsumedCenticredits,
         #pragma warning restore CS1591
+        [EnumMember(Value = "type")]
+        #pragma warning disable CS1591
+        Type,
+        #pragma warning restore CS1591
     }
 }
