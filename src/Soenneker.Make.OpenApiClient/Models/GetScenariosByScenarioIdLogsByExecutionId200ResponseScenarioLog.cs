@@ -25,17 +25,17 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string AuthorName { get; set; }
 #endif
         /// <summary>The centicredits property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogCenticredits? Centicredits { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogCenticredits Centicredits { get; set; }
-#endif
+        public int? Centicredits { get; set; }
         /// <summary>The duration property</summary>
         public int? Duration { get; set; }
         /// <summary>The id property</summary>
-        public int? Id { get; set; }
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Id { get; set; }
+#nullable restore
+#else
+        public string Id { get; set; }
+#endif
         /// <summary>The imtId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -93,9 +93,9 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "authorId", n => { AuthorId = n.GetIntValue(); } },
                 { "authorName", n => { AuthorName = n.GetStringValue(); } },
-                { "centicredits", n => { Centicredits = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogCenticredits>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogCenticredits.CreateFromDiscriminatorValue); } },
+                { "centicredits", n => { Centicredits = n.GetIntValue(); } },
                 { "duration", n => { Duration = n.GetIntValue(); } },
-                { "id", n => { Id = n.GetIntValue(); } },
+                { "id", n => { Id = n.GetStringValue(); } },
                 { "imtId", n => { ImtId = n.GetStringValue(); } },
                 { "instant", n => { Instant = n.GetBoolValue(); } },
                 { "operations", n => { Operations = n.GetIntValue(); } },
@@ -116,9 +116,9 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("authorId", AuthorId);
             writer.WriteStringValue("authorName", AuthorName);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogCenticredits>("centicredits", Centicredits);
+            writer.WriteIntValue("centicredits", Centicredits);
             writer.WriteIntValue("duration", Duration);
-            writer.WriteIntValue("id", Id);
+            writer.WriteStringValue("id", Id);
             writer.WriteStringValue("imtId", ImtId);
             writer.WriteBoolValue("instant", Instant);
             writer.WriteIntValue("operations", Operations);

@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Notes
         {
         }
         /// <summary>
-        /// Retrieves a collection of all scenario notes for a team and organization with a given ID. Returned notes are sorted by the order of modules and notes&apos; id in descending order.
+        /// Retrieves a collection of all scenario notes for a team and organization with a given ID. Returned notes are sorted by their id in descending order.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdNotes200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Notes
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdNotes200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdNotes200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves a collection of all scenario notes for a team and organization with a given ID. Returned notes are sorted by the order of modules and notes&apos; id in descending order.
+        /// Retrieves a collection of all scenario notes for a team and organization with a given ID. Returned notes are sorted by their id in descending order.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -135,7 +135,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Notes
             return new global::Soenneker.Make.OpenApiClient.Scenarios.Item.Notes.NotesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieves a collection of all scenario notes for a team and organization with a given ID. Returned notes are sorted by the order of modules and notes&apos; id in descending order.
+        /// Retrieves a collection of all scenario notes for a team and organization with a given ID. Returned notes are sorted by their id in descending order.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class NotesRequestBuilderGetQueryParameters 

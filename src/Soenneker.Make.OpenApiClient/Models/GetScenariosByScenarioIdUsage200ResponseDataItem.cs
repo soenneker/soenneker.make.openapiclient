@@ -16,13 +16,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The centicredits property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdUsage200ResponseDataItemCenticredits? Centicredits { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdUsage200ResponseDataItemCenticredits Centicredits { get; set; }
-#endif
+        public int? Centicredits { get; set; }
         /// <summary>The dataTransfer property</summary>
         public int? DataTransfer { get; set; }
         /// <summary>The date property</summary>
@@ -54,7 +48,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "centicredits", n => { Centicredits = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdUsage200ResponseDataItemCenticredits>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdUsage200ResponseDataItemCenticredits.CreateFromDiscriminatorValue); } },
+                { "centicredits", n => { Centicredits = n.GetIntValue(); } },
                 { "dataTransfer", n => { DataTransfer = n.GetIntValue(); } },
                 { "date", n => { Date = n.GetDateValue(); } },
                 { "operations", n => { Operations = n.GetIntValue(); } },
@@ -67,7 +61,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdUsage200ResponseDataItemCenticredits>("centicredits", Centicredits);
+            writer.WriteIntValue("centicredits", Centicredits);
             writer.WriteIntValue("dataTransfer", DataTransfer);
             writer.WriteDateValue("date", Date);
             writer.WriteIntValue("operations", Operations);

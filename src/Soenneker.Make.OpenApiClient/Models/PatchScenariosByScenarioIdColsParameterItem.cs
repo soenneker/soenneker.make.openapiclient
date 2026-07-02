@@ -92,14 +92,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         NextExec,
         #pragma warning restore CS1591
-        [EnumMember(Value = "scenarioVersion")]
-        #pragma warning disable CS1591
-        ScenarioVersion,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "moduleSequenceId")]
-        #pragma warning disable CS1591
-        ModuleSequenceId,
-        #pragma warning restore CS1591
         [EnumMember(Value = "deleted")]
         #pragma warning disable CS1591
         Deleted,

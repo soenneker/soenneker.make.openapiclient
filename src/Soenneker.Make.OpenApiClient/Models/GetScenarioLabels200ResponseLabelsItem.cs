@@ -38,6 +38,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>Number of non-trashed scenarios in the team carrying this label.</summary>
+        public int? ScenariosCount { get; set; }
         /// <summary>Label visibility tier exposed by the web API. Only team labels are supported in this version.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.GetScenarioLabels200ResponseLabelsItemScope? Scope { get; set; }
         /// <summary>The team (company) that owns the label.</summary>
@@ -75,6 +77,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "scenariosCount", n => { ScenariosCount = n.GetIntValue(); } },
                 { "scope", n => { Scope = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenarioLabels200ResponseLabelsItemScope>(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
                 { "updated", n => { Updated = n.GetDateTimeOffsetValue(); } },
@@ -93,6 +96,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("description", Description);
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("name", Name);
+            writer.WriteIntValue("scenariosCount", ScenariosCount);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenarioLabels200ResponseLabelsItemScope>("scope", Scope);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteDateTimeOffsetValue("updated", Updated);

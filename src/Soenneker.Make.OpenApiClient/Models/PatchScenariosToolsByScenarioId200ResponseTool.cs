@@ -40,14 +40,6 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseToolModule Module { get; set; }
 #endif
-        /// <summary>The moduleType property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ModuleType { get; set; }
-#nullable restore
-#else
-        public string ModuleType { get; set; }
-#endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -87,7 +79,6 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "inputs", n => { Inputs = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseTool_inputs>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseTool_inputs.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "module", n => { Module = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseToolModule>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseToolModule.CreateFromDiscriminatorValue); } },
-                { "moduleType", n => { ModuleType = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
             };
@@ -103,7 +94,6 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("id", Id);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseTool_inputs>("inputs", Inputs);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseToolModule>("module", Module);
-            writer.WriteStringValue("moduleType", ModuleType);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteAdditionalData(AdditionalData);

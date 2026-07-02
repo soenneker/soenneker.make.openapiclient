@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels
         {
         }
         /// <summary>
-        /// Retrieves the colour-coded labels owned by a team, sorted by name (case-insensitive) ascending.
+        /// Retrieves the colour-coded labels owned by a team, sorted by name (case-insensitive) ascending. Each label carries a `scenariosCount` — the number of non-trashed scenarios in the team that currently carry it.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarioLabels200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabels200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabels200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves the colour-coded labels owned by a team, sorted by name (case-insensitive) ascending.
+        /// Retrieves the colour-coded labels owned by a team, sorted by name (case-insensitive) ascending. Each label carries a `scenariosCount` — the number of non-trashed scenarios in the team that currently carry it.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -135,7 +135,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels
             return new global::Soenneker.Make.OpenApiClient.ScenarioLabels.ScenarioLabelsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieves the colour-coded labels owned by a team, sorted by name (case-insensitive) ascending.
+        /// Retrieves the colour-coded labels owned by a team, sorted by name (case-insensitive) ascending. Each label carries a `scenariosCount` — the number of non-trashed scenarios in the team that currently carry it.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ScenarioLabelsRequestBuilderGetQueryParameters 

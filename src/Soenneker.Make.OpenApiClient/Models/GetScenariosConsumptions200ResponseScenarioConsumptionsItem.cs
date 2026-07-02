@@ -15,13 +15,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The centicredits property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosConsumptions200ResponseScenarioConsumptionsItemCenticredits? Centicredits { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosConsumptions200ResponseScenarioConsumptionsItemCenticredits Centicredits { get; set; }
-#endif
+        public int? Centicredits { get; set; }
         /// <summary>The operations property</summary>
         public int? Operations { get; set; }
         /// <summary>The scenarioId property</summary>
@@ -53,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "centicredits", n => { Centicredits = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosConsumptions200ResponseScenarioConsumptionsItemCenticredits>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosConsumptions200ResponseScenarioConsumptionsItemCenticredits.CreateFromDiscriminatorValue); } },
+                { "centicredits", n => { Centicredits = n.GetIntValue(); } },
                 { "operations", n => { Operations = n.GetIntValue(); } },
                 { "scenarioId", n => { ScenarioId = n.GetIntValue(); } },
                 { "transfer", n => { Transfer = n.GetIntValue(); } },
@@ -66,7 +60,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosConsumptions200ResponseScenarioConsumptionsItemCenticredits>("centicredits", Centicredits);
+            writer.WriteIntValue("centicredits", Centicredits);
             writer.WriteIntValue("operations", Operations);
             writer.WriteIntValue("scenarioId", ScenarioId);
             writer.WriteIntValue("transfer", Transfer);

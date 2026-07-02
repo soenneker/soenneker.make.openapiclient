@@ -60,8 +60,6 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The scenarioId property</summary>
         public int? ScenarioId { get; set; }
-        /// <summary>The scenariosTotal property</summary>
-        public int? ScenariosTotal { get; set; }
         /// <summary>The updated property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -111,7 +109,6 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdNotesByNoteId200ResponseNoteMetadata>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdNotesByNoteId200ResponseNoteMetadata.CreateFromDiscriminatorValue); } },
                 { "moduleIds", n => { ModuleIds = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
                 { "scenarioId", n => { ScenarioId = n.GetIntValue(); } },
-                { "scenariosTotal", n => { ScenariosTotal = n.GetIntValue(); } },
                 { "updated", n => { Updated = n.GetStringValue(); } },
                 { "updatedByUser", n => { UpdatedByUser = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdNotesByNoteId200ResponseNoteUpdatedByUser>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdNotesByNoteId200ResponseNoteUpdatedByUser.CreateFromDiscriminatorValue); } },
             };
@@ -131,7 +128,6 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdNotesByNoteId200ResponseNoteMetadata>("metadata", Metadata);
             writer.WriteCollectionOfPrimitiveValues<int?>("moduleIds", ModuleIds);
             writer.WriteIntValue("scenarioId", ScenarioId);
-            writer.WriteIntValue("scenariosTotal", ScenariosTotal);
             writer.WriteStringValue("updated", Updated);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdNotesByNoteId200ResponseNoteUpdatedByUser>("updatedByUser", UpdatedByUser);
             writer.WriteAdditionalData(AdditionalData);

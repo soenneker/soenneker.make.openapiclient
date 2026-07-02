@@ -154,7 +154,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Logs
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsPgSortDirParameter? PgsortDir { get; set; }
-            /// <summary>If set to `true`, this parameter specifies that check runs should be hidden in the returned results. Check runs concern scenarios starting with a trigger in cases when the trigger does not find anything new.</summary>
+            /// <summary>If set to `true`, check runs are included in the returned results. By default they are excluded. Check runs concern scenarios starting with a trigger in cases when the trigger does not find anything new.</summary>
             [QueryParameter("showCheckRuns")]
             public bool? ShowCheckRuns { get; set; }
             /// <summary>Filters logs by the execution status. `1` is for success, `2` is for warning, and `3` is for error.</summary>
