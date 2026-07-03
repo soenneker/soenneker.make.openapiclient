@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Internal.Users.Item;
+using Soenneker.Make.OpenApiClient.Internal.Users.LookupByEmail;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,6 +16,11 @@ namespace Soenneker.Make.OpenApiClient.Internal.Users
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UsersRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The lookupByEmail property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Users.LookupByEmail.LookupByEmailRequestBuilder LookupByEmail
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Users.LookupByEmail.LookupByEmailRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.internal.users.item collection</summary>
         /// <param name="position">The ID of the user.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Internal.Users.Item.WithUserItemRequestBuilder"/></returns>
