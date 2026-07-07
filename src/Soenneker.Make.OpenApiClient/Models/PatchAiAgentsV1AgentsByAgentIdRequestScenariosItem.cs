@@ -24,7 +24,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         public PatchAiAgentsV1AgentsByAgentIdRequestScenariosItem()
         {
             AdditionalData = new Dictionary<string, object>();
-            ApprovalMode = global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestScenariosItemApprovalMode.AutoRun;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

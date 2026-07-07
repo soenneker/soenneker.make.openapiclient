@@ -80,7 +80,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         public PostSdkAppsBySdkAppNameBySdkAppVersionModulesRequest()
         {
             AdditionalData = new Dictionary<string, object>();
-            ModuleInitMode = global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesRequestModuleInitMode.Blank;
             TypeId = 4;
         }
         /// <summary>

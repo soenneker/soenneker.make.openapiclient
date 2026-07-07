@@ -24,7 +24,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         public GetAiAgentsV1AgentsByAgentId200ResponsePastConfigurationsItemScenariosItem()
         {
             AdditionalData = new Dictionary<string, object>();
-            ApprovalMode = global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponsePastConfigurationsItemScenariosItemApprovalMode.AutoRun;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

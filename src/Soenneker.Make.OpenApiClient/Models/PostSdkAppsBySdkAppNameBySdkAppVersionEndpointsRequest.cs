@@ -54,7 +54,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         public PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequest()
         {
             AdditionalData = new Dictionary<string, object>();
-            EndpointInitMode = global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestEndpointInitMode.Example;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
