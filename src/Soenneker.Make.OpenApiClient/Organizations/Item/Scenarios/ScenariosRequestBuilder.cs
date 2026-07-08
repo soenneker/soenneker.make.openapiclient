@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions;
+using Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Item;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,18 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.ExecutionsRequestBuilder Executions
         {
             get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.ExecutionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.organizations.item.scenarios.item collection</summary>
+        /// <param name="position">The ID of the scenario.</param>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Item.WithScenarioItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Item.WithScenarioItemRequestBuilder this[int position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("scenarioId", position);
+                return new global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Item.WithScenarioItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.ScenariosRequestBuilder"/> and sets the default values.

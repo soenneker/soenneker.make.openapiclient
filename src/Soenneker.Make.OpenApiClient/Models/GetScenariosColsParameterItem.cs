@@ -24,6 +24,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         HookId,
         #pragma warning restore CS1591
+        [EnumMember(Value = "devices")]
+        #pragma warning disable CS1591
+        Devices,
+        #pragma warning restore CS1591
         [EnumMember(Value = "deviceId")]
         #pragma warning disable CS1591
         DeviceId,
@@ -39,6 +43,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         [EnumMember(Value = "folderId")]
         #pragma warning disable CS1591
         FolderId,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "concept")]
+        #pragma warning disable CS1591
+        Concept,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "folderPath")]
+        #pragma warning disable CS1591
+        FolderPath,
         #pragma warning restore CS1591
         [EnumMember(Value = "isinvalid")]
         #pragma warning disable CS1591
@@ -64,6 +76,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         UsedPackages,
         #pragma warning restore CS1591
+        [EnumMember(Value = "usedModules")]
+        #pragma warning disable CS1591
+        UsedModules,
+        #pragma warning restore CS1591
         [EnumMember(Value = "lastEdit")]
         #pragma warning disable CS1591
         LastEdit,
@@ -80,6 +96,22 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         DlqCount,
         #pragma warning restore CS1591
+        [EnumMember(Value = "allDlqCount")]
+        #pragma warning disable CS1591
+        AllDlqCount,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "chainingRole")]
+        #pragma warning disable CS1591
+        ChainingRole,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "isShared")]
+        #pragma warning disable CS1591
+        IsShared,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "type")]
+        #pragma warning disable CS1591
+        Type,
+        #pragma warning restore CS1591
         [EnumMember(Value = "createdByUser")]
         #pragma warning disable CS1591
         CreatedByUser,
@@ -88,9 +120,41 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         UpdatedByUser,
         #pragma warning restore CS1591
+        [EnumMember(Value = "created")]
+        #pragma warning disable CS1591
+        Created,
+        #pragma warning restore CS1591
         [EnumMember(Value = "nextExec")]
         #pragma warning disable CS1591
         NextExec,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "operations")]
+        #pragma warning disable CS1591
+        Operations,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "centicredits")]
+        #pragma warning disable CS1591
+        Centicredits,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "transfer")]
+        #pragma warning disable CS1591
+        Transfer,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "executions")]
+        #pragma warning disable CS1591
+        Executions,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "errors")]
+        #pragma warning disable CS1591
+        Errors,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "customProperties")]
+        #pragma warning disable CS1591
+        CustomProperties,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "templateMetadata")]
+        #pragma warning disable CS1591
+        TemplateMetadata,
         #pragma warning restore CS1591
         [EnumMember(Value = "deleted")]
         #pragma warning disable CS1591

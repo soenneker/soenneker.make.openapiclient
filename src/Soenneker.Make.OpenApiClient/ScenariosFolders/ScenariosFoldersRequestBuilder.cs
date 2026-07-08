@@ -6,6 +6,7 @@ using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
 using Soenneker.Make.OpenApiClient.ScenariosFolders.Item;
 using Soenneker.Make.OpenApiClient.ScenariosFolders.MoveScenarios;
+using Soenneker.Make.OpenApiClient.ScenariosFolders.Reorder;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -23,6 +24,11 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
         public global::Soenneker.Make.OpenApiClient.ScenariosFolders.MoveScenarios.MoveScenariosRequestBuilder MoveScenarios
         {
             get => new global::Soenneker.Make.OpenApiClient.ScenariosFolders.MoveScenarios.MoveScenariosRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The reorder property</summary>
+        public global::Soenneker.Make.OpenApiClient.ScenariosFolders.Reorder.ReorderRequestBuilder Reorder
+        {
+            get => new global::Soenneker.Make.OpenApiClient.ScenariosFolders.Reorder.ReorderRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.scenariosFolders.item collection</summary>
         /// <param name="position">The unique ID of the scenario folder. It can be retrieved from the [List scenarios folders](/api-reference/scenarios-folders/get--scenarios-folders.md) endpoint.</param>

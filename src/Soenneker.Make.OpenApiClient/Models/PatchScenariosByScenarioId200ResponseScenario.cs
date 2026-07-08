@@ -14,6 +14,20 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The total number of incomplete executions of the scenario, including resolved ones.</summary>
+        public int? AllDlqCount { get; set; }
+        /// <summary>The number of centicredits consumed by the scenario in the reported period.</summary>
+        public int? Centicredits { get; set; }
+        /// <summary>The scenario&apos;s role in a scenario chain (for example when it is triggered by another scenario), or `null` when the scenario is not part of a chain.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ChainingRole { get; set; }
+#nullable restore
+#else
+        public string ChainingRole { get; set; }
+#endif
+        /// <summary>Whether the scenario is a concept (a work-in-progress scenario that has never been activated).</summary>
+        public bool? Concept { get; set; }
         /// <summary>The created property</summary>
         public DateTimeOffset? Created { get; set; }
         /// <summary>The createdByUser property</summary>
@@ -23,6 +37,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioCreatedByUser CreatedByUser { get; set; }
+#endif
+        /// <summary>The scenario&apos;s custom-property values keyed by property name, or `null` when custom properties are not included in the organization&apos;s license. Returned only when requested via `cols[]`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioCustomProperties? CustomProperties { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioCustomProperties CustomProperties { get; set; }
 #endif
         /// <summary>Whether the scenario is currently soft-deleted (in the trash). Returned only when requested via `cols[]`.</summary>
         public bool? Deleted { get; set; }
@@ -56,10 +78,22 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string DeviceScope { get; set; }
 #endif
-        /// <summary>The dlqCount property</summary>
+        /// <summary>The number of unresolved incomplete executions of the scenario.</summary>
         public int? DlqCount { get; set; }
+        /// <summary>The number of failed executions of the scenario in the reported period. Returned only when requested via `cols[]`.</summary>
+        public int? Errors { get; set; }
+        /// <summary>The number of times the scenario was executed in the reported period. Returned only when requested via `cols[]`.</summary>
+        public int? Executions { get; set; }
         /// <summary>The folderId property</summary>
         public int? FolderId { get; set; }
+        /// <summary>Slash-separated folder path for the scenario, for example `CRM/cleanup`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? FolderPath { get; set; }
+#nullable restore
+#else
+        public string FolderPath { get; set; }
+#endif
         /// <summary>The hookId property</summary>
         public int? HookId { get; set; }
         /// <summary>The id property</summary>
@@ -75,6 +109,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public bool? Islocked { get; set; }
         /// <summary>The isPaused property</summary>
         public bool? IsPaused { get; set; }
+        /// <summary>Whether the scenario is shared.</summary>
+        public bool? IsShared { get; set; }
         /// <summary>The iswaiting property</summary>
         public bool? Iswaiting { get; set; }
         /// <summary>Team labels assigned to the scenario, sorted by label name case-insensitively.</summary>
@@ -99,6 +135,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The nextExec property</summary>
         public DateTimeOffset? NextExec { get; set; }
+        /// <summary>The number of operations consumed by the scenario in the reported period.</summary>
+        public int? Operations { get; set; }
         /// <summary>The scenarioVersion property</summary>
         public int? ScenarioVersion { get; set; }
         /// <summary>The scheduling property</summary>
@@ -111,6 +149,16 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The teamId property</summary>
         public int? TeamId { get; set; }
+        /// <summary>Metadata linking the scenario to the template it was created from, or `null` when the scenario was not created from a template. Returned only when requested via `cols[]`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioTemplateMetadata? TemplateMetadata { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioTemplateMetadata TemplateMetadata { get; set; }
+#endif
+        /// <summary>The amount of data transferred by the scenario in the reported period, in bytes.</summary>
+        public int? Transfer { get; set; }
         /// <summary>The type property</summary>
         public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioType? Type { get; set; }
         /// <summary>The updatedByUser property</summary>
@@ -120,6 +168,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioUpdatedByUser UpdatedByUser { get; set; }
+#endif
+        /// <summary>The apps and modules used in the scenario.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioUsedModulesItem>? UsedModules { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioUsedModulesItem> UsedModules { get; set; }
 #endif
         /// <summary>The usedPackages property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -154,8 +210,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "allDlqCount", n => { AllDlqCount = n.GetIntValue(); } },
+                { "centicredits", n => { Centicredits = n.GetIntValue(); } },
+                { "chainingRole", n => { ChainingRole = n.GetStringValue(); } },
+                { "concept", n => { Concept = n.GetBoolValue(); } },
                 { "created", n => { Created = n.GetDateTimeOffsetValue(); } },
                 { "createdByUser", n => { CreatedByUser = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioCreatedByUser>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioCreatedByUser.CreateFromDiscriminatorValue); } },
+                { "customProperties", n => { CustomProperties = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioCustomProperties>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioCustomProperties.CreateFromDiscriminatorValue); } },
                 { "deleted", n => { Deleted = n.GetBoolValue(); } },
                 { "deletedAt", n => { DeletedAt = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
@@ -163,11 +224,15 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "deviceScope", n => { DeviceScope = n.GetStringValue(); } },
                 { "devices", n => { Devices = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioDevicesItem>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioDevicesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "dlqCount", n => { DlqCount = n.GetIntValue(); } },
+                { "errors", n => { Errors = n.GetIntValue(); } },
+                { "executions", n => { Executions = n.GetIntValue(); } },
                 { "folderId", n => { FolderId = n.GetIntValue(); } },
+                { "folderPath", n => { FolderPath = n.GetStringValue(); } },
                 { "hookId", n => { HookId = n.GetIntValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "isActive", n => { IsActive = n.GetBoolValue(); } },
                 { "isPaused", n => { IsPaused = n.GetBoolValue(); } },
+                { "isShared", n => { IsShared = n.GetBoolValue(); } },
                 { "isinvalid", n => { Isinvalid = n.GetBoolValue(); } },
                 { "islinked", n => { Islinked = n.GetBoolValue(); } },
                 { "islocked", n => { Islocked = n.GetBoolValue(); } },
@@ -177,11 +242,15 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "moduleSequenceId", n => { ModuleSequenceId = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "nextExec", n => { NextExec = n.GetDateTimeOffsetValue(); } },
+                { "operations", n => { Operations = n.GetIntValue(); } },
                 { "scenarioVersion", n => { ScenarioVersion = n.GetIntValue(); } },
                 { "scheduling", n => { Scheduling = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioScheduling>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioScheduling.CreateFromDiscriminatorValue); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
+                { "templateMetadata", n => { TemplateMetadata = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioTemplateMetadata>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioTemplateMetadata.CreateFromDiscriminatorValue); } },
+                { "transfer", n => { Transfer = n.GetIntValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioType>(); } },
                 { "updatedByUser", n => { UpdatedByUser = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioUpdatedByUser>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioUpdatedByUser.CreateFromDiscriminatorValue); } },
+                { "usedModules", n => { UsedModules = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioUsedModulesItem>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioUsedModulesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "usedPackages", n => { UsedPackages = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -192,8 +261,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteIntValue("allDlqCount", AllDlqCount);
+            writer.WriteIntValue("centicredits", Centicredits);
+            writer.WriteStringValue("chainingRole", ChainingRole);
+            writer.WriteBoolValue("concept", Concept);
             writer.WriteDateTimeOffsetValue("created", Created);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioCreatedByUser>("createdByUser", CreatedByUser);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioCustomProperties>("customProperties", CustomProperties);
             writer.WriteBoolValue("deleted", Deleted);
             writer.WriteDateTimeOffsetValue("deletedAt", DeletedAt);
             writer.WriteStringValue("description", Description);
@@ -201,7 +275,10 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioDevicesItem>("devices", Devices);
             writer.WriteStringValue("deviceScope", DeviceScope);
             writer.WriteIntValue("dlqCount", DlqCount);
+            writer.WriteIntValue("errors", Errors);
+            writer.WriteIntValue("executions", Executions);
             writer.WriteIntValue("folderId", FolderId);
+            writer.WriteStringValue("folderPath", FolderPath);
             writer.WriteIntValue("hookId", HookId);
             writer.WriteIntValue("id", Id);
             writer.WriteBoolValue("isActive", IsActive);
@@ -209,17 +286,22 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("islinked", Islinked);
             writer.WriteBoolValue("islocked", Islocked);
             writer.WriteBoolValue("isPaused", IsPaused);
+            writer.WriteBoolValue("isShared", IsShared);
             writer.WriteBoolValue("iswaiting", Iswaiting);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioLabelsItem>("labels", Labels);
             writer.WriteDateTimeOffsetValue("lastEdit", LastEdit);
             writer.WriteIntValue("moduleSequenceId", ModuleSequenceId);
             writer.WriteStringValue("name", Name);
             writer.WriteDateTimeOffsetValue("nextExec", NextExec);
+            writer.WriteIntValue("operations", Operations);
             writer.WriteIntValue("scenarioVersion", ScenarioVersion);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioScheduling>("scheduling", Scheduling);
             writer.WriteIntValue("teamId", TeamId);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioTemplateMetadata>("templateMetadata", TemplateMetadata);
+            writer.WriteIntValue("transfer", Transfer);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioType>("type", Type);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioUpdatedByUser>("updatedByUser", UpdatedByUser);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioUsedModulesItem>("usedModules", UsedModules);
             writer.WriteCollectionOfPrimitiveValues<string>("usedPackages", UsedPackages);
             writer.WriteAdditionalData(AdditionalData);
         }

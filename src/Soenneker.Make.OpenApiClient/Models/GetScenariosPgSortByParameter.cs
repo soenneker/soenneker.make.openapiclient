@@ -60,5 +60,29 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         Created,
         #pragma warning restore CS1591
+        [EnumMember(Value = "dlqCount")]
+        #pragma warning disable CS1591
+        DlqCount,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "operations")]
+        #pragma warning disable CS1591
+        Operations,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "executions")]
+        #pragma warning disable CS1591
+        Executions,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "centicredits")]
+        #pragma warning disable CS1591
+        Centicredits,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "transfer")]
+        #pragma warning disable CS1591
+        Transfer,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "errors")]
+        #pragma warning disable CS1591
+        Errors,
+        #pragma warning restore CS1591
     }
 }

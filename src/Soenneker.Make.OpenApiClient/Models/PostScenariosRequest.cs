@@ -24,8 +24,24 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Blueprint { get; set; }
 #endif
+        /// <summary>A description of the scenario.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
         /// <summary>The unique ID of the folder in which you want to store created scenario.</summary>
         public int? FolderId { get; set; }
+        /// <summary>Additional scenario metadata. Used to declare the scenario&apos;s input and output interface and, optionally, the template it is instantiated from.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadata? Metadata { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadata Metadata { get; set; }
+#endif
         /// <summary>The scenario scheduling details. To save resources, the scheduling details are sent as a string, not as an object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -63,7 +79,9 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "basedon", n => { Basedon = n.GetIntValue(); } },
                 { "blueprint", n => { Blueprint = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "folderId", n => { FolderId = n.GetIntValue(); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadata>(global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadata.CreateFromDiscriminatorValue); } },
                 { "scheduling", n => { Scheduling = n.GetStringValue(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
             };
@@ -77,7 +95,9 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("basedon", Basedon);
             writer.WriteStringValue("blueprint", Blueprint);
+            writer.WriteStringValue("description", Description);
             writer.WriteIntValue("folderId", FolderId);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadata>("metadata", Metadata);
             writer.WriteStringValue("scheduling", Scheduling);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteAdditionalData(AdditionalData);

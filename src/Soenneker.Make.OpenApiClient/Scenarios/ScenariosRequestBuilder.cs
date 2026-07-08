@@ -77,7 +77,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,deleted*,folderId*,id%5B%5D*,isActive*,islinked*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*}", pathParameters)
+        public ScenariosRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*,updatedByUserName*}", pathParameters)
         {
         }
         /// <summary>
@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,deleted*,folderId*,id%5B%5D*,isActive*,islinked*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*}", rawUrl)
+        public ScenariosRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*,updatedByUserName*}", rawUrl)
         {
         }
         /// <summary>
@@ -107,7 +107,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenarios200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a new scenario with data passed in the request body. In the response, it returns all details of the created scenario including its blueprint.
+        /// Creates a new scenario with data passed in the request body. In the response, it returns the details of the created scenario. The blueprint is not returned; retrieve it separately via the Get scenario blueprint endpoint.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenarios200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -140,13 +140,13 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios?teamId={teamId}{&cols%5B%5D*,concept*,deleted*,folderId*,id%5B%5D*,isActive*,islinked*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios?teamId={teamId}{&cols%5B%5D*,concept*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*,updatedByUserName*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Creates a new scenario with data passed in the request body. In the response, it returns all details of the created scenario including its blueprint.
+        /// Creates a new scenario with data passed in the request body. In the response, it returns the details of the created scenario. The blueprint is not returned; retrieve it separately via the Get scenario blueprint endpoint.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -195,10 +195,23 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
             /// <summary>If set to `true`, the response contains only scenario concepts.</summary>
             [QueryParameter("concept")]
             public bool? Concept { get; set; }
+            /// <summary>Filters scenarios by the name of the user who created them.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("createdByUserName")]
+            public string? CreatedByUserName { get; set; }
+#nullable restore
+#else
+            [QueryParameter("createdByUserName")]
+            public string CreatedByUserName { get; set; }
+#endif
             /// <summary>Set this parameter to `true` to list scenarios currently in the trash — scenarios thatwere deleted and are still within the 30-day recovery window. When omitted (the default),deleted scenarios are excluded from the response.</summary>
             [QueryParameter("deleted")]
             public bool? Deleted { get; set; }
-            /// <summary>The unique ID of the folder containing scenarios you want to retrieve.</summary>
+            /// <summary>Filters scenarios by their number of unresolved incomplete executions.</summary>
+            [QueryParameter("dlqCount")]
+            public int? DlqCount { get; set; }
+            /// <summary>The unique ID of the folder containing scenarios you want to retrieve. By default, only scenarios directly assigned to this folder are returned.</summary>
             [QueryParameter("folderId")]
             public int? FolderId { get; set; }
             /// <summary>The array of IDs of scenarios to retrieve.</summary>
@@ -211,13 +224,32 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
             [QueryParameter("id%5B%5D")]
             public int?[] Id { get; set; }
 #endif
+            /// <summary>When set to `true` with `folderId`, also returns scenarios assigned to descendant folders up to the scenario folder nesting limit.</summary>
+            [QueryParameter("includeSubfolders")]
+            public bool? IncludeSubfolders { get; set; }
             /// <summary>Set this parameter to `true` to get only active scenarios in the response.</summary>
             [QueryParameter("isActive")]
             public bool? IsActive { get; set; }
+            /// <summary>Set to `true` to return only invalid scenarios (those whose blueprint failed validation), or `false` to return only valid ones.</summary>
+            [QueryParameter("isinvalid")]
+            public bool? Isinvalid { get; set; }
             /// <summary>This parameter is deprecated. Use the `isActive` parameter to filter for active scenarios instead.</summary>
             [Obsolete("")]
             [QueryParameter("islinked")]
             public bool? Islinked { get; set; }
+            /// <summary>Set to `true` to return only locked scenarios, or `false` to return only unlocked ones.</summary>
+            [QueryParameter("islocked")]
+            public bool? Islocked { get; set; }
+            /// <summary>Filters scenarios by name using a case-insensitive substring match.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("name")]
+            public string? Name { get; set; }
+#nullable restore
+#else
+            [QueryParameter("name")]
+            public string Name { get; set; }
+#endif
             /// <summary>The unique ID of the organization whose scenarios will be retrieved. If this parameter is set, the `teamId` parameter must be skipped. For each request either `teamId` or `organizationId` must be defined.</summary>
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
@@ -230,7 +262,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
             /// <summary>The value that will be used to sort returned entities by.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetScenariosPgSortByParameter? PgsortBy { get; set; }
-            /// <summary>The only allowed value for this parameter is `desc` that sorts scenarios in descending direction. Ascendent sorting direction is **not allowed** for this endpoint.</summary>
+            /// <summary>The sorting direction. Ascending order (`asc`) is rejected only when sorting by the default `proprietal` column; for every other `sortBy` value both `asc` and `desc` are allowed. Defaults to `desc`.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetScenariosPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>The unique ID of the team whose scenarios will be retrieved. If this parameter is set, the `organizationId` parameter must be skipped. For each request either `teamId` or `organizationId` must be defined.</summary>
@@ -239,9 +271,19 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
             /// <summary>Limits the type of scenarios to be retrieved.</summary>
             [QueryParameter("type")]
             public global::Soenneker.Make.OpenApiClient.Models.GetScenariosTypeParameter? Type { get; set; }
+            /// <summary>Filters scenarios by the name of the user who last updated them.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("updatedByUserName")]
+            public string? UpdatedByUserName { get; set; }
+#nullable restore
+#else
+            [QueryParameter("updatedByUserName")]
+            public string UpdatedByUserName { get; set; }
+#endif
         }
         /// <summary>
-        /// Creates a new scenario with data passed in the request body. In the response, it returns all details of the created scenario including its blueprint.
+        /// Creates a new scenario with data passed in the request body. In the response, it returns the details of the created scenario. The blueprint is not returned; retrieve it separately via the Get scenario blueprint endpoint.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ScenariosRequestBuilderPostQueryParameters 

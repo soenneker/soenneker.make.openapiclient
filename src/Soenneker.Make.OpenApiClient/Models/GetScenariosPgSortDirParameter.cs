@@ -8,6 +8,10 @@ namespace Soenneker.Make.OpenApiClient.Models
     public enum GetScenariosPgSortDirParameter
     #pragma warning restore CS1591
     {
+        [EnumMember(Value = "asc")]
+        #pragma warning disable CS1591
+        Asc,
+        #pragma warning restore CS1591
         [EnumMember(Value = "desc")]
         #pragma warning disable CS1591
         Desc,

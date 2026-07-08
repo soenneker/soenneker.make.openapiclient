@@ -36,10 +36,22 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The parentId property</summary>
         public int? ParentId { get; set; }
+        /// <summary>Slash-separated folder path including this folder, for example `CRM/cleanup`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Path { get; set; }
+#nullable restore
+#else
+        public string Path { get; set; }
+#endif
         /// <summary>The position property</summary>
         public int? Position { get; set; }
         /// <summary>Number of deleted scenarios directly assigned to this folder. Available to admin callers.</summary>
         public int? ScenariosDeleted { get; set; }
+        /// <summary>Number of deleted scenarios assigned to this folder or any descendant folder. Available to admin callers.</summary>
+        public int? ScenariosDeletedSubtreeTotal { get; set; }
+        /// <summary>Number of scenarios assigned to this folder or any descendant folder.</summary>
+        public int? ScenariosSubtreeTotal { get; set; }
         /// <summary>Number of scenarios directly assigned to this folder.</summary>
         public int? ScenariosTotal { get; set; }
         /// <summary>The unique ID of the team that owns the folder. Returned when listing folders by organization.</summary>
@@ -74,8 +86,11 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "parentId", n => { ParentId = n.GetIntValue(); } },
+                { "path", n => { Path = n.GetStringValue(); } },
                 { "position", n => { Position = n.GetIntValue(); } },
                 { "scenariosDeleted", n => { ScenariosDeleted = n.GetIntValue(); } },
+                { "scenariosDeletedSubtreeTotal", n => { ScenariosDeletedSubtreeTotal = n.GetIntValue(); } },
+                { "scenariosSubtreeTotal", n => { ScenariosSubtreeTotal = n.GetIntValue(); } },
                 { "scenariosTotal", n => { ScenariosTotal = n.GetIntValue(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
             };
@@ -92,8 +107,11 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("parentId", ParentId);
+            writer.WriteStringValue("path", Path);
             writer.WriteIntValue("position", Position);
             writer.WriteIntValue("scenariosDeleted", ScenariosDeleted);
+            writer.WriteIntValue("scenariosDeletedSubtreeTotal", ScenariosDeletedSubtreeTotal);
+            writer.WriteIntValue("scenariosSubtreeTotal", ScenariosSubtreeTotal);
             writer.WriteIntValue("scenariosTotal", ScenariosTotal);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteAdditionalData(AdditionalData);

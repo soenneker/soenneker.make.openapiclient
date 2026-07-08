@@ -22,6 +22,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PostScenarios200ResponseScenario Scenario { get; set; }
 #endif
+        /// <summary>The version metadata of the created scenario. Returned only when the created scenario has a version; omitted otherwise.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenarios200ResponseScenarioVersion? ScenarioVersion { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenarios200ResponseScenarioVersion ScenarioVersion { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenarios200Response"/> and sets the default values.
         /// </summary>
@@ -48,6 +56,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "scenario", n => { Scenario = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostScenarios200ResponseScenario>(global::Soenneker.Make.OpenApiClient.Models.PostScenarios200ResponseScenario.CreateFromDiscriminatorValue); } },
+                { "scenarioVersion", n => { ScenarioVersion = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostScenarios200ResponseScenarioVersion>(global::Soenneker.Make.OpenApiClient.Models.PostScenarios200ResponseScenarioVersion.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -58,6 +67,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostScenarios200ResponseScenario>("scenario", Scenario);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostScenarios200ResponseScenarioVersion>("scenarioVersion", ScenarioVersion);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
