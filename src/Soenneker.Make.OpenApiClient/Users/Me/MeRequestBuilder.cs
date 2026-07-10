@@ -10,6 +10,7 @@ using Soenneker.Make.OpenApiClient.Users.Me.OauthConnections;
 using Soenneker.Make.OpenApiClient.Users.Me.OnboardingSurvey;
 using Soenneker.Make.OpenApiClient.Users.Me.OrganizationInvitations;
 using Soenneker.Make.OpenApiClient.Users.Me.PinnedApps;
+using Soenneker.Make.OpenApiClient.Users.Me.Preferences;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -52,6 +53,11 @@ namespace Soenneker.Make.OpenApiClient.Users.Me
         public global::Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.PinnedAppsRequestBuilder PinnedApps
         {
             get => new global::Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.PinnedAppsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The preferences property</summary>
+        public global::Soenneker.Make.OpenApiClient.Users.Me.Preferences.PreferencesRequestBuilder Preferences
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Users.Me.Preferences.PreferencesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Users.Me.MeRequestBuilder"/> and sets the default values.

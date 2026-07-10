@@ -14,6 +14,8 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Whether to automatically apply the partner&apos;s promo code to their referral link. Required — the UI form pre-ticks this checkbox, but the server does not substitute a default when the field is omitted.</summary>
+        public bool? ApplyPromoToLink { get; set; }
         /// <summary>The partnerCode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -57,6 +59,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "applyPromoToLink", n => { ApplyPromoToLink = n.GetBoolValue(); } },
                 { "partnerCode", n => { PartnerCode = n.GetStringValue(); } },
                 { "paypalMeLink", n => { PaypalMeLink = n.GetStringValue(); } },
                 { "termsAndConditions", n => { TermsAndConditions = n.GetBoolValue(); } },
@@ -69,6 +72,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("applyPromoToLink", ApplyPromoToLink);
             writer.WriteStringValue("partnerCode", PartnerCode);
             writer.WriteStringValue("paypalMeLink", PaypalMeLink);
             writer.WriteBoolValue("termsAndConditions", TermsAndConditions);
