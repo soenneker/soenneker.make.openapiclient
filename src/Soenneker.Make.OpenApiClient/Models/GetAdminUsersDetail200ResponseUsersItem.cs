@@ -27,13 +27,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The countryId property</summary>
         public int? CountryId { get; set; }
         /// <summary>The created property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Created { get; set; }
-#nullable restore
-#else
-        public string Created { get; set; }
-#endif
+        public DateTimeOffset? Created { get; set; }
         /// <summary>The deleted property</summary>
         public bool? Deleted { get; set; }
         /// <summary>The email property</summary>
@@ -78,6 +72,16 @@ namespace Soenneker.Make.OpenApiClient.Models
         public int? Organizations { get; set; }
         /// <summary>The scenarios property</summary>
         public int? Scenarios { get; set; }
+        /// <summary>Whether the user&apos;s account is suspended. Only present in slave mode (public cloud) — HQ syncs this field down; it is absent in master (private/on-prem) mode.</summary>
+        public bool? Suspended { get; set; }
+        /// <summary>Reason for the account suspension, or null when not suspended. Only present in slave mode (public cloud); absent in master (private/on-prem) mode.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SuspensionReason { get; set; }
+#nullable restore
+#else
+        public string SuspensionReason { get; set; }
+#endif
         /// <summary>The tfaEnabled property</summary>
         public bool? TfaEnabled { get; set; }
         /// <summary>The timezoneId property</summary>
@@ -112,7 +116,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "activeScenarios", n => { ActiveScenarios = n.GetIntValue(); } },
                 { "avatar", n => { Avatar = n.GetStringValue(); } },
                 { "countryId", n => { CountryId = n.GetIntValue(); } },
-                { "created", n => { Created = n.GetStringValue(); } },
+                { "created", n => { Created = n.GetDateTimeOffsetValue(); } },
                 { "deleted", n => { Deleted = n.GetBoolValue(); } },
                 { "email", n => { Email = n.GetStringValue(); } },
                 { "features", n => { Features = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200ResponseUsersItemFeatures>(global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200ResponseUsersItemFeatures.CreateFromDiscriminatorValue); } },
@@ -123,6 +127,8 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "organizations", n => { Organizations = n.GetIntValue(); } },
                 { "scenarios", n => { Scenarios = n.GetIntValue(); } },
+                { "suspended", n => { Suspended = n.GetBoolValue(); } },
+                { "suspensionReason", n => { SuspensionReason = n.GetStringValue(); } },
                 { "tfaEnabled", n => { TfaEnabled = n.GetBoolValue(); } },
                 { "timezoneId", n => { TimezoneId = n.GetIntValue(); } },
                 { "usersAdminsRoleId", n => { UsersAdminsRoleId = n.GetIntValue(); } },
@@ -138,7 +144,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("activeScenarios", ActiveScenarios);
             writer.WriteStringValue("avatar", Avatar);
             writer.WriteIntValue("countryId", CountryId);
-            writer.WriteStringValue("created", Created);
+            writer.WriteDateTimeOffsetValue("created", Created);
             writer.WriteBoolValue("deleted", Deleted);
             writer.WriteStringValue("email", Email);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200ResponseUsersItemFeatures>("features", Features);
@@ -149,6 +155,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("organizations", Organizations);
             writer.WriteIntValue("scenarios", Scenarios);
+            writer.WriteBoolValue("suspended", Suspended);
+            writer.WriteStringValue("suspensionReason", SuspensionReason);
             writer.WriteBoolValue("tfaEnabled", TfaEnabled);
             writer.WriteIntValue("timezoneId", TimezoneId);
             writer.WriteIntValue("usersAdminsRoleId", UsersAdminsRoleId);

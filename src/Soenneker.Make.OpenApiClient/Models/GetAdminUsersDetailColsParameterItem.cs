@@ -76,5 +76,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         TfaEnabled,
         #pragma warning restore CS1591
+        [EnumMember(Value = "suspended")]
+        #pragma warning disable CS1591
+        Suspended,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "suspensionReason")]
+        #pragma warning disable CS1591
+        SuspensionReason,
+        #pragma warning restore CS1591
     }
 }
