@@ -41,7 +41,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DlqsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/dlqs?scenarioId={scenarioId}{&confirmed*}", pathParameters)
+        public DlqsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/dlqs?scenarioId={scenarioId}{&attemptsFrom*,attemptsTo*,confirmed*,createdFrom*,createdTo*,idSearch*,scheduledInFrom*,scheduledInTo*,sizeFrom*,sizeTo*,status*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DlqsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/dlqs?scenarioId={scenarioId}{&confirmed*}", rawUrl)
+        public DlqsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/dlqs?scenarioId={scenarioId}{&attemptsFrom*,attemptsTo*,confirmed*,createdFrom*,createdTo*,idSearch*,scheduledInFrom*,scheduledInTo*,sizeFrom*,sizeTo*,status*}", rawUrl)
         {
         }
         /// <summary>
@@ -73,7 +73,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves the list of incomplete executions of the specified scenario.
+        /// Retrieves the list of incomplete executions of the specified scenario. Supports optional server-side filters — combine any of them to narrow down the results.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDlqs200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -113,7 +113,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
             return requestInfo;
         }
         /// <summary>
-        /// Retrieves the list of incomplete executions of the specified scenario.
+        /// Retrieves the list of incomplete executions of the specified scenario. Supports optional server-side filters — combine any of them to narrow down the results.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -154,14 +154,51 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
             public int? ScenarioId { get; set; }
         }
         /// <summary>
-        /// Retrieves the list of incomplete executions of the specified scenario.
+        /// Retrieves the list of incomplete executions of the specified scenario. Supports optional server-side filters — combine any of them to narrow down the results.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DlqsRequestBuilderGetQueryParameters 
         {
+            /// <summary>Filters the incomplete executions with a number of retry attempts greater than or equal to this value.</summary>
+            [QueryParameter("attemptsFrom")]
+            public int? AttemptsFrom { get; set; }
+            /// <summary>Filters the incomplete executions with a number of retry attempts less than or equal to this value.</summary>
+            [QueryParameter("attemptsTo")]
+            public int? AttemptsTo { get; set; }
+            /// <summary>Filters the incomplete executions created on or after this Unix timestamp (in milliseconds).</summary>
+            [QueryParameter("createdFrom")]
+            public int? CreatedFrom { get; set; }
+            /// <summary>Filters the incomplete executions created on or before this Unix timestamp (in milliseconds).</summary>
+            [QueryParameter("createdTo")]
+            public int? CreatedTo { get; set; }
+            /// <summary>Filters the incomplete executions by a substring of their ID value (case-insensitive).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("idSearch")]
+            public string? IdSearch { get; set; }
+#nullable restore
+#else
+            [QueryParameter("idSearch")]
+            public string IdSearch { get; set; }
+#endif
             /// <summary>The ID value of the scenario. Use the API call `GET /scenarios` to get the ID of the scenario. If your scenario is placed in a folder, use the API call `GET /scenarios-folders?teamId={teamId}` first.</summary>
             [QueryParameter("scenarioId")]
             public int? ScenarioId { get; set; }
+            /// <summary>Filters the incomplete executions with the next automatic retry scheduled on or after this Unix timestamp (in milliseconds).</summary>
+            [QueryParameter("scheduledInFrom")]
+            public int? ScheduledInFrom { get; set; }
+            /// <summary>Filters the incomplete executions with the next automatic retry scheduled on or before this Unix timestamp (in milliseconds).</summary>
+            [QueryParameter("scheduledInTo")]
+            public int? ScheduledInTo { get; set; }
+            /// <summary>Filters the incomplete executions with a payload size (in bytes) greater than or equal to this value.</summary>
+            [QueryParameter("sizeFrom")]
+            public int? SizeFrom { get; set; }
+            /// <summary>Filters the incomplete executions with a payload size (in bytes) less than or equal to this value.</summary>
+            [QueryParameter("sizeTo")]
+            public int? SizeTo { get; set; }
+            /// <summary>&quot;Filters the incomplete executions by their derived status: `resolved` (already retried successfully), `scheduled` (will be automatically retried in the future), `inprogress` (currently being retried), or `unresolved` (none of the above).&quot;</summary>
+            [QueryParameter("status")]
+            public global::Soenneker.Make.OpenApiClient.Models.GetDlqsStatusParameter? Status { get; set; }
         }
     }
 }
