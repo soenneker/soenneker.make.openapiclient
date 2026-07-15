@@ -3,57 +3,41 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
-    /// <summary>Fixed palette design-token name; the UI maps each token to its hex value.</summary>
+    /// <summary>Fixed palette semantic token name; the UI maps each token to its hex value.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostScenarioLabels200ResponseLabelColour
     {
-        [EnumMember(Value = "slate-100")]
+        [EnumMember(Value = "white")]
         #pragma warning disable CS1591
-        Slate100,
+        White,
         #pragma warning restore CS1591
-        [EnumMember(Value = "brand-100")]
+        [EnumMember(Value = "neutral")]
         #pragma warning disable CS1591
-        Brand100,
+        Neutral,
         #pragma warning restore CS1591
-        [EnumMember(Value = "blue-100")]
+        [EnumMember(Value = "brand")]
         #pragma warning disable CS1591
-        Blue100,
+        Brand,
         #pragma warning restore CS1591
-        [EnumMember(Value = "slate-900")]
+        [EnumMember(Value = "info")]
         #pragma warning disable CS1591
-        Slate900,
+        Info,
         #pragma warning restore CS1591
-        [EnumMember(Value = "green-100")]
+        [EnumMember(Value = "success")]
         #pragma warning disable CS1591
-        Green100,
+        Success,
         #pragma warning restore CS1591
-        [EnumMember(Value = "orange-100")]
+        [EnumMember(Value = "warning")]
         #pragma warning disable CS1591
-        Orange100,
+        Warning,
         #pragma warning restore CS1591
-        [EnumMember(Value = "yellow-100")]
+        [EnumMember(Value = "danger")]
         #pragma warning disable CS1591
-        Yellow100,
+        Danger,
         #pragma warning restore CS1591
-        [EnumMember(Value = "pink-100")]
+        [EnumMember(Value = "pink")]
         #pragma warning disable CS1591
-        Pink100,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "cyan-100")]
-        #pragma warning disable CS1591
-        Cyan100,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "purple-100")]
-        #pragma warning disable CS1591
-        Purple100,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "red-100")]
-        #pragma warning disable CS1591
-        Red100,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "slate-slate")]
-        #pragma warning disable CS1591
-        SlateSlate,
+        Pink,
         #pragma warning restore CS1591
     }
 }

@@ -14,7 +14,7 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Fixed palette design-token name; the UI maps each token to its hex value.</summary>
+        /// <summary>Fixed palette semantic token name; the UI maps each token to its hex value.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.GetScenarioLabels200ResponseLabelsItemColour? Colour { get; set; }
         /// <summary>The created property</summary>
         public DateTimeOffset? Created { get; set; }
