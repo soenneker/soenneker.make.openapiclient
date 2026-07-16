@@ -21,10 +21,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Detailed information about the AI mapping builtin tier</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2? AiMappingBuiltinTierInfo { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo? AiMappingBuiltinTierInfo { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2 AiMappingBuiltinTierInfo { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo AiMappingBuiltinTierInfo { get; set; }
 #endif
         /// <summary>Name of the AI model used for mapping</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,10 +41,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Detailed information about the AI toolkit builtin tier</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2? AiToolkitBuiltinTierInfo { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo? AiToolkitBuiltinTierInfo { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2 AiToolkitBuiltinTierInfo { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo AiToolkitBuiltinTierInfo { get; set; }
 #endif
         /// <summary>Name of the AI model used for toolkit</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -81,11 +81,11 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "aiMappingAccountId", n => { AiMappingAccountId = n.GetIntValue(); } },
                 { "aiMappingBuiltinTier", n => { AiMappingBuiltinTier = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTier>(); } },
-                { "aiMappingBuiltinTierInfo", n => { AiMappingBuiltinTierInfo = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2>(global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2.CreateFromDiscriminatorValue); } },
+                { "aiMappingBuiltinTierInfo", n => { AiMappingBuiltinTierInfo = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo>(global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo.CreateFromDiscriminatorValue); } },
                 { "aiMappingModelName", n => { AiMappingModelName = n.GetStringValue(); } },
                 { "aiToolkitAccountId", n => { AiToolkitAccountId = n.GetIntValue(); } },
                 { "aiToolkitBuiltinTier", n => { AiToolkitBuiltinTier = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTier>(); } },
-                { "aiToolkitBuiltinTierInfo", n => { AiToolkitBuiltinTierInfo = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2>(global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2.CreateFromDiscriminatorValue); } },
+                { "aiToolkitBuiltinTierInfo", n => { AiToolkitBuiltinTierInfo = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo>(global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo.CreateFromDiscriminatorValue); } },
                 { "aiToolkitModelName", n => { AiToolkitModelName = n.GetStringValue(); } },
             };
         }
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("aiMappingAccountId", AiMappingAccountId);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTier>("aiMappingBuiltinTier", AiMappingBuiltinTier);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2>("aiMappingBuiltinTierInfo", AiMappingBuiltinTierInfo);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo>("aiMappingBuiltinTierInfo", AiMappingBuiltinTierInfo);
             writer.WriteStringValue("aiMappingModelName", AiMappingModelName);
             writer.WriteIntValue("aiToolkitAccountId", AiToolkitAccountId);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTier>("aiToolkitBuiltinTier", AiToolkitBuiltinTier);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2>("aiToolkitBuiltinTierInfo", AiToolkitBuiltinTierInfo);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo>("aiToolkitBuiltinTierInfo", AiToolkitBuiltinTierInfo);
             writer.WriteStringValue("aiToolkitModelName", AiToolkitModelName);
             writer.WriteAdditionalData(AdditionalData);
         }

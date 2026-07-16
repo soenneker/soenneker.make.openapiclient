@@ -47,10 +47,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The tokenUsage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? TokenUsage { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemTokenUsage? TokenUsage { get; set; }
 #nullable restore
 #else
-        public UntypedNode TokenUsage { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemTokenUsage TokenUsage { get; set; }
 #endif
         /// <summary>The toolCalls property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -99,7 +99,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "index", n => { Index = n.GetDoubleValue(); } },
                 { "role", n => { Role = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemRole>(); } },
-                { "tokenUsage", n => { TokenUsage = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
+                { "tokenUsage", n => { TokenUsage = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemTokenUsage>(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemTokenUsage.CreateFromDiscriminatorValue); } },
                 { "toolCalls", n => { ToolCalls = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolCallsItem>(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolCallsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "toolResponse", n => { ToolResponse = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponse>(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponse.CreateFromDiscriminatorValue); } },
             };
@@ -117,7 +117,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("id", Id);
             writer.WriteDoubleValue("index", Index);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemRole>("role", Role);
-            writer.WriteObjectValue<UntypedNode>("tokenUsage", TokenUsage);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemTokenUsage>("tokenUsage", TokenUsage);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolCallsItem>("toolCalls", ToolCalls);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponse>("toolResponse", ToolResponse);
             writer.WriteAdditionalData(AdditionalData);

@@ -20,10 +20,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The file property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? File { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1ContextsFormDataRequestFile? File { get; set; }
 #nullable restore
 #else
-        public UntypedNode File { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1ContextsFormDataRequestFile File { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1ContextsFormDataRequest"/> and sets the default values.
@@ -51,7 +51,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "agentId", n => { AgentId = n.GetGuidValue(); } },
-                { "file", n => { File = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
+                { "file", n => { File = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1ContextsFormDataRequestFile>(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1ContextsFormDataRequestFile.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteGuidValue("agentId", AgentId);
-            writer.WriteObjectValue<UntypedNode>("file", File);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1ContextsFormDataRequestFile>("file", File);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

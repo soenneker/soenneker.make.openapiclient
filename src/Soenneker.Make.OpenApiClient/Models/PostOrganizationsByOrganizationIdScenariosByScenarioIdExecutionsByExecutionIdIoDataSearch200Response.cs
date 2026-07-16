@@ -17,10 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Metadata of the execution, or `null` when no execution document was found in the searched time window.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecutionOneOf1? Execution { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution? Execution { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecutionOneOf1 Execution { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution Execution { get; set; }
 #endif
         /// <summary>Every IO-data record from the execution that matched the query. Each record contains the bundle fields produced or consumed by a module, plus the metadata listed below.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "execution", n => { Execution = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecutionOneOf1>(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecutionOneOf1.CreateFromDiscriminatorValue); } },
+                { "execution", n => { Execution = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution>(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution.CreateFromDiscriminatorValue); } },
                 { "ioData", n => { IoData = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItem>(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -66,7 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecutionOneOf1>("execution", Execution);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution>("execution", Execution);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItem>("ioData", IoData);
             writer.WriteAdditionalData(AdditionalData);
         }

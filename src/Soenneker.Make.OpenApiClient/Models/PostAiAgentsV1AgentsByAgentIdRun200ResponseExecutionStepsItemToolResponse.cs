@@ -33,10 +33,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The result property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Result { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseResult? Result { get; set; }
 #nullable restore
 #else
-        public UntypedNode Result { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseResult Result { get; set; }
 #endif
         /// <summary>The status property</summary>
         public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseStatus? Status { get; set; }
@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "executionLink", n => { ExecutionLink = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "result", n => { Result = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
+                { "result", n => { Result = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseResult>(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseResult.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseStatus>(); } },
                 { "toolType", n => { ToolType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseToolType>(); } },
             };
@@ -83,7 +83,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("executionLink", ExecutionLink);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<UntypedNode>("result", Result);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseResult>("result", Result);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseStatus>("status", Status);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseToolType>("toolType", ToolType);
             writer.WriteAdditionalData(AdditionalData);
