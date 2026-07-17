@@ -77,7 +77,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*,updatedByUserName*}", pathParameters)
+        public ScenariosRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*,updatedByUserName*}", pathParameters)
         {
         }
         /// <summary>
@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*,updatedByUserName*}", rawUrl)
+        public ScenariosRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*,updatedByUserName*}", rawUrl)
         {
         }
         /// <summary>
@@ -140,7 +140,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios?teamId={teamId}{&cols%5B%5D*,concept*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*,updatedByUserName*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios?teamId={teamId}{&cols%5B%5D*,concept*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*,updatedByUserName*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -240,6 +240,16 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
             /// <summary>Set to `true` to return only locked scenarios, or `false` to return only unlocked ones.</summary>
             [QueryParameter("islocked")]
             public bool? Islocked { get; set; }
+            /// <summary>Returns scenarios carrying any of the given labels (OR semantics) — a scenario is includedif it has at least one of the listed labels. Composes with other filters (e.g. `folderId`,`name`) using AND. Omit this parameter, or pass an empty array, to skip label filtering.Ignored when `deleted` is set to `true`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("labelIds%5B%5D")]
+            public int?[]? LabelIds { get; set; }
+#nullable restore
+#else
+            [QueryParameter("labelIds%5B%5D")]
+            public int?[] LabelIds { get; set; }
+#endif
             /// <summary>Filters scenarios by name using a case-insensitive substring match.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

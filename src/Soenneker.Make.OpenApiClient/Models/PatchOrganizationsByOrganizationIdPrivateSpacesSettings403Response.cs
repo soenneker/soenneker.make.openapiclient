@@ -25,7 +25,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => MessageEscaped ?? string.Empty; }
-        /// <summary>Localized message for the error code.</summary>
+        /// <summary>Localized message for the error code. Generic (&quot;Insufficient rights&quot;) by default; when the `permission_check_verbose_errors` setting is enabled it names the required permission, e.g. `organization permission &quot;organization manage&quot; is needed.`</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MessageEscaped { get; set; }
