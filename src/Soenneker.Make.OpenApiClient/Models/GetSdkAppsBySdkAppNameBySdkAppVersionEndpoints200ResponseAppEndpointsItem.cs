@@ -86,6 +86,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Description { get; set; }
 #endif
+        /// <summary>Input parameters in the Forman Schema DSL. Present only when `includeInputSchema=true`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEndpoints200ResponseAppEndpointsItemInputParametersItem>? InputParameters { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEndpoints200ResponseAppEndpointsItemInputParametersItem> InputParameters { get; set; }
+#endif
         /// <summary>The label property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -147,6 +155,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "deprecated", n => { Deprecated = n.GetBoolValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
+                { "inputParameters", n => { InputParameters = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEndpoints200ResponseAppEndpointsItemInputParametersItem>(global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEndpoints200ResponseAppEndpointsItemInputParametersItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "public", n => { Public = n.GetBoolValue(); } },
@@ -174,6 +183,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteBoolValue("deprecated", Deprecated);
             writer.WriteStringValue("description", Description);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEndpoints200ResponseAppEndpointsItemInputParametersItem>("inputParameters", InputParameters);
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("name", Name);
             writer.WriteBoolValue("public", Public);
