@@ -54,6 +54,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The nextReset property</summary>
         public DateTimeOffset? NextReset { get; set; }
+        /// <summary>The private spaces the requesting user is a member of within this organization.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200ResponseOrganizationsItemPrivateSpacesItem>? PrivateSpaces { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200ResponseOrganizationsItemPrivateSpacesItem> PrivateSpaces { get; set; }
+#endif
         /// <summary>The productName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -136,6 +144,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "license", n => { License = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200ResponseOrganizationsItemLicense>(global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200ResponseOrganizationsItemLicense.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "nextReset", n => { NextReset = n.GetDateTimeOffsetValue(); } },
+                { "privateSpaces", n => { PrivateSpaces = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200ResponseOrganizationsItemPrivateSpacesItem>(global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200ResponseOrganizationsItemPrivateSpacesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "productName", n => { ProductName = n.GetStringValue(); } },
                 { "scenarios", n => { Scenarios = n.GetIntValue(); } },
                 { "serviceName", n => { ServiceName = n.GetStringValue(); } },
@@ -164,6 +173,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200ResponseOrganizationsItemLicense>("license", License);
             writer.WriteStringValue("name", Name);
             writer.WriteDateTimeOffsetValue("nextReset", NextReset);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200ResponseOrganizationsItemPrivateSpacesItem>("privateSpaces", PrivateSpaces);
             writer.WriteStringValue("productName", ProductName);
             writer.WriteIntValue("scenarios", Scenarios);
             writer.WriteStringValue("serviceName", ServiceName);

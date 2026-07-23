@@ -56,5 +56,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         TfaEnforced,
         #pragma warning restore CS1591
+        [EnumMember(Value = "privateSpaces")]
+        #pragma warning disable CS1591
+        PrivateSpaces,
+        #pragma warning restore CS1591
     }
 }
