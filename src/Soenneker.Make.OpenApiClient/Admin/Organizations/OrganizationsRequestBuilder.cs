@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Admin.Organizations.Item;
+using Soenneker.Make.OpenApiClient.Admin.Organizations.Lookup;
 using Soenneker.Make.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,11 @@ namespace Soenneker.Make.OpenApiClient.Admin.Organizations
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class OrganizationsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The lookup property</summary>
+        public global::Soenneker.Make.OpenApiClient.Admin.Organizations.Lookup.LookupRequestBuilder Lookup
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Admin.Organizations.Lookup.LookupRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.admin.organizations.item collection</summary>
         /// <param name="position">The ID of the organization.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Admin.Organizations.Item.WithOrganizationItemRequestBuilder"/></returns>

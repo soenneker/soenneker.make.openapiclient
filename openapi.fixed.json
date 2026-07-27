@@ -846,6 +846,91 @@
         ]
       }
     },
+    "/admin/organizations/lookup": {
+      "get": {
+        "tags": [
+          "Admin / Organizations"
+        ],
+        "summary": "Lookup organizations by ID or name",
+        "description": "Looks up organizations by exact numeric ID or partial, case-insensitive name. Exactly one of \u0060id\u0060 or \u0060name\u0060 is required. Because organization names are not unique and are matched partially, this returns a capped list of minimal projections (\u0060id\u0060, \u0060name\u0060, \u0060deleted\u0060) used to navigate to the organization detail. Soft-deleted organizations are included. An empty list is returned when nothing matches.",
+        "operationId": "GetAdminOrganizationsLookup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Exact organization ID. Mutually exclusive with \u0060name\u0060 \u2014 provide exactly one of \u0060id\u0060 or \u0060name\u0060.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 42
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Partial, case-insensitive organization name. Mutually exclusive with \u0060id\u0060 \u2014 provide exactly one of \u0060id\u0060 or \u0060name\u0060.",
+            "schema": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "example": "Acme"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAdminOrganizationsLookup200Response"
+                },
+                "examples": {
+                  "byId": {
+                    "summary": "Lookup by id",
+                    "value": {
+                      "organizations": [
+                        {
+                          "id": 42,
+                          "name": "Acme Inc",
+                          "deleted": false
+                        }
+                      ]
+                    }
+                  },
+                  "byName": {
+                    "summary": "Lookup by partial name",
+                    "value": {
+                      "organizations": [
+                        {
+                          "id": 42,
+                          "name": "Acme Inc",
+                          "deleted": false
+                        },
+                        {
+                          "id": 51,
+                          "name": "Acme Labs",
+                          "deleted": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:read",
+              "organizations:read"
+            ]
+          }
+        ]
+      }
+    },
     "/admin/organizations/{organizationId}": {
       "patch": {
         "tags": [
@@ -37081,7 +37166,7 @@
                     "privateSpaces": [
                       {
                         "id": 10,
-                        "name": "John\u0027s private space",
+                        "name": "John\u0027s space",
                         "organizationId": 1,
                         "globalAgentsEnabled": false,
                         "type": "personal",
@@ -37102,7 +37187,7 @@
                     "privateSpaces": [
                       {
                         "id": 10,
-                        "name": "John\u0027s private space",
+                        "name": "John\u0027s space",
                         "organizationId": 1,
                         "globalAgentsEnabled": false,
                         "type": "personal",
@@ -37180,7 +37265,7 @@
                 "example": {
                   "privateSpace": {
                     "id": 10,
-                    "name": "John\u0027s private space",
+                    "name": "John\u0027s space",
                     "organizationId": 1,
                     "globalAgentsEnabled": false,
                     "type": "personal",
@@ -37248,7 +37333,7 @@
                 "example": {
                   "privateSpace": {
                     "id": 10,
-                    "name": "John\u0027s private space",
+                    "name": "John\u0027s space",
                     "organizationId": 1,
                     "deleted": false,
                     "externalId": null,
@@ -89831,6 +89916,20 @@
           }
         }
       },
+      "GetAdminOrganizationsLookup200Response": {
+        "required": [
+          "organizations"
+        ],
+        "type": "object",
+        "properties": {
+          "organizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAdminOrganizationsLookup200ResponseOrganizationsItem"
+            }
+          }
+        }
+      },
       "PatchAdminOrganizationsByOrganizationIdRequest": {
         "type": "object",
         "properties": {
@@ -134342,6 +134441,25 @@
               "$ref": "#/components/schemas/PostAdminOrganizations200ResponseOrganizationPrivateSpacesItem"
             },
             "description": "The private spaces the requesting user is a member of within this organization."
+          }
+        }
+      },
+      "GetAdminOrganizationsLookup200ResponseOrganizationsItem": {
+        "required": [
+          "id",
+          "name",
+          "deleted"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "deleted": {
+            "type": "boolean"
           }
         }
       },
