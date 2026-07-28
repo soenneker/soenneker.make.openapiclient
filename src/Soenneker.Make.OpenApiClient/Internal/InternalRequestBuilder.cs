@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Internal.DataStructures;
 using Soenneker.Make.OpenApiClient.Internal.Devices;
+using Soenneker.Make.OpenApiClient.Internal.Hooks;
 using Soenneker.Make.OpenApiClient.Internal.Organizations;
 using Soenneker.Make.OpenApiClient.Internal.Scenarios;
 using Soenneker.Make.OpenApiClient.Internal.Settings;
@@ -30,6 +31,11 @@ namespace Soenneker.Make.OpenApiClient.Internal
         public global::Soenneker.Make.OpenApiClient.Internal.Devices.DevicesRequestBuilder Devices
         {
             get => new global::Soenneker.Make.OpenApiClient.Internal.Devices.DevicesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The hooks property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Hooks.HooksRequestBuilder Hooks
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Hooks.HooksRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The organizations property</summary>
         public global::Soenneker.Make.OpenApiClient.Internal.Organizations.OrganizationsRequestBuilder Organizations

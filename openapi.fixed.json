@@ -19090,6 +19090,421 @@
         }
       }
     },
+    "/internal/hooks/register": {
+      "post": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Register a hook",
+        "description": "Registers a new hook (webhook/mailhook) for a team using ISC authorization. Only the Executor may call this endpoint \u2014 any other caller is rejected with \u0060SC500\u0060, since reaching this route is an integration bug rather than a client-facing access denial.",
+        "operationId": "PostInternalHooksRegister",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostInternalHooksRegisterRequest"
+              },
+              "examples": {
+                "register-hook": {
+                  "summary": "Register a hook with initial data",
+                  "value": {
+                    "hookName": "My webhook",
+                    "typeName": "test-webhook",
+                    "teamId": 123,
+                    "userId": 456,
+                    "data": {
+                      "secret": "hook-secret-value"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully registered the hook",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalHooksRegister200Response"
+                },
+                "examples": {
+                  "register-hook": {
+                    "summary": "Registered hook",
+                    "value": {
+                      "hook": {
+                        "id": 1001,
+                        "name": "My webhook",
+                        "udid": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
+                        "data": {
+                          "secret": "hook-secret-value"
+                        },
+                        "type": "web",
+                        "theme": "test-webhook",
+                        "editable": true,
+                        "flags": {},
+                        "url": "https://hook.make.com/a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or missing required field",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalHooksRegister400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Missing or invalid ISC authorization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalHooksRegister401Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Caller is not the Executor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalHooksRegister500Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/hooks/{hookId}/data": {
+      "put": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Update a hook\u0027s data",
+        "description": "\u0022Updates the stored data and/or associated key ids of a hook using ISC authorization. Only the Executor may call this endpoint \u2014 any other caller is rejected with \u0060SC500\u0060, since reaching this route is an integration bug rather than a client-facing access denial. Note: the underlying procedure does not check hook existence up front \u2014 an unknown \u0060hookId\u0060 fails with \u0060IM002\u0060 (its permission check runs against a null team) rather than a dedicated not-found error.\u0022",
+        "operationId": "PutInternalHooksByHookIdData",
+        "parameters": [
+          {
+            "name": "hookId",
+            "in": "path",
+            "description": "The id of the hook to update.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 1001
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PutInternalHooksByHookIdDataRequest"
+              },
+              "examples": {
+                "update-data": {
+                  "summary": "Update the hook\u0027s data",
+                  "value": {
+                    "userId": 456,
+                    "data": {
+                      "secret": "updated-value"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the hook",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutInternalHooksByHookIdData200Response"
+                },
+                "examples": {
+                  "update-data": {
+                    "summary": "Updated hook",
+                    "value": {
+                      "hook": {
+                        "id": 1001
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or missing required field",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutInternalHooksByHookIdData400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Missing or invalid ISC authorization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutInternalHooksByHookIdData401Response"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient rights, also returned for an unknown hookId",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutInternalHooksByHookIdData403Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Caller is not the Executor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutInternalHooksByHookIdData500Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/hooks/{hookId}/uid": {
+      "put": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Update a hook\u0027s external account id",
+        "description": "\u0022Updates the external account id associated with a hook using ISC authorization. Passing \u0060null\u0060 clears the external account id. Only the Executor may call this endpoint \u2014 any other caller is rejected with \u0060SC500\u0060, since reaching this route is an integration bug rather than a client-facing access denial. Note: the underlying procedure does not check hook existence up front \u2014 an unknown \u0060hookId\u0060 fails with \u0060IM002\u0060 (its permission check runs against a null team) rather than a dedicated not-found error.\u0022",
+        "operationId": "PutInternalHooksByHookIdUid",
+        "parameters": [
+          {
+            "name": "hookId",
+            "in": "path",
+            "description": "The id of the hook to update.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 1001
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PutInternalHooksByHookIdUidRequest"
+              },
+              "examples": {
+                "set-external-account-id": {
+                  "summary": "Set the hook\u0027s external account id",
+                  "value": {
+                    "userId": 456,
+                    "externalAccountId": "external-uid-value"
+                  }
+                },
+                "clear-external-account-id": {
+                  "summary": "Clear the hook\u0027s external account id",
+                  "value": {
+                    "userId": 456,
+                    "externalAccountId": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated the hook",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutInternalHooksByHookIdUid200Response"
+                },
+                "examples": {
+                  "set-external-account-id": {
+                    "summary": "Updated hook",
+                    "value": {
+                      "hook": {
+                        "id": 1001
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or missing required field",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutInternalHooksByHookIdUid400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Missing or invalid ISC authorization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutInternalHooksByHookIdUid401Response"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient rights, also returned for an unknown hookId",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutInternalHooksByHookIdUid403Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Caller is not the Executor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutInternalHooksByHookIdUid500Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/hooks/{hookId}/unregister": {
+      "post": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Unregister a hook",
+        "description": "\u0022Deletes a hook using ISC authorization, forcing removal and confirming the operation on behalf of the caller. Only the Executor may call this endpoint \u2014 any other caller is rejected with \u0060SC500\u0060, since reaching this route is an integration bug rather than a client-facing access denial. Note: the underlying procedure does not check hook existence up front \u2014 an unknown \u0060hookId\u0060 fails with \u0060IM002\u0060 (its permission check runs against a null team) rather than a dedicated not-found error.\u0022",
+        "operationId": "PostInternalHooksByHookIdUnregister",
+        "parameters": [
+          {
+            "name": "hookId",
+            "in": "path",
+            "description": "The id of the hook to unregister.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 1001
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostInternalHooksByHookIdUnregisterRequest"
+              },
+              "examples": {
+                "unregister-hook": {
+                  "summary": "Unregister a hook",
+                  "value": {
+                    "userId": 456
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully unregistered the hook",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalHooksByHookIdUnregister200Response"
+                },
+                "examples": {
+                  "unregister-hook": {
+                    "summary": "Unregistered hook",
+                    "value": {
+                      "hook": {
+                        "data": {
+                          "secret": "hook-secret-value"
+                        },
+                        "url": "https://hook.make.com/a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or missing required field",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalHooksByHookIdUnregister400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Missing or invalid ISC authorization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalHooksByHookIdUnregister401Response"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Insufficient rights, also returned for an unknown hookId",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalHooksByHookIdUnregister403Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Caller is not the Executor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalHooksByHookIdUnregister500Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/keys": {
       "get": {
         "tags": [
@@ -93669,6 +94084,364 @@
           }
         }
       },
+      "PostInternalHooksRegisterRequest": {
+        "required": [
+          "hookName",
+          "typeName",
+          "teamId",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "hookName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The name to give the new hook.",
+            "example": "My webhook"
+          },
+          "typeName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The hook type name, as registered by the app that owns it.",
+            "example": "test-webhook"
+          },
+          "teamId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The team the hook belongs to.",
+            "example": 123
+          },
+          "userId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The user performing the registration.",
+            "example": 456
+          },
+          "data": {
+            "$ref": "#/components/schemas/PostInternalHooksRegisterRequestData"
+          },
+          "externalAccountId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "External account identifier to associate with the hook.",
+            "example": "external-account-123"
+          },
+          "detachAccountId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Connection ID to be used when performing the hook\u0027s detach RPC.",
+            "example": 789
+          },
+          "keyIds": {
+            "type": "array",
+            "items": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "description": "Ids of keys to associate with the hook for the Authenticated Webhooks feature."
+          }
+        }
+      },
+      "PostInternalHooksRegister200Response": {
+        "required": [
+          "hook"
+        ],
+        "type": "object",
+        "properties": {
+          "hook": {
+            "$ref": "#/components/schemas/PostInternalHooksRegister200ResponseHook"
+          }
+        }
+      },
+      "PostInternalHooksRegister400Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "SC400"
+          },
+          "message": {
+            "type": "string",
+            "example": "Bad Request"
+          }
+        }
+      },
+      "PostInternalHooksRegister401Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "IM001"
+          },
+          "message": {
+            "type": "string",
+            "example": "Access denied."
+          }
+        }
+      },
+      "PostInternalHooksRegister500Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "SC500"
+          },
+          "message": {
+            "type": "string",
+            "example": "Only the Executor can register hooks remotely."
+          }
+        }
+      },
+      "PutInternalHooksByHookIdDataRequest": {
+        "required": [
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The user performing the update.",
+            "example": 456
+          },
+          "data": {
+            "$ref": "#/components/schemas/PutInternalHooksByHookIdDataRequestData"
+          },
+          "keyIds": {
+            "type": "array",
+            "items": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "description": "Ids of keys to associate with the hook for the Authenticated Webhooks feature."
+          }
+        }
+      },
+      "PutInternalHooksByHookIdData200Response": {
+        "required": [
+          "hook"
+        ],
+        "type": "object",
+        "properties": {
+          "hook": {
+            "$ref": "#/components/schemas/PutInternalHooksByHookIdData200ResponseHook"
+          }
+        }
+      },
+      "PutInternalHooksByHookIdData400Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "SC400"
+          },
+          "message": {
+            "type": "string",
+            "example": "Bad Request"
+          }
+        }
+      },
+      "PutInternalHooksByHookIdData401Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "IM001"
+          },
+          "message": {
+            "type": "string",
+            "example": "Access denied."
+          }
+        }
+      },
+      "PutInternalHooksByHookIdData403Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "IM002"
+          },
+          "message": {
+            "type": "string",
+            "example": "Insufficient rights"
+          }
+        }
+      },
+      "PutInternalHooksByHookIdData500Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "SC500"
+          },
+          "message": {
+            "type": "string",
+            "example": "Only the Executor can update hooks remotely."
+          }
+        }
+      },
+      "PutInternalHooksByHookIdUidRequest": {
+        "required": [
+          "userId",
+          "externalAccountId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The user performing the update.",
+            "example": 456
+          },
+          "externalAccountId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The external account id to associate with the hook, or \u0060null\u0060 to clear it.",
+            "nullable": true,
+            "example": "external-uid-value"
+          }
+        }
+      },
+      "PutInternalHooksByHookIdUid200Response": {
+        "required": [
+          "hook"
+        ],
+        "type": "object",
+        "properties": {
+          "hook": {
+            "$ref": "#/components/schemas/PutInternalHooksByHookIdUid200ResponseHook"
+          }
+        }
+      },
+      "PutInternalHooksByHookIdUid400Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "SC400"
+          },
+          "message": {
+            "type": "string",
+            "example": "Bad Request"
+          }
+        }
+      },
+      "PutInternalHooksByHookIdUid401Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "IM001"
+          },
+          "message": {
+            "type": "string",
+            "example": "Access denied."
+          }
+        }
+      },
+      "PutInternalHooksByHookIdUid403Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "IM002"
+          },
+          "message": {
+            "type": "string",
+            "example": "Insufficient rights"
+          }
+        }
+      },
+      "PutInternalHooksByHookIdUid500Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "SC500"
+          },
+          "message": {
+            "type": "string",
+            "example": "Only the Executor can update a hook\u0027s external account id remotely."
+          }
+        }
+      },
+      "PostInternalHooksByHookIdUnregisterRequest": {
+        "required": [
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The user performing the unregistration.",
+            "example": 456
+          }
+        }
+      },
+      "PostInternalHooksByHookIdUnregister200Response": {
+        "required": [
+          "hook"
+        ],
+        "type": "object",
+        "properties": {
+          "hook": {
+            "$ref": "#/components/schemas/PostInternalHooksByHookIdUnregister200ResponseHook"
+          }
+        }
+      },
+      "PostInternalHooksByHookIdUnregister400Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "SC400"
+          },
+          "message": {
+            "type": "string",
+            "example": "Bad Request"
+          }
+        }
+      },
+      "PostInternalHooksByHookIdUnregister401Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "IM001"
+          },
+          "message": {
+            "type": "string",
+            "example": "Access denied."
+          }
+        }
+      },
+      "PostInternalHooksByHookIdUnregister403Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "IM002"
+          },
+          "message": {
+            "type": "string",
+            "example": "Insufficient rights"
+          }
+        }
+      },
+      "PostInternalHooksByHookIdUnregister500Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "SC500"
+          },
+          "message": {
+            "type": "string",
+            "example": "Only the Executor can unregister hooks remotely."
+          }
+        }
+      },
       "GetKeys200Response": {
         "type": "object",
         "properties": {
@@ -139945,6 +140718,114 @@
           "strict": true
         }
       },
+      "PostInternalHooksRegisterRequestData": {
+        "type": "object",
+        "description": "Arbitrary hook data, stored encrypted.",
+        "nullable": true,
+        "example": {
+          "secret": "hook-secret-value"
+        }
+      },
+      "PostInternalHooksRegister200ResponseHook": {
+        "required": [
+          "id",
+          "name",
+          "udid",
+          "data",
+          "type",
+          "theme",
+          "editable",
+          "flags",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1001
+          },
+          "name": {
+            "type": "string",
+            "example": "My webhook"
+          },
+          "udid": {
+            "type": "string",
+            "example": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PostInternalHooksRegister200ResponseHookData"
+          },
+          "type": {
+            "type": "string",
+            "example": "web"
+          },
+          "theme": {
+            "type": "string",
+            "example": "test-webhook"
+          },
+          "editable": {
+            "type": "boolean",
+            "example": true
+          },
+          "flags": {
+            "$ref": "#/components/schemas/PostInternalHooksRegister200ResponseHookFlags"
+          },
+          "url": {
+            "type": "string",
+            "description": "The public URL the hook can be reached at.",
+            "example": "https://hook.make.com/a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6"
+          }
+        }
+      },
+      "PutInternalHooksByHookIdDataRequestData": {
+        "type": "object",
+        "description": "The new hook data, stored encrypted. Replaces the existing data.",
+        "nullable": true,
+        "example": {
+          "secret": "updated-value"
+        }
+      },
+      "PutInternalHooksByHookIdData200ResponseHook": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1001
+          }
+        }
+      },
+      "PutInternalHooksByHookIdUid200ResponseHook": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1001
+          }
+        }
+      },
+      "PostInternalHooksByHookIdUnregister200ResponseHook": {
+        "required": [
+          "data",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PostInternalHooksByHookIdUnregister200ResponseHookData"
+          },
+          "url": {
+            "type": "string",
+            "description": "The public URL the hook was reachable at.",
+            "example": "https://hook.make.com/a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6"
+          }
+        }
+      },
       "GetKeys200ResponseKeysItem": {
         "type": "object",
         "properties": {
@@ -150772,6 +151653,23 @@
       },
       "GetInternalDataStructuresByDataStructureId200ResponseDataStructureSpecItem": {
         "type": "object"
+      },
+      "PostInternalHooksRegister200ResponseHookData": {
+        "type": "object",
+        "example": {
+          "secret": "hook-secret-value"
+        }
+      },
+      "PostInternalHooksRegister200ResponseHookFlags": {
+        "type": "object"
+      },
+      "PostInternalHooksByHookIdUnregister200ResponseHookData": {
+        "type": "object",
+        "description": "The hook\u0027s decrypted data at the time it was deleted.",
+        "nullable": true,
+        "example": {
+          "secret": "hook-secret-value"
+        }
       },
       "GetKeysTypes200ResponseKeysTypesItemParametersItem": {
         "type": "object",
