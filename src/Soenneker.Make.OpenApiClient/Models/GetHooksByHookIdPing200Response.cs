@@ -36,6 +36,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public bool? Gone { get; set; }
         /// <summary>The learning property</summary>
         public bool? Learning { get; set; }
+        /// <summary>ID of the team that owns the hook.</summary>
+        public int? TeamId { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200Response"/> and sets the default values.
         /// </summary>
@@ -66,6 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "dataStructure", n => { DataStructure = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200ResponseDataStructureItem>(global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200ResponseDataStructureItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "gone", n => { Gone = n.GetBoolValue(); } },
                 { "learning", n => { Learning = n.GetBoolValue(); } },
+                { "teamId", n => { TeamId = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -80,6 +83,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200ResponseDataStructureItem>("dataStructure", DataStructure);
             writer.WriteBoolValue("gone", Gone);
             writer.WriteBoolValue("learning", Learning);
+            writer.WriteIntValue("teamId", TeamId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

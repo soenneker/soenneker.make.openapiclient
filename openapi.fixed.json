@@ -17429,6 +17429,7 @@
                 },
                 "example": {
                   "address": "https://local.make.cloud/wh/wmhqi8todng3en3z2tl7ausm15tg33iz",
+                  "teamId": 1,
                   "attached": false,
                   "learning": false,
                   "gone": false,
@@ -93685,6 +93686,10 @@
           "address": {
             "type": "string",
             "format": "uri"
+          },
+          "teamId": {
+            "type": "integer",
+            "description": "ID of the team that owns the hook."
           },
           "attached": {
             "type": "boolean"
