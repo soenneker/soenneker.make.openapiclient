@@ -43113,7 +43113,8 @@
                       "category": "accounts",
                       "roleCategory": "team",
                       "label": "",
-                      "customRolesHidden": false
+                      "customRolesHidden": false,
+                      "requires": []
                     },
                     {
                       "id": 2,
@@ -43122,7 +43123,8 @@
                       "category": "accounts",
                       "roleCategory": "team",
                       "label": "",
-                      "customRolesHidden": false
+                      "customRolesHidden": false,
+                      "requires": []
                     },
                     {
                       "id": 3,
@@ -43131,7 +43133,10 @@
                       "category": "accounts",
                       "roleCategory": "team",
                       "label": "",
-                      "customRolesHidden": false
+                      "customRolesHidden": false,
+                      "requires": [
+                        4
+                      ]
                     },
                     {
                       "id": 4,
@@ -43140,7 +43145,8 @@
                       "category": "accounts",
                       "roleCategory": "team",
                       "label": "",
-                      "customRolesHidden": false
+                      "customRolesHidden": false,
+                      "requires": []
                     }
                   ]
                 }
@@ -148944,6 +148950,14 @@
             "type": "boolean",
             "description": "If true, the permission is hidden from custom role configuration and cannot be assigned to a custom role.",
             "example": false
+          },
+          "requires": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "IDs of the permissions this permission depends on. When this permission is granted to a custom role, every permission listed here must also be granted. An empty array means no dependencies.",
+            "example": []
           }
         }
       },

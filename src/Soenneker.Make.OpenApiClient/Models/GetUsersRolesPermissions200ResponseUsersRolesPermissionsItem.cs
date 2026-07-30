@@ -50,6 +50,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Note { get; set; }
 #endif
+        /// <summary>IDs of the permissions this permission depends on. When this permission is granted to a custom role, every permission listed here must also be granted. An empty array means no dependencies.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<int?>? Requires { get; set; }
+#nullable restore
+#else
+        public List<int?> Requires { get; set; }
+#endif
         /// <summary>Whether this permission applies to team roles or organization roles.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200ResponseUsersRolesPermissionsItemRoleCategory? RoleCategory { get; set; }
         /// <summary>
@@ -83,6 +91,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "note", n => { Note = n.GetStringValue(); } },
+                { "requires", n => { Requires = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
                 { "roleCategory", n => { RoleCategory = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200ResponseUsersRolesPermissionsItemRoleCategory>(); } },
             };
         }
@@ -99,6 +108,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("note", Note);
+            writer.WriteCollectionOfPrimitiveValues<int?>("requires", Requires);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200ResponseUsersRolesPermissionsItemRoleCategory>("roleCategory", RoleCategory);
             writer.WriteAdditionalData(AdditionalData);
         }
