@@ -39417,6 +39417,110 @@
         }
       }
     },
+    "/teams/{teamId}/connections/{connectionId}/access-list": {
+      "get": {
+        "tags": [
+          "Connections / Access list"
+        ],
+        "summary": "List a connection\u0027s access list",
+        "description": "Returns the access list (entity ACL) of a connection \u2014 the principals granted a role on it.\n\nA caller holding the \u0060entity use\u0060 permission on the connection sees every member; any other member of the connection\u0027s team sees only the Entity Admins. The connection must belong to the team in the path.\n\nRequires the locked connections feature to be enabled for the organization the team belongs to; otherwise the endpoint returns \u0060400\u0060 (\u0060IM903\u0060).",
+        "operationId": "GetTeamsByTeamIdConnectionsByConnectionIdAccessList",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The ID of the team that owns the connection.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "connectionId",
+            "in": "path",
+            "description": "The ID of the connection. You can get connection ID\u0027s of all your connections with the the [List connections](./get--connections.md) endpoint.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 128
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The access-list members visible to the caller.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamsByTeamIdConnectionsByConnectionIdAccessList200Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "connections:read"
+            ]
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}/keys/{keyId}/access-list": {
+      "get": {
+        "tags": [
+          "Keys / Access list"
+        ],
+        "summary": "List a key\u0027s access list",
+        "description": "Returns the access list (entity ACL) of a key \u2014 the principals granted a role on it.\n\nA caller holding the \u0060entity use\u0060 permission on the key sees every member; any other member of the key\u0027s team sees only the Entity Admins. The key must belong to the team in the path.\n\nRequires the locked connections feature to be enabled for the organization the team belongs to; otherwise the endpoint returns \u0060400\u0060 (\u0060IM903\u0060).",
+        "operationId": "GetTeamsByTeamIdKeysByKeyIdAccessList",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The ID of the team that owns the key.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "keyId",
+            "in": "path",
+            "description": "The ID of the key.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 16
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The access-list members visible to the caller.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamsByTeamIdKeysByKeyIdAccessList200Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "keys:read"
+            ]
+          }
+        ]
+      }
+    },
     "/templates": {
       "get": {
         "tags": [
@@ -99216,6 +99320,30 @@
           }
         }
       },
+      "GetTeamsByTeamIdConnectionsByConnectionIdAccessList200Response": {
+        "type": "object",
+        "properties": {
+          "accessList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItem"
+            },
+            "description": "The access-list members visible to the caller."
+          }
+        }
+      },
+      "GetTeamsByTeamIdKeysByKeyIdAccessList200Response": {
+        "type": "object",
+        "properties": {
+          "accessList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamsByTeamIdKeysByKeyIdAccessList200ResponseAccessListItem"
+            },
+            "description": "The access-list members visible to the caller."
+          }
+        }
+      },
       "GetTemplates200Response": {
         "type": "object",
         "properties": {
@@ -147498,6 +147626,74 @@
           }
         }
       },
+      "GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItem": {
+        "required": [
+          "membershipType",
+          "membershipId",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "membershipType": {
+            "$ref": "#/components/schemas/GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItemMembershipType"
+          },
+          "membershipId": {
+            "type": "integer",
+            "description": "The principal\u0027s id. For a \u0060user\u0060 principal this is the user id.",
+            "example": 128
+          },
+          "role": {
+            "$ref": "#/components/schemas/GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItemRole"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the user. Null for non-user principals or an unknown user.",
+            "nullable": true,
+            "example": "Jane Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of the user. Null for non-user principals.",
+            "nullable": true,
+            "example": "jane.doe@example.com"
+          }
+        },
+        "description": "A single access-list member \u2014 a principal with its entity-tier role and, for users, display fields."
+      },
+      "GetTeamsByTeamIdKeysByKeyIdAccessList200ResponseAccessListItem": {
+        "required": [
+          "membershipType",
+          "membershipId",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "membershipType": {
+            "$ref": "#/components/schemas/GetTeamsByTeamIdKeysByKeyIdAccessList200ResponseAccessListItemMembershipType"
+          },
+          "membershipId": {
+            "type": "integer",
+            "description": "The principal\u0027s id. For a \u0060user\u0060 principal this is the user id.",
+            "example": 128
+          },
+          "role": {
+            "$ref": "#/components/schemas/GetTeamsByTeamIdKeysByKeyIdAccessList200ResponseAccessListItemRole"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the user. Null for non-user principals or an unknown user.",
+            "nullable": true,
+            "example": "Jane Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of the user. Null for non-user principals.",
+            "nullable": true,
+            "example": "jane.doe@example.com"
+          }
+        },
+        "description": "A single access-list member \u2014 a principal with its entity-tier role and, for users, display fields."
+      },
       "GetTemplates200ResponseTemplatesItem": {
         "type": "object",
         "properties": {
@@ -188535,6 +188731,102 @@
           ]
         }
       },
+      "GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItemMembershipType": {
+        "enum": [
+          "user",
+          "group"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The kind of principal. Always \u0060user\u0060 in the current version.",
+        "example": "user",
+        "x-ms-enum": {
+          "name": "GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItemMembershipType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "group",
+              "name": "Group"
+            }
+          ]
+        }
+      },
+      "GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItemRole": {
+        "enum": [
+          "entity:entity-admin",
+          "entity:entity-member"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The principal\u0027s entity-tier role on the connection or key.",
+        "example": "entity:entity-admin",
+        "x-ms-enum": {
+          "name": "GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItemRole",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity:entity-admin",
+              "name": "EntityColonEntityAdmin"
+            },
+            {
+              "value": "entity:entity-member",
+              "name": "EntityColonEntityMember"
+            }
+          ]
+        }
+      },
+      "GetTeamsByTeamIdKeysByKeyIdAccessList200ResponseAccessListItemMembershipType": {
+        "enum": [
+          "user",
+          "group"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The kind of principal. Always \u0060user\u0060 in the current version.",
+        "example": "user",
+        "x-ms-enum": {
+          "name": "GetTeamsByTeamIdKeysByKeyIdAccessList200ResponseAccessListItemMembershipType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "group",
+              "name": "Group"
+            }
+          ]
+        }
+      },
+      "GetTeamsByTeamIdKeysByKeyIdAccessList200ResponseAccessListItemRole": {
+        "enum": [
+          "entity:entity-admin",
+          "entity:entity-member"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The principal\u0027s entity-tier role on the connection or key.",
+        "example": "entity:entity-admin",
+        "x-ms-enum": {
+          "name": "GetTeamsByTeamIdKeysByKeyIdAccessList200ResponseAccessListItemRole",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity:entity-admin",
+              "name": "EntityColonEntityAdmin"
+            },
+            {
+              "value": "entity:entity-member",
+              "name": "EntityColonEntityMember"
+            }
+          ]
+        }
+      },
       "PostTemplatesRequestSchedulingType": {
         "enum": [
           "immediately",
@@ -199186,6 +199478,12 @@
       "description": "In Make, you need to create a connection for most apps. Make then uses this connection to communicate with the third-party service and to authenticate your requests to the third-party service. The following endpoints allow you to create and manage connections."
     },
     {
+      "name": "Connections / Access list",
+      "description": "The following endpoints let you view and manage the access list (entity ACL) of a connection \u2014 the users granted a role on it.",
+      "x-parent": "Connections",
+      "x-page-title": "Access list"
+    },
+    {
       "name": "Credential Requests",
       "description": "The following endpoints allow you to manage credential requests for connections and keys. You can create requests, list them, view details, and manage individual credentials within requests."
     },
@@ -199265,6 +199563,12 @@
     {
       "name": "Keys",
       "description": "The following endpoints allow you to manage and retrieve metadata for authentication keys in your custom keychain. You can use these keys to manage your authentication in the HTTP or encryptor apps similarly to other connections."
+    },
+    {
+      "name": "Keys / Access list",
+      "description": "The following endpoints let you view and manage the access list (entity ACL) of a key \u2014 the users granted a role on it.",
+      "x-parent": "Keys",
+      "x-page-title": "Access list"
     },
     {
       "name": "Outbound Webhooks",
@@ -199450,7 +199754,7 @@
     },
     {
       "name": "Users / Roles",
-      "description": "The following endpoint retrieves the mapping of a \u0060userRoleId\u0060 parameter and user role name.",
+      "description": "The following endpoints retrieve the mapping of a \u0060userRoleId\u0060 parameter and user role name, and let you create, update, and delete custom organization and team roles.",
       "x-parent": "Users",
       "x-page-title": "Roles"
     },

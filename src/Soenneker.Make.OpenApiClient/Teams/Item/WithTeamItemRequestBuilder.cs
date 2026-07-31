@@ -5,7 +5,9 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
 using Soenneker.Make.OpenApiClient.Teams.Item.CheckEmailIsMember;
+using Soenneker.Make.OpenApiClient.Teams.Item.Connections;
 using Soenneker.Make.OpenApiClient.Teams.Item.FeatureControls;
+using Soenneker.Make.OpenApiClient.Teams.Item.Keys;
 using Soenneker.Make.OpenApiClient.Teams.Item.LlmConfiguration;
 using Soenneker.Make.OpenApiClient.Teams.Item.Usage;
 using Soenneker.Make.OpenApiClient.Teams.Item.UserTeamRoles;
@@ -28,10 +30,20 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item
         {
             get => new global::Soenneker.Make.OpenApiClient.Teams.Item.CheckEmailIsMember.CheckEmailIsMemberRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The connections property</summary>
+        public global::Soenneker.Make.OpenApiClient.Teams.Item.Connections.ConnectionsRequestBuilder Connections
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Teams.Item.Connections.ConnectionsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The featureControls property</summary>
         public global::Soenneker.Make.OpenApiClient.Teams.Item.FeatureControls.FeatureControlsRequestBuilder FeatureControls
         {
             get => new global::Soenneker.Make.OpenApiClient.Teams.Item.FeatureControls.FeatureControlsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The keys property</summary>
+        public global::Soenneker.Make.OpenApiClient.Teams.Item.Keys.KeysRequestBuilder Keys
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Teams.Item.Keys.KeysRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The llmConfiguration property</summary>
         public global::Soenneker.Make.OpenApiClient.Teams.Item.LlmConfiguration.LlmConfigurationRequestBuilder LlmConfiguration
