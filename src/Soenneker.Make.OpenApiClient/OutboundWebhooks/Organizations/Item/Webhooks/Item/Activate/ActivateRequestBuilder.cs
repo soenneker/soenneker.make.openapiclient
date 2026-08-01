@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.OutboundWebhooks.Organizations.Item.Webho
         /// <summary>
         /// Activates a previously paused outbound webhook subscription. The webhook&apos;s `status` becomes `live` on success. Endpoint is proxy for the Outbound Webhooks service. Full schema documentation is available at https://github.com/integromat/outbound-webhooks/blob/master/openapi/openapi.json
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson21"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookIdActivate200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson21?> PatchAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookIdActivate200Response?> PatchAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson21> PatchAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookIdActivate200Response> PatchAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPatchRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson21>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson21.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookIdActivate200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookIdActivate200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Activates a previously paused outbound webhook subscription. The webhook&apos;s `status` becomes `live` on success. Endpoint is proxy for the Outbound Webhooks service. Full schema documentation is available at https://github.com/integromat/outbound-webhooks/blob/master/openapi/openapi.json

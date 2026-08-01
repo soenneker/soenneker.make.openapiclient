@@ -36,20 +36,20 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Recreate
         /// <summary>
         /// Recreates an existing app connection and synchronises it with HQ.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseResponseJson"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseSchema"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseResponseJson?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseSchema?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseResponseJson> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseSchema> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseResponseJson>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseResponseJson.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseSchema>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseSchema.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Recreates an existing app connection and synchronises it with HQ.

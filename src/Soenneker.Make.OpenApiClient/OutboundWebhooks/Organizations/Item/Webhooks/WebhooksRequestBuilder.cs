@@ -49,40 +49,40 @@ namespace Soenneker.Make.OpenApiClient.OutboundWebhooks.Organizations.Item.Webho
         /// <summary>
         /// Returns the outbound webhook subscriptions belonging to the given organization. Endpoint is proxy for the Outbound Webhooks service. Full schema documentation is available at https://github.com/integromat/outbound-webhooks/blob/master/openapi/openapi.json
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson16"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOutboundWebhooksOrganizationsByOrganizationIdWebhooks200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson16?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.OutboundWebhooks.Organizations.Item.Webhooks.WebhooksRequestBuilder.WebhooksRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOutboundWebhooksOrganizationsByOrganizationIdWebhooks200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.OutboundWebhooks.Organizations.Item.Webhooks.WebhooksRequestBuilder.WebhooksRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson16> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.OutboundWebhooks.Organizations.Item.Webhooks.WebhooksRequestBuilder.WebhooksRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOutboundWebhooksOrganizationsByOrganizationIdWebhooks200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.OutboundWebhooks.Organizations.Item.Webhooks.WebhooksRequestBuilder.WebhooksRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson16>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson16.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOutboundWebhooksOrganizationsByOrganizationIdWebhooks200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOutboundWebhooksOrganizationsByOrganizationIdWebhooks200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Registers a new outbound webhook subscription for the organization. The response includes a one-time `signingSecret` that is not retrievable later. Endpoint is proxy for the Outbound Webhooks service. Full schema documentation is available at https://github.com/integromat/outbound-webhooks/blob/master/openapi/openapi.json
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson17"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOutboundWebhooksOrganizationsByOrganizationIdWebhooks201Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson17?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOutboundWebhooksOrganizationsByOrganizationIdWebhooksRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOutboundWebhooksOrganizationsByOrganizationIdWebhooks201Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOutboundWebhooksOrganizationsByOrganizationIdWebhooksRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson17> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOutboundWebhooksOrganizationsByOrganizationIdWebhooksRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOutboundWebhooksOrganizationsByOrganizationIdWebhooks201Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOutboundWebhooksOrganizationsByOrganizationIdWebhooksRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson17>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson17.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOutboundWebhooksOrganizationsByOrganizationIdWebhooks201Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOutboundWebhooksOrganizationsByOrganizationIdWebhooks201Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns the outbound webhook subscriptions belonging to the given organization. Endpoint is proxy for the Outbound Webhooks service. Full schema documentation is available at https://github.com/integromat/outbound-webhooks/blob/master/openapi/openapi.json

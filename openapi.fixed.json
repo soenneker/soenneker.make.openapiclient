@@ -1387,7 +1387,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostAdminOrganizationsByOrganizationIdAssignUniversalDiscount200ResponseResponseJson"
+                  "$ref": "#/components/schemas/PostAdminOrganizationsByOrganizationIdAssignUniversalDiscount200ResponseSchema"
                 },
                 "example": {
                   "ok": 1
@@ -3592,7 +3592,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponse"
+                  "$ref": "#/components/schemas/PutAdminSystemSettingsByKey200Response"
                 }
               }
             }
@@ -4238,7 +4238,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson"
+                  "$ref": "#/components/schemas/PatchAiAgentsV1AgentsByAgentId200Response"
                 }
               }
             }
@@ -4284,7 +4284,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson2"
+                  "$ref": "#/components/schemas/DeleteAiAgentsV1AgentsByAgentId204Response"
                 }
               }
             }
@@ -4400,7 +4400,7 @@
             "content": {
               "text/event-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunStream200ResponseResponseEventStream"
+                  "$ref": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunStream200EventStreamResponseSchema"
                 }
               }
             }
@@ -4454,7 +4454,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson3"
+                  "$ref": "#/components/schemas/PostAiAgentsV1Contexts201Response"
                 }
               }
             }
@@ -4500,7 +4500,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson4"
+                  "$ref": "#/components/schemas/GetAiAgentsV1Contexts200Response"
                 }
               }
             }
@@ -4548,7 +4548,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson5"
+                  "$ref": "#/components/schemas/DeleteAiAgentsV1ContextsByContextId204Response"
                 }
               }
             }
@@ -4587,7 +4587,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetAiAgentsV1LlmProviders200ResponseResponseJson"
+                  "$ref": "#/components/schemas/GetAiAgentsV1LlmProviders200ResponseSchema"
                 }
               }
             }
@@ -4634,7 +4634,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetAiAgentsV1LlmProvidersByProviderId200ResponseResponseJson"
+                  "$ref": "#/components/schemas/GetAiAgentsV1LlmProvidersByProviderId200ResponseSchema"
                 }
               }
             }
@@ -4681,7 +4681,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseResponseJson"
+                  "$ref": "#/components/schemas/GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchema"
                 }
               }
             }
@@ -17008,7 +17008,7 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetPing200ResponseResponsePlain"
+                  "$ref": "#/components/schemas/GetPing200PlainResponseSchema"
                 },
                 "example": "pong"
               }
@@ -19006,7 +19006,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetInternalSettings200ResponseResponseJson"
+                  "$ref": "#/components/schemas/GetInternalSettings200ResponseSchema"
                 }
               }
             }
@@ -20489,7 +20489,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson6"
+                  "$ref": "#/components/schemas/GetOAuthAuthByConnectionId200Response"
                 }
               }
             }
@@ -20530,7 +20530,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson7"
+                  "$ref": "#/components/schemas/GetOAuthReauthByConnectionId200Response"
                 }
               }
             }
@@ -20600,7 +20600,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson8"
+                  "$ref": "#/components/schemas/GetOAuthCbByConnectionType200Response"
                 }
               }
             }
@@ -20639,7 +20639,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson9"
+                  "$ref": "#/components/schemas/GetOAuthCbByConnectionTypeByConnectionId200Response"
                 }
               }
             }
@@ -20670,7 +20670,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson10"
+                  "$ref": "#/components/schemas/PostOAuthConvertSamlXmlToJson201Response"
                 }
               }
             }
@@ -22623,7 +22623,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdSsoCertificates200ResponseResponseJson"
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdSsoCertificates200ResponseSchema"
                 },
                 "example": {
                   "ssoCertificates": [
@@ -23171,7 +23171,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdDomainsByOrganizationDomainIdVerify200ResponseResponseJson"
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdDomainsByOrganizationDomainIdVerify200ResponseSchema"
                 },
                 "example": {
                   "organizationDomain": {
@@ -24609,7 +24609,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson11"
+                  "$ref": "#/components/schemas/PostRpcsByAppNameByAppVersionByRpcName201Response"
                 }
               }
             }
@@ -26178,7 +26178,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson12"
+                  "$ref": "#/components/schemas/PostScenariosByScenarioIdReplay201Response"
                 }
               }
             }
@@ -26219,7 +26219,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson13"
+                  "$ref": "#/components/schemas/GetScenariosReplayableExecutionsByScenarioId200Response"
                 }
               }
             }
@@ -26686,7 +26686,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PutScenariosByScenarioIdRecovery200ResponseResponseJson"
+                  "$ref": "#/components/schemas/PutScenariosByScenarioIdRecovery200ResponseSchema"
                 }
               }
             }
@@ -27380,7 +27380,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostScenariosByScenarioIdExecutionsByExecutionIdStop200ResponseResponseJson"
+                  "$ref": "#/components/schemas/PostScenariosByScenarioIdExecutionsByExecutionIdStop200ResponseSchema"
                 }
               }
             }
@@ -28064,7 +28064,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetScenariosByScenarioIdConsumptionOverview200ResponseResponseJson"
+                  "$ref": "#/components/schemas/GetScenariosByScenarioIdConsumptionOverview200ResponseSchema"
                 },
                 "examples": {
                   "total": {
@@ -31405,7 +31405,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionCommon200ResponseResponseJson"
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionCommon200ResponseSchema"
                 },
                 "examples": {
                   "default": {
@@ -31537,7 +31537,7 @@
             "content": {
               "text/markdown": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionReadme200ResponseResponseMarkdown"
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionReadme200MarkdownResponseSchema"
                 },
                 "examples": {
                   "get-app-docs": {
@@ -32259,7 +32259,7 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionCommit200ResponseResponsePlain"
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionCommit200PlainResponseSchema"
                 },
                 "example": true
               }
@@ -32391,7 +32391,7 @@
             "content": {
               "image/png": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionIconBySdkAppIconSize200ResponseResponsePng"
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionIconBySdkAppIconSize200PngResponseSchema"
                 }
               }
             }
@@ -32513,7 +32513,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionUninstall200ResponseResponseJson"
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionUninstall200ResponseSchema"
                 }
               }
             }
@@ -34509,7 +34509,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson14"
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcName201Response"
                 }
               }
             }
@@ -34918,7 +34918,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpoints400ResponseResponseJson"
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpoints400ResponseSchema"
                 },
                 "examples": {
                   "duplicate-name": {
@@ -35124,7 +35124,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName400ResponseResponseJson"
+                  "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName400ResponseSchema"
                 },
                 "examples": {
                   "account-not-in-app": {
@@ -35204,7 +35204,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName400ResponseResponseJson"
+                  "$ref": "#/components/schemas/DeleteSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName400ResponseSchema"
                 },
                 "examples": {
                   "public-app": {
@@ -35276,7 +35276,7 @@
             "content": {
               "application/jsonc": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseResponseJsonc"
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200JsoncResponseSchema"
                 },
                 "examples": {
                   "get-endpoint-api": {
@@ -35614,7 +35614,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConsumable403ResponseResponseJson"
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConsumable403ResponseSchema"
                 },
                 "examples": {
                   "insufficient-rights": {
@@ -35729,7 +35729,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections400ResponseResponseJson"
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections400ResponseSchema"
                 },
                 "examples": {
                   "account-not-in-app": {
@@ -36145,7 +36145,7 @@
             "content": {
               "application/javascript": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameCode200ResponseResponseJavascript"
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameCode200JavascriptResponseSchema"
                 },
                 "examples": {
                   "get-function-code": {
@@ -36279,7 +36279,7 @@
             "content": {
               "application/javascript": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTest200ResponseResponseJavascript"
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTest200JavascriptResponseSchema"
                 },
                 "examples": {
                   "get-function-test": {
@@ -36668,7 +36668,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteSdkAppsConnectionsBySdkConnectionName400ResponseResponseJson"
+                  "$ref": "#/components/schemas/DeleteSdkAppsConnectionsBySdkConnectionName400ResponseSchema"
                 },
                 "examples": {
                   "used-by-endpoint": {
@@ -36918,7 +36918,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetSdkAppsConnectionsBySdkConnectionNameCommon200ResponseResponseJson"
+                  "$ref": "#/components/schemas/GetSdkAppsConnectionsBySdkConnectionNameCommon200ResponseSchema"
                 },
                 "examples": {
                   "get-connection-common": {
@@ -37475,7 +37475,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseResponseJson"
+                  "$ref": "#/components/schemas/PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseSchema"
                 },
                 "examples": {
                   "recreate-connection": {
@@ -44302,7 +44302,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson15"
+                  "$ref": "#/components/schemas/GetConsumptionsReportsByOrganizationIdTeamId200Response"
                 }
               }
             }
@@ -44364,7 +44364,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson16"
+                  "$ref": "#/components/schemas/GetOutboundWebhooksOrganizationsByOrganizationIdWebhooks200Response"
                 }
               }
             }
@@ -44412,7 +44412,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson17"
+                  "$ref": "#/components/schemas/PostOutboundWebhooksOrganizationsByOrganizationIdWebhooks201Response"
                 }
               }
             }
@@ -44463,7 +44463,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson18"
+                  "$ref": "#/components/schemas/GetOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookId200Response"
                 }
               }
             }
@@ -44521,7 +44521,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson19"
+                  "$ref": "#/components/schemas/PatchOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookId200Response"
                 }
               }
             }
@@ -44570,7 +44570,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson20"
+                  "$ref": "#/components/schemas/DeleteOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookId204Response"
                 }
               }
             }
@@ -44621,7 +44621,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson21"
+                  "$ref": "#/components/schemas/PatchOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookIdActivate200Response"
                 }
               }
             }
@@ -44672,7 +44672,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultResponseResponseJson22"
+                  "$ref": "#/components/schemas/PatchOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookIdDeactivate200Response"
                 }
               }
             }
@@ -91739,7 +91739,7 @@
           }
         }
       },
-      "PostAiAgentsV1AgentsByAgentIdRunStream200Response": {
+      "PostAiAgentsV1AgentsByAgentIdRunStream200EventStreamResponse": {
         "type": "object",
         "description": "Server-Sent Events stream (text/event-stream)",
         "example": "event:step\nid:4ebb9c59-ab75-41d5-8146-7407ce71f484\ndata:{\u0022role\u0022:\u0022system\u0022,\u0022content\u0022:\u0022do what user says\\nCurrent time (ISO): 2025-06-26T01:42:30.080-06:00\u0022,\u0022id\u0022:\u0022445431dd-c20e-4a58-a043-ca9c131d4010\u0022,\u0022agentIterationId\u0022:\u0022a132ced5-4afd-4444-ac9d-330cc99c4986\u0022}\n"
@@ -93687,7 +93687,7 @@
           }
         }
       },
-      "GetPing200Response": {
+      "GetPing200PlainResponse": {
         "type": "string"
       },
       "GetHooks200Response": {
@@ -97618,7 +97618,7 @@
           }
         }
       },
-      "GetSdkAppsBySdkAppNameBySdkAppVersionReadme200Response": {
+      "GetSdkAppsBySdkAppNameBySdkAppVersionReadme200MarkdownResponse": {
         "type": "string"
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionReadmeMarkdownRequest": {
@@ -97725,7 +97725,7 @@
           }
         }
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionCommit200Response": {
+      "PostSdkAppsBySdkAppNameBySdkAppVersionCommit200PlainResponse": {
         "type": "boolean"
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionRollbackRequest": {
@@ -97747,7 +97747,7 @@
           }
         }
       },
-      "GetSdkAppsBySdkAppNameBySdkAppVersionIconBySdkAppIconSize200Response": {
+      "GetSdkAppsBySdkAppNameBySdkAppVersionIconBySdkAppIconSize200PngResponse": {
         "type": "string",
         "format": "binary"
       },
@@ -98384,7 +98384,7 @@
       "DeleteSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName400Response": {
         "type": "object"
       },
-      "GetSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200Response": {
+      "GetSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200JsoncResponse": {
         "type": "string"
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSectionRequest": {
@@ -98565,7 +98565,7 @@
           }
         }
       },
-      "GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameCode200Response": {
+      "GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameCode200JavascriptResponse": {
         "type": "string"
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameCodeJavascriptRequest": {
@@ -98588,7 +98588,7 @@
           }
         }
       },
-      "GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTest200Response": {
+      "GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTest200JavascriptResponse": {
         "type": "string"
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTestJavascriptRequest": {
@@ -132171,62 +132171,62 @@
           }
         }
       },
-      "PostAdminOrganizationsByOrganizationIdAssignUniversalDiscount200ResponseResponseJson": {
+      "PostAdminOrganizationsByOrganizationIdAssignUniversalDiscount200ResponseSchema": {
         "type": "object",
         "description": "Response from the cashier service"
       },
-      "DefaultResponse": {
+      "PutAdminSystemSettingsByKey200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson": {
+      "PatchAiAgentsV1AgentsByAgentId200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson2": {
+      "DeleteAiAgentsV1AgentsByAgentId204Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "PostAiAgentsV1AgentsByAgentIdRunStream200ResponseResponseEventStream": {
+      "PostAiAgentsV1AgentsByAgentIdRunStream200EventStreamResponseSchema": {
         "type": "object",
         "description": "Server-Sent Events stream (text/event-stream)"
       },
-      "DefaultResponseResponseJson3": {
+      "PostAiAgentsV1Contexts201Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson4": {
+      "GetAiAgentsV1Contexts200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson5": {
+      "DeleteAiAgentsV1ContextsByContextId204Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "GetAiAgentsV1LlmProviders200ResponseResponseJson": {
+      "GetAiAgentsV1LlmProviders200ResponseSchema": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/GetAiAgentsV1LlmProviders200ResponseResponseJsonItem"
+          "$ref": "#/components/schemas/GetAiAgentsV1LlmProviders200ResponseSchemaItem"
         },
         "description": "Response body containing a list of available LLM providers."
       },
-      "GetAiAgentsV1LlmProvidersByProviderId200ResponseResponseJson": {
+      "GetAiAgentsV1LlmProvidersByProviderId200ResponseSchema": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/GetAiAgentsV1LlmProvidersByProviderId200ResponseResponseJsonItem"
+          "$ref": "#/components/schemas/GetAiAgentsV1LlmProvidersByProviderId200ResponseSchemaItem"
         },
         "description": "Detailed information about a specific LLM provider."
       },
-      "GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseResponseJson": {
+      "GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchema": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseResponseJsonItem"
+          "$ref": "#/components/schemas/GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItem"
         },
         "description": "Response body containing a list of models for a specific LLM provider."
       },
@@ -132248,35 +132248,35 @@
       "PatchDevicesByDeviceIdRequestRequestBody": {
         "type": "object"
       },
-      "GetPing200ResponseResponsePlain": {
+      "GetPing200PlainResponseSchema": {
         "type": "string"
       },
       "PostHooksByHookIdSetDataRequestRequestBody": {
         "type": "object"
       },
-      "GetInternalSettings200ResponseResponseJson": {
+      "GetInternalSettings200ResponseSchema": {
         "type": "object",
         "description": "Key value pairs of system settings."
       },
       "PatchKeysByKeyIdRequestRequestBody": {
         "type": "object"
       },
-      "DefaultResponseResponseJson6": {
+      "GetOAuthAuthByConnectionId200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson7": {
+      "GetOAuthReauthByConnectionId200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson8": {
+      "GetOAuthCbByConnectionType200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson9": {
+      "GetOAuthCbByConnectionTypeByConnectionId200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
@@ -132284,18 +132284,18 @@
       "PostOAuthConvertSamlXmlToJsonRequest": {
         "type": "object"
       },
-      "DefaultResponseResponseJson10": {
+      "PostOAuthConvertSamlXmlToJson201Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "GetOrganizationsByOrganizationIdSsoCertificates200ResponseResponseJson": {
+      "GetOrganizationsByOrganizationIdSsoCertificates200ResponseSchema": {
         "type": "object"
       },
-      "PostOrganizationsByOrganizationIdDomainsByOrganizationDomainIdVerify200ResponseResponseJson": {
+      "PostOrganizationsByOrganizationIdDomainsByOrganizationDomainIdVerify200ResponseSchema": {
         "type": "object"
       },
-      "DefaultResponseResponseJson11": {
+      "PostRpcsByAppNameByAppVersionByRpcName201Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
@@ -132303,23 +132303,23 @@
       "PutScenariosByScenarioIdDataRequestRequestBody": {
         "type": "object"
       },
-      "DefaultResponseResponseJson12": {
+      "PostScenariosByScenarioIdReplay201Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson13": {
+      "GetScenariosReplayableExecutionsByScenarioId200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "PutScenariosByScenarioIdRecovery200ResponseResponseJson": {
+      "PutScenariosByScenarioIdRecovery200ResponseSchema": {
         "type": "object"
       },
-      "PostScenariosByScenarioIdExecutionsByExecutionIdStop200ResponseResponseJson": {
+      "PostScenariosByScenarioIdExecutionsByExecutionIdStop200ResponseSchema": {
         "type": "object"
       },
-      "GetScenariosByScenarioIdConsumptionOverview200ResponseResponseJson": {
+      "GetScenariosByScenarioIdConsumptionOverview200ResponseSchema": {
         "type": "object"
       },
       "PostScenariosByScenarioIdCustomPropertiesRequestRequestBody": {
@@ -132334,14 +132334,14 @@
       "PatchSdkAppsBySdkAppNameBySdkAppVersionRequestRequestBody": {
         "type": "object"
       },
-      "GetSdkAppsBySdkAppNameBySdkAppVersionCommon200ResponseResponseJson": {
+      "GetSdkAppsBySdkAppNameBySdkAppVersionCommon200ResponseSchema": {
         "type": "object"
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionCommonRequestRequestBody": {
         "type": "object",
         "description": "The JSON object containing the common data."
       },
-      "GetSdkAppsBySdkAppNameBySdkAppVersionReadme200ResponseResponseMarkdown": {
+      "GetSdkAppsBySdkAppNameBySdkAppVersionReadme200MarkdownResponseSchema": {
         "type": "string"
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionGroupsRequest": {
@@ -132371,17 +132371,17 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionClosedsourceRequest": {
         "type": "object"
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionCommit200ResponseResponsePlain": {
+      "PostSdkAppsBySdkAppNameBySdkAppVersionCommit200PlainResponseSchema": {
         "type": "boolean"
       },
-      "GetSdkAppsBySdkAppNameBySdkAppVersionIconBySdkAppIconSize200ResponseResponsePng": {
+      "GetSdkAppsBySdkAppNameBySdkAppVersionIconBySdkAppIconSize200PngResponseSchema": {
         "type": "string",
         "format": "binary"
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionUninstall200ResponseResponseJson": {
+      "PostSdkAppsBySdkAppNameBySdkAppVersionUninstall200ResponseSchema": {
         "type": "array",
         "items": {
-          "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionUninstall200ResponseResponseJsonItem"
+          "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionUninstall200ResponseSchemaItem"
         }
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameSamplesRequest": {
@@ -132415,39 +132415,39 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSectionRequest": {
         "type": "object"
       },
-      "DefaultResponseResponseJson14": {
+      "PostSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcName201Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionEndpoints400ResponseResponseJson": {
+      "PostSdkAppsBySdkAppNameBySdkAppVersionEndpoints400ResponseSchema": {
         "type": "object"
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName400ResponseResponseJson": {
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName400ResponseSchema": {
         "type": "object"
       },
-      "DeleteSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName400ResponseResponseJson": {
+      "DeleteSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointName400ResponseSchema": {
         "type": "object"
       },
-      "GetSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseResponseJsonc": {
+      "GetSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200JsoncResponseSchema": {
         "type": "string"
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConsumable403ResponseResponseJson": {
+      "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConsumable403ResponseSchema": {
         "type": "object"
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections400ResponseResponseJson": {
+      "PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections400ResponseSchema": {
         "type": "object"
       },
-      "GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameCode200ResponseResponseJavascript": {
+      "GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameCode200JavascriptResponseSchema": {
         "type": "string"
       },
-      "GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTest200ResponseResponseJavascript": {
+      "GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTest200JavascriptResponseSchema": {
         "type": "string"
       },
-      "DeleteSdkAppsConnectionsBySdkConnectionName400ResponseResponseJson": {
+      "DeleteSdkAppsConnectionsBySdkConnectionName400ResponseSchema": {
         "type": "object"
       },
-      "GetSdkAppsConnectionsBySdkConnectionNameCommon200ResponseResponseJson": {
+      "GetSdkAppsConnectionsBySdkConnectionNameCommon200ResponseSchema": {
         "type": "object",
         "description": "The common data for the connection. The structure of this object is not fixed and depends on the connection\u0027s configuration."
       },
@@ -132455,7 +132455,7 @@
         "type": "object",
         "description": "The common data for the connection. The structure of this object is not fixed and depends on the connection\u0027s configuration."
       },
-      "PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseResponseJson": {
+      "PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseSchema": {
         "type": "object",
         "description": "An empty object is returned on successful recreation."
       },
@@ -132469,42 +132469,42 @@
         },
         "description": "\u0022\u0060{ [namespace]: value | null }\u0060. Each non-\u0060null\u0060 value must match the namespace\u0027s schema.\n\u0022"
       },
-      "DefaultResponseResponseJson15": {
+      "GetConsumptionsReportsByOrganizationIdTeamId200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson16": {
+      "GetOutboundWebhooksOrganizationsByOrganizationIdWebhooks200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson17": {
+      "PostOutboundWebhooksOrganizationsByOrganizationIdWebhooks201Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson18": {
+      "GetOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookId200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson19": {
+      "PatchOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookId200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson20": {
+      "DeleteOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookId204Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson21": {
+      "PatchOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookIdActivate200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
       },
-      "DefaultResponseResponseJson22": {
+      "PatchOutboundWebhooksOrganizationsByOrganizationIdWebhooksByWebhookIdDeactivate200Response": {
         "title": "DefaultResponse",
         "type": "object",
         "description": "Default response schema"
@@ -149940,7 +149940,7 @@
       "PatchTeamsByTeamIdVariablesByVariableName200ResponseTeamVariableValueBranch5ValueItem": {
         "type": "object"
       },
-      "GetAiAgentsV1LlmProviders200ResponseResponseJsonItem": {
+      "GetAiAgentsV1LlmProviders200ResponseSchemaItem": {
         "required": [
           "id",
           "provider",
@@ -149960,7 +149960,7 @@
           }
         }
       },
-      "GetAiAgentsV1LlmProvidersByProviderId200ResponseResponseJsonItem": {
+      "GetAiAgentsV1LlmProvidersByProviderId200ResponseSchemaItem": {
         "required": [
           "id",
           "provider"
@@ -149975,7 +149975,7 @@
           }
         }
       },
-      "GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseResponseJsonItem": {
+      "GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItem": {
         "required": [
           "model",
           "provider",
@@ -150001,7 +150001,7 @@
       "PostConnectionsByConnectionIdSetDataRequestRequestBodyAdditionalProperties": {
         "type": "object"
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionUninstall200ResponseResponseJsonItem": {
+      "PostSdkAppsBySdkAppNameBySdkAppVersionUninstall200ResponseSchemaItem": {
         "type": "object",
         "properties": {
           "name": {

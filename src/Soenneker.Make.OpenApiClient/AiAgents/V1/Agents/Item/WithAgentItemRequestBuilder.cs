@@ -77,22 +77,22 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item
         /// <summary>
         /// Modify an existing agent by its ID
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentId200Response"/></returns>
         /// <param name="body">Request body for modifying an existing agent.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.WithAgentItemRequestBuilder.WithAgentItemRequestBuilderPatchQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentId200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.WithAgentItemRequestBuilder.WithAgentItemRequestBuilderPatchQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.WithAgentItemRequestBuilder.WithAgentItemRequestBuilderPatchQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentId200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.WithAgentItemRequestBuilder.WithAgentItemRequestBuilderPatchQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DefaultResponseResponseJson.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Delete an agent by its ID
