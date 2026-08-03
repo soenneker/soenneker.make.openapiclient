@@ -4,6 +4,8 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Connections.Item.EditableDataSchema;
+using Soenneker.Make.OpenApiClient.Connections.Item.MakeLocked;
+using Soenneker.Make.OpenApiClient.Connections.Item.MakeTeam;
 using Soenneker.Make.OpenApiClient.Connections.Item.Scoped;
 using Soenneker.Make.OpenApiClient.Connections.Item.SetData;
 using Soenneker.Make.OpenApiClient.Connections.Item.Test;
@@ -25,6 +27,16 @@ namespace Soenneker.Make.OpenApiClient.Connections.Item
         public global::Soenneker.Make.OpenApiClient.Connections.Item.EditableDataSchema.EditableDataSchemaRequestBuilder EditableDataSchema
         {
             get => new global::Soenneker.Make.OpenApiClient.Connections.Item.EditableDataSchema.EditableDataSchemaRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The makeLocked property</summary>
+        public global::Soenneker.Make.OpenApiClient.Connections.Item.MakeLocked.MakeLockedRequestBuilder MakeLocked
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Connections.Item.MakeLocked.MakeLockedRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The makeTeam property</summary>
+        public global::Soenneker.Make.OpenApiClient.Connections.Item.MakeTeam.MakeTeamRequestBuilder MakeTeam
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Connections.Item.MakeTeam.MakeTeamRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The scoped property</summary>
         public global::Soenneker.Make.OpenApiClient.Connections.Item.Scoped.ScopedRequestBuilder Scoped

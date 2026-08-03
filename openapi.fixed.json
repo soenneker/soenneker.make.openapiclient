@@ -6555,14 +6555,33 @@
               "schema": {
                 "$ref": "#/components/schemas/PostConnectionsRequest"
               },
-              "example": {
-                "accountName": "Slack Test",
-                "accountType": "slack",
-                "clientId": 123456,
-                "clientSecret": "secret",
-                "scopes": [
-                  "chat:write"
-                ]
+              "examples": {
+                "team-visible": {
+                  "summary": "Team-visible connection (default)",
+                  "value": {
+                    "accountName": "Slack Test",
+                    "accountType": "slack",
+                    "clientId": 123456,
+                    "clientSecret": "secret",
+                    "scopes": [
+                      "chat:write"
+                    ]
+                  }
+                },
+                "born-locked": {
+                  "summary": "Connection created locked",
+                  "description": "Creates the connection with \u0060accountVisibility: locked\u0060 \u2014 restricted to its access list, with the creator as its sole admin.",
+                  "value": {
+                    "accountName": "Slack Test",
+                    "accountType": "slack",
+                    "clientId": 123456,
+                    "clientSecret": "secret",
+                    "scopes": [
+                      "chat:write"
+                    ],
+                    "accountVisibility": "locked"
+                  }
+                }
               }
             }
           }
@@ -7086,6 +7105,108 @@
                 "example": {
                   "connection": {
                     "scoped": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "connections:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/connections/{connectionId}/make-locked": {
+      "post": {
+        "tags": [
+          "Connections"
+        ],
+        "summary": "Lock connection",
+        "description": "\u0022Restricts the connection\u0027s visibility to its access list (\u0060visibility: locked\u0060). The caller becomes the sole admin\nof the locked connection.\n\nCaller rule: when the connection has an author, only the author can lock it. A legacy connection without an author\ncan be locked by any team member with the \u0060account edit\u0060 permission.\n\nThe operation is idempotent \u2014 locking an already locked connection succeeds without any change; the caller\nrule above still applies.\n\nRequires the *Locked connections* feature to be enabled for the organization.\n\u0022",
+        "operationId": "PostConnectionsByConnectionIdMakeLocked",
+        "parameters": [
+          {
+            "name": "connectionId",
+            "in": "path",
+            "description": "The ID of the connection. You can get connection ID\u0027s of all your connections with the the [List connections](./get--connections.md) endpoint.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 128
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostConnectionsByConnectionIdMakeLocked200Response"
+                },
+                "examples": {
+                  "locked": {
+                    "value": {
+                      "connection": {
+                        "id": 15,
+                        "visibility": "locked"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "connections:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/connections/{connectionId}/make-team": {
+      "post": {
+        "tags": [
+          "Connections"
+        ],
+        "summary": "Make connection available to team",
+        "description": "\u0022Makes a locked connection visible to the whole team again (\u0060visibility: team\u0060) and clears the connection\u0027s\nentire access list. Only an admin of the locked connection can perform the flip. The connection\u0027s author\nis not changed.\n\nThe operation is idempotent \u2014 flipping an already team-visible connection succeeds, provided the caller has\nthe \u0060account edit\u0060 permission; any residual entries on the connection\u0027s access list are still cleared.\n\nRequires the *Locked connections* feature to be enabled for the organization.\n\u0022",
+        "operationId": "PostConnectionsByConnectionIdMakeTeam",
+        "parameters": [
+          {
+            "name": "connectionId",
+            "in": "path",
+            "description": "The ID of the connection. You can get connection ID\u0027s of all your connections with the the [List connections](./get--connections.md) endpoint.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 128
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostConnectionsByConnectionIdMakeTeam200Response"
+                },
+                "examples": {
+                  "made-team": {
+                    "value": {
+                      "connection": {
+                        "id": 15,
+                        "visibility": "team"
+                      }
+                    }
                   }
                 }
               }
@@ -19656,6 +19777,20 @@
                       "placement": "header"
                     }
                   }
+                },
+                "basicauth-locked": {
+                  "summary": "Key created locked",
+                  "description": "Creates the key with \u0060visibility: locked\u0060 \u2014 restricted to its access list, with the creator as its sole admin.",
+                  "value": {
+                    "teamId": 22,
+                    "name": "My HTTP Basic Auth key",
+                    "typeName": "basicauth",
+                    "visibility": "locked",
+                    "parameters": {
+                      "authUser": "Martin",
+                      "authPass": "your-password"
+                    }
+                  }
                 }
               }
             }
@@ -19692,6 +19827,20 @@
                         "id": 18,
                         "name": "My API key Auth key",
                         "typeName": "apikeyauth",
+                        "teamId": 22,
+                        "packageName": null,
+                        "theme": "#007ee5"
+                      }
+                    }
+                  },
+                  "basicauth-locked": {
+                    "summary": "Key created locked",
+                    "description": "The response shape of a locked key is identical \u2014 visibility is not returned by this endpoint.",
+                    "value": {
+                      "key": {
+                        "id": 19,
+                        "name": "My HTTP Basic Auth key",
+                        "typeName": "basicauth",
                         "teamId": 22,
                         "packageName": null,
                         "theme": "#007ee5"
@@ -20132,6 +20281,108 @@
                 },
                 "example": {
                   "key": 16
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "keys:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/keys/{keyId}/make-locked": {
+      "post": {
+        "tags": [
+          "Keys"
+        ],
+        "summary": "Lock key",
+        "description": "\u0022Restricts the key\u0027s visibility to its access list (\u0060visibility: locked\u0060). The caller becomes the sole admin\nof the locked key.\n\nCaller rule: when the key has an author, only the author can lock it. A legacy key without an author can be\nlocked by any team member with the \u0060key edit\u0060 permission. When the key\u0027s author is no longer a member of the\nteam, the key is treated as a key without an author; the stale author reference is cleared once the caller\npasses the caller rule.\n\nThe operation is idempotent \u2014 locking an already locked key succeeds without any change; the caller rule\nabove still applies.\n\nRequires the *Locked connections* feature to be enabled for the organization.\n\u0022",
+        "operationId": "PostKeysByKeyIdMakeLocked",
+        "parameters": [
+          {
+            "name": "keyId",
+            "in": "path",
+            "description": "The ID of the key.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 16
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostKeysByKeyIdMakeLocked200Response"
+                },
+                "examples": {
+                  "locked": {
+                    "value": {
+                      "key": {
+                        "id": 8,
+                        "visibility": "locked"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "keys:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/keys/{keyId}/make-team": {
+      "post": {
+        "tags": [
+          "Keys"
+        ],
+        "summary": "Make key available to team",
+        "description": "\u0022Makes a locked key visible to the whole team again (\u0060visibility: team\u0060) and clears the key\u0027s entire access\nlist. Only an admin of the locked key can perform the flip. The key\u0027s author is not changed.\n\nThe operation is idempotent \u2014 flipping an already team-visible key succeeds, provided the caller has the\n\u0060key edit\u0060 permission; any residual entries on the key\u0027s access list are still cleared.\n\nRequires the *Locked connections* feature to be enabled for the organization.\n\u0022",
+        "operationId": "PostKeysByKeyIdMakeTeam",
+        "parameters": [
+          {
+            "name": "keyId",
+            "in": "path",
+            "description": "The ID of the key.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 16
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostKeysByKeyIdMakeTeam200Response"
+                },
+                "examples": {
+                  "made-team": {
+                    "value": {
+                      "key": {
+                        "id": 8,
+                        "visibility": "team"
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -22531,7 +22782,7 @@
           "Organizations / User organization roles"
         ],
         "summary": "Transfer organization ownership",
-        "description": "Transfer organization ownership to the specified user. Only the user that has the user role \u0022Owner\u0022 in the organization can transfer ownership.",
+        "description": "Transfer organization ownership to the specified user.",
         "operationId": "PostOrganizationsByOrganizationIdUserOrganizationRolesTransfer",
         "parameters": [
           {
@@ -22584,7 +22835,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "token": [
+              "organizations:write"
+            ]
+          }
+        ]
       }
     },
     "/organizations/{organizationId}/sso-certificates": {
@@ -92160,6 +92418,9 @@
               "type": "string"
             },
             "description": "The connection scope determining the module use. The format and number of available scopes vary depending on the \u0060accountType\u0060 parameter."
+          },
+          "accountVisibility": {
+            "$ref": "#/components/schemas/PostConnectionsRequestAccountVisibility"
           }
         },
         "additionalProperties": {
@@ -92262,6 +92523,22 @@
         "properties": {
           "connection": {
             "$ref": "#/components/schemas/PostConnectionsByConnectionIdScoped200ResponseConnection"
+          }
+        }
+      },
+      "PostConnectionsByConnectionIdMakeLocked200Response": {
+        "type": "object",
+        "properties": {
+          "connection": {
+            "$ref": "#/components/schemas/PostConnectionsByConnectionIdMakeLocked200ResponseConnection"
+          }
+        }
+      },
+      "PostConnectionsByConnectionIdMakeTeam200Response": {
+        "type": "object",
+        "properties": {
+          "connection": {
+            "$ref": "#/components/schemas/PostConnectionsByConnectionIdMakeTeam200ResponseConnection"
           }
         }
       },
@@ -94591,6 +94868,9 @@
           },
           "parameters": {
             "$ref": "#/components/schemas/PostKeysRequestParameters"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/PostKeysRequestVisibility"
           }
         }
       },
@@ -94637,6 +94917,22 @@
         "properties": {
           "key": {
             "type": "integer"
+          }
+        }
+      },
+      "PostKeysByKeyIdMakeLocked200Response": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "$ref": "#/components/schemas/PostKeysByKeyIdMakeLocked200ResponseKey"
+          }
+        }
+      },
+      "PostKeysByKeyIdMakeTeam200Response": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "$ref": "#/components/schemas/PostKeysByKeyIdMakeTeam200ResponseKey"
           }
         }
       },
@@ -137719,6 +138015,30 @@
           }
         }
       },
+      "PostConnectionsByConnectionIdMakeLocked200ResponseConnection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the connection."
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/PostConnectionsByConnectionIdMakeLocked200ResponseConnectionVisibility"
+          }
+        }
+      },
+      "PostConnectionsByConnectionIdMakeTeam200ResponseConnection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the connection."
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/PostConnectionsByConnectionIdMakeTeam200ResponseConnectionVisibility"
+          }
+        }
+      },
       "GetCredentialRequestsRequests200ResponseRequestsItem": {
         "type": "object",
         "properties": {
@@ -141095,6 +141415,30 @@
           "theme": {
             "type": "string",
             "format": "color"
+          }
+        }
+      },
+      "PostKeysByKeyIdMakeLocked200ResponseKey": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the key."
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/PostKeysByKeyIdMakeLocked200ResponseKeyVisibility"
+          }
+        }
+      },
+      "PostKeysByKeyIdMakeTeam200ResponseKey": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the key."
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/PostKeysByKeyIdMakeTeam200ResponseKeyVisibility"
           }
         }
       },
@@ -169537,6 +169881,29 @@
           ]
         }
       },
+      "PostConnectionsRequestAccountVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility of the created connection. With \u0060locked\u0060 the connection is restricted to its access list from the moment it is created, with the creator as its sole admin. Requires the *Locked connections* feature to be enabled for the organization; otherwise the request fails with \u0060IM903\u0060 (HTTP 400). When the access list cannot be provisioned, the request fails with HTTP 422 and the connection is not created. Omitted or \u0060team\u0060, the connection is visible to the whole team.",
+        "x-ms-enum": {
+          "name": "PostConnectionsRequestAccountVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
       "PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItemsRequestType": {
         "enum": [
           "boolean",
@@ -169581,6 +169948,29 @@
             {
               "value": "multiselect",
               "name": "Multiselect"
+            }
+          ]
+        }
+      },
+      "PostKeysRequestVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility of the created key. With \u0060locked\u0060 the key is restricted to its access list from the moment it is created, with the creator as its sole admin. Requires the *Locked connections* feature to be enabled for the organization; otherwise the request fails with \u0060IM903\u0060 (HTTP 400). When the access list cannot be provisioned, the request fails with HTTP 422 and the key is not created. Omitted or \u0060team\u0060, the key is visible to the whole team.",
+        "x-ms-enum": {
+          "name": "PostKeysRequestVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
             }
           ]
         }
@@ -187434,6 +187824,42 @@
           ]
         }
       },
+      "PostConnectionsByConnectionIdMakeLocked200ResponseConnectionVisibility": {
+        "enum": [
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The visibility of the connection after the flip.",
+        "x-ms-enum": {
+          "name": "PostConnectionsByConnectionIdMakeLocked200ResponseConnectionVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
+      "PostConnectionsByConnectionIdMakeTeam200ResponseConnectionVisibility": {
+        "enum": [
+          "team"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The visibility of the connection after the flip.",
+        "x-ms-enum": {
+          "name": "PostConnectionsByConnectionIdMakeTeam200ResponseConnectionVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            }
+          ]
+        }
+      },
       "GetCredentialRequestsRequests200ResponseRequestsItemStatus": {
         "enum": [
           "authorized",
@@ -188065,6 +188491,42 @@
             {
               "value": "utf8",
               "name": "Utf8"
+            }
+          ]
+        }
+      },
+      "PostKeysByKeyIdMakeLocked200ResponseKeyVisibility": {
+        "enum": [
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The visibility of the key after the flip.",
+        "x-ms-enum": {
+          "name": "PostKeysByKeyIdMakeLocked200ResponseKeyVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
+      "PostKeysByKeyIdMakeTeam200ResponseKeyVisibility": {
+        "enum": [
+          "team"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The visibility of the key after the flip.",
+        "x-ms-enum": {
+          "name": "PostKeysByKeyIdMakeTeam200ResponseKeyVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
             }
           ]
         }

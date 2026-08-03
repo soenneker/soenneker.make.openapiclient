@@ -3,6 +3,8 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Keys.Item.MakeLocked;
+using Soenneker.Make.OpenApiClient.Keys.Item.MakeTeam;
 using Soenneker.Make.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +19,16 @@ namespace Soenneker.Make.OpenApiClient.Keys.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithKeyItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The makeLocked property</summary>
+        public global::Soenneker.Make.OpenApiClient.Keys.Item.MakeLocked.MakeLockedRequestBuilder MakeLocked
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Keys.Item.MakeLocked.MakeLockedRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The makeTeam property</summary>
+        public global::Soenneker.Make.OpenApiClient.Keys.Item.MakeTeam.MakeTeamRequestBuilder MakeTeam
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Keys.Item.MakeTeam.MakeTeamRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Keys.Item.WithKeyItemRequestBuilder"/> and sets the default values.
         /// </summary>

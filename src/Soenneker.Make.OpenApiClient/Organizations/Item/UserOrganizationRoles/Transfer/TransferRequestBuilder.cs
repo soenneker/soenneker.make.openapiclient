@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.UserOrganizationRoles.
         {
         }
         /// <summary>
-        /// Transfer organization ownership to the specified user. Only the user that has the user role &quot;Owner&quot; in the organization can transfer ownership.
+        /// Transfer organization ownership to the specified user.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUserOrganizationRolesTransfer200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -54,7 +54,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.UserOrganizationRoles.
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUserOrganizationRolesTransfer200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUserOrganizationRolesTransfer200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Transfer organization ownership to the specified user. Only the user that has the user role &quot;Owner&quot; in the organization can transfer ownership.
+        /// Transfer organization ownership to the specified user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -28,6 +28,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string AccountType { get; set; }
 #endif
+        /// <summary>Entity-tier visibility of the created connection. With `locked` the connection is restricted to its access list from the moment it is created, with the creator as its sole admin. Requires the *Locked connections* feature to be enabled for the organization; otherwise the request fails with `IM903` (HTTP 400). When the access list cannot be provisioned, the request fails with HTTP 422 and the connection is not created. Omitted or `team`, the connection is visible to the whole team.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PostConnectionsRequestAccountVisibility? AccountVisibility { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The connection scope determining the module use. The format and number of available scopes vary depending on the `accountType` parameter.</summary>
@@ -65,6 +67,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "accountName", n => { AccountName = n.GetStringValue(); } },
                 { "accountType", n => { AccountType = n.GetStringValue(); } },
+                { "accountVisibility", n => { AccountVisibility = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsRequestAccountVisibility>(); } },
                 { "scopes", n => { Scopes = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -77,6 +80,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("accountName", AccountName);
             writer.WriteStringValue("accountType", AccountType);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsRequestAccountVisibility>("accountVisibility", AccountVisibility);
             writer.WriteCollectionOfPrimitiveValues<string>("scopes", Scopes);
             writer.WriteAdditionalData(AdditionalData);
         }

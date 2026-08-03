@@ -40,6 +40,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string TypeName { get; set; }
 #endif
+        /// <summary>Entity-tier visibility of the created key. With `locked` the key is restricted to its access list from the moment it is created, with the creator as its sole admin. Requires the *Locked connections* feature to be enabled for the organization; otherwise the request fails with `IM903` (HTTP 400). When the access list cannot be provisioned, the request fails with HTTP 422 and the key is not created. Omitted or `team`, the key is visible to the whole team.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PostKeysRequestVisibility? Visibility { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostKeysRequest"/> and sets the default values.
         /// </summary>
@@ -69,6 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "parameters", n => { Parameters = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostKeysRequestParameters>(global::Soenneker.Make.OpenApiClient.Models.PostKeysRequestParameters.CreateFromDiscriminatorValue); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
                 { "typeName", n => { TypeName = n.GetStringValue(); } },
+                { "visibility", n => { Visibility = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostKeysRequestVisibility>(); } },
             };
         }
         /// <summary>
@@ -82,6 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostKeysRequestParameters>("parameters", Parameters);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteStringValue("typeName", TypeName);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostKeysRequestVisibility>("visibility", Visibility);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
