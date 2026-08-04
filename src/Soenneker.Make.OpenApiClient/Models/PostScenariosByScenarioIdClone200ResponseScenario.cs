@@ -113,7 +113,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public bool? IsShared { get; set; }
         /// <summary>The iswaiting property</summary>
         public bool? Iswaiting { get; set; }
-        /// <summary>Team labels assigned to the scenario, sorted by label name case-insensitively.</summary>
+        /// <summary>&quot;Team labels assigned to the scenario, sorted by label name case-insensitively. Available when scenario labels are enabled: the scenario list endpoint returns them by default, while the scenario detail endpoint returns them only when requested via `cols[]`.&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdClone200ResponseScenarioLabelsItem>? Labels { get; set; }

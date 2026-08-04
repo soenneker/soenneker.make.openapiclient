@@ -5,7 +5,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>The provider name for this tier</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2ProviderName
+    public enum GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName
     {
         [EnumMember(Value = "openai")]
         #pragma warning disable CS1591

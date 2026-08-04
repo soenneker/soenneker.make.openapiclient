@@ -5,16 +5,20 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2ProviderName
+    public enum PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "openai")]
+        [EnumMember(Value = "small")]
         #pragma warning disable CS1591
-        Openai,
+        Small,
         #pragma warning restore CS1591
-        [EnumMember(Value = "groq")]
+        [EnumMember(Value = "medium")]
         #pragma warning disable CS1591
-        Groq,
+        Medium,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "large")]
+        #pragma warning disable CS1591
+        Large,
         #pragma warning restore CS1591
     }
 }

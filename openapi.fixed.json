@@ -16281,6 +16281,12 @@
                       "translationKey": "scenarioDeactivation",
                       "name": "Scenario deactivation",
                       "description": "Get notified when your scenario gets deactivated due to critical issues such as multiple consecutive errors."
+                    },
+                    {
+                      "id": 9,
+                      "translationKey": "credentialNotifications",
+                      "name": "Connection and key activity",
+                      "description": "Notifications when someone else uses a connection or key you created. If turned off, this disables notifications for your individual connections and keys."
                     }
                   ]
                 }
@@ -25378,20 +25384,7 @@
                         "created": "2021-10-22T06:41:56.692Z",
                         "type": "scenario",
                         "chainingRole": null,
-                        "isShared": false,
-                        "labels": [
-                          {
-                            "id": 42,
-                            "name": "Acme",
-                            "colour": "brand",
-                            "scope": "team",
-                            "teamId": 215,
-                            "description": "Acme client work",
-                            "createdBy": 985,
-                            "created": "2026-06-24T08:00:00.000Z",
-                            "updated": null
-                          }
-                        ]
+                        "isShared": false
                       }
                     }
                   }
@@ -25535,20 +25528,7 @@
                     "created": "2021-10-22T06:41:56.692Z",
                     "type": "scenario",
                     "chainingRole": null,
-                    "isShared": false,
-                    "labels": [
-                      {
-                        "id": 42,
-                        "name": "Acme",
-                        "colour": "brand",
-                        "scope": "team",
-                        "teamId": 215,
-                        "description": "Acme client work",
-                        "createdBy": 985,
-                        "created": "2026-06-24T08:00:00.000Z",
-                        "updated": null
-                      }
-                    ]
+                    "isShared": false
                   }
                 }
               }
@@ -25673,20 +25653,7 @@
                     "created": "2021-10-22T06:41:56.692Z",
                     "type": "scenario",
                     "chainingRole": null,
-                    "isShared": false,
-                    "labels": [
-                      {
-                        "id": 42,
-                        "name": "Acme",
-                        "colour": "brand",
-                        "scope": "team",
-                        "teamId": 215,
-                        "description": "Acme client work",
-                        "createdBy": 985,
-                        "created": "2026-06-24T08:00:00.000Z",
-                        "updated": null
-                      }
-                    ]
+                    "isShared": false
                   }
                 }
               }
@@ -132761,7 +132728,7 @@
       "PatchUsersMePreferencesRequestRequestBody": {
         "type": "object",
         "additionalProperties": {
-          "$ref": "#/components/schemas/PatchUsersMePreferencesRequestAdditionalProperties"
+          "$ref": "#/components/schemas/PatchUsersMePreferencesRequestRequestBodyAdditionalProperties"
         },
         "description": "\u0022\u0060{ [namespace]: value | null }\u0060. Each non-\u0060null\u0060 value must match the namespace\u0027s schema.\n\u0022"
       },
@@ -133066,20 +133033,6 @@
           }
         ]
       },
-      "PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution": {
-        "type": "object",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecutionOneOf1"
-          },
-          {
-            "enum": [
-              null
-            ]
-          }
-        ],
-        "description": "Metadata of the execution, or \u0060null\u0060 when no execution document was found in the searched time window."
-      },
       "GetScenariosByScenarioIdRecovery200ResponseOneOf1": {
         "required": [
           "blueprint",
@@ -133222,75 +133175,6 @@
           },
           {
             "$ref": "#/components/schemas/PatchTeamsByTeamIdVariablesByVariableName200ResponseTeamVariableValueBranch5"
-          }
-        ]
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo": {
-        "type": "object",
-        "oneOf": [
-          {
-            "enum": [
-              null
-            ]
-          },
-          {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2"
-          }
-        ],
-        "description": "Detailed information about the AI mapping builtin tier"
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo": {
-        "type": "object",
-        "oneOf": [
-          {
-            "enum": [
-              null
-            ]
-          },
-          {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2"
-          }
-        ],
-        "description": "Detailed information about the AI toolkit builtin tier"
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo": {
-        "type": "object",
-        "oneOf": [
-          {
-            "enum": [
-              null
-            ]
-          },
-          {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2"
-          }
-        ],
-        "description": "Detailed information about the AI mapping builtin tier"
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo": {
-        "type": "object",
-        "oneOf": [
-          {
-            "enum": [
-              null
-            ]
-          },
-          {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2"
-          }
-        ],
-        "description": "Detailed information about the AI toolkit builtin tier"
-      },
-      "PatchUsersMePreferencesRequestAdditionalProperties": {
-        "type": "object",
-        "oneOf": [
-          {
-            "type": "object"
-          },
-          {
-            "enum": [
-              null
-            ]
           }
         ]
       },
@@ -133461,198 +133345,6 @@
           }
         },
         "description": "A native or SDK app with version/module aggregation and zone\u002Bteam scoring applied.\nReturned only when \u0060scoredSearch=true\u0060.\n"
-      },
-      "PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecutionOneOf1": {
-        "type": "object",
-        "properties": {
-          "imtId": {
-            "type": "string",
-            "description": "The internal identifier of the execution. Equal to \u0060id\u0060 unless an alternate cursor was supplied."
-          },
-          "id": {
-            "type": "string",
-            "description": "The execution ID."
-          },
-          "kindId": {
-            "type": "integer",
-            "description": "The ID of the scenario the execution belongs to."
-          },
-          "scenarioId": {
-            "type": "integer",
-            "description": "The ID of the scenario the execution belongs to."
-          },
-          "scenarioName": {
-            "type": "string",
-            "description": "The name of the scenario at the time of the execution."
-          },
-          "timestamp": {
-            "type": "string",
-            "description": "ISO timestamp when the execution started.",
-            "format": "date-time"
-          },
-          "type": {
-            "type": "string",
-            "description": "The trigger type of the execution (for example \u0060auto\u0060, \u0060manual\u0060)."
-          },
-          "instant": {
-            "type": "boolean",
-            "description": "Whether the scenario was triggered instantly (for example, by a webhook)."
-          },
-          "authorId": {
-            "type": "integer",
-            "description": "The ID of the user who triggered the execution. Null for system-triggered runs.",
-            "nullable": true
-          },
-          "teamId": {
-            "type": "integer",
-            "description": "The ID of the team that owns the scenario.",
-            "nullable": true
-          },
-          "organizationId": {
-            "type": "integer",
-            "description": "The ID of the organization that owns the scenario."
-          },
-          "duration": {
-            "type": "integer",
-            "description": "The duration of the execution in milliseconds."
-          },
-          "operations": {
-            "type": "integer",
-            "description": "The number of operations consumed by the execution."
-          },
-          "centicredits": {
-            "type": "integer",
-            "description": "The number of centicredits consumed by the execution."
-          },
-          "transfer": {
-            "type": "integer",
-            "description": "The amount of data transferred during the execution, in bytes."
-          },
-          "status": {
-            "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecutionOneOf1Status"
-          },
-          "eventType": {
-            "type": "string",
-            "description": "The execution event type stored in the underlying log entry."
-          },
-          "errorMessage": {
-            "type": "string",
-            "description": "The error message associated with a failed execution. Null when the execution did not produce an error.",
-            "nullable": true
-          },
-          "highlight": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Snippets from the error message that matched the \u0060errorMessage\u0060 filter, with the matched substring wrapped in highlight markers. Null when no \u0060errorMessage\u0060 filter was applied.",
-            "nullable": true
-          }
-        }
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2": {
-        "type": "object",
-        "properties": {
-          "tierName": {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2TierName"
-          },
-          "modelName": {
-            "type": "string",
-            "description": "The model name associated with this tier"
-          },
-          "providerName": {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2ProviderName"
-          },
-          "centicreditsCoefficient": {
-            "minimum": 0,
-            "type": "number",
-            "description": "Cost coefficient in centicredits per token"
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "Timestamp when the tier was created"
-          },
-          "updatedAt": {
-            "type": "string",
-            "description": "Timestamp when the tier was last updated"
-          }
-        }
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2": {
-        "type": "object",
-        "properties": {
-          "tierName": {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2TierName"
-          },
-          "modelName": {
-            "type": "string",
-            "description": "The model name associated with this tier"
-          },
-          "providerName": {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2ProviderName"
-          },
-          "centicreditsCoefficient": {
-            "minimum": 0,
-            "type": "number",
-            "description": "Cost coefficient in centicredits per token"
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "Timestamp when the tier was created"
-          },
-          "updatedAt": {
-            "type": "string",
-            "description": "Timestamp when the tier was last updated"
-          }
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2": {
-        "type": "object",
-        "properties": {
-          "tierName": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2TierName"
-          },
-          "modelName": {
-            "type": "string"
-          },
-          "providerName": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2ProviderName"
-          },
-          "centicreditsCoefficient": {
-            "minimum": 0,
-            "type": "number"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2": {
-        "type": "object",
-        "properties": {
-          "tierName": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2TierName"
-          },
-          "modelName": {
-            "type": "string"
-          },
-          "providerName": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2ProviderName"
-          },
-          "centicreditsCoefficient": {
-            "minimum": 0,
-            "type": "number"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        }
       },
       "TeamTransferLimit": {
         "type": "object"
@@ -142713,6 +142405,96 @@
           }
         }
       },
+      "PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution": {
+        "type": "object",
+        "properties": {
+          "imtId": {
+            "type": "string",
+            "description": "The internal identifier of the execution. Equal to \u0060id\u0060 unless an alternate cursor was supplied."
+          },
+          "id": {
+            "type": "string",
+            "description": "The execution ID."
+          },
+          "kindId": {
+            "type": "integer",
+            "description": "The ID of the scenario the execution belongs to."
+          },
+          "scenarioId": {
+            "type": "integer",
+            "description": "The ID of the scenario the execution belongs to."
+          },
+          "scenarioName": {
+            "type": "string",
+            "description": "The name of the scenario at the time of the execution."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "ISO timestamp when the execution started.",
+            "format": "date-time"
+          },
+          "type": {
+            "type": "string",
+            "description": "The trigger type of the execution (for example \u0060auto\u0060, \u0060manual\u0060)."
+          },
+          "instant": {
+            "type": "boolean",
+            "description": "Whether the scenario was triggered instantly (for example, by a webhook)."
+          },
+          "authorId": {
+            "type": "integer",
+            "description": "The ID of the user who triggered the execution. Null for system-triggered runs.",
+            "nullable": true
+          },
+          "teamId": {
+            "type": "integer",
+            "description": "The ID of the team that owns the scenario.",
+            "nullable": true
+          },
+          "organizationId": {
+            "type": "integer",
+            "description": "The ID of the organization that owns the scenario."
+          },
+          "duration": {
+            "type": "integer",
+            "description": "The duration of the execution in milliseconds."
+          },
+          "operations": {
+            "type": "integer",
+            "description": "The number of operations consumed by the execution."
+          },
+          "centicredits": {
+            "type": "integer",
+            "description": "The number of centicredits consumed by the execution."
+          },
+          "transfer": {
+            "type": "integer",
+            "description": "The amount of data transferred during the execution, in bytes."
+          },
+          "status": {
+            "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecutionStatus"
+          },
+          "eventType": {
+            "type": "string",
+            "description": "The execution event type stored in the underlying log entry."
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "The error message associated with a failed execution. Null when the execution did not produce an error.",
+            "nullable": true
+          },
+          "highlight": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Snippets from the error message that matched the \u0060errorMessage\u0060 filter, with the matched substring wrapped in highlight markers. Null when no \u0060errorMessage\u0060 filter was applied.",
+            "nullable": true
+          }
+        },
+        "description": "Metadata of the execution, or \u0060null\u0060 when no execution document was found in the searched time window.",
+        "nullable": true
+      },
       "PostOrganizationsByOrganizationIdScenariosExecutionsIoDataCounts200ResponseScenariosItem": {
         "type": "object",
         "properties": {
@@ -143089,7 +142871,7 @@
             "items": {
               "$ref": "#/components/schemas/GetScenarios200ResponseScenariosItemLabelsItem"
             },
-            "description": "Team labels assigned to the scenario, sorted by label name case-insensitively."
+            "description": "\u0022Team labels assigned to the scenario, sorted by label name case-insensitively. Available when scenario labels are enabled: the scenario list endpoint returns them by default, while the scenario detail endpoint returns them only when requested via \u0060cols[]\u0060.\u0022"
           }
         }
       },
@@ -143307,7 +143089,7 @@
             "items": {
               "$ref": "#/components/schemas/PostScenarios200ResponseScenarioLabelsItem"
             },
-            "description": "Team labels assigned to the scenario, sorted by label name case-insensitively."
+            "description": "\u0022Team labels assigned to the scenario, sorted by label name case-insensitively. Available when scenario labels are enabled: the scenario list endpoint returns them by default, while the scenario detail endpoint returns them only when requested via \u0060cols[]\u0060.\u0022"
           }
         }
       },
@@ -143488,7 +143270,7 @@
             "items": {
               "$ref": "#/components/schemas/GetScenariosByScenarioId200ResponseScenarioLabelsItem"
             },
-            "description": "Team labels assigned to the scenario, sorted by label name case-insensitively."
+            "description": "\u0022Team labels assigned to the scenario, sorted by label name case-insensitively. Available when scenario labels are enabled: the scenario list endpoint returns them by default, while the scenario detail endpoint returns them only when requested via \u0060cols[]\u0060.\u0022"
           }
         }
       },
@@ -143657,7 +143439,7 @@
             "items": {
               "$ref": "#/components/schemas/PatchScenariosByScenarioId200ResponseScenarioLabelsItem"
             },
-            "description": "Team labels assigned to the scenario, sorted by label name case-insensitively."
+            "description": "\u0022Team labels assigned to the scenario, sorted by label name case-insensitively. Available when scenario labels are enabled: the scenario list endpoint returns them by default, while the scenario detail endpoint returns them only when requested via \u0060cols[]\u0060.\u0022"
           }
         }
       },
@@ -143871,7 +143653,7 @@
             "items": {
               "$ref": "#/components/schemas/PostScenariosByScenarioIdClone200ResponseScenarioLabelsItem"
             },
-            "description": "Team labels assigned to the scenario, sorted by label name case-insensitively."
+            "description": "\u0022Team labels assigned to the scenario, sorted by label name case-insensitively. Available when scenario labels are enabled: the scenario list endpoint returns them by default, while the scenario detail endpoint returns them only when requested via \u0060cols[]\u0060.\u0022"
           }
         }
       },
@@ -147941,6 +147723,118 @@
           }
         }
       },
+      "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo": {
+        "type": "object",
+        "properties": {
+          "tierName": {
+            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName"
+          },
+          "modelName": {
+            "type": "string",
+            "description": "The model name associated with this tier"
+          },
+          "providerName": {
+            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName"
+          },
+          "centicreditsCoefficient": {
+            "minimum": 0,
+            "type": "number",
+            "description": "Cost coefficient in centicredits per token"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Timestamp when the tier was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Timestamp when the tier was last updated"
+          }
+        },
+        "description": "Detailed information about the AI mapping builtin tier",
+        "nullable": true
+      },
+      "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo": {
+        "type": "object",
+        "properties": {
+          "tierName": {
+            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName"
+          },
+          "modelName": {
+            "type": "string",
+            "description": "The model name associated with this tier"
+          },
+          "providerName": {
+            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName"
+          },
+          "centicreditsCoefficient": {
+            "minimum": 0,
+            "type": "number",
+            "description": "Cost coefficient in centicredits per token"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Timestamp when the tier was created"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Timestamp when the tier was last updated"
+          }
+        },
+        "description": "Detailed information about the AI toolkit builtin tier",
+        "nullable": true
+      },
+      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo": {
+        "type": "object",
+        "properties": {
+          "tierName": {
+            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName"
+          },
+          "modelName": {
+            "type": "string"
+          },
+          "providerName": {
+            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName"
+          },
+          "centicreditsCoefficient": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "description": "Detailed information about the AI mapping builtin tier",
+        "nullable": true
+      },
+      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo": {
+        "type": "object",
+        "properties": {
+          "tierName": {
+            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName"
+          },
+          "modelName": {
+            "type": "string"
+          },
+          "providerName": {
+            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName"
+          },
+          "centicreditsCoefficient": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "description": "Detailed information about the AI toolkit builtin tier",
+        "nullable": true
+      },
       "GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem": {
         "type": "object",
         "properties": {
@@ -149047,6 +148941,10 @@
       "GetUsersMePreferences200ResponsePreferences": {
         "type": "object",
         "description": "Namespaced preference tree. Keys are namespaces; values are namespace-specific payloads."
+      },
+      "PatchUsersMePreferencesRequestAdditionalProperties": {
+        "type": "object",
+        "nullable": true
       },
       "PatchUsersMePreferences200ResponsePreferences": {
         "type": "object"
@@ -150377,6 +150275,10 @@
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameSamplesJsoncRequestRequestBodyAdditionalProperties": {
         "type": "object"
+      },
+      "PatchUsersMePreferencesRequestRequestBodyAdditionalProperties": {
+        "type": "object",
+        "nullable": true
       },
       "GetScenariosByScenarioIdRecovery200ResponseOneOf1Blueprint": {
         "type": "object",
@@ -186688,216 +186590,6 @@
           ]
         }
       },
-      "PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecutionOneOf1Status": {
-        "enum": [
-          1,
-          2,
-          3
-        ],
-        "type": "integer",
-        "additionalProperties": false,
-        "description": "The execution status. \u00601\u0060 is for success, \u00602\u0060 is for warning, and \u00603\u0060 is for error."
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2TierName": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The tier name",
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2TierName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2ProviderName": {
-        "enum": [
-          "openai",
-          "groq"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The provider name for this tier",
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2ProviderName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "openai",
-              "name": "Openai"
-            },
-            {
-              "value": "groq",
-              "name": "Groq"
-            }
-          ]
-        }
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2TierName": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The tier name",
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2TierName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2ProviderName": {
-        "enum": [
-          "openai",
-          "groq"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The provider name for this tier",
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2ProviderName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "openai",
-              "name": "Openai"
-            },
-            {
-              "value": "groq",
-              "name": "Groq"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2TierName": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2TierName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2ProviderName": {
-        "enum": [
-          "openai",
-          "groq"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2ProviderName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "openai",
-              "name": "Openai"
-            },
-            {
-              "value": "groq",
-              "name": "Groq"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2TierName": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2TierName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2ProviderName": {
-        "enum": [
-          "openai",
-          "groq"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2ProviderName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "openai",
-              "name": "Openai"
-            },
-            {
-              "value": "groq",
-              "name": "Groq"
-            }
-          ]
-        }
-      },
       "GetAdminTeams200ResponseTeamsItemType": {
         "enum": [
           "standard",
@@ -188574,6 +188266,16 @@
         "additionalProperties": false,
         "description": "The execution status. \u00601\u0060 is for success, \u00602\u0060 is for warning, and \u00603\u0060 is for error."
       },
+      "PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecutionStatus": {
+        "enum": [
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "additionalProperties": false,
+        "description": "The execution status. \u00601\u0060 is for success, \u00602\u0060 is for warning, and \u00603\u0060 is for error."
+      },
       "GetScenarios200ResponseScenariosItemType": {
         "enum": [
           "scenario",
@@ -189189,6 +188891,206 @@
             {
               "value": "personal",
               "name": "Personal"
+            }
+          ]
+        }
+      },
+      "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName": {
+        "enum": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The tier name",
+        "x-ms-enum": {
+          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "small",
+              "name": "Small"
+            },
+            {
+              "value": "medium",
+              "name": "Medium"
+            },
+            {
+              "value": "large",
+              "name": "Large"
+            }
+          ]
+        }
+      },
+      "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName": {
+        "enum": [
+          "openai",
+          "groq"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The provider name for this tier",
+        "x-ms-enum": {
+          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "openai",
+              "name": "Openai"
+            },
+            {
+              "value": "groq",
+              "name": "Groq"
+            }
+          ]
+        }
+      },
+      "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName": {
+        "enum": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The tier name",
+        "x-ms-enum": {
+          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "small",
+              "name": "Small"
+            },
+            {
+              "value": "medium",
+              "name": "Medium"
+            },
+            {
+              "value": "large",
+              "name": "Large"
+            }
+          ]
+        }
+      },
+      "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName": {
+        "enum": [
+          "openai",
+          "groq"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The provider name for this tier",
+        "x-ms-enum": {
+          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "openai",
+              "name": "Openai"
+            },
+            {
+              "value": "groq",
+              "name": "Groq"
+            }
+          ]
+        }
+      },
+      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName": {
+        "enum": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "small",
+              "name": "Small"
+            },
+            {
+              "value": "medium",
+              "name": "Medium"
+            },
+            {
+              "value": "large",
+              "name": "Large"
+            }
+          ]
+        }
+      },
+      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName": {
+        "enum": [
+          "openai",
+          "groq"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "openai",
+              "name": "Openai"
+            },
+            {
+              "value": "groq",
+              "name": "Groq"
+            }
+          ]
+        }
+      },
+      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName": {
+        "enum": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "small",
+              "name": "Small"
+            },
+            {
+              "value": "medium",
+              "name": "Medium"
+            },
+            {
+              "value": "large",
+              "name": "Large"
+            }
+          ]
+        }
+      },
+      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName": {
+        "enum": [
+          "openai",
+          "groq"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "openai",
+              "name": "Openai"
+            },
+            {
+              "value": "groq",
+              "name": "Groq"
             }
           ]
         }

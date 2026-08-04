@@ -34,9 +34,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string ModelName { get; set; }
 #endif
         /// <summary>The provider name for this tier</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2ProviderName? ProviderName { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName? ProviderName { get; set; }
         /// <summary>The tier name</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2TierName? TierName { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName? TierName { get; set; }
         /// <summary>Timestamp when the tier was last updated</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -73,8 +73,8 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "centicreditsCoefficient", n => { CenticreditsCoefficient = n.GetDoubleValue(); } },
                 { "createdAt", n => { CreatedAt = n.GetStringValue(); } },
                 { "modelName", n => { ModelName = n.GetStringValue(); } },
-                { "providerName", n => { ProviderName = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2ProviderName>(); } },
-                { "tierName", n => { TierName = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2TierName>(); } },
+                { "providerName", n => { ProviderName = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName>(); } },
+                { "tierName", n => { TierName = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName>(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetStringValue(); } },
             };
         }
@@ -88,8 +88,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteDoubleValue("centicreditsCoefficient", CenticreditsCoefficient);
             writer.WriteStringValue("createdAt", CreatedAt);
             writer.WriteStringValue("modelName", ModelName);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2ProviderName>("providerName", ProviderName);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoOneOf2TierName>("tierName", TierName);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName>("providerName", ProviderName);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName>("tierName", TierName);
             writer.WriteStringValue("updatedAt", UpdatedAt);
             writer.WriteAdditionalData(AdditionalData);
         }

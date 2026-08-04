@@ -5,7 +5,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>The tier name</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoOneOf2TierName
+    public enum GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName
     {
         [EnumMember(Value = "small")]
         #pragma warning disable CS1591
