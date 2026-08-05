@@ -34,12 +34,13 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Run
         {
         }
         /// <summary>
-        /// Runs the specified scenario. The scenario has to be active. If your scenario has required scenario inputs you have to provide the scenario inputs in the request body. If the scenario provides scenario outputs, these are returned in the response.**Note:** [Organization request limits](https://developers.make.com/api-documentation/getting-started/rate-limiting) do **not** apply for this endpoint.
+        /// Runs the specified scenario. The scenario has to be active. If your scenario has required scenario inputs you have to provide the scenario inputs in the request body. If the scenario provides scenario outputs, these are returned in the response.The scenario is not run when its organization or team is paused because an operations or data transfer limit was exceeded. In that case the call returns `429` with the code `IM310`, the same way Make stops scheduling the organization&apos;s scenarios.**Note:** [Organization request limits](https://developers.make.com/api-documentation/getting-started/rate-limiting) do **not** apply for this endpoint.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRun200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRun429Response">When receiving a 429 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRun200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRunRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -51,10 +52,14 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Run
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRun200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRun200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "429", global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRun429Response.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRun200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRun200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Runs the specified scenario. The scenario has to be active. If your scenario has required scenario inputs you have to provide the scenario inputs in the request body. If the scenario provides scenario outputs, these are returned in the response.**Note:** [Organization request limits](https://developers.make.com/api-documentation/getting-started/rate-limiting) do **not** apply for this endpoint.
+        /// Runs the specified scenario. The scenario has to be active. If your scenario has required scenario inputs you have to provide the scenario inputs in the request body. If the scenario provides scenario outputs, these are returned in the response.The scenario is not run when its organization or team is paused because an operations or data transfer limit was exceeded. In that case the call returns `429` with the code `IM310`, the same way Make stops scheduling the organization&apos;s scenarios.**Note:** [Organization request limits](https://developers.make.com/api-documentation/getting-started/rate-limiting) do **not** apply for this endpoint.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

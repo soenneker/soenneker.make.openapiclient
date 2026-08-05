@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.Teams.Item.Connections.Item.AccessList.Users;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,6 +18,11 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Connections.Item.AccessList
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AccessListRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The users property</summary>
+        public global::Soenneker.Make.OpenApiClient.Teams.Item.Connections.Item.AccessList.Users.UsersRequestBuilder Users
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Teams.Item.Connections.Item.AccessList.Users.UsersRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Teams.Item.Connections.Item.AccessList.AccessListRequestBuilder"/> and sets the default values.
         /// </summary>

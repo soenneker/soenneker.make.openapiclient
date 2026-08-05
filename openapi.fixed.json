@@ -26263,7 +26263,7 @@
           "Scenarios"
         ],
         "summary": "Run a scenario",
-        "description": "Runs the specified scenario. The scenario has to be active. If your scenario has required scenario inputs you have to provide the scenario inputs in the request body. If the scenario provides scenario outputs, these are returned in the response.\n\n**Note:** [Organization request limits](https://developers.make.com/api-documentation/getting-started/rate-limiting) do **not** apply for this endpoint.\n",
+        "description": "Runs the specified scenario. The scenario has to be active. If your scenario has required scenario inputs you have to provide the scenario inputs in the request body. If the scenario provides scenario outputs, these are returned in the response.\n\nThe scenario is not run when its organization or team is paused because an operations or data transfer limit was exceeded. In that case the call returns \u0060429\u0060 with the code \u0060IM310\u0060, the same way Make stops scheduling the organization\u0027s scenarios.\n\n**Note:** [Organization request limits](https://developers.make.com/api-documentation/getting-started/rate-limiting) do **not** apply for this endpoint.\n",
         "operationId": "PostScenariosByScenarioIdRun",
         "parameters": [
           {
@@ -26347,6 +26347,20 @@
                       "executionId": "9c4874979d974c3ebdef1e8aaa7dc452"
                     }
                   }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The scenario\u0027s organization or team is paused because an operations or data transfer limit was exceeded, so no execution was started.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostScenariosByScenarioIdRun429Response"
+                },
+                "example": {
+                  "code": "IM310",
+                  "message": "Scenario cannot be run because its organization or team is paused. Resolve the exceeded operations or data transfer limit and try again."
                 }
               }
             }
@@ -39741,6 +39755,322 @@
           {
             "token": [
               "keys:read"
+            ]
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}/connections/{connectionId}/access-list/users": {
+      "post": {
+        "tags": [
+          "Connections / Access list"
+        ],
+        "summary": "Add a member to a connection\u0027s access list",
+        "description": "Adds a user to a connection\u0027s access list (entity ACL) with a role.\n\nRequires \u0060entity manage\u0060 on the connection, and the target user must already be a member of the connection\u0027s team. Returns \u0060409\u0060 when the user is already on the access list and \u0060400\u0060 when they are not a team member or the feature is disabled.",
+        "operationId": "PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The ID of the team that owns the connection.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "connectionId",
+            "in": "path",
+            "description": "The ID of the connection. You can get connection ID\u0027s of all your connections with the the [List connections](./get--connections.md) endpoint.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 128
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsersRequest"
+              },
+              "example": {
+                "userId": 214,
+                "role": "entity:entity-member"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created access-list member.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200Response"
+                },
+                "example": {
+                  "member": {
+                    "membershipType": "user",
+                    "membershipId": 214,
+                    "role": "entity:entity-member",
+                    "name": "John Smith",
+                    "email": "john.smith@example.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "connections:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}/keys/{keyId}/access-list/users": {
+      "post": {
+        "tags": [
+          "Keys / Access list"
+        ],
+        "summary": "Add a member to a key\u0027s access list",
+        "description": "Adds a user to a key\u0027s access list (entity ACL) with a role.\n\nRequires \u0060entity manage\u0060 on the key, and the target user must already be a member of the key\u0027s team. Returns \u0060409\u0060 when the user is already on the access list and \u0060400\u0060 when they are not a team member or the feature is disabled.",
+        "operationId": "PostTeamsByTeamIdKeysByKeyIdAccessListUsers",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The ID of the team that owns the key.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "keyId",
+            "in": "path",
+            "description": "The ID of the key.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 16
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostTeamsByTeamIdKeysByKeyIdAccessListUsersRequest"
+              },
+              "example": {
+                "userId": 214,
+                "role": "entity:entity-member"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created access-list member.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostTeamsByTeamIdKeysByKeyIdAccessListUsers200Response"
+                },
+                "example": {
+                  "member": {
+                    "membershipType": "user",
+                    "membershipId": 214,
+                    "role": "entity:entity-member",
+                    "name": "John Smith",
+                    "email": "john.smith@example.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "keys:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}/connections/{connectionId}/access-list/users/{userId}": {
+      "patch": {
+        "tags": [
+          "Connections / Access list"
+        ],
+        "summary": "Change a connection access-list member\u0027s role",
+        "description": "Changes the entity-tier role of a user already on a connection\u0027s access list.\n\nRequires \u0060entity manage\u0060. Returns \u0060404\u0060 if the user is not on the access list, and \u0060409\u0060 if the change would demote the connection\u0027s last Entity Admin.",
+        "operationId": "PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The ID of the team that owns the connection.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "connectionId",
+            "in": "path",
+            "description": "The ID of the connection. You can get connection ID\u0027s of all your connections with the the [List connections](./get--connections.md) endpoint.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 128
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the user whose role to change.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 214
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserIdRequest"
+              },
+              "example": {
+                "role": "entity:entity-admin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated access-list member.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200Response"
+                },
+                "example": {
+                  "member": {
+                    "membershipType": "user",
+                    "membershipId": 214,
+                    "role": "entity:entity-admin",
+                    "name": "John Smith",
+                    "email": "john.smith@example.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "connections:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}/keys/{keyId}/access-list/users/{userId}": {
+      "patch": {
+        "tags": [
+          "Keys / Access list"
+        ],
+        "summary": "Change a key access-list member\u0027s role",
+        "description": "Changes the entity-tier role of a user already on a key\u0027s access list.\n\nRequires \u0060entity manage\u0060. Returns \u0060404\u0060 if the user is not on the access list, and \u0060409\u0060 if the change would demote the key\u0027s last Entity Admin.",
+        "operationId": "PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The ID of the team that owns the key.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "keyId",
+            "in": "path",
+            "description": "The ID of the key.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 16
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the user whose role to change.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 214
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserIdRequest"
+              },
+              "example": {
+                "role": "entity:entity-admin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated access-list member.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200Response"
+                },
+                "example": {
+                  "member": {
+                    "membershipType": "user",
+                    "membershipId": 214,
+                    "role": "entity:entity-admin",
+                    "name": "John Smith",
+                    "email": "john.smith@example.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "keys:write"
             ]
           }
         ]
@@ -96586,6 +96916,17 @@
           }
         }
       },
+      "PostScenariosByScenarioIdRun429Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
       "PostScenariosByScenarioIdReplayRequest": {
         "type": "object",
         "properties": {
@@ -99604,6 +99945,96 @@
               "$ref": "#/components/schemas/GetTeamsByTeamIdKeysByKeyIdAccessList200ResponseAccessListItem"
             },
             "description": "The access-list members visible to the caller."
+          }
+        }
+      },
+      "PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsersRequest": {
+        "required": [
+          "userId",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The id of the user to add. Must already be a member of the entity\u0027s team.",
+            "example": 214
+          },
+          "role": {
+            "$ref": "#/components/schemas/PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsersRequestRole"
+          }
+        }
+      },
+      "PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200Response": {
+        "type": "object",
+        "properties": {
+          "member": {
+            "$ref": "#/components/schemas/PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200ResponseMember"
+          }
+        }
+      },
+      "PostTeamsByTeamIdKeysByKeyIdAccessListUsersRequest": {
+        "required": [
+          "userId",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The id of the user to add. Must already be a member of the entity\u0027s team.",
+            "example": 214
+          },
+          "role": {
+            "$ref": "#/components/schemas/PostTeamsByTeamIdKeysByKeyIdAccessListUsersRequestRole"
+          }
+        }
+      },
+      "PostTeamsByTeamIdKeysByKeyIdAccessListUsers200Response": {
+        "type": "object",
+        "properties": {
+          "member": {
+            "$ref": "#/components/schemas/PostTeamsByTeamIdKeysByKeyIdAccessListUsers200ResponseMember"
+          }
+        }
+      },
+      "PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserIdRequest": {
+        "required": [
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserIdRequestRole"
+          }
+        }
+      },
+      "PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200Response": {
+        "type": "object",
+        "properties": {
+          "member": {
+            "$ref": "#/components/schemas/PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200ResponseMember"
+          }
+        }
+      },
+      "PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserIdRequest": {
+        "required": [
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserIdRequestRole"
+          }
+        }
+      },
+      "PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200Response": {
+        "type": "object",
+        "properties": {
+          "member": {
+            "$ref": "#/components/schemas/PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200ResponseMember"
           }
         }
       },
@@ -147932,6 +148363,142 @@
         },
         "description": "A single access-list member \u2014 a principal with its entity-tier role and, for users, display fields."
       },
+      "PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200ResponseMember": {
+        "required": [
+          "membershipType",
+          "membershipId",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "membershipType": {
+            "$ref": "#/components/schemas/PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200ResponseMemberMembershipType"
+          },
+          "membershipId": {
+            "type": "integer",
+            "description": "The principal\u0027s id. For a \u0060user\u0060 principal this is the user id.",
+            "example": 128
+          },
+          "role": {
+            "$ref": "#/components/schemas/PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200ResponseMemberRole"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the user. Null for non-user principals or an unknown user.",
+            "nullable": true,
+            "example": "Jane Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of the user. Null for non-user principals.",
+            "nullable": true,
+            "example": "jane.doe@example.com"
+          }
+        },
+        "description": "A single access-list member \u2014 a principal with its entity-tier role and, for users, display fields."
+      },
+      "PostTeamsByTeamIdKeysByKeyIdAccessListUsers200ResponseMember": {
+        "required": [
+          "membershipType",
+          "membershipId",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "membershipType": {
+            "$ref": "#/components/schemas/PostTeamsByTeamIdKeysByKeyIdAccessListUsers200ResponseMemberMembershipType"
+          },
+          "membershipId": {
+            "type": "integer",
+            "description": "The principal\u0027s id. For a \u0060user\u0060 principal this is the user id.",
+            "example": 128
+          },
+          "role": {
+            "$ref": "#/components/schemas/PostTeamsByTeamIdKeysByKeyIdAccessListUsers200ResponseMemberRole"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the user. Null for non-user principals or an unknown user.",
+            "nullable": true,
+            "example": "Jane Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of the user. Null for non-user principals.",
+            "nullable": true,
+            "example": "jane.doe@example.com"
+          }
+        },
+        "description": "A single access-list member \u2014 a principal with its entity-tier role and, for users, display fields."
+      },
+      "PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200ResponseMember": {
+        "required": [
+          "membershipType",
+          "membershipId",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "membershipType": {
+            "$ref": "#/components/schemas/PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200ResponseMemberMembershipType"
+          },
+          "membershipId": {
+            "type": "integer",
+            "description": "The principal\u0027s id. For a \u0060user\u0060 principal this is the user id.",
+            "example": 128
+          },
+          "role": {
+            "$ref": "#/components/schemas/PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200ResponseMemberRole"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the user. Null for non-user principals or an unknown user.",
+            "nullable": true,
+            "example": "Jane Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of the user. Null for non-user principals.",
+            "nullable": true,
+            "example": "jane.doe@example.com"
+          }
+        },
+        "description": "A single access-list member \u2014 a principal with its entity-tier role and, for users, display fields."
+      },
+      "PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200ResponseMember": {
+        "required": [
+          "membershipType",
+          "membershipId",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "membershipType": {
+            "$ref": "#/components/schemas/PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200ResponseMemberMembershipType"
+          },
+          "membershipId": {
+            "type": "integer",
+            "description": "The principal\u0027s id. For a \u0060user\u0060 principal this is the user id.",
+            "example": 128
+          },
+          "role": {
+            "$ref": "#/components/schemas/PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200ResponseMemberRole"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the user. Null for non-user principals or an unknown user.",
+            "nullable": true,
+            "example": "Jane Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of the user. Null for non-user principals.",
+            "nullable": true,
+            "example": "jane.doe@example.com"
+          }
+        },
+        "description": "A single access-list member \u2014 a principal with its entity-tier role and, for users, display fields."
+      },
       "GetTemplates200ResponseTemplatesItem": {
         "type": "object",
         "properties": {
@@ -170347,6 +170914,102 @@
           ]
         }
       },
+      "PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsersRequestRole": {
+        "enum": [
+          "entity:entity-admin",
+          "entity:entity-member"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The entity-tier role to grant the user on the connection or key.",
+        "example": "entity:entity-member",
+        "x-ms-enum": {
+          "name": "PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsersRequestRole",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity:entity-admin",
+              "name": "EntityColonEntityAdmin"
+            },
+            {
+              "value": "entity:entity-member",
+              "name": "EntityColonEntityMember"
+            }
+          ]
+        }
+      },
+      "PostTeamsByTeamIdKeysByKeyIdAccessListUsersRequestRole": {
+        "enum": [
+          "entity:entity-admin",
+          "entity:entity-member"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The entity-tier role to grant the user on the connection or key.",
+        "example": "entity:entity-member",
+        "x-ms-enum": {
+          "name": "PostTeamsByTeamIdKeysByKeyIdAccessListUsersRequestRole",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity:entity-admin",
+              "name": "EntityColonEntityAdmin"
+            },
+            {
+              "value": "entity:entity-member",
+              "name": "EntityColonEntityMember"
+            }
+          ]
+        }
+      },
+      "PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserIdRequestRole": {
+        "enum": [
+          "entity:entity-admin",
+          "entity:entity-member"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The entity-tier role to set for the user on the connection or key.",
+        "example": "entity:entity-admin",
+        "x-ms-enum": {
+          "name": "PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserIdRequestRole",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity:entity-admin",
+              "name": "EntityColonEntityAdmin"
+            },
+            {
+              "value": "entity:entity-member",
+              "name": "EntityColonEntityMember"
+            }
+          ]
+        }
+      },
+      "PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserIdRequestRole": {
+        "enum": [
+          "entity:entity-admin",
+          "entity:entity-member"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The entity-tier role to set for the user on the connection or key.",
+        "example": "entity:entity-admin",
+        "x-ms-enum": {
+          "name": "PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserIdRequestRole",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity:entity-admin",
+              "name": "EntityColonEntityAdmin"
+            },
+            {
+              "value": "entity:entity-member",
+              "name": "EntityColonEntityMember"
+            }
+          ]
+        }
+      },
       "PostUsersCustomRolesRequestPermissionType": {
         "enum": [
           "organization",
@@ -189178,6 +189841,198 @@
         "example": "entity:entity-admin",
         "x-ms-enum": {
           "name": "GetTeamsByTeamIdKeysByKeyIdAccessList200ResponseAccessListItemRole",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity:entity-admin",
+              "name": "EntityColonEntityAdmin"
+            },
+            {
+              "value": "entity:entity-member",
+              "name": "EntityColonEntityMember"
+            }
+          ]
+        }
+      },
+      "PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200ResponseMemberMembershipType": {
+        "enum": [
+          "user",
+          "group"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The kind of principal. Always \u0060user\u0060 in the current version.",
+        "example": "user",
+        "x-ms-enum": {
+          "name": "PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200ResponseMemberMembershipType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "group",
+              "name": "Group"
+            }
+          ]
+        }
+      },
+      "PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200ResponseMemberRole": {
+        "enum": [
+          "entity:entity-admin",
+          "entity:entity-member"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The principal\u0027s entity-tier role on the connection or key.",
+        "example": "entity:entity-admin",
+        "x-ms-enum": {
+          "name": "PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200ResponseMemberRole",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity:entity-admin",
+              "name": "EntityColonEntityAdmin"
+            },
+            {
+              "value": "entity:entity-member",
+              "name": "EntityColonEntityMember"
+            }
+          ]
+        }
+      },
+      "PostTeamsByTeamIdKeysByKeyIdAccessListUsers200ResponseMemberMembershipType": {
+        "enum": [
+          "user",
+          "group"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The kind of principal. Always \u0060user\u0060 in the current version.",
+        "example": "user",
+        "x-ms-enum": {
+          "name": "PostTeamsByTeamIdKeysByKeyIdAccessListUsers200ResponseMemberMembershipType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "group",
+              "name": "Group"
+            }
+          ]
+        }
+      },
+      "PostTeamsByTeamIdKeysByKeyIdAccessListUsers200ResponseMemberRole": {
+        "enum": [
+          "entity:entity-admin",
+          "entity:entity-member"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The principal\u0027s entity-tier role on the connection or key.",
+        "example": "entity:entity-admin",
+        "x-ms-enum": {
+          "name": "PostTeamsByTeamIdKeysByKeyIdAccessListUsers200ResponseMemberRole",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity:entity-admin",
+              "name": "EntityColonEntityAdmin"
+            },
+            {
+              "value": "entity:entity-member",
+              "name": "EntityColonEntityMember"
+            }
+          ]
+        }
+      },
+      "PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200ResponseMemberMembershipType": {
+        "enum": [
+          "user",
+          "group"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The kind of principal. Always \u0060user\u0060 in the current version.",
+        "example": "user",
+        "x-ms-enum": {
+          "name": "PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200ResponseMemberMembershipType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "group",
+              "name": "Group"
+            }
+          ]
+        }
+      },
+      "PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200ResponseMemberRole": {
+        "enum": [
+          "entity:entity-admin",
+          "entity:entity-member"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The principal\u0027s entity-tier role on the connection or key.",
+        "example": "entity:entity-admin",
+        "x-ms-enum": {
+          "name": "PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200ResponseMemberRole",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity:entity-admin",
+              "name": "EntityColonEntityAdmin"
+            },
+            {
+              "value": "entity:entity-member",
+              "name": "EntityColonEntityMember"
+            }
+          ]
+        }
+      },
+      "PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200ResponseMemberMembershipType": {
+        "enum": [
+          "user",
+          "group"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The kind of principal. Always \u0060user\u0060 in the current version.",
+        "example": "user",
+        "x-ms-enum": {
+          "name": "PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200ResponseMemberMembershipType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "group",
+              "name": "Group"
+            }
+          ]
+        }
+      },
+      "PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200ResponseMemberRole": {
+        "enum": [
+          "entity:entity-admin",
+          "entity:entity-member"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The principal\u0027s entity-tier role on the connection or key.",
+        "example": "entity:entity-admin",
+        "x-ms-enum": {
+          "name": "PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200ResponseMemberRole",
           "modelAsString": false,
           "values": [
             {
