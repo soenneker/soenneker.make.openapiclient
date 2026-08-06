@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Internal.Teams.Item.Connections;
+using Soenneker.Make.OpenApiClient.Internal.Teams.Item.Paused;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.Make.OpenApiClient.Internal.Teams.Item
         public global::Soenneker.Make.OpenApiClient.Internal.Teams.Item.Connections.ConnectionsRequestBuilder Connections
         {
             get => new global::Soenneker.Make.OpenApiClient.Internal.Teams.Item.Connections.ConnectionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The paused property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Teams.Item.Paused.PausedRequestBuilder Paused
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Teams.Item.Paused.PausedRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Internal.Teams.Item.WithTeamItemRequestBuilder"/> and sets the default values.

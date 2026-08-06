@@ -19183,6 +19183,40 @@
         }
       }
     },
+    "/internal/teams/{teamId}/paused": {
+      "get": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Get team pause status",
+        "description": "Retrieves the pause status of the team with the specified \u0060teamId\u0060.",
+        "operationId": "GetInternalTeamsByTeamIdPaused",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The ID of the team.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 11
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalTeamsByTeamIdPaused200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/internal/data-structures/{dataStructureId}": {
       "get": {
         "tags": [
@@ -39990,6 +40024,67 @@
             ]
           }
         ]
+      },
+      "delete": {
+        "tags": [
+          "Connections / Access list"
+        ],
+        "summary": "Remove a member from a connection\u0027s access list",
+        "description": "Removes a user from a connection\u0027s access list.\n\nRequires \u0060entity manage\u0060. Returns \u0060404\u0060 if the user is not on the access list, and \u0060409\u0060 if removing them would leave the connection without an Entity Admin.",
+        "operationId": "DeleteTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The ID of the team that owns the connection.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "connectionId",
+            "in": "path",
+            "description": "The ID of the connection. You can get connection ID\u0027s of all your connections with the the [List connections](./get--connections.md) endpoint.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 128
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the user to remove.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 214
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Default",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId204Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "connections:write"
+            ]
+          }
+        ]
       }
     },
     "/teams/{teamId}/keys/{keyId}/access-list/users/{userId}": {
@@ -40062,6 +40157,67 @@
                     "name": "John Smith",
                     "email": "john.smith@example.com"
                   }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "keys:write"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Keys / Access list"
+        ],
+        "summary": "Remove a member from a key\u0027s access list",
+        "description": "Removes a user from a key\u0027s access list.\n\nRequires \u0060entity manage\u0060. Returns \u0060404\u0060 if the user is not on the access list, and \u0060409\u0060 if removing them would leave the key without an Entity Admin.",
+        "operationId": "DeleteTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The ID of the team that owns the key.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "keyId",
+            "in": "path",
+            "description": "The ID of the key.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 16
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the user to remove.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 214
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Default",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId204Response"
                 }
               }
             }
@@ -94765,6 +94921,15 @@
           }
         }
       },
+      "GetInternalTeamsByTeamIdPaused200Response": {
+        "type": "object",
+        "properties": {
+          "isPaused": {
+            "type": "boolean",
+            "description": "Whether the team is currently paused=true or not=false."
+          }
+        }
+      },
       "GetInternalDataStructuresByDataStructureId200Response": {
         "type": "object",
         "properties": {
@@ -133152,6 +133317,16 @@
       "PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseSchema": {
         "type": "object",
         "description": "An empty object is returned on successful recreation."
+      },
+      "DeleteTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId204Response": {
+        "title": "DefaultResponse",
+        "type": "object",
+        "description": "Default response schema"
+      },
+      "DeleteTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId204Response": {
+        "title": "DefaultResponse",
+        "type": "object",
+        "description": "Default response schema"
       },
       "PostTemplatesByTemplateIdPublishRequest": {
         "type": "object"

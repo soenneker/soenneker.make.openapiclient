@@ -34,6 +34,23 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Connections.Item.AccessList.Us
         {
         }
         /// <summary>
+        /// Removes a user from a connection&apos;s access list.Requires `entity manage`. Returns `404` if the user is not on the access list, and `409` if removing them would leave the connection without an Entity Admin.
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToDeleteRequestInformation(requestConfiguration);
+            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
         /// Changes the entity-tier role of a user already on a connection&apos;s access list.Requires `entity manage`. Returns `404` if the user is not on the access list, and `409` if the change would demote the connection&apos;s last Entity Admin.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200Response"/></returns>
@@ -52,6 +69,25 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Connections.Item.AccessList.Us
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdConnectionsByConnectionIdAccessListUsersByUserId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
+        /// Removes a user from a connection&apos;s access list.Requires `entity manage`. Returns `404` if the user is not on the access list, and `409` if removing them would leave the connection without an Entity Admin.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
         /// <summary>
         /// Changes the entity-tier role of a user already on a connection&apos;s access list.Requires `entity manage`. Returns `404` if the user is not on the access list, and `409` if the change would demote the connection&apos;s last Entity Admin.
