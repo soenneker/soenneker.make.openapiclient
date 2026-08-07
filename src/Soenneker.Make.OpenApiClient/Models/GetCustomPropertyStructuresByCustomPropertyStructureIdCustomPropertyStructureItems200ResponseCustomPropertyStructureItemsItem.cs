@@ -14,18 +14,44 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The belongers property</summary>
+        /// <summary>The description property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemBelongersItem>? Belongers { get; set; }
+        public string? Description { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemBelongersItem> Belongers { get; set; }
+        public string Description { get; set; }
 #endif
-        /// <summary>The created property</summary>
-        public DateTimeOffset? Created { get; set; }
         /// <summary>The id property</summary>
         public int? Id { get; set; }
+        /// <summary>The label property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Label { get; set; }
+#nullable restore
+#else
+        public string Label { get; set; }
+#endif
+        /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>The options property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem>? Options { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem> Options { get; set; }
+#endif
+        /// <summary>The required property</summary>
+        public bool? Required { get; set; }
+        /// <summary>The type property</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItem"/> and sets the default values.
         /// </summary>
@@ -51,9 +77,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "belongers", n => { Belongers = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemBelongersItem>(global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemBelongersItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "created", n => { Created = n.GetDateTimeOffsetValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
+                { "label", n => { Label = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "options", n => { Options = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem>(global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "required", n => { Required = n.GetBoolValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemType>(); } },
             };
         }
         /// <summary>
@@ -63,9 +93,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemBelongersItem>("belongers", Belongers);
-            writer.WriteDateTimeOffsetValue("created", Created);
+            writer.WriteStringValue("description", Description);
             writer.WriteIntValue("id", Id);
+            writer.WriteStringValue("label", Label);
+            writer.WriteStringValue("name", Name);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem>("options", Options);
+            writer.WriteBoolValue("required", Required);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

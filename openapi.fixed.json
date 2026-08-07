@@ -8378,7 +8378,7 @@
                           "value": "Product"
                         },
                         {
-                          "label": "Engineering"
+                          "value": "Engineering"
                         }
                       ],
                       "required": true
@@ -30671,7 +30671,7 @@
             }
           },
           "401": {
-            "description": "Authentication failed, the token lacks \u0060scenarios:write\u0060 (\u0060IM001\u0060), or an organization-bound token cannot access the label\u0027s organization.",
+            "description": "Authentication failed, the token lacks \u0060scenarios:write\u0060 (\u0060IM001\u0060), or an organization-bound token cannot access the label \u2014 a missing label and an inaccessible label are indistinguishable (\u0060SC401\u0060).",
             "content": {
               "application/json": {
                 "schema": {
@@ -30723,6 +30723,197 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios404Response"
+                },
+                "examples": {
+                  "labelNotFound": {
+                    "summary": "The label is missing or hidden from the caller",
+                    "value": {
+                      "message": "Entity not found.",
+                      "code": "IM013",
+                      "detail": "Label not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:write"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Scenario labels"
+        ],
+        "summary": "Remove a label from multiple scenarios",
+        "description": "Removes a team label from as many as 10,000 scenario IDs in one request. The caller needs \u0060scenario edit\u0060 on the label\u0027s team (or the equivalent admin permission). Valid same-team removals are written atomically as one accepted subset; expected per-scenario failures do not prevent other valid removals and the response remains \u0060200\u0060. Missing and cross-team scenario IDs use the same generic \u0060IM002\u0060 rejection so the endpoint does not reveal whether an unauthorized scenario exists. Removing an assignment that is already absent is successful. An invalid cross-team assignment is rejected and preserved.",
+        "operationId": "DeleteScenarioLabelsByLabelIdScenarios",
+        "parameters": [
+          {
+            "name": "labelId",
+            "in": "path",
+            "description": "Team label to remove.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "examples": {
+              "mixedResults": {
+                "summary": "Remove a team label",
+                "value": 42
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenariosRequest"
+              },
+              "examples": {
+                "mixedResults": {
+                  "summary": "Process two distinct scenarios and one duplicate",
+                  "value": {
+                    "scenarioIds": [
+                      1201,
+                      1202,
+                      1201
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch processed. This status is also returned when every distinct scenario ID is rejected; inspect \u0060results\u0060 and \u0060summary\u0060 for per-scenario outcomes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios200Response"
+                },
+                "examples": {
+                  "mixedResults": {
+                    "summary": "One assignment removed and one scenario rejected",
+                    "value": {
+                      "results": [
+                        {
+                          "scenarioId": 1201,
+                          "status": "removed"
+                        },
+                        {
+                          "scenarioId": 1202,
+                          "status": "rejected",
+                          "code": "IM002",
+                          "detail": "Insufficient rights."
+                        }
+                      ],
+                      "summary": {
+                        "total": 2,
+                        "removed": 1,
+                        "rejected": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body, including an empty array, more than 10,000 raw IDs, or a non-positive/non-int32 ID; also returned with \u0060IM903\u0060 when scenario labels are disabled.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios400Response"
+                },
+                "examples": {
+                  "invalidScenarioIds": {
+                    "summary": "The scenario ID array is empty",
+                    "value": {
+                      "message": "Bad Request",
+                      "code": "SC400",
+                      "suberrors": [
+                        {
+                          "message": "Expected array length to be greater or equal to 1",
+                          "name": "ValidationError"
+                        }
+                      ]
+                    }
+                  },
+                  "featureDisabled": {
+                    "summary": "Scenario labels are disabled",
+                    "value": {
+                      "message": "Feature flag is disabled",
+                      "code": "IM903",
+                      "detail": "Scenario labels are not enabled on this environment."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed, the token lacks \u0060scenarios:write\u0060 (\u0060IM001\u0060), or an organization-bound token cannot access the label \u2014 a missing label and an inaccessible label are indistinguishable (\u0060SC401\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios401Response"
+                },
+                "examples": {
+                  "missingScope": {
+                    "summary": "The token lacks the required scope",
+                    "value": {
+                      "message": "Access denied",
+                      "code": "IM001",
+                      "detail": "Required scope: scenarios:write"
+                    }
+                  },
+                  "organizationAccessDenied": {
+                    "summary": "The organization-bound token cannot access the label",
+                    "value": {
+                      "message": "Access denied",
+                      "code": "SC401"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The \u0060/admin\u0060 route was used by a caller without admin access.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios403Response"
+                },
+                "examples": {
+                  "adminAccessDenied": {
+                    "summary": "The caller lacks admin access",
+                    "value": {
+                      "message": "Permission denied",
+                      "code": "SC403",
+                      "detail": "Forbidden."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The label does not exist or the caller cannot edit its team (\u0060IM013\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios404Response"
                 },
                 "examples": {
                   "labelNotFound": {
@@ -40232,6 +40423,49 @@
         ]
       }
     },
+    "/teams/{teamId}/locked-entities": {
+      "get": {
+        "tags": [
+          "Teams / Locked entities"
+        ],
+        "summary": "List the team\u0027s locked entities",
+        "description": "\u0022Returns every locked connection and key of the team, each with the permissions the calling user holds on it and the part of its access list the caller may see.\n\nThe \u0060permissions\u0060 array reflects the caller\u0027s own grants: an entity without \u0060entity use\u0060 cannot be referenced in scenarios by the caller. For each entity, a caller holding \u0060entity use\u0060 sees the full access list; any other member of the team sees only the \u0060entity manage\u0060 holders. The caller must hold the team\u0027s connections and keys view permissions.\n\nRequires the locked connections feature to be enabled for the organization the team belongs to; otherwise the endpoint returns \u0060400\u0060 (\u0060IM903\u0060).\u0022",
+        "operationId": "GetTeamsByTeamIdLockedEntities",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The ID of the team whose locked entities to list.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The team\u0027s locked entities. Empty when the team has none.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamsByTeamIdLockedEntities200Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "connections:read",
+              "keys:read"
+            ]
+          }
+        ]
+      }
+    },
     "/templates": {
       "get": {
         "tags": [
@@ -47071,7 +47305,7 @@
           }
         }
       },
-      "CustomPropertyStructureItemResponse": {
+      "CustomPropertyStructureResponse": {
         "type": "object",
         "properties": {
           "id": {
@@ -47084,8 +47318,71 @@
           "belongers": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CustomPropertyStructureItemResponseBelongersItem"
+              "$ref": "#/components/schemas/CustomPropertyStructureResponseBelongersItem"
             }
+          }
+        }
+      },
+      "CustomPropertyStructureItemEntityResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/CustomPropertyStructureItemEntityResponseType"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomPropertyStructureItemEntityResponseOptionsItem"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "CustomPropertyStructureItemEntityWithStructureIdResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/CustomPropertyStructureItemEntityWithStructureIdResponseType"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomPropertyStructureItemEntityWithStructureIdResponseAllOf1OptionsItem"
+            },
+            "nullable": true
+          },
+          "structureId": {
+            "type": "integer"
           }
         }
       },
@@ -49412,6 +49709,44 @@
           "propertyName": "type",
           "mapping": {
             "HookLogDetailDataRequestBody_1": "#/components/schemas/HookLogDetailDataRequestBodyBranch1"
+          }
+        }
+      },
+      "CustomPropertyStructureItemEntityWithStructureIdResponseAllOf1": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/CustomPropertyStructureItemEntityWithStructureIdResponseType"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomPropertyStructureItemEntityWithStructureIdResponseAllOf1OptionsItem"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "CustomPropertyStructureItemEntityWithStructureIdResponseAllOf2": {
+        "type": "object",
+        "properties": {
+          "structureId": {
+            "type": "integer"
           }
         }
       },
@@ -79544,7 +79879,7 @@
           }
         }
       },
-      "CustomPropertyStructureItemResponseBelongersItem": {
+      "CustomPropertyStructureResponseBelongersItem": {
         "type": "object",
         "properties": {
           "belongerId": {
@@ -79558,6 +79893,17 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "CustomPropertyStructureItemEntityResponseOptionsItem": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
           }
         }
       },
@@ -80653,6 +80999,17 @@
             "type": "string"
           },
           "account": {
+            "type": "string"
+          }
+        }
+      },
+      "CustomPropertyStructureItemEntityWithStructureIdResponseAllOf1OptionsItem": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
             "type": "string"
           }
         }
@@ -93224,18 +93581,8 @@
       "PostCustomPropertyStructures200Response": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "created": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "belongers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PostCustomPropertyStructures200ResponseBelongersItem"
-            }
+          "customPropertyStructure": {
+            "$ref": "#/components/schemas/PostCustomPropertyStructures200ResponseCustomPropertyStructure"
           }
         }
       },
@@ -98232,6 +98579,156 @@
           }
         }
       },
+      "DeleteScenarioLabelsByLabelIdScenariosRequest": {
+        "required": [
+          "scenarioIds"
+        ],
+        "type": "object",
+        "properties": {
+          "scenarioIds": {
+            "maxItems": 10000,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Scenario IDs to process. The raw array is limited before duplicate IDs are removed. Duplicate IDs are processed once and retain the position of their first occurrence."
+          }
+        }
+      },
+      "DeleteScenarioLabelsByLabelIdScenarios200Response": {
+        "required": [
+          "results",
+          "summary"
+        ],
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItem"
+            },
+            "description": "One result per distinct scenario ID, ordered by first occurrence in the request."
+          },
+          "summary": {
+            "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios200ResponseSummary"
+          }
+        }
+      },
+      "DeleteScenarioLabelsByLabelIdScenarios400Response": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Localized summary for the error code."
+          },
+          "code": {
+            "type": "string",
+            "description": "Stable Make API error code."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the error safely exposes one."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios400ResponseSuberrorsItem"
+            },
+            "description": "Individual validation failures, when request validation reports them."
+          }
+        }
+      },
+      "DeleteScenarioLabelsByLabelIdScenarios401Response": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Localized summary for the error code."
+          },
+          "code": {
+            "type": "string",
+            "description": "Stable Make API error code."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the error safely exposes one."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios401ResponseSuberrorsItem"
+            },
+            "description": "Individual validation failures, when request validation reports them."
+          }
+        }
+      },
+      "DeleteScenarioLabelsByLabelIdScenarios403Response": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Localized summary for the error code."
+          },
+          "code": {
+            "type": "string",
+            "description": "Stable Make API error code."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the error safely exposes one."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios403ResponseSuberrorsItem"
+            },
+            "description": "Individual validation failures, when request validation reports them."
+          }
+        }
+      },
+      "DeleteScenarioLabelsByLabelIdScenarios404Response": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Localized summary for the error code."
+          },
+          "code": {
+            "type": "string",
+            "description": "Stable Make API error code."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the error safely exposes one."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios404ResponseSuberrorsItem"
+            },
+            "description": "Individual validation failures, when request validation reports them."
+          }
+        }
+      },
       "PostScenarioLabelsByLabelIdScenariosByScenarioId200Response": {
         "type": "object",
         "properties": {
@@ -100200,6 +100697,18 @@
         "properties": {
           "member": {
             "$ref": "#/components/schemas/PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200ResponseMember"
+          }
+        }
+      },
+      "GetTeamsByTeamIdLockedEntities200Response": {
+        "type": "object",
+        "properties": {
+          "lockedEntities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItem"
+            },
+            "description": "Every locked connection and key of the team."
           }
         }
       },
@@ -139187,24 +139696,7 @@
           }
         }
       },
-      "PostCustomPropertyStructures200ResponseBelongersItem": {
-        "type": "object",
-        "properties": {
-          "belongerId": {
-            "type": "integer"
-          },
-          "belongerType": {
-            "type": "string"
-          },
-          "associatedTypes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItem": {
+      "PostCustomPropertyStructures200ResponseCustomPropertyStructure": {
         "type": "object",
         "properties": {
           "id": {
@@ -139217,8 +139709,38 @@
           "belongers": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemBelongersItem"
+              "$ref": "#/components/schemas/PostCustomPropertyStructures200ResponseCustomPropertyStructureBelongersItem"
             }
+          }
+        }
+      },
+      "GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemType"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem"
+            },
+            "nullable": true
           }
         }
       },
@@ -139255,15 +139777,30 @@
           "id": {
             "type": "integer"
           },
-          "created": {
-            "type": "string",
-            "format": "date-time"
+          "name": {
+            "type": "string"
           },
-          "belongers": {
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemType"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "options": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemBelongersItem"
-            }
+              "$ref": "#/components/schemas/PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemOptionsItem"
+            },
+            "nullable": true
+          },
+          "structureId": {
+            "type": "integer"
           }
         }
       },
@@ -139277,15 +139814,30 @@
           "id": {
             "type": "integer"
           },
-          "created": {
-            "type": "string",
-            "format": "date-time"
+          "name": {
+            "type": "string"
           },
-          "belongers": {
+          "label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200ResponseCustomPropertyStructureItemType"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "options": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200ResponseCustomPropertyStructureItemBelongersItem"
-            }
+              "$ref": "#/components/schemas/PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200ResponseCustomPropertyStructureItemOptionsItem"
+            },
+            "nullable": true
+          },
+          "structureId": {
+            "type": "integer"
           }
         }
       },
@@ -145860,6 +146412,111 @@
           }
         }
       },
+      "DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItem": {
+        "required": [
+          "scenarioId",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "scenarioId": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItemStatus"
+          },
+          "code": {
+            "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItemCode"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteScenarioLabelsByLabelIdScenarios200ResponseSummary": {
+        "required": [
+          "total",
+          "removed",
+          "rejected"
+        ],
+        "type": "object",
+        "properties": {
+          "total": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "removed": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "rejected": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        }
+      },
+      "DeleteScenarioLabelsByLabelIdScenarios400ResponseSuberrorsItem": {
+        "required": [
+          "message",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteScenarioLabelsByLabelIdScenarios401ResponseSuberrorsItem": {
+        "required": [
+          "message",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteScenarioLabelsByLabelIdScenarios403ResponseSuberrorsItem": {
+        "required": [
+          "message",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteScenarioLabelsByLabelIdScenarios404ResponseSuberrorsItem": {
+        "required": [
+          "message",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
       "PostScenarioLabelsByLabelIdScenariosByScenarioId200ResponseScenarioLabel": {
         "type": "object",
         "properties": {
@@ -148673,6 +149330,46 @@
           }
         },
         "description": "A single access-list member \u2014 a principal with its entity-tier role and, for users, display fields."
+      },
+      "GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItem": {
+        "required": [
+          "type",
+          "id",
+          "name",
+          "permissions",
+          "acl"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemType"
+          },
+          "id": {
+            "type": "integer",
+            "description": "The id of the locked connection or key.",
+            "example": 4711
+          },
+          "name": {
+            "type": "string",
+            "description": "The user-facing display name of the locked connection or key.",
+            "example": "My CRM connection"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemPermissionsItem"
+            },
+            "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list."
+          },
+          "acl": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemAclItem"
+            },
+            "description": "The access-list members visible to the caller \u2014 everyone when the caller holds \u0060entity use\u0060 on the entity, otherwise only the \u0060entity manage\u0060 holders."
+          }
+        },
+        "description": "A locked connection or key of the team, annotated with the calling user\u0027s own permissions and the part of its access list the caller may see."
       },
       "GetTemplates200ResponseTemplatesItem": {
         "type": "object",
@@ -152265,7 +152962,7 @@
           }
         }
       },
-      "GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemBelongersItem": {
+      "PostCustomPropertyStructures200ResponseCustomPropertyStructureBelongersItem": {
         "type": "object",
         "properties": {
           "belongerId": {
@@ -152282,37 +152979,36 @@
           }
         }
       },
-      "PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemBelongersItem": {
+      "GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem": {
+        "required": [
+          "value"
+        ],
         "type": "object",
         "properties": {
-          "belongerId": {
-            "type": "integer"
-          },
-          "belongerType": {
+          "value": {
             "type": "string"
-          },
-          "associatedTypes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           }
         }
       },
-      "PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200ResponseCustomPropertyStructureItemBelongersItem": {
+      "PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemOptionsItem": {
+        "required": [
+          "value"
+        ],
         "type": "object",
         "properties": {
-          "belongerId": {
-            "type": "integer"
-          },
-          "belongerType": {
+          "value": {
             "type": "string"
-          },
-          "associatedTypes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          }
+        }
+      },
+      "PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200ResponseCustomPropertyStructureItemOptionsItem": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
           }
         }
       },
@@ -155174,6 +155870,43 @@
       },
       "GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItemWarningMessage": {
         "type": "object"
+      },
+      "GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemAclItem": {
+        "required": [
+          "id",
+          "membershipType",
+          "name",
+          "permissions"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The principal\u0027s id. For a \u0060user\u0060 principal this is the user id.",
+            "example": 128
+          },
+          "membershipType": {
+            "$ref": "#/components/schemas/GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemAclItemMembershipType"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the principal. Falls back to the email address, and to \u0060Unknown user\u0060 when neither is known.",
+            "example": "Jane Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of the user. Omitted when unknown or for non-user principals.",
+            "example": "jane.doe@example.com"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemAclItemPermissionsItem"
+            },
+            "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list."
+          }
+        },
+        "description": "A principal on the locked entity\u0027s access list, with display fields and the permissions their entity role grants."
       },
       "PostTemplatesRequestBlueprintFlowItem": {
         "type": "object",
@@ -158863,6 +159596,100 @@
             {
               "value": "yearly",
               "name": "Yearly"
+            }
+          ]
+        }
+      },
+      "CustomPropertyStructureItemEntityResponseType": {
+        "enum": [
+          "boolean",
+          "number",
+          "shortText",
+          "longText",
+          "date",
+          "dropdown",
+          "multiselect"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "CustomPropertyStructureItemEntityResponseType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "boolean",
+              "name": "Boolean"
+            },
+            {
+              "value": "number",
+              "name": "Number"
+            },
+            {
+              "value": "shortText",
+              "name": "ShortText"
+            },
+            {
+              "value": "longText",
+              "name": "LongText"
+            },
+            {
+              "value": "date",
+              "name": "Date"
+            },
+            {
+              "value": "dropdown",
+              "name": "Dropdown"
+            },
+            {
+              "value": "multiselect",
+              "name": "Multiselect"
+            }
+          ]
+        }
+      },
+      "CustomPropertyStructureItemEntityWithStructureIdResponseType": {
+        "enum": [
+          "boolean",
+          "number",
+          "shortText",
+          "longText",
+          "date",
+          "dropdown",
+          "multiselect"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "CustomPropertyStructureItemEntityWithStructureIdResponseType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "boolean",
+              "name": "Boolean"
+            },
+            {
+              "value": "number",
+              "name": "Number"
+            },
+            {
+              "value": "shortText",
+              "name": "ShortText"
+            },
+            {
+              "value": "longText",
+              "name": "LongText"
+            },
+            {
+              "value": "date",
+              "name": "Date"
+            },
+            {
+              "value": "dropdown",
+              "name": "Dropdown"
+            },
+            {
+              "value": "multiselect",
+              "name": "Multiselect"
             }
           ]
         }
@@ -188887,6 +189714,147 @@
           ]
         }
       },
+      "GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemType": {
+        "enum": [
+          "boolean",
+          "number",
+          "shortText",
+          "longText",
+          "date",
+          "dropdown",
+          "multiselect"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "boolean",
+              "name": "Boolean"
+            },
+            {
+              "value": "number",
+              "name": "Number"
+            },
+            {
+              "value": "shortText",
+              "name": "ShortText"
+            },
+            {
+              "value": "longText",
+              "name": "LongText"
+            },
+            {
+              "value": "date",
+              "name": "Date"
+            },
+            {
+              "value": "dropdown",
+              "name": "Dropdown"
+            },
+            {
+              "value": "multiselect",
+              "name": "Multiselect"
+            }
+          ]
+        }
+      },
+      "PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemType": {
+        "enum": [
+          "boolean",
+          "number",
+          "shortText",
+          "longText",
+          "date",
+          "dropdown",
+          "multiselect"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "boolean",
+              "name": "Boolean"
+            },
+            {
+              "value": "number",
+              "name": "Number"
+            },
+            {
+              "value": "shortText",
+              "name": "ShortText"
+            },
+            {
+              "value": "longText",
+              "name": "LongText"
+            },
+            {
+              "value": "date",
+              "name": "Date"
+            },
+            {
+              "value": "dropdown",
+              "name": "Dropdown"
+            },
+            {
+              "value": "multiselect",
+              "name": "Multiselect"
+            }
+          ]
+        }
+      },
+      "PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200ResponseCustomPropertyStructureItemType": {
+        "enum": [
+          "boolean",
+          "number",
+          "shortText",
+          "longText",
+          "date",
+          "dropdown",
+          "multiselect"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200ResponseCustomPropertyStructureItemType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "boolean",
+              "name": "Boolean"
+            },
+            {
+              "value": "number",
+              "name": "Number"
+            },
+            {
+              "value": "shortText",
+              "name": "ShortText"
+            },
+            {
+              "value": "longText",
+              "name": "LongText"
+            },
+            {
+              "value": "date",
+              "name": "Date"
+            },
+            {
+              "value": "dropdown",
+              "name": "Dropdown"
+            },
+            {
+              "value": "multiselect",
+              "name": "Multiselect"
+            }
+          ]
+        }
+      },
       "PostDataStructuresRequestSpecItemType": {
         "enum": [
           "boolean",
@@ -189588,6 +190556,51 @@
           ]
         }
       },
+      "DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItemStatus": {
+        "enum": [
+          "removed",
+          "rejected"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItemStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "removed",
+              "name": "Removed"
+            },
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            }
+          ]
+        }
+      },
+      "DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItemCode": {
+        "enum": [
+          "IM002",
+          "IM301"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0060IM002\u0060 when a scenario is missing or belongs to another team; \u0060IM301\u0060 for an authorized but trashed scenario in the label\u0027s team.",
+        "x-ms-enum": {
+          "name": "DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItemCode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "IM002",
+              "name": "Im002"
+            },
+            {
+              "value": "IM301",
+              "name": "Im301"
+            }
+          ]
+        }
+      },
       "GetPrivateSpaces200ResponsePrivateSpacesItemType": {
         "enum": [
           "personal"
@@ -190217,6 +191230,52 @@
             {
               "value": "entity:entity-member",
               "name": "EntityColonEntityMember"
+            }
+          ]
+        }
+      },
+      "GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemType": {
+        "enum": [
+          "connection",
+          "key"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The kind of entity the \u0060id\u0060 refers to.",
+        "example": "connection",
+        "x-ms-enum": {
+          "name": "GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "connection",
+              "name": "Connection"
+            },
+            {
+              "value": "key",
+              "name": "Key"
+            }
+          ]
+        }
+      },
+      "GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemPermissionsItem": {
+        "enum": [
+          "entity use",
+          "entity manage"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemPermissionsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity use",
+              "name": "EntityUse"
+            },
+            {
+              "value": "entity manage",
+              "name": "EntityManage"
             }
           ]
         }
@@ -192533,6 +193592,52 @@
             {
               "value": "yearly",
               "name": "Yearly"
+            }
+          ]
+        }
+      },
+      "GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemAclItemMembershipType": {
+        "enum": [
+          "user",
+          "group"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The kind of principal. Always \u0060user\u0060 in the current version.",
+        "example": "user",
+        "x-ms-enum": {
+          "name": "GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemAclItemMembershipType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "group",
+              "name": "Group"
+            }
+          ]
+        }
+      },
+      "GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemAclItemPermissionsItem": {
+        "enum": [
+          "entity use",
+          "entity manage"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItemAclItemPermissionsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity use",
+              "name": "EntityUse"
+            },
+            {
+              "value": "entity manage",
+              "name": "EntityManage"
             }
           ]
         }
@@ -200973,16 +202078,6 @@
       "description": "The **Notifications** feature keeps you informed about problems in your scenarios and keep you up to date when it comes to the new features and improvements in Make. The following endpoints allow you to manage the notifications."
     },
     {
-      "name": "Custom property structures",
-      "description": "The following endpoints allow you to manage the custom property structures."
-    },
-    {
-      "name": "Custom property structures / Items",
-      "description": "The following endpoints allow you to manage the custom property structure items.",
-      "x-parent": "Custom property structures",
-      "x-page-title": "Items"
-    },
-    {
       "name": "Oauth",
       "description": "experimental"
     },
@@ -201095,6 +202190,12 @@
     {
       "name": "Teams",
       "description": "Teams are containers that contain scenarios and data accessible only by the members of the team. The API endpoints discussed further allow you to manage teams. [Read more about teams](https://www.make.com/en/help/access-management/teams)."
+    },
+    {
+      "name": "Teams / Locked entities",
+      "description": "The following endpoint lists the locked connections and keys of a team together with the calling user\u0027s permissions on them and their access lists.",
+      "x-parent": "Teams",
+      "x-page-title": "Locked entities"
     },
     {
       "name": "Teams / User team roles",

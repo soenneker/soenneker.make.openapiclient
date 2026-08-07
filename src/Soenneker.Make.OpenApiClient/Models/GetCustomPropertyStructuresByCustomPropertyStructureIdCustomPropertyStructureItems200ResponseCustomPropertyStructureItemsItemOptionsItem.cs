@@ -9,45 +9,35 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PostCustomPropertyStructures200ResponseBelongersItem : IAdditionalDataHolder, IParsable
+    public partial class GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The associatedTypes property</summary>
+        /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AssociatedTypes { get; set; }
+        public string? Value { get; set; }
 #nullable restore
 #else
-        public List<string> AssociatedTypes { get; set; }
-#endif
-        /// <summary>The belongerId property</summary>
-        public int? BelongerId { get; set; }
-        /// <summary>The belongerType property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? BelongerType { get; set; }
-#nullable restore
-#else
-        public string BelongerType { get; set; }
+        public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseBelongersItem"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem"/> and sets the default values.
         /// </summary>
-        public PostCustomPropertyStructures200ResponseBelongersItem()
+        public GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseBelongersItem"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseBelongersItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseBelongersItem();
+            return new global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemsItemOptionsItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,9 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "associatedTypes", n => { AssociatedTypes = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "belongerId", n => { BelongerId = n.GetIntValue(); } },
-                { "belongerType", n => { BelongerType = n.GetStringValue(); } },
+                { "value", n => { Value = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -69,9 +57,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("associatedTypes", AssociatedTypes);
-            writer.WriteIntValue("belongerId", BelongerId);
-            writer.WriteStringValue("belongerType", BelongerType);
+            writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

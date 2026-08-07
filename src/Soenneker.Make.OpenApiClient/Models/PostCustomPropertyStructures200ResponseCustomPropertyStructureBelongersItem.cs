@@ -9,7 +9,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemBelongersItem : IAdditionalDataHolder, IParsable
+    public partial class PostCustomPropertyStructures200ResponseCustomPropertyStructureBelongersItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -33,21 +33,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string BelongerType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemBelongersItem"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseCustomPropertyStructureBelongersItem"/> and sets the default values.
         /// </summary>
-        public PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemBelongersItem()
+        public PostCustomPropertyStructures200ResponseCustomPropertyStructureBelongersItem()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemBelongersItem"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseCustomPropertyStructureBelongersItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemBelongersItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseCustomPropertyStructureBelongersItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItems200ResponseCustomPropertyStructureItemBelongersItem();
+            return new global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseCustomPropertyStructureBelongersItem();
         }
         /// <summary>
         /// The deserialization information for the current model
