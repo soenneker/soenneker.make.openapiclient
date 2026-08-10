@@ -5,7 +5,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>Whether the role applies to the organization or a team.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum PostUsersCustomRolesRequestPermissionType
+    public enum PostUsersCustomRolesRequestCategory
     {
         [EnumMember(Value = "organization")]
         #pragma warning disable CS1591

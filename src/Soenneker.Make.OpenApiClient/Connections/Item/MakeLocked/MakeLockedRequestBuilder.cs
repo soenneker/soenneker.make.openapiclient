@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Connections.Item.MakeLocked
         {
         }
         /// <summary>
-        /// &quot;Restricts the connection&apos;s visibility to its access list (`visibility: locked`). The caller becomes the sole adminof the locked connection.Caller rule: when the connection has an author, only the author can lock it. A legacy connection without an authorcan be locked by any team member with the `account edit` permission.The operation is idempotent — locking an already locked connection succeeds without any change; the callerrule above still applies.Requires the *Locked connections* feature to be enabled for the organization.&quot;
+        /// &quot;Restricts the connection&apos;s visibility to its access list (`visibility: locked`). The caller becomes the sole adminof the locked connection.Caller rule: only the connection&apos;s author can lock it. A connection without an author cannot be locked.The operation is idempotent — locking an already locked connection succeeds without any change; the callerrule above still applies.Requires the *Locked connections* feature to be enabled for the organization.&quot;
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdMakeLocked200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Connections.Item.MakeLocked
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdMakeLocked200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdMakeLocked200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Restricts the connection&apos;s visibility to its access list (`visibility: locked`). The caller becomes the sole adminof the locked connection.Caller rule: when the connection has an author, only the author can lock it. A legacy connection without an authorcan be locked by any team member with the `account edit` permission.The operation is idempotent — locking an already locked connection succeeds without any change; the callerrule above still applies.Requires the *Locked connections* feature to be enabled for the organization.&quot;
+        /// &quot;Restricts the connection&apos;s visibility to its access list (`visibility: locked`). The caller becomes the sole adminof the locked connection.Caller rule: only the connection&apos;s author can lock it. A connection without an author cannot be locked.The operation is idempotent — locking an already locked connection succeeds without any change; the callerrule above still applies.Requires the *Locked connections* feature to be enabled for the organization.&quot;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

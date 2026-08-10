@@ -30,6 +30,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string ComponentType { get; set; }
 #endif
+        /// <summary>Describes how to create a key of this managed type. Only present when `managed` is true.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetKeysTypes200ResponseKeysTypesItemCreation? Creation { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetKeysTypes200ResponseKeysTypesItemCreation Creation { get; set; }
+#endif
         /// <summary>The icon property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -46,6 +54,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Label { get; set; }
 #endif
+        /// <summary>&quot;When true, this key type is server-managed: its data is written only by a dedicated setup flow, and it is hidden from the generic key list unless explicitly requested via `?typeName=`. Absent/false for all other key types.&quot;</summary>
+        public bool? Managed { get; set; }
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -105,8 +115,10 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "author", n => { Author = n.GetStringValue(); } },
                 { "componentType", n => { ComponentType = n.GetStringValue(); } },
+                { "creation", n => { Creation = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetKeysTypes200ResponseKeysTypesItemCreation>(global::Soenneker.Make.OpenApiClient.Models.GetKeysTypes200ResponseKeysTypesItemCreation.CreateFromDiscriminatorValue); } },
                 { "icon", n => { Icon = n.GetStringValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
+                { "managed", n => { Managed = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "parameters", n => { Parameters = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetKeysTypes200ResponseKeysTypesItemParametersItem>(global::Soenneker.Make.OpenApiClient.Models.GetKeysTypes200ResponseKeysTypesItemParametersItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "theme", n => { Theme = n.GetStringValue(); } },
@@ -122,8 +134,10 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("author", Author);
             writer.WriteStringValue("componentType", ComponentType);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetKeysTypes200ResponseKeysTypesItemCreation>("creation", Creation);
             writer.WriteStringValue("icon", Icon);
             writer.WriteStringValue("label", Label);
+            writer.WriteBoolValue("managed", Managed);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetKeysTypes200ResponseKeysTypesItemParametersItem>("parameters", Parameters);
             writer.WriteStringValue("theme", Theme);

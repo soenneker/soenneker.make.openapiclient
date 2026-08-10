@@ -10,6 +10,7 @@ using Soenneker.Make.OpenApiClient.Admin;
 using Soenneker.Make.OpenApiClient.Affiliate;
 using Soenneker.Make.OpenApiClient.Agents;
 using Soenneker.Make.OpenApiClient.AiAgents;
+using Soenneker.Make.OpenApiClient.AiBrowser;
 using Soenneker.Make.OpenApiClient.AiErrorAnalysis;
 using Soenneker.Make.OpenApiClient.Analytics;
 using Soenneker.Make.OpenApiClient.AuditLogs;
@@ -82,6 +83,11 @@ namespace Soenneker.Make.OpenApiClient
         public global::Soenneker.Make.OpenApiClient.AiAgents.AiAgentsRequestBuilder AiAgents
         {
             get => new global::Soenneker.Make.OpenApiClient.AiAgents.AiAgentsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The aiBrowser property</summary>
+        public global::Soenneker.Make.OpenApiClient.AiBrowser.AiBrowserRequestBuilder AiBrowser
+        {
+            get => new global::Soenneker.Make.OpenApiClient.AiBrowser.AiBrowserRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The aiErrorAnalysis property</summary>
         public global::Soenneker.Make.OpenApiClient.AiErrorAnalysis.AiErrorAnalysisRequestBuilder AiErrorAnalysis

@@ -4696,6 +4696,259 @@
         ]
       }
     },
+    "/ai-browser/context-setups": {
+      "post": {
+        "tags": [
+          "AI"
+        ],
+        "summary": "Start a browser context create setup",
+        "description": "\u0022Starts an interactive setup flow for a new AI Browser context (a managed \u0060ai-browser-context\u0060 keychain key).\nOpens a fresh remote browser session where the user logs in to their services; the returned \u0060liveViewUrl\u0060\nis rendered in the Make UI. The flow is then driven with the returned \u0060setupId\u0060: poll its status, and\ncomplete or cancel it. The flow expires 15 minutes after it starts.\n\nAvailable only when the \u0060is_ai_browser_contexts_enabled\u0060 feature flag is enabled.\n\u0022",
+        "operationId": "PostAiBrowserContextSetups",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostAiBrowserContextSetupsRequest"
+              },
+              "examples": {
+                "create-setup": {
+                  "summary": "Start a create flow for a new browser context key",
+                  "value": {
+                    "teamId": 22,
+                    "name": "My shop logins"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Setup flow started",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAiBrowserContextSetups200Response"
+                },
+                "examples": {
+                  "create-setup": {
+                    "summary": "Setup flow started",
+                    "value": {
+                      "setupId": "3f9c2b7e4d1a8c6f5e0b9d2a7c4e1f8b6a3d0c9e2f7b4a1d8e5c2f9b6a3e0d7c",
+                      "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "keys:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/ai-browser/context-setups/{setupId}": {
+      "get": {
+        "tags": [
+          "AI"
+        ],
+        "summary": "Get browser context setup status",
+        "description": "Polls the status of a running browser context setup flow. Only the user who started the flow\ncan read it. A flow that has expired, completed, or been cancelled responds with \u0060404\u0060.\n\nAvailable only when the \u0060is_ai_browser_contexts_enabled\u0060 feature flag is enabled.\n",
+        "operationId": "GetAiBrowserContextSetupsBySetupId",
+        "parameters": [
+          {
+            "name": "setupId",
+            "in": "path",
+            "description": "Identifier of the setup flow, as returned when the flow was started.",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Setup flow status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAiBrowserContextSetupsBySetupId200Response"
+                },
+                "examples": {
+                  "pending-setup": {
+                    "summary": "Running setup flow",
+                    "value": {
+                      "status": "pending",
+                      "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "keys:read"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "AI"
+        ],
+        "summary": "Cancel a browser context setup",
+        "description": "\u0022Cancels a running browser context setup flow: releases the remote browser session and, for a\ncreate flow, deletes the not-yet-adopted browser context. Only the user who started the flow\ncan cancel it.\n\nAvailable only when the \u0060is_ai_browser_contexts_enabled\u0060 feature flag is enabled.\n\u0022",
+        "operationId": "DeleteAiBrowserContextSetupsBySetupId",
+        "parameters": [
+          {
+            "name": "setupId",
+            "in": "path",
+            "description": "Identifier of the setup flow, as returned when the flow was started.",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Setup flow cancelled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAiBrowserContextSetupsBySetupId200Response"
+                },
+                "examples": {
+                  "cancelled-setup": {
+                    "summary": "Setup flow cancelled",
+                    "value": {
+                      "setupId": "3f9c2b7e4d1a8c6f5e0b9d2a7c4e1f8b6a3d0c9e2f7b4a1d8e5c2f9b6a3e0d7c"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "keys:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/ai-browser/context-setups/{setupId}/complete": {
+      "post": {
+        "tags": [
+          "AI"
+        ],
+        "summary": "Complete a browser context setup",
+        "description": "Completes a browser context setup flow after the user has finished logging in. Releases the remote\nbrowser session, waits for the browser state to be written back into the context, and then \u2014 for a\ncreate flow \u2014 creates the \u0060ai-browser-context\u0060 key, or \u2014 for a refresh flow \u2014 returns the existing\nkey. A flow can be completed exactly once; only the user who started it can complete it.\n\nAvailable only when the \u0060is_ai_browser_contexts_enabled\u0060 feature flag is enabled.\n",
+        "operationId": "PostAiBrowserContextSetupsBySetupIdComplete",
+        "parameters": [
+          {
+            "name": "setupId",
+            "in": "path",
+            "description": "Identifier of the setup flow, as returned when the flow was started.",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Setup completed; the browser context key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAiBrowserContextSetupsBySetupIdComplete200Response"
+                },
+                "examples": {
+                  "completed-setup": {
+                    "summary": "Browser context key after the setup completed",
+                    "value": {
+                      "id": 137,
+                      "name": "My shop logins"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "keys:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/ai-browser/contexts/{keyId}/refresh-setups": {
+      "post": {
+        "tags": [
+          "AI"
+        ],
+        "summary": "Start a browser context refresh setup",
+        "description": "Starts an interactive refresh flow for an existing AI Browser context key. Opens a remote browser\nsession attached to the key\u0027s existing context so the user can re-authenticate expired logins; the\ncontext (and the key) keep their identity. The flow is then driven with the returned \u0060setupId\u0060,\nexactly like a create flow. The flow expires 15 minutes after it starts.\n\nAvailable only when the \u0060is_ai_browser_contexts_enabled\u0060 feature flag is enabled.\n",
+        "operationId": "PostAiBrowserContextsByKeyIdRefreshSetups",
+        "parameters": [
+          {
+            "name": "keyId",
+            "in": "path",
+            "description": "The ID of the \u0060ai-browser-context\u0060 key whose context should be refreshed.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Refresh flow started",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAiBrowserContextsByKeyIdRefreshSetups200Response"
+                },
+                "examples": {
+                  "refresh-setup": {
+                    "summary": "Refresh flow started",
+                    "value": {
+                      "setupId": "3f9c2b7e4d1a8c6f5e0b9d2a7c4e1f8b6a3d0c9e2f7b4a1d8e5c2f9b6a3e0d7c",
+                      "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "keys:write"
+            ]
+          }
+        ]
+      }
+    },
     "/ai-error-analysis": {
       "post": {
         "tags": [
@@ -7126,7 +7379,7 @@
           "Connections"
         ],
         "summary": "Lock connection",
-        "description": "\u0022Restricts the connection\u0027s visibility to its access list (\u0060visibility: locked\u0060). The caller becomes the sole admin\nof the locked connection.\n\nCaller rule: when the connection has an author, only the author can lock it. A legacy connection without an author\ncan be locked by any team member with the \u0060account edit\u0060 permission.\n\nThe operation is idempotent \u2014 locking an already locked connection succeeds without any change; the caller\nrule above still applies.\n\nRequires the *Locked connections* feature to be enabled for the organization.\n\u0022",
+        "description": "\u0022Restricts the connection\u0027s visibility to its access list (\u0060visibility: locked\u0060). The caller becomes the sole admin\nof the locked connection.\n\nCaller rule: only the connection\u0027s author can lock it. A connection without an author cannot be locked.\n\nThe operation is idempotent \u2014 locking an already locked connection succeeds without any change; the caller\nrule above still applies.\n\nRequires the *Locked connections* feature to be enabled for the organization.\n\u0022",
         "operationId": "PostConnectionsByConnectionIdMakeLocked",
         "parameters": [
           {
@@ -20341,7 +20594,7 @@
           "Keys"
         ],
         "summary": "Lock key",
-        "description": "\u0022Restricts the key\u0027s visibility to its access list (\u0060visibility: locked\u0060). The caller becomes the sole admin\nof the locked key.\n\nCaller rule: when the key has an author, only the author can lock it. A legacy key without an author can be\nlocked by any team member with the \u0060key edit\u0060 permission. When the key\u0027s author is no longer a member of the\nteam, the key is treated as a key without an author; the stale author reference is cleared once the caller\npasses the caller rule.\n\nThe operation is idempotent \u2014 locking an already locked key succeeds without any change; the caller rule\nabove still applies.\n\nRequires the *Locked connections* feature to be enabled for the organization.\n\u0022",
+        "description": "\u0022Restricts the key\u0027s visibility to its access list (\u0060visibility: locked\u0060). The caller becomes the sole admin\nof the locked key.\n\nCaller rule: only the key\u0027s author can lock it. A key without an author cannot be locked.\n\nThe operation is idempotent \u2014 locking an already locked key succeeds without any change; the caller rule\nabove still applies.\n\nRequires the *Locked connections* feature to be enabled for the organization.\n\u0022",
         "operationId": "PostKeysByKeyIdMakeLocked",
         "parameters": [
           {
@@ -46522,6 +46775,13 @@
           },
           "componentType": {
             "type": "string"
+          },
+          "managed": {
+            "type": "boolean",
+            "description": "\u0022When true, this key type is server-managed: its data is written only by a dedicated setup flow, and it is hidden from the generic key list unless explicitly requested via \u0060?typeName=\u0060. Absent/false for all other key types.\u0022"
+          },
+          "creation": {
+            "$ref": "#/components/schemas/KeyTypeCreation"
           },
           "author": {
             "type": "string"
@@ -79650,6 +79910,23 @@
           }
         }
       },
+      "KeyTypeCreation": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "example": "interactive"
+          },
+          "url": {
+            "type": "string",
+            "example": "/ai-browser/context-setups"
+          },
+          "window": {
+            "$ref": "#/components/schemas/KeyTypeCreationWindow"
+          }
+        },
+        "description": "Describes how to create a key of this managed type. Only present when \u0060managed\u0060 is true."
+      },
       "OrganizationLicense": {
         "type": "object",
         "additionalProperties": {
@@ -86079,6 +86356,17 @@
             "type": "boolean"
           },
           "roundtrips": {
+            "type": "integer"
+          }
+        }
+      },
+      "KeyTypeCreationWindow": {
+        "type": "object",
+        "properties": {
+          "width": {
+            "type": "integer"
+          },
+          "height": {
             "type": "integer"
           }
         }
@@ -92832,6 +93120,108 @@
           "$ref": "#/components/schemas/GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItem"
         },
         "description": "Response body containing a list of models for a specific LLM provider."
+      },
+      "PostAiBrowserContextSetupsRequest": {
+        "required": [
+          "teamId",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "teamId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The ID of the team the new browser context key will belong to."
+          },
+          "name": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the new browser context key."
+          }
+        }
+      },
+      "PostAiBrowserContextSetups200Response": {
+        "required": [
+          "setupId",
+          "liveViewUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "setupId": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string",
+            "description": "Identifier of the setup flow. Only the user who started the flow can use it."
+          },
+          "liveViewUrl": {
+            "type": "string",
+            "description": "URL of the live browser view where the user logs in to their services."
+          }
+        }
+      },
+      "GetAiBrowserContextSetupsBySetupId200Response": {
+        "required": [
+          "status",
+          "liveViewUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/GetAiBrowserContextSetupsBySetupId200ResponseStatus"
+          },
+          "liveViewUrl": {
+            "type": "string",
+            "description": "URL of the live browser view of the running setup session."
+          }
+        }
+      },
+      "DeleteAiBrowserContextSetupsBySetupId200Response": {
+        "required": [
+          "setupId"
+        ],
+        "type": "object",
+        "properties": {
+          "setupId": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string",
+            "description": "Identifier of the cancelled setup flow."
+          }
+        }
+      },
+      "PostAiBrowserContextSetupsBySetupIdComplete200Response": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the created (create flow) or refreshed (refresh flow) key."
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the key."
+          }
+        }
+      },
+      "PostAiBrowserContextsByKeyIdRefreshSetups200Response": {
+        "required": [
+          "setupId",
+          "liveViewUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "setupId": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string",
+            "description": "Identifier of the setup flow. Only the user who started the flow can use it."
+          },
+          "liveViewUrl": {
+            "type": "string",
+            "description": "URL of the live browser view where the user re-authenticates their services."
+          }
+        }
       },
       "PostAiErrorAnalysisRequest": {
         "required": [
@@ -101364,7 +101754,7 @@
       "PostUsersCustomRolesRequest": {
         "required": [
           "name",
-          "permissionType",
+          "category",
           "organizationId"
         ],
         "type": "object",
@@ -101376,8 +101766,8 @@
             "description": "The name of the custom role.",
             "example": "Custom Viewer"
           },
-          "permissionType": {
-            "$ref": "#/components/schemas/PostUsersCustomRolesRequestPermissionType"
+          "category": {
+            "$ref": "#/components/schemas/PostUsersCustomRolesRequestCategory"
           },
           "organizationId": {
             "type": "integer",
@@ -142205,6 +142595,13 @@
           "componentType": {
             "type": "string"
           },
+          "managed": {
+            "type": "boolean",
+            "description": "\u0022When true, this key type is server-managed: its data is written only by a dedicated setup flow, and it is hidden from the generic key list unless explicitly requested via \u0060?typeName=\u0060. Absent/false for all other key types.\u0022"
+          },
+          "creation": {
+            "$ref": "#/components/schemas/GetKeysTypes200ResponseKeysTypesItemCreation"
+          },
           "author": {
             "type": "string"
           },
@@ -153584,6 +153981,23 @@
           }
         }
       },
+      "GetKeysTypes200ResponseKeysTypesItemCreation": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "example": "interactive"
+          },
+          "url": {
+            "type": "string",
+            "example": "/ai-browser/context-setups"
+          },
+          "window": {
+            "$ref": "#/components/schemas/GetKeysTypes200ResponseKeysTypesItemCreationWindow"
+          }
+        },
+        "description": "Describes how to create a key of this managed type. Only present when \u0060managed\u0060 is true."
+      },
       "GetOrganizations200ResponseOrganizationsItemLicense": {
         "type": "object",
         "additionalProperties": {
@@ -156754,6 +157168,17 @@
               "$ref": "#/components/schemas/GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemCredentialsAvailableItem"
             },
             "description": "The connections in the team that can drive this endpoint. Empty for endpoints\nthat need no connection (usable without authentication).\n"
+          }
+        }
+      },
+      "GetKeysTypes200ResponseKeysTypesItemCreationWindow": {
+        "type": "object",
+        "properties": {
+          "width": {
+            "type": "integer"
+          },
+          "height": {
+            "type": "integer"
           }
         }
       },
@@ -171352,6 +171777,24 @@
           ]
         }
       },
+      "GetAiBrowserContextSetupsBySetupId200ResponseStatus": {
+        "enum": [
+          "pending"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "A readable flow is always pending; finished flows respond with \u0060404\u0060.",
+        "x-ms-enum": {
+          "name": "GetAiBrowserContextSetupsBySetupId200ResponseStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "pending",
+              "name": "Pending"
+            }
+          ]
+        }
+      },
       "PostConnectionsRequestAccountVisibility": {
         "enum": [
           "team",
@@ -172012,7 +172455,7 @@
           ]
         }
       },
-      "PostUsersCustomRolesRequestPermissionType": {
+      "PostUsersCustomRolesRequestCategory": {
         "enum": [
           "organization",
           "team"
@@ -172022,7 +172465,7 @@
         "description": "Whether the role applies to the organization or a team.",
         "example": "organization",
         "x-ms-enum": {
-          "name": "PostUsersCustomRolesRequestPermissionType",
+          "name": "PostUsersCustomRolesRequestCategory",
           "modelAsString": false,
           "values": [
             {
