@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.Users.CustomRoles.Item;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,6 +18,18 @@ namespace Soenneker.Make.OpenApiClient.Users.CustomRoles
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CustomRolesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.users.customRoles.item collection</summary>
+        /// <param name="position">The ID of the custom role to update.</param>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Users.CustomRoles.Item.WithRoleItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Users.CustomRoles.Item.WithRoleItemRequestBuilder this[int position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("roleId", position);
+                return new global::Soenneker.Make.OpenApiClient.Users.CustomRoles.Item.WithRoleItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Users.CustomRoles.CustomRolesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -32,46 +45,6 @@ namespace Soenneker.Make.OpenApiClient.Users.CustomRoles
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
         public CustomRolesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users/custom-roles", rawUrl)
         {
-        }
-        /// <summary>
-        /// Deletes an existing custom role. Only custom-managed roles can be deleted. The role must not be currently assigned to any users.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRoles200Response"/></returns>
-        /// <param name="body">The request body</param>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRoles200Response?> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRolesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRoles200Response> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRolesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRoles200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRoles200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Updates the name, description, or permissions of an existing custom role. Only custom-managed roles can be updated.
-        /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRoles200Response"/></returns>
-        /// <param name="body">The request body</param>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRoles200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRoles200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRoles200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRoles200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new custom organization or team role. Requires the `organization custom roles edit` permission on the organization.
@@ -92,50 +65,6 @@ namespace Soenneker.Make.OpenApiClient.Users.CustomRoles
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostUsersCustomRoles200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostUsersCustomRoles200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// Deletes an existing custom role. Only custom-managed roles can be deleted. The role must not be currently assigned to any users.
-        /// </summary>
-        /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRolesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
-        {
-#nullable restore
-#else
-        public RequestInformation ToDeleteRequestInformation(global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRolesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
-        {
-#endif
-            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
-            requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            return requestInfo;
-        }
-        /// <summary>
-        /// Updates the name, description, or permissions of an existing custom role. Only custom-managed roles can be updated.
-        /// </summary>
-        /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
-        {
-#nullable restore
-#else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
-        {
-#endif
-            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
-            requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
-            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
-            return requestInfo;
         }
         /// <summary>
         /// Creates a new custom organization or team role. Requires the `organization custom roles edit` permission on the organization.

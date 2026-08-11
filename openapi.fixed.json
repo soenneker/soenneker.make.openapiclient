@@ -43875,19 +43875,33 @@
             ]
           }
         ]
-      },
+      }
+    },
+    "/users/custom-roles/{roleId}": {
       "patch": {
         "tags": [
           "Users / Roles"
         ],
         "summary": "Update a custom role",
         "description": "Updates the name, description, or permissions of an existing custom role. Only custom-managed roles can be updated.",
-        "operationId": "PatchUsersCustomRoles",
+        "operationId": "PatchUsersCustomRolesByRoleId",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "description": "The ID of the custom role to update.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchUsersCustomRolesRequest"
+                "$ref": "#/components/schemas/PatchUsersCustomRolesByRoleIdRequest"
               }
             }
           }
@@ -43898,7 +43912,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PatchUsersCustomRoles200Response"
+                  "$ref": "#/components/schemas/PatchUsersCustomRolesByRoleId200Response"
                 },
                 "example": {
                   "role": {
@@ -43933,12 +43947,24 @@
         ],
         "summary": "Delete a custom role",
         "description": "Deletes an existing custom role. Only custom-managed roles can be deleted. The role must not be currently assigned to any users.",
-        "operationId": "DeleteUsersCustomRoles",
+        "operationId": "DeleteUsersCustomRolesByRoleId",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "description": "The ID of the custom role to delete.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeleteUsersCustomRolesRequest"
+                "$ref": "#/components/schemas/DeleteUsersCustomRolesByRoleIdRequest"
               }
             }
           }
@@ -43949,7 +43975,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteUsersCustomRoles200Response"
+                  "$ref": "#/components/schemas/DeleteUsersCustomRolesByRoleId200Response"
                 },
                 "example": {
                   "roleId": 42
@@ -101797,18 +101823,12 @@
           }
         }
       },
-      "PatchUsersCustomRolesRequest": {
+      "PatchUsersCustomRolesByRoleIdRequest": {
         "required": [
-          "id",
           "organizationId"
         ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The ID of the custom role to update.",
-            "example": 42
-          },
           "organizationId": {
             "type": "integer",
             "description": "The ID of the organization the custom role belongs to.",
@@ -101836,26 +101856,20 @@
           }
         }
       },
-      "PatchUsersCustomRoles200Response": {
+      "PatchUsersCustomRolesByRoleId200Response": {
         "type": "object",
         "properties": {
           "role": {
-            "$ref": "#/components/schemas/PatchUsersCustomRoles200ResponseRole"
+            "$ref": "#/components/schemas/PatchUsersCustomRolesByRoleId200ResponseRole"
           }
         }
       },
-      "DeleteUsersCustomRolesRequest": {
+      "DeleteUsersCustomRolesByRoleIdRequest": {
         "required": [
-          "id",
           "organizationId"
         ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The ID of the custom role to delete.",
-            "example": 42
-          },
           "organizationId": {
             "type": "integer",
             "description": "The ID of the organization the custom role belongs to.",
@@ -101863,7 +101877,7 @@
           }
         }
       },
-      "DeleteUsersCustomRoles200Response": {
+      "DeleteUsersCustomRolesByRoleId200Response": {
         "type": "object",
         "properties": {
           "roleId": {
@@ -151081,7 +151095,7 @@
           }
         }
       },
-      "PatchUsersCustomRoles200ResponseRole": {
+      "PatchUsersCustomRolesByRoleId200ResponseRole": {
         "type": "object",
         "properties": {
           "id": {
@@ -151095,10 +151109,10 @@
             "example": "Custom Viewer"
           },
           "category": {
-            "$ref": "#/components/schemas/PatchUsersCustomRoles200ResponseRoleCategory"
+            "$ref": "#/components/schemas/PatchUsersCustomRolesByRoleId200ResponseRoleCategory"
           },
           "managementType": {
-            "$ref": "#/components/schemas/PatchUsersCustomRoles200ResponseRoleManagementType"
+            "$ref": "#/components/schemas/PatchUsersCustomRolesByRoleId200ResponseRoleManagementType"
           },
           "description": {
             "type": "string",
@@ -151109,7 +151123,7 @@
           "permissions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PatchUsersCustomRoles200ResponseRolePermissionsItem"
+              "$ref": "#/components/schemas/PatchUsersCustomRolesByRoleId200ResponseRolePermissionsItem"
             },
             "description": "List of permissions assigned to the custom role."
           }
@@ -156716,7 +156730,7 @@
           }
         }
       },
-      "PatchUsersCustomRoles200ResponseRolePermissionsItem": {
+      "PatchUsersCustomRolesByRoleId200ResponseRolePermissionsItem": {
         "type": "object",
         "properties": {
           "id": {
@@ -191925,7 +191939,7 @@
           ]
         }
       },
-      "PatchUsersCustomRoles200ResponseRoleCategory": {
+      "PatchUsersCustomRolesByRoleId200ResponseRoleCategory": {
         "enum": [
           "organization",
           "team"
@@ -191935,7 +191949,7 @@
         "description": "Whether the role applies to the organization or a team.",
         "example": "organization",
         "x-ms-enum": {
-          "name": "PatchUsersCustomRoles200ResponseRoleCategory",
+          "name": "PatchUsersCustomRolesByRoleId200ResponseRoleCategory",
           "modelAsString": false,
           "values": [
             {
@@ -191949,7 +191963,7 @@
           ]
         }
       },
-      "PatchUsersCustomRoles200ResponseRoleManagementType": {
+      "PatchUsersCustomRolesByRoleId200ResponseRoleManagementType": {
         "enum": [
           "custom_managed"
         ],
@@ -191958,7 +191972,7 @@
         "description": "The management type of the role. Always \u0060custom_managed\u0060 for custom roles.",
         "example": "custom_managed",
         "x-ms-enum": {
-          "name": "PatchUsersCustomRoles200ResponseRoleManagementType",
+          "name": "PatchUsersCustomRolesByRoleId200ResponseRoleManagementType",
           "modelAsString": false,
           "values": [
             {

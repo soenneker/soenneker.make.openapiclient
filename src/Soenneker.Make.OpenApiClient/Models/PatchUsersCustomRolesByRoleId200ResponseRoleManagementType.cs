@@ -5,7 +5,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>The management type of the role. Always `custom_managed` for custom roles.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum PatchUsersCustomRoles200ResponseRoleManagementType
+    public enum PatchUsersCustomRolesByRoleId200ResponseRoleManagementType
     {
         [EnumMember(Value = "custom_managed")]
         #pragma warning disable CS1591

@@ -9,7 +9,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PatchUsersCustomRolesRequest : IAdditionalDataHolder, IParsable
+    public partial class PatchUsersCustomRolesByRoleIdRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -22,8 +22,6 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The ID of the custom role to update.</summary>
-        public int? Id { get; set; }
         /// <summary>New name for the custom role.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -43,21 +41,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         public List<int?> Permissions { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleIdRequest"/> and sets the default values.
         /// </summary>
-        public PatchUsersCustomRolesRequest()
+        public PatchUsersCustomRolesByRoleIdRequest()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesRequest"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleIdRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleIdRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesRequest();
+            return new global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleIdRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,7 +66,6 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "id", n => { Id = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "organizationId", n => { OrganizationId = n.GetIntValue(); } },
                 { "permissions", n => { Permissions = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
@@ -82,7 +79,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
-            writer.WriteIntValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("organizationId", OrganizationId);
             writer.WriteCollectionOfPrimitiveValues<int?>("permissions", Permissions);
