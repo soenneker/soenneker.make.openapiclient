@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Imt.Apps
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AppsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/imt/apps?organizationId={organizationId}{&scoredSearch*,teamId*}", pathParameters)
+        public AppsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/imt/apps?organizationId={organizationId}{&scoredSearch*,supportsEndpoints*,teamId*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Imt.Apps
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AppsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/imt/apps?organizationId={organizationId}{&scoredSearch*,teamId*}", rawUrl)
+        public AppsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/imt/apps?organizationId={organizationId}{&scoredSearch*,supportsEndpoints*,teamId*}", rawUrl)
         {
         }
         /// <summary>
@@ -91,6 +91,9 @@ namespace Soenneker.Make.OpenApiClient.Imt.Apps
             /// <summary>If `true`, the response is enriched with scoring (zone + team usage) and modules areaggregated per version. Requires `teamId`. When omitted, a non-scored shape is returned.</summary>
             [QueryParameter("scoredSearch")]
             public bool? ScoredSearch { get; set; }
+            /// <summary>&quot;If `true`, only apps exposing at least one usable **endpoint** are returned: an endpointcounts when it is public and non-deprecated, except that an SDK app&apos;s own author alsocounts their own private (non-public) endpoints of that app. Addon apps can never haveendpoints, so they are always excluded when this is `true`.\&quot;Usable\&quot; here is narrower than on `GET /imt/endpoints-usable`: this endpoint has no teamcontext to check against, so it does **not** consider whether a team connection exists foran endpoint&apos;s required account/scope. An app can therefore appear in this list and stillresolve to zero endpoints from `GET /imt/endpoints-usable` until the caller creates amatching connection — that&apos;s the intended flow for a \&quot;pick an app, then connect it\&quot; UI.Composes with `scoredSearch`: the same set of apps is returned either way, since theendpoint filter is applied before scoring — the scored shape just does not carry the`endpoints` field.Requires the `is_endpoints_execution_enabled` GrowthBook flag (the same flag gating`GET /imt/endpoints-usable`). If the flag is disabled, passing `supportsEndpoints=true`returns a `400` (`IM903`) instead of silently ignoring the parameter; `GET /imt/apps`without it keeps working regardless of the flag.&quot;</summary>
+            [QueryParameter("supportsEndpoints")]
+            public bool? SupportsEndpoints { get; set; }
             /// <summary>Team whose usage drives team-level module scoring. **Required when `scoredSearch=true`**;ignored otherwise.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }

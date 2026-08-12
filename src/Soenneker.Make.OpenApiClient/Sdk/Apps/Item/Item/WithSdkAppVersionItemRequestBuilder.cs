@@ -14,6 +14,7 @@ using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Common;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Functions;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Groups;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Icon;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Install;
@@ -87,6 +88,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Functions.FunctionsRequestBuilder Functions
         {
             get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Functions.FunctionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The github property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.GithubRequestBuilder Github
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.GithubRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The groups property</summary>
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Groups.GroupsRequestBuilder Groups

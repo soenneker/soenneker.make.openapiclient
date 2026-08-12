@@ -24,6 +24,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Label { get; set; }
 #endif
+        /// <summary>Labels of the app&apos;s modules, keyed by module name. Populated only when the correspondingentry in `names` uses the `appName:moduleName` format; `null` otherwise.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsThemes200ResponseAppsItemModules? Modules { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsThemes200ResponseAppsItemModules Modules { get; set; }
+#endif
         /// <summary>app name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -67,6 +75,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "isCompiled", n => { IsCompiled = n.GetBoolValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
+                { "modules", n => { Modules = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsThemes200ResponseAppsItemModules>(global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsThemes200ResponseAppsItemModules.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "theme", n => { Theme = n.GetStringValue(); } },
             };
@@ -80,6 +89,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("isCompiled", IsCompiled);
             writer.WriteStringValue("label", Label);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsThemes200ResponseAppsItemModules>("modules", Modules);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("theme", Theme);
             writer.WriteAdditionalData(AdditionalData);

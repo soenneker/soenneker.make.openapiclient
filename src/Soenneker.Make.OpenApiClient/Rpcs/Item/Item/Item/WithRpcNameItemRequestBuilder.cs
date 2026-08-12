@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithRpcNameItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/rpcs/{appName}/{appVersion}/{rpcName}", pathParameters)
+        public WithRpcNameItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/rpcs/{appName}/{appVersion}/{rpcName}{?teamId*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithRpcNameItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/rpcs/{appName}/{appVersion}/{rpcName}", rawUrl)
+        public WithRpcNameItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/rpcs/{appName}/{appVersion}/{rpcName}{?teamId*}", rawUrl)
         {
         }
         /// <summary>
@@ -60,11 +60,11 @@ namespace Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcName201Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcName201Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcNameRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item.WithRpcNameItemRequestBuilder.WithRpcNameItemRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcName201Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcName201Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcNameRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item.WithRpcNameItemRequestBuilder.WithRpcNameItemRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -98,11 +98,11 @@ namespace Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcNameRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item.WithRpcNameItemRequestBuilder.WithRpcNameItemRequestBuilderPostQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcNameRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostRpcsByAppNameByAppVersionByRpcNameRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item.WithRpcNameItemRequestBuilder.WithRpcNameItemRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -120,6 +120,16 @@ namespace Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item
         public global::Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item.WithRpcNameItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item.WithRpcNameItemRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Call RPC
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class WithRpcNameItemRequestBuilderPostQueryParameters 
+        {
+            /// <summary>Team the RPC call runs in. Used to resolve the organization the call belongs to (e.g. for licence/plan gating) when the request isn&apos;t otherwise organization-bound. Rejected with a 400 if present but not a positive integer.</summary>
+            [QueryParameter("teamId")]
+            public int? TeamId { get; set; }
         }
     }
 }

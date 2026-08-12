@@ -18687,6 +18687,14 @@
               "minimum": 1,
               "type": "integer"
             }
+          },
+          {
+            "name": "supportsEndpoints",
+            "in": "query",
+            "description": "\u0022If \u0060true\u0060, only apps exposing at least one usable **endpoint** are returned: an endpoint\ncounts when it is public and non-deprecated, except that an SDK app\u0027s own author also\ncounts their own private (non-public) endpoints of that app. Addon apps can never have\nendpoints, so they are always excluded when this is \u0060true\u0060.\n\n\\\u0022Usable\\\u0022 here is narrower than on \u0060GET /imt/endpoints-usable\u0060: this endpoint has no team\ncontext to check against, so it does **not** consider whether a team connection exists for\nan endpoint\u0027s required account/scope. An app can therefore appear in this list and still\nresolve to zero endpoints from \u0060GET /imt/endpoints-usable\u0060 until the caller creates a\nmatching connection \u2014 that\u0027s the intended flow for a \\\u0022pick an app, then connect it\\\u0022 UI.\n\nComposes with \u0060scoredSearch\u0060: the same set of apps is returned either way, since the\nendpoint filter is applied before scoring \u2014 the scored shape just does not carry the\n\u0060endpoints\u0060 field.\n\nRequires the \u0060is_endpoints_execution_enabled\u0060 GrowthBook flag (the same flag gating\n\u0060GET /imt/endpoints-usable\u0060). If the flag is disabled, passing \u0060supportsEndpoints=true\u0060\nreturns a \u0060400\u0060 (\u0060IM903\u0060) instead of silently ignoring the parameter; \u0060GET /imt/apps\u0060\nwithout it keeps working regardless of the flag.\n\u0022",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
@@ -25101,6 +25109,16 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "Team the RPC call runs in. Used to resolve the organization the call belongs to (e.g. for licence/plan gating) when the request isn\u0027t otherwise organization-bound. Rejected with a 400 if present but not a positive integer.",
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 42
           },
           {
             "name": "imt-remote-formula",
@@ -33279,19 +33297,26 @@
                           "name": "my-custom-app-mn8qq6",
                           "label": "My Custom App",
                           "theme": "#cccccc",
-                          "isCompiled": false
+                          "isCompiled": false,
+                          "modules": null
                         },
                         {
                           "name": "airtable",
                           "label": "Airtable",
                           "theme": "#18bfff",
-                          "isCompiled": true
+                          "isCompiled": true,
+                          "modules": null
                         },
                         {
                           "name": "datastore",
                           "label": "Data store",
                           "theme": "#2f8cbb",
-                          "isCompiled": true
+                          "isCompiled": true,
+                          "modules": {
+                            "InsertIntoTable": {
+                              "label": "Insert into Table"
+                            }
+                          }
                         }
                       ]
                     }
@@ -37070,6 +37095,560 @@
                     "summary": "Set Function Test",
                     "value": {
                       "changed": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github": {
+      "get": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "List GitHub bindings",
+        "description": "Lists all GitHub repository bindings of the given app version. Returns an empty list when the app is not bound to any repository. The \u0060remoteHeadSha\u0060, \u0060behindBy\u0060 and \u0060syncStatus\u0060 fields are refreshed best-effort against GitHub on every call \u2014 when GitHub is unreachable or the bound branch has no commits, \u0060remoteHeadSha\u0060 is \u0060null\u0060 and \u0060syncStatus\u0060 degrades to \u0060idle\u0060 (or \u0060error\u0060 if the last sync failed). Only the app\u0027s author (or an administrator) may read bindings.",
+        "operationId": "GetSdkAppsBySdkAppNameBySdkAppVersionGithub",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-github-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithub200Response"
+                },
+                "examples": {
+                  "list-bindings": {
+                    "summary": "One binding, remote branch ahead",
+                    "value": {
+                      "bindings": [
+                        {
+                          "id": 42,
+                          "appName": "my-github-app",
+                          "appVersion": 1,
+                          "repoUrl": "https://github.com/octocat/my-github-app",
+                          "owner": "octocat",
+                          "repo": "my-github-app",
+                          "branch": "main",
+                          "defaultBranch": "main",
+                          "private": true,
+                          "connectionId": 137,
+                          "connectionName": "My GitHub connection",
+                          "lastSyncedAt": null,
+                          "lastSyncedCommitSha": null,
+                          "lastPushedAt": null,
+                          "lastPushedCommitSha": null,
+                          "lastPulledAt": null,
+                          "lastPulledCommitSha": null,
+                          "remoteHeadSha": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+                          "behindBy": null,
+                          "syncStatus": "behind",
+                          "lastError": null,
+                          "lastPushedChecksums": null,
+                          "nameMap": {
+                            "connections": {},
+                            "webhooks": {}
+                          },
+                          "createdAt": "2026-08-12T10:00:00.000Z",
+                          "updatedAt": "2026-08-12T10:00:00.000Z",
+                          "createdByUserId": 1
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:read"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "Create GitHub binding",
+        "description": "Binds the app version to a GitHub repository through a Make GitHub connection. When the repository does not exist yet under the connection\u0027s GitHub user, a clean private repository is created (initialized with GitHub\u0027s default README only \u2014 no app source is pushed; content sync is a separate flow). GitHub\u0027s response is authoritative for the stored \u0060owner\u0060, \u0060repoUrl\u0060, \u0060defaultBranch\u0060 and \u0060private\u0060 values \u2014 the optional request fields of the same names are hints only. Re-binding the same \u0060(connection, owner/repo, branch)\u0060 combination updates the existing binding instead of failing. Requires a connection whose provider is GitHub, otherwise responds with \u0060400\u0060. Only the app\u0027s author (or an administrator) may create bindings.",
+        "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionGithub",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-github-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubRequest"
+              },
+              "examples": {
+                "create-binding": {
+                  "summary": "Bind an app to a repository",
+                  "value": {
+                    "connectionId": 137,
+                    "repo": "my-github-app"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithub200Response"
+                },
+                "examples": {
+                  "create-binding": {
+                    "summary": "Binding created together with a clean repository",
+                    "value": {
+                      "binding": {
+                        "id": 42,
+                        "appName": "my-github-app",
+                        "appVersion": 1,
+                        "repoUrl": "https://github.com/octocat/my-github-app",
+                        "owner": "octocat",
+                        "repo": "my-github-app",
+                        "branch": "main",
+                        "defaultBranch": "main",
+                        "private": true,
+                        "connectionId": 137,
+                        "connectionName": "My GitHub connection",
+                        "lastSyncedAt": null,
+                        "lastSyncedCommitSha": null,
+                        "lastPushedAt": null,
+                        "lastPushedCommitSha": null,
+                        "lastPulledAt": null,
+                        "lastPulledCommitSha": null,
+                        "remoteHeadSha": null,
+                        "behindBy": null,
+                        "syncStatus": "idle",
+                        "lastError": null,
+                        "lastPushedChecksums": null,
+                        "nameMap": {
+                          "connections": {},
+                          "webhooks": {}
+                        },
+                        "createdAt": "2026-08-12T10:00:00.000Z",
+                        "updatedAt": "2026-08-12T10:00:00.000Z",
+                        "createdByUserId": 1
+                      },
+                      "repoCreated": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The connection does not exist or is not a GitHub connection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithub400ResponseSchema"
+                },
+                "examples": {
+                  "not-a-github-connection": {
+                    "summary": "Connection is not a GitHub connection",
+                    "value": {
+                      "message": "Connection is not a GitHub connection or does not exist.",
+                      "code": "IM005"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/{sdkGithubBindingId}": {
+      "get": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "Get GitHub binding",
+        "description": "Returns a single GitHub binding of the given app version. The \u0060remoteHeadSha\u0060, \u0060behindBy\u0060 and \u0060syncStatus\u0060 fields are refreshed best-effort against GitHub on every call. Responds with \u0060404\u0060 when the binding does not exist or belongs to a different app version. Only the app\u0027s author (or an administrator) may read bindings.",
+        "operationId": "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-github-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "sdkGithubBindingId",
+            "in": "path",
+            "description": "ID of the GitHub binding.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200Response"
+                },
+                "examples": {
+                  "get-binding": {
+                    "summary": "Get a binding",
+                    "value": {
+                      "binding": {
+                        "id": 42,
+                        "appName": "my-github-app",
+                        "appVersion": 1,
+                        "repoUrl": "https://github.com/octocat/my-github-app",
+                        "owner": "octocat",
+                        "repo": "my-github-app",
+                        "branch": "main",
+                        "defaultBranch": "main",
+                        "private": true,
+                        "connectionId": 137,
+                        "connectionName": "My GitHub connection",
+                        "lastSyncedAt": null,
+                        "lastSyncedCommitSha": null,
+                        "lastPushedAt": null,
+                        "lastPushedCommitSha": null,
+                        "lastPulledAt": null,
+                        "lastPulledCommitSha": null,
+                        "remoteHeadSha": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+                        "behindBy": null,
+                        "syncStatus": "behind",
+                        "lastError": null,
+                        "lastPushedChecksums": null,
+                        "nameMap": {
+                          "connections": {},
+                          "webhooks": {}
+                        },
+                        "createdAt": "2026-08-12T10:00:00.000Z",
+                        "updatedAt": "2026-08-12T10:00:00.000Z",
+                        "createdByUserId": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The binding does not exist or belongs to a different app version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404ResponseSchema"
+                },
+                "examples": {
+                  "binding-not-found": {
+                    "summary": "Binding not found",
+                    "value": {
+                      "detail": "GitHub binding not found for this app.",
+                      "code": "IM013"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:read"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "Update GitHub binding",
+        "description": "Updates editable metadata of an existing GitHub binding \u2014 typically the sync branch or the Make connection the binding authenticates through. When \u0060connectionId\u0060 is changed, the new connection must be a GitHub connection, otherwise responds with \u0060400\u0060. At least one field must be provided. Only the app\u0027s author (or an administrator) may update bindings.",
+        "operationId": "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-github-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "sdkGithubBindingId",
+            "in": "path",
+            "description": "ID of the GitHub binding.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdRequest"
+              },
+              "examples": {
+                "switch-branch": {
+                  "summary": "Switch the sync branch",
+                  "value": {
+                    "branch": "develop"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200Response"
+                },
+                "examples": {
+                  "switch-branch": {
+                    "summary": "Binding after switching the sync branch",
+                    "value": {
+                      "binding": {
+                        "id": 42,
+                        "appName": "my-github-app",
+                        "appVersion": 1,
+                        "repoUrl": "https://github.com/octocat/my-github-app",
+                        "owner": "octocat",
+                        "repo": "my-github-app",
+                        "branch": "develop",
+                        "defaultBranch": "main",
+                        "private": true,
+                        "connectionId": 137,
+                        "connectionName": "My GitHub connection",
+                        "lastSyncedAt": null,
+                        "lastSyncedCommitSha": null,
+                        "lastPushedAt": null,
+                        "lastPushedCommitSha": null,
+                        "lastPulledAt": null,
+                        "lastPulledCommitSha": null,
+                        "remoteHeadSha": null,
+                        "behindBy": null,
+                        "syncStatus": "idle",
+                        "lastError": null,
+                        "lastPushedChecksums": null,
+                        "nameMap": {
+                          "connections": {},
+                          "webhooks": {}
+                        },
+                        "createdAt": "2026-08-12T10:00:00.000Z",
+                        "updatedAt": "2026-08-12T10:05:00.000Z",
+                        "createdByUserId": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The new connection does not exist or is not a GitHub connection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId400ResponseSchema"
+                },
+                "examples": {
+                  "not-a-github-connection": {
+                    "summary": "Connection is not a GitHub connection",
+                    "value": {
+                      "message": "Connection is not a GitHub connection or does not exist.",
+                      "code": "IM005"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The binding does not exist or belongs to a different app version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404ResponseSchema"
+                },
+                "examples": {
+                  "binding-not-found": {
+                    "summary": "Binding not found",
+                    "value": {
+                      "detail": "GitHub binding not found for this app.",
+                      "code": "IM013"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:write"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "Delete GitHub binding",
+        "description": "Unbinds the app version from the GitHub repository. The repository itself and its contents are never touched \u2014 only the binding record in Make is removed. Only the app\u0027s author (or an administrator) may delete bindings.",
+        "operationId": "DeleteSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-github-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "sdkGithubBindingId",
+            "in": "path",
+            "description": "ID of the GitHub binding.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "The binding does not exist or belongs to a different app version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404ResponseSchema"
+                },
+                "examples": {
+                  "binding-not-found": {
+                    "summary": "Binding not found",
+                    "value": {
+                      "detail": "GitHub binding not found for this app.",
+                      "code": "IM013"
                     }
                   }
                 }
@@ -44491,6 +45070,153 @@
         ]
       }
     },
+    "/users/user-organization-roles/{organizationId}/bulk": {
+      "post": {
+        "tags": [
+          "Users / User organization roles"
+        ],
+        "summary": "Remove multiple users from an organization",
+        "description": "\u0022Removes up to 100 users from an organization in one request. This is the bulk counterpart of \u0060POST /users/{userId}/user-organization-roles/{organizationId}\u0060.\n\nList the target users in the request body \u0060userIds\u0060 array (duplicates are ignored). Only removal is supported for now: \u0060usersRoleId\u0060 must be \u0060null\u0060 or omitted. Bulk role assignment is planned but not yet available \u2014 sending a non-null \u0060usersRoleId\u0060 is rejected with HTTP 400.\n\nOnly organization owners and admins (permission \u0060organization user add and edit\u0060) can call this endpoint.\n\nThe operation is **all-or-none**: it is applied only when every listed user is eligible. If any user is ineligible, nothing is changed and the call fails with \u0060IM019\u0060 (HTTP 400) whose response reports every failing user (\u0060userId\u0060, \u0060name\u0060, error \u0060code\u0060 and \u0060message\u0060).\n\nRemoving users that authored connections used by active scenarios, or that own a non-empty private space, needs confirmation. An unconfirmed request that would trigger such side effects fails with \u0060IM004\u0060 (HTTP 406) and a payload describing them; re-send with \u0060confirmed=true\u0060 (and \u0060deleteConnections\u0060 set as desired) to proceed.\n\nAvailable on app zones only.\n\u0022",
+        "operationId": "PostUsersUserOrganizationRolesByOrganizationIdBulk",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "The ID of the organization.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 11
+          },
+          {
+            "name": "confirmed",
+            "in": "query",
+            "description": "Set to \u0060true\u0060 to confirm a removal whose side effects (deleting connections and/or a non-empty private space) were reported by a prior unconfirmed \u0060IM004\u0060 response. Required to complete such a removal.",
+            "schema": {
+              "type": "boolean"
+            },
+            "examples": {
+              "remove-users": {
+                "value": true
+              }
+            }
+          },
+          {
+            "name": "deleteConnections",
+            "in": "query",
+            "description": "When removing users, set to \u0060true\u0060 to also delete the connections they authored in the organization, or \u0060false\u0060 to keep them. Only meaningful together with \u0060confirmed=true\u0060.",
+            "schema": {
+              "type": "boolean"
+            },
+            "examples": {
+              "remove-users": {
+                "value": true
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostUsersUserOrganizationRolesByOrganizationIdBulkRequest"
+              },
+              "examples": {
+                "remove-users": {
+                  "summary": "Remove several users from the organization",
+                  "description": "Omit usersRoleId (or send null) to remove the listed users from the organization.",
+                  "value": {
+                    "userIds": [
+                      254,
+                      255,
+                      256
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The role change (or removal) was applied to every listed user.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostUsersUserOrganizationRolesByOrganizationIdBulk200Response"
+                },
+                "examples": {
+                  "remove-users": {
+                    "summary": "Users removed",
+                    "value": {
+                      "userOrganizationRole": {
+                        "organizationId": 11,
+                        "usersRoleId": null,
+                        "userIds": [
+                          254,
+                          255,
+                          256
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input (for example \u0060userIds\u0060 empty or longer than 100, or a non-null \u0060usersRoleId\u0060), or \u2014 with code \u0060IM019\u0060 \u2014 the batch was rejected because at least one listed user is ineligible. The \u0060IM019\u0060 response lists every failing user; no user was changed.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostUsersUserOrganizationRolesByOrganizationIdBulk400Response"
+                },
+                "example": {
+                  "message": "Some users could not be updated.",
+                  "code": "IM019"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller lacks the \u0060organization user add and edit\u0060 permission on the organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostUsersUserOrganizationRolesByOrganizationIdBulk403Response"
+                },
+                "example": {
+                  "message": "Insufficient rights.",
+                  "code": "IM002"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Confirmation required (\u0060IM004\u0060). Removing at least one listed user has side effects \u2014 deleting connections used by active scenarios and/or a non-empty private space. Re-send the request with \u0060confirmed=true\u0060 to proceed.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostUsersUserOrganizationRolesByOrganizationIdBulk406Response"
+                },
+                "example": {
+                  "message": "Confirmation required.",
+                  "code": "IM004"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "user:write"
+            ]
+          }
+        ]
+      }
+    },
     "/users/{userId}/user-organization-roles": {
       "get": {
         "tags": [
@@ -47373,6 +48099,121 @@
             "format": "date-time"
           }
         }
+      },
+      "SdkGithubBinding": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Binding ID. Unique across all apps; assigned by Make."
+          },
+          "appName": {
+            "type": "string",
+            "description": "Name of the SDK app the binding belongs to."
+          },
+          "appVersion": {
+            "type": "integer",
+            "description": "Major version of the SDK app the binding targets."
+          },
+          "repoUrl": {
+            "type": "string",
+            "description": "Canonical URL of the bound repository, as reported by GitHub."
+          },
+          "owner": {
+            "type": "string",
+            "description": "GitHub owner login (user or organization), as reported by GitHub at bind time."
+          },
+          "repo": {
+            "type": "string",
+            "description": "GitHub repository name."
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch on the remote the binding syncs against."
+          },
+          "defaultBranch": {
+            "type": "string",
+            "description": "Default branch reported by GitHub when the binding was last established."
+          },
+          "private": {
+            "type": "boolean",
+            "description": "Whether the remote repository is private."
+          },
+          "connectionId": {
+            "type": "integer",
+            "description": "ID of the Make GitHub connection used for OAuth."
+          },
+          "connectionName": {
+            "type": "string",
+            "description": "Display name of the Make connection, or \u0060null\u0060 when the connection no longer exists.",
+            "nullable": true
+          },
+          "lastSyncedAt": {
+            "type": "string",
+            "description": "Timestamp of the last successful sync in any direction. \u0060null\u0060 until the push/pull flows are available.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastSyncedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPushedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPushedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPulledAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPulledCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteHeadSha": {
+            "type": "string",
+            "description": "Last observed HEAD SHA of the bound branch. Refreshed best-effort on read; \u0060null\u0060 when the branch has no commits or GitHub is unreachable.",
+            "nullable": true
+          },
+          "behindBy": {
+            "type": "integer",
+            "description": "Number of commits the app is behind the remote branch. \u00600\u0060 when in sync; \u0060null\u0060 when unknown.",
+            "nullable": true
+          },
+          "syncStatus": {
+            "$ref": "#/components/schemas/SdkGithubBindingSyncStatus"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "Most recent error message from a failed sync; cleared on the next successful sync.",
+            "nullable": true
+          },
+          "lastPushedChecksums": {
+            "$ref": "#/components/schemas/SdkGithubBindingLastPushedChecksums"
+          },
+          "nameMap": {
+            "$ref": "#/components/schemas/SdkGithubBindingNameMap"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdByUserId": {
+            "type": "integer",
+            "description": "ID of the user who created the binding."
+          }
+        },
+        "description": "A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch)."
       },
       "Scheduling": {
         "type": "object",
@@ -80097,6 +80938,26 @@
         },
         "description": "MCP-inspired behavior hints. Only the known hints are persisted; unknown keys are stripped."
       },
+      "SdkGithubBindingLastPushedChecksums": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Per-file checksum snapshot captured at the last successful push. \u0060null\u0060 until the push flow is available.",
+        "nullable": true
+      },
+      "SdkGithubBindingNameMap": {
+        "type": "object",
+        "properties": {
+          "connections": {
+            "$ref": "#/components/schemas/SdkGithubBindingNameMapConnectionsProperty"
+          },
+          "webhooks": {
+            "$ref": "#/components/schemas/SdkGithubBindingNameMapWebhooksProperty"
+          }
+        },
+        "description": "Repo-side identity map for connections and webhooks. Empty until the first sync."
+      },
       "SchedulingRestrictItem": {
         "type": "object",
         "properties": {
@@ -86414,6 +87275,18 @@
       "SdkAppReviewFormValuesTestingScenarios": {
         "type": "object"
       },
+      "SdkGithubBindingNameMapConnections": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/SdkGithubBindingNameMapConnectionsAdditionalProperties"
+        }
+      },
+      "SdkGithubBindingNameMapWebhooks": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/SdkGithubBindingNameMapWebhooksAdditionalProperties"
+        }
+      },
       "HookLogDetailDataRequest": {
         "type": "object",
         "properties": {
@@ -90506,6 +91379,28 @@
           },
           "required": {
             "type": "boolean"
+          }
+        }
+      },
+      "SdkGithubBindingNameMapConnectionsAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "SdkGithubBindingNameMapWebhooksAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
           }
         }
       },
@@ -96892,6 +97787,7 @@
         "type": "object",
         "properties": {
           "query": {
+            "maxLength": 100,
             "type": "string",
             "description": "The free-text expression to match against scenario module IO data. Supports quoted phrases.",
             "example": "order_id\u0022:\u002212345"
@@ -96986,6 +97882,7 @@
         "type": "object",
         "properties": {
           "query": {
+            "maxLength": 100,
             "type": "string",
             "description": "The free-text expression to match against the execution\u0027s module IO data. Supports quoted phrases.",
             "example": "order_id\u0022:\u002212345"
@@ -97050,6 +97947,7 @@
         "type": "object",
         "properties": {
           "query": {
+            "maxLength": 100,
             "type": "string",
             "description": "The free-text expression to match against scenario module IO data. Supports quoted phrases.",
             "example": "order_id\u0022:\u002212345"
@@ -97118,6 +98016,7 @@
         "type": "object",
         "properties": {
           "query": {
+            "maxLength": 100,
             "type": "string",
             "description": "The free-text expression to match against scenario module IO data. Supports quoted phrases.",
             "example": "order_id\u0022:\u002212345"
@@ -100293,6 +101192,125 @@
           }
         }
       },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithub200Response": {
+        "type": "object",
+        "properties": {
+          "bindings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItem"
+            }
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubRequest": {
+        "required": [
+          "connectionId",
+          "repo"
+        ],
+        "type": "object",
+        "properties": {
+          "connectionId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "ID of the Make GitHub connection to bind through."
+          },
+          "repo": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "GitHub repository name. Created as a clean private repository when it does not exist yet."
+          },
+          "owner": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "Owner hint; the stored owner is taken from GitHub\u0027s response."
+          },
+          "repoUrl": {
+            "maxLength": 2048,
+            "minLength": 1,
+            "type": "string",
+            "description": "Repository URL hint; the stored URL is taken from GitHub\u0027s response."
+          },
+          "branch": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "Branch to sync against. Defaults to the repository\u0027s default branch (usually \u0060main\u0060)."
+          },
+          "defaultBranch": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "Default-branch hint; the stored value is taken from GitHub\u0027s response."
+          },
+          "isPrivate": {
+            "type": "boolean",
+            "description": "Visibility hint; the stored value is taken from GitHub\u0027s response."
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithub200Response": {
+        "type": "object",
+        "properties": {
+          "binding": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBinding"
+          },
+          "repoCreated": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when this call created the repository on GitHub; \u0060false\u0060 when it already existed."
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithub400Response": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200Response": {
+        "type": "object",
+        "properties": {
+          "binding": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBinding"
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404Response": {
+        "type": "object"
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdRequest": {
+        "minProperties": 1,
+        "type": "object",
+        "properties": {
+          "branch": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "Branch on the remote to sync against."
+          },
+          "connectionId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "ID of the Make GitHub connection to authenticate through."
+          }
+        }
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200Response": {
+        "type": "object",
+        "properties": {
+          "binding": {
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBinding"
+          }
+        }
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId400Response": {
+        "type": "object"
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404Response": {
+        "type": "object"
+      },
+      "DeleteSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404Response": {
+        "type": "object"
+      },
       "PostSdkAppsBySdkAppNameConnectionsRequest": {
         "type": "object",
         "properties": {
@@ -101913,6 +102931,68 @@
             "items": {
               "$ref": "#/components/schemas/GetUsersRolesPermissions200ResponseUsersRolesPermissionsItem"
             }
+          }
+        }
+      },
+      "PostUsersUserOrganizationRolesByOrganizationIdBulkRequest": {
+        "required": [
+          "userIds"
+        ],
+        "type": "object",
+        "properties": {
+          "userIds": {
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "description": "The IDs of the users whose organization role is changed, or who are removed from the organization. Between 1 and 100 users; duplicates are ignored."
+          },
+          "usersRoleId": {
+            "$ref": "#/components/schemas/PostUsersUserOrganizationRolesByOrganizationIdBulkRequestUsersRoleId"
+          }
+        }
+      },
+      "PostUsersUserOrganizationRolesByOrganizationIdBulk200Response": {
+        "type": "object",
+        "properties": {
+          "userOrganizationRole": {
+            "$ref": "#/components/schemas/PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRole"
+          }
+        }
+      },
+      "PostUsersUserOrganizationRolesByOrganizationIdBulk400Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "PostUsersUserOrganizationRolesByOrganizationIdBulk403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "PostUsersUserOrganizationRolesByOrganizationIdBulk406Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
           }
         }
       },
@@ -134216,6 +135296,21 @@
       "GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionNameTest200JavascriptResponseSchema": {
         "type": "string"
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithub400ResponseSchema": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404ResponseSchema": {
+        "type": "object"
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId400ResponseSchema": {
+        "type": "object"
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404ResponseSchema": {
+        "type": "object"
+      },
+      "DeleteSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404ResponseSchema": {
+        "type": "object"
+      },
       "DeleteSdkAppsConnectionsBySdkConnectionName400ResponseSchema": {
         "type": "object"
       },
@@ -135265,6 +136360,18 @@
       },
       "SdkAppReviewFormValuesTestingScenariosProperty": {
         "type": "object"
+      },
+      "SdkGithubBindingNameMapConnectionsProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/SdkGithubBindingNameMapConnectionsAdditionalProperties"
+        }
+      },
+      "SdkGithubBindingNameMapWebhooksProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/SdkGithubBindingNameMapWebhooksAdditionalProperties"
+        }
       },
       "AdminOrganizationsLicenseAdditionalProperties": {
         "type": "object"
@@ -147389,6 +148496,9 @@
           "isCompiled": {
             "type": "boolean",
             "description": "Indicates whether the app is compiled (true) or not (false).\nThis is relevant for custom apps that are not compiled yet.\n"
+          },
+          "modules": {
+            "$ref": "#/components/schemas/GetSdkAppsThemes200ResponseAppsItemModules"
           }
         }
       },
@@ -148546,6 +149656,466 @@
             "type": "string"
           }
         }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Binding ID. Unique across all apps; assigned by Make."
+          },
+          "appName": {
+            "type": "string",
+            "description": "Name of the SDK app the binding belongs to."
+          },
+          "appVersion": {
+            "type": "integer",
+            "description": "Major version of the SDK app the binding targets."
+          },
+          "repoUrl": {
+            "type": "string",
+            "description": "Canonical URL of the bound repository, as reported by GitHub."
+          },
+          "owner": {
+            "type": "string",
+            "description": "GitHub owner login (user or organization), as reported by GitHub at bind time."
+          },
+          "repo": {
+            "type": "string",
+            "description": "GitHub repository name."
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch on the remote the binding syncs against."
+          },
+          "defaultBranch": {
+            "type": "string",
+            "description": "Default branch reported by GitHub when the binding was last established."
+          },
+          "private": {
+            "type": "boolean",
+            "description": "Whether the remote repository is private."
+          },
+          "connectionId": {
+            "type": "integer",
+            "description": "ID of the Make GitHub connection used for OAuth."
+          },
+          "connectionName": {
+            "type": "string",
+            "description": "Display name of the Make connection, or \u0060null\u0060 when the connection no longer exists.",
+            "nullable": true
+          },
+          "lastSyncedAt": {
+            "type": "string",
+            "description": "Timestamp of the last successful sync in any direction. \u0060null\u0060 until the push/pull flows are available.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastSyncedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPushedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPushedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPulledAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPulledCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteHeadSha": {
+            "type": "string",
+            "description": "Last observed HEAD SHA of the bound branch. Refreshed best-effort on read; \u0060null\u0060 when the branch has no commits or GitHub is unreachable.",
+            "nullable": true
+          },
+          "behindBy": {
+            "type": "integer",
+            "description": "Number of commits the app is behind the remote branch. \u00600\u0060 when in sync; \u0060null\u0060 when unknown.",
+            "nullable": true
+          },
+          "syncStatus": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemSyncStatus"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "Most recent error message from a failed sync; cleared on the next successful sync.",
+            "nullable": true
+          },
+          "lastPushedChecksums": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemLastPushedChecksums"
+          },
+          "nameMap": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMap"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdByUserId": {
+            "type": "integer",
+            "description": "ID of the user who created the binding."
+          }
+        },
+        "description": "A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch)."
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBinding": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Binding ID. Unique across all apps; assigned by Make."
+          },
+          "appName": {
+            "type": "string",
+            "description": "Name of the SDK app the binding belongs to."
+          },
+          "appVersion": {
+            "type": "integer",
+            "description": "Major version of the SDK app the binding targets."
+          },
+          "repoUrl": {
+            "type": "string",
+            "description": "Canonical URL of the bound repository, as reported by GitHub."
+          },
+          "owner": {
+            "type": "string",
+            "description": "GitHub owner login (user or organization), as reported by GitHub at bind time."
+          },
+          "repo": {
+            "type": "string",
+            "description": "GitHub repository name."
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch on the remote the binding syncs against."
+          },
+          "defaultBranch": {
+            "type": "string",
+            "description": "Default branch reported by GitHub when the binding was last established."
+          },
+          "private": {
+            "type": "boolean",
+            "description": "Whether the remote repository is private."
+          },
+          "connectionId": {
+            "type": "integer",
+            "description": "ID of the Make GitHub connection used for OAuth."
+          },
+          "connectionName": {
+            "type": "string",
+            "description": "Display name of the Make connection, or \u0060null\u0060 when the connection no longer exists.",
+            "nullable": true
+          },
+          "lastSyncedAt": {
+            "type": "string",
+            "description": "Timestamp of the last successful sync in any direction. \u0060null\u0060 until the push/pull flows are available.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastSyncedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPushedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPushedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPulledAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPulledCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteHeadSha": {
+            "type": "string",
+            "description": "Last observed HEAD SHA of the bound branch. Refreshed best-effort on read; \u0060null\u0060 when the branch has no commits or GitHub is unreachable.",
+            "nullable": true
+          },
+          "behindBy": {
+            "type": "integer",
+            "description": "Number of commits the app is behind the remote branch. \u00600\u0060 when in sync; \u0060null\u0060 when unknown.",
+            "nullable": true
+          },
+          "syncStatus": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingSyncStatus"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "Most recent error message from a failed sync; cleared on the next successful sync.",
+            "nullable": true
+          },
+          "lastPushedChecksums": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingLastPushedChecksums"
+          },
+          "nameMap": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingNameMap"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdByUserId": {
+            "type": "integer",
+            "description": "ID of the user who created the binding."
+          }
+        },
+        "description": "A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch)."
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBinding": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Binding ID. Unique across all apps; assigned by Make."
+          },
+          "appName": {
+            "type": "string",
+            "description": "Name of the SDK app the binding belongs to."
+          },
+          "appVersion": {
+            "type": "integer",
+            "description": "Major version of the SDK app the binding targets."
+          },
+          "repoUrl": {
+            "type": "string",
+            "description": "Canonical URL of the bound repository, as reported by GitHub."
+          },
+          "owner": {
+            "type": "string",
+            "description": "GitHub owner login (user or organization), as reported by GitHub at bind time."
+          },
+          "repo": {
+            "type": "string",
+            "description": "GitHub repository name."
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch on the remote the binding syncs against."
+          },
+          "defaultBranch": {
+            "type": "string",
+            "description": "Default branch reported by GitHub when the binding was last established."
+          },
+          "private": {
+            "type": "boolean",
+            "description": "Whether the remote repository is private."
+          },
+          "connectionId": {
+            "type": "integer",
+            "description": "ID of the Make GitHub connection used for OAuth."
+          },
+          "connectionName": {
+            "type": "string",
+            "description": "Display name of the Make connection, or \u0060null\u0060 when the connection no longer exists.",
+            "nullable": true
+          },
+          "lastSyncedAt": {
+            "type": "string",
+            "description": "Timestamp of the last successful sync in any direction. \u0060null\u0060 until the push/pull flows are available.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastSyncedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPushedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPushedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPulledAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPulledCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteHeadSha": {
+            "type": "string",
+            "description": "Last observed HEAD SHA of the bound branch. Refreshed best-effort on read; \u0060null\u0060 when the branch has no commits or GitHub is unreachable.",
+            "nullable": true
+          },
+          "behindBy": {
+            "type": "integer",
+            "description": "Number of commits the app is behind the remote branch. \u00600\u0060 when in sync; \u0060null\u0060 when unknown.",
+            "nullable": true
+          },
+          "syncStatus": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingSyncStatus"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "Most recent error message from a failed sync; cleared on the next successful sync.",
+            "nullable": true
+          },
+          "lastPushedChecksums": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingLastPushedChecksums"
+          },
+          "nameMap": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMap"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdByUserId": {
+            "type": "integer",
+            "description": "ID of the user who created the binding."
+          }
+        },
+        "description": "A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch)."
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBinding": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Binding ID. Unique across all apps; assigned by Make."
+          },
+          "appName": {
+            "type": "string",
+            "description": "Name of the SDK app the binding belongs to."
+          },
+          "appVersion": {
+            "type": "integer",
+            "description": "Major version of the SDK app the binding targets."
+          },
+          "repoUrl": {
+            "type": "string",
+            "description": "Canonical URL of the bound repository, as reported by GitHub."
+          },
+          "owner": {
+            "type": "string",
+            "description": "GitHub owner login (user or organization), as reported by GitHub at bind time."
+          },
+          "repo": {
+            "type": "string",
+            "description": "GitHub repository name."
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch on the remote the binding syncs against."
+          },
+          "defaultBranch": {
+            "type": "string",
+            "description": "Default branch reported by GitHub when the binding was last established."
+          },
+          "private": {
+            "type": "boolean",
+            "description": "Whether the remote repository is private."
+          },
+          "connectionId": {
+            "type": "integer",
+            "description": "ID of the Make GitHub connection used for OAuth."
+          },
+          "connectionName": {
+            "type": "string",
+            "description": "Display name of the Make connection, or \u0060null\u0060 when the connection no longer exists.",
+            "nullable": true
+          },
+          "lastSyncedAt": {
+            "type": "string",
+            "description": "Timestamp of the last successful sync in any direction. \u0060null\u0060 until the push/pull flows are available.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastSyncedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPushedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPushedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPulledAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPulledCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteHeadSha": {
+            "type": "string",
+            "description": "Last observed HEAD SHA of the bound branch. Refreshed best-effort on read; \u0060null\u0060 when the branch has no commits or GitHub is unreachable.",
+            "nullable": true
+          },
+          "behindBy": {
+            "type": "integer",
+            "description": "Number of commits the app is behind the remote branch. \u00600\u0060 when in sync; \u0060null\u0060 when unknown.",
+            "nullable": true
+          },
+          "syncStatus": {
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingSyncStatus"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "Most recent error message from a failed sync; cleared on the next successful sync.",
+            "nullable": true
+          },
+          "lastPushedChecksums": {
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingLastPushedChecksums"
+          },
+          "nameMap": {
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMap"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdByUserId": {
+            "type": "integer",
+            "description": "ID of the user who created the binding."
+          }
+        },
+        "description": "A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch)."
       },
       "PostSdkAppsBySdkAppNameConnections200ResponseAppConnection": {
         "type": "object",
@@ -151246,6 +152816,29 @@
             },
             "description": "IDs of the permissions this permission depends on. When this permission is granted to a custom role, every permission listed here must also be granted. An empty array means no dependencies.",
             "example": []
+          }
+        }
+      },
+      "PostUsersUserOrganizationRolesByOrganizationIdBulkRequestUsersRoleId": {
+        "type": "object",
+        "description": "Removal-only for now, so this must be \u0060null\u0060 or omitted \u2014 the listed users are removed from the organization. Bulk role assignment is not yet supported; a non-null value is rejected with HTTP 400."
+      },
+      "PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRole": {
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "integer",
+            "description": "The ID of the organization."
+          },
+          "usersRoleId": {
+            "$ref": "#/components/schemas/PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRoleUsersRoleId"
+          },
+          "userIds": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "The IDs of the users that were changed or removed."
           }
         }
       },
@@ -155715,6 +157308,14 @@
       "GetSdkAppsBySdkAppNameBySdkAppVersionEventsLog200ResponseEventsItemDetail": {
         "type": "object"
       },
+      "GetSdkAppsThemes200ResponseAppsItemModules": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/GetSdkAppsThemes200ResponseAppsItemModulesAdditionalProperties"
+        },
+        "description": "Labels of the app\u0027s modules, keyed by module name. Populated only when the corresponding\nentry in \u0060names\u0060 uses the \u0060appName:moduleName\u0060 format; \u0060null\u0060 otherwise.\n",
+        "nullable": true
+      },
       "GetSdkAppsInvitesBySdkAppInviteToken200ResponseAppInviteManifestBasic": {
         "type": "object",
         "properties": {
@@ -156110,6 +157711,86 @@
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionFunctionsBySdkFunctionName200ResponseAppFunctionChanges": {
         "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemLastPushedChecksums": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Per-file checksum snapshot captured at the last successful push. \u0060null\u0060 until the push flow is available.",
+        "nullable": true
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMap": {
+        "type": "object",
+        "properties": {
+          "connections": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMapConnections"
+          },
+          "webhooks": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMapWebhooks"
+          }
+        },
+        "description": "Repo-side identity map for connections and webhooks. Empty until the first sync."
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingLastPushedChecksums": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Per-file checksum snapshot captured at the last successful push. \u0060null\u0060 until the push flow is available.",
+        "nullable": true
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingNameMap": {
+        "type": "object",
+        "properties": {
+          "connections": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingNameMapConnections"
+          },
+          "webhooks": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingNameMapWebhooks"
+          }
+        },
+        "description": "Repo-side identity map for connections and webhooks. Empty until the first sync."
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingLastPushedChecksums": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Per-file checksum snapshot captured at the last successful push. \u0060null\u0060 until the push flow is available.",
+        "nullable": true
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMap": {
+        "type": "object",
+        "properties": {
+          "connections": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnections"
+          },
+          "webhooks": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooks"
+          }
+        },
+        "description": "Repo-side identity map for connections and webhooks. Empty until the first sync."
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingLastPushedChecksums": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Per-file checksum snapshot captured at the last successful push. \u0060null\u0060 until the push flow is available.",
+        "nullable": true
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMap": {
+        "type": "object",
+        "properties": {
+          "connections": {
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnections"
+          },
+          "webhooks": {
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooks"
+          }
+        },
+        "description": "Repo-side identity map for connections and webhooks. Empty until the first sync."
       },
       "GetSdkAppsBySdkAppNameConnections200ResponseAppConnectionsItemParameters": {
         "type": "object",
@@ -156743,6 +158424,10 @@
           }
         }
       },
+      "PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRoleUsersRoleId": {
+        "type": "object",
+        "description": "Always \u0060null\u0060 \u2014 the listed users were removed from the organization. (Reserved for a future bulk role-assignment feature.)"
+      },
       "GetUsersRedirectAction200ResponseRedirectActionData": {
         "type": "object"
       },
@@ -157368,6 +159053,14 @@
       "PatchScenariosToolsByScenarioId200ResponseToolModuleMetadata": {
         "type": "object"
       },
+      "GetSdkAppsThemes200ResponseAppsItemModulesAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          }
+        }
+      },
       "GetSdkAppsInvitesBySdkAppInviteToken200ResponseAppInviteManifestBasicGroupsItem": {
         "type": "object",
         "properties": {
@@ -157550,6 +159243,54 @@
           "supportsAgent": {
             "type": "boolean"
           }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMapConnections": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMapConnectionsAdditionalProperties"
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMapWebhooks": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMapWebhooksAdditionalProperties"
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingNameMapConnections": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingNameMapConnectionsAdditionalProperties"
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingNameMapWebhooks": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingNameMapWebhooksAdditionalProperties"
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnections": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnectionsAdditionalProperties"
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooks": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooksAdditionalProperties"
+        }
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnections": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnectionsAdditionalProperties"
+        }
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooks": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooksAdditionalProperties"
         }
       },
       "GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseAuthorizeResponseTemp": {
@@ -158577,6 +160318,94 @@
           },
           "roundtrips": {
             "type": "integer"
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMapConnectionsAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMapWebhooksAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingNameMapConnectionsAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingNameMapWebhooksAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnectionsAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooksAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnectionsAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooksAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
           }
         }
       },
@@ -159988,6 +161817,44 @@
             {
               "value": "custom_managed",
               "name": "CustomManaged"
+            }
+          ]
+        }
+      },
+      "SdkGithubBindingSyncStatus": {
+        "enum": [
+          "idle",
+          "syncing",
+          "in_sync",
+          "behind",
+          "error"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Derived sync status of the binding.",
+        "x-ms-enum": {
+          "name": "SdkGithubBindingSyncStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "idle",
+              "name": "Idle"
+            },
+            {
+              "value": "syncing",
+              "name": "Syncing"
+            },
+            {
+              "value": "in_sync",
+              "name": "InSync"
+            },
+            {
+              "value": "behind",
+              "name": "Behind"
+            },
+            {
+              "value": "error",
+              "name": "Error"
             }
           ]
         }
@@ -191054,6 +192921,158 @@
             {
               "value": "IM301",
               "name": "Im301"
+            }
+          ]
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemSyncStatus": {
+        "enum": [
+          "idle",
+          "syncing",
+          "in_sync",
+          "behind",
+          "error"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Derived sync status of the binding.",
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemSyncStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "idle",
+              "name": "Idle"
+            },
+            {
+              "value": "syncing",
+              "name": "Syncing"
+            },
+            {
+              "value": "in_sync",
+              "name": "InSync"
+            },
+            {
+              "value": "behind",
+              "name": "Behind"
+            },
+            {
+              "value": "error",
+              "name": "Error"
+            }
+          ]
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingSyncStatus": {
+        "enum": [
+          "idle",
+          "syncing",
+          "in_sync",
+          "behind",
+          "error"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Derived sync status of the binding.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingSyncStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "idle",
+              "name": "Idle"
+            },
+            {
+              "value": "syncing",
+              "name": "Syncing"
+            },
+            {
+              "value": "in_sync",
+              "name": "InSync"
+            },
+            {
+              "value": "behind",
+              "name": "Behind"
+            },
+            {
+              "value": "error",
+              "name": "Error"
+            }
+          ]
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingSyncStatus": {
+        "enum": [
+          "idle",
+          "syncing",
+          "in_sync",
+          "behind",
+          "error"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Derived sync status of the binding.",
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingSyncStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "idle",
+              "name": "Idle"
+            },
+            {
+              "value": "syncing",
+              "name": "Syncing"
+            },
+            {
+              "value": "in_sync",
+              "name": "InSync"
+            },
+            {
+              "value": "behind",
+              "name": "Behind"
+            },
+            {
+              "value": "error",
+              "name": "Error"
+            }
+          ]
+        }
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingSyncStatus": {
+        "enum": [
+          "idle",
+          "syncing",
+          "in_sync",
+          "behind",
+          "error"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Derived sync status of the binding.",
+        "x-ms-enum": {
+          "name": "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingSyncStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "idle",
+              "name": "Idle"
+            },
+            {
+              "value": "syncing",
+              "name": "Syncing"
+            },
+            {
+              "value": "in_sync",
+              "name": "InSync"
+            },
+            {
+              "value": "behind",
+              "name": "Behind"
+            },
+            {
+              "value": "error",
+              "name": "Error"
             }
           ]
         }
