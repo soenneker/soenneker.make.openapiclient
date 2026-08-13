@@ -51307,18 +51307,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "CustomAppModuleEpochOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "CustomAppModuleEpochPaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -51449,18 +51437,6 @@
           }
         }
       },
-      "CustomAppModuleEpochPaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "CustomAppModuleEpochResponseType": {
         "required": [
           "type"
@@ -51551,17 +51527,6 @@
             "CustomAppModuleEpochResponseValidAnyOf3": "#/components/schemas/CustomAppModuleEpochResponseValidAnyOf3"
           }
         }
-      },
-      "CustomAppModuleEpochResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "CustomAppModuleEpochResponseError": {
         "required": [
@@ -51660,18 +51625,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "CustomAppModuleEpochResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "CustomAppModuleInterfaceAnyOf1": {
         "type": "array",
@@ -52895,18 +52848,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestPaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -53037,18 +52978,6 @@
           }
         }
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestPaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseType": {
         "required": [
           "type"
@@ -53139,17 +53068,6 @@
             "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3"
           }
         }
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseError": {
         "required": [
@@ -53248,18 +53166,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestMethod": {
         "type": "object",
@@ -53506,18 +53412,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestPaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -53648,18 +53542,6 @@
           }
         }
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestPaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseType": {
         "required": [
           "type"
@@ -53750,17 +53632,6 @@
             "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseValidAnyOf3": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseValidAnyOf3"
           }
         }
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseError": {
         "required": [
@@ -53859,18 +53730,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterfaceJsonRequestAnyOf1": {
         "type": "array",
@@ -54647,18 +54506,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "CustomAppBaseAnyOf1OAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "CustomAppBaseAnyOf1PaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -54789,18 +54636,6 @@
           }
         }
       },
-      "CustomAppBaseAnyOf1PaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "CustomAppBaseAnyOf1ResponseType": {
         "required": [
           "type"
@@ -54891,17 +54726,6 @@
             "CustomAppBaseAnyOf1ResponseValidAnyOf3": "#/components/schemas/CustomAppBaseAnyOf1ResponseValidAnyOf3"
           }
         }
-      },
-      "CustomAppBaseAnyOf1ResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "CustomAppBaseAnyOf1ResponseError": {
         "required": [
@@ -55056,18 +54880,6 @@
           }
         ]
       },
-      "CustomAppBaseAnyOf1ResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "CustomAppBaseAnyOf1ResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -55103,18 +54915,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "CustomAppBaseAnyOf1ResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "CustomAppBaseAnyOf1ResponseWrapper": {
         "required": [
@@ -55410,18 +55210,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "CustomAppBaseAnyOf2ItemOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "CustomAppBaseAnyOf2ItemPaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -55552,18 +55340,6 @@
           }
         }
       },
-      "CustomAppBaseAnyOf2ItemPaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "CustomAppBaseAnyOf2ItemResponseType": {
         "required": [
           "type"
@@ -55654,17 +55430,6 @@
             "CustomAppBaseAnyOf2ItemResponseValidAnyOf3": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseValidAnyOf3"
           }
         }
-      },
-      "CustomAppBaseAnyOf2ItemResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "CustomAppBaseAnyOf2ItemResponseError": {
         "required": [
@@ -55819,18 +55584,6 @@
           }
         ]
       },
-      "CustomAppBaseAnyOf2ItemResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "CustomAppBaseAnyOf2ItemResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -55866,18 +55619,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "CustomAppBaseAnyOf2ItemResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "CustomAppBaseAnyOf2ItemResponseWrapper": {
         "required": [
@@ -56173,18 +55914,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "CustomAppModuleApiAnyOf1OAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "CustomAppModuleApiAnyOf1PaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -56315,18 +56044,6 @@
           }
         }
       },
-      "CustomAppModuleApiAnyOf1PaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "CustomAppModuleApiAnyOf1ResponseType": {
         "required": [
           "type"
@@ -56417,17 +56134,6 @@
             "CustomAppModuleApiAnyOf1ResponseValidAnyOf3": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseValidAnyOf3"
           }
         }
-      },
-      "CustomAppModuleApiAnyOf1ResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "CustomAppModuleApiAnyOf1ResponseError": {
         "required": [
@@ -56582,18 +56288,6 @@
           }
         ]
       },
-      "CustomAppModuleApiAnyOf1ResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "CustomAppModuleApiAnyOf1ResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -56629,18 +56323,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "CustomAppModuleApiAnyOf1ResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "CustomAppModuleApiAnyOf1ResponseWrapper": {
         "required": [
@@ -57242,18 +56924,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "CustomAppModuleApiAnyOf2ItemOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "CustomAppModuleApiAnyOf2ItemPaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -57384,18 +57054,6 @@
           }
         }
       },
-      "CustomAppModuleApiAnyOf2ItemPaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "CustomAppModuleApiAnyOf2ItemResponseType": {
         "required": [
           "type"
@@ -57486,17 +57144,6 @@
             "CustomAppModuleApiAnyOf2ItemResponseValidAnyOf3": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseValidAnyOf3"
           }
         }
-      },
-      "CustomAppModuleApiAnyOf2ItemResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "CustomAppModuleApiAnyOf2ItemResponseError": {
         "required": [
@@ -57651,18 +57298,6 @@
           }
         ]
       },
-      "CustomAppModuleApiAnyOf2ItemResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "CustomAppModuleApiAnyOf2ItemResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -57698,18 +57333,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "CustomAppModuleApiAnyOf2ItemResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "CustomAppModuleApiAnyOf2ItemResponseWrapper": {
         "required": [
@@ -58071,7 +57694,14 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleEpochConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "default": {
             "$ref": "#/components/schemas/CustomAppModuleEpochConditionAnyOf3Default"
@@ -58180,7 +57810,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleEpochResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -59438,18 +59075,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1PaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -59580,18 +59205,6 @@
           }
         }
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1PaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseType": {
         "required": [
           "type"
@@ -59682,17 +59295,6 @@
             "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseValidAnyOf3": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseValidAnyOf3"
           }
         }
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError": {
         "required": [
@@ -59847,18 +59449,6 @@
           }
         ]
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -59894,18 +59484,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseWrapper": {
         "required": [
@@ -60201,18 +59779,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemPaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -60343,18 +59909,6 @@
           }
         }
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemPaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseType": {
         "required": [
           "type"
@@ -60445,17 +59999,6 @@
             "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseValidAnyOf3": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseValidAnyOf3"
           }
         }
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseError": {
         "required": [
@@ -60610,18 +60153,6 @@
           }
         ]
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -60657,18 +60188,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseWrapper": {
         "required": [
@@ -60964,18 +60483,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1OAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1PaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -61106,18 +60613,6 @@
           }
         }
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1PaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseType": {
         "required": [
           "type"
@@ -61208,17 +60703,6 @@
             "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseValidAnyOf3": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseValidAnyOf3"
           }
         }
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseError": {
         "required": [
@@ -61373,18 +60857,6 @@
           }
         ]
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -61420,18 +60892,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseWrapper": {
         "required": [
@@ -61727,18 +61187,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemPaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -61869,18 +61317,6 @@
           }
         }
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemPaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseType": {
         "required": [
           "type"
@@ -61971,17 +61407,6 @@
             "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseValidAnyOf3": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseValidAnyOf3"
           }
         }
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseError": {
         "required": [
@@ -62136,18 +61561,6 @@
           }
         ]
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -62183,18 +61596,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseWrapper": {
         "required": [
@@ -62490,18 +61891,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1PaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -62632,18 +62021,6 @@
           }
         }
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1PaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseType": {
         "required": [
           "type"
@@ -62734,17 +62111,6 @@
             "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseValidAnyOf3": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseValidAnyOf3"
           }
         }
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError": {
         "required": [
@@ -62899,18 +62265,6 @@
           }
         ]
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -62946,18 +62300,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseWrapper": {
         "required": [
@@ -63253,18 +62595,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemPaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -63395,18 +62725,6 @@
           }
         }
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemPaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseType": {
         "required": [
           "type"
@@ -63497,17 +62815,6 @@
             "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseValidAnyOf3": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseValidAnyOf3"
           }
         }
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseError": {
         "required": [
@@ -63662,18 +62969,6 @@
           }
         ]
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -63709,18 +63004,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseWrapper": {
         "required": [
@@ -64016,18 +63299,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1OAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1PaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -64158,18 +63429,6 @@
           }
         }
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1PaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseType": {
         "required": [
           "type"
@@ -64260,17 +63519,6 @@
             "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseValidAnyOf3": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseValidAnyOf3"
           }
         }
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseError": {
         "required": [
@@ -64425,18 +63673,6 @@
           }
         ]
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -64472,18 +63708,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseWrapper": {
         "required": [
@@ -64779,18 +64003,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemPaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -64921,18 +64133,6 @@
           }
         }
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemPaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseType": {
         "required": [
           "type"
@@ -65023,17 +64223,6 @@
             "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseValidAnyOf3": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseValidAnyOf3"
           }
         }
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseError": {
         "required": [
@@ -65188,18 +64377,6 @@
           }
         ]
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -65235,18 +64412,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseWrapper": {
         "required": [
@@ -65542,18 +64707,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1OAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1PaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -65684,18 +64837,6 @@
           }
         }
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1PaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseType": {
         "required": [
           "type"
@@ -65786,17 +64927,6 @@
             "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseValidAnyOf3": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseValidAnyOf3"
           }
         }
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseError": {
         "required": [
@@ -65951,18 +65081,6 @@
           }
         ]
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -65998,18 +65116,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseWrapper": {
         "required": [
@@ -66611,18 +65717,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemPaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -66753,18 +65847,6 @@
           }
         }
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemPaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseType": {
         "required": [
           "type"
@@ -66855,17 +65937,6 @@
             "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseValidAnyOf3": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseValidAnyOf3"
           }
         }
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseError": {
         "required": [
@@ -67020,18 +66091,6 @@
           }
         ]
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -67067,18 +66126,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseWrapper": {
         "required": [
@@ -67680,18 +66727,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1OAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1PaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -67822,18 +66857,6 @@
           }
         }
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1PaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseType": {
         "required": [
           "type"
@@ -67924,17 +66947,6 @@
             "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseValidAnyOf3": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseValidAnyOf3"
           }
         }
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseError": {
         "required": [
@@ -68089,18 +67101,6 @@
           }
         ]
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -68136,18 +67136,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseWrapper": {
         "required": [
@@ -68749,18 +67737,6 @@
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemPaginationMethod": {
         "type": "object",
         "anyOf": [
@@ -68891,18 +67867,6 @@
           }
         }
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemPaginationCondition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "This directive specifies whether to execute the pagination request or not."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseType": {
         "required": [
           "type"
@@ -68993,17 +67957,6 @@
             "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseValidAnyOf3": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseValidAnyOf3"
           }
         }
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseLimit": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseError": {
         "required": [
@@ -69158,18 +68111,6 @@
           }
         ]
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseUid": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "User remote service ID"
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseOAuthSignatureMethod": {
         "type": "object",
         "anyOf": [
@@ -69205,18 +68146,6 @@
           }
         ],
         "description": "\u0022Specifies how OAuth parameters are sent: via query params, header or in a POST body.\u0022"
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseOAuthBodyHash": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ],
-        "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically."
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseWrapper": {
         "required": [
@@ -69578,7 +68507,14 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "default": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestConditionAnyOf3Default"
@@ -69687,7 +68623,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -69699,7 +68642,14 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "default": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestConditionAnyOf3Default"
@@ -69808,7 +68758,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -71108,7 +70065,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf1ConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/CustomAppBaseAnyOf1ConditionAnyOf3Default"
@@ -71217,7 +70182,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -71229,7 +70201,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemConditionAnyOf3Default"
@@ -71338,7 +70318,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -71350,7 +70337,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ConditionAnyOf3Default"
@@ -71459,7 +70454,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -71475,7 +70477,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1IterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -71487,7 +70496,14 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1VerificationConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "default": {
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1VerificationConditionAnyOf3Default"
@@ -71502,7 +70518,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemConditionAnyOf3Default"
@@ -71611,7 +70635,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -71627,7 +70658,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -71639,24 +70677,20 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemVerificationConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "default": {
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemVerificationConditionAnyOf3Default"
           }
         },
         "additionalProperties": false
-      },
-      "CustomAppModuleEpochConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "CustomAppModuleEpochConditionAnyOf3Default": {
         "required": [
@@ -71829,17 +70863,6 @@
           },
           {
             "$ref": "#/components/schemas/CustomAppModuleEpochResponseErrorAnyOf2AdditionalPropertiesTypeWrapper9"
-          }
-        ]
-      },
-      "CustomAppModuleEpochResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
           }
         ]
       },
@@ -72216,7 +71239,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Default"
@@ -72325,7 +71356,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -72337,7 +71375,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemConditionAnyOf3Default"
@@ -72446,7 +71492,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -72458,7 +71511,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ConditionAnyOf3Default"
@@ -72567,7 +71628,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -72579,7 +71647,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemConditionAnyOf3Default"
@@ -72688,7 +71764,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -72700,7 +71783,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Default"
@@ -72809,7 +71900,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -72821,7 +71919,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemConditionAnyOf3Default"
@@ -72930,7 +72036,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -72942,7 +72055,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ConditionAnyOf3Default"
@@ -73051,7 +72172,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -73063,7 +72191,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemConditionAnyOf3Default"
@@ -73172,7 +72308,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -73184,7 +72327,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ConditionAnyOf3Default"
@@ -73293,7 +72444,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -73309,7 +72467,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1IterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -73321,7 +72486,14 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1VerificationConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "default": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1VerificationConditionAnyOf3Default"
@@ -73336,7 +72508,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemConditionAnyOf3Default"
@@ -73445,7 +72625,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -73461,7 +72648,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -73473,7 +72667,14 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemVerificationConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "default": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemVerificationConditionAnyOf3Default"
@@ -73488,7 +72689,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ConditionAnyOf3Default"
@@ -73597,7 +72806,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -73613,7 +72829,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1IterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -73625,7 +72848,14 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1VerificationConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "default": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1VerificationConditionAnyOf3Default"
@@ -73640,7 +72870,15 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Specifies if to execute the request or not."
           },
           "default": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemConditionAnyOf3Default"
@@ -73749,7 +72987,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -73765,7 +73010,14 @@
             "type": "string"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemIterateAnyOf2Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "additionalProperties": false
@@ -73777,24 +73029,20 @@
         "type": "object",
         "properties": {
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemVerificationConditionAnyOf3Condition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "default": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemVerificationConditionAnyOf3Default"
           }
         },
         "additionalProperties": false
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ]
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestConditionAnyOf3Default": {
         "required": [
@@ -73970,28 +73218,6 @@
           }
         ]
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ]
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestConditionAnyOf3Default": {
         "required": [
           "type"
@@ -74163,17 +73389,6 @@
           },
           {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseErrorAnyOf2AdditionalPropertiesTypeWrapper9"
-          }
-        ]
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
           }
         ]
       },
@@ -74665,18 +73880,6 @@
         },
         "additionalProperties": false
       },
-      "CustomAppBaseAnyOf1ConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
-      },
       "CustomAppBaseAnyOf1ConditionAnyOf3Default": {
         "required": [
           "type"
@@ -74851,29 +74054,6 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseErrorAnyOf2AdditionalPropertiesTypeWrapper9"
           }
         ]
-      },
-      "CustomAppBaseAnyOf1ResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "CustomAppBaseAnyOf2ItemConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
       },
       "CustomAppBaseAnyOf2ItemConditionAnyOf3Default": {
         "required": [
@@ -75050,29 +74230,6 @@
           }
         ]
       },
-      "CustomAppBaseAnyOf2ItemResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "CustomAppModuleApiAnyOf1ConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
-      },
       "CustomAppModuleApiAnyOf1ConditionAnyOf3Default": {
         "required": [
           "type"
@@ -75248,39 +74405,6 @@
           }
         ]
       },
-      "CustomAppModuleApiAnyOf1ResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "CustomAppModuleApiAnyOf1IterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "CustomAppModuleApiAnyOf1VerificationConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ]
-      },
       "CustomAppModuleApiAnyOf1VerificationConditionAnyOf3Default": {
         "required": [
           "type"
@@ -75326,18 +74450,6 @@
             "CustomAppModuleApiAnyOf1VerificationConditionAnyOf3Default_7": "#/components/schemas/CustomAppModuleApiAnyOf1VerificationConditionAnyOf3DefaultBranch7"
           }
         }
-      },
-      "CustomAppModuleApiAnyOf2ItemConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
       },
       "CustomAppModuleApiAnyOf2ItemConditionAnyOf3Default": {
         "required": [
@@ -75511,39 +74623,6 @@
           },
           {
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseErrorAnyOf2AdditionalPropertiesTypeWrapper9"
-          }
-        ]
-      },
-      "CustomAppModuleApiAnyOf2ItemResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "CustomAppModuleApiAnyOf2ItemIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "CustomAppModuleApiAnyOf2ItemVerificationConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
           }
         ]
       },
@@ -76244,18 +75323,6 @@
           }
         }
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Default": {
         "required": [
           "type"
@@ -76430,29 +75497,6 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf2AdditionalPropertiesTypeWrapper9"
           }
         ]
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemConditionAnyOf3Default": {
         "required": [
@@ -76629,29 +75673,6 @@
           }
         ]
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
-      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ConditionAnyOf3Default": {
         "required": [
           "type"
@@ -76826,29 +75847,6 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseErrorAnyOf2AdditionalPropertiesTypeWrapper9"
           }
         ]
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemConditionAnyOf3Default": {
         "required": [
@@ -77025,29 +76023,6 @@
           }
         ]
       },
-      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Default": {
         "required": [
           "type"
@@ -77222,29 +76197,6 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf2AdditionalPropertiesTypeWrapper9"
           }
         ]
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
       },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemConditionAnyOf3Default": {
         "required": [
@@ -77421,29 +76373,6 @@
           }
         ]
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
-      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ConditionAnyOf3Default": {
         "required": [
           "type"
@@ -77618,29 +76547,6 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseErrorAnyOf2AdditionalPropertiesTypeWrapper9"
           }
         ]
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
       },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemConditionAnyOf3Default": {
         "required": [
@@ -77817,29 +76723,6 @@
           }
         ]
       },
-      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ConditionAnyOf3Default": {
         "required": [
           "type"
@@ -78015,39 +76898,6 @@
           }
         ]
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1IterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1VerificationConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ]
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1VerificationConditionAnyOf3Default": {
         "required": [
           "type"
@@ -78093,18 +76943,6 @@
             "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1VerificationConditionAnyOf3Default_7": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1VerificationConditionAnyOf3DefaultBranch7"
           }
         }
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemConditionAnyOf3Default": {
         "required": [
@@ -78281,39 +77119,6 @@
           }
         ]
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemVerificationConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ]
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemVerificationConditionAnyOf3Default": {
         "required": [
           "type"
@@ -78359,18 +77164,6 @@
             "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemVerificationConditionAnyOf3Default_7": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemVerificationConditionAnyOf3DefaultBranch7"
           }
         }
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ConditionAnyOf3Default": {
         "required": [
@@ -78547,39 +77340,6 @@
           }
         ]
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1IterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1VerificationConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ]
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1VerificationConditionAnyOf3Default": {
         "required": [
           "type"
@@ -78625,18 +77385,6 @@
             "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1VerificationConditionAnyOf3Default_7": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1VerificationConditionAnyOf3DefaultBranch7"
           }
         }
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "description": "Specifies if to execute the request or not."
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemConditionAnyOf3Default": {
         "required": [
@@ -78810,39 +77558,6 @@
           },
           {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseErrorAnyOf2AdditionalPropertiesTypeWrapper9"
-          }
-        ]
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemIterateAnyOf2Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "boolean"
-          }
-        ]
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemVerificationConditionAnyOf3Condition": {
-        "type": "object",
-        "anyOf": [
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
           }
         ]
       },
@@ -81162,7 +79877,16 @@
             "$ref": "#/components/schemas/CustomAppModuleEpochOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/CustomAppModuleEpochOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -81209,7 +79933,15 @@
             "$ref": "#/components/schemas/CustomAppModuleEpochPaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleEpochPaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -81246,7 +79978,14 @@
             "$ref": "#/components/schemas/CustomAppModuleEpochResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/CustomAppModuleEpochResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/CustomAppModuleEpochResponseError"
@@ -81837,7 +80576,16 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -81884,7 +80632,15 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestPaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestPaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -81921,7 +80677,14 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseError"
@@ -82032,7 +80795,16 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -82079,7 +80851,15 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestPaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestPaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -82116,7 +80896,14 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseError"
@@ -82283,7 +81070,16 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf1OAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf1OAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -82316,7 +81112,15 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf1PaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf1PaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -82332,7 +81136,14 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseError"
@@ -82356,7 +81167,15 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseOAuth"
@@ -82558,7 +81377,16 @@
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1OAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1OAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -82591,7 +81419,15 @@
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1PaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1PaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -82607,7 +81443,14 @@
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseError"
@@ -82631,7 +81474,15 @@
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseOAuth"
@@ -83318,7 +82169,16 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -83351,7 +82211,15 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1PaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1PaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -83367,7 +82235,14 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError"
@@ -83391,7 +82266,15 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseOAuth"
@@ -83593,7 +82476,16 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1OAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1OAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -83626,7 +82518,15 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1PaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1PaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -83642,7 +82542,14 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseError"
@@ -83666,7 +82573,15 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseOAuth"
@@ -83868,7 +82783,16 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -83901,7 +82825,15 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1PaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1PaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -83917,7 +82849,14 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError"
@@ -83941,7 +82880,15 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseOAuth"
@@ -84143,7 +83090,16 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1OAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1OAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -84176,7 +83132,15 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1PaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1PaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -84192,7 +83156,14 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseError"
@@ -84216,7 +83187,15 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseOAuth"
@@ -84418,7 +83397,16 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1OAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1OAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -84451,7 +83439,15 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1PaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1PaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -84467,7 +83463,14 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseError"
@@ -84491,7 +83494,15 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseOAuth"
@@ -84756,7 +83767,16 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1OAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1OAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -84789,7 +83809,15 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1PaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1PaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -84805,7 +83833,14 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseError"
@@ -84829,7 +83864,15 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseOAuth"
@@ -87407,7 +86450,16 @@
             "$ref": "#/components/schemas/CustomAppModuleEpochResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/CustomAppModuleEpochResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -87490,7 +86542,16 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -87573,7 +86634,16 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -87685,7 +86755,16 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -87796,7 +86875,16 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -87829,7 +86917,15 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemPaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemPaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -87845,7 +86941,14 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseError"
@@ -87869,7 +86972,15 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseOAuth"
@@ -87993,7 +87104,16 @@
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -88129,7 +87249,16 @@
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -88162,7 +87291,15 @@
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemPaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemPaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -88178,7 +87315,14 @@
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseError"
@@ -88202,7 +87346,15 @@
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseOAuth"
@@ -88557,7 +87709,16 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -88668,7 +87829,16 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -88701,7 +87871,15 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemPaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemPaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -88717,7 +87895,14 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseError"
@@ -88741,7 +87926,15 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuth"
@@ -88865,7 +88058,16 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -88976,7 +88178,16 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -89009,7 +88220,15 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemPaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemPaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -89025,7 +88244,14 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseError"
@@ -89049,7 +88275,15 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseOAuth"
@@ -89173,7 +88407,16 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -89284,7 +88527,16 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -89317,7 +88569,15 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemPaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemPaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -89333,7 +88593,14 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseError"
@@ -89357,7 +88624,15 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuth"
@@ -89481,7 +88756,16 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -89592,7 +88876,16 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -89625,7 +88918,15 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemPaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemPaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -89641,7 +88942,14 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseError"
@@ -89665,7 +88973,15 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseOAuth"
@@ -89789,7 +89105,16 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -89925,7 +89250,16 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -89958,7 +89292,15 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemPaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemPaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -89974,7 +89316,14 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseError"
@@ -89998,7 +89347,15 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseOAuth"
@@ -90170,7 +89527,16 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -90306,7 +89672,16 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -90339,7 +89714,15 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemPaginationBody"
           },
           "condition": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemPaginationCondition"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "This directive specifies whether to execute the pagination request or not."
           }
         },
         "additionalProperties": false,
@@ -90355,7 +89738,14 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseValid"
           },
           "limit": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseLimit"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
           "error": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseError"
@@ -90379,7 +89769,15 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseMetadata"
           },
           "uid": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseUid"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "User remote service ID"
           },
           "oauth": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseOAuth"
@@ -91522,7 +90920,16 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -91641,7 +91048,16 @@
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -91778,7 +91194,16 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -91890,7 +91315,16 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -92002,7 +91436,16 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -92114,7 +91557,16 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -92233,7 +91685,16 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -92377,7 +91838,16 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseOAuthTransportMethod"
           },
           "body_hash": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseOAuthBodyHash"
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "To use Request Body Hash, you can either manually generate it, or you can set this directive to true and the body hash will be generated automatically.",
+            "default": true
           }
         },
         "additionalProperties": false,
@@ -94169,7 +93639,15 @@
             "description": "Scenario identifier when available (e.g. from the inspector)."
           },
           "executionId": {
-            "$ref": "#/components/schemas/PostAiErrorAnalysisRequestExecutionId"
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "Execution identifier when available. The API accepts both string and number values and normalizes to string before forwarding to the AI webhook."
           },
           "suberrors": {
             "maxItems": 50,
@@ -98194,9 +97672,10 @@
             "description": "When \u0060true\u0060, new members of the organization automatically get a private space."
           },
           "defaultOperationsLimit": {
+            "maximum": 2000000000,
             "minimum": 0,
             "type": "integer",
-            "description": "Default operations limit applied when a private space is auto-created. Pass \u0060null\u0060 to set unlimited operations.",
+            "description": "Default operations limit applied when a private space is auto-created. Pass \u0060null\u0060 to set unlimited operations. The maximum matches the highest number of credits an organization can be licensed for.",
             "nullable": true
           },
           "bulkUpdateExistingLimits": {
@@ -101578,9 +101057,10 @@
         "type": "object",
         "properties": {
           "operationsLimit": {
+            "maximum": 2000000000,
             "minimum": 0,
             "type": "integer",
-            "description": "Optional. The new operations limit for the private space. Transfer limit is auto-calculated. Set to \u0060null\u0060 to remove limits, omit to leave unchanged.",
+            "description": "Optional. The new operations limit for the private space. Transfer limit is auto-calculated. Set to \u0060null\u0060 to remove limits, omit to leave unchanged. The maximum matches the highest number of credits an organization can be licensed for.",
             "nullable": true,
             "example": 10000
           }
@@ -101707,8 +101187,10 @@
             "description": "The ID of the organization."
           },
           "operationsLimit": {
+            "maximum": 2000000000,
+            "minimum": 0,
             "type": "integer",
-            "description": "The maximum number of operations allowed for the team."
+            "description": "The maximum number of operations allowed for the team. The maximum matches the highest number of credits an organization can be licensed for."
           }
         }
       },
@@ -101739,8 +101221,10 @@
             "description": "The new name of the team. Maximum length is 128 characters."
           },
           "operationsLimit": {
+            "maximum": 2000000000,
+            "minimum": 0,
             "type": "integer",
-            "description": "The maximum number of operations allowed for the team."
+            "description": "The maximum number of operations allowed for the team. The maximum matches the highest number of credits an organization can be licensed for."
           },
           "scenarioDrafts": {
             "type": "boolean",
@@ -102951,7 +102435,11 @@
             "description": "The IDs of the users whose organization role is changed, or who are removed from the organization. Between 1 and 100 users; duplicates are ignored."
           },
           "usersRoleId": {
-            "$ref": "#/components/schemas/PostUsersUserOrganizationRolesByOrganizationIdBulkRequestUsersRoleId"
+            "enum": [
+              null
+            ],
+            "description": "Removal-only for now, so this must be \u0060null\u0060 or omitted \u2014 the listed users are removed from the organization. Bulk role assignment is not yet supported; a non-null value is rejected with HTTP 400.",
+            "nullable": true
           }
         }
       },
@@ -135458,18 +134946,6 @@
         ],
         "description": "Optional nested specification for complex fields"
       },
-      "PostAiErrorAnalysisRequestExecutionId": {
-        "type": "object",
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          }
-        ],
-        "description": "Execution identifier when available. The API accepts both string and number values and normalizes to string before forwarding to the AI webhook."
-      },
       "DeleteDataStoresRequestOneOf1": {
         "required": [
           "ids"
@@ -152819,10 +152295,6 @@
           }
         }
       },
-      "PostUsersUserOrganizationRolesByOrganizationIdBulkRequestUsersRoleId": {
-        "type": "object",
-        "description": "Removal-only for now, so this must be \u0060null\u0060 or omitted \u2014 the listed users are removed from the organization. Bulk role assignment is not yet supported; a non-null value is rejected with HTTP 400."
-      },
       "PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRole": {
         "type": "object",
         "properties": {
@@ -152831,7 +152303,11 @@
             "description": "The ID of the organization."
           },
           "usersRoleId": {
-            "$ref": "#/components/schemas/PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRoleUsersRoleId"
+            "enum": [
+              null
+            ],
+            "description": "Always \u0060null\u0060 \u2014 the listed users were removed from the organization. (Reserved for a future bulk role-assignment feature.)",
+            "nullable": true
           },
           "userIds": {
             "type": "array",
@@ -158423,10 +157899,6 @@
             "example": "scenarios get"
           }
         }
-      },
-      "PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRoleUsersRoleId": {
-        "type": "object",
-        "description": "Always \u0060null\u0060 \u2014 the listed users were removed from the organization. (Reserved for a future bulk role-assignment feature.)"
       },
       "GetUsersRedirectAction200ResponseRedirectActionData": {
         "type": "object"

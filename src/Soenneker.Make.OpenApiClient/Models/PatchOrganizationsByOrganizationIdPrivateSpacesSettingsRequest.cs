@@ -18,7 +18,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>When `true`, applies `defaultOperationsLimit` to every existing private-space team in the organization. Requires `defaultOperationsLimit` to be provided in the same request (rejected with `IM005` otherwise).</summary>
         public bool? BulkUpdateExistingLimits { get; set; }
-        /// <summary>Default operations limit applied when a private space is auto-created. Pass `null` to set unlimited operations.</summary>
+        /// <summary>Default operations limit applied when a private space is auto-created. Pass `null` to set unlimited operations. The maximum matches the highest number of credits an organization can be licensed for.</summary>
         public int? DefaultOperationsLimit { get; set; }
         /// <summary>When `true`, new members of the organization automatically get a private space.</summary>
         public bool? PrivateSpacesAutoCreationEnabled { get; set; }

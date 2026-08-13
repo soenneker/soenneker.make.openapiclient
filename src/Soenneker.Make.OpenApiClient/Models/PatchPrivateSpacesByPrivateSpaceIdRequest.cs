@@ -14,7 +14,7 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Optional. The new operations limit for the private space. Transfer limit is auto-calculated. Set to `null` to remove limits, omit to leave unchanged.</summary>
+        /// <summary>Optional. The new operations limit for the private space. Transfer limit is auto-calculated. Set to `null` to remove limits, omit to leave unchanged. The maximum matches the highest number of credits an organization can be licensed for.</summary>
         public int? OperationsLimit { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceIdRequest"/> and sets the default values.

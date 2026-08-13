@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The maximum number of operations allowed for the team.</summary>
+        /// <summary>The maximum number of operations allowed for the team. The maximum matches the highest number of credits an organization can be licensed for.</summary>
         public int? OperationsLimit { get; set; }
         /// <summary>This property is deprecated. It is only supported on private instances and ignored on Make&apos;s public cloud.</summary>
         [Obsolete("")]

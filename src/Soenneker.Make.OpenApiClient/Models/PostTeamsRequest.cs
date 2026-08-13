@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The maximum number of operations allowed for the team.</summary>
+        /// <summary>The maximum number of operations allowed for the team. The maximum matches the highest number of credits an organization can be licensed for.</summary>
         public int? OperationsLimit { get; set; }
         /// <summary>The ID of the organization.</summary>
         public int? OrganizationId { get; set; }

@@ -27,10 +27,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Always `null` — the listed users were removed from the organization. (Reserved for a future bulk role-assignment feature.)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRoleUsersRoleId? UsersRoleId { get; set; }
+        public UntypedNode? UsersRoleId { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRoleUsersRoleId UsersRoleId { get; set; }
+        public UntypedNode UsersRoleId { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRole"/> and sets the default values.
@@ -59,7 +59,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "organizationId", n => { OrganizationId = n.GetIntValue(); } },
                 { "userIds", n => { UserIds = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
-                { "usersRoleId", n => { UsersRoleId = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRoleUsersRoleId>(global::Soenneker.Make.OpenApiClient.Models.PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRoleUsersRoleId.CreateFromDiscriminatorValue); } },
+                { "usersRoleId", n => { UsersRoleId = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("organizationId", OrganizationId);
             writer.WriteCollectionOfPrimitiveValues<int?>("userIds", UserIds);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostUsersUserOrganizationRolesByOrganizationIdBulk200ResponseUserOrganizationRoleUsersRoleId>("usersRoleId", UsersRoleId);
+            writer.WriteObjectValue<UntypedNode>("usersRoleId", UsersRoleId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
