@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Internal.Organizations.Item.InternalOrganization;
 using Soenneker.Make.OpenApiClient.Internal.Organizations.Item.Paused;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,11 @@ namespace Soenneker.Make.OpenApiClient.Internal.Organizations.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithOrganizationItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The internalOrganization property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Organizations.Item.InternalOrganization.InternalOrganizationRequestBuilder InternalOrganization
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Organizations.Item.InternalOrganization.InternalOrganizationRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The paused property</summary>
         public global::Soenneker.Make.OpenApiClient.Internal.Organizations.Item.Paused.PausedRequestBuilder Paused
         {

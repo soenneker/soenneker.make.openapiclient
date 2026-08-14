@@ -18995,6 +18995,40 @@
         }
       }
     },
+    "/internal/organizations/{organizationId}/internal-organization": {
+      "get": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Get canonical internal organization billing data",
+        "description": "Returns the canonical execution-time organization projection used by scenario blueprint finalization and RPC workers. Values are derived from \u0060users.organization.license\u0060 and \u0060users.organization.product_flags\u0060 via \u0060scenarios.blueprint_finalize_internal_organization\u0060.\n",
+        "operationId": "GetInternalOrganizationsByOrganizationIdInternalOrganization",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "The ID of the organization.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 631
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalOrganizationsByOrganizationIdInternalOrganization200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/internal/scenarios/{scenarioId}/credentials": {
       "get": {
         "tags": [
@@ -95879,6 +95913,17 @@
           }
         }
       },
+      "GetInternalOrganizationsByOrganizationIdInternalOrganization200Response": {
+        "required": [
+          "organization"
+        ],
+        "type": "object",
+        "properties": {
+          "organization": {
+            "$ref": "#/components/schemas/GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganization"
+          }
+        }
+      },
       "GetInternalScenariosByScenarioIdCredentials200Response": {
         "type": "object",
         "properties": {
@@ -142810,6 +142855,30 @@
           "userSessionTimeout": 3600
         }
       },
+      "GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganization": {
+        "required": [
+          "id",
+          "license",
+          "customApps",
+          "productFlags"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 631
+          },
+          "license": {
+            "$ref": "#/components/schemas/GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationLicense"
+          },
+          "customApps": {
+            "$ref": "#/components/schemas/GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationCustomApps"
+          },
+          "productFlags": {
+            "$ref": "#/components/schemas/GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags"
+          }
+        }
+      },
       "GetInternalScenariosByScenarioIdCredentials200ResponseScenarioAccountsItem": {
         "type": "object",
         "properties": {
@@ -155029,6 +155098,54 @@
         "type": "object",
         "description": "Product name details, typically a JSON object or string.",
         "nullable": true
+      },
+      "GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationLicense": {
+        "required": [
+          "premiumApps"
+        ],
+        "type": "object",
+        "properties": {
+          "premiumApps": {
+            "minimum": 0,
+            "type": "integer",
+            "example": 5
+          }
+        }
+      },
+      "GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationCustomApps": {
+        "required": [
+          "enableExpensiveModels"
+        ],
+        "type": "object",
+        "properties": {
+          "enableExpensiveModels": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags": {
+        "required": [
+          "isTrial",
+          "isPromo",
+          "isFreePlan",
+          "isEnterprise"
+        ],
+        "type": "object",
+        "properties": {
+          "isTrial": {
+            "type": "boolean"
+          },
+          "isPromo": {
+            "type": "boolean"
+          },
+          "isFreePlan": {
+            "type": "boolean"
+          },
+          "isEnterprise": {
+            "type": "boolean"
+          }
+        }
       },
       "GetInternalDataStructuresByDataStructureId200ResponseDataStructureSpecItem": {
         "type": "object"
