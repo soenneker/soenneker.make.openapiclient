@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpaceTransferLimit TransferLimit { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpaceType? Type { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PersonalType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpace"/> and sets the default values.
         /// </summary>
@@ -87,7 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "operationsLimit", n => { OperationsLimit = n.GetIntValue(); } },
                 { "transferLimit", n => { TransferLimit = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpaceTransferLimit>(global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpaceTransferLimit.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpaceType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PersonalType>(); } },
             };
         }
         /// <summary>
@@ -106,7 +106,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("operationsLimit", OperationsLimit);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpaceTransferLimit>("transferLimit", TransferLimit);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetUsers200ResponseUsersItemPrivateSpaceType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PersonalType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

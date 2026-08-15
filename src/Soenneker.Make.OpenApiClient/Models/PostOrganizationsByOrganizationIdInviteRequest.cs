@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Email { get; set; }
 #endif
-        /// <summary>&quot;The user name visible in the team and organization interface. The name may contain only letters, numbers, spaces, and the following special characters: `&apos;`, `-`, `.`, `(`, `)`, `*`, `+`, `,`, `@`, `_`, `/`. The name must not start or end with a space.&quot;</summary>
+        /// <summary>The user name visible in the team and organization interface. The name may contain only letters, numbers, spaces, and the following special characters: `&apos;`, `-`, `.`, `(`, `)`, `*`, `+`, `,`, `@`, `_`, `/`. The name must not start or end with a space.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

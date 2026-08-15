@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Enums.Languages
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class LanguagesRequestBuilderGetQueryParameters 
         {
-            /// <summary>&quot;When set to true, the response contains localized language names, for example --  German: Deutch or Czech: Čeština. This setting limits the number of returned languages to those that have defined their localized name. The default value is `false`.&quot;</summary>
+            /// <summary>When set to true, the response contains localized language names, for example --  German: Deutch or Czech: Čeština. This setting limits the number of returned languages to those that have defined their localized name. The default value is `false`.</summary>
             [QueryParameter("localized")]
             public bool? Localized { get; set; }
         }

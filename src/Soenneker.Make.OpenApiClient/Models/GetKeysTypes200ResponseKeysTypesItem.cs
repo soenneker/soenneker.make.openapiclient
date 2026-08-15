@@ -54,7 +54,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Label { get; set; }
 #endif
-        /// <summary>&quot;When true, this key type is server-managed: its data is written only by a dedicated setup flow, and it is hidden from the generic key list unless explicitly requested via `?typeName=`. Absent/false for all other key types.&quot;</summary>
+        /// <summary>When true, this key type is server-managed: its data is written only by a dedicated setup flow, and it is hidden from the generic key list unless explicitly requested via `?typeName=`. Absent/false for all other key types.</summary>
         public bool? Managed { get; set; }
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Apps.Item.Item.Modules
         {
         }
         /// <summary>
-        /// &quot;Retrieves all modules with credential requirements for a specific app and version.For each module, this endpoint returns:- Module identification (`id`, `name`, `label`)- Required credential type (e.g., `account:slack2`)- OAuth scopes required by the module- Whether the module is a hook-based trigger**Custom/SDK Apps**: To query custom (SDK) apps, prefix the app name with `app#` (URL-encoded as `app%23`).For example: `/credential-requests/apps/app%23my-custom-app/1/modules-with-credentials`&quot;
+        /// Retrieves all modules with credential requirements for a specific app and version.For each module, this endpoint returns:- Module identification (`id`, `name`, `label`)- Required credential type (e.g., `account:slack2`)- OAuth scopes required by the module- Whether the module is a hook-based trigger**Custom/SDK Apps**: To query custom (SDK) apps, prefix the app name with `app#` (URL-encoded as `app%23`).For example: `/credential-requests/apps/app%23my-custom-app/1/modules-with-credentials`
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsByNameByVersionModulesWithCredentials200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -57,7 +57,7 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Apps.Item.Item.Modules
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsByNameByVersionModulesWithCredentials200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsAppsByNameByVersionModulesWithCredentials200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Retrieves all modules with credential requirements for a specific app and version.For each module, this endpoint returns:- Module identification (`id`, `name`, `label`)- Required credential type (e.g., `account:slack2`)- OAuth scopes required by the module- Whether the module is a hook-based trigger**Custom/SDK Apps**: To query custom (SDK) apps, prefix the app name with `app#` (URL-encoded as `app%23`).For example: `/credential-requests/apps/app%23my-custom-app/1/modules-with-credentials`&quot;
+        /// Retrieves all modules with credential requirements for a specific app and version.For each module, this endpoint returns:- Module identification (`id`, `name`, `label`)- Required credential type (e.g., `account:slack2`)- OAuth scopes required by the module- Whether the module is a hook-based trigger**Custom/SDK Apps**: To query custom (SDK) apps, prefix the app name with `app#` (URL-encoded as `app%23`).For example: `/credential-requests/apps/app%23my-custom-app/1/modules-with-credentials`
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

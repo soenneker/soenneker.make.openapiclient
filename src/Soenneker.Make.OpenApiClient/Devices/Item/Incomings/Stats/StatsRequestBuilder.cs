@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Incomings.Stats
         {
         }
         /// <summary>
-        /// &quot;Required scope: devices:read&quot;
+        /// Required scope: devices:read
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomingsStats200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Incomings.Stats
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomingsStats200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomingsStats200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Required scope: devices:read&quot;
+        /// Required scope: devices:read
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -80,7 +80,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Incomings.Stats
             return new global::Soenneker.Make.OpenApiClient.Devices.Item.Incomings.Stats.StatsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// &quot;Required scope: devices:read&quot;
+        /// Required scope: devices:read
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class StatsRequestBuilderGetQueryParameters 

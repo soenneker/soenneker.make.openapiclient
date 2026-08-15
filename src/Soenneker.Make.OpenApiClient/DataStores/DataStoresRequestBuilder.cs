@@ -213,7 +213,7 @@ namespace Soenneker.Make.OpenApiClient.DataStores
             public int? Pgoffset { get; set; }
             /// <summary>The value that will be used to sort returned entities by. Data stores can be currently sorted only by name.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresPgSortByParameter? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.NamePgSortBy? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresPgSortDirParameter? PgsortDir { get; set; }

@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Keys.Item.MakeTeam
         {
         }
         /// <summary>
-        /// &quot;Makes a locked key visible to the whole team again (`visibility: team`) and clears the key&apos;s entire accesslist. Only an admin of the locked key can perform the flip. The key&apos;s author is not changed.The operation is idempotent — flipping an already team-visible key succeeds, provided the caller has the`key edit` permission; any residual entries on the key&apos;s access list are still cleared.Requires the *Locked connections* feature to be enabled for the organization.&quot;
+        /// Makes a locked key visible to the whole team again (`visibility: team`) and clears the key&apos;s entire accesslist. Only an admin of the locked key can perform the flip. The key&apos;s author is not changed.The operation is idempotent — flipping an already team-visible key succeeds, provided the caller has the`key edit` permission; any residual entries on the key&apos;s access list are still cleared.Requires the *Locked connections* feature to be enabled for the organization.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeTeam200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Keys.Item.MakeTeam
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeTeam200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeTeam200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Makes a locked key visible to the whole team again (`visibility: team`) and clears the key&apos;s entire accesslist. Only an admin of the locked key can perform the flip. The key&apos;s author is not changed.The operation is idempotent — flipping an already team-visible key succeeds, provided the caller has the`key edit` permission; any residual entries on the key&apos;s access list are still cleared.Requires the *Locked connections* feature to be enabled for the organization.&quot;
+        /// Makes a locked key visible to the whole team again (`visibility: team`) and clears the key&apos;s entire accesslist. Only an admin of the locked key can perform the flip. The key&apos;s author is not changed.The operation is idempotent — flipping an already team-visible key succeeds, provided the caller has the`key edit` permission; any residual entries on the key&apos;s access list are still cleared.Requires the *Locked connections* feature to be enabled for the organization.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// &quot;`{ [namespace]: value | null }`. Each non-`null` value must match the namespace&apos;s schema.&quot;
+    /// `{ [namespace]: value | null }`. Each non-`null` value must match the namespace&apos;s schema.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PatchUsersMePreferencesRequestRequestBody : IAdditionalDataHolder, IParsable

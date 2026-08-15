@@ -67,7 +67,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Outgoings
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDevicesByDeviceIdOutgoings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDevicesByDeviceIdOutgoings200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Required scope: devices:read&quot;
+        /// Required scope: devices:read
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdOutgoings200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -107,7 +107,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Outgoings
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Required scope: devices:read&quot;
+        /// Required scope: devices:read
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -144,7 +144,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Outgoings
             public bool? Confirmed { get; set; }
         }
         /// <summary>
-        /// &quot;Required scope: devices:read&quot;
+        /// Required scope: devices:read
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class OutgoingsRequestBuilderGetQueryParameters 

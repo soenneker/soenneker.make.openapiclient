@@ -49,40 +49,39 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts
         /// <summary>
         /// Retrieve a list of all context for an agent
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Contexts200Response"/></returns>
+        /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Contexts200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts.ContextsRequestBuilder.ContextsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts.ContextsRequestBuilder.ContextsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Contexts200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts.ContextsRequestBuilder.ContextsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts.ContextsRequestBuilder.ContextsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Contexts200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1Contexts200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create a new context with an optional file upload
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Contexts201Response"/></returns>
         /// <param name="body">Schema for uploading a file.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Contexts201Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1ContextsFormDataRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts.ContextsRequestBuilder.ContextsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1ContextsFormDataRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts.ContextsRequestBuilder.ContextsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Contexts201Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1ContextsFormDataRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts.ContextsRequestBuilder.ContextsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1ContextsFormDataRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts.ContextsRequestBuilder.ContextsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Contexts201Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Contexts201Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve a list of all context for an agent
@@ -100,7 +99,6 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts
 #endif
             var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/ai-agents/v1/contexts?agentId={agentId}&teamId={teamId}", PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
@@ -121,7 +119,6 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "multipart/form-data", body);
             return requestInfo;
         }

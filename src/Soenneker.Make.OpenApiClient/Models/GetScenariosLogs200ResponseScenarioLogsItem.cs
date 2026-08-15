@@ -19,7 +19,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Execution duration in milliseconds.</summary>
         public int? Duration { get; set; }
         /// <summary>The eventType property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200ResponseScenarioLogsItemEventType? EventType { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.ExecutionEndEventType? EventType { get; set; }
         /// <summary>Execution ID (32-char hex).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -87,7 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "centicredits", n => { Centicredits = n.GetIntValue(); } },
                 { "duration", n => { Duration = n.GetIntValue(); } },
-                { "eventType", n => { EventType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200ResponseScenarioLogsItemEventType>(); } },
+                { "eventType", n => { EventType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.ExecutionEndEventType>(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "imtId", n => { ImtId = n.GetStringValue(); } },
                 { "instant", n => { Instant = n.GetBoolValue(); } },
@@ -110,7 +110,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("centicredits", Centicredits);
             writer.WriteIntValue("duration", Duration);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosLogs200ResponseScenarioLogsItemEventType>("eventType", EventType);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.ExecutionEndEventType>("eventType", EventType);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("imtId", ImtId);
             writer.WriteBoolValue("instant", Instant);

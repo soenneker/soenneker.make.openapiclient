@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosShared
         {
         }
         /// <summary>
-        /// &quot;Returns a paginated list of shared scenarios for a specified organization or team.Supports filtering by title, scenario name, and folder ID.**Note**: Either `organizationId` or `teamId` must be provided, but not both.&quot;
+        /// Returns a paginated list of shared scenarios for a specified organization or team.Supports filtering by title, scenario name, and folder ID.**Note**: Either `organizationId` or `teamId` must be provided, but not both.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -74,7 +74,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosShared
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenarioSharesList200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Returns a paginated list of shared scenarios for a specified organization or team.Supports filtering by title, scenario name, and folder ID.**Note**: Either `organizationId` or `teamId` must be provided, but not both.&quot;
+        /// Returns a paginated list of shared scenarios for a specified organization or team.Supports filtering by title, scenario name, and folder ID.**Note**: Either `organizationId` or `teamId` must be provided, but not both.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -102,7 +102,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosShared
             return new global::Soenneker.Make.OpenApiClient.ScenariosShared.ScenariosSharedRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// &quot;Returns a paginated list of shared scenarios for a specified organization or team.Supports filtering by title, scenario name, and folder ID.**Note**: Either `organizationId` or `teamId` must be provided, but not both.&quot;
+        /// Returns a paginated list of shared scenarios for a specified organization or team.Supports filtering by title, scenario name, and folder ID.**Note**: Either `organizationId` or `teamId` must be provided, but not both.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ScenariosSharedRequestBuilderGetQueryParameters 

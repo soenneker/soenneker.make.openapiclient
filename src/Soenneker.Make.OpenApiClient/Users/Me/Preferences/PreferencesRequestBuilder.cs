@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.Preferences
         {
         }
         /// <summary>
-        /// &quot;Returns the authenticated user&apos;s preference tree. The tree is a `{ [namespace]: value }` objectwhere each top-level key is an independently managed namespace (e.g. `ui`) defined by theshared-preferences library. A user who has never written preferences returns an empty tree.&quot;
+        /// Returns the authenticated user&apos;s preference tree. The tree is a `{ [namespace]: value }` objectwhere each top-level key is an independently managed namespace (e.g. `ui`) defined by theshared-preferences library. A user who has never written preferences returns an empty tree.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersMePreferences200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,10 +52,10 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.Preferences
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePreferences200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersMePreferences200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Applies an RFC 7396 JSON Merge Patch to the authenticated user&apos;s preferences. The request body isa `{ [namespace]: object | null }` envelope: `null` deletes the namespace, an object is mergedrecursively into the stored namespace payload (`null` on any leaf deletes that leaf; other valuesreplace).Behaviour by deployment mode:- **Private zones**: the merge happens locally against `users.user_preference`.- **Public zones**: the envelope is forwarded to HQ via swarm; HQ writes and replicates the row  back to the local database.Validation is two-stage: `validatePreferencePatch` from `@integromat/shared-preferences` checksthe envelope shape, namespace key format, and total byte size, then each non-`null` namespacepatch is validated by its own parser registered by the API layer. Unknown namespaces are rejected.&quot;
+        /// Applies an RFC 7396 JSON Merge Patch to the authenticated user&apos;s preferences. The request body isa `{ [namespace]: object | null }` envelope: `null` deletes the namespace, an object is mergedrecursively into the stored namespace payload (`null` on any leaf deletes that leaf; other valuesreplace).Behaviour by deployment mode:- **Private zones**: the merge happens locally against `users.user_preference`.- **Public zones**: the envelope is forwarded to HQ via swarm; HQ writes and replicates the row  back to the local database.Validation is two-stage: `validatePreferencePatch` from `@integromat/shared-preferences` checksthe envelope shape, namespace key format, and total byte size, then each non-`null` namespacepatch is validated by its own parser registered by the API layer. Unknown namespaces are rejected.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200Response"/></returns>
-        /// <param name="body">&quot;`{ [namespace]: value | null }`. Each non-`null` value must match the namespace&apos;s schema.&quot;</param>
+        /// <param name="body">`{ [namespace]: value | null }`. Each non-`null` value must match the namespace&apos;s schema.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -72,7 +72,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.Preferences
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Returns the authenticated user&apos;s preference tree. The tree is a `{ [namespace]: value }` objectwhere each top-level key is an independently managed namespace (e.g. `ui`) defined by theshared-preferences library. A user who has never written preferences returns an empty tree.&quot;
+        /// Returns the authenticated user&apos;s preference tree. The tree is a `{ [namespace]: value }` objectwhere each top-level key is an independently managed namespace (e.g. `ui`) defined by theshared-preferences library. A user who has never written preferences returns an empty tree.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -91,10 +91,10 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.Preferences
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Applies an RFC 7396 JSON Merge Patch to the authenticated user&apos;s preferences. The request body isa `{ [namespace]: object | null }` envelope: `null` deletes the namespace, an object is mergedrecursively into the stored namespace payload (`null` on any leaf deletes that leaf; other valuesreplace).Behaviour by deployment mode:- **Private zones**: the merge happens locally against `users.user_preference`.- **Public zones**: the envelope is forwarded to HQ via swarm; HQ writes and replicates the row  back to the local database.Validation is two-stage: `validatePreferencePatch` from `@integromat/shared-preferences` checksthe envelope shape, namespace key format, and total byte size, then each non-`null` namespacepatch is validated by its own parser registered by the API layer. Unknown namespaces are rejected.&quot;
+        /// Applies an RFC 7396 JSON Merge Patch to the authenticated user&apos;s preferences. The request body isa `{ [namespace]: object | null }` envelope: `null` deletes the namespace, an object is mergedrecursively into the stored namespace payload (`null` on any leaf deletes that leaf; other valuesreplace).Behaviour by deployment mode:- **Private zones**: the merge happens locally against `users.user_preference`.- **Public zones**: the envelope is forwarded to HQ via swarm; HQ writes and replicates the row  back to the local database.Validation is two-stage: `validatePreferencePatch` from `@integromat/shared-preferences` checksthe envelope shape, namespace key format, and total byte size, then each non-`null` namespacepatch is validated by its own parser registered by the API layer. Unknown namespaces are rejected.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">&quot;`{ [namespace]: value | null }`. Each non-`null` value must match the namespace&apos;s schema.&quot;</param>
+        /// <param name="body">`{ [namespace]: value | null }`. Each non-`null` value must match the namespace&apos;s schema.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

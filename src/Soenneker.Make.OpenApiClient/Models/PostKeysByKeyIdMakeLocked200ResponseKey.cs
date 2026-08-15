@@ -16,8 +16,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The ID of the key.</summary>
         public int? Id { get; set; }
-        /// <summary>The visibility of the key after the flip.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeLocked200ResponseKeyVisibility? Visibility { get; set; }
+        /// <summary>The visibility of the connection after the flip.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.LockedVisibility? Visibility { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeLocked200ResponseKey"/> and sets the default values.
         /// </summary>
@@ -44,7 +44,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "id", n => { Id = n.GetIntValue(); } },
-                { "visibility", n => { Visibility = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeLocked200ResponseKeyVisibility>(); } },
+                { "visibility", n => { Visibility = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.LockedVisibility>(); } },
             };
         }
         /// <summary>
@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("id", Id);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeLocked200ResponseKeyVisibility>("visibility", Visibility);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.LockedVisibility>("visibility", Visibility);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

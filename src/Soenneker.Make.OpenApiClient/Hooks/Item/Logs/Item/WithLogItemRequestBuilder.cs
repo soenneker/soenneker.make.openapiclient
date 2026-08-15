@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Logs.Item
         {
         }
         /// <summary>
-        /// &quot;Retrieves the specified webhook execution log. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log - `data`: information about the request, header, and payload sent to the webhook.Some webhooks don&apos;t return the `data` object due to their implementation. Most common examples include instant triggers for Slack, Zoom, Intercom and Facebook lead ads apps.&quot;
+        /// Retrieves the specified webhook execution log. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log - `data`: information about the request, header, and payload sent to the webhook.Some webhooks don&apos;t return the `data` object due to their implementation. Most common examples include instant triggers for Slack, Zoom, Intercom and Facebook lead ads apps.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogsByLogId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Logs.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogsByLogId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogsByLogId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Retrieves the specified webhook execution log. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log - `data`: information about the request, header, and payload sent to the webhook.Some webhooks don&apos;t return the `data` object due to their implementation. Most common examples include instant triggers for Slack, Zoom, Intercom and Facebook lead ads apps.&quot;
+        /// Retrieves the specified webhook execution log. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log - `data`: information about the request, header, and payload sent to the webhook.Some webhooks don&apos;t return the `data` object due to their implementation. Most common examples include instant triggers for Slack, Zoom, Intercom and Facebook lead ads apps.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -80,7 +80,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Logs.Item
             return new global::Soenneker.Make.OpenApiClient.Hooks.Item.Logs.Item.WithLogItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// &quot;Retrieves the specified webhook execution log. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log - `data`: information about the request, header, and payload sent to the webhook.Some webhooks don&apos;t return the `data` object due to their implementation. Most common examples include instant triggers for Slack, Zoom, Intercom and Facebook lead ads apps.&quot;
+        /// Retrieves the specified webhook execution log. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log - `data`: information about the request, header, and payload sent to the webhook.Some webhooks don&apos;t return the `data` object due to their implementation. Most common examples include instant triggers for Slack, Zoom, Intercom and Facebook lead ads apps.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithLogItemRequestBuilderGetQueryParameters 

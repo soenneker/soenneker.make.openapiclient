@@ -101,7 +101,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs.Item.Logs
             /// <summary>The moment from which you want to list the incomplete execution logs. The timestamp is in the [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) format.</summary>
             [QueryParameter("from")]
             public int? From { get; set; }
-            /// <summary>&quot;The status number of the incomplete execution. The status numbers correspond to the following statuses:- 1: success, - 2: warning, - 3: error.&quot;</summary>
+            /// <summary>The status number of the incomplete execution. The status numbers correspond to the following statuses:- 1: success, - 2: warning, - 3: error.</summary>
             [QueryParameter("status")]
             public int? Status { get; set; }
             /// <summary>Limits the returned incomplete execution logs to those that were created before the specified moment. The timestamp is in the [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) format.</summary>

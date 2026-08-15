@@ -167,7 +167,7 @@ namespace Soenneker.Make.OpenApiClient.Notifications
             public int? Pgoffset { get; set; }
             /// <summary>The value that will be used to sort returned entities by. Notifications can be currently sorted only by ID.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.Models.GetNotificationsPgSortByParameter? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.IdPgSortBy? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetNotificationsPgSortDirParameter? PgsortDir { get; set; }

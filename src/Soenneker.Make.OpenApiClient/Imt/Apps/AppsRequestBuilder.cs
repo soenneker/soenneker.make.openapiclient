@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Imt.Apps.Item;
 using Soenneker.Make.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,18 @@ namespace Soenneker.Make.OpenApiClient.Imt.Apps
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AppsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.imt.apps.item collection</summary>
+        /// <param name="position">The name of the app. Must start with a lowercase letter, contain only lowercase letters, numbers, and hyphens, and end with a letter or number. Minimum 3 characters (e.g., `a-b`, `abc`).For SDK/custom apps, use the `app#` prefix (URL-encoded as `app%23`).</param>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Imt.Apps.Item.WithNameItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Imt.Apps.Item.WithNameItemRequestBuilder this[string position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("name", position);
+                return new global::Soenneker.Make.OpenApiClient.Imt.Apps.Item.WithNameItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Imt.Apps.AppsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -91,7 +104,7 @@ namespace Soenneker.Make.OpenApiClient.Imt.Apps
             /// <summary>If `true`, the response is enriched with scoring (zone + team usage) and modules areaggregated per version. Requires `teamId`. When omitted, a non-scored shape is returned.</summary>
             [QueryParameter("scoredSearch")]
             public bool? ScoredSearch { get; set; }
-            /// <summary>&quot;If `true`, only apps exposing at least one usable **endpoint** are returned: an endpointcounts when it is public and non-deprecated, except that an SDK app&apos;s own author alsocounts their own private (non-public) endpoints of that app. Addon apps can never haveendpoints, so they are always excluded when this is `true`.\&quot;Usable\&quot; here is narrower than on `GET /imt/endpoints-usable`: this endpoint has no teamcontext to check against, so it does **not** consider whether a team connection exists foran endpoint&apos;s required account/scope. An app can therefore appear in this list and stillresolve to zero endpoints from `GET /imt/endpoints-usable` until the caller creates amatching connection — that&apos;s the intended flow for a \&quot;pick an app, then connect it\&quot; UI.Composes with `scoredSearch`: the same set of apps is returned either way, since theendpoint filter is applied before scoring — the scored shape just does not carry the`endpoints` field.Requires the `is_endpoints_execution_enabled` GrowthBook flag (the same flag gating`GET /imt/endpoints-usable`). If the flag is disabled, passing `supportsEndpoints=true`returns a `400` (`IM903`) instead of silently ignoring the parameter; `GET /imt/apps`without it keeps working regardless of the flag.&quot;</summary>
+            /// <summary>If `true`, only apps exposing at least one usable **endpoint** are returned: an endpointcounts when it is public and non-deprecated, except that an SDK app&apos;s own author alsocounts their own private (non-public) endpoints of that app. Addon apps can never haveendpoints, so they are always excluded when this is `true`.&quot;Usable&quot; here is narrower than on `GET /imt/endpoints-usable`: this endpoint has no teamcontext to check against, so it does **not** consider whether a team connection exists foran endpoint&apos;s required account/scope. An app can therefore appear in this list and stillresolve to zero endpoints from `GET /imt/endpoints-usable` until the caller creates amatching connection — that&apos;s the intended flow for a &quot;pick an app, then connect it&quot; UI.Composes with `scoredSearch`: the same set of apps is returned either way, since theendpoint filter is applied before scoring — the scored shape just does not carry the`endpoints` field.Requires the `is_endpoints_execution_enabled` GrowthBook flag (the same flag gating`GET /imt/endpoints-usable`). If the flag is disabled, passing `supportsEndpoints=true`returns a `400` (`IM903`) instead of silently ignoring the parameter; `GET /imt/apps`without it keeps working regardless of the flag.</summary>
             [QueryParameter("supportsEndpoints")]
             public bool? SupportsEndpoints { get; set; }
             /// <summary>Team whose usage drives team-level module scoring. **Required when `scoredSearch=true`**;ignored otherwise.</summary>

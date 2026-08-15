@@ -80,7 +80,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string ServiceName { get; set; }
 #endif
-        /// <summary>&quot;The SSO authentication type configured for the organization. Possible values: &apos;oauth2&apos;, &apos;saml2&apos;, &apos;none&apos;, or null if not configured.&quot;</summary>
+        /// <summary>The SSO authentication type configured for the organization. Possible values: &apos;oauth2&apos;, &apos;saml2&apos;, &apos;none&apos;, or null if not configured.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SsoType { get; set; }

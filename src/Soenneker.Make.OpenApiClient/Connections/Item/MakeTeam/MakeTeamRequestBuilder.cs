@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Connections.Item.MakeTeam
         {
         }
         /// <summary>
-        /// &quot;Makes a locked connection visible to the whole team again (`visibility: team`) and clears the connection&apos;sentire access list. Only an admin of the locked connection can perform the flip. The connection&apos;s authoris not changed.The operation is idempotent — flipping an already team-visible connection succeeds, provided the caller hasthe `account edit` permission; any residual entries on the connection&apos;s access list are still cleared.Requires the *Locked connections* feature to be enabled for the organization.&quot;
+        /// Makes a locked connection visible to the whole team again (`visibility: team`) and clears the connection&apos;sentire access list. Only an admin of the locked connection can perform the flip. The connection&apos;s authoris not changed.The operation is idempotent — flipping an already team-visible connection succeeds, provided the caller hasthe `account edit` permission; any residual entries on the connection&apos;s access list are still cleared.Requires the *Locked connections* feature to be enabled for the organization.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdMakeTeam200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Connections.Item.MakeTeam
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdMakeTeam200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdMakeTeam200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Makes a locked connection visible to the whole team again (`visibility: team`) and clears the connection&apos;sentire access list. Only an admin of the locked connection can perform the flip. The connection&apos;s authoris not changed.The operation is idempotent — flipping an already team-visible connection succeeds, provided the caller hasthe `account edit` permission; any residual entries on the connection&apos;s access list are still cleared.Requires the *Locked connections* feature to be enabled for the organization.&quot;
+        /// Makes a locked connection visible to the whole team again (`visibility: team`) and clears the connection&apos;sentire access list. Only an admin of the locked connection can perform the flip. The connection&apos;s authoris not changed.The operation is idempotent — flipping an already team-visible connection succeeds, provided the caller hasthe `account edit` permission; any residual entries on the connection&apos;s access list are still cleared.Requires the *Locked connections* feature to be enabled for the organization.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

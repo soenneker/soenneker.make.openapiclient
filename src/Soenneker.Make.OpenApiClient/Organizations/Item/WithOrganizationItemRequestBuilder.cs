@@ -154,7 +154,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item
         {
         }
         /// <summary>
-        /// &quot;Deletes the organization with the specified `organizationId`. Make also deletes all the teams in the organization.  You can only delete organizations that are associated with your current Make zone. Your current Make zone is specified in the API call URL. Currently, it is either:  - `eu1.make.com`  - `us1.make.com`&quot;
+        /// Deletes the organization with the specified `organizationId`. Make also deletes all the teams in the organization.  You can only delete organizations that are associated with your current Make zone. Your current Make zone is specified in the API call URL. Currently, it is either:  - `eu1.make.com`  - `us1.make.com`
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -210,7 +210,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Deletes the organization with the specified `organizationId`. Make also deletes all the teams in the organization.  You can only delete organizations that are associated with your current Make zone. Your current Make zone is specified in the API call URL. Currently, it is either:  - `eu1.make.com`  - `us1.make.com`&quot;
+        /// Deletes the organization with the specified `organizationId`. Make also deletes all the teams in the organization.  You can only delete organizations that are associated with your current Make zone. Your current Make zone is specified in the API call URL. Currently, it is either:  - `eu1.make.com`  - `us1.make.com`
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -279,7 +279,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item
             return new global::Soenneker.Make.OpenApiClient.Organizations.Item.WithOrganizationItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// &quot;Deletes the organization with the specified `organizationId`. Make also deletes all the teams in the organization.  You can only delete organizations that are associated with your current Make zone. Your current Make zone is specified in the API call URL. Currently, it is either:  - `eu1.make.com`  - `us1.make.com`&quot;
+        /// Deletes the organization with the specified `organizationId`. Make also deletes all the teams in the organization.  You can only delete organizations that are associated with your current Make zone. Your current Make zone is specified in the API call URL. Currently, it is either:  - `eu1.make.com`  - `us1.make.com`
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithOrganizationItemRequestBuilderDeleteQueryParameters 

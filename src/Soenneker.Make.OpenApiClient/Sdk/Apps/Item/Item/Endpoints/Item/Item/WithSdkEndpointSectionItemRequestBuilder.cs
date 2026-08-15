@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints.Item.Item
         {
         }
         /// <summary>
-        /// &quot;Returns the source of one endpoint section as JSONC. Sections are: `api` (the AppRuntime API definition), `scope` (required OAuth scopes), `inputParameters` and `outputParameters` (Forman schema DSL). On approved apps, a pending change supersedes the live value.&quot;
+        /// Returns the source of one endpoint section as JSONC. Sections are: `api` (the AppRuntime API definition), `scope` (required OAuth scopes), `inputParameters` and `outputParameters` (Forman schema DSL). On approved apps, a pending change supersedes the live value.
         /// </summary>
         /// <returns>A <see cref="Stream"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -90,7 +90,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Endpoints.Item.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Returns the source of one endpoint section as JSONC. Sections are: `api` (the AppRuntime API definition), `scope` (required OAuth scopes), `inputParameters` and `outputParameters` (Forman schema DSL). On approved apps, a pending change supersedes the live value.&quot;
+        /// Returns the source of one endpoint section as JSONC. Sections are: `api` (the AppRuntime API definition), `scope` (required OAuth scopes), `inputParameters` and `outputParameters` (Forman schema DSL). On approved apps, a pending change supersedes the live value.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

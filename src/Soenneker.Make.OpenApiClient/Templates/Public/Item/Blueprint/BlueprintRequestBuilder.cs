@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Templates.Public.Item.Blueprint
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class BlueprintRequestBuilderGetQueryParameters 
         {
-            /// <summary>&quot;The unique ID of the public version of the approved template. It can be retrieved from the [List templates](/api-reference/templates/get--templates.md) endpoint as one of the following IDs: `publishedId` for all published templates that are waiting for approval or not, or `approvedId` for approved templates.&quot;</summary>
+            /// <summary>The unique ID of the public version of the approved template. It can be retrieved from the [List templates](/api-reference/templates/get--templates.md) endpoint as one of the following IDs: `publishedId` for all published templates that are waiting for approval or not, or `approvedId` for approved templates.</summary>
             [QueryParameter("templatePublicId")]
             public int? TemplatePublicId { get; set; }
         }

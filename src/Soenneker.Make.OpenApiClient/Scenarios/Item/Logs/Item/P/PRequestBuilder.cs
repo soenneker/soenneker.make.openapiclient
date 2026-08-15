@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Logs.Item.P
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PRequestBuilderGetQueryParameters 
         {
-            /// <summary>&quot;Comma-separated list of optional data sections to include in the response.Supported values: `blueprint`, `events`, `bundles`. Unknown values are silently ignored.&quot;</summary>
+            /// <summary>Comma-separated list of optional data sections to include in the response.Supported values: `blueprint`, `events`, `bundles`. Unknown values are silently ignored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("include")]

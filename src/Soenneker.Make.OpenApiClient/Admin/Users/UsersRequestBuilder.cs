@@ -77,7 +77,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Creates a new user. Specify the user&apos;s `name` and `email` in the request body.You have to either send an invitation mail to the user with the `sendEmail: true` or you have to specify the user password in the `password` field in the request body. If you send the invitation mail, the mail contains automatically generated password. The user has to change their password right after logging in.You can also set the user&apos;s country, locale and timezone with the request body parameters. If you don&apos;t specify the user&apos;s country, locale or timezone Make uses your account&apos;s country, locale or timezone.&quot;
+        /// Creates a new user. Specify the user&apos;s `name` and `email` in the request body.You have to either send an invitation mail to the user with the `sendEmail: true` or you have to specify the user password in the `password` field in the request body. If you send the invitation mail, the mail contains automatically generated password. The user has to change their password right after logging in.You can also set the user&apos;s country, locale and timezone with the request body parameters. If you don&apos;t specify the user&apos;s country, locale or timezone Make uses your account&apos;s country, locale or timezone.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -116,7 +116,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Creates a new user. Specify the user&apos;s `name` and `email` in the request body.You have to either send an invitation mail to the user with the `sendEmail: true` or you have to specify the user password in the `password` field in the request body. If you send the invitation mail, the mail contains automatically generated password. The user has to change their password right after logging in.You can also set the user&apos;s country, locale and timezone with the request body parameters. If you don&apos;t specify the user&apos;s country, locale or timezone Make uses your account&apos;s country, locale or timezone.&quot;
+        /// Creates a new user. Specify the user&apos;s `name` and `email` in the request body.You have to either send an invitation mail to the user with the `sendEmail: true` or you have to specify the user password in the `password` field in the request body. If you send the invitation mail, the mail contains automatically generated password. The user has to change their password right after logging in.You can also set the user&apos;s country, locale and timezone with the request body parameters. If you don&apos;t specify the user&apos;s country, locale or timezone Make uses your account&apos;s country, locale or timezone.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

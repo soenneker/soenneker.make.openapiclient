@@ -14,7 +14,7 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;Scenarios for the team. In full mode, only non-deleted scenarios are included. In delta mode, soft-deleted scenarios are also returned with isDeleted: true.&quot;</summary>
+        /// <summary>Scenarios for the team. In full mode, only non-deleted scenarios are included. In delta mode, soft-deleted scenarios are also returned with isDeleted: true.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Make.OpenApiClient.Models.GetInternalScenariosListForTeam200ResponseScenariosItem>? Scenarios { get; set; }

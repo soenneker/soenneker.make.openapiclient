@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Rpcs.Item.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Available sections: api, parameters&lt;br /&gt;&quot;
+        /// Available sections: api, parameters&lt;br /&gt;
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -91,7 +91,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Rpcs.Item.Item
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Available sections: api, parameters&lt;br /&gt;&quot;
+        /// Available sections: api, parameters&lt;br /&gt;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

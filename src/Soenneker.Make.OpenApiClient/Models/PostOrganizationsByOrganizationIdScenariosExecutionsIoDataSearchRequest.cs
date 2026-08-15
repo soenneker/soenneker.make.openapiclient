@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public List<string> ExecutionIds { get; set; }
 #endif
-        /// <summary>&quot;Lower bound of the time window, as a millisecond Unix timestamp.Applied at **UTC-day granularity**: the calendar day of this value is the earliest day searched in the IO-data index, but records earlier within that same day may still be returned. Execution metadata joins use this same bound expanded by one day on each side.&quot;</summary>
+        /// <summary>Lower bound of the time window, as a millisecond Unix timestamp.Applied at **UTC-day granularity**: the calendar day of this value is the earliest day searched in the IO-data index, but records earlier within that same day may still be returned. Execution metadata joins use this same bound expanded by one day on each side.</summary>
         public int? From { get; set; }
         /// <summary>Restrict the search to executions that used any of the listed module names.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -70,7 +70,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>Restrict the search to a single team within the organization. When omitted, all teams the authenticated user has access to are searched.</summary>
         public int? TeamId { get; set; }
-        /// <summary>&quot;Upper bound of the time window, as a millisecond Unix timestamp.Applied at **UTC-day granularity**: the calendar day of this value is the latest day searched in the IO-data index, but records later within that same day may still be returned. Execution metadata joins use this same bound expanded by one day on each side.&quot;</summary>
+        /// <summary>Upper bound of the time window, as a millisecond Unix timestamp.Applied at **UTC-day granularity**: the calendar day of this value is the latest day searched in the IO-data index, but records later within that same day may still be returned. Execution metadata joins use this same bound expanded by one day on each side.</summary>
         public int? To { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearchRequest"/> and sets the default values.

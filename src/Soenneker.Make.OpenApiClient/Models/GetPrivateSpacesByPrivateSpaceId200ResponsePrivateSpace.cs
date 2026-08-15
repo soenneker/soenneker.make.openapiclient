@@ -94,8 +94,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string TransferLimit { get; set; }
 #endif
-        /// <summary>The type of the space. Always `personal`.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200ResponsePrivateSpaceType? Type { get; set; }
+        /// <summary>The type property</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PersonalType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200ResponsePrivateSpace"/> and sets the default values.
         /// </summary>
@@ -137,7 +137,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "privateSpaceOwnerName", n => { PrivateSpaceOwnerName = n.GetStringValue(); } },
                 { "transfer", n => { Transfer = n.GetStringValue(); } },
                 { "transferLimit", n => { TransferLimit = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200ResponsePrivateSpaceType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PersonalType>(); } },
             };
         }
         /// <summary>
@@ -163,7 +163,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("privateSpaceOwnerName", PrivateSpaceOwnerName);
             writer.WriteStringValue("transfer", Transfer);
             writer.WriteStringValue("transferLimit", TransferLimit);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200ResponsePrivateSpaceType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PersonalType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

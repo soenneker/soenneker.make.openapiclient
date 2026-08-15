@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Label { get; set; }
 #endif
-        /// <summary>&quot;The options available to users when filling in the item data. For the data types `dropdown` and `multiselect`, fill in an object like `{\&quot;options\&quot;:[{\&quot;value\&quot;: \&quot;Marketing\&quot;}, {\&quot;value\&quot;: \&quot;Sales\&quot;}]}`.You can omit the `options` parameter for the rest of the data types. &quot;</summary>
+        /// <summary>The options available to users when filling in the item data. For the data types `dropdown` and `multiselect`, fill in an object like `{&quot;options&quot;:[{&quot;value&quot;: &quot;Marketing&quot;}, {&quot;value&quot;: &quot;Sales&quot;}]}`.You can omit the `options` parameter for the rest of the data types. </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemIdRequestOptions? Options { get; set; }

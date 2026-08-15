@@ -53,7 +53,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
         {
         }
         /// <summary>
-        /// &quot;Deletes incomplete executions of the specified scenario. Specify the incomplete execution ID values in the `ids` array in the request body to delete the specified incomplete executions.You can set the `\&quot;all\&quot;: true` pair to delete all incomplete executions of the specified scenario. If you use the `\&quot;all\&quot;: true` parameter, you have to specify the `confirmed=true` query parameter to confirm the deletion. Otherwise, the API call returns the error IM004 (406).Add the `exceptIds` array to the request body to specify items you don&apos;t want to delete.You get an error if you try to delete incomplete executions which are being processed. The rest of the specified items is still deleted.&quot;
+        /// Deletes incomplete executions of the specified scenario. Specify the incomplete execution ID values in the `ids` array in the request body to delete the specified incomplete executions.You can set the `&quot;all&quot;: true` pair to delete all incomplete executions of the specified scenario. If you use the `&quot;all&quot;: true` parameter, you have to specify the `confirmed=true` query parameter to confirm the deletion. Otherwise, the API call returns the error IM004 (406).Add the `exceptIds` array to the request body to specify items you don&apos;t want to delete.You get an error if you try to delete incomplete executions which are being processed. The rest of the specified items is still deleted.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -91,7 +91,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDlqs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDlqs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Deletes incomplete executions of the specified scenario. Specify the incomplete execution ID values in the `ids` array in the request body to delete the specified incomplete executions.You can set the `\&quot;all\&quot;: true` pair to delete all incomplete executions of the specified scenario. If you use the `\&quot;all\&quot;: true` parameter, you have to specify the `confirmed=true` query parameter to confirm the deletion. Otherwise, the API call returns the error IM004 (406).Add the `exceptIds` array to the request body to specify items you don&apos;t want to delete.You get an error if you try to delete incomplete executions which are being processed. The rest of the specified items is still deleted.&quot;
+        /// Deletes incomplete executions of the specified scenario. Specify the incomplete execution ID values in the `ids` array in the request body to delete the specified incomplete executions.You can set the `&quot;all&quot;: true` pair to delete all incomplete executions of the specified scenario. If you use the `&quot;all&quot;: true` parameter, you have to specify the `confirmed=true` query parameter to confirm the deletion. Otherwise, the API call returns the error IM004 (406).Add the `exceptIds` array to the request body to specify items you don&apos;t want to delete.You get an error if you try to delete incomplete executions which are being processed. The rest of the specified items is still deleted.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -141,7 +141,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
             return new global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// &quot;Deletes incomplete executions of the specified scenario. Specify the incomplete execution ID values in the `ids` array in the request body to delete the specified incomplete executions.You can set the `\&quot;all\&quot;: true` pair to delete all incomplete executions of the specified scenario. If you use the `\&quot;all\&quot;: true` parameter, you have to specify the `confirmed=true` query parameter to confirm the deletion. Otherwise, the API call returns the error IM004 (406).Add the `exceptIds` array to the request body to specify items you don&apos;t want to delete.You get an error if you try to delete incomplete executions which are being processed. The rest of the specified items is still deleted.&quot;
+        /// Deletes incomplete executions of the specified scenario. Specify the incomplete execution ID values in the `ids` array in the request body to delete the specified incomplete executions.You can set the `&quot;all&quot;: true` pair to delete all incomplete executions of the specified scenario. If you use the `&quot;all&quot;: true` parameter, you have to specify the `confirmed=true` query parameter to confirm the deletion. Otherwise, the API call returns the error IM004 (406).Add the `exceptIds` array to the request body to specify items you don&apos;t want to delete.You get an error if you try to delete incomplete executions which are being processed. The rest of the specified items is still deleted.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DlqsRequestBuilderDeleteQueryParameters 
@@ -196,7 +196,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
             /// <summary>Filters the incomplete executions with a payload size (in bytes) less than or equal to this value.</summary>
             [QueryParameter("sizeTo")]
             public int? SizeTo { get; set; }
-            /// <summary>&quot;Filters the incomplete executions by their derived status: `resolved` (already retried successfully), `scheduled` (will be automatically retried in the future), `inprogress` (currently being retried), or `unresolved` (none of the above).&quot;</summary>
+            /// <summary>Filters the incomplete executions by their derived status: `resolved` (already retried successfully), `scheduled` (will be automatically retried in the future), `inprogress` (currently being retried), or `unresolved` (none of the above).</summary>
             [QueryParameter("status")]
             public global::Soenneker.Make.OpenApiClient.Models.GetDlqsStatusParameter? Status { get; set; }
         }

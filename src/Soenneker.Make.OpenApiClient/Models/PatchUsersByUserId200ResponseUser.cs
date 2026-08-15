@@ -72,7 +72,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>Whether the user is eligible for contact support. False if all user&apos;s organizations are on Free plan and account is older than 90 days.</summary>
         public bool? SupportEligible { get; set; }
-        /// <summary>&quot;Two-factor authentication status:- 0: No TFA set- 1: TFA active (authenticator app)- 2: External authentication (Social SSO)It is only supported on Make&apos;s public cloud instances.&quot;</summary>
+        /// <summary>Two-factor authentication status:- 0: No TFA set- 1: TFA active (authenticator app)- 2: External authentication (Social SSO)It is only supported on Make&apos;s public cloud instances.</summary>
         public int? TfaStatus { get; set; }
         /// <summary>The timezoneId property</summary>
         public int? TimezoneId { get; set; }

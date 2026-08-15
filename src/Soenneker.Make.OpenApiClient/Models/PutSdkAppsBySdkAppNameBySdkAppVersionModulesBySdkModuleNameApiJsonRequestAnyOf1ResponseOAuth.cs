@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string TokenSecret { get; set; }
 #endif
-        /// <summary>&quot;Specifies how OAuth parameters are sent: via query params, header or in a POST body.&quot;</summary>
+        /// <summary>Specifies how OAuth parameters are sent: via query params, header or in a POST body.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseOAuthTransportMethod? TransportMethod { get; set; }

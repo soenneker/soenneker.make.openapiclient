@@ -14,7 +14,7 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;Number representing the type of the custom variable. The mapping of `typeId` and variable types is as follows:- 1: `number`, - 2: `string`, - 3: `boolean`, - 4: `date`in ISO 8601 compliant format `YYYY-MM-DDTHH:mm:ss.sssZ`. For example: `1998-03-06T12:31:00.000Z`.&quot;</summary>
+        /// <summary>Number representing the type of the custom variable. The mapping of `typeId` and variable types is as follows:- 1: `number`, - 2: `string`, - 3: `boolean`, - 4: `date`in ISO 8601 compliant format `YYYY-MM-DDTHH:mm:ss.sssZ`. For example: `1998-03-06T12:31:00.000Z`.</summary>
         public double? TypeId { get; set; }
         /// <summary>Value assigned to the custom variable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

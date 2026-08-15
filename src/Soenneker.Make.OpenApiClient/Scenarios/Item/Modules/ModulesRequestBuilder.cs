@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Scenarios.Item.Modules.Item;
+using Soenneker.Make.OpenApiClient.Scenarios.Item.Modules.Operations;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,6 +16,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Modules
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ModulesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The operations property</summary>
+        public global::Soenneker.Make.OpenApiClient.Scenarios.Item.Modules.Operations.OperationsRequestBuilder Operations
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Scenarios.Item.Modules.Operations.OperationsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.scenarios.item.modules.item collection</summary>
         /// <param name="position">The unique ID of the scenario module. It is available in the scenario blueprint that can be retrieved from the [Get scenario blueprint](/api-reference/scenarios/blueprint/get--scenarios--scenarioid--blueprint.md) endpoint.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Scenarios.Item.Modules.Item.WithModuleItemRequestBuilder"/></returns>

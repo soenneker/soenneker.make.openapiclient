@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Teams.Item
         {
         }
         /// <summary>
-        /// &quot;Deletes the team with the specified `teamId`. Make removes all users from the deleted team and deletes all data associated with the team, such as data stores and scenarios.The team won&apos;t be visible for the users. However, if you run the API call `GET /admin/teams` the response will contain also the deleted team with the `deleted: true` pair. Similarly, the team will remain visible in the Administration UI.&quot;
+        /// Deletes the team with the specified `teamId`. Make removes all users from the deleted team and deletes all data associated with the team, such as data stores and scenarios.The team won&apos;t be visible for the users. However, if you run the API call `GET /admin/teams` the response will contain also the deleted team with the `deleted: true` pair. Similarly, the team will remain visible in the Administration UI.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteAdminTeamsByTeamId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Teams.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchAdminTeamsByTeamId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchAdminTeamsByTeamId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Deletes the team with the specified `teamId`. Make removes all users from the deleted team and deletes all data associated with the team, such as data stores and scenarios.The team won&apos;t be visible for the users. However, if you run the API call `GET /admin/teams` the response will contain also the deleted team with the `deleted: true` pair. Similarly, the team will remain visible in the Administration UI.&quot;
+        /// Deletes the team with the specified `teamId`. Make removes all users from the deleted team and deletes all data associated with the team, such as data stores and scenarios.The team won&apos;t be visible for the users. However, if you run the API call `GET /admin/teams` the response will contain also the deleted team with the `deleted: true` pair. Similarly, the team will remain visible in the Administration UI.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

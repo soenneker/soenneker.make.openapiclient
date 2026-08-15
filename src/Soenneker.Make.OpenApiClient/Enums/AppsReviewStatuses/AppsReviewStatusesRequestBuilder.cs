@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Enums.AppsReviewStatuses
         {
         }
         /// <summary>
-        /// &quot;Gets the list of statuses that Make assigns to custom apps.  - `requestAccepted`: Make has received the request for a custom app review. - `inProgress`: The custom app review is in progress. - `feedbackSent`: The Make app developers have sent their feedback to the developer of the custom app. - `completed`: - `waitingForRelease`: - `declined`: The custom app publishing has been declined by Make. The reasons for that could be: &quot;
+        /// Gets the list of statuses that Make assigns to custom apps.  - `requestAccepted`: Make has received the request for a custom app review. - `inProgress`: The custom app review is in progress. - `feedbackSent`: The Make app developers have sent their feedback to the developer of the custom app. - `completed`: - `waitingForRelease`: - `declined`: The custom app publishing has been declined by Make. The reasons for that could be: 
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Enums.AppsReviewStatuses
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Gets the list of statuses that Make assigns to custom apps.  - `requestAccepted`: Make has received the request for a custom app review. - `inProgress`: The custom app review is in progress. - `feedbackSent`: The Make app developers have sent their feedback to the developer of the custom app. - `completed`: - `waitingForRelease`: - `declined`: The custom app publishing has been declined by Make. The reasons for that could be: &quot;
+        /// Gets the list of statuses that Make assigns to custom apps.  - `requestAccepted`: Make has received the request for a custom app review. - `inProgress`: The custom app review is in progress. - `feedbackSent`: The Make app developers have sent their feedback to the developer of the custom app. - `completed`: - `waitingForRelease`: - `declined`: The custom app publishing has been declined by Make. The reasons for that could be: 
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

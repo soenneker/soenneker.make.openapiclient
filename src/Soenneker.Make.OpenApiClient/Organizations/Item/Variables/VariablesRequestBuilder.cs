@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Variables
         {
         }
         /// <summary>
-        /// &quot;Retrieves the collection of organization variables. The response contains all organization variables if your account has the custom variables feature available. Otherwise, the response contains only Make system variables.Check availability of the custom variables feature with the API call `GET /organizations/{organizationId}`. If the response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
+        /// Retrieves the collection of organization variables. The response contains all organization variables if your account has the custom variables feature available. Otherwise, the response contains only Make system variables.Check availability of the custom variables feature with the API call `GET /organizations/{organizationId}`. If the response contains `&quot;customVariables&quot;: true` pair in the `license` object then you have access to the custom variables feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Variables
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Creates new organization variable. You can check the availability of the custom variables feature with the API call `GET /organizations/{organizationId}`. If the response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.A successful response contains all information about the new variable. If you don&apos;t have the custom variables feature available then the API call returns the error 404.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
+        /// Creates new organization variable. You can check the availability of the custom variables feature with the API call `GET /organizations/{organizationId}`. If the response contains `&quot;customVariables&quot;: true` pair in the `license` object then you have access to the custom variables feature.A successful response contains all information about the new variable. If you don&apos;t have the custom variables feature available then the API call returns the error 404.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdVariables200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Variables
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Retrieves the collection of organization variables. The response contains all organization variables if your account has the custom variables feature available. Otherwise, the response contains only Make system variables.Check availability of the custom variables feature with the API call `GET /organizations/{organizationId}`. If the response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
+        /// Retrieves the collection of organization variables. The response contains all organization variables if your account has the custom variables feature available. Otherwise, the response contains only Make system variables.Check availability of the custom variables feature with the API call `GET /organizations/{organizationId}`. If the response contains `&quot;customVariables&quot;: true` pair in the `license` object then you have access to the custom variables feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -104,7 +104,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Variables
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Creates new organization variable. You can check the availability of the custom variables feature with the API call `GET /organizations/{organizationId}`. If the response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.A successful response contains all information about the new variable. If you don&apos;t have the custom variables feature available then the API call returns the error 404.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
+        /// Creates new organization variable. You can check the availability of the custom variables feature with the API call `GET /organizations/{organizationId}`. If the response contains `&quot;customVariables&quot;: true` pair in the `license` object then you have access to the custom variables feature.A successful response contains all information about the new variable. If you don&apos;t have the custom variables feature available then the API call returns the error 404.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

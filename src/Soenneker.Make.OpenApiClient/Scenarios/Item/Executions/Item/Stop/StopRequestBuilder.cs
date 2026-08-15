@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Executions.Item.Stop
         {
         }
         /// <summary>
-        /// &quot;Stops a running execution. Use `force: true` to immediately terminate the execution without waiting for the current module to finish.&quot;
+        /// Stops a running execution. Use `force: true` to immediately terminate the execution without waiting for the current module to finish.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdExecutionsByExecutionIdStop200ResponseSchema"/></returns>
         /// <param name="body">The request body</param>
@@ -54,7 +54,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Executions.Item.Stop
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdExecutionsByExecutionIdStop200ResponseSchema>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdExecutionsByExecutionIdStop200ResponseSchema.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Stops a running execution. Use `force: true` to immediately terminate the execution without waiting for the current module to finish.&quot;
+        /// Stops a running execution. Use `force: true` to immediately terminate the execution without waiting for the current module to finish.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

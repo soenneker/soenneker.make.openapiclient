@@ -97,7 +97,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item.Affiliate.Commissions
             public int? Pgoffset { get; set; }
             /// <summary>The value that will be used to sort returned entities by.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateCommissionsPgSortByParameter? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.IdPgSortBy? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateCommissionsPgSortDirParameter? PgsortDir { get; set; }

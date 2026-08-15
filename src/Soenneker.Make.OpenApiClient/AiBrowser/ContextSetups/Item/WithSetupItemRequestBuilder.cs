@@ -40,7 +40,7 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item
         {
         }
         /// <summary>
-        /// &quot;Cancels a running browser context setup flow: releases the remote browser session and, for acreate flow, deletes the not-yet-adopted browser context. Only the user who started the flowcan cancel it.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.&quot;
+        /// Cancels a running browser context setup flow: releases the remote browser session and, for acreate flow, deletes the not-yet-adopted browser context. Only the user who started the flowcan cancel it.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteAiBrowserContextSetupsBySetupId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -76,7 +76,7 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Cancels a running browser context setup flow: releases the remote browser session and, for acreate flow, deletes the not-yet-adopted browser context. Only the user who started the flowcan cancel it.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.&quot;
+        /// Cancels a running browser context setup flow: releases the remote browser session and, for acreate flow, deletes the not-yet-adopted browser context. Only the user who started the flowcan cancel it.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

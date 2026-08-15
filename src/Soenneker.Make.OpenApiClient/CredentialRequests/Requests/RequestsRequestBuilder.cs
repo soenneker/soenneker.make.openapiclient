@@ -41,7 +41,7 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Requests
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RequestsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/credential-requests/requests?teamId={teamId}{&cols*,makeProviderId*,name*,status*,userId*}", pathParameters)
+        public RequestsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/credential-requests/requests{?cols*,makeProviderId*,name*,status*,userId*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Requests
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RequestsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/credential-requests/requests?teamId={teamId}{&cols*,makeProviderId*,name*,status*,userId*}", rawUrl)
+        public RequestsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/credential-requests/requests{?cols*,makeProviderId*,name*,status*,userId*}", rawUrl)
         {
         }
         /// <summary>
@@ -71,6 +71,27 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Requests
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequests200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequests200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
+        /// Creates a new request for Credentials. Supports two flows: 1) Flow for new Make users, 2) Flow for existing Make users.
+        /// </summary>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequests200Response"/></returns>
+        /// <param name="body">Request body for creating a new Credential Request. Supports two provider flows - inviting a new user or referencing an existing Make user.</param>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("")]
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequests200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequests200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPostRequestInformation(body, requestConfiguration);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequests200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequests200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
         /// Retrieves a list of Credential Requests.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
@@ -84,9 +105,32 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Requests
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Requests.RequestsRequestBuilder.RequestsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/credential-requests/requests?teamId={teamId}{&cols*,makeProviderId*,name*,status*,userId*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// Creates a new request for Credentials. Supports two flows: 1) Flow for new Make users, 2) Flow for existing Make users.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">Request body for creating a new Credential Request. Supports two provider flows - inviting a new user or referencing an existing Make user.</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("")]
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
         /// <summary>

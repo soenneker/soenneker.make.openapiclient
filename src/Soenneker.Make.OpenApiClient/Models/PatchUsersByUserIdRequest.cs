@@ -26,7 +26,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The location ID. It sets the Make environment date formats, hour formats, decimal separators, etc. The list of all locales can be retrieved from the `GET /enums/locales` endpoint.</summary>
         public int? LocaleId { get; set; }
-        /// <summary>&quot;The name of the user. The name must be at most 250 characters long and does not need to be unique. The name may contain only letters, numbers, spaces, and the following special characters: `&apos;`, `-`, `.`, `(`, `)`, `*`, `+`, `,`, `@`, `_`, `/`. The name must not start or end with a space.&quot;</summary>
+        /// <summary>The name of the user. The name must be at most 250 characters long and does not need to be unique. The name may contain only letters, numbers, spaces, and the following special characters: `&apos;`, `-`, `.`, `(`, `)`, `*`, `+`, `,`, `@`, `_`, `/`. The name must not start or end with a space.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

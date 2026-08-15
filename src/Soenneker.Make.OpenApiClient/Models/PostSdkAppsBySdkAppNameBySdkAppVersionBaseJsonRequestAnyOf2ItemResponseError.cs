@@ -22,13 +22,13 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Message { get; set; }
 #endif
-        /// <summary>Union discriminator</summary>
+        /// <summary>The type property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Type { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf2Type? Type { get; set; }
 #nullable restore
 #else
-        public string Type { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf2Type Type { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseError"/> and sets the default values.
@@ -56,7 +56,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "message", n => { Message = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf2Type>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf2Type.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("message", Message);
-            writer.WriteStringValue("type", Type);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf2Type>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

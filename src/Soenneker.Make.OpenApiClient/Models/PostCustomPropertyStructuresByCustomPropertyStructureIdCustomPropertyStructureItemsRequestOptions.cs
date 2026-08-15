@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// &quot;The options available to users when filling in the item data. For the data types `dropdown` and `multiselect`, fill in an object like `{\&quot;options\&quot;:[{\&quot;value\&quot;: \&quot;Marketing\&quot;}, {\&quot;value\&quot;: \&quot;Sales\&quot;}]}`.You can omit the `options` parameter for the rest of the data types. &quot;
+    /// The options available to users when filling in the item data. For the data types `dropdown` and `multiselect`, fill in an object like `{&quot;options&quot;:[{&quot;value&quot;: &quot;Marketing&quot;}, {&quot;value&quot;: &quot;Sales&quot;}]}`.You can omit the `options` parameter for the rest of the data types. 
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItemsRequestOptions : IAdditionalDataHolder, IParsable

@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Hooks.Item.Uid
         {
         }
         /// <summary>
-        /// &quot;Updates the external account id associated with a hook using ISC authorization. Passing `null` clears the external account id. Only the Executor may call this endpoint — any other caller is rejected with `SC500`, since reaching this route is an integration bug rather than a client-facing access denial. Note: the underlying procedure does not check hook existence up front — an unknown `hookId` fails with `IM002` (its permission check runs against a null team) rather than a dedicated not-found error.&quot;
+        /// Updates the external account id associated with a hook using ISC authorization. Passing `null` clears the external account id. Only the Executor may call this endpoint — any other caller is rejected with `SC500`, since reaching this route is an integration bug rather than a client-facing access denial. Note: the underlying procedure does not check hook existence up front — an unknown `hookId` fails with `IM002` (its permission check runs against a null team) rather than a dedicated not-found error.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutInternalHooksByHookIdUid200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -65,7 +65,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Hooks.Item.Uid
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutInternalHooksByHookIdUid200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutInternalHooksByHookIdUid200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Updates the external account id associated with a hook using ISC authorization. Passing `null` clears the external account id. Only the Executor may call this endpoint — any other caller is rejected with `SC500`, since reaching this route is an integration bug rather than a client-facing access denial. Note: the underlying procedure does not check hook existence up front — an unknown `hookId` fails with `IM002` (its permission check runs against a null team) rather than a dedicated not-found error.&quot;
+        /// Updates the external account id associated with a hook using ISC authorization. Passing `null` clears the external account id. Only the Executor may call this endpoint — any other caller is rejected with `SC500`, since reaching this route is an integration bug rather than a client-facing access denial. Note: the underlying procedure does not check hook existence up front — an unknown `hookId` fails with `IM002` (its permission check runs against a null team) rather than a dedicated not-found error.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

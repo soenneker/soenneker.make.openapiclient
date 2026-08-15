@@ -7,28 +7,32 @@ using System.IO;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
-    /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf2"/>
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class GetScenariosByScenarioIdRecovery200Response : IComposedTypeWrapper, IParsable
+    #pragma warning disable CS1591
+    public partial class GetScenariosByScenarioIdRecovery200Response : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1"/></summary>
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The blueprint of the scenario recovery snapshot</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1? GetScenariosByScenarioIdRecovery200ResponseOneOf1 { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseBlueprint? Blueprint { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1 GetScenariosByScenarioIdRecovery200ResponseOneOf1 { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseBlueprint Blueprint { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf2"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf2? GetScenariosByScenarioIdRecovery200ResponseOneOf2 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf2 GetScenariosByScenarioIdRecovery200ResponseOneOf2 { get; set; }
-#endif
+        /// <summary>Timestamp when the scenario recovery snapshot was created</summary>
+        public DateTimeOffset? CreatedAt { get; set; }
+        /// <summary>Status indicating no scenario recovery snapshot exists</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.NotFoundStatus? Status { get; set; }
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response"/> and sets the default values.
+        /// </summary>
+        public GetScenariosByScenarioIdRecovery200Response()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -37,17 +41,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
-            var result = new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response();
-            if("GetScenariosByScenarioIdRecovery200ResponseOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.GetScenariosByScenarioIdRecovery200ResponseOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1();
-            }
-            else if("GetScenariosByScenarioIdRecovery200ResponseOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.GetScenariosByScenarioIdRecovery200ResponseOneOf2 = new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf2();
-            }
-            return result;
+            return new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,15 +49,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(GetScenariosByScenarioIdRecovery200ResponseOneOf1 != null)
+            return new Dictionary<string, Action<IParseNode>>
             {
-                return GetScenariosByScenarioIdRecovery200ResponseOneOf1.GetFieldDeserializers();
-            }
-            else if(GetScenariosByScenarioIdRecovery200ResponseOneOf2 != null)
-            {
-                return GetScenariosByScenarioIdRecovery200ResponseOneOf2.GetFieldDeserializers();
-            }
-            return new Dictionary<string, Action<IParseNode>>();
+                { "blueprint", n => { Blueprint = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseBlueprint>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseBlueprint.CreateFromDiscriminatorValue); } },
+                { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.NotFoundStatus>(); } },
+            };
         }
         /// <summary>
         /// Serializes information the current object
@@ -72,14 +63,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(GetScenariosByScenarioIdRecovery200ResponseOneOf1 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1>(null, GetScenariosByScenarioIdRecovery200ResponseOneOf1);
-            }
-            else if(GetScenariosByScenarioIdRecovery200ResponseOneOf2 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf2>(null, GetScenariosByScenarioIdRecovery200ResponseOneOf2);
-            }
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseBlueprint>("blueprint", Blueprint);
+            writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.NotFoundStatus>("status", Status);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

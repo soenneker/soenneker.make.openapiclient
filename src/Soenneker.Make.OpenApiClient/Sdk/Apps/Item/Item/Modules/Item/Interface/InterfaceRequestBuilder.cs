@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Modules.Item.Interface
         {
         }
         /// <summary>
-        /// &quot;Available sections: api, epoch, parameters, expect, interface, samples, scope&lt;br /&gt;&quot;
+        /// Available sections: api, epoch, parameters, expect, interface, samples, scope&lt;br /&gt;
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -54,7 +54,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Modules.Item.Interface
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Available sections: api, epoch, parameters, expect, interface, samples, scope&lt;br /&gt;&quot;
+        /// Available sections: api, epoch, parameters, expect, interface, samples, scope&lt;br /&gt;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

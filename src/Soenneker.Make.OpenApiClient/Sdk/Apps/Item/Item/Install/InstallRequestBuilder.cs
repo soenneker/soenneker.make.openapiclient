@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Install
         {
         }
         /// <summary>
-        /// &quot;Available sections: base, groups, install, installSpec&lt;br /&gt;&quot;
+        /// Available sections: base, groups, install, installSpec&lt;br /&gt;
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionInstall200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -54,7 +54,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Install
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionInstall200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionInstall200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Available sections: base, groups, install, installSpec&lt;br /&gt;&quot;
+        /// Available sections: base, groups, install, installSpec&lt;br /&gt;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

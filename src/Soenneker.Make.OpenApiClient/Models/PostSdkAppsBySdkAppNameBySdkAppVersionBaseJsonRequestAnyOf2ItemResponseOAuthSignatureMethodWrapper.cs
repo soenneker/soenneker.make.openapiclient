@@ -15,7 +15,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The value property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuthSignatureMethodWrapperValue? Value { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.HmacSha1Value? Value { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuthSignatureMethodWrapper"/> and sets the default values.
         /// </summary>
@@ -41,7 +41,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "value", n => { Value = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuthSignatureMethodWrapperValue>(); } },
+                { "value", n => { Value = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.HmacSha1Value>(); } },
             };
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseOAuthSignatureMethodWrapperValue>("value", Value);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.HmacSha1Value>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

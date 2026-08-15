@@ -106,7 +106,7 @@ namespace Soenneker.Make.OpenApiClient.Analytics.Item
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsByOrganizationIdPgSortDirParameter? PgsortDir { get; set; }
-            /// <summary>&quot;You can use the `status` parameter to get analytics data about scenarios with specific scenario statuses. The available scenario statuses are:- `active`: scenario is enabled- `inactive`: scenario is disabled- `invalid`: scenario is disabled due to errors&quot;</summary>
+            /// <summary>You can use the `status` parameter to get analytics data about scenarios with specific scenario statuses. The available scenario statuses are:- `active`: scenario is enabled- `inactive`: scenario is disabled- `invalid`: scenario is disabled due to errors</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("status")]

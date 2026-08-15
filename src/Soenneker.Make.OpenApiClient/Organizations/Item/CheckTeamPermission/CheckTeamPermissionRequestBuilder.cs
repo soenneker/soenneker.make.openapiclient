@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.CheckTeamPermission
         {
         }
         /// <summary>
-        /// &quot;Checks if the current user has a specific team (company) permission on any team within the specified organization.Returns `hasPermission: true` if the user has the permission on at least one team in the organization,otherwise returns `hasPermission: false`.&quot;
+        /// Checks if the current user has a specific team (company) permission on any team within the specified organization.Returns `hasPermission: true` if the user has the permission on at least one team in the organization,otherwise returns `hasPermission: false`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdCheckTeamPermission200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -61,7 +61,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.CheckTeamPermission
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdCheckTeamPermission200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdCheckTeamPermission200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Checks if the current user has a specific team (company) permission on any team within the specified organization.Returns `hasPermission: true` if the user has the permission on at least one team in the organization,otherwise returns `hasPermission: false`.&quot;
+        /// Checks if the current user has a specific team (company) permission on any team within the specified organization.Returns `hasPermission: true` if the user has the permission on at least one team in the organization,otherwise returns `hasPermission: false`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -89,7 +89,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.CheckTeamPermission
             return new global::Soenneker.Make.OpenApiClient.Organizations.Item.CheckTeamPermission.CheckTeamPermissionRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// &quot;Checks if the current user has a specific team (company) permission on any team within the specified organization.Returns `hasPermission: true` if the user has the permission on at least one team in the organization,otherwise returns `hasPermission: false`.&quot;
+        /// Checks if the current user has a specific team (company) permission on any team within the specified organization.Returns `hasPermission: true` if the user has the permission on at least one team in the organization,otherwise returns `hasPermission: false`.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CheckTeamPermissionRequestBuilderGetQueryParameters 

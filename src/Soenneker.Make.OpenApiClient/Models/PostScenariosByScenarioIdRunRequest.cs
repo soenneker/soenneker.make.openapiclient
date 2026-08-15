@@ -14,7 +14,7 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;Url that will be called once the scenario execution finishes. If the run is responsive and finishes within 40 seconds, the url is not called since the result is present in the response. The `callbackUrl` will be called using a `POST` request with the following body:{ \&quot;executionId\&quot;: `executionId`, \&quot;statusUrl\&quot;: \&quot;url to retrieve execution status and outputs via GET\&quot; } &quot;</summary>
+        /// <summary>Url that will be called once the scenario execution finishes. If the run is responsive and finishes within 40 seconds, the url is not called since the result is present in the response. The `callbackUrl` will be called using a `POST` request with the following body:{ &quot;executionId&quot;: `executionId`, &quot;statusUrl&quot;: &quot;url to retrieve execution status and outputs via GET&quot; } </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CallbackUrl { get; set; }

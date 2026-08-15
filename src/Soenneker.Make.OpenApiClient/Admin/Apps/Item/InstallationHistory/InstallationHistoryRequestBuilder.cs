@@ -101,7 +101,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Apps.Item.InstallationHistory
             public bool? PgreturnTotalCount { get; set; }
             /// <summary>Field to sort by.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.Models.GetAdminAppsByAppInstallationHistoryPgSortByParameter? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.CreatedAtPgSortBy? PgsortBy { get; set; }
             /// <summary>Sort direction.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetAdminAppsByAppInstallationHistoryPgSortDirParameter? PgsortDir { get; set; }

@@ -23,7 +23,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string LiveViewUrl { get; set; }
 #endif
         /// <summary>A readable flow is always pending; finished flows respond with `404`.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200ResponseStatus? Status { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PendingStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response"/> and sets the default values.
         /// </summary>
@@ -50,7 +50,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "liveViewUrl", n => { LiveViewUrl = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200ResponseStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PendingStatus>(); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("liveViewUrl", LiveViewUrl);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200ResponseStatus>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PendingStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

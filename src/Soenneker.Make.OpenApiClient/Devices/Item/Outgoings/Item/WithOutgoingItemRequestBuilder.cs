@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Outgoings.Item
         {
         }
         /// <summary>
-        /// &quot;Required scope: devices:read&quot;
+        /// Required scope: devices:read
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdOutgoingsByOutgoingId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Outgoings.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdOutgoingsByOutgoingId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdOutgoingsByOutgoingId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Required scope: devices:read&quot;
+        /// Required scope: devices:read
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

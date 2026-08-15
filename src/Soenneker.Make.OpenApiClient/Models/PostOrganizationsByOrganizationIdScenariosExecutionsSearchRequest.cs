@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string ErrorMessage { get; set; }
 #endif
-        /// <summary>&quot;Lower bound of the time window, as a millisecond Unix timestamp. Defaults to 7 days before `to` when omitted.Applied at **UTC-day granularity**: the calendar day of this value is the earliest day searched, but executions earlier within that same day may still be returned.&quot;</summary>
+        /// <summary>Lower bound of the time window, as a millisecond Unix timestamp. Defaults to 7 days before `to` when omitted.Applied at **UTC-day granularity**: the calendar day of this value is the earliest day searched, but executions earlier within that same day may still be returned.</summary>
         public int? From { get; set; }
         /// <summary>The zero-based index of the page to return.</summary>
         public int? PageIndex { get; set; }
@@ -46,7 +46,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>Restrict the search to a single team within the organization. When omitted, all teams the authenticated user has access to are searched.</summary>
         public int? TeamId { get; set; }
-        /// <summary>&quot;Upper bound of the time window, as a millisecond Unix timestamp. Defaults to the current time when omitted.Applied at **UTC-day granularity**: the calendar day of this value is the latest day searched, but executions later within that same day may still be returned.&quot;</summary>
+        /// <summary>Upper bound of the time window, as a millisecond Unix timestamp. Defaults to the current time when omitted.Applied at **UTC-day granularity**: the calendar day of this value is the latest day searched, but executions later within that same day may still be returned.</summary>
         public int? To { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsSearchRequest"/> and sets the default values.

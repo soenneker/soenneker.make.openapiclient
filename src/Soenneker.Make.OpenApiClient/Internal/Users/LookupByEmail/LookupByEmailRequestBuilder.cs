@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Users.LookupByEmail
         {
         }
         /// <summary>
-        /// &quot;Resolves an email to a Make user id for internal service-to-service communication using ISC authorization. Soft-deleted and suspended users are treated as non-existent. Responds with `userId: null` (not 404) when no active user matches — an unmatched email is an expected outcome, not an error.&quot;
+        /// Resolves an email to a Make user id for internal service-to-service communication using ISC authorization. Soft-deleted and suspended users are treated as non-existent. Responds with `userId: null` (not 404) when no active user matches — an unmatched email is an expected outcome, not an error.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersLookupByEmail200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Users.LookupByEmail
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersLookupByEmail200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersLookupByEmail200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Resolves an email to a Make user id for internal service-to-service communication using ISC authorization. Soft-deleted and suspended users are treated as non-existent. Responds with `userId: null` (not 404) when no active user matches — an unmatched email is an expected outcome, not an error.&quot;
+        /// Resolves an email to a Make user id for internal service-to-service communication using ISC authorization. Soft-deleted and suspended users are treated as non-existent. Responds with `userId: null` (not 404) when no active user matches — an unmatched email is an expected outcome, not an error.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -87,7 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Users.LookupByEmail
             return new global::Soenneker.Make.OpenApiClient.Internal.Users.LookupByEmail.LookupByEmailRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// &quot;Resolves an email to a Make user id for internal service-to-service communication using ISC authorization. Soft-deleted and suspended users are treated as non-existent. Responds with `userId: null` (not 404) when no active user matches — an unmatched email is an expected outcome, not an error.&quot;
+        /// Resolves an email to a Make user id for internal service-to-service communication using ISC authorization. Soft-deleted and suspended users are treated as non-existent. Responds with `userId: null` (not 404) when no active user matches — an unmatched email is an expected outcome, not an error.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class LookupByEmailRequestBuilderGetQueryParameters 

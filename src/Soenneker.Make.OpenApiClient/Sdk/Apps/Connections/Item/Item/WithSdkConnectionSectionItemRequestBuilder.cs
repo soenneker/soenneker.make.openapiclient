@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Item
         {
         }
         /// <summary>
-        /// &quot;Available sections: api, parameters, scopes, scope, install, installSpec&lt;br /&gt;&quot;
+        /// Available sections: api, parameters, scopes, scope, install, installSpec&lt;br /&gt;
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Available sections: api, parameters, scopes, scope, installSpec, install&lt;br /&gt;&quot;
+        /// Available sections: api, parameters, scopes, scope, installSpec, install&lt;br /&gt;
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200Response"/></returns>
         /// <param name="body">The structure of the request body varies depending on the section being updated. It can be a JSON object or array.</param>
@@ -72,7 +72,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Available sections: api, parameters, scopes, scope, install, installSpec&lt;br /&gt;&quot;
+        /// Available sections: api, parameters, scopes, scope, install, installSpec&lt;br /&gt;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -91,7 +91,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item.Item
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Available sections: api, parameters, scopes, scope, installSpec, install&lt;br /&gt;&quot;
+        /// Available sections: api, parameters, scopes, scope, installSpec, install&lt;br /&gt;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The structure of the request body varies depending on the section being updated. It can be a JSON object or array.</param>

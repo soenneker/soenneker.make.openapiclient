@@ -27,7 +27,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The unique ID of the custom role.</summary>
         public int? Id { get; set; }
         /// <summary>The management type of the role. Always `custom_managed` for custom roles.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleId200ResponseRoleManagementType? ManagementType { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.CustomManagedManagementType? ManagementType { get; set; }
         /// <summary>The name of the custom role.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -72,7 +72,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "category", n => { Category = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleId200ResponseRoleCategory>(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
-                { "managementType", n => { ManagementType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleId200ResponseRoleManagementType>(); } },
+                { "managementType", n => { ManagementType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.CustomManagedManagementType>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "permissions", n => { Permissions = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleId200ResponseRolePermissionsItem>(global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleId200ResponseRolePermissionsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -87,7 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleId200ResponseRoleCategory>("category", Category);
             writer.WriteStringValue("description", Description);
             writer.WriteIntValue("id", Id);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleId200ResponseRoleManagementType>("managementType", ManagementType);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.CustomManagedManagementType>("managementType", ManagementType);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleId200ResponseRolePermissionsItem>("permissions", Permissions);
             writer.WriteAdditionalData(AdditionalData);

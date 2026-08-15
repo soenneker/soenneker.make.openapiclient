@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Request
         {
         }
         /// <summary>
-        /// &quot;Required scope: devices:write&quot;
+        /// Required scope: devices:write
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDevicesRequest200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -54,7 +54,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Request
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDevicesRequest200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDevicesRequest200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Required scope: devices:write&quot;
+        /// Required scope: devices:write
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Request
             return new global::Soenneker.Make.OpenApiClient.Devices.Request.RequestRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// &quot;Required scope: devices:write&quot;
+        /// Required scope: devices:write
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RequestRequestBuilderPostQueryParameters 

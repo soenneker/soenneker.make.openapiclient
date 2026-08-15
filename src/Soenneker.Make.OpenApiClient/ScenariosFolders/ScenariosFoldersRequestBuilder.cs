@@ -154,7 +154,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders
         {
             /// <summary>Set to `all` to return all descendants under `children`. By default, `children` includes only one direct child level.</summary>
             [QueryParameter("childrenDepth")]
-            public global::Soenneker.Make.OpenApiClient.Models.GetScenariosFoldersChildrenDepthParameter? ChildrenDepth { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.AllChildrenDepth? ChildrenDepth { get; set; }
             /// <summary>Specifies the group of values to return. For example, you may want to receive in response only the names and IDs of folders.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

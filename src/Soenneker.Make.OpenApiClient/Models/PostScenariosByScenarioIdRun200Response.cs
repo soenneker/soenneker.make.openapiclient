@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string ExecutionId { get; set; }
 #endif
-        /// <summary>&quot;Status of the scenario execution:- `1`: success - `2`: warning - `3`: error.&quot;</summary>
+        /// <summary>Status of the scenario execution:- `1`: success - `2`: warning - `3`: error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Status { get; set; }

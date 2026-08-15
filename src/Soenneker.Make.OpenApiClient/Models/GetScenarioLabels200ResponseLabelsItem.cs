@@ -41,7 +41,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Number of non-trashed scenarios in the team carrying this label.</summary>
         public int? ScenariosCount { get; set; }
         /// <summary>Label visibility tier exposed by the web API. Only team labels are supported in this version.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenarioLabels200ResponseLabelsItemScope? Scope { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.TeamScope? Scope { get; set; }
         /// <summary>The team (company) that owns the label.</summary>
         public int? TeamId { get; set; }
         /// <summary>The updated property</summary>
@@ -78,7 +78,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "scenariosCount", n => { ScenariosCount = n.GetIntValue(); } },
-                { "scope", n => { Scope = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenarioLabels200ResponseLabelsItemScope>(); } },
+                { "scope", n => { Scope = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.TeamScope>(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
                 { "updated", n => { Updated = n.GetDateTimeOffsetValue(); } },
             };
@@ -97,7 +97,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("scenariosCount", ScenariosCount);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenarioLabels200ResponseLabelsItemScope>("scope", Scope);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.TeamScope>("scope", Scope);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteDateTimeOffsetValue("updated", Updated);
             writer.WriteAdditionalData(AdditionalData);

@@ -36,20 +36,38 @@ namespace Soenneker.Make.OpenApiClient.Oauth.Auth.Item
         /// <summary>
         /// Authorize
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOAuthAuthByConnectionId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOAuthAuthByConnectionId200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Oauth.Auth.Item.WithConnectionItemRequestBuilder.WithConnectionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Oauth.Auth.Item.WithConnectionItemRequestBuilder.WithConnectionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOAuthAuthByConnectionId200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Oauth.Auth.Item.WithConnectionItemRequestBuilder.WithConnectionItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Oauth.Auth.Item.WithConnectionItemRequestBuilder.WithConnectionItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOAuthAuthByConnectionId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOAuthAuthByConnectionId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
+        /// Authorize (deprecated)
+        /// </summary>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOAuthAuthByConnectionId200Response"/></returns>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("")]
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOAuthAuthByConnectionId200Response?> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Oauth.Auth.Item.WithConnectionItemRequestBuilder.WithConnectionItemRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOAuthAuthByConnectionId200Response> PostAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Oauth.Auth.Item.WithConnectionItemRequestBuilder.WithConnectionItemRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToPostRequestInformation(requestConfiguration);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOAuthAuthByConnectionId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOAuthAuthByConnectionId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Authorize
@@ -66,6 +84,25 @@ namespace Soenneker.Make.OpenApiClient.Oauth.Auth.Item
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            return requestInfo;
+        }
+        /// <summary>
+        /// Authorize (deprecated)
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("")]
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Oauth.Auth.Item.WithConnectionItemRequestBuilder.WithConnectionItemRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Oauth.Auth.Item.WithConnectionItemRequestBuilder.WithConnectionItemRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -84,6 +121,22 @@ namespace Soenneker.Make.OpenApiClient.Oauth.Auth.Item
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithConnectionItemRequestBuilderGetQueryParameters 
+        {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("scope")]
+            public string[]? Scope { get; set; }
+#nullable restore
+#else
+            [QueryParameter("scope")]
+            public string[] Scope { get; set; }
+#endif
+        }
+        /// <summary>
+        /// Authorize (deprecated)
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class WithConnectionItemRequestBuilderPostQueryParameters 
         {
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

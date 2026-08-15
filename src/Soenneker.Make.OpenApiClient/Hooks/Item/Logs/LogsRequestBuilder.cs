@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Logs
         {
         }
         /// <summary>
-        /// &quot;Retrieves a list of the specified webhook execution logs. Use the `to` and `from` parameters to filter the returned logs. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log&quot;
+        /// Retrieves a list of the specified webhook execution logs. Use the `to` and `from` parameters to filter the returned logs. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogs200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Logs
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Retrieves a list of the specified webhook execution logs. Use the `to` and `from` parameters to filter the returned logs. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log&quot;
+        /// Retrieves a list of the specified webhook execution logs. Use the `to` and `from` parameters to filter the returned logs. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,7 +93,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Logs
             return new global::Soenneker.Make.OpenApiClient.Hooks.Item.Logs.LogsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// &quot;Retrieves a list of the specified webhook execution logs. Use the `to` and `from` parameters to filter the returned logs. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log&quot;
+        /// Retrieves a list of the specified webhook execution logs. Use the `to` and `from` parameters to filter the returned logs. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class LogsRequestBuilderGetQueryParameters 

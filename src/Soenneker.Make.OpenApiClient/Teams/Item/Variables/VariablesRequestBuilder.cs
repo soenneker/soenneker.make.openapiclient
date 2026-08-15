@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Variables
         {
         }
         /// <summary>
-        /// &quot;Retrieves the collection of team variables. The response contains all team variables if your account has the custom variables feature available. Otherwise, the response contains only Make system variables.Check availability of the custom variables feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
+        /// Retrieves the collection of team variables. The response contains all team variables if your account has the custom variables feature available. Otherwise, the response contains only Make system variables.Check availability of the custom variables feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the response contains `&quot;customVariables&quot;: true` pair in the `license` object then you have access to the custom variables feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Variables
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Creates new team variable. You can check the availability of the custom variables feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the API call response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.A successful response contains all information about the new variable. If you don&apos;t have the custom variables feature available then the API call returns the error 404.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
+        /// Creates new team variable. You can check the availability of the custom variables feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the API call response contains `&quot;customVariables&quot;: true` pair in the `license` object then you have access to the custom variables feature.A successful response contains all information about the new variable. If you don&apos;t have the custom variables feature available then the API call returns the error 404.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdVariables200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Variables
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Retrieves the collection of team variables. The response contains all team variables if your account has the custom variables feature available. Otherwise, the response contains only Make system variables.Check availability of the custom variables feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
+        /// Retrieves the collection of team variables. The response contains all team variables if your account has the custom variables feature available. Otherwise, the response contains only Make system variables.Check availability of the custom variables feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the response contains `&quot;customVariables&quot;: true` pair in the `license` object then you have access to the custom variables feature.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -104,7 +104,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Variables
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Creates new team variable. You can check the availability of the custom variables feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the API call response contains `\&quot;customVariables\&quot;: true` pair in the `license` object then you have access to the custom variables feature.A successful response contains all information about the new variable. If you don&apos;t have the custom variables feature available then the API call returns the error 404.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.&quot;
+        /// Creates new team variable. You can check the availability of the custom variables feature with the API call `GET /organizations/{organizationId}` for the organization to which the team belongs. If the API call response contains `&quot;customVariables&quot;: true` pair in the `license` object then you have access to the custom variables feature.A successful response contains all information about the new variable. If you don&apos;t have the custom variables feature available then the API call returns the error 404.Refer to the [Make pricing page](https://www.make.com/en/help/general/pricing-parameters) for Make pricing plans overview.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

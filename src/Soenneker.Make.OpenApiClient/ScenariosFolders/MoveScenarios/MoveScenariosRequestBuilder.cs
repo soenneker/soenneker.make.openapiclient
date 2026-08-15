@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders.MoveScenarios
         {
         }
         /// <summary>
-        /// &quot;Moves selected scenarios from the specified team into a target folder. Use `targetFolderId: null` to uncategorize them.&quot;
+        /// Moves selected scenarios from the specified team into a target folder. Use `targetFolderId: null` to uncategorize them.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosFoldersMoveScenarios200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -54,7 +54,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders.MoveScenarios
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosFoldersMoveScenarios200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosFoldersMoveScenarios200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Moves selected scenarios from the specified team into a target folder. Use `targetFolderId: null` to uncategorize them.&quot;
+        /// Moves selected scenarios from the specified team into a target folder. Use `targetFolderId: null` to uncategorize them.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

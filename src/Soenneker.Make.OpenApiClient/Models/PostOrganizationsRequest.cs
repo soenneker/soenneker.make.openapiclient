@@ -16,7 +16,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The ID of the country associated with the organization. Get the list of the country IDs with the API call `GET /enums/countries`.</summary>
         public int? CountryId { get; set; }
-        /// <summary>&quot;The name of the organization. The name may contain only letters, numbers, spaces, and the following special characters: `&apos;`, `-`, `.`, `(`, `)`, `*`, `+`, `,`, `@`, `_`, `/`. The name must not start or end with a space.&quot;</summary>
+        /// <summary>The name of the organization. The name may contain only letters, numbers, spaces, and the following special characters: `&apos;`, `-`, `.`, `(`, `)`, `*`, `+`, `,`, `@`, `_`, `/`. The name must not start or end with a space.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

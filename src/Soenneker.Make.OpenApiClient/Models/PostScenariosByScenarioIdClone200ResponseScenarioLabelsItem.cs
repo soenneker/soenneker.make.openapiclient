@@ -39,7 +39,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string Name { get; set; }
 #endif
         /// <summary>Label visibility tier exposed by the web API. Only team labels are supported in this version.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdClone200ResponseScenarioLabelsItemScope? Scope { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.TeamScope? Scope { get; set; }
         /// <summary>The team (company) that owns the label.</summary>
         public int? TeamId { get; set; }
         /// <summary>The updated property</summary>
@@ -75,7 +75,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "scope", n => { Scope = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdClone200ResponseScenarioLabelsItemScope>(); } },
+                { "scope", n => { Scope = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.TeamScope>(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
                 { "updated", n => { Updated = n.GetDateTimeOffsetValue(); } },
             };
@@ -93,7 +93,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("description", Description);
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("name", Name);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdClone200ResponseScenarioLabelsItemScope>("scope", Scope);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.TeamScope>("scope", Scope);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteDateTimeOffsetValue("updated", Updated);
             writer.WriteAdditionalData(AdditionalData);

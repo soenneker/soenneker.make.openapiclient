@@ -161,7 +161,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Teams
             public int? Pgoffset { get; set; }
             /// <summary>The value that will be used to sort returned entities by.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
-            public global::Soenneker.Make.OpenApiClient.Models.GetAdminTeamsPgSortByParameter? PgsortBy { get; set; }
+            public global::Soenneker.Make.OpenApiClient.Models.NamePgSortBy? PgsortBy { get; set; }
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetAdminTeamsPgSortDirParameter? PgsortDir { get; set; }

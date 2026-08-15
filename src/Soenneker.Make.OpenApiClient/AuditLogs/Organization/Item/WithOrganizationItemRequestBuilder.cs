@@ -107,7 +107,7 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item
             /// <summary>Use the `dateTo` parameter to get audit log entries until the specified date or older. Specify the date in the YYYY-MM-DD format.</summary>
             [QueryParameter("dateTo")]
             public Date? DateTo { get; set; }
-            /// <summary>&quot;The list of events for which you want to get audit log entries. To specify multiple events, use the array notation like: `GET /audit-logs/organization/{organizationId}?event[0]=key_created&amp;event[1]=connection_created`.You can check the list of supported events with the API call `GET /audit-logs/organization/{organizationId}/filters` in the `events` array in the response.&quot;</summary>
+            /// <summary>The list of events for which you want to get audit log entries. To specify multiple events, use the array notation like: `GET /audit-logs/organization/{organizationId}?event[0]=key_created&amp;event[1]=connection_created`.You can check the list of supported events with the API call `GET /audit-logs/organization/{organizationId}/filters` in the `events` array in the response.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("event")]
