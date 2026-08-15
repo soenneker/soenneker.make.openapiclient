@@ -48229,7 +48229,7 @@
             "nullable": true
           },
           "lastPushedChecksums": {
-            "$ref": "#/components/schemas/SdkGithubBindingLastPushedChecksums"
+            "$ref": "#/components/schemas/SdkGithubBindingLastPushedChecksumsProperty"
           },
           "nameMap": {
             "$ref": "#/components/schemas/SdkGithubBindingNameMap"
@@ -135504,6 +135504,13 @@
       },
       "SdkAppDetailCountriesItem": {
         "type": "object"
+      },
+      "SdkGithubBindingLastPushedChecksumsProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Per-file checksum snapshot captured at the last successful push. \u0060null\u0060 until the push flow is available."
       },
       "ControllerModulesProperty": {
         "type": "object"
