@@ -23,7 +23,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string ErrorMessage { get; set; }
 #endif
         /// <summary>Lower bound of the time window, as a millisecond Unix timestamp. Defaults to 7 days before `to` when omitted.Applied at **UTC-day granularity**: the calendar day of this value is the earliest day searched, but executions earlier within that same day may still be returned.</summary>
-        public int? From { get; set; }
+        public long? From { get; set; }
         /// <summary>The zero-based index of the page to return.</summary>
         public int? PageIndex { get; set; }
         /// <summary>The maximum number of executions to return. Capped at `500`.</summary>
@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Restrict the search to a single team within the organization. When omitted, all teams the authenticated user has access to are searched.</summary>
         public int? TeamId { get; set; }
         /// <summary>Upper bound of the time window, as a millisecond Unix timestamp. Defaults to the current time when omitted.Applied at **UTC-day granularity**: the calendar day of this value is the latest day searched, but executions later within that same day may still be returned.</summary>
-        public int? To { get; set; }
+        public long? To { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsSearchRequest"/> and sets the default values.
         /// </summary>
@@ -76,13 +76,13 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "errorMessage", n => { ErrorMessage = n.GetStringValue(); } },
-                { "from", n => { From = n.GetIntValue(); } },
+                { "from", n => { From = n.GetLongValue(); } },
                 { "pageIndex", n => { PageIndex = n.GetIntValue(); } },
                 { "pageSize", n => { PageSize = n.GetIntValue(); } },
                 { "scenarioIds", n => { ScenarioIds = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
                 { "status", n => { Status = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
-                { "to", n => { To = n.GetIntValue(); } },
+                { "to", n => { To = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -93,13 +93,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("errorMessage", ErrorMessage);
-            writer.WriteIntValue("from", From);
+            writer.WriteLongValue("from", From);
             writer.WriteIntValue("pageIndex", PageIndex);
             writer.WriteIntValue("pageSize", PageSize);
             writer.WriteCollectionOfPrimitiveValues<int?>("scenarioIds", ScenarioIds);
             writer.WriteCollectionOfPrimitiveValues<int?>("status", Status);
             writer.WriteIntValue("teamId", TeamId);
-            writer.WriteIntValue("to", To);
+            writer.WriteLongValue("to", To);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

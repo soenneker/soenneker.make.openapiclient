@@ -15,7 +15,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Lower bound of the time window, as a millisecond Unix timestamp.Applied at **UTC-day granularity**. When both `from` and `to` are omitted, the last 7 days are searched.</summary>
-        public int? From { get; set; }
+        public long? From { get; set; }
         /// <summary>The free-text expression to match against scenario module IO data. Supports quoted phrases.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -37,7 +37,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Restrict the search to a single team within the organization. When omitted, all teams the authenticated user has access to are searched.</summary>
         public int? TeamId { get; set; }
         /// <summary>Upper bound of the time window, as a millisecond Unix timestamp.Applied at **UTC-day granularity**.</summary>
-        public int? To { get; set; }
+        public long? To { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCountsRequest"/> and sets the default values.
         /// </summary>
@@ -63,12 +63,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "from", n => { From = n.GetIntValue(); } },
+                { "from", n => { From = n.GetLongValue(); } },
                 { "query", n => { Query = n.GetStringValue(); } },
                 { "scenarioId", n => { ScenarioId = n.GetIntValue(); } },
                 { "status", n => { Status = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
-                { "to", n => { To = n.GetIntValue(); } },
+                { "to", n => { To = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -78,12 +78,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("from", From);
+            writer.WriteLongValue("from", From);
             writer.WriteStringValue("query", Query);
             writer.WriteIntValue("scenarioId", ScenarioId);
             writer.WriteCollectionOfPrimitiveValues<int?>("status", Status);
             writer.WriteIntValue("teamId", TeamId);
-            writer.WriteIntValue("to", To);
+            writer.WriteLongValue("to", To);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

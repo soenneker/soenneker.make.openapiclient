@@ -23,7 +23,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public List<string> AppNames { get; set; }
 #endif
         /// <summary>Lower bound of the time window, as a millisecond Unix timestamp.Applied at **UTC-day granularity**: the calendar day of this value is the earliest day searched in the IO-data index, but records earlier within that same day may still be returned.</summary>
-        public int? From { get; set; }
+        public long? From { get; set; }
         /// <summary>Restrict the search to the listed module names.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public List<int?> Status { get; set; }
 #endif
         /// <summary>Upper bound of the time window, as a millisecond Unix timestamp.Applied at **UTC-day granularity**: the calendar day of this value is the latest day searched in the IO-data index, but records later within that same day may still be returned.</summary>
-        public int? To { get; set; }
+        public long? To { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearchRequest"/> and sets the default values.
         /// </summary>
@@ -76,11 +76,11 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "appNames", n => { AppNames = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "from", n => { From = n.GetIntValue(); } },
+                { "from", n => { From = n.GetLongValue(); } },
                 { "moduleNames", n => { ModuleNames = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "query", n => { Query = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
-                { "to", n => { To = n.GetIntValue(); } },
+                { "to", n => { To = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -91,11 +91,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("appNames", AppNames);
-            writer.WriteIntValue("from", From);
+            writer.WriteLongValue("from", From);
             writer.WriteCollectionOfPrimitiveValues<string>("moduleNames", ModuleNames);
             writer.WriteStringValue("query", Query);
             writer.WriteCollectionOfPrimitiveValues<int?>("status", Status);
-            writer.WriteIntValue("to", To);
+            writer.WriteLongValue("to", To);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

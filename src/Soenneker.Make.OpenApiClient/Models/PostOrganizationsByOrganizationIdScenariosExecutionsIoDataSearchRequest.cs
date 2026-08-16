@@ -31,7 +31,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public List<string> ExecutionIds { get; set; }
 #endif
         /// <summary>Lower bound of the time window, as a millisecond Unix timestamp.Applied at **UTC-day granularity**: the calendar day of this value is the earliest day searched in the IO-data index, but records earlier within that same day may still be returned. Execution metadata joins use this same bound expanded by one day on each side.</summary>
-        public int? From { get; set; }
+        public long? From { get; set; }
         /// <summary>Restrict the search to executions that used any of the listed module names.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,7 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Restrict the search to a single team within the organization. When omitted, all teams the authenticated user has access to are searched.</summary>
         public int? TeamId { get; set; }
         /// <summary>Upper bound of the time window, as a millisecond Unix timestamp.Applied at **UTC-day granularity**: the calendar day of this value is the latest day searched in the IO-data index, but records later within that same day may still be returned. Execution metadata joins use this same bound expanded by one day on each side.</summary>
-        public int? To { get; set; }
+        public long? To { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearchRequest"/> and sets the default values.
         /// </summary>
@@ -101,7 +101,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "appNames", n => { AppNames = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "executionIds", n => { ExecutionIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "from", n => { From = n.GetIntValue(); } },
+                { "from", n => { From = n.GetLongValue(); } },
                 { "moduleNames", n => { ModuleNames = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "pageIndex", n => { PageIndex = n.GetIntValue(); } },
                 { "pageSize", n => { PageSize = n.GetIntValue(); } },
@@ -109,7 +109,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "scenarioIds", n => { ScenarioIds = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
                 { "status", n => { Status = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
-                { "to", n => { To = n.GetIntValue(); } },
+                { "to", n => { To = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -121,7 +121,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("appNames", AppNames);
             writer.WriteCollectionOfPrimitiveValues<string>("executionIds", ExecutionIds);
-            writer.WriteIntValue("from", From);
+            writer.WriteLongValue("from", From);
             writer.WriteCollectionOfPrimitiveValues<string>("moduleNames", ModuleNames);
             writer.WriteIntValue("pageIndex", PageIndex);
             writer.WriteIntValue("pageSize", PageSize);
@@ -129,7 +129,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<int?>("scenarioIds", ScenarioIds);
             writer.WriteCollectionOfPrimitiveValues<int?>("status", Status);
             writer.WriteIntValue("teamId", TeamId);
-            writer.WriteIntValue("to", To);
+            writer.WriteLongValue("to", To);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

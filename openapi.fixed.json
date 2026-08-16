@@ -95865,11 +95865,13 @@
           "from": {
             "type": "integer",
             "description": "Lower bound of the time window, as a millisecond Unix timestamp. Defaults to 7 days before \u0060to\u0060 when omitted.\n\nApplied at **UTC-day granularity**: the calendar day of this value is the earliest day searched, but executions earlier within that same day may still be returned.\n",
+            "format": "int64",
             "example": 1700000000000
           },
           "to": {
             "type": "integer",
             "description": "Upper bound of the time window, as a millisecond Unix timestamp. Defaults to the current time when omitted.\n\nApplied at **UTC-day granularity**: the calendar day of this value is the latest day searched, but executions later within that same day may still be returned.\n",
+            "format": "int64",
             "example": 1700604800000
           },
           "teamId": {
@@ -95945,11 +95947,13 @@
           "from": {
             "type": "integer",
             "description": "Lower bound of the time window, as a millisecond Unix timestamp.\n\nApplied at **UTC-day granularity**: the calendar day of this value is the earliest day searched in the IO-data index, but records earlier within that same day may still be returned. Execution metadata joins use this same bound expanded by one day on each side.\n",
+            "format": "int64",
             "example": 1700000000000
           },
           "to": {
             "type": "integer",
             "description": "Upper bound of the time window, as a millisecond Unix timestamp.\n\nApplied at **UTC-day granularity**: the calendar day of this value is the latest day searched in the IO-data index, but records later within that same day may still be returned. Execution metadata joins use this same bound expanded by one day on each side.\n",
+            "format": "int64",
             "example": 1700604800000
           },
           "scenarioIds": {
@@ -96035,11 +96039,13 @@
           "from": {
             "type": "integer",
             "description": "Lower bound of the time window, as a millisecond Unix timestamp.\n\nApplied at **UTC-day granularity**: the calendar day of this value is the earliest day searched in the IO-data index, but records earlier within that same day may still be returned.\n",
+            "format": "int64",
             "example": 1700000000000
           },
           "to": {
             "type": "integer",
             "description": "Upper bound of the time window, as a millisecond Unix timestamp.\n\nApplied at **UTC-day granularity**: the calendar day of this value is the latest day searched in the IO-data index, but records later within that same day may still be returned.\n",
+            "format": "int64",
             "example": 1700604800000
           },
           "appNames": {
@@ -96105,11 +96111,13 @@
           "from": {
             "type": "integer",
             "description": "Lower bound of the time window, as a millisecond Unix timestamp.\n\nApplied at **UTC-day granularity**. When both \u0060from\u0060 and \u0060to\u0060 are omitted, the last 7 days are searched.\n",
+            "format": "int64",
             "example": 1700000000000
           },
           "to": {
             "type": "integer",
             "description": "Upper bound of the time window, as a millisecond Unix timestamp.\n\nApplied at **UTC-day granularity**.\n",
+            "format": "int64",
             "example": 1700604800000
           },
           "scenarioIds": {
@@ -96180,11 +96188,13 @@
           "from": {
             "type": "integer",
             "description": "Lower bound of the time window, as a millisecond Unix timestamp.\n\nApplied at **UTC-day granularity**. When both \u0060from\u0060 and \u0060to\u0060 are omitted, the last 7 days are searched.\n",
+            "format": "int64",
             "example": 1700000000000
           },
           "to": {
             "type": "integer",
             "description": "Upper bound of the time window, as a millisecond Unix timestamp.\n\nApplied at **UTC-day granularity**.\n",
+            "format": "int64",
             "example": 1700604800000
           },
           "status": {
