@@ -7006,6 +7006,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The connection is restricted to its access list and the caller is not on it with permission to use it (\u0060IM002\u0060).\n"
           }
         },
         "security": [
@@ -7091,6 +7094,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The connection is restricted to its access list and the caller is not on it with permission to manage it (\u0060IM002\u0060).\n"
           }
         },
         "security": [
@@ -7192,6 +7198,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The connection is restricted to its access list and the caller is not on it with permission to use it (\u0060IM002\u0060).\n"
           }
         },
         "security": [
@@ -7276,6 +7285,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The connection is restricted to its access list and the caller is not on it with permission to manage it (\u0060IM002\u0060).\n"
           }
         },
         "security": [
@@ -7327,6 +7339,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The connection is restricted to its access list and the caller is not on it with permission to manage it (\u0060IM002\u0060). A team administrator may still delete such a connection only when nobody is left able to manage it.\n"
           }
         },
         "security": [
@@ -7371,6 +7386,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The connection is restricted to its access list and the caller is not on it with permission to use it (\u0060IM002\u0060).\n"
           }
         },
         "security": [
@@ -7432,6 +7450,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The connection is restricted to its access list and the caller is not on it with permission to use it (\u0060IM002\u0060).\n"
           }
         },
         "security": [
@@ -12814,6 +12835,95 @@
           {
             "token": [
               "dlqs:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/endpoints/execute": {
+      "post": {
+        "tags": [
+          "Endpoints"
+        ],
+        "summary": "Execute Endpoint",
+        "description": "Executes an App Endpoint (see \u0060GET /imt/endpoints-usable\u0060 and the SDK Apps / Endpoints section for how\nEndpoints are defined) and returns its raw output.\n\nThe response\u0027s \u0060output\u0060 is currently a free-form, executor-defined value \u2014 its shape depends entirely on\nthe executed Endpoint and is not constrained by this route.\n",
+        "operationId": "PostEndpointsExecute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostEndpointsExecuteRequest"
+              },
+              "examples": {
+                "list-contacts": {
+                  "summary": "Execute a connection-bound Endpoint",
+                  "value": {
+                    "appName": "app#my-crm",
+                    "appVersion": 1,
+                    "endpointName": "listContacts",
+                    "connectionId": 9001,
+                    "input": {
+                      "limit": 10
+                    }
+                  }
+                },
+                "no-auth-ping": {
+                  "summary": "Execute a no-auth Endpoint without input",
+                  "value": {
+                    "appName": "app#my-crm",
+                    "appVersion": 1,
+                    "endpointName": "ping"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostEndpointsExecute200Response"
+                },
+                "examples": {
+                  "list-contacts": {
+                    "summary": "Execute a connection-bound Endpoint",
+                    "value": {
+                      "output": {
+                        "contacts": [
+                          {
+                            "id": 1,
+                            "name": "Jane Doe"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "no-auth-ping": {
+                    "summary": "Execute a no-auth Endpoint without input",
+                    "value": {
+                      "output": {
+                        "status": "ok"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request body failed validation (e.g. \u0060appName\u0060, \u0060appVersion\u0060, or \u0060endpointName\u0060 missing or malformed)."
+          },
+          "501": {
+            "description": "Endpoint execution is not enabled on this environment."
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "endpoints:run"
             ]
           }
         ]
@@ -20921,6 +21031,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The key is restricted to its access list and the caller is not on it with permission to use it (\u0060IM002\u0060).\n"
           }
         },
         "security": [
@@ -21015,6 +21128,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The key is restricted to its access list and the caller is not on it with permission to manage it (\u0060IM002\u0060).\n"
           }
         },
         "security": [
@@ -21066,6 +21182,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The key is restricted to its access list and the caller is not on it with permission to manage it (\u0060IM002\u0060). A team administrator may still delete such a key only when nobody is left able to manage it.\n"
           }
         },
         "security": [
@@ -93779,6 +93898,60 @@
           }
         }
       },
+      "PostEndpointsExecuteRequest": {
+        "required": [
+          "appName",
+          "appVersion",
+          "endpointName"
+        ],
+        "type": "object",
+        "properties": {
+          "appName": {
+            "maxLength": 38,
+            "minLength": 3,
+            "pattern": "^(app(#|%23))?[a-z][0-9a-z-]{1,30}[0-9a-z]$",
+            "type": "string",
+            "description": "Name of the App from which the Endpoint should be executed."
+          },
+          "appVersion": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Version of the App from which the Endpoint should be executed."
+          },
+          "endpointName": {
+            "maxLength": 128,
+            "minLength": 3,
+            "pattern": "^[a-zA-Z][0-9a-zA-Z]{1,126}[0-9a-zA-Z]$",
+            "type": "string",
+            "description": "Name of the Endpoint to be executed."
+          },
+          "connectionId": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "description": "ID of the Connection to be used for executing the Endpoint."
+          },
+          "input": {
+            "$ref": "#/components/schemas/PostEndpointsExecuteRequestInput"
+          }
+        }
+      },
+      "PostEndpointsExecute200Response": {
+        "required": [
+          "output"
+        ],
+        "type": "object",
+        "properties": {
+          "output": {
+            "$ref": "#/components/schemas/PostEndpointsExecute200ResponseOutput"
+          }
+        }
+      },
       "GetExecutionCapacityByOrganizationId200Response": {
         "required": [
           "rollupSeconds",
@@ -140555,6 +140728,14 @@
             "type": "integer"
           }
         }
+      },
+      "PostEndpointsExecuteRequestInput": {
+        "type": "object",
+        "description": "Object containing input values of the Endpoint."
+      },
+      "PostEndpointsExecute200ResponseOutput": {
+        "type": "object",
+        "description": "Raw result of the Endpoint execution. The shape is defined by the executed Endpoint itself and is not constrained by this route."
       },
       "GetExecutionCapacityByOrganizationId200ResponseSamplesItem": {
         "required": [

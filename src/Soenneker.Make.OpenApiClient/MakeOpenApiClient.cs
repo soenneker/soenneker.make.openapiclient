@@ -24,6 +24,7 @@ using Soenneker.Make.OpenApiClient.DataStructures;
 using Soenneker.Make.OpenApiClient.Debug;
 using Soenneker.Make.OpenApiClient.Devices;
 using Soenneker.Make.OpenApiClient.Dlqs;
+using Soenneker.Make.OpenApiClient.Endpoints;
 using Soenneker.Make.OpenApiClient.Enums;
 using Soenneker.Make.OpenApiClient.ExecutionCapacity;
 using Soenneker.Make.OpenApiClient.Functions;
@@ -153,6 +154,11 @@ namespace Soenneker.Make.OpenApiClient
         public global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder Dlqs
         {
             get => new global::Soenneker.Make.OpenApiClient.Dlqs.DlqsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The endpoints property</summary>
+        public global::Soenneker.Make.OpenApiClient.Endpoints.EndpointsRequestBuilder Endpoints
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Endpoints.EndpointsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The enums property</summary>
         public global::Soenneker.Make.OpenApiClient.Enums.EnumsRequestBuilder Enums
