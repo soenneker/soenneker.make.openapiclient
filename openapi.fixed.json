@@ -12066,6 +12066,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "A module in the submitted blueprint places a locked connection or key the user is not allowed to use (\u0060IM002\u0060, placement guard). Returned only when locked-entities enforcement is enabled for the organization; an untouched frozen module and releasing a locked entity (swapping it out or removing its module) always pass.\n"
           }
         },
         "security": [
@@ -26514,6 +26517,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "A module in the blueprint places a locked connection or key the user is not allowed to use (\u0060IM002\u0060, placement guard). Returned only when locked-entities enforcement is enabled for the organization; an untouched frozen module and releasing a locked entity (swapping it out or removing its module) always pass.\n"
           }
         },
         "security": [
@@ -26781,6 +26787,12 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "A module in the blueprint places a locked connection or key the user is not allowed to use (\u0060IM002\u0060, placement guard). Returned only when locked-entities enforcement is enabled for the organization; an untouched frozen module and releasing a locked entity (swapping it out or removing its module) always pass.\n"
+          },
+          "409": {
+            "description": "The scenario was modified concurrently between the placement-guard check and the save (\u0060SC409\u0060). The save was not applied; retry the request.\n"
           }
         },
         "security": [
@@ -27109,6 +27121,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The copy would keep (or remap to) a locked connection or key the user is not allowed to use in the target team (\u0060IM002\u0060, placement guard). Returned only when locked-entities enforcement is enabled for the organization; remapping the reference to a usable connection or key passes.\n"
           }
         },
         "security": [
@@ -27630,6 +27645,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The draft being promoted places a locked connection or key the user is not allowed to use (\u0060IM002\u0060, placement guard). Returned only when locked-entities enforcement is enabled for the organization; a draft whose frozen modules are unchanged against the live blueprint passes.\n"
           }
         },
         "security": [
@@ -30067,6 +30085,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "A module in the blueprint places a locked connection or key the user is not allowed to use (\u0060IM002\u0060, placement guard). Returned only when locked-entities enforcement is enabled for the organization; an untouched frozen module and releasing a locked entity (swapping it out or removing its module) always pass.\n"
           }
         },
         "security": [
@@ -30207,6 +30228,12 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "A module in the blueprint places a locked connection or key the user is not allowed to use (\u0060IM002\u0060, placement guard). Returned only when locked-entities enforcement is enabled for the organization; an untouched frozen module and releasing a locked entity (swapping it out or removing its module) always pass.\n"
+          },
+          "409": {
+            "description": "The scenario was modified concurrently between the placement-guard check and the save (\u0060SC409\u0060). The save was not applied; retry the request.\n"
           }
         },
         "security": [
