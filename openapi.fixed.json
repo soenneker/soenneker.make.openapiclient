@@ -20516,6 +20516,130 @@
         }
       }
     },
+    "/internal/entity-placements/check": {
+      "post": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Check the entity placements of a blueprint",
+        "description": "Returns the save-time locked-entity verdict for a blueprint the caller is about to execute: rejects with \u0060IM002\u0060 when a module places a locked connection or key the user may not use and that placement is not already stored unchanged. Only services that gate a manual execution on this verdict may call it \u2014 any other caller is rejected with \u0060SC500\u0060, since reaching this route is an integration bug rather than a client-facing access denial. Fail-closed: when the verdict cannot be reached, the response is an \u0060IM016\u0060 error, never an allow.",
+        "operationId": "PostInternalEntityPlacementsCheck",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostInternalEntityPlacementsCheckRequest"
+              },
+              "examples": {
+                "check-saved-scenario": {
+                  "summary": "Manual execution of a stored scenario",
+                  "value": {
+                    "userId": 456,
+                    "scenarioId": 123,
+                    "blueprint": {
+                      "name": "My scenario",
+                      "flow": [
+                        {
+                          "id": 1,
+                          "module": "app#my-app:CreateThing",
+                          "version": 1,
+                          "parameters": {
+                            "__IMTCONN__": 42
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "check-unsaved-scenario": {
+                  "summary": "Manual execution of a scenario that was never saved",
+                  "value": {
+                    "userId": 456,
+                    "teamId": 789,
+                    "blueprint": {
+                      "name": "My scenario",
+                      "flow": [
+                        {
+                          "id": 1,
+                          "module": "app#my-app:CreateThing",
+                          "version": 1,
+                          "parameters": {
+                            "__IMTCONN__": 42
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Every placement in the blueprint is allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalEntityPlacementsCheck200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or missing required field",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalEntityPlacementsCheck400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Missing or invalid ISC authorization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalEntityPlacementsCheck401Response"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The blueprint places a locked connection or key the user may not use",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalEntityPlacementsCheck403Response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The verdict could not be reached, so the execution is denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalEntityPlacementsCheck422Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Caller is not an allowed execution gate",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostInternalEntityPlacementsCheck500Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/keys": {
       "get": {
         "tags": [
@@ -20562,7 +20686,8 @@
                   "typeName",
                   "teamId",
                   "packageName",
-                  "theme"
+                  "theme",
+                  "scenarioUsages"
                 ]
               }
             }
@@ -20604,7 +20729,13 @@
                           "typeName": "basicauth",
                           "teamId": 4,
                           "packageName": null,
-                          "theme": "#007ee5"
+                          "theme": "#007ee5",
+                          "scenarioUsages": [
+                            {
+                              "id": 123,
+                              "name": "My Scenario"
+                            }
+                          ]
                         },
                         {
                           "id": 2,
@@ -20612,7 +20743,8 @@
                           "typeName": "basicauth",
                           "teamId": 4,
                           "packageName": null,
-                          "theme": "#007ee5"
+                          "theme": "#007ee5",
+                          "scenarioUsages": []
                         }
                       ]
                     }
@@ -48590,6 +48722,13 @@
           "theme": {
             "type": "string",
             "format": "color"
+          },
+          "scenarioUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KeyScenarioUsagesItem"
+            },
+            "description": "Scenarios that use this key. Only returned when explicitly requested via \u0060cols[]=scenarioUsages\u0060."
           }
         }
       },
@@ -78142,6 +78281,17 @@
       "HookEventIncomingData": {
         "type": "object"
       },
+      "KeyScenarioUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
       "KeyTypeParametersItem": {
         "type": "object",
         "properties": {
@@ -95253,6 +95403,114 @@
           "message": {
             "type": "string",
             "example": "Only the Executor can unregister hooks remotely."
+          }
+        }
+      },
+      "PostInternalEntityPlacementsCheckRequest": {
+        "required": [
+          "userId",
+          "blueprint"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The user the execution runs as.",
+            "example": 456
+          },
+          "blueprint": {
+            "$ref": "#/components/schemas/PostInternalEntityPlacementsCheckRequestBlueprint"
+          },
+          "scenarioId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The scenario whose stored blueprint (its unsaved draft when it has one) is compared against. The team is taken from the scenario itself.",
+            "example": 123
+          },
+          "teamId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The team of a scenario that was never saved. Without a stored blueprint every denied placement is a new one.",
+            "example": 789
+          }
+        },
+        "description": "Either \u0060scenarioId\u0060 or \u0060teamId\u0060 locates the blueprint. A body carrying both is accepted: \u0060scenarioId\u0060 wins and \u0060teamId\u0060 is ignored."
+      },
+      "PostInternalEntityPlacementsCheck200Response": {
+        "required": [
+          "allowed"
+        ],
+        "type": "object",
+        "properties": {
+          "allowed": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "PostInternalEntityPlacementsCheck400Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "SC400"
+          },
+          "message": {
+            "type": "string",
+            "example": "Bad Request"
+          }
+        }
+      },
+      "PostInternalEntityPlacementsCheck401Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "IM001"
+          },
+          "message": {
+            "type": "string",
+            "example": "Access denied."
+          }
+        }
+      },
+      "PostInternalEntityPlacementsCheck403Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "IM002"
+          },
+          "message": {
+            "type": "string",
+            "example": "Insufficient rights to perform the action."
+          }
+        }
+      },
+      "PostInternalEntityPlacementsCheck422Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "IM016"
+          },
+          "message": {
+            "type": "string",
+            "example": "The use of locked connections and keys could not be verified."
+          }
+        }
+      },
+      "PostInternalEntityPlacementsCheck500Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "SC500"
+          },
+          "message": {
+            "type": "string",
+            "example": "Only the Web Streamer can check entity placements remotely."
           }
         }
       },
@@ -142212,6 +142470,10 @@
           }
         }
       },
+      "PostInternalEntityPlacementsCheckRequestBlueprint": {
+        "type": "object",
+        "description": "The blueprint about to be executed."
+      },
       "GetKeys200ResponseKeysItem": {
         "type": "object",
         "properties": {
@@ -142233,6 +142495,13 @@
           "theme": {
             "type": "string",
             "format": "color"
+          },
+          "scenarioUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetKeys200ResponseKeysItemScenarioUsagesItem"
+            },
+            "description": "Scenarios that use this key. Only returned when explicitly requested via \u0060cols[]=scenarioUsages\u0060."
           }
         }
       },
@@ -142261,6 +142530,13 @@
           "theme": {
             "type": "string",
             "format": "color"
+          },
+          "scenarioUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostKeys200ResponseKeyScenarioUsagesItem"
+            },
+            "description": "Scenarios that use this key. Only returned when explicitly requested via \u0060cols[]=scenarioUsages\u0060."
           }
         }
       },
@@ -142325,6 +142601,13 @@
           "theme": {
             "type": "string",
             "format": "color"
+          },
+          "scenarioUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetKeysByKeyId200ResponseKeyScenarioUsagesItem"
+            },
+            "description": "Scenarios that use this key. Only returned when explicitly requested via \u0060cols[]=scenarioUsages\u0060."
           }
         }
       },
@@ -142349,6 +142632,13 @@
           "theme": {
             "type": "string",
             "format": "color"
+          },
+          "scenarioUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchKeysByKeyId200ResponseKeyScenarioUsagesItem"
+            },
+            "description": "Scenarios that use this key. Only returned when explicitly requested via \u0060cols[]=scenarioUsages\u0060."
           }
         }
       },
@@ -154227,6 +154517,28 @@
           "secret": "hook-secret-value"
         }
       },
+      "GetKeys200ResponseKeysItemScenarioUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "PostKeys200ResponseKeyScenarioUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
       "GetKeysTypes200ResponseKeysTypesItemParametersItem": {
         "type": "object",
         "properties": {
@@ -154257,6 +154569,28 @@
           }
         },
         "description": "Describes how to create a key of this managed type. Only present when \u0060managed\u0060 is true."
+      },
+      "GetKeysByKeyId200ResponseKeyScenarioUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchKeysByKeyId200ResponseKeyScenarioUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
       },
       "GetOrganizations200ResponseOrganizationsItemLicense": {
         "type": "object",
@@ -182053,7 +182387,8 @@
           "typeName",
           "teamId",
           "packageName",
-          "theme"
+          "theme",
+          "scenarioUsages"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -182084,6 +182419,10 @@
             {
               "value": "theme",
               "name": "Theme"
+            },
+            {
+              "value": "scenarioUsages",
+              "name": "ScenarioUsages"
             }
           ]
         }

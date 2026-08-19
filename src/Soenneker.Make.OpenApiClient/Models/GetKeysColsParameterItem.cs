@@ -32,5 +32,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         Theme,
         #pragma warning restore CS1591
+        [EnumMember(Value = "scenarioUsages")]
+        #pragma warning disable CS1591
+        ScenarioUsages,
+        #pragma warning restore CS1591
     }
 }

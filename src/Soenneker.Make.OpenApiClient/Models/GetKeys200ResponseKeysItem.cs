@@ -32,6 +32,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string PackageName { get; set; }
 #endif
+        /// <summary>Scenarios that use this key. Only returned when explicitly requested via `cols[]=scenarioUsages`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetKeys200ResponseKeysItemScenarioUsagesItem>? ScenarioUsages { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetKeys200ResponseKeysItemScenarioUsagesItem> ScenarioUsages { get; set; }
+#endif
         /// <summary>The teamId property</summary>
         public int? TeamId { get; set; }
         /// <summary>The theme property</summary>
@@ -78,6 +86,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "packageName", n => { PackageName = n.GetStringValue(); } },
+                { "scenarioUsages", n => { ScenarioUsages = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetKeys200ResponseKeysItemScenarioUsagesItem>(global::Soenneker.Make.OpenApiClient.Models.GetKeys200ResponseKeysItemScenarioUsagesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
                 { "theme", n => { Theme = n.GetStringValue(); } },
                 { "typeName", n => { TypeName = n.GetStringValue(); } },
@@ -93,6 +102,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("packageName", PackageName);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetKeys200ResponseKeysItemScenarioUsagesItem>("scenarioUsages", ScenarioUsages);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteStringValue("theme", Theme);
             writer.WriteStringValue("typeName", TypeName);
