@@ -15,6 +15,14 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>ISO 3166-1 alpha-2 code of the organization&apos;s country, lowercase as stored (e.g. `us`), resolved from `countryId`. Returned when requested via `cols`, or when `cols` is omitted.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CountryCode { get; set; }
+#nullable restore
+#else
+        public string CountryCode { get; set; }
+#endif
         /// <summary>The country ID for the organization.</summary>
         public int? CountryId { get; set; }
         /// <summary>The creation timestamp of the organization.</summary>
@@ -43,6 +51,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public long? Id { get; set; }
         /// <summary>This is the ID of the first team that is created in the organization. There is no foreign key on purpose, since the reference can become invalid when the initial team is deleted. On the other hand, since process of creating a new organization and a new, first team in the organization, can be a bit decoupled, we need to set the value only when we really know that no team has been created so far. That is why we keep the dangling reference, because when the field is not null, but contains any number, we know that at least one team has been already created.</summary>
         public int? InitialTeamId { get; set; }
+        /// <summary>Default language of the organization&apos;s country, resolved from `countryId`. Returned when requested via `cols`, or when `cols` is omitted.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LanguageCode { get; set; }
+#nullable restore
+#else
+        public string LanguageCode { get; set; }
+#endif
         /// <summary>JSON object describing the license.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -50,6 +66,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemLicense License { get; set; }
+#endif
+        /// <summary>Default locale of the organization&apos;s country, lowercase as stored (e.g. `en-us`), resolved from `countryId`. Returned when requested via `cols`, or when `cols` is omitted.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LocaleCode { get; set; }
+#nullable restore
+#else
+        public string LocaleCode { get; set; }
 #endif
         /// <summary>The name of the organization.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -95,6 +119,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The timezone ID for the organization.</summary>
         public int? TimezoneId { get; set; }
+        /// <summary>IANA name of the organization&apos;s timezone (e.g. `Europe/Prague`), resolved from `timezoneId`. Returned when requested via `cols`, or when `cols` is omitted.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TimezoneName { get; set; }
+#nullable restore
+#else
+        public string TimezoneName { get; set; }
+#endif
         /// <summary>The last update timestamp of the organization.</summary>
         public DateTimeOffset? Updated { get; set; }
         /// <summary>User session timeout in seconds for the organization.</summary>
@@ -124,6 +156,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "countryCode", n => { CountryCode = n.GetStringValue(); } },
                 { "countryId", n => { CountryId = n.GetIntValue(); } },
                 { "created", n => { Created = n.GetDateTimeOffsetValue(); } },
                 { "deleted", n => { Deleted = n.GetBoolValue(); } },
@@ -132,7 +165,9 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "features", n => { Features = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemFeatures>(global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemFeatures.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetLongValue(); } },
                 { "initialTeamId", n => { InitialTeamId = n.GetIntValue(); } },
+                { "languageCode", n => { LanguageCode = n.GetStringValue(); } },
                 { "license", n => { License = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemLicense>(global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemLicense.CreateFromDiscriminatorValue); } },
+                { "localeCode", n => { LocaleCode = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "productFlags", n => { ProductFlags = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemProductFlags>(global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemProductFlags.CreateFromDiscriminatorValue); } },
                 { "productName", n => { ProductName = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemProductName>(global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemProductName.CreateFromDiscriminatorValue); } },
@@ -140,6 +175,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "slug", n => { Slug = n.GetStringValue(); } },
                 { "ssoType", n => { SsoType = n.GetStringValue(); } },
                 { "timezoneId", n => { TimezoneId = n.GetIntValue(); } },
+                { "timezoneName", n => { TimezoneName = n.GetStringValue(); } },
                 { "updated", n => { Updated = n.GetDateTimeOffsetValue(); } },
                 { "userSessionTimeout", n => { UserSessionTimeout = n.GetIntValue(); } },
             };
@@ -151,6 +187,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("countryCode", CountryCode);
             writer.WriteIntValue("countryId", CountryId);
             writer.WriteDateTimeOffsetValue("created", Created);
             writer.WriteBoolValue("deleted", Deleted);
@@ -159,7 +196,9 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemFeatures>("features", Features);
             writer.WriteLongValue("id", Id);
             writer.WriteIntValue("initialTeamId", InitialTeamId);
+            writer.WriteStringValue("languageCode", LanguageCode);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemLicense>("license", License);
+            writer.WriteStringValue("localeCode", LocaleCode);
             writer.WriteStringValue("name", Name);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemProductFlags>("productFlags", ProductFlags);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizations200ResponseOrganizationsItemProductName>("productName", ProductName);
@@ -167,6 +206,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("slug", Slug);
             writer.WriteStringValue("ssoType", SsoType);
             writer.WriteIntValue("timezoneId", TimezoneId);
+            writer.WriteStringValue("timezoneName", TimezoneName);
             writer.WriteDateTimeOffsetValue("updated", Updated);
             writer.WriteIntValue("userSessionTimeout", UserSessionTimeout);
             writer.WriteAdditionalData(AdditionalData);

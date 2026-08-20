@@ -695,7 +695,7 @@
           "Admin / Organizations"
         ],
         "summary": "Create an organization",
-        "description": "Create a new organization in the Make White Label instance. You can set the organization admin, timezone, country and features with the \u0060countryId\u0060, \u0060timezoneId\u0060, \u0060userOrgAdmin\u0060 and \u0060license\u0060 parameters in the request body.\n\nIf you don\u0027t use the \u0060countryId\u0060 and \u0060timezoneId\u0060 parameters Make uses your account values to set the organization timezone and country.\n\nIf you don\u0027t use the \u0060userOrgAdmin\u0060 parameter you are set as the organization admin.\n\nThe \u0060license\u0060 object sets the features and limits for the users in the organization. The following table lists all license parameters and their maximum, minimum, or available values for enumerated parameters. If you don\u0027t use the \u0060license\u0060 parameter Make sets the organization\u0027s license to the default values for your Make White Label instance. You can check the default license of your Make White Label instance with the [get default license](https://www.make.com/en/api-documentation/admin-system-settings-default-license-get) endpoint.\n \u003C!-- license input anchor begin --\u003E\n\u003Cdiv itemscope itemtype=\u0022https://schema.org/FAQPage\u0022\u003E \u003Cdiv class=\u0022card table\u0022\u003E \u003Ctable class=\u0022table\u0022\u003E \u003Cthead\u003E \u003Ctr\u003E \u003Cth\u003E\u003Cstrong class=\u0022text-nowrap\u0022\u003EParameter\u003C/strong\u003E\u003C/th\u003E \u003Cth\u003E\u003Cstrong\u003EDescription and values\u003C/strong\u003E\u003C/th\u003E \u003C/tr\u003E \u003C/thead\u003E \u003Ctbody\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003ErestartPeriod\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe period of time after which Make resets an organization\u0027s centicredits, operations, and data transfer.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E enum\u0026lt;string\u0026gt;\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E1 month\u003C/li\u003E \u003Cli\u003E1 year\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Eoperations\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe number of operations that are available to scenarios in the organization. Operations reset after the restart period.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 0\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 800000000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Etransfer\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe maximum amount of data transfer in bytes available to scenarios in the organization. Transfer resets after the restart period.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 104857600\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 1099511627776\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Edslimit\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe maximum number of data stores in the organization.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 1000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Edsslimit\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe maximum storage in bytes available across all data stores in the organization.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 2306867200\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Einterval\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe minimum interval between two scheduled scenario executions in minutes. The interval setting is ignored when the scenario scheduling is set to \u0022immediately\u0022.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 15\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Eteams\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe maximum number of teams in the organization. Unlimited if not specified.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 1000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Eretention\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe number of days to store internal logs (\u003Ccode\u003Eactivity stream\u003C/code\u003E, \u003Ccode\u003Euserdata fulltext\u003C/code\u003E, \u003Ccode\u003Euserdata\u003C/code\u003E, \u003Ccode\u003Edebugdata\u003C/code\u003E) for the organization. \u003Cbr\u003E The \u003Ccode\u003Eretention\u003C/code\u003E parameter limits for example the scenario execution detail storage duration. Scenario executions older than the \u003Ccode\u003Eretention\u003C/code\u003E period have only information about the scenario execution start and status.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E enum\u0026lt;uinteger\u0026gt;\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E7\u003C/li\u003E \u003Cli\u003E30\u003C/li\u003E \u003Cli\u003E60\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E 60\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EpremiumApps\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EUsers in the organization have access to premium apps that have the same or lower premium tier as the value of the \u003Ccode\u003EpremiumApps\u003C/code\u003E parameter. \u003Cbr\u003E To check the installed apps premium tier: \u003Cbr\u003E 1. List all installed apps with the API call \u003Ccode\u003EGET /admin/apps\u003C/code\u003E to get the app names in the \u003Ccode\u003Ename\u003C/code\u003E field. \u003Cbr\u003E 2. Run the API call \u003Ccode\u003EGET /admin/apps/{appName}\u003C/code\u003E. Check the field \u003Ccode\u003EpremiumTier\u003C/code\u003E for the premium tier of the app.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 10\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Epriority\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the scenario execution priority of the scenarios in the organization. \u003Cbr\u003E Make executes scenarios from an execution queue. If there are scenarios scheduled to run at the same time, Make orders them for execution according to their priority.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E enum\u0026lt;string\u0026gt;\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003Elow\u003C/li\u003E \u003Cli\u003Emedium\u003C/li\u003E \u003Cli\u003Ehigh\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EallowOverage\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the percentage by which scenarios can exceed the number of available centicredits, operations, and data transfer. \u003Cbr\u003E For example, if the organization has the \u003Ccode\u003Eoperations\u003C/code\u003E limit 1000 and the \u003Ccode\u003EallowOverage\u003C/code\u003E parameter set to 120, the scenarios in the organization can use up to 1200 operations before Make stops and inactivates them.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 100\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 200\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EapiLimit\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets a limit to the number of API calls per minute to work with the data contained in the organization. If a user is part of multiple organizations, Make limits API calls to each organization according to the organization\u0027s \u003Ccode\u003EapiLimit\u003C/code\u003E. \u003Cbr\u003E \u003Cbr\u003E \u003Cdiv class=\u0022alert alert-warning\u0022\u003EIf you don\u0027t specify the \u003Ccode\u003EapiLimit\u003C/code\u003E, Make sets the \u003Ccode\u003EapiLimit\u003C/code\u003E to 0, which disables access to the data in the organization with the API.\u003C/div\u003E\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 0\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 2000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Efulltext\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows full text search in the scenario execution history to the users in the organization.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EdedicatedSso\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows logging in to the White Label platform with a custom single sign-on solution.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EinstallPublicApps\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows installation of apps that were created by user that is not part of the organization.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EcreatingTemplates\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows the users to create scenario templates.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Escenarios\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the maximum number of active scenarios in the organization. The number is unlimited if not specified.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 1000000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EdlqStorage\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the maximum storage in bytes for the scenario incomplete executions.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 2097152000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EexecutionTime\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe maximum duration of a scenario execution in minutes.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 5\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 45\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EcustomVariables\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows using the \u003Ca href=\u0022https://www.make.com/en/help/functions/variables#custom-variables-1529751\u0022\u003Ecustom variables\u003C/a\u003E feature.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EcustomFunctions\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows using the \u003Ca href=\u0022https://www.make.com/en/help/functions/custom-functions\u0022\u003Ecustom functions\u003C/a\u003E feature.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Efslimit\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EMaximum individual file size in bytes that a scenario in the organization can transfer.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 5242880\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 1048576000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EproductManagement\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EDefines the subscription management method. Organizations in the Make White Label platform must have this parameter set to \u0022salesforce\u0022. You cannot change the value of this parameter.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E enum\u0026lt;string\u0026gt;\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003Esalesforce\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Eiolimit\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the maximum size of input and output webhook queues.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 10\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 10000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EgracePeriod\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets a time limit in days during which the organization has access to all of its features without payment. Organizations in the Make White Label platform must have this parameter set to 0. You cannot change the value of this parameter.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E0\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Eappslimit\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the maximum number of apps used by all active scenarios in the organization. Unlimited if not specified.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EonDemandScheduling\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows \u003Ca href=\u0022https://www.make.com/en/help/scenarios/scheduling-a-scenario#on-demand-scheduling-935240\u0022\u003Escenario On-Demand scheduling\u003C/a\u003E.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EscenarioIO\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows the \u003Ca href=\u0022https://www.make.com/en/help/scenarios/scenario-inputs\u0022\u003Escenario inputs\u003C/a\u003E feature for the scenarios in the organization.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EcustomProperties\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EEnables the \u003Ca href=\u0022https://www.make.com/en/help/scenarios/custom-scenario-properties\u0022\u003Ecustom properties\u003C/a\u003E feature. With custom properties, your users can add custom metadata to scenarios and use them to sort and filter their scenarios. \u003Cbr/\u003E The specified number sets the maximum number of structure items in a custom property structure.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E 100\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EauditLogsDays\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESet the parameter to a non-zero number to enable the \u003Ca href=\u0022https://www.make.com/en/help/access-management/audit-logs\u0022\u003Eaudit logs\u003C/a\u003E feature. With audit logs, you can track and review user actions in Make. In addition, users with the \u0022Owner,\u0022 \u0022Admin\u0022 and \u0022Team Admin\u0022 roles can view audit logs in Make.\u003Cbr/\u003E The specified number is the amount of days for which Make stores the audit log entries. \u003Cbr/\u003E The default value 0 disables the feature.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E 0\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EwebhookLogRetentionDays\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the number of days for which Make keeps webhook logs.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E 3\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 3\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 30\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EdynamicDependencies\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EEnables dynamic dependencies in a scenario. Dynamic dependencies allow users to map Make entities, like connections or data stores, in their scenarios.\u003Cbr/\u003E For example, \u003Ca href=\u0022https://www.make.com/en/help/connections/dynamic-connections\u0022\u003Edynamic connections\u003C/a\u003E are dynamic dependencies.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E false\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EdynamicConnections\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EEnables \u003Ca href=\u0022https://www.make.com/en/help/connections/dynamic-connections\u0022\u003Edynamic connections\u003C/a\u003E in a scenario. To allow using dynamic connections, you have to enable dynamic dependencies as well.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E false\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EscenarioRelationTree\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EEnables the \u003Cstrong\u003ERelation tree\u003C/strong\u003E tab in the scenario detail and controls the display of the scenario relation information in the list of scenarios and scenario history.\u003Cbr/\u003E If the parameter is disabled, users cannot see any scenario relation information.\u003Cbr/\u003E Read more about \u003Ca href=\u0022https://www.make.com/en/help/scenarios/subscenarios\u0022\u003Esubscenarios\u003C/a\u003E.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E false\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003C/tbody\u003E \u003C/table\u003E \u003C/div\u003E\n\u003C!-- license input anchor end --\u003E\n",
+        "description": "Create a new organization in the Make White Label instance. You can set the organization admin, timezone, country and features with the \u0060countryId\u0060, \u0060timezoneId\u0060, \u0060userOrgAdmin\u0060 and \u0060license\u0060 parameters in the request body.\n\nIf you don\u0027t use the \u0060countryId\u0060 and \u0060timezoneId\u0060 parameters Make uses your account values to set the organization timezone and country.\n\nIf you don\u0027t use the \u0060userOrgAdmin\u0060 parameter you are set as the organization admin.\n\nThe \u0060license\u0060 object sets the features and limits for the users in the organization. The following table lists all license parameters and their maximum, minimum, or available values for enumerated parameters. If you don\u0027t use the \u0060license\u0060 parameter Make sets the organization\u0027s license to the default values for your Make White Label instance. You can check the default license of your Make White Label instance with the [get default license](https://www.make.com/en/api-documentation/admin-system-settings-default-license-get) endpoint.\n \u003C!-- license input anchor begin --\u003E\n\u003Cdiv itemscope itemtype=\u0022https://schema.org/FAQPage\u0022\u003E \u003Cdiv class=\u0022card table\u0022\u003E \u003Ctable class=\u0022table\u0022\u003E \u003Cthead\u003E \u003Ctr\u003E \u003Cth\u003E\u003Cstrong class=\u0022text-nowrap\u0022\u003EParameter\u003C/strong\u003E\u003C/th\u003E \u003Cth\u003E\u003Cstrong\u003EDescription and values\u003C/strong\u003E\u003C/th\u003E \u003C/tr\u003E \u003C/thead\u003E \u003Ctbody\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003ErestartPeriod\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe period of time after which Make resets an organization\u0027s centicredits, operations, and data transfer.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E enum\u0026lt;string\u0026gt;\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E1 month\u003C/li\u003E \u003Cli\u003E1 year\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Eoperations\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe number of operations that are available to scenarios in the organization. Operations reset after the restart period.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 0\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 800000000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Etransfer\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe maximum amount of data transfer in bytes available to scenarios in the organization. Transfer resets after the restart period.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 104857600\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 1099511627776\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Edslimit\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe maximum number of data stores in the organization.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 1000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Edsslimit\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe maximum storage in bytes available across all data stores in the organization.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 2306867200\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Einterval\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe minimum interval between two scheduled scenario executions in minutes. The interval setting is ignored when the scenario scheduling is set to \u0022immediately\u0022.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 15\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Eteams\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe maximum number of teams in the organization. Unlimited if not specified.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 1000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Eretention\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe number of days to store internal logs (\u003Ccode\u003Eactivity stream\u003C/code\u003E, \u003Ccode\u003Euserdata fulltext\u003C/code\u003E, \u003Ccode\u003Euserdata\u003C/code\u003E, \u003Ccode\u003Edebugdata\u003C/code\u003E) for the organization. \u003Cbr\u003E The \u003Ccode\u003Eretention\u003C/code\u003E parameter limits for example the scenario execution detail storage duration. Scenario executions older than the \u003Ccode\u003Eretention\u003C/code\u003E period have only information about the scenario execution start and status.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E enum\u0026lt;uinteger\u0026gt;\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E7\u003C/li\u003E \u003Cli\u003E30\u003C/li\u003E \u003Cli\u003E60\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E 60\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EpremiumApps\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EUsers in the organization have access to premium apps that have the same or lower premium tier as the value of the \u003Ccode\u003EpremiumApps\u003C/code\u003E parameter. \u003Cbr\u003E To check the installed apps premium tier: \u003Cbr\u003E 1. List all installed apps with the API call \u003Ccode\u003EGET /admin/apps\u003C/code\u003E to get the app names in the \u003Ccode\u003Ename\u003C/code\u003E field. \u003Cbr\u003E 2. Run the API call \u003Ccode\u003EGET /admin/apps/{appName}\u003C/code\u003E. Check the field \u003Ccode\u003EpremiumTier\u003C/code\u003E for the premium tier of the app.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 10\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Epriority\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the scenario execution priority of the scenarios in the organization. \u003Cbr\u003E Make executes scenarios from an execution queue. If there are scenarios scheduled to run at the same time, Make orders them for execution according to their priority.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E enum\u0026lt;string\u0026gt;\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003Elow\u003C/li\u003E \u003Cli\u003Emedium\u003C/li\u003E \u003Cli\u003Ehigh\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EallowOverage\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the percentage by which scenarios can exceed the number of available centicredits, operations, and data transfer. \u003Cbr\u003E For example, if the organization has the \u003Ccode\u003Eoperations\u003C/code\u003E limit 1000 and the \u003Ccode\u003EallowOverage\u003C/code\u003E parameter set to 120, the scenarios in the organization can use up to 1200 operations before Make stops and inactivates them.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 100\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 200\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EapiLimit\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets a limit to the number of API calls per minute to work with the data contained in the organization. If a user is part of multiple organizations, Make limits API calls to each organization according to the organization\u0027s \u003Ccode\u003EapiLimit\u003C/code\u003E. \u003Cbr\u003E \u003Cbr\u003E \u003Cdiv class=\u0022alert alert-warning\u0022\u003EIf you don\u0027t specify the \u003Ccode\u003EapiLimit\u003C/code\u003E, Make sets the \u003Ccode\u003EapiLimit\u003C/code\u003E to 0, which disables access to the data in the organization with the API.\u003C/div\u003E\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 0\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 2000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Efulltext\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows full text search in the scenario execution history to the users in the organization.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EdedicatedSso\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows logging in to the White Label platform with a custom single sign-on solution.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EinstallPublicApps\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows installation of apps that were created by user that is not part of the organization.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EcreatingTemplates\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows the users to create scenario templates.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Escenarios\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the maximum number of active scenarios in the organization. The number is unlimited if not specified.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 1000000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EdlqStorage\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the maximum storage in bytes for the scenario incomplete executions.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 1\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 2097152000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EexecutionTime\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EThe maximum duration of a scenario execution in minutes.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 5\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 45\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EcustomVariables\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows using the \u003Ca href=\u0022https://www.make.com/en/help/functions/variables#custom-variables-1529751\u0022\u003Ecustom variables\u003C/a\u003E feature.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EcustomFunctions\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows using the \u003Ca href=\u0022https://www.make.com/en/help/functions/custom-functions\u0022\u003Ecustom functions\u003C/a\u003E feature.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Efslimit\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EMaximum individual file size in bytes that a scenario in the organization can transfer.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 5242880\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 1048576000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EproductManagement\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EDefines the subscription management method. Organizations in the Make White Label platform must have this parameter set to \u0022salesforce\u0022. You cannot change the value of this parameter.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E enum\u0026lt;string\u0026gt;\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003Esalesforce\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Eiolimit\u003C/code\u003E \u003Cspan class=\u0022required\u0022\u003EREQUIRED\u003C/span\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the maximum size of input and output webhook queues.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 10\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 10000\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EgracePeriod\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets a time limit in days during which the organization has access to all of its features without payment. Organizations in the Make White Label platform must have this parameter set to 0. You cannot change the value of this parameter.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E0\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003Eappslimit\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the maximum number of apps used by all active scenarios in the organization. Unlimited if not specified.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EonDemandScheduling\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows \u003Ca href=\u0022https://www.make.com/en/help/scenarios/scheduling-a-scenario#on-demand-scheduling-935240\u0022\u003Escenario On-Demand scheduling\u003C/a\u003E.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EscenarioIO\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EAllows the \u003Ca href=\u0022https://www.make.com/en/help/scenarios/scenario-inputs\u0022\u003Escenario inputs\u003C/a\u003E feature for the scenarios in the organization.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EcustomProperties\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EEnables the \u003Ca href=\u0022https://www.make.com/en/help/scenarios/custom-scenario-properties\u0022\u003Ecustom properties\u003C/a\u003E feature. With custom properties, your users can add custom metadata to scenarios and use them to sort and filter their scenarios. \u003Cbr/\u003E The specified number sets the maximum number of structure items in a custom property structure.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E 100\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EauditLogsDays\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESet the parameter to a non-zero number to enable the \u003Ca href=\u0022https://www.make.com/en/help/access-management/audit-logs\u0022\u003Eaudit logs\u003C/a\u003E feature. With audit logs, you can track and review user actions in Make. In addition, users with the \u0022Owner,\u0022 \u0022Admin\u0022 and \u0022Team Admin\u0022 roles can view audit logs in Make.\u003Cbr/\u003E The specified number is the amount of days for which Make stores the audit log entries. \u003Cbr/\u003E The default value 0 disables the feature.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E 0\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EwebhookLogRetentionDays\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003ESets the number of days for which Make keeps webhook logs.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E uinteger\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E 3\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emin:\u003C/strong\u003E 3\u003C/li\u003E \u003Cli\u003E\u003Cstrong\u003Emax:\u003C/strong\u003E 30\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EdynamicDependencies\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EEnables dynamic dependencies in a scenario. Dynamic dependencies allow users to map Make entities, like connections or data stores, in their scenarios.\u003Cbr/\u003E For example, \u003Ca href=\u0022https://www.make.com/en/help/connections/dynamic-connections\u0022\u003Edynamic connections\u003C/a\u003E are dynamic dependencies.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E false\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003Ctr itemscope itemprop=\u0022mainEntity\u0022 itemtype=\u0022https://schema.org/Question\u0022\u003E \u003Ctd\u003E \u003Cp itemprop=\u0022name\u0022\u003E \u003Ccode\u003EdynamicConnections\u003C/code\u003E \u003C/p\u003E \u003C/td\u003E \u003Ctd itemscope itemprop=\u0022acceptedAnswer\u0022 itemtype=\u0022https://schema.org/Answer\u0022\u003E \u003Cdiv itemprop=\u0022text\u0022\u003E \u003Cp\u003EEnables \u003Ca href=\u0022https://www.make.com/en/help/connections/dynamic-connections\u0022\u003Edynamic connections\u003C/a\u003E in a scenario. To allow using dynamic connections, you have to enable dynamic dependencies as well.\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EType:\u003C/strong\u003E boolean\u003C/p\u003E \u003Cp\u003E\u003Cstrong\u003EValues:\u003C/strong\u003E\u003C/p\u003E \u003Cul\u003E \u003Cli\u003E\u003Cstrong\u003Edefault:\u003C/strong\u003E false\u003C/li\u003E \u003C/ul\u003E \u003C/td\u003E \u003C/tr\u003E \u003C/tbody\u003E \u003C/table\u003E \u003C/div\u003E\n\u003C!-- license input anchor end --\u003E\n",
         "operationId": "PostAdminOrganizations",
         "requestBody": {
           "content": {
@@ -19452,7 +19452,7 @@
           {
             "name": "cols",
             "in": "query",
-            "description": "An array of column names to include in the response for each organization. If omitted, all available columns are returned.",
+            "description": "An array of column names to include in the response for each organization. \u0060id\u0060 is always included. Besides the organization\u0027s own columns, \u0060timezoneName\u0060, \u0060countryCode\u0060, \u0060languageCode\u0060 and \u0060localeCode\u0060 are resolved from the referenced timezone and country records. If omitted, all of the organization\u0027s own columns are returned together with all four resolved values.",
             "schema": {
               "type": "array",
               "items": {
@@ -19462,7 +19462,9 @@
             "example": [
               "id",
               "name",
-              "created"
+              "created",
+              "timezoneName",
+              "countryCode"
             ]
           }
         ],
@@ -19960,6 +19962,124 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/internal/config/runtime": {
+      "get": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Internal - Get runtime configuration",
+        "description": "Returns the runtime configuration derived from the current zone and API configuration: the host to use, the OAuth redirect base, redirect/static domains, default locale, support contact, and brand.",
+        "operationId": "GetInternalConfigRuntime",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalConfigRuntime200Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/private-spaces/lookup": {
+      "get": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Look up a user\u0027s private space",
+        "description": "Finds the private space (single-user team) a user owns within an organization. When \u0060accountName\u0060 is given, \u0060hasAccount\u0060 in the response reports whether the space already has a \u0060users.companyAccount\u0060 row with that \u0060account_name\u0060 \u2014 this lets a caller avoid re-creating a connection that already exists. When \u0060accountName\u0060 is omitted, \u0060hasAccount\u0060 is \u0060null\u0060 (\u0022not evaluated\u0022), not \u0060false\u0060 \u2014 a caller that doesn\u0027t ask for the check should not read \u0060false\u0060 as \u0022checked and absent\u0022.\n",
+        "operationId": "GetInternalPrivateSpacesLookup",
+        "parameters": [
+          {
+            "name": "ownerUserId",
+            "in": "query",
+            "description": "The ID of the user who owns the private space.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 42
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "description": "The ID of the organization the private space belongs to.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 7
+          },
+          {
+            "name": "accountName",
+            "in": "query",
+            "description": "Optional account_name to check for existence on the space (e.g. \u0027ai-provider\u0027). When omitted, \u0060hasAccount\u0060 in the response is \u0060null\u0060.\n",
+            "schema": {
+              "type": "string"
+            },
+            "example": "ai-provider"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lookup completed (the user may or may not have a private space in this organization).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalPrivateSpacesLookup200Response"
+                },
+                "examples": {
+                  "found-with-account": {
+                    "summary": "Space found, has the requested account",
+                    "value": {
+                      "privateSpace": {
+                        "teamId": 1234,
+                        "hasAccount": true
+                      }
+                    }
+                  },
+                  "found-without-account": {
+                    "summary": "Space found, does not have the requested account yet",
+                    "value": {
+                      "privateSpace": {
+                        "teamId": 1234,
+                        "hasAccount": false
+                      }
+                    }
+                  },
+                  "not-requested": {
+                    "summary": "Space found, accountName was omitted",
+                    "value": {
+                      "privateSpace": {
+                        "teamId": 1234,
+                        "hasAccount": null
+                      }
+                    }
+                  },
+                  "not-found": {
+                    "summary": "User has no private space in this organization",
+                    "value": {
+                      "privateSpace": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or missing ownerUserId/organizationId."
+          },
+          "401": {
+            "description": "Missing or invalid ISC authorization."
           }
         }
       }
@@ -38721,6 +38841,592 @@
           {
             "token": [
               "sdk-apps:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/{sdkGithubBindingId}/push": {
+      "post": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "Push app to GitHub",
+        "description": "Commits the app version\u0027s complete source tree (app sections, readme, icons, modules, RPCs, functions, webhooks, connections) to the bound repository branch as a single commit, using the binding\u0027s Make connection for authentication. When the bound repository does not exist yet it is created as a private repository under the connection\u0027s GitHub user and initialised with a bootstrap tree. Connection and webhook folders are committed under stable per-binding folder names (\u0060nameMap\u0060) so the repository layout survives renames; each of their \u0060metadata.json\u0060 files carries a stable \u0060$id\u0060 used to re-identify the entity on later pulls. On success the binding\u0027s sync state (\u0060lastPushedAt\u0060, \u0060lastPushedCommitSha\u0060, \u0060syncStatus\u0060, per-file checksum snapshot) is updated and returned. On failure the binding is marked with \u0060syncStatus: error\u0060 and \u0060lastError\u0060. Only the app\u0027s author (or an administrator) may push.",
+        "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-github-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "sdkGithubBindingId",
+            "in": "path",
+            "description": "ID of the GitHub binding.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPushRequest"
+              },
+              "examples": {
+                "push-with-message": {
+                  "summary": "Push with a custom commit message",
+                  "value": {
+                    "message": "Add the listRecords module"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200Response"
+                },
+                "examples": {
+                  "push-with-message": {
+                    "summary": "Binding after a successful push",
+                    "value": {
+                      "binding": {
+                        "id": 42,
+                        "appName": "my-github-app",
+                        "appVersion": 1,
+                        "repoUrl": "https://github.com/octocat/my-github-app",
+                        "owner": "octocat",
+                        "repo": "my-github-app",
+                        "branch": "main",
+                        "defaultBranch": "main",
+                        "private": true,
+                        "connectionId": 137,
+                        "connectionName": "My GitHub connection",
+                        "lastSyncedAt": "2026-08-13T09:00:00.000Z",
+                        "lastSyncedCommitSha": "8f5b3a2c1d9e7f6a5b4c3d2e1f0a9b8c7d6e5f4a",
+                        "lastPushedAt": "2026-08-13T09:00:00.000Z",
+                        "lastPushedCommitSha": "8f5b3a2c1d9e7f6a5b4c3d2e1f0a9b8c7d6e5f4a",
+                        "lastPulledAt": null,
+                        "lastPulledCommitSha": null,
+                        "remoteHeadSha": "8f5b3a2c1d9e7f6a5b4c3d2e1f0a9b8c7d6e5f4a",
+                        "behindBy": 0,
+                        "syncStatus": "in_sync",
+                        "lastError": null,
+                        "lastPushedChecksums": {
+                          "base.imljson": "6c9b7a8d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b",
+                          "readme.md": "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b"
+                        },
+                        "nameMap": {
+                          "connections": {
+                            "3f1c9a2e-7b4d-4c6a-9e8f-2a1b3c4d5e6f": {
+                              "dbName": "my-github-app2",
+                              "repoPath": "oauth-1"
+                            }
+                          },
+                          "webhooks": {}
+                        },
+                        "createdAt": "2026-08-12T10:00:00.000Z",
+                        "updatedAt": "2026-08-13T09:00:00.000Z",
+                        "createdByUserId": 1
+                      },
+                      "commitSha": "8f5b3a2c1d9e7f6a5b4c3d2e1f0a9b8c7d6e5f4a"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The bound connection no longer exists or is not a GitHub connection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush400ResponseSchema"
+                },
+                "examples": {
+                  "connection-unavailable": {
+                    "summary": "Bound connection unavailable",
+                    "value": {
+                      "message": "Bound connection is not available or is not a GitHub connection.",
+                      "code": "IM005"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The binding does not exist or belongs to a different app version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush404ResponseSchema"
+                },
+                "examples": {
+                  "binding-not-found": {
+                    "summary": "Binding not found",
+                    "value": {
+                      "detail": "GitHub binding not found for this app.",
+                      "code": "IM013"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "424": {
+            "description": "GitHub rejected a request or was unreachable (invalid/revoked token, missing branch, API outage). The binding is marked with \u0060syncStatus: error\u0060 and the message is stored in \u0060lastError\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush424ResponseSchema"
+                },
+                "examples": {
+                  "github-failed": {
+                    "summary": "GitHub call failed",
+                    "value": {
+                      "message": "GitHub API GET /user failed: 401 Bad credentials",
+                      "code": "SC424"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/{sdkGithubBindingId}/pull": {
+      "post": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "Pull app from GitHub",
+        "description": "Applies the latest commit on the bound branch to the app version. Files whose content differs from the local state are written through the same edit path the SDK editor uses \u2014 directly to the component tables on editable apps, or as pending changes (\u0060apps.change\u0060) on approved public apps. Sub-entities that exist only in the repository are created first: modules, RPCs and functions are created under their repository folder names, while connections and webhooks are re-identified by the \u0060$id\u0060 in their \u0060metadata.json\u0060 (matching the entity\u0027s stable external ID) and created with auto-generated names when unknown \u2014 this is what makes one repository cloneable into multiple apps. Files that fail to apply (e.g. invalid JSONC) are skipped individually; the rest of the pull proceeds. When the remote HEAD equals the last synced commit the call is a cheap no-op that leaves the stored checksum snapshot untouched (so unpushed local drift stays visible in the diff); a snapshot is only seeded from the local state when the binding does not carry a file-format snapshot yet. On success the binding\u0027s sync state (\u0060lastPulledAt\u0060, \u0060lastPulledCommitSha\u0060, \u0060syncStatus\u0060, checksum snapshot, \u0060nameMap\u0060) is updated and returned. Only the app\u0027s author (or an administrator) may pull.",
+        "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-github-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "sdkGithubBindingId",
+            "in": "path",
+            "description": "ID of the GitHub binding.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200Response"
+                },
+                "examples": {
+                  "pull-with-new-module": {
+                    "summary": "Pull that created a module and applied two files",
+                    "value": {
+                      "binding": {
+                        "id": 42,
+                        "appName": "my-github-app",
+                        "appVersion": 1,
+                        "repoUrl": "https://github.com/octocat/my-github-app",
+                        "owner": "octocat",
+                        "repo": "my-github-app",
+                        "branch": "main",
+                        "defaultBranch": "main",
+                        "private": true,
+                        "connectionId": 137,
+                        "connectionName": "My GitHub connection",
+                        "lastSyncedAt": "2026-08-13T09:10:00.000Z",
+                        "lastSyncedCommitSha": "9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0c",
+                        "lastPushedAt": "2026-08-13T09:00:00.000Z",
+                        "lastPushedCommitSha": "8f5b3a2c1d9e7f6a5b4c3d2e1f0a9b8c7d6e5f4a",
+                        "lastPulledAt": "2026-08-13T09:10:00.000Z",
+                        "lastPulledCommitSha": "9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0c",
+                        "remoteHeadSha": "9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0c",
+                        "behindBy": 0,
+                        "syncStatus": "in_sync",
+                        "lastError": null,
+                        "lastPushedChecksums": {
+                          "base.imljson": "6c9b7a8d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b",
+                          "readme.md": "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b"
+                        },
+                        "nameMap": {
+                          "connections": {
+                            "3f1c9a2e-7b4d-4c6a-9e8f-2a1b3c4d5e6f": {
+                              "dbName": "my-github-app2",
+                              "repoPath": "oauth-1"
+                            }
+                          },
+                          "webhooks": {}
+                        },
+                        "createdAt": "2026-08-12T10:00:00.000Z",
+                        "updatedAt": "2026-08-13T09:10:00.000Z",
+                        "createdByUserId": 1
+                      },
+                      "changes": [],
+                      "appliedCount": 2,
+                      "created": [
+                        {
+                          "group": "module",
+                          "item": "listRecords"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The bound connection no longer exists or is not a GitHub connection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull400ResponseSchema"
+                },
+                "examples": {
+                  "connection-unavailable": {
+                    "summary": "Bound connection unavailable",
+                    "value": {
+                      "message": "Bound connection is not available or is not a GitHub connection.",
+                      "code": "IM005"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The binding does not exist or belongs to a different app version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull404ResponseSchema"
+                },
+                "examples": {
+                  "binding-not-found": {
+                    "summary": "Binding not found",
+                    "value": {
+                      "detail": "GitHub binding not found for this app.",
+                      "code": "IM013"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "424": {
+            "description": "GitHub rejected a request or was unreachable \u2014 including the case where the bound branch has no commits yet (nothing to pull; push from Make first). The binding is marked with \u0060syncStatus: error\u0060 and the message is stored in \u0060lastError\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull424ResponseSchema"
+                },
+                "examples": {
+                  "branch-empty": {
+                    "summary": "Bound branch has no commits yet",
+                    "value": {
+                      "message": "GitHub branch octocat/my-github-app@main has no commit yet \u2014 push from Make first.",
+                      "code": "SC424"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/{sdkGithubBindingId}/diff": {
+      "get": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "Get GitHub binding diff",
+        "description": "Reports whether the app version has drifted locally from what was last pushed to GitHub \u2014 the \u0022ahead by N changes\u0022 signal, independent of whether the remote branch itself has moved (that\u0027s the binding\u0027s \u0060behindBy\u0060). Combines two signals de-duplicated per component: a checksum diff of the current source tree against the snapshot captured at the last push, and pending change rows that approved public apps accumulate instead of writing directly. Before the first push there is no snapshot (\u0060snapshotAvailable: false\u0060) and every component reports as \u0060added\u0060. Only the app\u0027s author (or an administrator) may read the diff.",
+        "operationId": "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-github-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "sdkGithubBindingId",
+            "in": "path",
+            "description": "ID of the GitHub binding.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200Response"
+                },
+                "examples": {
+                  "drifted": {
+                    "summary": "One module edited since the last push",
+                    "value": {
+                      "diff": {
+                        "ahead": 1,
+                        "inSync": false,
+                        "changedItems": [
+                          {
+                            "kind": "module",
+                            "name": "listRecords",
+                            "change": "modified"
+                          }
+                        ],
+                        "snapshotAvailable": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The binding does not exist or belongs to a different app version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff404ResponseSchema"
+                },
+                "examples": {
+                  "binding-not-found": {
+                    "summary": "Binding not found",
+                    "value": {
+                      "detail": "GitHub binding not found for this app.",
+                      "code": "IM013"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:read"
+            ]
+          }
+        ]
+      }
+    },
+    "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/{sdkGithubBindingId}/diff/files": {
+      "get": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "Get GitHub binding file diff",
+        "description": "File-level, three-way diff between the app\u0027s local source tree, the bound remote branch HEAD, and the per-file snapshot captured at the last push. Lists only files whose local and remote contents differ, with both contents included for text files so a UI can render a side-by-side view. When a snapshot is available, each entry also reports which side moved since the last push and flags real merge conflicts (both sides moved to different content). Binary files (icons) are listed with SHAs only \u2014 their contents are omitted. Files outside the SDK source layout (e.g. the bootstrap \u0060.claude/\u0060 tree committed on repository creation) are ignored. Costs one GitHub tree listing plus one contents fetch per differing text file. Only the app\u0027s author (or an administrator) may read the diff.",
+        "operationId": "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-github-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "sdkGithubBindingId",
+            "in": "path",
+            "description": "ID of the GitHub binding.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200Response"
+                },
+                "examples": {
+                  "one-conflict": {
+                    "summary": "One file changed on both sides",
+                    "value": {
+                      "diff": {
+                        "files": [
+                          {
+                            "path": "modules/listRecords/communication.imljson",
+                            "kind": "module",
+                            "name": "listRecords",
+                            "section": "api",
+                            "status": "modified",
+                            "localContent": "{\u0022url\u0022: \u0022/records\u0022, \u0022method\u0022: \u0022GET\u0022}",
+                            "remoteContent": "{\u0022url\u0022: \u0022/records\u0022, \u0022method\u0022: \u0022POST\u0022}",
+                            "localSha": "2c26b46b68ffc68ff99b453c1d30413413422d70",
+                            "remoteSha": "7d865e959b2466918c9863afca942d0fb89d7c9a",
+                            "snapshotSha": "9c1185a5c5e9fc54612808977ee8f548b2258d31",
+                            "localChangedSinceSnapshot": true,
+                            "remoteChangedSinceSnapshot": true,
+                            "conflict": true,
+                            "binary": false
+                          }
+                        ],
+                        "totalChanged": 1,
+                        "localAheadCount": 1,
+                        "remoteAheadCount": 1,
+                        "conflictCount": 1,
+                        "snapshotAvailable": true,
+                        "remoteHeadSha": "9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0c",
+                        "inSync": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The bound connection no longer exists or is not a GitHub connection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles400ResponseSchema"
+                },
+                "examples": {
+                  "connection-unavailable": {
+                    "summary": "Bound connection unavailable",
+                    "value": {
+                      "message": "Bound connection is not available or is not a GitHub connection.",
+                      "code": "IM005"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The binding does not exist or belongs to a different app version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles404ResponseSchema"
+                },
+                "examples": {
+                  "binding-not-found": {
+                    "summary": "Binding not found",
+                    "value": {
+                      "detail": "GitHub binding not found for this app.",
+                      "code": "IM013"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:read"
             ]
           }
         ]
@@ -94994,6 +95700,38 @@
           "brand_color": "violet"
         }
       },
+      "GetInternalConfigRuntime200Response": {
+        "type": "object",
+        "properties": {
+          "config": {
+            "$ref": "#/components/schemas/GetInternalConfigRuntime200ResponseConfig"
+          }
+        },
+        "example": {
+          "config": {
+            "host": "eu1.make.com",
+            "oauthRedirectBase": "https://eu1.make.com",
+            "redirects": {
+              "integromat": "https://www.integromat.com",
+              "make": "https://www.make.com"
+            },
+            "static": "https://static.make.com",
+            "locale": "en",
+            "support": "support@make.com",
+            "brand": {
+              "title": "Make"
+            }
+          }
+        }
+      },
+      "GetInternalPrivateSpacesLookup200Response": {
+        "type": "object",
+        "properties": {
+          "privateSpace": {
+            "$ref": "#/components/schemas/GetInternalPrivateSpacesLookup200ResponsePrivateSpace"
+          }
+        }
+      },
       "PostInternalTeamsByTeamIdConnectionsRequest": {
         "required": [
           "accountName",
@@ -99888,6 +100626,97 @@
         "type": "object"
       },
       "DeleteSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404Response": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPushRequest": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "maxLength": 1024,
+            "type": "string",
+            "description": "Commit message. Defaults to \u0060Sync \u003CappName\u003E@\u003CappVersion\u003E from Make\u0060 when omitted."
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200Response": {
+        "type": "object",
+        "properties": {
+          "binding": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBinding"
+          },
+          "commitSha": {
+            "type": "string",
+            "description": "SHA of the commit created on the bound branch."
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush400Response": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush404Response": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush424Response": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200Response": {
+        "type": "object",
+        "properties": {
+          "binding": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBinding"
+          },
+          "changes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseChangesItem"
+            },
+            "description": "Pulled files that produced a pending change (\u0060apps.change\u0060) instead of a direct write \u2014 only possible on approved public apps. Empty for editable apps."
+          },
+          "appliedCount": {
+            "type": "integer",
+            "description": "Total number of files written during the pull, including direct component-table writes that produce no \u0060changes\u0060 entry. Always \u003E= \u0060changes.length\u0060."
+          },
+          "created": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseCreatedItem"
+            },
+            "description": "Sub-entities that existed only in the repository and were created during this pull."
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull400Response": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull404Response": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull424Response": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200Response": {
+        "type": "object",
+        "properties": {
+          "diff": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiff"
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff404Response": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200Response": {
+        "type": "object",
+        "properties": {
+          "diff": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiff"
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles400Response": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles404Response": {
         "type": "object"
       },
       "PostSdkAppsBySdkAppNameConnectionsRequest": {
@@ -133815,6 +134644,33 @@
       "DeleteSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404ResponseSchema": {
         "type": "object"
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush400ResponseSchema": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush404ResponseSchema": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush424ResponseSchema": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull400ResponseSchema": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull404ResponseSchema": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull424ResponseSchema": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff404ResponseSchema": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles400ResponseSchema": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles404ResponseSchema": {
+        "type": "object"
+      },
       "DeleteSdkAppsConnectionsBySdkConnectionName400ResponseSchema": {
         "type": "object"
       },
@@ -142100,6 +142956,23 @@
           "userSessionTimeout": {
             "type": "integer",
             "description": "User session timeout in seconds for the organization."
+          },
+          "timezoneName": {
+            "type": "string",
+            "description": "IANA name of the organization\u0027s timezone (e.g. \u0060Europe/Prague\u0060), resolved from \u0060timezoneId\u0060. Returned when requested via \u0060cols\u0060, or when \u0060cols\u0060 is omitted."
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 code of the organization\u0027s country, lowercase as stored (e.g. \u0060us\u0060), resolved from \u0060countryId\u0060. Returned when requested via \u0060cols\u0060, or when \u0060cols\u0060 is omitted.",
+            "nullable": true
+          },
+          "languageCode": {
+            "type": "string",
+            "description": "Default language of the organization\u0027s country, resolved from \u0060countryId\u0060. Returned when requested via \u0060cols\u0060, or when \u0060cols\u0060 is omitted."
+          },
+          "localeCode": {
+            "type": "string",
+            "description": "Default locale of the organization\u0027s country, lowercase as stored (e.g. \u0060en-us\u0060), resolved from \u0060countryId\u0060. Returned when requested via \u0060cols\u0060, or when \u0060cols\u0060 is omitted."
           }
         },
         "description": "Represents an organization\u0027s details. The actual fields returned depend on the \u0027cols\u0027 parameter or all fields if \u0027cols\u0027 is omitted.",
@@ -142131,7 +143004,11 @@
           "slug": "example-corp",
           "ssoType": "saml",
           "timezoneId": 100,
-          "userSessionTimeout": 3600
+          "userSessionTimeout": 3600,
+          "timezoneName": "Europe/Prague",
+          "countryCode": "us",
+          "languageCode": "en",
+          "localeCode": "en-us"
         }
       },
       "GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganization": {
@@ -142289,6 +143166,53 @@
           "local_access": true,
           "allow_apps": true
         }
+      },
+      "GetInternalConfigRuntime200ResponseConfig": {
+        "type": "object",
+        "properties": {
+          "host": {
+            "type": "string",
+            "description": "The host to use for links (HQ domain in slave mode, redirector or web domain otherwise)."
+          },
+          "oauthRedirectBase": {
+            "type": "string",
+            "description": "Base URL OAuth providers should redirect back to."
+          },
+          "redirects": {
+            "$ref": "#/components/schemas/GetInternalConfigRuntime200ResponseConfigRedirects"
+          },
+          "static": {
+            "type": "string",
+            "description": "Static assets domain."
+          },
+          "locale": {
+            "type": "string",
+            "description": "Default language configured for the zone."
+          },
+          "support": {
+            "type": "string",
+            "description": "Support contact email."
+          },
+          "brand": {
+            "$ref": "#/components/schemas/GetInternalConfigRuntime200ResponseConfigBrand"
+          }
+        }
+      },
+      "GetInternalPrivateSpacesLookup200ResponsePrivateSpace": {
+        "type": "object",
+        "properties": {
+          "teamId": {
+            "type": "integer",
+            "description": "The private space\u0027s team ID."
+          },
+          "hasAccount": {
+            "type": "boolean",
+            "description": "true/false when \u0060accountName\u0060 was given; null when it was omitted.",
+            "nullable": true
+          }
+        },
+        "description": "\u0060null\u0060 when the user has no private space in this organization.",
+        "nullable": true
       },
       "PostInternalTeamsByTeamIdConnectionsRequestData": {
         "type": "object",
@@ -148995,6 +149919,337 @@
         },
         "description": "A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch)."
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBinding": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Binding ID. Unique across all apps; assigned by Make."
+          },
+          "appName": {
+            "type": "string",
+            "description": "Name of the SDK app the binding belongs to."
+          },
+          "appVersion": {
+            "type": "integer",
+            "description": "Major version of the SDK app the binding targets."
+          },
+          "repoUrl": {
+            "type": "string",
+            "description": "Canonical URL of the bound repository, as reported by GitHub."
+          },
+          "owner": {
+            "type": "string",
+            "description": "GitHub owner login (user or organization), as reported by GitHub at bind time."
+          },
+          "repo": {
+            "type": "string",
+            "description": "GitHub repository name."
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch on the remote the binding syncs against."
+          },
+          "defaultBranch": {
+            "type": "string",
+            "description": "Default branch reported by GitHub when the binding was last established."
+          },
+          "private": {
+            "type": "boolean",
+            "description": "Whether the remote repository is private."
+          },
+          "connectionId": {
+            "type": "integer",
+            "description": "ID of the Make GitHub connection used for OAuth."
+          },
+          "connectionName": {
+            "type": "string",
+            "description": "Display name of the Make connection, or \u0060null\u0060 when the connection no longer exists.",
+            "nullable": true
+          },
+          "lastSyncedAt": {
+            "type": "string",
+            "description": "Timestamp of the last successful sync in any direction. \u0060null\u0060 until the push/pull flows are available.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastSyncedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPushedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPushedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPulledAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPulledCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteHeadSha": {
+            "type": "string",
+            "description": "Last observed HEAD SHA of the bound branch. Refreshed best-effort on read; \u0060null\u0060 when the branch has no commits or GitHub is unreachable.",
+            "nullable": true
+          },
+          "behindBy": {
+            "type": "integer",
+            "description": "Number of commits the app is behind the remote branch. \u00600\u0060 when in sync; \u0060null\u0060 when unknown.",
+            "nullable": true
+          },
+          "syncStatus": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingSyncStatus"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "Most recent error message from a failed sync; cleared on the next successful sync.",
+            "nullable": true
+          },
+          "lastPushedChecksums": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingLastPushedChecksums"
+          },
+          "nameMap": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingNameMap"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdByUserId": {
+            "type": "integer",
+            "description": "ID of the user who created the binding."
+          }
+        },
+        "description": "A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch)."
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBinding": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Binding ID. Unique across all apps; assigned by Make."
+          },
+          "appName": {
+            "type": "string",
+            "description": "Name of the SDK app the binding belongs to."
+          },
+          "appVersion": {
+            "type": "integer",
+            "description": "Major version of the SDK app the binding targets."
+          },
+          "repoUrl": {
+            "type": "string",
+            "description": "Canonical URL of the bound repository, as reported by GitHub."
+          },
+          "owner": {
+            "type": "string",
+            "description": "GitHub owner login (user or organization), as reported by GitHub at bind time."
+          },
+          "repo": {
+            "type": "string",
+            "description": "GitHub repository name."
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch on the remote the binding syncs against."
+          },
+          "defaultBranch": {
+            "type": "string",
+            "description": "Default branch reported by GitHub when the binding was last established."
+          },
+          "private": {
+            "type": "boolean",
+            "description": "Whether the remote repository is private."
+          },
+          "connectionId": {
+            "type": "integer",
+            "description": "ID of the Make GitHub connection used for OAuth."
+          },
+          "connectionName": {
+            "type": "string",
+            "description": "Display name of the Make connection, or \u0060null\u0060 when the connection no longer exists.",
+            "nullable": true
+          },
+          "lastSyncedAt": {
+            "type": "string",
+            "description": "Timestamp of the last successful sync in any direction. \u0060null\u0060 until the push/pull flows are available.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastSyncedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPushedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPushedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPulledAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPulledCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteHeadSha": {
+            "type": "string",
+            "description": "Last observed HEAD SHA of the bound branch. Refreshed best-effort on read; \u0060null\u0060 when the branch has no commits or GitHub is unreachable.",
+            "nullable": true
+          },
+          "behindBy": {
+            "type": "integer",
+            "description": "Number of commits the app is behind the remote branch. \u00600\u0060 when in sync; \u0060null\u0060 when unknown.",
+            "nullable": true
+          },
+          "syncStatus": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingSyncStatus"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "Most recent error message from a failed sync; cleared on the next successful sync.",
+            "nullable": true
+          },
+          "lastPushedChecksums": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingLastPushedChecksums"
+          },
+          "nameMap": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingNameMap"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdByUserId": {
+            "type": "integer",
+            "description": "ID of the user who created the binding."
+          }
+        },
+        "description": "A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch)."
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseChangesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID of the created \u0060apps.change\u0060 row."
+          },
+          "code": {
+            "type": "string",
+            "description": "Section identifier of the changed file (e.g. \u0060api\u0060, \u0060parameters\u0060, \u0060metadata\u0060)."
+          },
+          "group": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseChangesItemGroup"
+          },
+          "item": {
+            "type": "string",
+            "description": "Entity name inside the group (the app name for app-level files)."
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseCreatedItem": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseCreatedItemGroup"
+          },
+          "item": {
+            "type": "string",
+            "description": "Name of the created entity (auto-generated for connections and webhooks)."
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiff": {
+        "type": "object",
+        "properties": {
+          "ahead": {
+            "type": "integer",
+            "description": "Number of components that changed locally since the last push."
+          },
+          "inSync": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when no component drifted (\u0060ahead\u0060 is 0)."
+          },
+          "changedItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItem"
+            },
+            "description": "The drifted components."
+          },
+          "snapshotAvailable": {
+            "type": "boolean",
+            "description": "\u0060false\u0060 until the binding\u0027s first successful push captured a checksum snapshot."
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiff": {
+        "type": "object",
+        "properties": {
+          "files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem"
+            },
+            "description": "Files whose local and remote contents differ, sorted by path."
+          },
+          "totalChanged": {
+            "type": "integer",
+            "description": "Number of entries in \u0060files\u0060."
+          },
+          "localAheadCount": {
+            "type": "integer",
+            "description": "Files whose local content moved since the snapshot."
+          },
+          "remoteAheadCount": {
+            "type": "integer",
+            "description": "Files whose remote content moved since the snapshot."
+          },
+          "conflictCount": {
+            "type": "integer",
+            "description": "Files flagged as conflicts."
+          },
+          "snapshotAvailable": {
+            "type": "boolean",
+            "description": "\u0060false\u0060 until the binding\u0027s first successful push captured a snapshot."
+          },
+          "remoteHeadSha": {
+            "type": "string",
+            "description": "Current HEAD SHA of the bound branch, or \u0060null\u0060 when the branch has no commits.",
+            "nullable": true
+          },
+          "inSync": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when no file differs."
+          }
+        }
+      },
       "PostSdkAppsBySdkAppNameConnections200ResponseAppConnection": {
         "type": "object",
         "properties": {
@@ -154497,6 +155752,25 @@
           }
         }
       },
+      "GetInternalConfigRuntime200ResponseConfigRedirects": {
+        "type": "object",
+        "properties": {
+          "integromat": {
+            "type": "string"
+          },
+          "make": {
+            "type": "string"
+          }
+        }
+      },
+      "GetInternalConfigRuntime200ResponseConfigBrand": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          }
+        }
+      },
       "GetInternalDataStructuresByDataStructureId200ResponseDataStructureSpecItem": {
         "type": "object"
       },
@@ -156779,6 +158053,130 @@
         },
         "description": "Repo-side identity map for connections and webhooks. Empty until the first sync."
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingLastPushedChecksums": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Per-file checksum snapshot captured at the last successful push. \u0060null\u0060 until the push flow is available.",
+        "nullable": true
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingNameMap": {
+        "type": "object",
+        "properties": {
+          "connections": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingNameMapConnections"
+          },
+          "webhooks": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingNameMapWebhooks"
+          }
+        },
+        "description": "Repo-side identity map for connections and webhooks. Empty until the first sync."
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingLastPushedChecksums": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Per-file checksum snapshot captured at the last successful push. \u0060null\u0060 until the push flow is available.",
+        "nullable": true
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingNameMap": {
+        "type": "object",
+        "properties": {
+          "connections": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingNameMapConnections"
+          },
+          "webhooks": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingNameMapWebhooks"
+          }
+        },
+        "description": "Repo-side identity map for connections and webhooks. Empty until the first sync."
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItem": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItemKind"
+          },
+          "name": {
+            "type": "string",
+            "description": "Component name \u2014 the live entity name (connections/webhooks are translated back from their repository folder names)."
+          },
+          "change": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItemChange"
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Repository path of the file (local casing preferred)."
+          },
+          "kind": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind"
+          },
+          "name": {
+            "type": "string",
+            "description": "Live entity name (connections/webhooks translated back from their repository folder names); \u0060null\u0060 for app-level files.",
+            "nullable": true
+          },
+          "section": {
+            "type": "string",
+            "description": "Section identifier of the file (e.g. \u0060api\u0060, \u0060metadata\u0060, \u0060readme\u0060), or \u0060null\u0060.",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemStatus"
+          },
+          "localContent": {
+            "type": "string",
+            "description": "Local file content; \u0060null\u0060 for binary files or when the file only exists remotely.",
+            "nullable": true
+          },
+          "remoteContent": {
+            "type": "string",
+            "description": "Remote file content; \u0060null\u0060 for binary files or when the file only exists locally.",
+            "nullable": true
+          },
+          "localSha": {
+            "type": "string",
+            "description": "Git blob SHA of the local content, or \u0060null\u0060 when the file only exists remotely.",
+            "nullable": true
+          },
+          "remoteSha": {
+            "type": "string",
+            "description": "Git blob SHA of the remote content, or \u0060null\u0060 when the file only exists locally.",
+            "nullable": true
+          },
+          "snapshotSha": {
+            "type": "string",
+            "description": "Git blob SHA recorded at the last push, or \u0060null\u0060 when the path wasn\u0027t in the snapshot.",
+            "nullable": true
+          },
+          "localChangedSinceSnapshot": {
+            "type": "boolean",
+            "description": "\u0060null\u0060 when no snapshot is available.",
+            "nullable": true
+          },
+          "remoteChangedSinceSnapshot": {
+            "type": "boolean",
+            "description": "\u0060null\u0060 when no snapshot is available.",
+            "nullable": true
+          },
+          "conflict": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when both sides moved away from the snapshot to different contents \u2014 pushing would overwrite remote edits. \u0060null\u0060 when no snapshot is available.",
+            "nullable": true
+          },
+          "binary": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 for binary files (icons); their contents are omitted."
+          }
+        }
+      },
       "GetSdkAppsBySdkAppNameConnections200ResponseAppConnectionsItemParameters": {
         "type": "object",
         "description": "Connection parameters. The structure depends on the connection type."
@@ -158276,6 +159674,30 @@
           "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooksAdditionalProperties"
         }
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingNameMapConnections": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingNameMapConnectionsAdditionalProperties"
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingNameMapWebhooks": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingNameMapWebhooksAdditionalProperties"
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingNameMapConnections": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingNameMapConnectionsAdditionalProperties"
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingNameMapWebhooks": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingNameMapWebhooksAdditionalProperties"
+        }
+      },
       "GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseAuthorizeResponseTemp": {
         "type": "object",
         "properties": {
@@ -159382,6 +160804,50 @@
         }
       },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooksAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingNameMapConnectionsAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingNameMapWebhooksAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingNameMapConnectionsAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingNameMapWebhooksAdditionalProperties": {
         "type": "object",
         "properties": {
           "dbName": {
@@ -176409,6 +177875,163 @@
           ]
         }
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingSyncStatus": {
+        "enum": [
+          "idle",
+          "syncing",
+          "in_sync",
+          "behind",
+          "error"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Derived sync status of the binding.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPush200ResponseBindingSyncStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "idle",
+              "name": "Idle"
+            },
+            {
+              "value": "syncing",
+              "name": "Syncing"
+            },
+            {
+              "value": "in_sync",
+              "name": "InSync"
+            },
+            {
+              "value": "behind",
+              "name": "Behind"
+            },
+            {
+              "value": "error",
+              "name": "Error"
+            }
+          ]
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingSyncStatus": {
+        "enum": [
+          "idle",
+          "syncing",
+          "in_sync",
+          "behind",
+          "error"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Derived sync status of the binding.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingSyncStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "idle",
+              "name": "Idle"
+            },
+            {
+              "value": "syncing",
+              "name": "Syncing"
+            },
+            {
+              "value": "in_sync",
+              "name": "InSync"
+            },
+            {
+              "value": "behind",
+              "name": "Behind"
+            },
+            {
+              "value": "error",
+              "name": "Error"
+            }
+          ]
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseChangesItemGroup": {
+        "enum": [
+          "app",
+          "module",
+          "rpc",
+          "function",
+          "hook",
+          "account"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity kind the file belongs to.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseChangesItemGroup",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "app",
+              "name": "App"
+            },
+            {
+              "value": "module",
+              "name": "Module"
+            },
+            {
+              "value": "rpc",
+              "name": "Rpc"
+            },
+            {
+              "value": "function",
+              "name": "Function"
+            },
+            {
+              "value": "hook",
+              "name": "Hook"
+            },
+            {
+              "value": "account",
+              "name": "Account"
+            }
+          ]
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseCreatedItemGroup": {
+        "enum": [
+          "module",
+          "rpc",
+          "function",
+          "hook",
+          "account"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Kind of the created entity.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseCreatedItemGroup",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "module",
+              "name": "Module"
+            },
+            {
+              "value": "rpc",
+              "name": "Rpc"
+            },
+            {
+              "value": "function",
+              "name": "Function"
+            },
+            {
+              "value": "hook",
+              "name": "Hook"
+            },
+            {
+              "value": "account",
+              "name": "Account"
+            }
+          ]
+        }
+      },
       "GetTeams200ResponseTeamsItemType": {
         "enum": [
           "standard",
@@ -179168,6 +180791,150 @@
             {
               "value": "yearly",
               "name": "Yearly"
+            }
+          ]
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItemKind": {
+        "enum": [
+          "app",
+          "module",
+          "rpc",
+          "function",
+          "account",
+          "hook"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Component kind.",
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItemKind",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "app",
+              "name": "App"
+            },
+            {
+              "value": "module",
+              "name": "Module"
+            },
+            {
+              "value": "rpc",
+              "name": "Rpc"
+            },
+            {
+              "value": "function",
+              "name": "Function"
+            },
+            {
+              "value": "account",
+              "name": "Account"
+            },
+            {
+              "value": "hook",
+              "name": "Hook"
+            }
+          ]
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItemChange": {
+        "enum": [
+          "added",
+          "modified",
+          "deleted"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Kind of drift relative to the last push.",
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItemChange",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "added",
+              "name": "Added"
+            },
+            {
+              "value": "modified",
+              "name": "Modified"
+            },
+            {
+              "value": "deleted",
+              "name": "Deleted"
+            }
+          ]
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind": {
+        "enum": [
+          "app",
+          "module",
+          "rpc",
+          "function",
+          "account",
+          "hook",
+          null
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Component kind the file belongs to, or \u0060null\u0060 when unattributable.",
+        "nullable": true,
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "app",
+              "name": "App"
+            },
+            {
+              "value": "module",
+              "name": "Module"
+            },
+            {
+              "value": "rpc",
+              "name": "Rpc"
+            },
+            {
+              "value": "function",
+              "name": "Function"
+            },
+            {
+              "value": "account",
+              "name": "Account"
+            },
+            {
+              "value": "hook",
+              "name": "Hook"
+            }
+          ]
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemStatus": {
+        "enum": [
+          "added",
+          "modified",
+          "deleted"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Local state relative to the remote \u2014 \u0060added\u0060 = local only, \u0060deleted\u0060 = remote only.",
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "added",
+              "name": "Added"
+            },
+            {
+              "value": "modified",
+              "name": "Modified"
+            },
+            {
+              "value": "deleted",
+              "name": "Deleted"
             }
           ]
         }

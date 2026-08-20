@@ -4,6 +4,9 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Diff;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Pull;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Push;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,6 +20,21 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithSdkGithubBindingItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The diff property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Diff.DiffRequestBuilder Diff
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Diff.DiffRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The pull property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Pull.PullRequestBuilder Pull
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Pull.PullRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The push property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Push.PushRequestBuilder Push
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Push.PushRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.WithSdkGithubBindingItemRequestBuilder"/> and sets the default values.
         /// </summary>

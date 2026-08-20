@@ -2,11 +2,13 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Internal.Config;
 using Soenneker.Make.OpenApiClient.Internal.DataStructures;
 using Soenneker.Make.OpenApiClient.Internal.Devices;
 using Soenneker.Make.OpenApiClient.Internal.EntityPlacements;
 using Soenneker.Make.OpenApiClient.Internal.Hooks;
 using Soenneker.Make.OpenApiClient.Internal.Organizations;
+using Soenneker.Make.OpenApiClient.Internal.PrivateSpaces;
 using Soenneker.Make.OpenApiClient.Internal.Scenarios;
 using Soenneker.Make.OpenApiClient.Internal.Settings;
 using Soenneker.Make.OpenApiClient.Internal.Teams;
@@ -23,6 +25,11 @@ namespace Soenneker.Make.OpenApiClient.Internal
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class InternalRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The config property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Config.ConfigRequestBuilder Config
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Config.ConfigRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The dataStructures property</summary>
         public global::Soenneker.Make.OpenApiClient.Internal.DataStructures.DataStructuresRequestBuilder DataStructures
         {
@@ -47,6 +54,11 @@ namespace Soenneker.Make.OpenApiClient.Internal
         public global::Soenneker.Make.OpenApiClient.Internal.Organizations.OrganizationsRequestBuilder Organizations
         {
             get => new global::Soenneker.Make.OpenApiClient.Internal.Organizations.OrganizationsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The privateSpaces property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.PrivateSpaces.PrivateSpacesRequestBuilder PrivateSpaces
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.PrivateSpaces.PrivateSpacesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The scenarios property</summary>
         public global::Soenneker.Make.OpenApiClient.Internal.Scenarios.ScenariosRequestBuilder Scenarios

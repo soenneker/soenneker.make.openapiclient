@@ -98,7 +98,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Organizations
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class OrganizationsRequestBuilderGetQueryParameters 
         {
-            /// <summary>An array of column names to include in the response for each organization. If omitted, all available columns are returned.</summary>
+            /// <summary>An array of column names to include in the response for each organization. `id` is always included. Besides the organization&apos;s own columns, `timezoneName`, `countryCode`, `languageCode` and `localeCode` are resolved from the referenced timezone and country records. If omitted, all of the organization&apos;s own columns are returned together with all four resolved values.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols")]
