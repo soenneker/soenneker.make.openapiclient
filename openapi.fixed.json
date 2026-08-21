@@ -28478,7 +28478,7 @@
           "Scenarios / Logs"
         ],
         "summary": "List scenario logs",
-        "description": "Retrieves a collection of all logs for a scenario with a given ID. Returned logs are sorted by \u0060imtId\u0060 in descending order.",
+        "description": "Retrieves a collection of all logs for a scenario with a given ID. Returned logs are sorted by \u0060imtId\u0060 in descending order. Logs with type \u0060modify\u0060 can include versioned Scenario History changes in \u0060detail.change\u0060.",
         "operationId": "GetScenariosByScenarioIdLogs",
         "parameters": [
           {
@@ -28718,6 +28718,44 @@
                           "timestamp": "2021-09-23T11:55:22.946Z",
                           "status": 1,
                           "executionName": "Fancy run name"
+                        }
+                      ],
+                      "pg": {
+                        "sortBy": "imtId",
+                        "sortDir": "desc",
+                        "last": "1632371803593_scenario.1229.auto.3cf2f332f74f43f1b2c4ae431cbedb5b",
+                        "showLast": false,
+                        "limit": 50
+                      }
+                    }
+                  },
+                  "label-change": {
+                    "summary": "Log of a scenario label change",
+                    "description": "Returns a versioned Scenario History entry for a direct label assignment.",
+                    "value": {
+                      "scenarioLogs": [
+                        {
+                          "imtId": "1787299200000_28644c1a-89bb-4c24-84a9-1f40fccf73fd",
+                          "id": "28644c1a-89bb-4c24-84a9-1f40fccf73fd",
+                          "type": "modify",
+                          "authorId": 985,
+                          "authorName": "John Doe",
+                          "timestamp": "2026-08-21T08:00:00.000Z",
+                          "detail": {
+                            "author": {
+                              "name": "John Doe",
+                              "staff": false
+                            },
+                            "change": {
+                              "version": 1,
+                              "kind": "label-assigned",
+                              "origin": "direct",
+                              "label": {
+                                "id": 42,
+                                "name": "Important"
+                              }
+                            }
+                          }
                         }
                       ],
                       "pg": {
@@ -45265,6 +45303,9 @@
                 "preferred_apps": [
                   "slack",
                   "gmail"
+                ],
+                "team_invite_emails": [
+                  "teammate@example.com"
                 ]
               }
             }
@@ -45273,7 +45314,7 @@
         },
         "responses": {
           "200": {
-            "description": "Survey submitted successfully. Side effects (app pinning) are reported individually.",
+            "description": "Survey submitted successfully. Side effects (app pinning) are reported individually; any \u0060team_invite_emails\u0060 are invited asynchronously in the background after this response is sent, so their outcome is not part of it.",
             "content": {
               "application/json": {
                 "schema": {
@@ -45296,8 +45337,7 @@
                           "app": "gmail",
                           "success": true
                         }
-                      ],
-                      "invitedUsers": []
+                      ]
                     }
                   },
                   "partial-pin-failure": {
@@ -45317,8 +45357,7 @@
                           "success": false,
                           "error": "Native app not found."
                         }
-                      ],
-                      "invitedUsers": []
+                      ]
                     }
                   },
                   "no-preferred-apps": {
@@ -45328,29 +45367,7 @@
                       "result": {
                         "ok": 1
                       },
-                      "pinnedApps": [],
-                      "invitedUsers": []
-                    }
-                  },
-                  "with-team-invites": {
-                    "summary": "Survey submitted with team members invited",
-                    "value": {
-                      "success": true,
-                      "result": {
-                        "ok": 1
-                      },
-                      "pinnedApps": [],
-                      "invitedUsers": [
-                        {
-                          "email": "teammate@example.com",
-                          "success": true
-                        },
-                        {
-                          "email": "blocked@example.com",
-                          "success": false,
-                          "error": "insufficient-permissions"
-                        }
-                      ]
+                      "pinnedApps": []
                     }
                   }
                 }
@@ -101966,8 +101983,15 @@
             },
             "description": "Optional list of native app package names to pin for the user. Apps that do not exist are reported as failed without blocking the submission."
           },
-          "team_invite": {
-            "$ref": "#/components/schemas/PostUsersMeOnboardingSurveyRequestTeamInvite"
+          "team_invite_emails": {
+            "maxItems": 3,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email"
+            },
+            "description": "Optional email addresses to invite as regular organization members. Invites are processed asynchronously in the background after this request\u0027s response is sent (best-effort, do not block the submission) and their outcome is not returned to the caller."
           }
         }
       },
@@ -101987,13 +102011,6 @@
               "$ref": "#/components/schemas/PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem"
             },
             "description": "Result of each app pin attempt. Empty array if no \u0060preferred_apps\u0060 were provided."
-          },
-          "invitedUsers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PostUsersMeOnboardingSurvey200ResponseInvitedUsersItem"
-            },
-            "description": "Result of each team-invite attempt. Empty array if no \u0060team_invite\u0060 was provided. Invites are best-effort, so per-invitee failures do not fail the submission."
           }
         }
       },
@@ -135092,6 +135109,58 @@
           }
         ]
       },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChange": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1"
+          },
+          {
+            "type": "object",
+            "description": "A versioned Scenario History change not yet interpreted by this API specification."
+          }
+        ],
+        "properties": {
+          "version": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Version"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Kind"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Origin"
+          },
+          "label": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label"
+          }
+        }
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1"
+          },
+          {
+            "type": "object",
+            "description": "A versioned Scenario History change not yet interpreted by this API specification."
+          }
+        ],
+        "properties": {
+          "version": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Version"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Kind"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Origin"
+          },
+          "label": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Label"
+          }
+        }
+      },
       "GetTeamsByTeamIdVariables200ResponseTeamVariablesValue": {
         "type": "object",
         "oneOf": [
@@ -135376,6 +135445,52 @@
           }
         },
         "description": "A native or SDK app with version/module aggregation and zone\u002Bteam scoring applied.\nReturned only when \u0060scoredSearch=true\u0060.\n"
+      },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1": {
+        "required": [
+          "version",
+          "kind",
+          "origin",
+          "label"
+        ],
+        "type": "object",
+        "properties": {
+          "version": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Version"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Kind"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Origin"
+          },
+          "label": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label"
+          }
+        }
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1": {
+        "required": [
+          "version",
+          "kind",
+          "origin",
+          "label"
+        ],
+        "type": "object",
+        "properties": {
+          "version": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Version"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Kind"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Origin"
+          },
+          "label": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Label"
+          }
+        }
       },
       "TeamTransferLimit": {
         "type": "object"
@@ -146334,6 +146449,9 @@
           },
           "status": {
             "type": "integer"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail"
           }
         }
       },
@@ -146411,6 +146529,9 @@
           },
           "status": {
             "type": "integer"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetail"
           }
         }
       },
@@ -152425,28 +152546,6 @@
         "type": "object",
         "description": "The user\u0027s answers to the survey questions, keyed by question name."
       },
-      "PostUsersMeOnboardingSurveyRequestTeamInvite": {
-        "type": "object",
-        "properties": {
-          "emails": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "email"
-            },
-            "description": "Email addresses to invite as regular organization members."
-          },
-          "sso": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "email"
-            },
-            "description": "Email addresses to invite via the organization\u0027s SSO provider."
-          }
-        },
-        "description": "Optional team members to invite during onboarding. Invites are best-effort and do not block the submission."
-      },
       "PostUsersMeOnboardingSurvey200ResponseResult": {
         "type": "object",
         "properties": {
@@ -152470,24 +152569,6 @@
           "error": {
             "type": "string",
             "description": "Error message if the pin failed. Only present when \u0060success\u0060 is \u0060false\u0060."
-          }
-        }
-      },
-      "PostUsersMeOnboardingSurvey200ResponseInvitedUsersItem": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "The invitee\u0027s email address.",
-            "format": "email"
-          },
-          "success": {
-            "type": "boolean",
-            "description": "Whether the invite succeeded."
-          },
-          "error": {
-            "type": "string",
-            "description": "Error reason if the invite failed. Only present when \u0060success\u0060 is \u0060false\u0060."
           }
         }
       },
@@ -153896,6 +153977,36 @@
               "$ref": "#/components/schemas/GetImtApps200ResponseAppsItemOneOf1VersionsItemGroupsItem"
             },
             "description": "Always present after the group normalization step (see endpoint description).\nEither authored groups (\u2265 2 of them) plus any per-type defaults for orphan modules,\nor per-type default groups if the app had no real authored grouping.\n"
+          }
+        }
+      },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Label": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -157115,6 +157226,30 @@
       "PatchScenariosByScenarioIdInterface200ResponseInterfaceAdditionalProperties": {
         "type": "object"
       },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail": {
+        "type": "object",
+        "properties": {
+          "author": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailAuthor"
+          },
+          "change": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChange"
+          }
+        },
+        "description": "Event-specific details. Modify events can include a versioned Scenario History change."
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetail": {
+        "type": "object",
+        "properties": {
+          "author": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailAuthor"
+          },
+          "change": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange"
+          }
+        },
+        "description": "Event-specific details. Modify events can include a versioned Scenario History change."
+      },
       "GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBlueprintModulesItem": {
         "type": "object",
         "properties": {
@@ -159336,6 +159471,28 @@
       },
       "PostScenariosByScenarioIdClone200ResponseScenarioCustomPropertiesAdditionalProperties": {
         "type": "object"
+      },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailAuthor": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "staff": {
+            "type": "boolean"
+          }
+        }
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailAuthor": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "staff": {
+            "type": "boolean"
+          }
+        }
       },
       "GetScenariosByScenarioIdBlueprint200ResponseResponseBlueprintFlowItem": {
         "type": "object",
@@ -175402,6 +175559,108 @@
             {
               "value": "sdk",
               "name": "Sdk"
+            }
+          ]
+        }
+      },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Version": {
+        "enum": [
+          1
+        ],
+        "type": "integer",
+        "additionalProperties": false
+      },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Kind": {
+        "enum": [
+          "label-assigned",
+          "label-unassigned"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Kind",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "label-assigned",
+              "name": "LabelAssigned"
+            },
+            {
+              "value": "label-unassigned",
+              "name": "LabelUnassigned"
+            }
+          ]
+        }
+      },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Origin": {
+        "enum": [
+          "direct",
+          "cascade"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Origin",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "direct",
+              "name": "Direct"
+            },
+            {
+              "value": "cascade",
+              "name": "Cascade"
+            }
+          ]
+        }
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Version": {
+        "enum": [
+          1
+        ],
+        "type": "integer",
+        "additionalProperties": false
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Kind": {
+        "enum": [
+          "label-assigned",
+          "label-unassigned"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Kind",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "label-assigned",
+              "name": "LabelAssigned"
+            },
+            {
+              "value": "label-unassigned",
+              "name": "LabelUnassigned"
+            }
+          ]
+        }
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Origin": {
+        "enum": [
+          "direct",
+          "cascade"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Origin",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "direct",
+              "name": "Direct"
+            },
+            {
+              "value": "cascade",
+              "name": "Cascade"
             }
           ]
         }

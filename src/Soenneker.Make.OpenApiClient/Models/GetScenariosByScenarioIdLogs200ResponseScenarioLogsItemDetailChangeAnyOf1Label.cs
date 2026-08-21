@@ -7,46 +7,39 @@ using System.IO;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
-    /// <summary>
-    /// Optional team members to invite during onboarding. Invites are best-effort and do not block the submission.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PostUsersMeOnboardingSurveyRequestTeamInvite : IAdditionalDataHolder, IParsable
+    #pragma warning disable CS1591
+    public partial class GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Email addresses to invite as regular organization members.</summary>
+        /// <summary>The id property</summary>
+        public int? Id { get; set; }
+        /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Emails { get; set; }
+        public string? Name { get; set; }
 #nullable restore
 #else
-        public List<string> Emails { get; set; }
-#endif
-        /// <summary>Email addresses to invite via the organization&apos;s SSO provider.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<string>? Sso { get; set; }
-#nullable restore
-#else
-        public List<string> Sso { get; set; }
+        public string Name { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestTeamInvite"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label"/> and sets the default values.
         /// </summary>
-        public PostUsersMeOnboardingSurveyRequestTeamInvite()
+        public GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestTeamInvite"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestTeamInvite CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestTeamInvite();
+            return new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,8 +49,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "emails", n => { Emails = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "sso", n => { Sso = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "id", n => { Id = n.GetIntValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -67,8 +60,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("emails", Emails);
-            writer.WriteCollectionOfPrimitiveValues<string>("sso", Sso);
+            writer.WriteIntValue("id", Id);
+            writer.WriteStringValue("name", Name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

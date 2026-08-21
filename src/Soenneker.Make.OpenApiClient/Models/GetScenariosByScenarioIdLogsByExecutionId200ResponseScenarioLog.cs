@@ -26,6 +26,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The centicredits property</summary>
         public int? Centicredits { get; set; }
+        /// <summary>Event-specific details. Modify events can include a versioned Scenario History change.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetail? Detail { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetail Detail { get; set; }
+#endif
         /// <summary>The duration property</summary>
         public int? Duration { get; set; }
         /// <summary>The id property</summary>
@@ -94,6 +102,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "authorId", n => { AuthorId = n.GetIntValue(); } },
                 { "authorName", n => { AuthorName = n.GetStringValue(); } },
                 { "centicredits", n => { Centicredits = n.GetIntValue(); } },
+                { "detail", n => { Detail = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetail>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetail.CreateFromDiscriminatorValue); } },
                 { "duration", n => { Duration = n.GetIntValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "imtId", n => { ImtId = n.GetStringValue(); } },
@@ -117,6 +126,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("authorId", AuthorId);
             writer.WriteStringValue("authorName", AuthorName);
             writer.WriteIntValue("centicredits", Centicredits);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetail>("detail", Detail);
             writer.WriteIntValue("duration", Duration);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("imtId", ImtId);

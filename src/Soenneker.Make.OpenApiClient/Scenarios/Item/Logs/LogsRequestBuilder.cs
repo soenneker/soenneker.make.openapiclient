@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Logs
         {
         }
         /// <summary>
-        /// Retrieves a collection of all logs for a scenario with a given ID. Returned logs are sorted by `imtId` in descending order.
+        /// Retrieves a collection of all logs for a scenario with a given ID. Returned logs are sorted by `imtId` in descending order. Logs with type `modify` can include versioned Scenario History changes in `detail.change`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Logs
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves a collection of all logs for a scenario with a given ID. Returned logs are sorted by `imtId` in descending order.
+        /// Retrieves a collection of all logs for a scenario with a given ID. Returned logs are sorted by `imtId` in descending order. Logs with type `modify` can include versioned Scenario History changes in `detail.change`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -93,7 +93,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Logs
             return new global::Soenneker.Make.OpenApiClient.Scenarios.Item.Logs.LogsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieves a collection of all logs for a scenario with a given ID. Returned logs are sorted by `imtId` in descending order.
+        /// Retrieves a collection of all logs for a scenario with a given ID. Returned logs are sorted by `imtId` in descending order. Logs with type `modify` can include versioned Scenario History changes in `detail.change`.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class LogsRequestBuilderGetQueryParameters 
