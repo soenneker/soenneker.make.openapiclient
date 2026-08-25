@@ -15,6 +15,8 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The arbitraryCallHint property</summary>
+        public bool? ArbitraryCallHint { get; set; }
         /// <summary>The destructiveHint property</summary>
         public bool? DestructiveHint { get; set; }
         /// <summary>The idempotentHint property</summary>
@@ -48,6 +50,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "arbitraryCallHint", n => { ArbitraryCallHint = n.GetBoolValue(); } },
                 { "destructiveHint", n => { DestructiveHint = n.GetBoolValue(); } },
                 { "idempotentHint", n => { IdempotentHint = n.GetBoolValue(); } },
                 { "openWorldHint", n => { OpenWorldHint = n.GetBoolValue(); } },
@@ -61,6 +64,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("arbitraryCallHint", ArbitraryCallHint);
             writer.WriteBoolValue("destructiveHint", DestructiveHint);
             writer.WriteBoolValue("idempotentHint", IdempotentHint);
             writer.WriteBoolValue("openWorldHint", OpenWorldHint);

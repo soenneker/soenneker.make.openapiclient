@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels.Item.Scenarios
         {
         }
         /// <summary>
-        /// Removes a team label from as many as 10,000 scenario IDs in one request. The caller needs `scenario edit` on the label&apos;s team (or the equivalent admin permission). Valid same-team removals are written atomically as one accepted subset; expected per-scenario failures do not prevent other valid removals and the response remains `200`. Missing and cross-team scenario IDs use the same generic `IM002` rejection so the endpoint does not reveal whether an unauthorized scenario exists. Removing an assignment that is already absent is successful. An invalid cross-team assignment is rejected and preserved.
+        /// Removes a team label from as many as 1,000 scenario IDs in one request. The caller needs `scenario edit` on the label&apos;s team (or the equivalent admin permission). Valid same-team removals are written atomically as one accepted subset; expected per-scenario failures do not prevent other valid removals and the response remains `200`. Missing and cross-team scenario IDs use the same generic `IM002` rejection so the endpoint does not reveal whether an unauthorized scenario exists. Removing an assignment that is already absent is successful. An invalid cross-team assignment is rejected and preserved.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteScenarioLabelsByLabelIdScenarios200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -78,7 +78,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels.Item.Scenarios
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenarioLabelsByLabelIdScenarios200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenarioLabelsByLabelIdScenarios200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Assigns a team label to as many as 10,000 scenario IDs in one request. The caller needs `scenario edit` on the label&apos;s team (or the equivalent admin permission). Valid same-team assignments are written atomically as one accepted subset; expected per-scenario failures do not prevent other valid assignments and the response remains `200`. Missing and cross-team scenario IDs use the same generic `IM002` rejection so the endpoint does not reveal whether an unauthorized scenario exists. Repeating an existing assignment is successful.
+        /// Assigns a team label to as many as 1,000 scenario IDs in one request. The caller needs `scenario edit` on the label&apos;s team (or the equivalent admin permission). Valid same-team assignments are written atomically as one accepted subset; expected per-scenario failures do not prevent other valid assignments and the response remains `200`. Missing and cross-team scenario IDs use the same generic `IM002` rejection so the endpoint does not reveal whether an unauthorized scenario exists. Repeating an existing assignment is successful.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenarios200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -109,7 +109,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels.Item.Scenarios
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenarios200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenarios200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Removes a team label from as many as 10,000 scenario IDs in one request. The caller needs `scenario edit` on the label&apos;s team (or the equivalent admin permission). Valid same-team removals are written atomically as one accepted subset; expected per-scenario failures do not prevent other valid removals and the response remains `200`. Missing and cross-team scenario IDs use the same generic `IM002` rejection so the endpoint does not reveal whether an unauthorized scenario exists. Removing an assignment that is already absent is successful. An invalid cross-team assignment is rejected and preserved.
+        /// Removes a team label from as many as 1,000 scenario IDs in one request. The caller needs `scenario edit` on the label&apos;s team (or the equivalent admin permission). Valid same-team removals are written atomically as one accepted subset; expected per-scenario failures do not prevent other valid removals and the response remains `200`. Missing and cross-team scenario IDs use the same generic `IM002` rejection so the endpoint does not reveal whether an unauthorized scenario exists. Removing an assignment that is already absent is successful. An invalid cross-team assignment is rejected and preserved.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -131,7 +131,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels.Item.Scenarios
             return requestInfo;
         }
         /// <summary>
-        /// Assigns a team label to as many as 10,000 scenario IDs in one request. The caller needs `scenario edit` on the label&apos;s team (or the equivalent admin permission). Valid same-team assignments are written atomically as one accepted subset; expected per-scenario failures do not prevent other valid assignments and the response remains `200`. Missing and cross-team scenario IDs use the same generic `IM002` rejection so the endpoint does not reveal whether an unauthorized scenario exists. Repeating an existing assignment is successful.
+        /// Assigns a team label to as many as 1,000 scenario IDs in one request. The caller needs `scenario edit` on the label&apos;s team (or the equivalent admin permission). Valid same-team assignments are written atomically as one accepted subset; expected per-scenario failures do not prevent other valid assignments and the response remains `200`. Missing and cross-team scenario IDs use the same generic `IM002` rejection so the endpoint does not reveal whether an unauthorized scenario exists. Repeating an existing assignment is successful.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
