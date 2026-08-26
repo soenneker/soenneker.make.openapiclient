@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Internal.Teams.Item.Connections.Exists;
 using Soenneker.Make.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,11 @@ namespace Soenneker.Make.OpenApiClient.Internal.Teams.Item.Connections
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ConnectionsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The exists property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Teams.Item.Connections.Exists.ExistsRequestBuilder Exists
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Teams.Item.Connections.Exists.ExistsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Internal.Teams.Item.Connections.ConnectionsRequestBuilder"/> and sets the default values.
         /// </summary>

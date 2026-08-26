@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Sdk.Apps;
+using Soenneker.Make.OpenApiClient.Sdk.Publisher;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.AppsRequestBuilder Apps
         {
             get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.AppsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The publisher property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Publisher.PublisherRequestBuilder Publisher
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Publisher.PublisherRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Sdk.SdkRequestBuilder"/> and sets the default values.
