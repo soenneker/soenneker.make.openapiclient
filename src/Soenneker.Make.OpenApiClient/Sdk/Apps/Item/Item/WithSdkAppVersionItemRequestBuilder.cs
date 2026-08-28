@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Base;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Changes;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Clone;
@@ -39,6 +40,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithSdkAppVersionItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The appReview property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.AppReviewRequestBuilder AppReview
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.AppReviewRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The base property</summary>
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Base.BaseRequestBuilderEscaped Base
         {
