@@ -34,10 +34,10 @@ namespace Soenneker.Make.OpenApiClient.Internal.EntityPlacements.Check
         {
         }
         /// <summary>
-        /// Returns the save-time locked-entity verdict for a blueprint the caller is about to execute: rejects with `IM002` when a module places a locked connection or key the user may not use and that placement is not already stored unchanged. Only services that gate a manual execution on this verdict may call it — any other caller is rejected with `SC500`, since reaching this route is an integration bug rather than a client-facing access denial. Fail-closed: when the verdict cannot be reached, the response is an `IM016` error, never an allow.
+        /// Returns the save-time locked-entity verdict for a blueprint the caller is about to execute: rejects with `IM002` when a module places a locked connection or key the user may not use and that placement is not already stored unchanged. Only services that gate a manual execution on this verdict may call it — any other caller is rejected with `SC500`, since reaching this route is an integration bug rather than a client-facing access denial. Fail-closed: when the verdict cannot be reached, the response is an `IM016` error, never an allow. While the organization&apos;s enforcement flag is off (log-only rollout), a violation is logged and the response is an allow — the same softening the save hooks apply; `IM016` stays fail-closed in both modes.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck200Response"/></returns>
-        /// <param name="body">Either `scenarioId` or `teamId` locates the blueprint. A body carrying both is accepted: `scenarioId` wins and `teamId` is ignored.</param>
+        /// <param name="body">One of `scenarioId`, `dlqId` or `teamId` locates the blueprint. When more than one is present they are resolved in that order of precedence and the others are ignored.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck400Response">When receiving a 400 status code</exception>
@@ -67,10 +67,10 @@ namespace Soenneker.Make.OpenApiClient.Internal.EntityPlacements.Check
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the save-time locked-entity verdict for a blueprint the caller is about to execute: rejects with `IM002` when a module places a locked connection or key the user may not use and that placement is not already stored unchanged. Only services that gate a manual execution on this verdict may call it — any other caller is rejected with `SC500`, since reaching this route is an integration bug rather than a client-facing access denial. Fail-closed: when the verdict cannot be reached, the response is an `IM016` error, never an allow.
+        /// Returns the save-time locked-entity verdict for a blueprint the caller is about to execute: rejects with `IM002` when a module places a locked connection or key the user may not use and that placement is not already stored unchanged. Only services that gate a manual execution on this verdict may call it — any other caller is rejected with `SC500`, since reaching this route is an integration bug rather than a client-facing access denial. Fail-closed: when the verdict cannot be reached, the response is an `IM016` error, never an allow. While the organization&apos;s enforcement flag is off (log-only rollout), a violation is logged and the response is an allow — the same softening the save hooks apply; `IM016` stays fail-closed in both modes.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">Either `scenarioId` or `teamId` locates the blueprint. A body carrying both is accepted: `scenarioId` wins and `teamId` is ignored.</param>
+        /// <param name="body">One of `scenarioId`, `dlqId` or `teamId` locates the blueprint. When more than one is present they are resolved in that order of precedence and the others are ignored.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

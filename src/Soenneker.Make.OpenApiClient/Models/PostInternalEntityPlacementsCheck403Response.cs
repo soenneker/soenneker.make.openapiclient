@@ -33,6 +33,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string MessageEscaped { get; set; }
 #endif
+        /// <summary>The modules the verdict rejected, each with the locked entities it places. Part of the contract: imt-web-streamer forwards this to its client (the execute ack&apos;s 3rd argument) so the editor can point at the offending modules.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItem>? Metadata { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItem> Metadata { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403Response"/> and sets the default values.
         /// </summary>
@@ -60,6 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "code", n => { Code = n.GetStringValue(); } },
                 { "message", n => { MessageEscaped = n.GetStringValue(); } },
+                { "metadata", n => { Metadata = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItem>(global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -71,6 +80,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
             writer.WriteStringValue("message", MessageEscaped);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItem>("metadata", Metadata);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

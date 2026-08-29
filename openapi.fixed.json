@@ -20727,7 +20727,7 @@
           "Internal"
         ],
         "summary": "Check the entity placements of a blueprint",
-        "description": "Returns the save-time locked-entity verdict for a blueprint the caller is about to execute: rejects with \u0060IM002\u0060 when a module places a locked connection or key the user may not use and that placement is not already stored unchanged. Only services that gate a manual execution on this verdict may call it \u2014 any other caller is rejected with \u0060SC500\u0060, since reaching this route is an integration bug rather than a client-facing access denial. Fail-closed: when the verdict cannot be reached, the response is an \u0060IM016\u0060 error, never an allow.",
+        "description": "Returns the save-time locked-entity verdict for a blueprint the caller is about to execute: rejects with \u0060IM002\u0060 when a module places a locked connection or key the user may not use and that placement is not already stored unchanged. Only services that gate a manual execution on this verdict may call it \u2014 any other caller is rejected with \u0060SC500\u0060, since reaching this route is an integration bug rather than a client-facing access denial. Fail-closed: when the verdict cannot be reached, the response is an \u0060IM016\u0060 error, never an allow. While the organization\u0027s enforcement flag is off (log-only rollout), a violation is logged and the response is an allow \u2014 the same softening the save hooks apply; \u0060IM016\u0060 stays fail-closed in both modes.",
         "operationId": "PostInternalEntityPlacementsCheck",
         "requestBody": {
           "content": {
@@ -20741,6 +20741,26 @@
                   "value": {
                     "userId": 456,
                     "scenarioId": 123,
+                    "blueprint": {
+                      "name": "My scenario",
+                      "flow": [
+                        {
+                          "id": 1,
+                          "module": "app#my-app:CreateThing",
+                          "version": 1,
+                          "parameters": {
+                            "__IMTCONN__": 42
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "check-dlq-retry": {
+                  "summary": "Retry of an incomplete execution",
+                  "value": {
+                    "userId": 456,
+                    "dlqId": "5f9b2c1e-0000-4000-8000-000000000000",
                     "blueprint": {
                       "name": "My scenario",
                       "flow": [
@@ -97775,6 +97795,16 @@
             "description": "The scenario whose stored blueprint (its unsaved draft when it has one) is compared against. The team is taken from the scenario itself.",
             "example": 123
           },
+          "fromAdmin": {
+            "type": "boolean",
+            "description": "Untrusted hint that the execution comes from the admin UI. The check verifies the user\u0027s \u0060scenario verify\u0060 HQ-admin permission itself before applying the same bypass the admin save endpoints do; a spoofed flag falls through to the normal verdict."
+          },
+          "dlqId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The incomplete execution (DLQ record) being retried. Its stored blueprint is the comparison baseline \u2014 itself already guarded, since every \u0060dlq_set\u0060 edit runs the same guard. The team is taken from the DLQ\u0027s owning scenario.",
+            "example": "5f9b2c1e-0000-4000-8000-000000000000"
+          },
           "teamId": {
             "minimum": 1,
             "type": "integer",
@@ -97782,7 +97812,7 @@
             "example": 789
           }
         },
-        "description": "Either \u0060scenarioId\u0060 or \u0060teamId\u0060 locates the blueprint. A body carrying both is accepted: \u0060scenarioId\u0060 wins and \u0060teamId\u0060 is ignored."
+        "description": "One of \u0060scenarioId\u0060, \u0060dlqId\u0060 or \u0060teamId\u0060 locates the blueprint. When more than one is present they are resolved in that order of precedence and the others are ignored."
       },
       "PostInternalEntityPlacementsCheck200Response": {
         "required": [
@@ -97832,6 +97862,13 @@
           "message": {
             "type": "string",
             "example": "Insufficient rights to perform the action."
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostInternalEntityPlacementsCheck403ResponseMetadataItem"
+            },
+            "description": "The modules the verdict rejected, each with the locked entities it places. Part of the contract: imt-web-streamer forwards this to its client (the execute ack\u0027s 3rd argument) so the editor can point at the offending modules."
           }
         }
       },
@@ -145423,6 +145460,30 @@
         "type": "object",
         "description": "The blueprint about to be executed."
       },
+      "PostInternalEntityPlacementsCheck403ResponseMetadataItem": {
+        "required": [
+          "moduleId",
+          "moduleName",
+          "entities"
+        ],
+        "type": "object",
+        "properties": {
+          "moduleId": {
+            "type": "integer",
+            "example": 3
+          },
+          "moduleName": {
+            "type": "string",
+            "example": "jotform:createForm"
+          },
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem"
+            }
+          }
+        }
+      },
       "GetKeys200ResponseKeysItem": {
         "type": "object",
         "properties": {
@@ -158180,6 +158241,22 @@
         "nullable": true,
         "example": {
           "secret": "hook-secret-value"
+        }
+      },
+      "PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem": {
+        "required": [
+          "entityType",
+          "entityId"
+        ],
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "$ref": "#/components/schemas/PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItemEntityType"
+          },
+          "entityId": {
+            "type": "integer",
+            "example": 2
+          }
         }
       },
       "GetKeys200ResponseKeysItemScenarioUsagesItem": {
@@ -185436,6 +185513,29 @@
             {
               "value": "utf8",
               "name": "Utf8"
+            }
+          ]
+        }
+      },
+      "PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItemEntityType": {
+        "enum": [
+          "connection",
+          "key"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "example": "connection",
+        "x-ms-enum": {
+          "name": "PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItemEntityType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "connection",
+              "name": "Connection"
+            },
+            {
+              "value": "key",
+              "name": "Key"
             }
           ]
         }

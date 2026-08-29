@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Either `scenarioId` or `teamId` locates the blueprint. A body carrying both is accepted: `scenarioId` wins and `teamId` is ignored.
+    /// One of `scenarioId`, `dlqId` or `teamId` locates the blueprint. When more than one is present they are resolved in that order of precedence and the others are ignored.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PostInternalEntityPlacementsCheckRequest : IAdditionalDataHolder, IParsable
@@ -23,6 +23,16 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestBlueprint Blueprint { get; set; }
 #endif
+        /// <summary>The incomplete execution (DLQ record) being retried. Its stored blueprint is the comparison baseline — itself already guarded, since every `dlq_set` edit runs the same guard. The team is taken from the DLQ&apos;s owning scenario.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DlqId { get; set; }
+#nullable restore
+#else
+        public string DlqId { get; set; }
+#endif
+        /// <summary>Untrusted hint that the execution comes from the admin UI. The check verifies the user&apos;s `scenario verify` HQ-admin permission itself before applying the same bypass the admin save endpoints do; a spoofed flag falls through to the normal verdict.</summary>
+        public bool? FromAdmin { get; set; }
         /// <summary>The scenario whose stored blueprint (its unsaved draft when it has one) is compared against. The team is taken from the scenario itself.</summary>
         public int? ScenarioId { get; set; }
         /// <summary>The team of a scenario that was never saved. Without a stored blueprint every denied placement is a new one.</summary>
@@ -55,6 +65,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "blueprint", n => { Blueprint = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestBlueprint>(global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestBlueprint.CreateFromDiscriminatorValue); } },
+                { "dlqId", n => { DlqId = n.GetStringValue(); } },
+                { "fromAdmin", n => { FromAdmin = n.GetBoolValue(); } },
                 { "scenarioId", n => { ScenarioId = n.GetIntValue(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
                 { "userId", n => { UserId = n.GetIntValue(); } },
@@ -68,6 +80,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestBlueprint>("blueprint", Blueprint);
+            writer.WriteStringValue("dlqId", DlqId);
+            writer.WriteBoolValue("fromAdmin", FromAdmin);
             writer.WriteIntValue("scenarioId", ScenarioId);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteIntValue("userId", UserId);
