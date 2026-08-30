@@ -5488,7 +5488,6 @@
             "in": "query",
             "description": "The identification of the teams for which you want to get the audit log entries. You can use either team IDs or team names.\n\nThe team name can contain any valid UTF8 symbols and spaces.\n",
             "schema": {
-              "type": "object",
               "oneOf": [
                 {
                   "type": "string",
@@ -5547,7 +5546,6 @@
             "in": "query",
             "description": "The list of events for which you want to get audit log entries. To specify multiple events, use the array notation like: \u0060GET /audit-logs/organization/{organizationId}?event[0]=key_created\u0026event[1]=connection_created\u0060.\n\nYou can check the list of supported events with the API call \u0060GET /audit-logs/organization/{organizationId}/filters\u0060 in the \u0060events\u0060 array in the response.\n",
             "schema": {
-              "type": "object",
               "oneOf": [
                 {
                   "type": "string",
@@ -5580,7 +5578,6 @@
             "in": "query",
             "description": "The identification of the users for whose actions you want to get the audit log entries. You can use either user IDs or user names.\n\nThe user name can contain any valid UTF8 symbols and spaces.\n",
             "schema": {
-              "type": "object",
               "oneOf": [
                 {
                   "type": "string",
@@ -5865,7 +5862,6 @@
             "in": "query",
             "description": "The list of events for which you want to get audit log entries. To specify multiple events, use the array notation like: \u0060GET /audit-logs/team/{teamId}?event[0]=key_created\u0026event[1]=connection_created\u0060.\n\nYou can check the list of supported events with the API call \u0060GET /audit-logs/team/{teamId}/filters\u0060 in the \u0060events\u0060 array in the response.\n",
             "schema": {
-              "type": "object",
               "oneOf": [
                 {
                   "type": "string",
@@ -5898,7 +5894,6 @@
             "in": "query",
             "description": "The identification of the users for whose actions you want to get the audit log entries. You can use either user IDs or user names.\n\nThe user name can contain any valid UTF8 symbols and spaces.\n",
             "schema": {
-              "type": "object",
               "oneOf": [
                 {
                   "type": "string",
@@ -6220,7 +6215,6 @@
             "in": "query",
             "description": "IDs of the teams for which you want to get the analytics data.\n",
             "schema": {
-              "type": "object",
               "oneOf": [
                 {
                   "type": "integer",
@@ -6245,7 +6239,6 @@
             "in": "query",
             "description": "IDs of the scenario folders for which you want to get the analytics data.\n",
             "schema": {
-              "type": "object",
               "oneOf": [
                 {
                   "type": "integer",
@@ -6270,7 +6263,6 @@
             "in": "query",
             "description": "You can use the \u0060status\u0060 parameter to get analytics data about scenarios with specific scenario statuses. The available scenario statuses are:\n\n- \u0060active\u0060: scenario is enabled\n- \u0060inactive\u0060: scenario is disabled\n- \u0060invalid\u0060: scenario is disabled due to errors\n",
             "schema": {
-              "type": "object",
               "oneOf": [
                 {
                   "$ref": "#/components/schemas/GetAnalyticsByOrganizationIdStatusParameterOneOf1"
@@ -8505,7 +8497,6 @@
             "description": "The major version of the app. Use a specific version number (e.g., \u00601\u0060, \u00602\u0060, \u00604\u0060) or \u0060latest\u0060 to get the most recent version.\n",
             "required": true,
             "schema": {
-              "type": "object",
               "oneOf": [
                 {
                   "minimum": 1,
@@ -19315,7 +19306,6 @@
             "description": "The major version of the app. Use a specific version number (e.g., \u00601\u0060, \u00602\u0060, \u00604\u0060) or \u0060latest\u0060 to get the most recent version.\n",
             "required": true,
             "schema": {
-              "type": "object",
               "oneOf": [
                 {
                   "minimum": 1,
@@ -22091,7 +22081,6 @@
             "name": "scope",
             "in": "query",
             "schema": {
-              "type": "object",
               "oneOf": [
                 {
                   "type": "array",
