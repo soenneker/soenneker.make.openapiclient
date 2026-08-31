@@ -41,4 +41,4 @@ Choose the base URL for the Make region that owns the account. Reuse the `HttpCl
 
 API failures are exposed as the generated endpoint-specific error types listed on each request method. Because this package is regenerated from Make's OpenAPI document, generated names and models can change when the upstream specification changes.
 
-For dependency-injection setup, configuration-based credentials, and managed reuse, use `Soenneker.Make.OpenApiClientUtil` with `Soenneker.Make.HttpClients`.
+For application registration, configuration-based credentials, and managed reuse, use `Soenneker.Make.OpenApiClientUtil` with `Soenneker.Make.HttpClients`.
