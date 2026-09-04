@@ -77,7 +77,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*,updatedByUserName*}", pathParameters)
+        public ScenariosRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,search*,type*,updatedByUserName*}", pathParameters)
         {
         }
         /// <summary>
@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*,updatedByUserName*}", rawUrl)
+        public ScenariosRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,search*,type*,updatedByUserName*}", rawUrl)
         {
         }
         /// <summary>
@@ -140,7 +140,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios?teamId={teamId}{&cols%5B%5D*,concept*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,type*,updatedByUserName*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios?teamId={teamId}{&cols%5B%5D*,concept*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,search*,type*,updatedByUserName*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -275,6 +275,16 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
             /// <summary>The sorting direction. Ascending order (`asc`) is rejected only when sorting by the default `proprietal` column; for every other `sortBy` value both `asc` and `desc` are allowed. Defaults to `desc`.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetScenariosPgSortDirParameter? PgsortDir { get; set; }
+            /// <summary>Searches scenario names using a case-insensitive literal substring match. An empty value is treated as omitted. A positive integer, optionally surrounded by spaces, also matches the scenario with that exact ID; the original untrimmed value remains the name substring. A blank-only value therefore searches names for those spaces and does not match by ID. Partial, signed, decimal, leading-zero, and out-of-range IDs do not match by ID.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
+            [QueryParameter("search")]
+            public string Search { get; set; }
+#endif
             /// <summary>The unique ID of the team whose scenarios will be retrieved. If this parameter is set, the `organizationId` parameter must be skipped. For each request either `teamId` or `organizationId` must be defined.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }

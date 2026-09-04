@@ -118,6 +118,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             public static global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequest.PostEndpointsExecuteRequest_connectionId CreateFromDiscriminatorValue(IParseNode parseNode)
             {
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequest.PostEndpointsExecuteRequest_connectionId();
                 if(parseNode.GetIntValue() is int integerValue)
                 {

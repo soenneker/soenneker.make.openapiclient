@@ -140,8 +140,10 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Outgoings
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class OutgoingsRequestBuilderDeleteQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("confirmed")]
             public bool? Confirmed { get; set; }
+            #pragma warning restore CS1591
         }
         /// <summary>
         /// Required scope: devices:read
@@ -170,12 +172,16 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Outgoings
             public global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdOutgoingsPgSortDirParameter? PgsortDir { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("scope")]
             public string? Scope { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("scope")]
             public string Scope { get; set; }
+            #pragma warning restore CS1591
 #endif
         }
     }

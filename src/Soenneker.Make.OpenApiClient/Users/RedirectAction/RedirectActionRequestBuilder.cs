@@ -85,8 +85,10 @@ namespace Soenneker.Make.OpenApiClient.Users.RedirectAction
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RedirectActionRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("orgId")]
             public int? OrgId { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

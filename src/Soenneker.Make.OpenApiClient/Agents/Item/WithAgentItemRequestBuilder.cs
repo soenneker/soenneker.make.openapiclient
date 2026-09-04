@@ -206,8 +206,10 @@ namespace Soenneker.Make.OpenApiClient.Agents.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithAgentItemRequestBuilderDeleteQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
+            #pragma warning restore CS1591
         }
         /// <summary>
         /// Retrieves an agents for a agent with given ID
@@ -215,8 +217,10 @@ namespace Soenneker.Make.OpenApiClient.Agents.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithAgentItemRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
+            #pragma warning restore CS1591
         }
         /// <summary>
         /// Updates a new agent with given ID
@@ -224,8 +228,10 @@ namespace Soenneker.Make.OpenApiClient.Agents.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithAgentItemRequestBuilderPatchQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
+            #pragma warning restore CS1591
         }
         /// <summary>
         /// Creates a new agent
@@ -233,8 +239,10 @@ namespace Soenneker.Make.OpenApiClient.Agents.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithAgentItemRequestBuilderPostQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

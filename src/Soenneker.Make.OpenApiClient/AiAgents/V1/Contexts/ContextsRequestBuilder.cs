@@ -137,10 +137,14 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ContextsRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("agentId")]
             public Guid? AgentId { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("teamId")]
             public double? TeamId { get; set; }
+            #pragma warning restore CS1591
         }
         /// <summary>
         /// Create a new context with an optional file upload
@@ -148,8 +152,10 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ContextsRequestBuilderPostQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("teamId")]
             public double? TeamId { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

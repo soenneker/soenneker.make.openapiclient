@@ -125,8 +125,10 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Review
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ReviewRequestBuilderPostQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("all")]
             public bool? All { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

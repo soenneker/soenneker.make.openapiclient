@@ -85,10 +85,14 @@ namespace Soenneker.Make.OpenApiClient.Affiliate.Commissions
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CommissionsRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("dateFrom")]
             public Date? DateFrom { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("dateTo")]
             public Date? DateTo { get; set; }
+            #pragma warning restore CS1591
             /// <summary>Sets the maximum number of results per page in the API call response. For example, `pg[limit]=100`. The default number varies with different API endpoints.</summary>
             [QueryParameter("pg%5Blimit%5D")]
             public int? Pglimit { get; set; }
@@ -101,8 +105,10 @@ namespace Soenneker.Make.OpenApiClient.Affiliate.Commissions
             /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissionsPgSortDirParameter? PgsortDir { get; set; }
+            #pragma warning disable CS1591
             [QueryParameter("statusId")]
             public int? StatusId { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

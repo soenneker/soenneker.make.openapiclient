@@ -86,8 +86,10 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.LlmProviders.Item.ModelsReque
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ModelsRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("teamId")]
             public double? TeamId { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

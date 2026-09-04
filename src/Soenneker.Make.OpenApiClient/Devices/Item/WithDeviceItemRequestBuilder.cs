@@ -176,8 +176,10 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithDeviceItemRequestBuilderDeleteQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("confirmed")]
             public bool? Confirmed { get; set; }
+            #pragma warning restore CS1591
         }
         /// <summary>
         /// The ID can be id or udid.
@@ -187,15 +189,21 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item
         {
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("cols%5B%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdColsParameterItem[]? Cols { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("cols%5B%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdColsParameterItem[] Cols { get; set; }
+            #pragma warning restore CS1591
 #endif
+            #pragma warning disable CS1591
             [QueryParameter("inspector")]
             public int? Inspector { get; set; }
+            #pragma warning restore CS1591
         }
         /// <summary>
         /// Update a device
@@ -205,12 +213,16 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item
         {
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("cols%5B%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.PatchDevicesByDeviceIdColsParameterItem[]? Cols { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("cols%5B%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.PatchDevicesByDeviceIdColsParameterItem[] Cols { get; set; }
+            #pragma warning restore CS1591
 #endif
         }
     }

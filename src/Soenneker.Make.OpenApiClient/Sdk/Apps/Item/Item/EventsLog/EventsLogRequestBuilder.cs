@@ -84,12 +84,16 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.EventsLog
         {
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("cols%5B%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEventsLogColsParameterItem[]? Cols { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("cols%5B%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionEventsLogColsParameterItem[] Cols { get; set; }
+            #pragma warning restore CS1591
 #endif
         }
     }

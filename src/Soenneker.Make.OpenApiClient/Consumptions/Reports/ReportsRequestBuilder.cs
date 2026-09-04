@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Consumptions.Reports.Item;
+using Soenneker.Make.OpenApiClient.Consumptions.Reports.Totals;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,6 +16,11 @@ namespace Soenneker.Make.OpenApiClient.Consumptions.Reports
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ReportsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The totals property</summary>
+        public global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Totals.TotalsRequestBuilder Totals
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Totals.TotalsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.consumptions.reports.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithOrganizationItemRequestBuilder"/></returns>

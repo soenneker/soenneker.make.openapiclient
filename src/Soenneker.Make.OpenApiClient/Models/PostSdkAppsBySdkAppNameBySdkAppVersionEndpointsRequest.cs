@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>How the endpoint&apos;s sections are initialized. `example` (default) seeds them from the built-in endpoint template; `blank` starts with empty sections.</summary>
+        /// <summary>How the endpoint&apos;s sections are initialized. `example` (default) seeds them from a built-in endpoint template; `blank` starts with empty sections.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestEndpointInitMode? EndpointInitMode { get; set; }
         /// <summary>The label property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,6 +48,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>Which built-in template seeds the endpoint. `regular` (default) is a single-route example; `universal` is an arbitrary-call example (caller-supplied method, path, query string, headers and body) and also sets the `arbitraryCallHint` annotation. Ignored when `endpointInitMode` is `blank`.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestTemplateType? TemplateType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequest"/> and sets the default values.
         /// </summary>
@@ -78,6 +80,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "endpointInitMode", n => { EndpointInitMode = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestEndpointInitMode>(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "templateType", n => { TemplateType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestTemplateType>(); } },
             };
         }
         /// <summary>
@@ -92,6 +95,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestEndpointInitMode>("endpointInitMode", EndpointInitMode);
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("name", Name);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestTemplateType>("templateType", TemplateType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -161,6 +161,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             public static global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1OAuth.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1OAuth_body_hash CreateFromDiscriminatorValue(IParseNode parseNode)
             {
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1OAuth.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1OAuth_body_hash();
                 if(parseNode.GetBoolValue() is bool booleanValue)
                 {

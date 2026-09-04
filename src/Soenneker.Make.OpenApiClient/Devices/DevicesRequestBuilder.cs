@@ -109,24 +109,34 @@ namespace Soenneker.Make.OpenApiClient.Devices
             public bool? Assigned { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("cols%5B%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetDevicesColsParameterItem[]? Cols { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("cols%5B%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetDevicesColsParameterItem[] Cols { get; set; }
+            #pragma warning restore CS1591
 #endif
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("scope%5B%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetDevicesScopeParameterItem[]? Scope { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("scope%5B%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetDevicesScopeParameterItem[] Scope { get; set; }
+            #pragma warning restore CS1591
 #endif
+            #pragma warning disable CS1591
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }
+            #pragma warning restore CS1591
             /// <summary>Devices assigned to the scenario and not assigned devices. If this parameter is set assigned parameter is ignored.</summary>
             [QueryParameter("viewForScenarioId")]
             public int? ViewForScenarioId { get; set; }

@@ -205,6 +205,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             public static global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponse.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponse_limit CreateFromDiscriminatorValue(IParseNode parseNode)
             {
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponse.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponse_limit();
                 if(parseNode.GetDoubleValue() is double doubleValue)
                 {
@@ -265,6 +266,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             public static global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponse.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponse_uid CreateFromDiscriminatorValue(IParseNode parseNode)
             {
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponse.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponse_uid();
                 if(parseNode.GetDoubleValue() is double doubleValue)
                 {

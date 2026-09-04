@@ -15,6 +15,7 @@ using Soenneker.Make.OpenApiClient.Users.Roles;
 using Soenneker.Make.OpenApiClient.Users.SetUiSettings;
 using Soenneker.Make.OpenApiClient.Users.UnreadNotifications;
 using Soenneker.Make.OpenApiClient.Users.UserOrganizationRoles;
+using Soenneker.Make.OpenApiClient.Users.UserTeamNotifications;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -77,6 +78,11 @@ namespace Soenneker.Make.OpenApiClient.Users
         public global::Soenneker.Make.OpenApiClient.Users.UserOrganizationRoles.UserOrganizationRolesRequestBuilder UserOrganizationRoles
         {
             get => new global::Soenneker.Make.OpenApiClient.Users.UserOrganizationRoles.UserOrganizationRolesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The userTeamNotifications property</summary>
+        public global::Soenneker.Make.OpenApiClient.Users.UserTeamNotifications.UserTeamNotificationsRequestBuilder UserTeamNotifications
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Users.UserTeamNotifications.UserTeamNotificationsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.users.item collection</summary>
         /// <param name="position">The unique ID of the user. It can be retrieved from the [List users](/api-reference/users/get--users.md) endpoint.</param>

@@ -93,8 +93,10 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Modules.Consumptions
             /// <summary>Days to summarize retrospectively. Default 1, must be between 1 and 30.</summary>
             [QueryParameter("days")]
             public int? Days { get; set; }
+            #pragma warning disable CS1591
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

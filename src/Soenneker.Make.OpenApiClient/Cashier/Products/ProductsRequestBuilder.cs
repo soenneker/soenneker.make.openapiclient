@@ -85,14 +85,22 @@ namespace Soenneker.Make.OpenApiClient.Cashier.Products
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ProductsRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("includeInvisible")]
             public bool? IncludeInvisible { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("relatedPriceId")]
             public int? RelatedPriceId { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("type")]
             public global::Soenneker.Make.OpenApiClient.Models.GetCashierProductsTypeParameter? Type { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

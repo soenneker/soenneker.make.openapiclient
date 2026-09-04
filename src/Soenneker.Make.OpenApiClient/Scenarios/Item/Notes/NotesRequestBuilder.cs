@@ -140,8 +140,10 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Notes
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class NotesRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
+            #pragma warning restore CS1591
             /// <summary>The unique ID of the team whose scenarios folders will be retrieved.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }

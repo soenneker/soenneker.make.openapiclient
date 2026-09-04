@@ -35,20 +35,20 @@ namespace Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId
         /// <summary>
         /// List consumption reports for specified time range and organization. Endpoint is proxy for the Pacman API. Documentation is available at https://github.com/integromat/make-pacman/blob/master/openapi/openapi.json
         /// </summary>
-        /// <returns>A <see cref="Stream"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdGetResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdGetResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdGetResponse>(requestInfo, global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdGetResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// List consumption reports for specified time range and organization. Endpoint is proxy for the Pacman API. Documentation is available at https://github.com/integromat/make-pacman/blob/master/openapi/openapi.json
@@ -66,6 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>

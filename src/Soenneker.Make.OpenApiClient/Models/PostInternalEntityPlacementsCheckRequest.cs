@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// One of `scenarioId`, `dlqId` or `teamId` locates the blueprint. When more than one is present they are resolved in that order of precedence and the others are ignored.
+    /// One of `scenarioId`, `dlqId`, `templateId` or `teamId` locates the blueprint. When more than one is present they are resolved in that order of precedence and the others are ignored — in particular, `templateId` always wins over `teamId` so a caller cannot override the team a template resolves server-side.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PostInternalEntityPlacementsCheckRequest : IAdditionalDataHolder, IParsable
@@ -37,6 +37,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public int? ScenarioId { get; set; }
         /// <summary>The team of a scenario that was never saved. Without a stored blueprint every denied placement is a new one.</summary>
         public int? TeamId { get; set; }
+        /// <summary>The template being run. The team is taken from the template record itself — a caller cannot influence which team is checked, even by also sending `teamId`. The template&apos;s own stored blueprint is the OLD side, the same grandfathering `scenarioId` and `dlqId` get: it is already guarded at save, so a module left untouched since then still runs after its connection is locked, while an edit or a new placement blocks. A template with no team (some templates have none) is unaffected — there is nothing team-scoped to check.</summary>
+        public int? TemplateId { get; set; }
         /// <summary>The user the execution runs as.</summary>
         public int? UserId { get; set; }
         /// <summary>
@@ -69,6 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "fromAdmin", n => { FromAdmin = n.GetBoolValue(); } },
                 { "scenarioId", n => { ScenarioId = n.GetIntValue(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
+                { "templateId", n => { TemplateId = n.GetIntValue(); } },
                 { "userId", n => { UserId = n.GetIntValue(); } },
             };
         }
@@ -84,6 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("fromAdmin", FromAdmin);
             writer.WriteIntValue("scenarioId", ScenarioId);
             writer.WriteIntValue("teamId", TeamId);
+            writer.WriteIntValue("templateId", TemplateId);
             writer.WriteIntValue("userId", UserId);
             writer.WriteAdditionalData(AdditionalData);
         }

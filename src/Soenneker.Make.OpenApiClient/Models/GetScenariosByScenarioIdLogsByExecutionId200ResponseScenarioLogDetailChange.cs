@@ -7,34 +7,36 @@ using System.IO;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The kind property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Kind? Kind { get; set; }
-        /// <summary>The label property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Label? Label { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1? GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Label Label { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 { get; set; }
 #endif
-        /// <summary>The origin property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Origin? Origin { get; set; }
-        /// <summary>The version property</summary>
-        public int? Version { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange"/> and sets the default values.
-        /// </summary>
-        public GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2? GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1? GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -43,7 +45,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange();
+            var result = new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange();
+            result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 = new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1();
+            result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 = new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2();
+            result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 = new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1();
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -51,13 +57,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 != null || GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 != null || GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 != null)
             {
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Kind>(); } },
-                { "label", n => { Label = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Label>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Label.CreateFromDiscriminatorValue); } },
-                { "origin", n => { Origin = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Origin>(); } },
-                { "version", n => { Version = n.GetIntValue(); } },
-            };
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1);
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -66,11 +70,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Kind>("kind", Kind);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Label>("label", Label);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Origin>("origin", Origin);
-            writer.WriteIntValue("version", Version);
-            writer.WriteAdditionalData(AdditionalData);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1>(null, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1);
         }
     }
 }

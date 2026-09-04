@@ -6,7 +6,6 @@ using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
 using Soenneker.Make.OpenApiClient.Users.Item.Attributes;
 using Soenneker.Make.OpenApiClient.Users.Item.UserOrganizationRoles;
-using Soenneker.Make.OpenApiClient.Users.Item.UserTeamNotifications;
 using Soenneker.Make.OpenApiClient.Users.Item.UserTeamRoles;
 using System.Collections.Generic;
 using System.IO;
@@ -30,11 +29,6 @@ namespace Soenneker.Make.OpenApiClient.Users.Item
         public global::Soenneker.Make.OpenApiClient.Users.Item.UserOrganizationRoles.UserOrganizationRolesRequestBuilder UserOrganizationRoles
         {
             get => new global::Soenneker.Make.OpenApiClient.Users.Item.UserOrganizationRoles.UserOrganizationRolesRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The userTeamNotifications property</summary>
-        public global::Soenneker.Make.OpenApiClient.Users.Item.UserTeamNotifications.UserTeamNotificationsRequestBuilder UserTeamNotifications
-        {
-            get => new global::Soenneker.Make.OpenApiClient.Users.Item.UserTeamNotifications.UserTeamNotificationsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The userTeamRoles property</summary>
         public global::Soenneker.Make.OpenApiClient.Users.Item.UserTeamRoles.UserTeamRolesRequestBuilder UserTeamRoles

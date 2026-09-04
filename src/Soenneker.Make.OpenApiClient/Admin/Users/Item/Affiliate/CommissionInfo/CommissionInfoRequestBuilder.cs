@@ -85,10 +85,14 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item.Affiliate.CommissionInfo
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CommissionInfoRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("dateFrom")]
             public Date? DateFrom { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("dateTo")]
             public Date? DateTo { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

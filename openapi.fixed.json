@@ -20785,6 +20785,26 @@
                       ]
                     }
                   }
+                },
+                "check-template-execution": {
+                  "summary": "Execution of a template",
+                  "value": {
+                    "userId": 456,
+                    "templateId": 321,
+                    "blueprint": {
+                      "name": "My template",
+                      "flow": [
+                        {
+                          "id": 1,
+                          "module": "app#my-app:CreateThing",
+                          "version": 1,
+                          "parameters": {
+                            "__IMTCONN__": 42
+                          }
+                        }
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -26563,6 +26583,19 @@
             "example": "My scenario"
           },
           {
+            "name": "search",
+            "in": "query",
+            "description": "Searches scenario names using a case-insensitive literal substring match. An empty value is treated as omitted. A positive integer, optionally surrounded by spaces, also matches the scenario with that exact ID; the original untrimmed value remains the name substring. A blank-only value therefore searches names for those spaces and does not match by ID. Partial, signed, decimal, leading-zero, and out-of-range IDs do not match by ID.",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "default": {
+                "value": "925"
+              }
+            }
+          },
+          {
             "name": "isinvalid",
             "in": "query",
             "description": "Set to \u0060true\u0060 to return only invalid scenarios (those whose blueprint failed validation), or \u0060false\u0060 to return only valid ones.",
@@ -27941,7 +27974,20 @@
             "example": 111
           }
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "Default",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "DefaultResponse",
+                  "type": "object",
+                  "description": "Default response schema"
+                }
+              }
+            }
+          }
+        },
         "security": [
           {
             "token": [
@@ -28847,6 +28893,46 @@
                               "label": {
                                 "id": 42,
                                 "name": "Important"
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "pg": {
+                        "sortBy": "imtId",
+                        "sortDir": "desc",
+                        "last": "1632371803593_scenario.1229.auto.3cf2f332f74f43f1b2c4ae431cbedb5b",
+                        "showLast": false,
+                        "limit": 50
+                      }
+                    }
+                  },
+                  "folder-change": {
+                    "summary": "Log of a scenario folder change",
+                    "description": "Returns a versioned Scenario History entry for a direct move from Uncategorized.",
+                    "value": {
+                      "scenarioLogs": [
+                        {
+                          "imtId": "1787300100000_52cd7898-b958-49e7-a348-8c6244980619",
+                          "id": "52cd7898-b958-49e7-a348-8c6244980619",
+                          "type": "modify",
+                          "authorId": 985,
+                          "authorName": "John Doe",
+                          "timestamp": "2026-08-21T08:15:00.000Z",
+                          "detail": {
+                            "author": {
+                              "name": "John Doe",
+                              "staff": false
+                            },
+                            "change": {
+                              "version": 1,
+                              "kind": "folder-moved",
+                              "origin": "direct",
+                              "fromFolder": null,
+                              "toFolder": {
+                                "id": 84,
+                                "name": "Prague",
+                                "path": "Europe/Czechia/Prague"
                               }
                             }
                           }
@@ -36884,7 +36970,7 @@
           "SDK Apps / Endpoints"
         ],
         "summary": "Create Endpoint",
-        "description": "Creates a new endpoint on the app version. The endpoint starts private and unapproved. By default (\u0060endpointInitMode: example\u0060) its sections (\u0060api\u0060, \u0060inputParameters\u0060, \u0060outputParameters\u0060) and \u0060context\u0060 are seeded from the built-in endpoint template; pass \u0060endpointInitMode: blank\u0060 to start with empty sections instead. All sections can be edited afterwards via the section endpoints. The \u0060name\u0060 must be alphanumeric, start with a letter, be 3 to 128 characters long, unique within the app version, and not a reserved keyword. \u0060attachedAccounts\u0060 is optional; every connection it lists must belong to the app, otherwise the request is rejected.",
+        "description": "Creates a new endpoint on the app version. The endpoint starts private and unapproved. By default (\u0060endpointInitMode: example\u0060) its sections (\u0060api\u0060, \u0060inputParameters\u0060, \u0060outputParameters\u0060) and \u0060context\u0060 are seeded from a built-in endpoint template; pass \u0060endpointInitMode: blank\u0060 to start with empty sections instead. Which template seeds an \u0060example\u0060 endpoint is chosen with \u0060templateType\u0060: \u0060regular\u0060 (default) is a single-route example, while \u0060universal\u0060 is an arbitrary-call example that forwards a caller-supplied method, path, query string, headers and body to the app\u0027s API \u2014 a \u0060universal\u0060 endpoint is additionally created with the \u0060arbitraryCallHint\u0060 annotation set. All sections can be edited afterwards via the section endpoints. The \u0060name\u0060 must be alphanumeric, start with a letter, be 3 to 128 characters long, unique within the app version, and not a reserved keyword. \u0060attachedAccounts\u0060 is optional; every connection it lists must belong to the app, otherwise the request is rejected.",
         "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionEndpoints",
         "parameters": [
           {
@@ -36910,14 +36996,33 @@
               "schema": {
                 "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequest"
               },
-              "example": {
-                "name": "getEntity",
-                "label": "Get Entity",
-                "description": "Retrieves the given entity.",
-                "attachedAccounts": [
-                  "my-app-connection"
-                ],
-                "endpointInitMode": "example"
+              "examples": {
+                "create-endpoint": {
+                  "summary": "Create Endpoint",
+                  "value": {
+                    "name": "getEntity",
+                    "label": "Get Entity",
+                    "description": "Retrieves the given entity.",
+                    "attachedAccounts": [
+                      "my-app-connection"
+                    ],
+                    "endpointInitMode": "example",
+                    "templateType": "regular"
+                  }
+                },
+                "create-universal-endpoint": {
+                  "summary": "Create Universal Endpoint",
+                  "value": {
+                    "name": "makeApiCall",
+                    "label": "Make an API Call",
+                    "description": "Performs an arbitrary API call.",
+                    "attachedAccounts": [
+                      "my-app-connection"
+                    ],
+                    "endpointInitMode": "example",
+                    "templateType": "universal"
+                  }
+                }
               }
             }
           }
@@ -36940,6 +37045,33 @@
                         "description": "Retrieves the given entity.",
                         "context": null,
                         "annotations": {},
+                        "attachedAccounts": [],
+                        "public": false,
+                        "approved": false,
+                        "deprecated": false,
+                        "archived": false,
+                        "centicreditsFormula": null,
+                        "centicreditsFormulaDescription": null,
+                        "centicreditsFormulaDocumentationUrl": null,
+                        "centicreditsFormulaMeta": null,
+                        "schemaVersion": 1,
+                        "rev": 1,
+                        "createdAt": "2026-06-17T10:00:00.000Z",
+                        "updatedAt": "2026-06-17T10:00:00.000Z"
+                      }
+                    }
+                  },
+                  "create-universal-endpoint": {
+                    "summary": "Create Universal Endpoint",
+                    "value": {
+                      "appEndpoint": {
+                        "name": "makeApiCall",
+                        "label": "Make an API Call",
+                        "description": "Performs an arbitrary API call.",
+                        "context": "# Context for the Universal Endpoint\n",
+                        "annotations": {
+                          "arbitraryCallHint": true
+                        },
                         "attachedAccounts": [],
                         "public": false,
                         "approved": false,
@@ -44451,6 +44583,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Either the user lacks the \u0060template add\u0060 permission in \u0060teamId\u0060 (\u0060IM002\u0060), or a module in the blueprint places a locked connection or key the user is not allowed to use (\u0060IM002\u0060, placement guard). The placement-guard rejection is returned only when locked-entities enforcement is enabled for the organization; templates have no per-save baseline to grandfather against, so every such placement is rejected.\n"
           }
         },
         "security": [
@@ -44666,6 +44801,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Either the user lacks the \u0060template edit\u0060 permission in the template\u0027s team (\u0060IM002\u0060), or a module in the blueprint places a locked connection or key the user is not allowed to use (\u0060IM002\u0060, placement guard). The placement-guard rejection is returned only when locked-entities enforcement is enabled for the organization; an untouched frozen module and releasing a locked entity (swapping it out or removing its module) always pass, and a teamless template is never guarded.\n"
           }
         },
         "security": [
@@ -46913,25 +47051,15 @@
         ]
       }
     },
-    "/users/{userId}/user-team-notifications/{teamId}": {
+    "/users/user-team-notifications/{teamId}": {
       "get": {
         "tags": [
           "Users / User team notifications"
         ],
         "summary": "List user team notification settings",
-        "description": "Gets settings for user notifications for a user specified by the \u0060userId\u0060 and a team specified by the \u0060teamId\u0060. Get the mapping of the \u0060notificationId\u0060 and the team notification setting type with the API call \u0060GET /enums/user-email-notifications\u0060.",
-        "operationId": "GetUsersByUserIdUserTeamNotificationsByTeamId",
+        "description": "Gets the authenticated user\u0027s notification settings for a team specified by the \u0060teamId\u0060. Get the mapping of the \u0060notificationId\u0060 and the team notification setting type with the API call \u0060GET /enums/user-email-notifications\u0060.\n\nThe response only contains the notification types available to the user. Some notification types require a specific team\npermission \u2014 types whose permission the user does not hold are omitted from the response.\n",
+        "operationId": "GetUsersUserTeamNotificationsByTeamId",
         "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "description": "The ID of the user.",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "example": 3
-          },
           {
             "name": "teamId",
             "in": "path",
@@ -46949,7 +47077,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetUsersByUserIdUserTeamNotificationsByTeamId200Response"
+                  "$ref": "#/components/schemas/GetUsersUserTeamNotificationsByTeamId200Response"
                 },
                 "example": {
                   "userTeamNotifications": [
@@ -46986,25 +47114,15 @@
         ]
       }
     },
-    "/users/{userId}/user-team-notifications/{teamId}/{notificationId}": {
+    "/users/user-team-notifications/{teamId}/{notificationId}": {
       "get": {
         "tags": [
           "Users / User team notifications"
         ],
         "summary": "Check user\u0027s notification settings",
-        "description": "Checks team notification settings for specific user, team and notification type with the specified \u0060userId\u0060, \u0060teamId\u0060 and \u0060notificationId\u0060. Get the mapping of the \u0060notificationId\u0060 and the team notification setting type with the API call \u0060GET /enums/user-email-notifications\u0060.",
-        "operationId": "GetUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId",
+        "description": "Checks the authenticated user\u0027s notification settings for the team and notification type specified by the \u0060teamId\u0060 and \u0060notificationId\u0060. Get the mapping of the \u0060notificationId\u0060 and the team notification setting type with the API call \u0060GET /enums/user-email-notifications\u0060.\n\nOnly notification types available to the user are returned. Some notification types require a specific team permission \u2014\nfor a type whose permission the user does not hold, the response contains no notification setting.\n",
+        "operationId": "GetUsersUserTeamNotificationsByTeamIdByNotificationId",
         "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "description": "The ID of the user.",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "example": 1
-          },
           {
             "name": "teamId",
             "in": "path",
@@ -47032,7 +47150,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response"
+                  "$ref": "#/components/schemas/GetUsersUserTeamNotificationsByTeamIdByNotificationId200Response"
                 },
                 "example": {
                   "userTeamNotification": {
@@ -47059,19 +47177,9 @@
           "Users / User team notifications"
         ],
         "summary": "Update user\u0027s notification settings",
-        "description": "Updates team notification settings for the user identified with the \u0060userId\u0060, \u0060teamId\u0060 and \u0060notificationId\u0060.\n\nGet the mapping of the \u0060notificationId\u0060 and the team notification setting type with the API call \u0060GET /enums/user-email-notifications\u0060.\n\nNote that you can only update notification settings for the user associated with the API key used for authentication.\n",
-        "operationId": "PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId",
+        "description": "Updates the authenticated user\u0027s notification settings for the team and notification type specified by the \u0060teamId\u0060 and \u0060notificationId\u0060.\n\nGet the mapping of the \u0060notificationId\u0060 and the team notification setting type with the API call \u0060GET /enums/user-email-notifications\u0060.\n\nNote that you can only update notification settings for the user associated with the API key used for authentication.\n\nSome notification types require a specific team permission. Enabling such a type for a user who does not hold the required\npermission fails with \u0060403\u0060. Disabling a notification type is always allowed, regardless of permissions or feature flags.\n",
+        "operationId": "PutUsersUserTeamNotificationsByTeamIdByNotificationId",
         "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "description": "The ID of the user.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": 1
-          },
           {
             "name": "teamId",
             "in": "path",
@@ -47097,7 +47205,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationIdRequest"
+                "$ref": "#/components/schemas/PutUsersUserTeamNotificationsByTeamIdByNotificationIdRequest"
               },
               "example": {
                 "enabled": true
@@ -47111,7 +47219,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response"
+                  "$ref": "#/components/schemas/PutUsersUserTeamNotificationsByTeamIdByNotificationId200Response"
                 },
                 "example": {
                   "userTeamNotification": {
@@ -47120,6 +47228,20 @@
                     "notificationId": 6,
                     "enabled": true
                   }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - the user lacks the team permission required to enable this notification type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutUsersUserTeamNotificationsByTeamIdByNotificationId403Response"
+                },
+                "example": {
+                  "message": "Insufficient rights",
+                  "code": "IM002"
                 }
               }
             }
@@ -49141,11 +49263,116 @@
         "summary": "Get consumption list",
         "description": "List consumption reports for specified time range and organization. Endpoint is proxy for the Pacman API. Documentation is available at https://github.com/integromat/make-pacman/blob/master/openapi/openapi.json",
         "operationId": "GetConsumptionsReportsByOrganizationIdTeamId",
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "Default",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "DefaultResponse",
+                  "type": "object",
+                  "description": "Default response schema"
+                }
+              }
+            }
+          }
+        },
         "security": [
           {
             "token": [
               "organization:view"
+            ]
+          }
+        ]
+      }
+    },
+    "/consumptions/reports/totals/{organizationId}/{teamId}?": {
+      "get": {
+        "tags": [
+          "Consumption"
+        ],
+        "summary": "Get consumption totals",
+        "description": "Returns aggregated consumption totals per source type for the requested period, scoped to an organization or a single team within it. Endpoint is proxy for the Pacman API. Documentation is available at https://github.com/integromat/make-pacman/blob/master/openapi/openapi.json\n",
+        "operationId": "GetConsumptionsReportsTotalsByOrganizationIdTeamId",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "The unique ID of the organization to report on.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 12345
+          },
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The unique ID of the team within the organization to scope the totals to. When omitted, totals cover the whole organization.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 123
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Source type to filter totals by. When omitted, totals for all source types are returned.",
+            "schema": {
+              "$ref": "#/components/schemas/GetConsumptionsReportsTotalsByOrganizationIdTeamIdTypeParameter"
+            },
+            "example": "scenario"
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "description": "Period of time to report on.",
+            "schema": {
+              "$ref": "#/components/schemas/GetConsumptionsReportsTotalsByOrganizationIdTeamIdPeriodParameter"
+            },
+            "example": "30days"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consumption totals for the requested organization or team and period.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetConsumptionsReportsTotalsByOrganizationIdTeamId200Response"
+                },
+                "examples": {
+                  "scenario-30days": {
+                    "value": {
+                      "totals": [
+                        {
+                          "type": "scenario",
+                          "centicredits": "123456789",
+                          "operations": "123456",
+                          "transfer": "456"
+                        }
+                      ],
+                      "period": {
+                        "from": "2025-09-25T12:00:00.000Z",
+                        "to": "2025-10-25T12:34:56.789Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller lacks the required scope/permission on the organization."
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "pacman:use"
             ]
           }
         ]
@@ -97794,6 +98021,12 @@
             "description": "The incomplete execution (DLQ record) being retried. Its stored blueprint is the comparison baseline \u2014 itself already guarded, since every \u0060dlq_set\u0060 edit runs the same guard. The team is taken from the DLQ\u0027s owning scenario.",
             "example": "5f9b2c1e-0000-4000-8000-000000000000"
           },
+          "templateId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The template being run. The team is taken from the template record itself \u2014 a caller cannot influence which team is checked, even by also sending \u0060teamId\u0060. The template\u0027s own stored blueprint is the OLD side, the same grandfathering \u0060scenarioId\u0060 and \u0060dlqId\u0060 get: it is already guarded at save, so a module left untouched since then still runs after its connection is locked, while an edit or a new placement blocks. A template with no team (some templates have none) is unaffected \u2014 there is nothing team-scoped to check.",
+            "example": 321
+          },
           "teamId": {
             "minimum": 1,
             "type": "integer",
@@ -97801,7 +98034,7 @@
             "example": 789
           }
         },
-        "description": "One of \u0060scenarioId\u0060, \u0060dlqId\u0060 or \u0060teamId\u0060 locates the blueprint. When more than one is present they are resolved in that order of precedence and the others are ignored."
+        "description": "One of \u0060scenarioId\u0060, \u0060dlqId\u0060, \u0060templateId\u0060 or \u0060teamId\u0060 locates the blueprint. When more than one is present they are resolved in that order of precedence and the others are ignored \u2014 in particular, \u0060templateId\u0060 always wins over \u0060teamId\u0060 so a caller cannot override the team a template resolves server-side."
       },
       "PostInternalEntityPlacementsCheck200Response": {
         "required": [
@@ -101872,6 +102105,9 @@
           },
           "endpointInitMode": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestEndpointInitMode"
+          },
+          "templateType": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestTemplateType"
           }
         }
       },
@@ -104027,26 +104263,26 @@
           }
         }
       },
-      "GetUsersByUserIdUserTeamNotificationsByTeamId200Response": {
+      "GetUsersUserTeamNotificationsByTeamId200Response": {
         "type": "object",
         "properties": {
           "userTeamNotifications": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/GetUsersByUserIdUserTeamNotificationsByTeamId200ResponseUserTeamNotificationsItem"
+              "$ref": "#/components/schemas/GetUsersUserTeamNotificationsByTeamId200ResponseUserTeamNotificationsItem"
             }
           }
         }
       },
-      "GetUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response": {
+      "GetUsersUserTeamNotificationsByTeamIdByNotificationId200Response": {
         "type": "object",
         "properties": {
           "userTeamNotification": {
-            "$ref": "#/components/schemas/GetUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification"
+            "$ref": "#/components/schemas/GetUsersUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification"
           }
         }
       },
-      "PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationIdRequest": {
+      "PutUsersUserTeamNotificationsByTeamIdByNotificationIdRequest": {
         "type": "object",
         "properties": {
           "enabled": {
@@ -104055,11 +104291,22 @@
           }
         }
       },
-      "PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200Response": {
+      "PutUsersUserTeamNotificationsByTeamIdByNotificationId200Response": {
         "type": "object",
         "properties": {
           "userTeamNotification": {
-            "$ref": "#/components/schemas/PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification"
+            "$ref": "#/components/schemas/PutUsersUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification"
+          }
+        }
+      },
+      "PutUsersUserTeamNotificationsByTeamIdByNotificationId403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
           }
         }
       },
@@ -104513,6 +104760,24 @@
             "minimum": 0,
             "type": "integer",
             "description": "Number of output tokens remaining until limit"
+          }
+        }
+      },
+      "GetConsumptionsReportsTotalsByOrganizationIdTeamId200Response": {
+        "required": [
+          "totals",
+          "period"
+        ],
+        "type": "object",
+        "properties": {
+          "totals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetConsumptionsReportsTotalsByOrganizationIdTeamId200ResponseTotalsItem"
+            }
+          },
+          "period": {
+            "$ref": "#/components/schemas/GetConsumptionsReportsTotalsByOrganizationIdTeamId200ResponsePeriod"
           }
         }
       },
@@ -137004,22 +137269,22 @@
             "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1"
           },
           {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2"
+          },
+          {
             "type": "object",
             "description": "A versioned Scenario History change not yet interpreted by this API specification."
           }
         ],
         "properties": {
-          "version": {
-            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Version"
-          },
-          "kind": {
-            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Kind"
-          },
-          "origin": {
-            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Origin"
-          },
           "label": {
             "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label"
+          },
+          "fromFolder": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2FromFolder"
+          },
+          "toFolder": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2ToFolder"
           }
         }
       },
@@ -137030,22 +137295,22 @@
             "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1"
           },
           {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2"
+          },
+          {
             "type": "object",
             "description": "A versioned Scenario History change not yet interpreted by this API specification."
           }
         ],
         "properties": {
-          "version": {
-            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Version"
-          },
-          "kind": {
-            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Kind"
-          },
-          "origin": {
-            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Origin"
-          },
           "label": {
             "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Label"
+          },
+          "fromFolder": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2FromFolder"
+          },
+          "toFolder": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2ToFolder"
           }
         }
       },
@@ -137357,6 +137622,33 @@
           }
         }
       },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2": {
+        "required": [
+          "version",
+          "kind",
+          "origin",
+          "fromFolder",
+          "toFolder"
+        ],
+        "type": "object",
+        "properties": {
+          "version": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2Version"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/FolderMovedKind"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2Origin"
+          },
+          "fromFolder": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2FromFolder"
+          },
+          "toFolder": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2ToFolder"
+          }
+        }
+      },
       "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1": {
         "required": [
           "version",
@@ -137377,6 +137669,33 @@
           },
           "label": {
             "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Label"
+          }
+        }
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2": {
+        "required": [
+          "version",
+          "kind",
+          "origin",
+          "fromFolder",
+          "toFolder"
+        ],
+        "type": "object",
+        "properties": {
+          "version": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2Version"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/FolderMovedKind"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2Origin"
+          },
+          "fromFolder": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2FromFolder"
+          },
+          "toFolder": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2ToFolder"
           }
         }
       },
@@ -155061,7 +155380,7 @@
           }
         }
       },
-      "GetUsersByUserIdUserTeamNotificationsByTeamId200ResponseUserTeamNotificationsItem": {
+      "GetUsersUserTeamNotificationsByTeamId200ResponseUserTeamNotificationsItem": {
         "type": "object",
         "properties": {
           "userId": {
@@ -155078,7 +155397,7 @@
           }
         }
       },
-      "GetUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification": {
+      "GetUsersUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification": {
         "type": "object",
         "properties": {
           "userId": {
@@ -155095,7 +155414,7 @@
           }
         }
       },
-      "PutUsersByUserIdUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification": {
+      "PutUsersUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification": {
         "type": "object",
         "properties": {
           "userId": {
@@ -155557,6 +155876,60 @@
           "id": {
             "type": "number",
             "description": "User id"
+          }
+        }
+      },
+      "GetConsumptionsReportsTotalsByOrganizationIdTeamId200ResponseTotalsItem": {
+        "required": [
+          "type",
+          "centicredits",
+          "operations",
+          "transfer"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "scenario"
+          },
+          "centicredits": {
+            "type": "string",
+            "description": "Total centicredits consumed in the period.",
+            "format": "int64",
+            "example": "123456789"
+          },
+          "operations": {
+            "type": "string",
+            "description": "Total operations consumed in the period.",
+            "format": "int64",
+            "example": "123456"
+          },
+          "transfer": {
+            "type": "string",
+            "description": "Total data transfer consumed in the period, in bytes.",
+            "format": "int64",
+            "example": "456"
+          }
+        }
+      },
+      "GetConsumptionsReportsTotalsByOrganizationIdTeamId200ResponsePeriod": {
+        "required": [
+          "from",
+          "to"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "Start of the reported period.",
+            "format": "date-time",
+            "example": "2025-09-25T12:00:00.000Z"
+          },
+          "to": {
+            "type": "string",
+            "description": "When the totals were generated. The current hour may still be growing.",
+            "format": "date-time",
+            "example": "2025-10-25T12:34:56.789Z"
           }
         }
       },
@@ -156325,6 +156698,46 @@
           }
         }
       },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2FromFolder": {
+        "required": [
+          "id",
+          "name",
+          "path"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "nullable": true
+      },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2ToFolder": {
+        "required": [
+          "id",
+          "name",
+          "path"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "nullable": true
+      },
       "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Label": {
         "required": [
           "id",
@@ -156339,6 +156752,46 @@
             "type": "string"
           }
         }
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2FromFolder": {
+        "required": [
+          "id",
+          "name",
+          "path"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "nullable": true
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2ToFolder": {
+        "required": [
+          "id",
+          "name",
+          "path"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "nullable": true
       },
       "OrganizationLicensePropertyAdditionalProperties": {
         "type": "object"
@@ -178370,7 +178823,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "How the endpoint\u0027s sections are initialized. \u0060example\u0060 (default) seeds them from the built-in endpoint template; \u0060blank\u0060 starts with empty sections.",
+        "description": "How the endpoint\u0027s sections are initialized. \u0060example\u0060 (default) seeds them from a built-in endpoint template; \u0060blank\u0060 starts with empty sections.",
         "x-ms-enum": {
           "name": "PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestEndpointInitMode",
           "modelAsString": false,
@@ -178382,6 +178835,29 @@
             {
               "value": "blank",
               "name": "Blank"
+            }
+          ]
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestTemplateType": {
+        "enum": [
+          "regular",
+          "universal"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Which built-in template seeds the endpoint. \u0060regular\u0060 (default) is a single-route example; \u0060universal\u0060 is an arbitrary-call example (caller-supplied method, path, query string, headers and body) and also sets the \u0060arbitraryCallHint\u0060 annotation. Ignored when \u0060endpointInitMode\u0060 is \u0060blank\u0060.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestTemplateType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "regular",
+              "name": "Regular"
+            },
+            {
+              "value": "universal",
+              "name": "Universal"
             }
           ]
         }
@@ -179810,6 +180286,52 @@
           ]
         }
       },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2Version": {
+        "enum": [
+          1
+        ],
+        "type": "integer",
+        "additionalProperties": false
+      },
+      "FolderMovedKind": {
+        "enum": [
+          "folder-moved"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "FolderMovedKind",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "folder-moved",
+              "name": "FolderMoved"
+            }
+          ]
+        }
+      },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2Origin": {
+        "enum": [
+          "direct",
+          "cascade"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf2Origin",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "direct",
+              "name": "Direct"
+            },
+            {
+              "value": "cascade",
+              "name": "Cascade"
+            }
+          ]
+        }
+      },
       "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Version": {
         "enum": [
           1
@@ -179848,6 +180370,35 @@
         "additionalProperties": false,
         "x-ms-enum": {
           "name": "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1Origin",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "direct",
+              "name": "Direct"
+            },
+            {
+              "value": "cascade",
+              "name": "Cascade"
+            }
+          ]
+        }
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2Version": {
+        "enum": [
+          1
+        ],
+        "type": "integer",
+        "additionalProperties": false
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2Origin": {
+        "enum": [
+          "direct",
+          "cascade"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2Origin",
           "modelAsString": false,
           "values": [
             {
@@ -194733,6 +195284,60 @@
             {
               "value": "joinedTeamsCount",
               "name": "JoinedTeamsCount"
+            }
+          ]
+        }
+      },
+      "GetConsumptionsReportsTotalsByOrganizationIdTeamIdTypeParameter": {
+        "enum": [
+          "scenario",
+          "ai-agent",
+          "maia"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetConsumptionsReportsTotalsByOrganizationIdTeamIdTypeParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "scenario",
+              "name": "Scenario"
+            },
+            {
+              "value": "ai-agent",
+              "name": "AiAgent"
+            },
+            {
+              "value": "maia",
+              "name": "Maia"
+            }
+          ]
+        }
+      },
+      "GetConsumptionsReportsTotalsByOrganizationIdTeamIdPeriodParameter": {
+        "enum": [
+          "30days",
+          "7days",
+          "24hours"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetConsumptionsReportsTotalsByOrganizationIdTeamIdPeriodParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "30days",
+              "name": "Value30Days"
+            },
+            {
+              "value": "7days",
+              "name": "Value7Days"
+            },
+            {
+              "value": "24hours",
+              "name": "Value24Hours"
             }
           ]
         }

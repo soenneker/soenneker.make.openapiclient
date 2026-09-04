@@ -132,6 +132,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             public static global::Soenneker.Make.OpenApiClient.Models.PostAiErrorAnalysisRequest.PostAiErrorAnalysisRequest_executionId CreateFromDiscriminatorValue(IParseNode parseNode)
             {
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
+                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::Soenneker.Make.OpenApiClient.Models.PostAiErrorAnalysisRequest.PostAiErrorAnalysisRequest_executionId();
                 if(parseNode.GetDoubleValue() is double doubleValue)
                 {

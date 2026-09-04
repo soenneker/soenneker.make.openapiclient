@@ -85,8 +85,10 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.Item.Modules.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithModuleNameItemRequestBuilderDeleteQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

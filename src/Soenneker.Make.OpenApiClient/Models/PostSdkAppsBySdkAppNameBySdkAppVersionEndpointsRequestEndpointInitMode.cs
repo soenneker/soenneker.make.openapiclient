@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
-    /// <summary>How the endpoint&apos;s sections are initialized. `example` (default) seeds them from the built-in endpoint template; `blank` starts with empty sections.</summary>
+    /// <summary>How the endpoint&apos;s sections are initialized. `example` (default) seeds them from a built-in endpoint template; `blank` starts with empty sections.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsRequestEndpointInitMode
     {

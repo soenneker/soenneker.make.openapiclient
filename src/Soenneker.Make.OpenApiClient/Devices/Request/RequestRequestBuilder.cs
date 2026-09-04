@@ -90,8 +90,10 @@ namespace Soenneker.Make.OpenApiClient.Devices.Request
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RequestRequestBuilderPostQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("inspector")]
             public int? Inspector { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }
