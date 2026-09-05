@@ -12855,6 +12855,7 @@
                     "appName": "app#my-crm",
                     "appVersion": 1,
                     "endpointName": "listContacts",
+                    "teamId": 1234,
                     "connectionId": 9001,
                     "input": {
                       "limit": 10
@@ -12866,7 +12867,8 @@
                   "value": {
                     "appName": "app#my-crm",
                     "appVersion": 1,
-                    "endpointName": "ping"
+                    "endpointName": "ping",
+                    "teamId": 1234
                   }
                 }
               }
@@ -12908,7 +12910,13 @@
             }
           },
           "400": {
-            "description": "The request body failed validation (e.g. \u0060appName\u0060, \u0060appVersion\u0060, or \u0060endpointName\u0060 missing or malformed)."
+            "description": "The request body failed validation, including when the required Team is omitted."
+          },
+          "403": {
+            "description": "The Team is not accessible to the caller or conflicts with the signed organization context."
+          },
+          "429": {
+            "description": "The owning organization has no shared execution capacity available."
           },
           "501": {
             "description": "Endpoint execution is not enabled on this environment."
@@ -26307,7 +26315,7 @@
           {
             "name": "teamId",
             "in": "query",
-            "description": "Team the RPC call runs in. Used to resolve the organization the call belongs to (e.g. for licence/plan gating) when the request isn\u0027t otherwise organization-bound. Rejected with a 400 if present but not a positive integer.",
+            "description": "Optional authorized Team context made available to the RPC. Calls without a Team remain valid. Rejected with a 400 if present but not a positive integer.",
             "schema": {
               "minimum": 1,
               "type": "integer"
@@ -96622,7 +96630,8 @@
         "required": [
           "appName",
           "appVersion",
-          "endpointName"
+          "endpointName",
+          "teamId"
         ],
         "type": "object",
         "properties": {
@@ -96644,6 +96653,12 @@
             "pattern": "^[a-zA-Z][0-9a-zA-Z]{1,126}[0-9a-zA-Z]$",
             "type": "string",
             "description": "Name of the Endpoint to be executed."
+          },
+          "teamId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Authorized Team whose organization owns the execution. Always required."
           },
           "connectionId": {
             "anyOf": [

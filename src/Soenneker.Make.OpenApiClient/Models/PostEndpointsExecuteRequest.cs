@@ -48,6 +48,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequestInput Input { get; set; }
 #endif
+        /// <summary>Authorized Team whose organization owns the execution. Always required.</summary>
+        public int? TeamId { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequest"/> and sets the default values.
         /// </summary>
@@ -78,6 +80,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "connectionId", n => { ConnectionId = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequest.PostEndpointsExecuteRequest_connectionId>(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequest.PostEndpointsExecuteRequest_connectionId.CreateFromDiscriminatorValue); } },
                 { "endpointName", n => { EndpointName = n.GetStringValue(); } },
                 { "input", n => { Input = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequestInput>(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequestInput.CreateFromDiscriminatorValue); } },
+                { "teamId", n => { TeamId = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -92,6 +95,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequest.PostEndpointsExecuteRequest_connectionId>("connectionId", ConnectionId);
             writer.WriteStringValue("endpointName", EndpointName);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequestInput>("input", Input);
+            writer.WriteIntValue("teamId", TeamId);
             writer.WriteAdditionalData(AdditionalData);
         }
         /// <summary>

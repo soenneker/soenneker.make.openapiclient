@@ -126,7 +126,7 @@ namespace Soenneker.Make.OpenApiClient.Rpcs.Item.Item.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithRpcNameItemRequestBuilderPostQueryParameters 
         {
-            /// <summary>Team the RPC call runs in. Used to resolve the organization the call belongs to (e.g. for licence/plan gating) when the request isn&apos;t otherwise organization-bound. Rejected with a 400 if present but not a positive integer.</summary>
+            /// <summary>Optional authorized Team context made available to the RPC. Calls without a Team remain valid. Rejected with a 400 if present but not a positive integer.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }
         }
