@@ -13,6 +13,7 @@ using Soenneker.Make.OpenApiClient.Internal.Scenarios;
 using Soenneker.Make.OpenApiClient.Internal.Settings;
 using Soenneker.Make.OpenApiClient.Internal.Teams;
 using Soenneker.Make.OpenApiClient.Internal.Users;
+using Soenneker.Make.OpenApiClient.Internal.V2;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -79,6 +80,11 @@ namespace Soenneker.Make.OpenApiClient.Internal
         public global::Soenneker.Make.OpenApiClient.Internal.Users.UsersRequestBuilder Users
         {
             get => new global::Soenneker.Make.OpenApiClient.Internal.Users.UsersRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The v2 property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.V2.V2RequestBuilder V2
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.V2.V2RequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Internal.InternalRequestBuilder"/> and sets the default values.

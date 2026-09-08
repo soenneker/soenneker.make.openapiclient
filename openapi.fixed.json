@@ -19921,6 +19921,49 @@
         }
       }
     },
+    "/internal/v2/auth/browser-session": {
+      "get": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Resolve the user behind a browser session",
+        "description": "Validates a forwarded Make browser session and returns its authenticated user ID. This endpoint is available only to ISC-authorized internal services.",
+        "operationId": "GetInternalV2AuthBrowserSession",
+        "parameters": [
+          {
+            "name": "sid",
+            "in": "cookie",
+            "description": "Make browser session cookie forwarded by the internal caller.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The browser session is valid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalV2AuthBrowserSession200Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "ISC authorization or the forwarded browser session is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalV2AuthBrowserSession401Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/internal/settings": {
       "get": {
         "tags": [
@@ -30291,6 +30334,26 @@
           },
           "400": {
             "description": "A team variable names a locked connection (\u0060IM022\u0060). A locked entity is not supported as a dynamic connection in this version, for every caller \u2014 select the connection in the module instead. Returned only when locked-entities enforcement is enabled for the organization, and only for a connection the scenario does not already use as a team variable under some name.\n"
+          },
+          "422": {
+            "description": "Validation against the scenario input specification failed (\u0060IM016\u0060). Either a submitted value does not match the type declared for the variable (the response names the variable, its declared type and the JSON type of the submitted value; the value itself is not echoed back), or the stored input specification is malformed, for example an entry or a nested element specification without a name or type (the response carries the rejected specification fragment).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostScenariosByScenarioIdBuildVariables422Response"
+                },
+                "example": {
+                  "code": "IM016",
+                  "message": "Action is not possible due to dependencies.",
+                  "detail": "Invalid value of variable myNumberVar. Type number expected, got string.",
+                  "metadata": {
+                    "name": "myNumberVar",
+                    "type": "number",
+                    "actualJsonbType": "string"
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -30357,6 +30420,26 @@
           },
           "400": {
             "description": "A team variable names a locked connection (\u0060IM022\u0060). A locked entity is not supported as a dynamic connection in this version, for every caller \u2014 select the connection in the module instead. Returned only when locked-entities enforcement is enabled for the organization, and only for a connection the scenario does not already use as a team variable under some name \u2014 a payload that only keeps or removes existing values always passes.\n"
+          },
+          "422": {
+            "description": "Validation against the scenario input specification failed (\u0060IM016\u0060). Either a submitted value does not match the type declared for the variable (the response names the variable, its declared type and the JSON type of the submitted value; the value itself is not echoed back), or the stored input specification is malformed, for example an entry or a nested element specification without a name or type (the response carries the rejected specification fragment).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutScenariosByScenarioIdBuildVariables422Response"
+                },
+                "example": {
+                  "code": "IM016",
+                  "message": "Action is not possible due to dependencies.",
+                  "detail": "Invalid value of variable myNumberVar. Type number expected, got string.",
+                  "metadata": {
+                    "name": "myNumberVar",
+                    "type": "number",
+                    "actualJsonbType": "string"
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -97559,6 +97642,37 @@
           }
         }
       },
+      "GetInternalV2AuthBrowserSession200Response": {
+        "required": [
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "description": "Authenticated Make user ID.",
+            "example": 123
+          }
+        }
+      },
+      "GetInternalV2AuthBrowserSession401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code.",
+            "example": "IM015"
+          },
+          "message": {
+            "type": "string",
+            "example": "Invalid session."
+          }
+        }
+      },
       "GetInternalSettings200Response": {
         "type": "object",
         "description": "Key value pairs of system settings.",
@@ -100401,6 +100515,31 @@
           }
         }
       },
+      "PostScenariosByScenarioIdBuildVariables422Response": {
+        "required": [
+          "code",
+          "message",
+          "detail",
+          "metadata"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/Im016Code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Localized text for the error code."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Human-readable reason. For a type mismatch it names the rejected variable, the type its input specification declares and the JSON type of the submitted value; the submitted value itself is never echoed back. For a malformed input specification it says what the specification is missing."
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/PostScenariosByScenarioIdBuildVariables422ResponseMetadata"
+          }
+        }
+      },
       "PutScenariosByScenarioIdBuildVariablesRequest": {
         "type": "object",
         "properties": {
@@ -100417,6 +100556,31 @@
         "properties": {
           "ok": {
             "type": "integer"
+          }
+        }
+      },
+      "PutScenariosByScenarioIdBuildVariables422Response": {
+        "required": [
+          "code",
+          "message",
+          "detail",
+          "metadata"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/Im016Code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Localized text for the error code."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Human-readable reason. For a type mismatch it names the rejected variable, the type its input specification declares and the JSON type of the submitted value; the submitted value itself is never echoed back. For a malformed input specification it says what the specification is missing."
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/PutScenariosByScenarioIdBuildVariables422ResponseMetadata"
           }
         }
       },
@@ -137344,6 +137508,60 @@
           }
         }
       },
+      "PostScenariosByScenarioIdBuildVariables422ResponseMetadata": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/PostScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatch"
+          },
+          {
+            "title": "Malformed input specification",
+            "type": "object",
+            "description": "The fragment of the stored scenario input specification that failed validation, returned as-is. Usually a top-level entry object; for nested collection or array variables it is the nested element specification, which can be any JSON value (object, array, string, number, boolean or null)."
+          }
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the rejected buildtime variable."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type declared for the variable in the scenario input specification."
+          },
+          "actualJsonbType": {
+            "$ref": "#/components/schemas/PostScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatchActualJsonbType"
+          }
+        },
+        "description": "Structured context for the error; its shape depends on the cause."
+      },
+      "PutScenariosByScenarioIdBuildVariables422ResponseMetadata": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/PutScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatch"
+          },
+          {
+            "title": "Malformed input specification",
+            "type": "object",
+            "description": "The fragment of the stored scenario input specification that failed validation, returned as-is. Usually a top-level entry object; for nested collection or array variables it is the nested element specification, which can be any JSON value (object, array, string, number, boolean or null)."
+          }
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the rejected buildtime variable."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type declared for the variable in the scenario input specification."
+          },
+          "actualJsonbType": {
+            "$ref": "#/components/schemas/PutScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatchActualJsonbType"
+          }
+        },
+        "description": "Structured context for the error; its shape depends on the cause."
+      },
       "GetTeamsByTeamIdVariables200ResponseTeamVariablesValue": {
         "type": "object",
         "oneOf": [
@@ -137726,6 +137944,50 @@
           },
           "toFolder": {
             "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2ToFolder"
+          }
+        }
+      },
+      "PostScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatch": {
+        "title": "Type mismatch",
+        "required": [
+          "name",
+          "type",
+          "actualJsonbType"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the rejected buildtime variable."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type declared for the variable in the scenario input specification."
+          },
+          "actualJsonbType": {
+            "$ref": "#/components/schemas/PostScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatchActualJsonbType"
+          }
+        }
+      },
+      "PutScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatch": {
+        "title": "Type mismatch",
+        "required": [
+          "name",
+          "type",
+          "actualJsonbType"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the rejected buildtime variable."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type declared for the variable in the scenario input specification."
+          },
+          "actualJsonbType": {
+            "$ref": "#/components/schemas/PutScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatchActualJsonbType"
           }
         }
       },
@@ -178698,6 +178960,24 @@
           ]
         }
       },
+      "Im016Code": {
+        "enum": [
+          "IM016"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Machine-readable error code. \u0060IM016\u0060 is raised when a buildtime variable value does not match the type declared for it in the scenario input specification, or when the stored scenario input specification is malformed, for example an entry or a nested element specification without a name or type.",
+        "x-ms-enum": {
+          "name": "Im016Code",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "IM016",
+              "name": "Im016"
+            }
+          ]
+        }
+      },
       "PostScenarioLabelsRequestColour": {
         "enum": [
           "white",
@@ -180438,6 +180718,82 @@
             {
               "value": "cascade",
               "name": "Cascade"
+            }
+          ]
+        }
+      },
+      "PostScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatchActualJsonbType": {
+        "enum": [
+          "string",
+          "number",
+          "boolean",
+          "object",
+          "array"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "JSON type of the submitted value.",
+        "x-ms-enum": {
+          "name": "PostScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatchActualJsonbType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "string",
+              "name": "StringValue"
+            },
+            {
+              "value": "number",
+              "name": "Number"
+            },
+            {
+              "value": "boolean",
+              "name": "Boolean"
+            },
+            {
+              "value": "object",
+              "name": "ObjectValue"
+            },
+            {
+              "value": "array",
+              "name": "Array"
+            }
+          ]
+        }
+      },
+      "PutScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatchActualJsonbType": {
+        "enum": [
+          "string",
+          "number",
+          "boolean",
+          "object",
+          "array"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "JSON type of the submitted value.",
+        "x-ms-enum": {
+          "name": "PutScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatchActualJsonbType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "string",
+              "name": "StringValue"
+            },
+            {
+              "value": "number",
+              "name": "Number"
+            },
+            {
+              "value": "boolean",
+              "name": "Boolean"
+            },
+            {
+              "value": "object",
+              "name": "ObjectValue"
+            },
+            {
+              "value": "array",
+              "name": "Array"
             }
           ]
         }

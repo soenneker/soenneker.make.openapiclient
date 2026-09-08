@@ -76,6 +76,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables422Response">When receiving a 422 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -87,7 +88,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "422", global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables422Response.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates team or user defined buildtime variable/s. The endpoint updates and overwrites exsiting records with the newly provided values, meaning any existing buildtime variable which is not provided through the payload will be overwritten. Buildtime variables should be prefixed either with a `TAC_` (for team defined variables) or with a `PAC_` (for personal user defined variables), followed by the connection value. If a variable doesn&apos;t exist, it will be added provided that its name is within the scenario input specification. If the updating of variables was successful the reponse would be `OK`.
@@ -96,6 +101,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422Response">When receiving a 422 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables200Response?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariablesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -107,7 +113,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "422", global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422Response.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes a buildtime variable with a given value for a scenario with a given ID and returns `OK` in the response.
