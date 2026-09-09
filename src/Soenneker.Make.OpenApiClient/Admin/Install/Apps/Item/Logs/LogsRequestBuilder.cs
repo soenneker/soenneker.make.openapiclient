@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Install.Apps.Item.Logs
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public LogsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/install/apps/{app}/logs{?correlationId*,since*}", pathParameters)
+        public LogsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/install/apps/{app}/logs?init={init}{&correlationId*,since*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Install.Apps.Item.Logs
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public LogsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/install/apps/{app}/logs{?correlationId*,since*}", rawUrl)
+        public LogsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/admin/install/apps/{app}/logs?init={init}{&correlationId*,since*}", rawUrl)
         {
         }
         /// <summary>
@@ -95,6 +95,9 @@ namespace Soenneker.Make.OpenApiClient.Admin.Install.Apps.Item.Logs
             [QueryParameter("correlationId")]
             public string CorrelationId { get; set; }
 #endif
+            /// <summary>The moment the installation started, as returned in `appInstall.init` by the install request. Each installation has its own log file, named after this value, so it selects which log is returned.</summary>
+            [QueryParameter("init")]
+            public DateTimeOffset? Init { get; set; }
             /// <summary>Filter logs by date.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

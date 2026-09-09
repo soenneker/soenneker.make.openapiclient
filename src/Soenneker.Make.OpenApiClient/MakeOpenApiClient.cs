@@ -33,7 +33,6 @@ using Soenneker.Make.OpenApiClient.Hq;
 using Soenneker.Make.OpenApiClient.Imt;
 using Soenneker.Make.OpenApiClient.Internal;
 using Soenneker.Make.OpenApiClient.Keys;
-using Soenneker.Make.OpenApiClient.LlmUsage;
 using Soenneker.Make.OpenApiClient.Login;
 using Soenneker.Make.OpenApiClient.Logout;
 using Soenneker.Make.OpenApiClient.Mailhub;
@@ -199,11 +198,6 @@ namespace Soenneker.Make.OpenApiClient
         public global::Soenneker.Make.OpenApiClient.Keys.KeysRequestBuilder Keys
         {
             get => new global::Soenneker.Make.OpenApiClient.Keys.KeysRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The llmUsage property</summary>
-        public global::Soenneker.Make.OpenApiClient.LlmUsage.LlmUsageRequestBuilder LlmUsage
-        {
-            get => new global::Soenneker.Make.OpenApiClient.LlmUsage.LlmUsageRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The login property</summary>
         public global::Soenneker.Make.OpenApiClient.Login.LoginRequestBuilder Login

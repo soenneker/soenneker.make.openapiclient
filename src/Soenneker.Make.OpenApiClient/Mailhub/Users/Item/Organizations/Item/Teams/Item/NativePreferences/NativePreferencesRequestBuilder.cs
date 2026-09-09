@@ -34,12 +34,13 @@ namespace Soenneker.Make.OpenApiClient.Mailhub.Users.Item.Organizations.Item.Tea
         {
         }
         /// <summary>
-        /// Update team native preferences
+        /// Updates a native email notification preference of a team for the user associated with the API key used for authentication.Some notification types require a specific team permission. Enabling such a type for a user who does not hold the required permission fails with `403`. Disabling a notification type is always allowed, regardless of permissions or feature flags.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences403Response">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferencesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -51,10 +52,14 @@ namespace Soenneker.Make.OpenApiClient.Mailhub.Users.Item.Organizations.Item.Tea
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "403", global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences403Response.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update team native preferences
+        /// Updates a native email notification preference of a team for the user associated with the API key used for authentication.Some notification types require a specific team permission. Enabling such a type for a user who does not hold the required permission fails with `403`. Disabling a notification type is always allowed, regardless of permissions or feature flags.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

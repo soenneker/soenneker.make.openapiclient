@@ -96,35 +96,47 @@
       }
     },
     "/sso/authorize": {
-      "post": {
+      "get": {
         "tags": [
           "Auth"
         ],
         "summary": "Authorize URL",
-        "description": "experimental",
-        "operationId": "PostSsoAuthorize",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PostSsoAuthorizeRequest"
-              },
-              "example": {
-                "redirect": "/"
-              }
-            }
+        "description": "Starts the zone SSO handshake. Anonymous visitors on an uninstalled slave receive a structured 409 with reason install_required; the client maps that reason to the install overlay.",
+        "operationId": "GetSsoAuthorize",
+        "parameters": [
+          {
+            "name": "redirect",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "/admin"
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostSsoAuthorize200Response"
+                  "$ref": "#/components/schemas/GetSsoAuthorize200Response"
                 },
                 "example": {
                   "authorizeUrl": "https://sso.example.com/authorize?response_type=code\u0026client_id=mock.make.cloud\u0026redirect_uri=https%3A%2F%2Fmock.make.cloud%2Fsso%2Foauth\u0026state=c72e0f91265beae1cf7f\u0026scope=mock.connect"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Slave zone still requires the install guide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSsoAuthorize409Response"
+                },
+                "example": {
+                  "reason": "install_required"
                 }
               }
             }
@@ -1533,6 +1545,17 @@
               "type": "string"
             },
             "example": "wordpress"
+          },
+          {
+            "name": "init",
+            "in": "query",
+            "description": "The moment the installation started, as returned in \u0060appInstall.init\u0060 by the install request. Each installation has its own log file, named after this value, so it selects which log is returned.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2026-08-25T14:30:12.456Z"
           },
           {
             "name": "correlationId",
@@ -49207,6 +49230,7 @@
           "Users / User email preferences - Mailhub"
         ],
         "summary": "Update team native preferences",
+        "description": "Updates a native email notification preference of a team for the user associated with the API key used for authentication.\n\nSome notification types require a specific team permission. Enabling such a type for a user who does not hold the required permission fails with \u0060403\u0060. Disabling a notification type is always allowed, regardless of permissions or feature flags.",
         "operationId": "PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences",
         "parameters": [
           {
@@ -49270,6 +49294,20 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden - the user lacks the team permission required to enable this notification type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences403Response"
+                },
+                "example": {
+                  "message": "Insufficient rights",
+                  "code": "IM002"
+                }
+              }
+            }
           }
         }
       }
@@ -49317,48 +49355,6 @@
             }
           }
         }
-      }
-    },
-    "/llm-usage/{organizationId}": {
-      "get": {
-        "tags": [
-          "Analytics"
-        ],
-        "summary": "Get LLM Usage Statistics",
-        "description": "Retrieves the current AI / LLM (Large Language Model) token usage statistics for an organization",
-        "operationId": "GetLlmUsageByOrganizationId",
-        "parameters": [
-          {
-            "name": "organizationId",
-            "in": "path",
-            "description": "The ID of the organization to get LLM usage for",
-            "required": true,
-            "schema": {
-              "maximum": 9007199254740991,
-              "minimum": 1,
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetLlmUsageByOrganizationId200Response"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "token": [
-              "organizations:read"
-            ]
-          }
-        ]
       }
     },
     "/consumptions/reports/{organizationId}/{teamId}?": {
@@ -93486,23 +93482,23 @@
           }
         }
       },
-      "PostSsoAuthorizeRequest": {
-        "required": [
-          "redirect"
-        ],
-        "type": "object",
-        "properties": {
-          "redirect": {
-            "type": "string"
-          }
-        }
-      },
-      "PostSsoAuthorize200Response": {
+      "GetSsoAuthorize200Response": {
         "type": "object",
         "properties": {
           "authorizeUrl": {
             "type": "string",
             "format": "uri"
+          }
+        }
+      },
+      "GetSsoAuthorize409Response": {
+        "required": [
+          "reason"
+        ],
+        "type": "object",
+        "properties": {
+          "reason": {
+            "$ref": "#/components/schemas/InstallRequiredReason"
           }
         }
       },
@@ -104910,6 +104906,17 @@
           }
         }
       },
+      "PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
       "GetDebugHqZone200Response": {
         "type": "object",
         "properties": {
@@ -104929,31 +104936,6 @@
           },
           "authUser": {
             "$ref": "#/components/schemas/GetHqSanityCheck200ResponseAuthUser"
-          }
-        }
-      },
-      "GetLlmUsageByOrganizationId200Response": {
-        "type": "object",
-        "properties": {
-          "usedInputTokens": {
-            "minimum": 0,
-            "type": "integer",
-            "description": "Number of input tokens used since last reset"
-          },
-          "usedOutputTokens": {
-            "minimum": 0,
-            "type": "integer",
-            "description": "Number of output tokens used since last reset"
-          },
-          "remainingInputTokens": {
-            "minimum": 0,
-            "type": "integer",
-            "description": "Number of input tokens remaining until limit"
-          },
-          "remainingOutputTokens": {
-            "minimum": 0,
-            "type": "integer",
-            "description": "Number of output tokens remaining until limit"
           }
         }
       },
@@ -178753,6 +178735,23 @@
             {
               "value": "email",
               "name": "Email"
+            }
+          ]
+        }
+      },
+      "InstallRequiredReason": {
+        "enum": [
+          "install_required"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "InstallRequiredReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "install_required",
+              "name": "InstallRequired"
             }
           ]
         }

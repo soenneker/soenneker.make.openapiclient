@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Abstractions;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -9,35 +10,31 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class GetLlmUsageByOrganizationId200Response : IAdditionalDataHolder, IParsable
+    public partial class GetSsoAuthorize409Response : ApiException, IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Number of input tokens remaining until limit</summary>
-        public int? RemainingInputTokens { get; set; }
-        /// <summary>Number of output tokens remaining until limit</summary>
-        public int? RemainingOutputTokens { get; set; }
-        /// <summary>Number of input tokens used since last reset</summary>
-        public int? UsedInputTokens { get; set; }
-        /// <summary>Number of output tokens used since last reset</summary>
-        public int? UsedOutputTokens { get; set; }
+        /// <summary>The primary error message.</summary>
+        public override string Message { get => base.Message; }
+        /// <summary>The reason property</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.InstallRequiredReason? Reason { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetLlmUsageByOrganizationId200Response"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSsoAuthorize409Response"/> and sets the default values.
         /// </summary>
-        public GetLlmUsageByOrganizationId200Response()
+        public GetSsoAuthorize409Response()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetLlmUsageByOrganizationId200Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSsoAuthorize409Response"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.GetLlmUsageByOrganizationId200Response CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.GetSsoAuthorize409Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetLlmUsageByOrganizationId200Response();
+            return new global::Soenneker.Make.OpenApiClient.Models.GetSsoAuthorize409Response();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,10 +44,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "remainingInputTokens", n => { RemainingInputTokens = n.GetIntValue(); } },
-                { "remainingOutputTokens", n => { RemainingOutputTokens = n.GetIntValue(); } },
-                { "usedInputTokens", n => { UsedInputTokens = n.GetIntValue(); } },
-                { "usedOutputTokens", n => { UsedOutputTokens = n.GetIntValue(); } },
+                { "reason", n => { Reason = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.InstallRequiredReason>(); } },
             };
         }
         /// <summary>
@@ -60,10 +54,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("remainingInputTokens", RemainingInputTokens);
-            writer.WriteIntValue("remainingOutputTokens", RemainingOutputTokens);
-            writer.WriteIntValue("usedInputTokens", UsedInputTokens);
-            writer.WriteIntValue("usedOutputTokens", UsedOutputTokens);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.InstallRequiredReason>("reason", Reason);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
