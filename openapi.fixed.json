@@ -42112,6 +42112,185 @@
         ]
       }
     },
+    "/private-spaces/bulk": {
+      "patch": {
+        "tags": [
+          "Private spaces"
+        ],
+        "summary": "Set the credit limit of multiple private spaces",
+        "description": "Sets one operations (credit) limit on up to 100 private spaces of an organization in a single request. This is the bulk counterpart of \u0060PATCH /private-spaces/{privateSpaceId}\u0060.\n\nList the target spaces in \u0060privateSpaceIds\u0060 (duplicates are ignored). \u0060operationsLimit\u0060 is an integer number of credits, or \u0060null\u0060 to remove the limit. The transfer limit is derived from the operations limit automatically. A limit of \u00600\u0060 is a real limit: spaces whose limit changes to \u00600\u0060 are paused.\n\nRequires the \u0060personal team manage\u0060 organization permission (admins: \u0060organization edit\u0060).\n\nThe operation is **all-or-none**: every listed id must be an active private space of \u0060organizationId\u0060, otherwise nothing is changed and the call fails with HTTP 404.\n\nLowering the limit to or below a space\u0027s current consumption pauses that space. An unconfirmed request that would pause at least one space fails with \u0060IM004\u0060 (HTTP 406) whose metadata lists exactly those spaces; re-send with \u0060confirmed=true\u0060 to proceed. Spaces whose limit already equals the new value are returned unchanged and emit no audit event.\n\nAvailable on app zones only.\n",
+        "operationId": "PatchPrivateSpacesBulk",
+        "parameters": [
+          {
+            "name": "confirmed",
+            "in": "query",
+            "description": "Set to \u0060true\u0060 to confirm a limit that pauses one or more of the listed spaces, as reported by a prior unconfirmed \u0060IM004\u0060 response.",
+            "schema": {
+              "type": "boolean"
+            },
+            "examples": {
+              "set-limit": {
+                "value": true
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchPrivateSpacesBulkRequest"
+              },
+              "examples": {
+                "set-limit": {
+                  "summary": "Set a 10 000 credit limit on three spaces",
+                  "value": {
+                    "organizationId": 11,
+                    "privateSpaceIds": [
+                      254,
+                      255,
+                      256
+                    ],
+                    "operationsLimit": 10000
+                  }
+                },
+                "remove-limit": {
+                  "summary": "Remove the limit from two spaces",
+                  "value": {
+                    "organizationId": 11,
+                    "privateSpaceIds": [
+                      254,
+                      255
+                    ],
+                    "operationsLimit": null
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The limit was applied to every listed private space.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchPrivateSpacesBulk200Response"
+                },
+                "examples": {
+                  "set-limit": {
+                    "value": {
+                      "privateSpaces": [
+                        {
+                          "id": 254,
+                          "name": "John\u0027s space",
+                          "operationsLimit": 10000,
+                          "transferLimit": 5368709120,
+                          "isPaused": false
+                        },
+                        {
+                          "id": 255,
+                          "name": "Jane\u0027s space",
+                          "operationsLimit": 10000,
+                          "transferLimit": 5368709120,
+                          "isPaused": true
+                        },
+                        {
+                          "id": 256,
+                          "name": "Alex\u0027s space",
+                          "operationsLimit": 10000,
+                          "transferLimit": 5368709120,
+                          "isPaused": false
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, for example an empty or over-100 \u0060privateSpaceIds\u0060, a negative \u0060operationsLimit\u0060, or a missing \u0060organizationId\u0060 \u2014 or private spaces are not enabled for the organization (\u0060IM903\u0060).\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchPrivateSpacesBulk400Response"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller lacks the \u0060personal team manage\u0060 permission on the organization (\u0060IM002\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchPrivateSpacesBulk403Response"
+                },
+                "example": {
+                  "message": "Insufficient rights.",
+                  "code": "IM002"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "At least one listed id is not an active private space of the organization. Nothing was changed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchPrivateSpacesBulk404Response"
+                },
+                "example": {
+                  "message": "Private space not found.",
+                  "code": "SC404"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Confirmation required (\u0060IM004\u0060): the new limit would pause at least one changed space. The response metadata contains one fragment of type \u0060bulkSettingLowLimit\u0060 with \u0060textdata.count\u0060 and \u0060data[]\u0060 (\u0060privateSpaceId\u0060, \u0060name\u0060) for the affected spaces. Re-send with \u0060confirmed=true\u0060 to proceed. Changing a space\u0027s limit to \u00600\u0060 requires confirmation; a space already at \u00600\u0060 is an unchanged no-op.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchPrivateSpacesBulk406Response"
+                },
+                "example": {
+                  "message": "Setting a limit below current consumption pauses private spaces.",
+                  "code": "IM004",
+                  "metadata": [
+                    {
+                      "type": "bulkSettingLowLimit",
+                      "normalTextFormat": true,
+                      "textdata": {
+                        "count": 2
+                      },
+                      "data": [
+                        {
+                          "privateSpaceId": 254,
+                          "name": "John\u0027s space"
+                        },
+                        {
+                          "privateSpaceId": 255,
+                          "name": "Jane\u0027s space"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "private-spaces:write"
+            ]
+          }
+        ]
+      }
+    },
     "/users/me/pinned-apps": {
       "get": {
         "tags": [
@@ -103295,6 +103474,106 @@
           }
         }
       },
+      "PatchPrivateSpacesBulkRequest": {
+        "required": [
+          "organizationId",
+          "privateSpaceIds",
+          "operationsLimit"
+        ],
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "The ID of the organization that owns every listed private space."
+          },
+          "privateSpaceIds": {
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "description": "The IDs of the private spaces to update. Between 1 and 100 ids; duplicates are ignored."
+          },
+          "operationsLimit": {
+            "maximum": 2000000000,
+            "minimum": 0,
+            "type": "integer",
+            "description": "The new operations (credit) limit applied to every listed space, or \u0060null\u0060 to remove their limits. Changing a space\u0027s limit to \u00600\u0060 pauses it and requires \u0060confirmed=true\u0060; a space already at \u00600\u0060 is unchanged and does not require confirmation.\n",
+            "nullable": true
+          }
+        }
+      },
+      "PatchPrivateSpacesBulk200Response": {
+        "type": "object",
+        "properties": {
+          "privateSpaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchPrivateSpacesBulk200ResponsePrivateSpacesItem"
+            }
+          }
+        }
+      },
+      "PatchPrivateSpacesBulk400Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchPrivateSpacesBulk403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchPrivateSpacesBulk404Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchPrivateSpacesBulk406Response": {
+        "required": [
+          "message",
+          "code",
+          "metadata"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "metadata": {
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchPrivateSpacesBulk406ResponseMetadataItem"
+            }
+          }
+        }
+      },
       "GetUsersMePinnedApps200Response": {
         "type": "object",
         "properties": {
@@ -153820,6 +154099,60 @@
           }
         }
       },
+      "PatchPrivateSpacesBulk200ResponsePrivateSpacesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The ID of the private space."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the private space."
+          },
+          "operationsLimit": {
+            "type": "integer",
+            "description": "The operations (credit) limit now in effect; \u0060null\u0060 when unlimited.",
+            "nullable": true
+          },
+          "transferLimit": {
+            "type": "integer",
+            "description": "The transfer limit in bytes derived from the operations limit; \u0060null\u0060 when unlimited.",
+            "nullable": true
+          },
+          "isPaused": {
+            "type": "boolean",
+            "description": "Whether the private space is paused after the change."
+          }
+        }
+      },
+      "PatchPrivateSpacesBulk406ResponseMetadataItem": {
+        "required": [
+          "type",
+          "normalTextFormat",
+          "textdata",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/BulkSettingLowLimitType"
+          },
+          "normalTextFormat": {
+            "$ref": "#/components/schemas/PatchPrivateSpacesBulk406ResponseMetadataItemNormalTextFormat"
+          },
+          "textdata": {
+            "$ref": "#/components/schemas/PatchPrivateSpacesBulk406ResponseMetadataItemTextdata"
+          },
+          "data": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchPrivateSpacesBulk406ResponseMetadataItemDataItem"
+            }
+          }
+        }
+      },
       "GetUsersMePinnedApps200ResponsePinnedAppsItem": {
         "type": "object",
         "properties": {
@@ -162806,6 +163139,34 @@
       },
       "GetSdkAppsWebhooksBySdkWebhookName200ResponseAppWebhookChanges": {
         "type": "object"
+      },
+      "PatchPrivateSpacesBulk406ResponseMetadataItemTextdata": {
+        "required": [
+          "count"
+        ],
+        "type": "object",
+        "properties": {
+          "count": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        }
+      },
+      "PatchPrivateSpacesBulk406ResponseMetadataItemDataItem": {
+        "required": [
+          "privateSpaceId",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "privateSpaceId": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
       },
       "GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem": {
         "type": "object",
@@ -184000,6 +184361,30 @@
             }
           ]
         }
+      },
+      "BulkSettingLowLimitType": {
+        "enum": [
+          "bulkSettingLowLimit"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "BulkSettingLowLimitType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "bulkSettingLowLimit",
+              "name": "BulkSettingLowLimit"
+            }
+          ]
+        }
+      },
+      "PatchPrivateSpacesBulk406ResponseMetadataItemNormalTextFormat": {
+        "enum": [
+          true
+        ],
+        "type": "boolean",
+        "additionalProperties": false
       },
       "GetTeams200ResponseTeamsItemType": {
         "enum": [

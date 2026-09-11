@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.PrivateSpaces.Bulk;
 using Soenneker.Make.OpenApiClient.PrivateSpaces.Item;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,11 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PrivateSpacesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The bulk property</summary>
+        public global::Soenneker.Make.OpenApiClient.PrivateSpaces.Bulk.BulkRequestBuilder Bulk
+        {
+            get => new global::Soenneker.Make.OpenApiClient.PrivateSpaces.Bulk.BulkRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.privateSpaces.item collection</summary>
         /// <param name="position">The ID of the private space.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.PrivateSpaces.Item.WithPrivateSpaceItemRequestBuilder"/></returns>
