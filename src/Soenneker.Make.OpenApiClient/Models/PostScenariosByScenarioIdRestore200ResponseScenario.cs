@@ -14,7 +14,7 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The containsErrors property</summary>
+        /// <summary>The restored scenario needs editing before it can run — a reference in its blueprint could not be revived, or a locked connection or key was cleared from it.</summary>
         public bool? ContainsErrors { get; set; }
         /// <summary>The deleted property</summary>
         public bool? Deleted { get; set; }

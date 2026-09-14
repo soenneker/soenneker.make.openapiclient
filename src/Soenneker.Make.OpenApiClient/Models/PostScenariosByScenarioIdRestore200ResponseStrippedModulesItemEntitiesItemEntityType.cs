@@ -3,17 +3,18 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
-    /// <summary>The provider name for this tier</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName
+    #pragma warning disable CS1591
+    public enum PostScenariosByScenarioIdRestore200ResponseStrippedModulesItemEntitiesItemEntityType
+    #pragma warning restore CS1591
     {
-        [EnumMember(Value = "openai")]
+        [EnumMember(Value = "connection")]
         #pragma warning disable CS1591
-        Openai,
+        Connection,
         #pragma warning restore CS1591
-        [EnumMember(Value = "groq")]
+        [EnumMember(Value = "key")]
         #pragma warning disable CS1591
-        Groq,
+        Key,
         #pragma warning restore CS1591
     }
 }

@@ -8,7 +8,6 @@ using Soenneker.Make.OpenApiClient.Teams.Item.CheckEmailIsMember;
 using Soenneker.Make.OpenApiClient.Teams.Item.Connections;
 using Soenneker.Make.OpenApiClient.Teams.Item.FeatureControls;
 using Soenneker.Make.OpenApiClient.Teams.Item.Keys;
-using Soenneker.Make.OpenApiClient.Teams.Item.LlmConfiguration;
 using Soenneker.Make.OpenApiClient.Teams.Item.LockedEntities;
 using Soenneker.Make.OpenApiClient.Teams.Item.Usage;
 using Soenneker.Make.OpenApiClient.Teams.Item.UserTeamRoles;
@@ -45,11 +44,6 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item
         public global::Soenneker.Make.OpenApiClient.Teams.Item.Keys.KeysRequestBuilder Keys
         {
             get => new global::Soenneker.Make.OpenApiClient.Teams.Item.Keys.KeysRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The llmConfiguration property</summary>
-        public global::Soenneker.Make.OpenApiClient.Teams.Item.LlmConfiguration.LlmConfigurationRequestBuilder LlmConfiguration
-        {
-            get => new global::Soenneker.Make.OpenApiClient.Teams.Item.LlmConfiguration.LlmConfigurationRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The lockedEntities property</summary>
         public global::Soenneker.Make.OpenApiClient.Teams.Item.LockedEntities.LockedEntitiesRequestBuilder LockedEntities

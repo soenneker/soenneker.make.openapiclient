@@ -7,8 +7,6 @@ using Soenneker.Make.OpenApiClient.Enums.Countries;
 using Soenneker.Make.OpenApiClient.Enums.ImtRegions;
 using Soenneker.Make.OpenApiClient.Enums.ImtZones;
 using Soenneker.Make.OpenApiClient.Enums.Languages;
-using Soenneker.Make.OpenApiClient.Enums.LlmBuiltinTiers;
-using Soenneker.Make.OpenApiClient.Enums.LlmModels;
 using Soenneker.Make.OpenApiClient.Enums.Locales;
 using Soenneker.Make.OpenApiClient.Enums.ModuleTypes;
 using Soenneker.Make.OpenApiClient.Enums.OrganizationFeatures;
@@ -54,16 +52,6 @@ namespace Soenneker.Make.OpenApiClient.Enums
         public global::Soenneker.Make.OpenApiClient.Enums.Languages.LanguagesRequestBuilder Languages
         {
             get => new global::Soenneker.Make.OpenApiClient.Enums.Languages.LanguagesRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The llmBuiltinTiers property</summary>
-        public global::Soenneker.Make.OpenApiClient.Enums.LlmBuiltinTiers.LlmBuiltinTiersRequestBuilder LlmBuiltinTiers
-        {
-            get => new global::Soenneker.Make.OpenApiClient.Enums.LlmBuiltinTiers.LlmBuiltinTiersRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The llmModels property</summary>
-        public global::Soenneker.Make.OpenApiClient.Enums.LlmModels.LlmModelsRequestBuilder LlmModels
-        {
-            get => new global::Soenneker.Make.OpenApiClient.Enums.LlmModels.LlmModelsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The locales property</summary>
         public global::Soenneker.Make.OpenApiClient.Enums.Locales.LocalesRequestBuilder Locales

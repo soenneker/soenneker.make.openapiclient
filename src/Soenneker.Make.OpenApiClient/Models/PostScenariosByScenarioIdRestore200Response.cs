@@ -22,6 +22,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseScenario Scenario { get; set; }
 #endif
+        /// <summary>The modules a locked connection or key was cleared from, empty when nothing was cleared. A module listed here has no connection selected until the user picks one.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem>? StrippedModules { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem> StrippedModules { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200Response"/> and sets the default values.
         /// </summary>
@@ -48,6 +56,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "scenario", n => { Scenario = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseScenario>(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseScenario.CreateFromDiscriminatorValue); } },
+                { "strippedModules", n => { StrippedModules = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem>(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -58,6 +67,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseScenario>("scenario", Scenario);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem>("strippedModules", StrippedModules);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

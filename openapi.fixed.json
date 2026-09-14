@@ -17201,103 +17201,6 @@
         }
       }
     },
-    "/enums/llm-models": {
-      "get": {
-        "tags": [
-          "Enums"
-        ],
-        "summary": "List LLM models",
-        "description": "Gets the list of available Large Language Models (LLM) with their provider information and display priorities. These models can be used for AI mapping and AI toolkit configurations.",
-        "operationId": "GetEnumsLlmModels",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetEnumsLlmModels200Response"
-                },
-                "example": {
-                  "llmModels": [
-                    {
-                      "modelName": "claude-sonnet-4-0",
-                      "providerName": "anthropic",
-                      "modelDisplayName": "Claude Sonnet 4.0",
-                      "modelDisplayPriority": 1000,
-                      "providerDisplayName": "Anthropic"
-                    },
-                    {
-                      "modelName": "gpt-4o",
-                      "providerName": "openai",
-                      "modelDisplayName": "GPT-4o",
-                      "modelDisplayPriority": 1000,
-                      "providerDisplayName": "OpenAI"
-                    },
-                    {
-                      "modelName": "meta-llama/llama-4-maverick-17b-128e-instruct",
-                      "providerName": "groq",
-                      "modelDisplayName": "Llama 4 Maverick",
-                      "modelDisplayPriority": 1000,
-                      "providerDisplayName": "Groq"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/enums/llm-builtin-tiers": {
-      "get": {
-        "tags": [
-          "Enums"
-        ],
-        "summary": "List LLM builtin tiers",
-        "description": "Gets the list of predefined LLM tiers (small, medium, large) with their associated models, providers, and pricing coefficients. These tiers provide standardized AI model configurations for different use cases and billing rates.",
-        "operationId": "GetEnumsLlmBuiltinTiers",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetEnumsLlmBuiltinTiers200Response"
-                },
-                "example": {
-                  "llmBuiltinTiers": [
-                    {
-                      "tierName": "small",
-                      "modelName": "meta-llama/llama-4-maverick-17b-128e-instruct",
-                      "providerName": "groq",
-                      "centicreditsCoefficient": 0.04,
-                      "modelDisplayName": "Llama 4 Maverick",
-                      "providerDisplayName": "Groq"
-                    },
-                    {
-                      "tierName": "medium",
-                      "modelName": "gpt-4.1-mini",
-                      "providerName": "openai",
-                      "centicreditsCoefficient": 0.1,
-                      "modelDisplayName": "GPT-4.1 Mini",
-                      "providerDisplayName": "OpenAI"
-                    },
-                    {
-                      "tierName": "large",
-                      "modelName": "o4-mini",
-                      "providerName": "openai",
-                      "centicreditsCoefficient": 0.25,
-                      "modelDisplayName": "O4 Mini",
-                      "providerDisplayName": "OpenAI"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/functions": {
       "get": {
         "tags": [
@@ -27582,7 +27485,7 @@
             }
           },
           "400": {
-            "description": "The source scenario\u0027s \u0060input_spec\u0060 defaults to a locked connection or key (\u0060IM022\u0060), which \u0060scenario_duplicate\u0060 copies verbatim into the clone. A locked entity is not supported as a dynamic connection in this version, for every caller \u2014 select the connection in the module instead. Returned only when locked-entities enforcement is enabled for the organization.\n"
+            "description": "One of:\n\n- \u0060IM022\u0060 \u2014 a remapped connection or key is locked in the source team and the\n  request leaves its replacement empty, so the clone would duplicate the locked\n  credential. Copying a locked connection or key is never supported, in any target\n  team including the source team, and is not gated by the locked-entities\n  enforcement flag; pass the ID of an existing connection or key in the target team\n  instead.\n- \u0060SC400\u0060 \u0060Missing value of required parameter\u0060 \u2014 the clone form marks the remap\n  entry of a locked connection or key \u0060required\u0060 (as it already does for an OAuth\n  connection) and the request body omits it.\n- \u0060IM022\u0060 \u2014 the source scenario\u0027s \u0060input_spec\u0060 defaults to a locked connection or\n  key, which \u0060scenario_duplicate\u0060 copies verbatim into the clone. A locked entity is\n  not supported as a dynamic connection in this version, for every caller \u2014 select\n  the connection in the module instead. Returned only when locked-entities\n  enforcement is enabled for the organization.\n"
           },
           "403": {
             "description": "The copy would keep (or remap to) a locked connection or key the user is not allowed to use in the target team (\u0060IM002\u0060, placement guard). Returned only when locked-entities enforcement is enabled for the organization; remapping the reference to a usable connection or key passes.\n"
@@ -27603,7 +27506,7 @@
           "Scenarios"
         ],
         "summary": "Restore scenario from trash",
-        "description": "Restores a soft-deleted (\u0022trashed\u0022) scenario with the given ID back to active, as long as it\nis still within the 30-day recovery window. The scenario\u0027s runnable state (apps, connections,\nmodules, webhook wiring) is re-derived best-effort from its surviving blueprint; if the\nblueprint references something deleted while the scenario sat in trash, the restore still\nsucceeds and the scenario is flagged with \u0060containsErrors\u0060 so it can be fixed by editing.\nRequires the \u0060scenario edit\u0060 permission. A scenario beyond the 30-day window can no longer be\nrestored.\n",
+        "description": "Restores a soft-deleted (\u0022trashed\u0022) scenario with the given ID back to active, as long as it\nis still within the 30-day recovery window. The scenario\u0027s runnable state (apps, connections,\nmodules, webhook wiring) is re-derived best-effort from its surviving blueprint; if the\nblueprint references something deleted while the scenario sat in trash, the restore still\nsucceeds and the scenario is flagged with \u0060containsErrors\u0060 so it can be fixed by editing.\n\nLocked connections and keys the restoring user is not allowed to use are cleared from the\nrestored blueprint rather than blocking the restore: those modules come back with no connection\nselected, and the scenario is flagged with \u0060containsErrors\u0060 because it cannot run until someone\nselects one. Every module cleared this way is listed in \u0060strippedModules\u0060 so the caller can tell\nthe user which modules need a new connection; the list is empty when nothing was cleared.\n\nRequires the \u0060scenario edit\u0060 permission. Only a scenario that is currently in trash can be\nrestored \u2014 an already-active one is rejected with 404, as is a scenario beyond the 30-day\nwindow.\n",
         "operationId": "PostScenariosByScenarioIdRestore",
         "parameters": [
           {
@@ -27625,25 +27528,60 @@
                 "schema": {
                   "$ref": "#/components/schemas/PostScenariosByScenarioIdRestore200Response"
                 },
-                "example": {
-                  "scenario": {
-                    "id": 1399,
-                    "deleted": false,
-                    "deletedAt": null,
-                    "containsErrors": false
+                "examples": {
+                  "restored-intact": {
+                    "summary": "Nothing had to be cleared",
+                    "value": {
+                      "scenario": {
+                        "id": 1399,
+                        "deleted": false,
+                        "deletedAt": null,
+                        "containsErrors": false
+                      },
+                      "strippedModules": []
+                    }
+                  },
+                  "locked-connection-stripped": {
+                    "summary": "A locked connection the restorer cannot use was cleared",
+                    "value": {
+                      "scenario": {
+                        "id": 1399,
+                        "deleted": false,
+                        "deletedAt": null,
+                        "containsErrors": true
+                      },
+                      "strippedModules": [
+                        {
+                          "moduleId": 2,
+                          "moduleName": "google-sheets:addRow",
+                          "entities": [
+                            {
+                              "entityType": "connection",
+                              "entityId": 8123
+                            }
+                          ]
+                        }
+                      ]
+                    }
                   }
                 }
               }
             }
           },
           "400": {
-            "description": "Scenario trash is not enabled on this environment (\u0060IM903\u0060, returned while the \u0060is_scenarios_trash_enabled\u0060 feature flag is off).\n"
+            "description": "\u0060scenarioId\u0060 is not a positive integer (\u0060SC400\u0060, the message names the offending path parameter), or scenario trash is not enabled on this environment (\u0060IM903\u0060, returned while the \u0060is_scenarios_trash_enabled\u0060 feature flag is off). Also returned for a scenario whose team holds locked connections or keys when the structure of its stored blueprint cannot be parsed (\u0060IM007\u0060), because which locked entities it places \u2014 and therefore which of them must be cleared \u2014 cannot be determined. The scenario stays in trash. An individual connection or key parameter the blueprint grammar rejects does not fail the restore: it can place no entity, so it is left as it is and the restore continues.\n"
           },
           "403": {
-            "description": "The user does not have the \u0060scenario edit\u0060 permission for this scenario."
+            "description": "The user does not have the \u0060scenario edit\u0060 permission for this scenario (\u0060IM002\u0060). Also returned when a locked connection or key the user may not use could not be cleared from the blueprint (\u0060IM002\u0060) \u2014 the scenario stays in trash.\n"
           },
           "404": {
-            "description": "The scenario does not exist or is beyond the 30-day restore window."
+            "description": "The scenario does not exist, is not in trash, or is beyond the 30-day restore window (\u0060IM301\u0060). Restoring a scenario that is already active is rejected rather than answered with its current state \u2014 there is nothing to restore, so a repeated or double-submitted restore lands here, as does the loser of two concurrent restores.\n"
+          },
+          "409": {
+            "description": "The scenario was modified concurrently between the placement-guard check and the restore (\u0060SC409\u0060). Nothing was restored; retry the request. Returned only when locked-entities enforcement is enabled for the organization, since only then is the restore serialised against other writes to the scenario.\n"
+          },
+          "422": {
+            "description": "Whether the user may use the locked connections and keys the blueprint references could not be determined (\u0060IM016\u0060). The scenario stays in trash \u2014 retry the restore.\n"
           }
         },
         "security": [
@@ -43680,173 +43618,6 @@
           {
             "token": [
               "teams:read"
-            ]
-          }
-        ]
-      }
-    },
-    "/teams/{teamId}/llm-configuration": {
-      "get": {
-        "tags": [
-          "Teams"
-        ],
-        "summary": "Get team LLM configuration",
-        "description": "Gets the LLM configuration for the specified team, including AI mapping and AI toolkit settings with builtin tier information.",
-        "operationId": "GetTeamsByTeamIdLlmConfiguration",
-        "parameters": [
-          {
-            "name": "teamId",
-            "in": "path",
-            "description": "The ID of the team.",
-            "required": true,
-            "schema": {
-              "minimum": 1,
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200Response"
-                },
-                "example": {
-                  "aiMappingAccountId": 123,
-                  "aiMappingModelName": "gpt-4.1-mini",
-                  "aiMappingBuiltinTier": "medium",
-                  "aiMappingBuiltinTierInfo": {
-                    "tierName": "medium",
-                    "modelName": "gpt-4.1-mini",
-                    "providerName": "openai",
-                    "centicreditsCoefficient": 0.1,
-                    "createdAt": "2024-01-15T10:30:00Z",
-                    "updatedAt": "2024-01-15T10:30:00Z"
-                  },
-                  "aiToolkitAccountId": 456,
-                  "aiToolkitModelName": "meta-llama/llama-4-maverick-17b-128e-instruct",
-                  "aiToolkitBuiltinTier": "small",
-                  "aiToolkitBuiltinTierInfo": {
-                    "tierName": "small",
-                    "modelName": "meta-llama/llama-4-maverick-17b-128e-instruct",
-                    "providerName": "groq",
-                    "centicreditsCoefficient": 0.04,
-                    "createdAt": "2024-01-15T10:30:00Z",
-                    "updatedAt": "2024-01-15T10:30:00Z"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "token": [
-              "teams:read"
-            ]
-          }
-        ]
-      },
-      "patch": {
-        "tags": [
-          "Teams"
-        ],
-        "summary": "Update team LLM configuration",
-        "description": "Updates the LLM configuration for the specified team. Supports partial updates for AI mapping and AI toolkit settings.",
-        "operationId": "PatchTeamsByTeamIdLlmConfiguration",
-        "parameters": [
-          {
-            "name": "teamId",
-            "in": "path",
-            "description": "The ID of the team.",
-            "required": true,
-            "schema": {
-              "minimum": 1,
-              "type": "integer"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfigurationRequest"
-              },
-              "examples": {
-                "update_ai_mapping": {
-                  "summary": "Update AI mapping configuration",
-                  "value": {
-                    "aiMappingAccountId": 123,
-                    "aiMappingModelName": "gpt-4o",
-                    "aiMappingBuiltinTier": "large"
-                  }
-                },
-                "update_ai_toolkit": {
-                  "summary": "Update AI toolkit configuration",
-                  "value": {
-                    "aiToolkitAccountId": 456,
-                    "aiToolkitModelName": "llama-3.3-70b-versatile",
-                    "aiToolkitBuiltinTier": "small"
-                  }
-                },
-                "update_both": {
-                  "summary": "Update both AI mapping and toolkit",
-                  "value": {
-                    "aiMappingAccountId": 123,
-                    "aiMappingModelName": "gpt-4.1-mini",
-                    "aiMappingBuiltinTier": "medium",
-                    "aiToolkitAccountId": 456,
-                    "aiToolkitModelName": "meta-llama/llama-4-maverick-17b-128e-instruct",
-                    "aiToolkitBuiltinTier": "small"
-                  }
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200Response"
-                },
-                "example": {
-                  "aiMappingAccountId": 123,
-                  "aiMappingModelName": "gpt-4.1-mini",
-                  "aiMappingBuiltinTier": "medium",
-                  "aiMappingBuiltinTierInfo": {
-                    "tierName": "medium",
-                    "modelName": "gpt-4.1-mini",
-                    "providerName": "openai",
-                    "centicreditsCoefficient": 0.1,
-                    "createdAt": "2024-01-15T10:30:00Z",
-                    "updatedAt": "2024-01-15T10:30:00Z"
-                  },
-                  "aiToolkitAccountId": 456,
-                  "aiToolkitModelName": "meta-llama/llama-4-maverick-17b-128e-instruct",
-                  "aiToolkitBuiltinTier": "small",
-                  "aiToolkitBuiltinTierInfo": {
-                    "tierName": "small",
-                    "modelName": "meta-llama/llama-4-maverick-17b-128e-instruct",
-                    "providerName": "groq",
-                    "centicreditsCoefficient": 0.04,
-                    "createdAt": "2024-01-15T10:30:00Z",
-                    "updatedAt": "2024-01-15T10:30:00Z"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "token": [
-              "teams:write"
             ]
           }
         ]
@@ -97189,28 +96960,6 @@
           }
         }
       },
-      "GetEnumsLlmModels200Response": {
-        "type": "object",
-        "properties": {
-          "llmModels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GetEnumsLlmModels200ResponseLlmModelsItem"
-            }
-          }
-        }
-      },
-      "GetEnumsLlmBuiltinTiers200Response": {
-        "type": "object",
-        "properties": {
-          "llmBuiltinTiers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GetEnumsLlmBuiltinTiers200ResponseLlmBuiltinTiersItem"
-            }
-          }
-        }
-      },
       "GetFunctions200Response": {
         "type": "object",
         "properties": {
@@ -100214,6 +99963,13 @@
         "properties": {
           "scenario": {
             "$ref": "#/components/schemas/PostScenariosByScenarioIdRestore200ResponseScenario"
+          },
+          "strippedModules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem"
+            },
+            "description": "The modules a locked connection or key was cleared from, empty when nothing was cleared. A module listed here has no connection selected until the user picks one.\n"
           }
         }
       },
@@ -103869,124 +103625,6 @@
             "items": {
               "$ref": "#/components/schemas/GetTeamsByTeamIdUsage200ResponseDataItem"
             }
-          }
-        }
-      },
-      "GetTeamsByTeamIdLlmConfiguration200Response": {
-        "type": "object",
-        "properties": {
-          "aiMappingAccountId": {
-            "minimum": 1,
-            "type": "integer",
-            "description": "ID of the account used for AI mapping",
-            "nullable": true
-          },
-          "aiMappingModelName": {
-            "maxLength": 255,
-            "type": "string",
-            "description": "Name of the AI model used for mapping",
-            "nullable": true
-          },
-          "aiMappingBuiltinTier": {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTier"
-          },
-          "aiMappingBuiltinTierInfo": {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo"
-          },
-          "aiToolkitAccountId": {
-            "minimum": 1,
-            "type": "integer",
-            "description": "ID of the account used for AI toolkit",
-            "nullable": true
-          },
-          "aiToolkitModelName": {
-            "maxLength": 255,
-            "type": "string",
-            "description": "Name of the AI model used for toolkit",
-            "nullable": true
-          },
-          "aiToolkitBuiltinTier": {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTier"
-          },
-          "aiToolkitBuiltinTierInfo": {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo"
-          }
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfigurationRequest": {
-        "minProperties": 1,
-        "type": "object",
-        "properties": {
-          "aiMappingAccountId": {
-            "minimum": 1,
-            "type": "integer",
-            "description": "ID of the account used for AI mapping",
-            "nullable": true
-          },
-          "aiMappingModelName": {
-            "maxLength": 255,
-            "type": "string",
-            "description": "Name of the AI model used for mapping",
-            "nullable": true
-          },
-          "aiMappingBuiltinTier": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfigurationRequestAiMappingBuiltinTier"
-          },
-          "aiToolkitAccountId": {
-            "minimum": 1,
-            "type": "integer",
-            "description": "ID of the account used for AI toolkit",
-            "nullable": true
-          },
-          "aiToolkitModelName": {
-            "maxLength": 255,
-            "type": "string",
-            "description": "Name of the AI model used for toolkit",
-            "nullable": true
-          },
-          "aiToolkitBuiltinTier": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfigurationRequestAiToolkitBuiltinTier"
-          }
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200Response": {
-        "type": "object",
-        "properties": {
-          "aiMappingAccountId": {
-            "minimum": 1,
-            "type": "integer",
-            "description": "ID of the account used for AI mapping",
-            "nullable": true
-          },
-          "aiMappingModelName": {
-            "maxLength": 255,
-            "type": "string",
-            "description": "Name of the AI model used for mapping",
-            "nullable": true
-          },
-          "aiMappingBuiltinTier": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTier"
-          },
-          "aiMappingBuiltinTierInfo": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo"
-          },
-          "aiToolkitAccountId": {
-            "minimum": 1,
-            "type": "integer",
-            "description": "ID of the account used for AI toolkit",
-            "nullable": true
-          },
-          "aiToolkitModelName": {
-            "maxLength": 255,
-            "type": "string",
-            "description": "Name of the AI model used for toolkit",
-            "nullable": true
-          },
-          "aiToolkitBuiltinTier": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTier"
-          },
-          "aiToolkitBuiltinTierInfo": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo"
           }
         }
       },
@@ -145037,61 +144675,6 @@
           }
         }
       },
-      "GetEnumsLlmModels200ResponseLlmModelsItem": {
-        "type": "object",
-        "properties": {
-          "modelName": {
-            "type": "string",
-            "description": "The technical name of the LLM model"
-          },
-          "providerName": {
-            "type": "string",
-            "description": "The provider identifier (e.g., openai, groq, anthropic)"
-          },
-          "modelDisplayName": {
-            "type": "string",
-            "description": "The human-readable display name of the model"
-          },
-          "modelDisplayPriority": {
-            "type": "integer",
-            "description": "Priority for ordering models in UI (lower numbers first)"
-          },
-          "providerDisplayName": {
-            "type": "string",
-            "description": "The human-readable provider name"
-          }
-        }
-      },
-      "GetEnumsLlmBuiltinTiers200ResponseLlmBuiltinTiersItem": {
-        "type": "object",
-        "properties": {
-          "tierName": {
-            "type": "string",
-            "description": "The tier identifier (small, medium, large)"
-          },
-          "modelName": {
-            "type": "string",
-            "description": "The technical name of the associated LLM model"
-          },
-          "providerName": {
-            "type": "string",
-            "description": "The provider identifier (e.g., openai, groq)"
-          },
-          "centicreditsCoefficient": {
-            "type": "number",
-            "description": "The cost coefficient in centicredits per token",
-            "format": "float"
-          },
-          "modelDisplayName": {
-            "type": "string",
-            "description": "The human-readable display name of the model"
-          },
-          "providerDisplayName": {
-            "type": "string",
-            "description": "The human-readable provider name"
-          }
-        }
-      },
       "GetFunctions200ResponseFunctionsItem": {
         "type": "object",
         "properties": {
@@ -149075,7 +148658,28 @@
             "nullable": true
           },
           "containsErrors": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "The restored scenario needs editing before it can run \u2014 a reference in its blueprint could not be revived, or a locked connection or key was cleared from it.\n"
+          }
+        }
+      },
+      "PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem": {
+        "type": "object",
+        "properties": {
+          "moduleId": {
+            "type": "integer",
+            "description": "Id of the module within the scenario\u0027s blueprint."
+          },
+          "moduleName": {
+            "type": "string",
+            "description": "Module identifier, e.g. \u0060google-sheets:addRow\u0060."
+          },
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostScenariosByScenarioIdRestore200ResponseStrippedModulesItemEntitiesItem"
+            },
+            "description": "The locked connections and keys cleared from that module."
           }
         }
       },
@@ -154476,118 +154080,6 @@
             "$ref": "#/components/schemas/GetTeamsByTeamIdUsage200ResponseDataItemCenticredits"
           }
         }
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo": {
-        "type": "object",
-        "properties": {
-          "tierName": {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName"
-          },
-          "modelName": {
-            "type": "string",
-            "description": "The model name associated with this tier"
-          },
-          "providerName": {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName"
-          },
-          "centicreditsCoefficient": {
-            "minimum": 0,
-            "type": "number",
-            "description": "Cost coefficient in centicredits per token"
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "Timestamp when the tier was created"
-          },
-          "updatedAt": {
-            "type": "string",
-            "description": "Timestamp when the tier was last updated"
-          }
-        },
-        "description": "Detailed information about the AI mapping builtin tier",
-        "nullable": true
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo": {
-        "type": "object",
-        "properties": {
-          "tierName": {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName"
-          },
-          "modelName": {
-            "type": "string",
-            "description": "The model name associated with this tier"
-          },
-          "providerName": {
-            "$ref": "#/components/schemas/GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName"
-          },
-          "centicreditsCoefficient": {
-            "minimum": 0,
-            "type": "number",
-            "description": "Cost coefficient in centicredits per token"
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "Timestamp when the tier was created"
-          },
-          "updatedAt": {
-            "type": "string",
-            "description": "Timestamp when the tier was last updated"
-          }
-        },
-        "description": "Detailed information about the AI toolkit builtin tier",
-        "nullable": true
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfo": {
-        "type": "object",
-        "properties": {
-          "tierName": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName"
-          },
-          "modelName": {
-            "type": "string"
-          },
-          "providerName": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName"
-          },
-          "centicreditsCoefficient": {
-            "minimum": 0,
-            "type": "number"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        },
-        "description": "Detailed information about the AI mapping builtin tier",
-        "nullable": true
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfo": {
-        "type": "object",
-        "properties": {
-          "tierName": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName"
-          },
-          "modelName": {
-            "type": "string"
-          },
-          "providerName": {
-            "$ref": "#/components/schemas/PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName"
-          },
-          "centicreditsCoefficient": {
-            "minimum": 0,
-            "type": "number"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          }
-        },
-        "description": "Detailed information about the AI toolkit builtin tier",
-        "nullable": true
       },
       "GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem": {
         "type": "object",
@@ -160620,6 +160112,17 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
+          }
+        }
+      },
+      "PostScenariosByScenarioIdRestore200ResponseStrippedModulesItemEntitiesItem": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "$ref": "#/components/schemas/PostScenariosByScenarioIdRestore200ResponseStrippedModulesItemEntitiesItemEntityType"
+          },
+          "entityId": {
+            "type": "integer"
           }
         }
       },
@@ -179658,180 +179161,6 @@
           ]
         }
       },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTier": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The builtin tier for AI mapping (small, medium, large)",
-        "nullable": true,
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTier",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTier": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The builtin tier for AI toolkit (small, medium, large)",
-        "nullable": true,
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTier",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfigurationRequestAiMappingBuiltinTier": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The builtin tier for AI mapping (small, medium, large)",
-        "nullable": true,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdLlmConfigurationRequestAiMappingBuiltinTier",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfigurationRequestAiToolkitBuiltinTier": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The builtin tier for AI toolkit (small, medium, large)",
-        "nullable": true,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdLlmConfigurationRequestAiToolkitBuiltinTier",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTier": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The builtin tier for AI mapping (small, medium, large)",
-        "nullable": true,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTier",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTier": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The builtin tier for AI toolkit (small, medium, large)",
-        "nullable": true,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTier",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
       "PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsersRequestRole": {
         "enum": [
           "entity:entity-admin",
@@ -184478,206 +183807,6 @@
           ]
         }
       },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The tier name",
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName": {
-        "enum": [
-          "openai",
-          "groq"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The provider name for this tier",
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "openai",
-              "name": "Openai"
-            },
-            {
-              "value": "groq",
-              "name": "Groq"
-            }
-          ]
-        }
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The tier name",
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName": {
-        "enum": [
-          "openai",
-          "groq"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "description": "The provider name for this tier",
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "openai",
-              "name": "Openai"
-            },
-            {
-              "value": "groq",
-              "name": "Groq"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoTierName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName": {
-        "enum": [
-          "openai",
-          "groq"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiMappingBuiltinTierInfoProviderName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "openai",
-              "name": "Openai"
-            },
-            {
-              "value": "groq",
-              "name": "Groq"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName": {
-        "enum": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoTierName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "small",
-              "name": "Small"
-            },
-            {
-              "value": "medium",
-              "name": "Medium"
-            },
-            {
-              "value": "large",
-              "name": "Large"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName": {
-        "enum": [
-          "openai",
-          "groq"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdLlmConfiguration200ResponseAiToolkitBuiltinTierInfoProviderName",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "openai",
-              "name": "Openai"
-            },
-            {
-              "value": "groq",
-              "name": "Groq"
-            }
-          ]
-        }
-      },
       "GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItemMembershipType": {
         "enum": [
           "user",
@@ -187121,6 +186250,28 @@
             {
               "value": "pink",
               "name": "Pink"
+            }
+          ]
+        }
+      },
+      "PostScenariosByScenarioIdRestore200ResponseStrippedModulesItemEntitiesItemEntityType": {
+        "enum": [
+          "connection",
+          "key"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostScenariosByScenarioIdRestore200ResponseStrippedModulesItemEntitiesItemEntityType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "connection",
+              "name": "Connection"
+            },
+            {
+              "value": "key",
+              "name": "Key"
             }
           ]
         }
