@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Blueprint { get; set; }
 #endif
-        /// <summary>The unique ID of the folder in which you want to store created scenario.</summary>
+        /// <summary>The unique ID of the folder to which you want to move the scenario. Set to `null` to remove its folder assignment.</summary>
         public int? FolderId { get; set; }
         /// <summary>A new name of the scenario. The name does not need to be unique.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

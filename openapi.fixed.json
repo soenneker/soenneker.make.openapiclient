@@ -7485,7 +7485,7 @@
           "Connections"
         ],
         "summary": "Lock connection",
-        "description": "Restricts the connection\u0027s visibility to its access list (\u0060visibility: locked\u0060). The caller becomes the sole admin\nof the locked connection.\n\nCaller rule: only the connection\u0027s author can lock it. A connection without an author cannot be locked.\n\nThe operation is idempotent \u2014 locking an already locked connection succeeds without any change; the caller\nrule above still applies.\n\nRequires the *Locked connections* feature to be enabled for the organization.\n",
+        "description": "Restricts the connection\u0027s visibility to its access list (\u0060visibility: locked\u0060). The caller becomes the sole admin\nof the locked connection.\n\nCaller rule: only the connection\u0027s author can lock it, and that author must still be a member of the\nconnection\u0027s team. A connection without an author cannot be locked.\n\nThe operation is idempotent \u2014 locking an already locked connection succeeds without any change; the caller\nrule above still applies.\n\nRequires the *Locked connections* feature to be enabled for the organization.\n",
         "operationId": "PostConnectionsByConnectionIdMakeLocked",
         "parameters": [
           {
@@ -7530,7 +7530,7 @@
             "description": "The connection does not exist (\u0060IM304\u0060)."
           },
           "409": {
-            "description": "The connection has no author (\u0060SC409\u0060) \u2014 locking is reserved to the connection\u0027s author.\n"
+            "description": "The connection has no author, or its author is no longer a member of the connection\u0027s team (\u0060SC409\u0060) \u2014 locking is reserved to an author who is still on the team. A departure clears a connection\u0027s author, so in practice this reports the missing author.\n"
           }
         },
         "security": [
@@ -21549,7 +21549,7 @@
           "Keys"
         ],
         "summary": "Lock key",
-        "description": "Restricts the key\u0027s visibility to its access list (\u0060visibility: locked\u0060). The caller becomes the sole admin\nof the locked key.\n\nCaller rule: only the key\u0027s author can lock it. A key without an author cannot be locked.\n\nThe operation is idempotent \u2014 locking an already locked key succeeds without any change; the caller rule\nabove still applies.\n\nRequires the *Locked connections* feature to be enabled for the organization.\n",
+        "description": "Restricts the key\u0027s visibility to its access list (\u0060visibility: locked\u0060). The caller becomes the sole admin\nof the locked key.\n\nCaller rule: only the key\u0027s author can lock it, and that author must still be a member of the key\u0027s\nteam. A key without an author cannot be locked.\n\nThe operation is idempotent \u2014 locking an already locked key succeeds without any change; the caller rule\nabove still applies.\n\nRequires the *Locked connections* feature to be enabled for the organization.\n",
         "operationId": "PostKeysByKeyIdMakeLocked",
         "parameters": [
           {
@@ -21594,7 +21594,7 @@
             "description": "The key does not exist (\u0060IM013\u0060)."
           },
           "409": {
-            "description": "The key has no author (\u0060SC409\u0060) \u2014 locking is reserved to the key\u0027s author.\n"
+            "description": "The key has no author, or its author is no longer a member of the key\u0027s team (\u0060SC409\u0060) \u2014 locking is reserved to an author who is still on the team.\n"
           }
         },
         "security": [
@@ -99850,7 +99850,8 @@
           },
           "folderId": {
             "type": "integer",
-            "description": "The unique ID of the folder in which you want to store created scenario."
+            "description": "The unique ID of the folder to which you want to move the scenario. Set to \u0060null\u0060 to remove its folder assignment.",
+            "nullable": true
           },
           "name": {
             "type": "string",
