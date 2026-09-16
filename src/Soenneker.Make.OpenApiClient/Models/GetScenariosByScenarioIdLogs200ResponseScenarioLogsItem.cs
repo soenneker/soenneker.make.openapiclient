@@ -36,6 +36,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The duration property</summary>
         public int? Duration { get; set; }
+        /// <summary>Execution lifecycle marker on execution rows. `EXECUTION_PAUSED` means the execution is parked (interrupted) and waiting to resume; a parked row deliberately carries no `status`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EventType { get; set; }
+#nullable restore
+#else
+        public string EventType { get; set; }
+#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -54,10 +62,24 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The instant property</summary>
         public bool? Instant { get; set; }
+        /// <summary>Only on a parked row: id of the module that parked the execution.</summary>
+        public int? InterruptModuleId { get; set; }
+        /// <summary>Only on a parked row: custom name of the module that parked the execution, resolved from the scenario blueprint. `null` when the module has not been renamed.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? InterruptModuleName { get; set; }
+#nullable restore
+#else
+        public string InterruptModuleName { get; set; }
+#endif
+        /// <summary>Only on a parked row: why the execution parked. `sleep` = a timed wait (has `resumeAt`); `hitl` = waiting for human input (no `resumeAt`).</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemInterruptReason? InterruptReason { get; set; }
         /// <summary>The operations property</summary>
         public int? Operations { get; set; }
         /// <summary>The organizationId property</summary>
         public int? OrganizationId { get; set; }
+        /// <summary>Only on a parked (`eventType: EXECUTION_PAUSED`) row whose wait is time-based: the ISO-8601 timestamp the execution is scheduled to resume. Absent for waits on an external signal (e.g. human-in-the-loop).</summary>
+        public DateTimeOffset? ResumeAt { get; set; }
         /// <summary>The status property</summary>
         public int? Status { get; set; }
         /// <summary>The teamId property</summary>
@@ -104,11 +126,16 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "centicredits", n => { Centicredits = n.GetIntValue(); } },
                 { "detail", n => { Detail = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail.CreateFromDiscriminatorValue); } },
                 { "duration", n => { Duration = n.GetIntValue(); } },
+                { "eventType", n => { EventType = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "imtId", n => { ImtId = n.GetStringValue(); } },
                 { "instant", n => { Instant = n.GetBoolValue(); } },
+                { "interruptModuleId", n => { InterruptModuleId = n.GetIntValue(); } },
+                { "interruptModuleName", n => { InterruptModuleName = n.GetStringValue(); } },
+                { "interruptReason", n => { InterruptReason = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemInterruptReason>(); } },
                 { "operations", n => { Operations = n.GetIntValue(); } },
                 { "organizationId", n => { OrganizationId = n.GetIntValue(); } },
+                { "resumeAt", n => { ResumeAt = n.GetDateTimeOffsetValue(); } },
                 { "status", n => { Status = n.GetIntValue(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
                 { "timestamp", n => { Timestamp = n.GetDateTimeOffsetValue(); } },
@@ -128,11 +155,16 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("centicredits", Centicredits);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail>("detail", Detail);
             writer.WriteIntValue("duration", Duration);
+            writer.WriteStringValue("eventType", EventType);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("imtId", ImtId);
             writer.WriteBoolValue("instant", Instant);
+            writer.WriteIntValue("interruptModuleId", InterruptModuleId);
+            writer.WriteStringValue("interruptModuleName", InterruptModuleName);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemInterruptReason>("interruptReason", InterruptReason);
             writer.WriteIntValue("operations", Operations);
             writer.WriteIntValue("organizationId", OrganizationId);
+            writer.WriteDateTimeOffsetValue("resumeAt", ResumeAt);
             writer.WriteIntValue("status", Status);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteDateTimeOffsetValue("timestamp", Timestamp);

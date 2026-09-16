@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Admin.Sdk.AppReview;
 using Soenneker.Make.OpenApiClient.Admin.Sdk.Apps;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,11 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SdkRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The appReview property</summary>
+        public global::Soenneker.Make.OpenApiClient.Admin.Sdk.AppReview.AppReviewRequestBuilder AppReview
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Admin.Sdk.AppReview.AppReviewRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The apps property</summary>
         public global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.AppsRequestBuilder Apps
         {

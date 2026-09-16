@@ -4,7 +4,9 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.ScenarioLabels.AssignScenarios;
 using Soenneker.Make.OpenApiClient.ScenarioLabels.Item;
+using Soenneker.Make.OpenApiClient.ScenarioLabels.UnassignScenarios;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -18,6 +20,16 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ScenarioLabelsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The assignScenarios property</summary>
+        public global::Soenneker.Make.OpenApiClient.ScenarioLabels.AssignScenarios.AssignScenariosRequestBuilder AssignScenarios
+        {
+            get => new global::Soenneker.Make.OpenApiClient.ScenarioLabels.AssignScenarios.AssignScenariosRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The unassignScenarios property</summary>
+        public global::Soenneker.Make.OpenApiClient.ScenarioLabels.UnassignScenarios.UnassignScenariosRequestBuilder UnassignScenarios
+        {
+            get => new global::Soenneker.Make.OpenApiClient.ScenarioLabels.UnassignScenarios.UnassignScenariosRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.scenarioLabels.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.ScenarioLabels.Item.WithLabelItemRequestBuilder"/></returns>

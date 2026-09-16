@@ -1701,6 +1701,235 @@
         ]
       }
     },
+    "/admin/sdk/app-review/categories": {
+      "put": {
+        "tags": [
+          "Admin / SDK Apps / Review"
+        ],
+        "summary": "Sync review form categories",
+        "description": "Replaces the category taxonomy of the new SDK app review form with the posted list. The catalog\u0027s source of truth is external (maintained outside Make and pushed here by a sync script), so this endpoint takes the **whole** list and merges it \u2014 it is not a per-category create/update:\n* an entry whose \u0060slug\u0060 is new is created; * an entry whose \u0060slug\u0060 already exists has its \u0060name\u0060 and display order updated; * an entry whose \u0060slug\u0060 was retired by an earlier sync is brought back; * a category or subcategory the list no longer contains is retired \u2014 it stops being\n  offered by the form, but is **not** deleted, so a slug already stored in a review\n  form keeps resolving to its label. A later sync that lists it again revives the same\n  row.\n\nDisplay order is the order of the array (and, for subcategories, of each \u0060subcategories\u0060 array). \u0060slug\u0060 is optional: when omitted it is derived from the label (diacritics stripped, lowercased, runs of non-alphanumerics collapsed to a dash, so \u0060\u0022Microsoft (Enterprise)\u0022\u0060 \u2192 \u0060microsoft-enterprise\u0060). Pin an explicit \u0060slug\u0060 whenever the label may be reworded later \u2014 the slug is the identity stored in review forms, so letting it follow a rename retires the old value and creates a new one instead of relabelling in place. A label with no ASCII alphanumerics at all (e.g. CJK-only) cannot be derived from and is rejected with \u0060400\u0060 (IM005); pass a \u0060slug\u0060 for it.\nThe operation is idempotent: re-posting an unchanged list reports no changes and sends nothing anywhere, which makes it safe to run on a schedule. An empty array is rejected rather than treated as \u0022retire everything\u0022 \u2014 that payload is almost always a syncing script whose upstream fetch came back empty.\nThe catalog is platform-global and HQ-mastered. On a multi-zone (HQ-managed) installation the zone that accepts this request computes the **diff** between the posted list and its catalog and hands the diff to HQ; nothing is applied locally by the request itself. HQ applies the diff to the master copy and broadcasts it to every zone \u2014 including this one, which is how the local catalog converges, typically within a second. A read issued immediately after this call may therefore still serve the previous catalog. When HQ cannot be reached the request fails with \u0060503\u0060 and nothing was changed anywhere \u2014 simply retry. On a single-instance (master mode) installation there is no HQ and the diff is applied locally within the request.\nAvailable only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "operationId": "PutAdminSdkAppReviewCategories",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PutAdminSdkAppReviewCategoriesRequestRequestBody"
+              },
+              "examples": {
+                "full-sync": {
+                  "summary": "A catalog export, with one slug pinned and one subcategory slug pinned",
+                  "value": [
+                    {
+                      "category": "App Families",
+                      "subcategories": [
+                        "Microsoft (Enterprise)",
+                        "Pipedrive"
+                      ]
+                    },
+                    {
+                      "category": "Built-in Apps",
+                      "slug": "built-in-apps",
+                      "subcategories": [
+                        "Universal Connectors",
+                        {
+                          "name": "Mobile App",
+                          "slug": "mobile-app"
+                        },
+                        "Built-in Tools"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The catalog as posted (normalized \u2014 slugs resolved, labels trimmed), which is the state every zone converges to once the diff lands, plus what the sync changed. \u0060changes\u0060 lists slugs (subcategories as \u0060\u003CcategorySlug\u003E/\u003CsubcategorySlug\u003E\u0060) so the syncing script can log them; all four buckets are empty when the posted list matched what was already stored.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutAdminSdkAppReviewCategories200Response"
+                },
+                "examples": {
+                  "full-sync": {
+                    "summary": "First sync of the example payload",
+                    "value": {
+                      "categories": [
+                        {
+                          "slug": "app-families",
+                          "name": "App Families",
+                          "subcategories": [
+                            {
+                              "slug": "microsoft-enterprise",
+                              "name": "Microsoft (Enterprise)"
+                            },
+                            {
+                              "slug": "pipedrive",
+                              "name": "Pipedrive"
+                            }
+                          ]
+                        },
+                        {
+                          "slug": "built-in-apps",
+                          "name": "Built-in Apps",
+                          "subcategories": [
+                            {
+                              "slug": "universal-connectors",
+                              "name": "Universal Connectors"
+                            },
+                            {
+                              "slug": "mobile-app",
+                              "name": "Mobile App"
+                            },
+                            {
+                              "slug": "built-in-tools",
+                              "name": "Built-in Tools"
+                            }
+                          ]
+                        }
+                      ],
+                      "changes": {
+                        "categories": {
+                          "created": [
+                            "app-families",
+                            "built-in-apps"
+                          ],
+                          "updated": [],
+                          "restored": [],
+                          "removed": []
+                        },
+                        "subcategories": {
+                          "created": [
+                            "app-families/microsoft-enterprise",
+                            "app-families/pipedrive",
+                            "built-in-apps/universal-connectors",
+                            "built-in-apps/mobile-app",
+                            "built-in-apps/built-in-tools"
+                          ],
+                          "updated": [],
+                          "restored": [],
+                          "removed": []
+                        }
+                      }
+                    }
+                  },
+                  "no-op-sync": {
+                    "summary": "Re-posting the same list \u2014 nothing changed",
+                    "value": {
+                      "categories": [
+                        {
+                          "slug": "app-families",
+                          "name": "App Families",
+                          "subcategories": [
+                            {
+                              "slug": "microsoft-enterprise",
+                              "name": "Microsoft (Enterprise)"
+                            },
+                            {
+                              "slug": "pipedrive",
+                              "name": "Pipedrive"
+                            }
+                          ]
+                        }
+                      ],
+                      "changes": {
+                        "categories": {
+                          "created": [],
+                          "updated": [],
+                          "restored": [],
+                          "removed": []
+                        },
+                        "subcategories": {
+                          "created": [],
+                          "updated": [],
+                          "restored": [],
+                          "removed": []
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The list is not a valid catalog \u2014 a slug is repeated, a label is blank, a label cannot be turned into a slug, or the array is empty or malformed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutAdminSdkAppReviewCategories400Response"
+                },
+                "examples": {
+                  "duplicate-slug": {
+                    "summary": "Two entries resolve to the same category slug",
+                    "value": {
+                      "code": "IM005",
+                      "message": "Category slug \u0022built-in-apps\u0022 is listed more than once."
+                    }
+                  },
+                  "underivable-slug": {
+                    "summary": "A label with no ASCII alphanumerics needs an explicit slug",
+                    "value": {
+                      "code": "IM005",
+                      "message": "Category \u0022\u65E5\u672C\u8A9E\u0022 cannot be turned into a slug \u2014 pass an explicit \u0022slug\u0022 for it."
+                    }
+                  },
+                  "empty-list": {
+                    "summary": "An empty array is rejected instead of retiring the whole catalog",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Invalid input parameters",
+                      "detail": [
+                        "Expected array length to be greater or equal to 1"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller does not hold the \u0060apps edit\u0060 admin permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutAdminSdkAppReviewCategories403Response"
+                },
+                "example": {
+                  "code": "IM002",
+                  "message": "Insufficient rights."
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "HQ could not be reached (multi-zone installations only). Nothing was changed anywhere \u2014 the sync is safe to retry once HQ is back.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutAdminSdkAppReviewCategories503Response"
+                },
+                "example": {
+                  "code": "SC503",
+                  "message": "The catalog sync did not reach HQ \u2014 nothing was changed. Retry once HQ is reachable."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:write",
+              "sdk-apps:write"
+            ]
+          }
+        ]
+      }
+    },
     "/admin/sdk/apps/{app}/connections/{connection}/rename": {
       "post": {
         "tags": [
@@ -28890,6 +29119,40 @@
                       }
                     }
                   },
+                  "paused": {
+                    "summary": "Log of a parked (paused/waiting) execution",
+                    "description": "A parked execution surfaces as an \u0060EXECUTION_PAUSED\u0060 row carrying \u0060resumeAt\u0060, \u0060interruptReason\u0060 and \u0060interruptModuleId\u0060 and no \u0060status\u0060. \u0060resumeAt\u0060 is present only for time-based waits (\u0060interruptReason: sleep\u0060); a human-in-the-loop wait (\u0060interruptReason: hitl\u0060) has no resume time.",
+                    "value": {
+                      "scenarioLogs": [
+                        {
+                          "imtId": "1632398200000_scenario.5.auto.aa1c49323b344687a324888762206099",
+                          "duration": 4200,
+                          "operations": 3,
+                          "transfer": 12,
+                          "centicredits": 300,
+                          "organizationId": 5,
+                          "teamId": 16,
+                          "id": "aa1c49323b344687a324888762206099",
+                          "type": "auto",
+                          "authorId": null,
+                          "instant": false,
+                          "timestamp": "2021-09-23T11:56:40.000Z",
+                          "eventType": "EXECUTION_PAUSED",
+                          "resumeAt": "2021-09-23T12:56:40.000Z",
+                          "interruptReason": "sleep",
+                          "interruptModuleId": 4,
+                          "interruptModuleName": "Wait for approval"
+                        }
+                      ],
+                      "pg": {
+                        "sortBy": "imtId",
+                        "sortDir": "desc",
+                        "last": "1632371803593_scenario.1229.auto.3cf2f332f74f43f1b2c4ae431cbedb5b",
+                        "showLast": false,
+                        "limit": 50
+                      }
+                    }
+                  },
                   "label-change": {
                     "summary": "Log of a scenario label change",
                     "description": "Returns a versioned Scenario History entry for a direct label assignment.",
@@ -29166,6 +29429,23 @@
                     "summary": "Running execution",
                     "value": {
                       "status": "RUNNING"
+                    }
+                  },
+                  "pausedExecutionTimedWait": {
+                    "summary": "Paused execution waiting until a resume time (sleep)",
+                    "value": {
+                      "status": "PAUSED",
+                      "resumeAt": "2026-09-10T12:00:00.000Z",
+                      "interruptReason": "sleep",
+                      "interruptModuleId": 4
+                    }
+                  },
+                  "pausedExecutionHitl": {
+                    "summary": "Paused execution waiting for human input",
+                    "value": {
+                      "status": "PAUSED",
+                      "interruptReason": "hitl",
+                      "interruptModuleId": 4
                     }
                   },
                   "executionWithError": {
@@ -32297,47 +32577,33 @@
         ]
       }
     },
-    "/scenario-labels/{labelId}/scenarios": {
+    "/scenario-labels/assign-scenarios": {
       "post": {
         "tags": [
           "Scenario labels"
         ],
-        "summary": "Assign a label to multiple scenarios",
-        "description": "Assigns a team label to as many as 1,000 scenario IDs in one request. The caller needs \u0060scenario edit\u0060 on the label\u0027s team (or the equivalent admin permission). Valid same-team assignments are written atomically as one accepted subset; expected per-scenario failures do not prevent other valid assignments and the response remains \u0060200\u0060. Missing and cross-team scenario IDs use the same generic \u0060IM002\u0060 rejection so the endpoint does not reveal whether an unauthorized scenario exists. Repeating an existing assignment is successful.",
-        "operationId": "PostScenarioLabelsByLabelIdScenarios",
-        "parameters": [
-          {
-            "name": "labelId",
-            "in": "path",
-            "description": "Team label to assign.",
-            "required": true,
-            "schema": {
-              "minimum": 1,
-              "type": "integer",
-              "format": "int32"
-            },
-            "examples": {
-              "mixedResults": {
-                "summary": "Assign a team label",
-                "value": 42
-              }
-            }
-          }
-        ],
+        "summary": "Assign labels to scenarios",
+        "description": "Assigns every accepted team label to every accepted scenario in one transaction. The raw request accepts up to 100 label IDs and 1,000 scenario IDs before duplicate IDs are removed. Missing, non-team, and different-team labels are rejected with the same \u0060IM013\u0060 response. Missing and different-team scenarios are rejected with \u0060IM002\u0060; trashed scenarios in the requested team are rejected with \u0060IM301\u0060. Existing assignments are accepted no-ops. A processed request returns \u0060200\u0060 even when every resource is rejected.",
+        "operationId": "PostScenarioLabelsAssignScenarios",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenariosRequest"
+                "$ref": "#/components/schemas/PostScenarioLabelsAssignScenariosRequest"
               },
               "examples": {
                 "mixedResults": {
-                  "summary": "Process two distinct scenarios and one duplicate",
+                  "summary": "Assign two labels while rejecting one label and one scenario",
                   "value": {
+                    "teamId": 112,
+                    "labelIds": [
+                      42,
+                      43,
+                      44
+                    ],
                     "scenarioIds": [
                       1201,
-                      1202,
-                      1201
+                      1202
                     ]
                   }
                 }
@@ -32348,32 +32614,42 @@
         },
         "responses": {
           "200": {
-            "description": "Batch processed. This status is also returned when every distinct scenario ID is rejected; inspect \u0060results\u0060 and \u0060summary\u0060 for per-scenario outcomes.",
+            "description": "The valid Cartesian subset was processed atomically; inspect the rejection arrays and summary.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios200Response"
+                  "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios200Response"
                 },
                 "examples": {
                   "mixedResults": {
-                    "summary": "One assignment applied and one scenario rejected",
+                    "summary": "One label and one scenario were rejected",
                     "value": {
-                      "results": [
+                      "rejectedLabels": [
                         {
-                          "scenarioId": 1201,
-                          "status": "applied"
-                        },
+                          "labelId": 44,
+                          "code": "IM013",
+                          "detail": "Label not found."
+                        }
+                      ],
+                      "rejectedScenarios": [
                         {
                           "scenarioId": 1202,
-                          "status": "rejected",
                           "code": "IM002",
                           "detail": "Insufficient rights."
                         }
                       ],
                       "summary": {
-                        "total": 2,
-                        "applied": 1,
-                        "rejected": 1
+                        "labels": {
+                          "total": 3,
+                          "accepted": 2,
+                          "rejected": 1
+                        },
+                        "scenarios": {
+                          "total": 2,
+                          "accepted": 1,
+                          "rejected": 1
+                        },
+                        "changed": 2
                       }
                     }
                   }
@@ -32382,15 +32658,15 @@
             }
           },
           "400": {
-            "description": "Invalid request body, including an empty array, more than 1,000 raw IDs, or a non-positive/non-int32 ID; also returned with \u0060IM903\u0060 when scenario labels are disabled.",
+            "description": "The body is invalid, or scenario labels are disabled (\u0060IM903\u0060).",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios400Response"
+                  "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios400Response"
                 },
                 "examples": {
-                  "invalidScenarioIds": {
-                    "summary": "The scenario ID array is empty",
+                  "invalidLabelIds": {
+                    "summary": "No label IDs were supplied",
                     "value": {
                       "message": "Bad Request",
                       "code": "SC400",
@@ -32401,25 +32677,17 @@
                         }
                       ]
                     }
-                  },
-                  "featureDisabled": {
-                    "summary": "Scenario labels are disabled",
-                    "value": {
-                      "message": "Feature flag is disabled",
-                      "code": "IM903",
-                      "detail": "Scenario labels are not enabled on this environment."
-                    }
                   }
                 }
               }
             }
           },
           "401": {
-            "description": "Authentication failed, the token lacks \u0060scenarios:write\u0060 (\u0060IM001\u0060), or an organization-bound token cannot access the label \u2014 a missing label and an inaccessible label are indistinguishable (\u0060SC401\u0060).",
+            "description": "Authentication failed or the token lacks \u0060scenarios:write\u0060 (\u0060IM001\u0060).",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios401Response"
+                  "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios401Response"
                 },
                 "examples": {
                   "missingScope": {
@@ -32429,52 +32697,33 @@
                       "code": "IM001",
                       "detail": "Required scope: scenarios:write"
                     }
-                  },
-                  "organizationAccessDenied": {
-                    "summary": "The organization-bound token cannot access the label",
-                    "value": {
-                      "message": "Access denied",
-                      "code": "SC401"
-                    }
                   }
                 }
               }
             }
           },
           "403": {
-            "description": "The \u0060/admin\u0060 route was used by a caller without admin access.",
+            "description": "The caller cannot edit scenarios in the requested team, or cannot access the \u0060/admin\u0060 route.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios403Response"
+                  "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios403Response"
                 },
                 "examples": {
+                  "teamPermissionDenied": {
+                    "summary": "The caller lacks team-level scenario edit permission",
+                    "value": {
+                      "message": "Insufficient rights.",
+                      "code": "IM002",
+                      "detail": "Insufficient rights."
+                    }
+                  },
                   "adminAccessDenied": {
-                    "summary": "The caller lacks admin access",
+                    "summary": "The caller cannot access the admin route",
                     "value": {
                       "message": "Permission denied",
                       "code": "SC403",
                       "detail": "Forbidden."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The label does not exist or the caller cannot edit its team (\u0060IM013\u0060).",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios404Response"
-                },
-                "examples": {
-                  "labelNotFound": {
-                    "summary": "The label is missing or hidden from the caller",
-                    "value": {
-                      "message": "Entity not found.",
-                      "code": "IM013",
-                      "detail": "Label not found."
                     }
                   }
                 }
@@ -32489,47 +32738,35 @@
             ]
           }
         ]
-      },
-      "delete": {
+      }
+    },
+    "/scenario-labels/unassign-scenarios": {
+      "post": {
         "tags": [
           "Scenario labels"
         ],
-        "summary": "Remove a label from multiple scenarios",
-        "description": "Removes a team label from as many as 1,000 scenario IDs in one request. The caller needs \u0060scenario edit\u0060 on the label\u0027s team (or the equivalent admin permission). Valid same-team removals are written atomically as one accepted subset; expected per-scenario failures do not prevent other valid removals and the response remains \u0060200\u0060. Missing and cross-team scenario IDs use the same generic \u0060IM002\u0060 rejection so the endpoint does not reveal whether an unauthorized scenario exists. Removing an assignment that is already absent is successful. An invalid cross-team assignment is rejected and preserved.",
-        "operationId": "DeleteScenarioLabelsByLabelIdScenarios",
-        "parameters": [
-          {
-            "name": "labelId",
-            "in": "path",
-            "description": "Team label to remove.",
-            "required": true,
-            "schema": {
-              "minimum": 1,
-              "type": "integer",
-              "format": "int32"
-            },
-            "examples": {
-              "mixedResults": {
-                "summary": "Remove a team label",
-                "value": 42
-              }
-            }
-          }
-        ],
+        "summary": "Remove labels from scenarios",
+        "description": "Removes every accepted team label from every accepted scenario in one transaction. The raw request accepts up to 100 label IDs and 1,000 scenario IDs before duplicate IDs are removed. Missing, non-team, and different-team labels are rejected with the same \u0060IM013\u0060 response. Missing and different-team scenarios are rejected with \u0060IM002\u0060; trashed scenarios in the requested team are rejected with \u0060IM301\u0060. Absent assignments are accepted no-ops. A processed request returns \u0060200\u0060 even when every resource is rejected.",
+        "operationId": "PostScenarioLabelsUnassignScenarios",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenariosRequest"
+                "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenariosRequest"
               },
               "examples": {
                 "mixedResults": {
-                  "summary": "Process two distinct scenarios and one duplicate",
+                  "summary": "Remove two labels while rejecting one label and one scenario",
                   "value": {
+                    "teamId": 112,
+                    "labelIds": [
+                      42,
+                      43,
+                      44
+                    ],
                     "scenarioIds": [
                       1201,
-                      1202,
-                      1201
+                      1202
                     ]
                   }
                 }
@@ -32540,32 +32777,42 @@
         },
         "responses": {
           "200": {
-            "description": "Batch processed. This status is also returned when every distinct scenario ID is rejected; inspect \u0060results\u0060 and \u0060summary\u0060 for per-scenario outcomes.",
+            "description": "The valid Cartesian subset was processed atomically; inspect the rejection arrays and summary.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios200Response"
+                  "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios200Response"
                 },
                 "examples": {
                   "mixedResults": {
-                    "summary": "One assignment removed and one scenario rejected",
+                    "summary": "One label and one scenario were rejected",
                     "value": {
-                      "results": [
+                      "rejectedLabels": [
                         {
-                          "scenarioId": 1201,
-                          "status": "removed"
-                        },
+                          "labelId": 44,
+                          "code": "IM013",
+                          "detail": "Label not found."
+                        }
+                      ],
+                      "rejectedScenarios": [
                         {
                           "scenarioId": 1202,
-                          "status": "rejected",
                           "code": "IM002",
                           "detail": "Insufficient rights."
                         }
                       ],
                       "summary": {
-                        "total": 2,
-                        "removed": 1,
-                        "rejected": 1
+                        "labels": {
+                          "total": 3,
+                          "accepted": 2,
+                          "rejected": 1
+                        },
+                        "scenarios": {
+                          "total": 2,
+                          "accepted": 1,
+                          "rejected": 1
+                        },
+                        "changed": 2
                       }
                     }
                   }
@@ -32574,15 +32821,15 @@
             }
           },
           "400": {
-            "description": "Invalid request body, including an empty array, more than 1,000 raw IDs, or a non-positive/non-int32 ID; also returned with \u0060IM903\u0060 when scenario labels are disabled.",
+            "description": "The body is invalid, or scenario labels are disabled (\u0060IM903\u0060).",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios400Response"
+                  "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios400Response"
                 },
                 "examples": {
                   "invalidScenarioIds": {
-                    "summary": "The scenario ID array is empty",
+                    "summary": "No scenario IDs were supplied",
                     "value": {
                       "message": "Bad Request",
                       "code": "SC400",
@@ -32593,25 +32840,17 @@
                         }
                       ]
                     }
-                  },
-                  "featureDisabled": {
-                    "summary": "Scenario labels are disabled",
-                    "value": {
-                      "message": "Feature flag is disabled",
-                      "code": "IM903",
-                      "detail": "Scenario labels are not enabled on this environment."
-                    }
                   }
                 }
               }
             }
           },
           "401": {
-            "description": "Authentication failed, the token lacks \u0060scenarios:write\u0060 (\u0060IM001\u0060), or an organization-bound token cannot access the label \u2014 a missing label and an inaccessible label are indistinguishable (\u0060SC401\u0060).",
+            "description": "Authentication failed or the token lacks \u0060scenarios:write\u0060 (\u0060IM001\u0060).",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios401Response"
+                  "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios401Response"
                 },
                 "examples": {
                   "missingScope": {
@@ -32621,52 +32860,33 @@
                       "code": "IM001",
                       "detail": "Required scope: scenarios:write"
                     }
-                  },
-                  "organizationAccessDenied": {
-                    "summary": "The organization-bound token cannot access the label",
-                    "value": {
-                      "message": "Access denied",
-                      "code": "SC401"
-                    }
                   }
                 }
               }
             }
           },
           "403": {
-            "description": "The \u0060/admin\u0060 route was used by a caller without admin access.",
+            "description": "The caller cannot edit scenarios in the requested team, or cannot access the \u0060/admin\u0060 route.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios403Response"
+                  "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios403Response"
                 },
                 "examples": {
+                  "teamPermissionDenied": {
+                    "summary": "The caller lacks team-level scenario edit permission",
+                    "value": {
+                      "message": "Insufficient rights.",
+                      "code": "IM002",
+                      "detail": "Insufficient rights."
+                    }
+                  },
                   "adminAccessDenied": {
-                    "summary": "The caller lacks admin access",
+                    "summary": "The caller cannot access the admin route",
                     "value": {
                       "message": "Permission denied",
                       "code": "SC403",
                       "detail": "Forbidden."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "The label does not exist or the caller cannot edit its team (\u0060IM013\u0060).",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios404Response"
-                },
-                "examples": {
-                  "labelNotFound": {
-                    "summary": "The label is missing or hidden from the caller",
-                    "value": {
-                      "message": "Entity not found.",
-                      "code": "IM013",
-                      "detail": "Label not found."
                     }
                   }
                 }
@@ -40326,6 +40546,82 @@
           {
             "token": [
               "sdk-apps:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/sdk/app-review/categories": {
+      "get": {
+        "tags": [
+          "SDK Apps / Review"
+        ],
+        "summary": "List review form categories",
+        "description": "Returns the active category taxonomy the new SDK app review form offers, in display order. The taxonomy is exactly two levels deep (category \u2192 subcategory) and is global product configuration \u2014 not per app and not per user, so every authenticated caller gets the same list. Identify a pick by its \u0060slug\u0060, not its \u0060name\u0060: that is what \u0060PUT /sdk/apps/{app}/{version}/app-review/form\u0060 expects in \u0060categories\u0060 / \u0060subcategories\u0060, and it is stable across relabelling. Categories retired by a later catalog sync stop appearing here, but their slugs keep resolving in review forms that already stored them. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "operationId": "GetSdkAppReviewCategories",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppReviewCategories200Response"
+                },
+                "examples": {
+                  "catalog": {
+                    "summary": "The catalog as the review form renders it",
+                    "value": {
+                      "categories": [
+                        {
+                          "slug": "app-families",
+                          "name": "App Families",
+                          "subcategories": [
+                            {
+                              "slug": "microsoft-enterprise",
+                              "name": "Microsoft (Enterprise)"
+                            },
+                            {
+                              "slug": "pipedrive",
+                              "name": "Pipedrive"
+                            }
+                          ]
+                        },
+                        {
+                          "slug": "built-in-apps",
+                          "name": "Built-in Apps",
+                          "subcategories": [
+                            {
+                              "slug": "universal-connectors",
+                              "name": "Universal Connectors"
+                            },
+                            {
+                              "slug": "mobile-app",
+                              "name": "Mobile App"
+                            },
+                            {
+                              "slug": "built-in-tools",
+                              "name": "Built-in Tools"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "empty-catalog": {
+                    "summary": "No catalog has been synced yet",
+                    "value": {
+                      "categories": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:read"
             ]
           }
         ]
@@ -51386,6 +51682,76 @@
         },
         "additionalProperties": false,
         "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server."
+      },
+      "SdkAppCategory": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "maxLength": 128,
+            "pattern": "^[a-z0-9]\u002B(?:-[a-z0-9]\u002B)*$",
+            "type": "string",
+            "description": "Stable identifier of the category. Either pinned explicitly by the catalog sync or derived from \u0060name\u0060 (diacritics stripped, lowercased, every run of non-alphanumerics collapsed to a dash)."
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Human-readable label to show in the review form."
+          },
+          "subcategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SdkAppCategorySubcategoriesItem"
+            },
+            "description": "The category\u0027s subcategories in display order; empty when the category has none. The taxonomy is exactly two levels deep \u2014 a subcategory never has children of its own."
+          }
+        },
+        "description": "One category of the taxonomy offered by the new SDK app review form, with its subcategories. \u0060slug\u0060 is the category\u0027s stable identity \u2014 it is what a review form stores in \u0060categories\u0060 / \u0060subcategories\u0060, and it survives a rename of \u0060name\u0060. Array order is display order."
+      },
+      "SdkAppCategoryChangeSet": {
+        "type": "object",
+        "properties": {
+          "created": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs that did not exist before this sync."
+          },
+          "updated": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs whose label or display order changed."
+          },
+          "restored": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs an earlier sync had retired and this one brought back."
+          },
+          "removed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs that were being offered and this sync retired."
+          }
+        },
+        "description": "What one catalog sync did to one taxonomy level. Values are slugs, so a syncing script can log them verbatim; subcategories are keyed \u0060\u003CcategorySlug\u003E/\u003CsubcategorySlug\u003E\u0060, since a subcategory slug is only unique within its category. All four buckets are empty when the posted list matched what was already stored."
+      },
+      "SdkAppCategoryChanges": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "$ref": "#/components/schemas/SdkAppCategoryChangesCategories"
+          },
+          "subcategories": {
+            "$ref": "#/components/schemas/SdkAppCategoryChangesSubcategories"
+          }
+        },
+        "description": "What one catalog sync changed, per taxonomy level."
       },
       "SdkPublisher": {
         "type": "object",
@@ -81017,6 +81383,90 @@
         },
         "description": "Selected subcategories, keyed by category."
       },
+      "SdkAppCategorySubcategoriesItem": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "maxLength": 128,
+            "pattern": "^[a-z0-9]\u002B(?:-[a-z0-9]\u002B)*$",
+            "type": "string",
+            "description": "Stable identifier of the subcategory, unique within its category (the same slug may appear under a different category)."
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Human-readable label to show in the review form."
+          }
+        }
+      },
+      "SdkAppCategoryChangesCategories": {
+        "type": "object",
+        "properties": {
+          "created": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs that did not exist before this sync."
+          },
+          "updated": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs whose label or display order changed."
+          },
+          "restored": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs an earlier sync had retired and this one brought back."
+          },
+          "removed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs that were being offered and this sync retired."
+          }
+        },
+        "description": "What one catalog sync did to one taxonomy level. Values are slugs, so a syncing script can log them verbatim; subcategories are keyed \u0060\u003CcategorySlug\u003E/\u003CsubcategorySlug\u003E\u0060, since a subcategory slug is only unique within its category. All four buckets are empty when the posted list matched what was already stored."
+      },
+      "SdkAppCategoryChangesSubcategories": {
+        "type": "object",
+        "properties": {
+          "created": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs that did not exist before this sync."
+          },
+          "updated": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs whose label or display order changed."
+          },
+          "restored": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs an earlier sync had retired and this one brought back."
+          },
+          "removed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs that were being offered and this sync retired."
+          }
+        },
+        "description": "What one catalog sync did to one taxonomy level. Values are slugs, so a syncing script can log them verbatim; subcategories are keyed \u0060\u003CcategorySlug\u003E/\u003CsubcategorySlug\u003E\u0060, since a subcategory slug is only unique within its category. All four buckets are empty when the posted list matched what was already stored."
+      },
       "SdkEndpointAnnotations": {
         "type": "object",
         "properties": {
@@ -93813,6 +94263,71 @@
           }
         }
       },
+      "PutAdminSdkAppReviewCategoriesRequest": {
+        "maxItems": 200,
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/PutAdminSdkAppReviewCategoriesRequestItem"
+        },
+        "description": "The complete category list, in display order."
+      },
+      "PutAdminSdkAppReviewCategories200Response": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutAdminSdkAppReviewCategories200ResponseCategoriesItem"
+            }
+          },
+          "changes": {
+            "$ref": "#/components/schemas/PutAdminSdkAppReviewCategories200ResponseChanges"
+          }
+        }
+      },
+      "PutAdminSdkAppReviewCategories400Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Application error code."
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message."
+          },
+          "detail": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Validation error details."
+          }
+        }
+      },
+      "PutAdminSdkAppReviewCategories403Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "PutAdminSdkAppReviewCategories503Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
       "PostAdminSdkAppsByAppConnectionsByConnectionRenameRequest": {
         "required": [
           "name"
@@ -100241,8 +100756,21 @@
         "type": "object",
         "properties": {
           "status": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdExecutionsByExecutionId200ResponseStatus"
+          },
+          "resumeAt": {
             "type": "string",
-            "description": "Status of the scenario execution:\n\n- RUNNING\n - SUCCESS\n - WARNING\n - ERROR "
+            "description": "Only present when \u0060status\u0060 is \u0060PAUSED\u0060 and the wait is time-based: the ISO-8601 timestamp the execution is scheduled to resume. Absent for waits on an external signal (e.g. human-in-the-loop).",
+            "format": "date-time",
+            "example": "2026-09-10T12:00:00.000Z"
+          },
+          "interruptReason": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdExecutionsByExecutionId200ResponseInterruptReason"
+          },
+          "interruptModuleId": {
+            "type": "integer",
+            "description": "Only present when \u0060status\u0060 is \u0060PAUSED\u0060: id of the module that parked the execution.",
+            "example": 4
           },
           "outputs": {
             "$ref": "#/components/schemas/GetScenariosByScenarioIdExecutionsByExecutionId200ResponseOutputs"
@@ -101094,45 +101622,76 @@
           }
         }
       },
-      "PostScenarioLabelsByLabelIdScenariosRequest": {
+      "PostScenarioLabelsAssignScenariosRequest": {
         "required": [
+          "teamId",
+          "labelIds",
           "scenarioIds"
         ],
         "type": "object",
         "properties": {
+          "teamId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Team whose labels and scenarios are being mutated.",
+            "format": "int32"
+          },
+          "labelIds": {
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Label IDs to process. The raw limit is enforced before duplicate IDs are removed. Each distinct ID is processed once."
+          },
           "scenarioIds": {
             "maxItems": 1000,
             "minItems": 1,
             "type": "array",
             "items": {
+              "maximum": 2147483647,
               "minimum": 1,
               "type": "integer",
               "format": "int32"
             },
-            "description": "Scenario IDs to process. The raw array is limited before duplicate IDs are removed. Duplicate IDs are processed once and retain the position of their first occurrence."
+            "description": "Scenario IDs to process. The raw limit is enforced before duplicate IDs are removed. Each distinct ID is processed once. Together with the 100-label limit, this bounds one request to 100,000 label-scenario pairs."
           }
-        }
+        },
+        "additionalProperties": false
       },
-      "PostScenarioLabelsByLabelIdScenarios200Response": {
+      "PostScenarioLabelsAssignScenarios200Response": {
         "required": [
-          "results",
+          "rejectedLabels",
+          "rejectedScenarios",
           "summary"
         ],
         "type": "object",
         "properties": {
-          "results": {
+          "rejectedLabels": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios200ResponseResultsItem"
+              "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios200ResponseRejectedLabelsItem"
             },
-            "description": "One result per distinct scenario ID, ordered by first occurrence in the request."
+            "description": "Rejected distinct label IDs in first-occurrence request order."
+          },
+          "rejectedScenarios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios200ResponseRejectedScenariosItem"
+            },
+            "description": "Rejected distinct scenario IDs in first-occurrence request order."
           },
           "summary": {
-            "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios200ResponseSummary"
+            "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios200ResponseSummary"
           }
         }
       },
-      "PostScenarioLabelsByLabelIdScenarios400Response": {
+      "PostScenarioLabelsAssignScenarios400Response": {
         "required": [
           "message",
           "code"
@@ -101154,13 +101713,13 @@
           "suberrors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios400ResponseSuberrorsItem"
+              "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios400ResponseSuberrorsItem"
             },
             "description": "Individual validation failures, when request validation reports them."
           }
         }
       },
-      "PostScenarioLabelsByLabelIdScenarios401Response": {
+      "PostScenarioLabelsAssignScenarios401Response": {
         "required": [
           "message",
           "code"
@@ -101182,13 +101741,13 @@
           "suberrors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios401ResponseSuberrorsItem"
+              "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios401ResponseSuberrorsItem"
             },
             "description": "Individual validation failures, when request validation reports them."
           }
         }
       },
-      "PostScenarioLabelsByLabelIdScenarios403Response": {
+      "PostScenarioLabelsAssignScenarios403Response": {
         "required": [
           "message",
           "code"
@@ -101210,79 +101769,82 @@
           "suberrors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios403ResponseSuberrorsItem"
+              "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios403ResponseSuberrorsItem"
             },
             "description": "Individual validation failures, when request validation reports them."
           }
         }
       },
-      "PostScenarioLabelsByLabelIdScenarios404Response": {
+      "PostScenarioLabelsUnassignScenariosRequest": {
         "required": [
-          "message",
-          "code"
-        ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Localized summary for the error code."
-          },
-          "code": {
-            "type": "string",
-            "description": "Stable Make API error code."
-          },
-          "detail": {
-            "type": "string",
-            "description": "Request-specific detail when the error safely exposes one."
-          },
-          "suberrors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios404ResponseSuberrorsItem"
-            },
-            "description": "Individual validation failures, when request validation reports them."
-          }
-        }
-      },
-      "DeleteScenarioLabelsByLabelIdScenariosRequest": {
-        "required": [
+          "teamId",
+          "labelIds",
           "scenarioIds"
         ],
         "type": "object",
         "properties": {
+          "teamId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Team whose labels and scenarios are being mutated.",
+            "format": "int32"
+          },
+          "labelIds": {
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Label IDs to process. The raw limit is enforced before duplicate IDs are removed. Each distinct ID is processed once."
+          },
           "scenarioIds": {
             "maxItems": 1000,
             "minItems": 1,
             "type": "array",
             "items": {
+              "maximum": 2147483647,
               "minimum": 1,
               "type": "integer",
               "format": "int32"
             },
-            "description": "Scenario IDs to process. The raw array is limited before duplicate IDs are removed. Duplicate IDs are processed once and retain the position of their first occurrence."
+            "description": "Scenario IDs to process. The raw limit is enforced before duplicate IDs are removed. Each distinct ID is processed once. Together with the 100-label limit, this bounds one request to 100,000 label-scenario pairs."
           }
-        }
+        },
+        "additionalProperties": false
       },
-      "DeleteScenarioLabelsByLabelIdScenarios200Response": {
+      "PostScenarioLabelsUnassignScenarios200Response": {
         "required": [
-          "results",
+          "rejectedLabels",
+          "rejectedScenarios",
           "summary"
         ],
         "type": "object",
         "properties": {
-          "results": {
+          "rejectedLabels": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItem"
+              "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios200ResponseRejectedLabelsItem"
             },
-            "description": "One result per distinct scenario ID, ordered by first occurrence in the request."
+            "description": "Rejected distinct label IDs in first-occurrence request order."
+          },
+          "rejectedScenarios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios200ResponseRejectedScenariosItem"
+            },
+            "description": "Rejected distinct scenario IDs in first-occurrence request order."
           },
           "summary": {
-            "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios200ResponseSummary"
+            "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios200ResponseSummary"
           }
         }
       },
-      "DeleteScenarioLabelsByLabelIdScenarios400Response": {
+      "PostScenarioLabelsUnassignScenarios400Response": {
         "required": [
           "message",
           "code"
@@ -101304,13 +101866,13 @@
           "suberrors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios400ResponseSuberrorsItem"
+              "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios400ResponseSuberrorsItem"
             },
             "description": "Individual validation failures, when request validation reports them."
           }
         }
       },
-      "DeleteScenarioLabelsByLabelIdScenarios401Response": {
+      "PostScenarioLabelsUnassignScenarios401Response": {
         "required": [
           "message",
           "code"
@@ -101332,13 +101894,13 @@
           "suberrors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios401ResponseSuberrorsItem"
+              "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios401ResponseSuberrorsItem"
             },
             "description": "Individual validation failures, when request validation reports them."
           }
         }
       },
-      "DeleteScenarioLabelsByLabelIdScenarios403Response": {
+      "PostScenarioLabelsUnassignScenarios403Response": {
         "required": [
           "message",
           "code"
@@ -101360,35 +101922,7 @@
           "suberrors": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios403ResponseSuberrorsItem"
-            },
-            "description": "Individual validation failures, when request validation reports them."
-          }
-        }
-      },
-      "DeleteScenarioLabelsByLabelIdScenarios404Response": {
-        "required": [
-          "message",
-          "code"
-        ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Localized summary for the error code."
-          },
-          "code": {
-            "type": "string",
-            "description": "Stable Make API error code."
-          },
-          "detail": {
-            "type": "string",
-            "description": "Request-specific detail when the error safely exposes one."
-          },
-          "suberrors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios404ResponseSuberrorsItem"
+              "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios403ResponseSuberrorsItem"
             },
             "description": "Individual validation failures, when request validation reports them."
           }
@@ -102883,6 +103417,17 @@
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel409Response": {
         "type": "object"
+      },
+      "GetSdkAppReviewCategories200Response": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetSdkAppReviewCategories200ResponseCategoriesItem"
+            }
+          }
+        }
       },
       "GetSdkPublisher200Response": {
         "type": "object",
@@ -136066,6 +136611,19 @@
           }
         }
       },
+      "PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItemBranch1": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      },
       "PostAiAgentsV1AgentsRequestOutputParserFormatOneOf2SchemaItemSpecBranch2": {
         "required": [
           "value"
@@ -136669,6 +137227,15 @@
         "type": "object",
         "description": "Response from the cashier service"
       },
+      "PutAdminSdkAppReviewCategoriesRequestRequestBody": {
+        "maxItems": 200,
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/PutAdminSdkAppReviewCategoriesRequestRequestBodyItem"
+        },
+        "description": "The complete category list, in display order."
+      },
       "PostAiAgentsV1AgentsByAgentIdRunStream200EventStreamResponseSchema": {
         "type": "object",
         "description": "Server-Sent Events stream (text/event-stream)"
@@ -136956,6 +137523,38 @@
           "$ref": "#/components/schemas/PatchUsersMePreferencesRequestRequestBodyAdditionalProperties"
         },
         "description": "\u0060{ [namespace]: value | null }\u0060. Each non-\u0060null\u0060 value must match the namespace\u0027s schema.\n"
+      },
+      "PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItem": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItemBranch1"
+          },
+          {
+            "$ref": "#/components/schemas/PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItemOneOf2"
+          }
+        ],
+        "properties": {
+          "value": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "Human-readable label of the subcategory."
+          },
+          "slug": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[a-z0-9]\u002B(?:-[a-z0-9]\u002B)*$",
+            "type": "string",
+            "description": "Stable identifier within the owning category. Optional \u2014 derived from \u0060name\u0060 when omitted."
+          }
+        },
+        "description": "Either the subcategory\u0027s label, or an object pinning an explicit slug to it."
       },
       "PostAiAgentsV1AgentsRequestOutputParserFormatSchemaItemSpec": {
         "type": "object",
@@ -137578,6 +138177,28 @@
             "$ref": "#/components/schemas/PatchTeamsByTeamIdVariablesByVariableName200ResponseTeamVariableValueBranch5"
           }
         ]
+      },
+      "PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItemOneOf2": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "Human-readable label of the subcategory."
+          },
+          "slug": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[a-z0-9]\u002B(?:-[a-z0-9]\u002B)*$",
+            "type": "string",
+            "description": "Stable identifier within the owning category. Optional \u2014 derived from \u0060name\u0060 when omitted."
+          }
+        },
+        "additionalProperties": false
       },
       "PostAiAgentsV1AgentsRequestOutputParserFormatSchemaItemSpecOneOf1": {
         "type": "object",
@@ -140242,6 +140863,72 @@
             "nullable": true
           }
         }
+      },
+      "PutAdminSdkAppReviewCategoriesRequestItem": {
+        "required": [
+          "category"
+        ],
+        "type": "object",
+        "properties": {
+          "category": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "Human-readable label of the category."
+          },
+          "slug": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[a-z0-9]\u002B(?:-[a-z0-9]\u002B)*$",
+            "type": "string",
+            "description": "Stable identifier of the category. Optional \u2014 derived from \u0060category\u0060 when omitted. Must already be in canonical form."
+          },
+          "subcategories": {
+            "maxItems": 500,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItem"
+            },
+            "description": "The category\u0027s subcategories in display order. Omit or pass an empty array for a category with none."
+          }
+        },
+        "additionalProperties": false
+      },
+      "PutAdminSdkAppReviewCategories200ResponseCategoriesItem": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "maxLength": 128,
+            "pattern": "^[a-z0-9]\u002B(?:-[a-z0-9]\u002B)*$",
+            "type": "string",
+            "description": "Stable identifier of the category. Either pinned explicitly by the catalog sync or derived from \u0060name\u0060 (diacritics stripped, lowercased, every run of non-alphanumerics collapsed to a dash)."
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Human-readable label to show in the review form."
+          },
+          "subcategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutAdminSdkAppReviewCategories200ResponseCategoriesItemSubcategoriesItem"
+            },
+            "description": "The category\u0027s subcategories in display order; empty when the category has none. The taxonomy is exactly two levels deep \u2014 a subcategory never has children of its own."
+          }
+        },
+        "description": "One category of the taxonomy offered by the new SDK app review form, with its subcategories. \u0060slug\u0060 is the category\u0027s stable identity \u2014 it is what a review form stores in \u0060categories\u0060 / \u0060subcategories\u0060, and it survives a rename of \u0060name\u0060. Array order is display order."
+      },
+      "PutAdminSdkAppReviewCategories200ResponseChanges": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "$ref": "#/components/schemas/PutAdminSdkAppReviewCategories200ResponseChangesCategories"
+          },
+          "subcategories": {
+            "$ref": "#/components/schemas/PutAdminSdkAppReviewCategories200ResponseChangesSubcategories"
+          }
+        },
+        "description": "What one catalog sync changed, per taxonomy level."
       },
       "PostAdminSdkAppsByAppConnectionsByConnectionRename200ResponseAppConnection": {
         "type": "object",
@@ -148887,6 +149574,27 @@
           "status": {
             "type": "integer"
           },
+          "eventType": {
+            "type": "string",
+            "description": "Execution lifecycle marker on execution rows. \u0060EXECUTION_PAUSED\u0060 means the execution is parked (interrupted) and waiting to resume; a parked row deliberately carries no \u0060status\u0060."
+          },
+          "resumeAt": {
+            "type": "string",
+            "description": "Only on a parked (\u0060eventType: EXECUTION_PAUSED\u0060) row whose wait is time-based: the ISO-8601 timestamp the execution is scheduled to resume. Absent for waits on an external signal (e.g. human-in-the-loop).",
+            "format": "date-time"
+          },
+          "interruptReason": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemInterruptReason"
+          },
+          "interruptModuleId": {
+            "type": "integer",
+            "description": "Only on a parked row: id of the module that parked the execution."
+          },
+          "interruptModuleName": {
+            "type": "string",
+            "description": "Only on a parked row: custom name of the module that parked the execution, resolved from the scenario blueprint. \u0060null\u0060 when the module has not been renamed.",
+            "nullable": true
+          },
           "detail": {
             "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail"
           }
@@ -148966,6 +149674,27 @@
           },
           "status": {
             "type": "integer"
+          },
+          "eventType": {
+            "type": "string",
+            "description": "Execution lifecycle marker on execution rows. \u0060EXECUTION_PAUSED\u0060 means the execution is parked (interrupted) and waiting to resume; a parked row deliberately carries no \u0060status\u0060."
+          },
+          "resumeAt": {
+            "type": "string",
+            "description": "Only on a parked (\u0060eventType: EXECUTION_PAUSED\u0060) row whose wait is time-based: the ISO-8601 timestamp the execution is scheduled to resume. Absent for waits on an external signal (e.g. human-in-the-loop).",
+            "format": "date-time"
+          },
+          "interruptReason": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogInterruptReason"
+          },
+          "interruptModuleId": {
+            "type": "integer",
+            "description": "Only on a parked row: id of the module that parked the execution."
+          },
+          "interruptModuleName": {
+            "type": "string",
+            "description": "Only on a parked row: custom name of the module that parked the execution, resolved from the scenario blueprint. \u0060null\u0060 when the module has not been renamed.",
+            "nullable": true
           },
           "detail": {
             "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetail"
@@ -150185,157 +150914,72 @@
           }
         }
       },
-      "PostScenarioLabelsByLabelIdScenarios200ResponseResultsItem": {
+      "PostScenarioLabelsAssignScenarios200ResponseRejectedLabelsItem": {
         "required": [
-          "scenarioId",
-          "status"
+          "labelId",
+          "code",
+          "detail"
         ],
         "type": "object",
         "properties": {
-          "scenarioId": {
+          "labelId": {
+            "maximum": 2147483647,
             "minimum": 1,
             "type": "integer",
             "format": "int32"
           },
-          "status": {
-            "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios200ResponseResultsItemStatus"
-          },
           "code": {
-            "$ref": "#/components/schemas/PostScenarioLabelsByLabelIdScenarios200ResponseResultsItemCode"
+            "$ref": "#/components/schemas/Im013Code"
           },
           "detail": {
             "type": "string"
           }
         }
       },
-      "PostScenarioLabelsByLabelIdScenarios200ResponseSummary": {
-        "required": [
-          "total",
-          "applied",
-          "rejected"
-        ],
-        "type": "object",
-        "properties": {
-          "total": {
-            "minimum": 0,
-            "type": "integer"
-          },
-          "applied": {
-            "minimum": 0,
-            "type": "integer"
-          },
-          "rejected": {
-            "minimum": 0,
-            "type": "integer"
-          }
-        }
-      },
-      "PostScenarioLabelsByLabelIdScenarios400ResponseSuberrorsItem": {
-        "required": [
-          "message",
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "PostScenarioLabelsByLabelIdScenarios401ResponseSuberrorsItem": {
-        "required": [
-          "message",
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "PostScenarioLabelsByLabelIdScenarios403ResponseSuberrorsItem": {
-        "required": [
-          "message",
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "PostScenarioLabelsByLabelIdScenarios404ResponseSuberrorsItem": {
-        "required": [
-          "message",
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItem": {
+      "PostScenarioLabelsAssignScenarios200ResponseRejectedScenariosItem": {
         "required": [
           "scenarioId",
-          "status"
+          "code",
+          "detail"
         ],
         "type": "object",
         "properties": {
           "scenarioId": {
+            "maximum": 2147483647,
             "minimum": 1,
             "type": "integer",
             "format": "int32"
           },
-          "status": {
-            "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItemStatus"
-          },
           "code": {
-            "$ref": "#/components/schemas/DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItemCode"
+            "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios200ResponseRejectedScenariosItemCode"
           },
           "detail": {
             "type": "string"
           }
         }
       },
-      "DeleteScenarioLabelsByLabelIdScenarios200ResponseSummary": {
+      "PostScenarioLabelsAssignScenarios200ResponseSummary": {
         "required": [
-          "total",
-          "removed",
-          "rejected"
+          "labels",
+          "scenarios",
+          "changed"
         ],
         "type": "object",
         "properties": {
-          "total": {
-            "minimum": 0,
-            "type": "integer"
+          "labels": {
+            "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios200ResponseSummaryLabels"
           },
-          "removed": {
-            "minimum": 0,
-            "type": "integer"
+          "scenarios": {
+            "$ref": "#/components/schemas/PostScenarioLabelsAssignScenarios200ResponseSummaryScenarios"
           },
-          "rejected": {
+          "changed": {
             "minimum": 0,
-            "type": "integer"
+            "type": "integer",
+            "description": "Number of label-scenario relationships actually inserted or deleted."
           }
         }
       },
-      "DeleteScenarioLabelsByLabelIdScenarios400ResponseSuberrorsItem": {
+      "PostScenarioLabelsAssignScenarios400ResponseSuberrorsItem": {
         "required": [
           "message",
           "name"
@@ -150350,7 +150994,7 @@
           }
         }
       },
-      "DeleteScenarioLabelsByLabelIdScenarios401ResponseSuberrorsItem": {
+      "PostScenarioLabelsAssignScenarios401ResponseSuberrorsItem": {
         "required": [
           "message",
           "name"
@@ -150365,7 +151009,7 @@
           }
         }
       },
-      "DeleteScenarioLabelsByLabelIdScenarios403ResponseSuberrorsItem": {
+      "PostScenarioLabelsAssignScenarios403ResponseSuberrorsItem": {
         "required": [
           "message",
           "name"
@@ -150380,7 +151024,102 @@
           }
         }
       },
-      "DeleteScenarioLabelsByLabelIdScenarios404ResponseSuberrorsItem": {
+      "PostScenarioLabelsUnassignScenarios200ResponseRejectedLabelsItem": {
+        "required": [
+          "labelId",
+          "code",
+          "detail"
+        ],
+        "type": "object",
+        "properties": {
+          "labelId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "code": {
+            "$ref": "#/components/schemas/Im013Code"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostScenarioLabelsUnassignScenarios200ResponseRejectedScenariosItem": {
+        "required": [
+          "scenarioId",
+          "code",
+          "detail"
+        ],
+        "type": "object",
+        "properties": {
+          "scenarioId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "code": {
+            "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios200ResponseRejectedScenariosItemCode"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostScenarioLabelsUnassignScenarios200ResponseSummary": {
+        "required": [
+          "labels",
+          "scenarios",
+          "changed"
+        ],
+        "type": "object",
+        "properties": {
+          "labels": {
+            "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios200ResponseSummaryLabels"
+          },
+          "scenarios": {
+            "$ref": "#/components/schemas/PostScenarioLabelsUnassignScenarios200ResponseSummaryScenarios"
+          },
+          "changed": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Number of label-scenario relationships actually inserted or deleted."
+          }
+        }
+      },
+      "PostScenarioLabelsUnassignScenarios400ResponseSuberrorsItem": {
+        "required": [
+          "message",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "PostScenarioLabelsUnassignScenarios401ResponseSuberrorsItem": {
+        "required": [
+          "message",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "PostScenarioLabelsUnassignScenarios403ResponseSuberrorsItem": {
         "required": [
           "message",
           "name"
@@ -153082,6 +153821,30 @@
           }
         },
         "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+      },
+      "GetSdkAppReviewCategories200ResponseCategoriesItem": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "maxLength": 128,
+            "pattern": "^[a-z0-9]\u002B(?:-[a-z0-9]\u002B)*$",
+            "type": "string",
+            "description": "Stable identifier of the category. Either pinned explicitly by the catalog sync or derived from \u0060name\u0060 (diacritics stripped, lowercased, every run of non-alphanumerics collapsed to a dash)."
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Human-readable label to show in the review form."
+          },
+          "subcategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetSdkAppReviewCategories200ResponseCategoriesItemSubcategoriesItem"
+            },
+            "description": "The category\u0027s subcategories in display order; empty when the category has none. The taxonomy is exactly two levels deep \u2014 a subcategory never has children of its own."
+          }
+        },
+        "description": "One category of the taxonomy offered by the new SDK app review form, with its subcategories. \u0060slug\u0060 is the category\u0027s stable identity \u2014 it is what a review form stores in \u0060categories\u0060 / \u0060subcategories\u0060, and it survives a rename of \u0060name\u0060. Array order is display order."
       },
       "GetSdkPublisher200ResponsePublisher": {
         "type": "object",
@@ -156642,6 +157405,36 @@
       "PatchTeamsByTeamIdVariablesByVariableName200ResponseTeamVariableValueBranch5ValueItem": {
         "type": "object"
       },
+      "PutAdminSdkAppReviewCategoriesRequestRequestBodyItem": {
+        "required": [
+          "category"
+        ],
+        "type": "object",
+        "properties": {
+          "category": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "Human-readable label of the category."
+          },
+          "slug": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[a-z0-9]\u002B(?:-[a-z0-9]\u002B)*$",
+            "type": "string",
+            "description": "Stable identifier of the category. Optional \u2014 derived from \u0060category\u0060 when omitted. Must already be in canonical form."
+          },
+          "subcategories": {
+            "maxItems": 500,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItem"
+            },
+            "description": "The category\u0027s subcategories in display order. Omit or pass an empty array for a category with none."
+          }
+        },
+        "additionalProperties": false
+      },
       "GetAiAgentsV1LlmProviders200ResponseSchemaItem": {
         "required": [
           "id",
@@ -157240,6 +158033,90 @@
       },
       "GetAdminExperimentsOrganizationByOrganizationId200ResponseExperimentsAdditionalProperties": {
         "type": "object"
+      },
+      "PutAdminSdkAppReviewCategories200ResponseCategoriesItemSubcategoriesItem": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "maxLength": 128,
+            "pattern": "^[a-z0-9]\u002B(?:-[a-z0-9]\u002B)*$",
+            "type": "string",
+            "description": "Stable identifier of the subcategory, unique within its category (the same slug may appear under a different category)."
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Human-readable label to show in the review form."
+          }
+        }
+      },
+      "PutAdminSdkAppReviewCategories200ResponseChangesCategories": {
+        "type": "object",
+        "properties": {
+          "created": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs that did not exist before this sync."
+          },
+          "updated": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs whose label or display order changed."
+          },
+          "restored": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs an earlier sync had retired and this one brought back."
+          },
+          "removed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs that were being offered and this sync retired."
+          }
+        },
+        "description": "What one catalog sync did to one taxonomy level. Values are slugs, so a syncing script can log them verbatim; subcategories are keyed \u0060\u003CcategorySlug\u003E/\u003CsubcategorySlug\u003E\u0060, since a subcategory slug is only unique within its category. All four buckets are empty when the posted list matched what was already stored."
+      },
+      "PutAdminSdkAppReviewCategories200ResponseChangesSubcategories": {
+        "type": "object",
+        "properties": {
+          "created": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs that did not exist before this sync."
+          },
+          "updated": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs whose label or display order changed."
+          },
+          "restored": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs an earlier sync had retired and this one brought back."
+          },
+          "removed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Slugs that were being offered and this sync retired."
+          }
+        },
+        "description": "What one catalog sync did to one taxonomy level. Values are slugs, so a syncing script can log them verbatim; subcategories are keyed \u0060\u003CcategorySlug\u003E/\u003CsubcategorySlug\u003E\u0060, since a subcategory slug is only unique within its category. All four buckets are empty when the posted list matched what was already stored."
       },
       "GetAdminUsersDetail200ResponseUsersItemFeatures": {
         "type": "object",
@@ -160553,6 +161430,98 @@
           }
         }
       },
+      "PostScenarioLabelsAssignScenarios200ResponseSummaryLabels": {
+        "required": [
+          "total",
+          "accepted",
+          "rejected"
+        ],
+        "type": "object",
+        "properties": {
+          "total": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Number of distinct requested IDs after duplicate IDs are removed."
+          },
+          "accepted": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "rejected": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        }
+      },
+      "PostScenarioLabelsAssignScenarios200ResponseSummaryScenarios": {
+        "required": [
+          "total",
+          "accepted",
+          "rejected"
+        ],
+        "type": "object",
+        "properties": {
+          "total": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Number of distinct requested IDs after duplicate IDs are removed."
+          },
+          "accepted": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "rejected": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        }
+      },
+      "PostScenarioLabelsUnassignScenarios200ResponseSummaryLabels": {
+        "required": [
+          "total",
+          "accepted",
+          "rejected"
+        ],
+        "type": "object",
+        "properties": {
+          "total": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Number of distinct requested IDs after duplicate IDs are removed."
+          },
+          "accepted": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "rejected": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        }
+      },
+      "PostScenarioLabelsUnassignScenarios200ResponseSummaryScenarios": {
+        "required": [
+          "total",
+          "accepted",
+          "rejected"
+        ],
+        "type": "object",
+        "properties": {
+          "total": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Number of distinct requested IDs after duplicate IDs are removed."
+          },
+          "accepted": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "rejected": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        }
+      },
       "GetSdkApps200ResponseAppsItemModulesItem": {
         "type": "object",
         "properties": {
@@ -162500,6 +163469,22 @@
             "type": "string",
             "description": "When the event happened.",
             "format": "date-time"
+          }
+        }
+      },
+      "GetSdkAppReviewCategories200ResponseCategoriesItemSubcategoriesItem": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "maxLength": 128,
+            "pattern": "^[a-z0-9]\u002B(?:-[a-z0-9]\u002B)*$",
+            "type": "string",
+            "description": "Stable identifier of the subcategory, unique within its category (the same slug may appear under a different category)."
+          },
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Human-readable label to show in the review form."
           }
         }
       },
@@ -178824,6 +179809,67 @@
           ]
         }
       },
+      "GetScenariosByScenarioIdExecutionsByExecutionId200ResponseStatus": {
+        "enum": [
+          "RUNNING",
+          "SUCCESS",
+          "WARNING",
+          "ERROR",
+          "PAUSED"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Status of the scenario execution:\n\n- RUNNING\n - SUCCESS\n - WARNING\n - ERROR\n - PAUSED \u2014 the execution is parked (interrupted) and waiting to resume ",
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdExecutionsByExecutionId200ResponseStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "RUNNING",
+              "name": "Running"
+            },
+            {
+              "value": "SUCCESS",
+              "name": "Success"
+            },
+            {
+              "value": "WARNING",
+              "name": "Warning"
+            },
+            {
+              "value": "ERROR",
+              "name": "Error"
+            },
+            {
+              "value": "PAUSED",
+              "name": "Paused"
+            }
+          ]
+        }
+      },
+      "GetScenariosByScenarioIdExecutionsByExecutionId200ResponseInterruptReason": {
+        "enum": [
+          "sleep",
+          "hitl"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Only present when \u0060status\u0060 is \u0060PAUSED\u0060: why the execution parked. \u0060sleep\u0060 = a timed wait (has \u0060resumeAt\u0060); \u0060hitl\u0060 = waiting for human input (no \u0060resumeAt\u0060).",
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdExecutionsByExecutionId200ResponseInterruptReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "sleep",
+              "name": "Sleep"
+            },
+            {
+              "value": "hitl",
+              "name": "Hitl"
+            }
+          ]
+        }
+      },
       "Im016Code": {
         "enum": [
           "IM016"
@@ -182459,6 +183505,52 @@
           ]
         }
       },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemInterruptReason": {
+        "enum": [
+          "sleep",
+          "hitl"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Only on a parked row: why the execution parked. \u0060sleep\u0060 = a timed wait (has \u0060resumeAt\u0060); \u0060hitl\u0060 = waiting for human input (no \u0060resumeAt\u0060).",
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemInterruptReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "sleep",
+              "name": "Sleep"
+            },
+            {
+              "value": "hitl",
+              "name": "Hitl"
+            }
+          ]
+        }
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogInterruptReason": {
+        "enum": [
+          "sleep",
+          "hitl"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Only on a parked row: why the execution parked. \u0060sleep\u0060 = a timed wait (has \u0060resumeAt\u0060); \u0060hitl\u0060 = waiting for human input (no \u0060resumeAt\u0060).",
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogInterruptReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "sleep",
+              "name": "Sleep"
+            },
+            {
+              "value": "hitl",
+              "name": "Hitl"
+            }
+          ]
+        }
+      },
       "GetScenariosByScenarioIdLogsByExecutionIdP200ResponseEventsItemKind": {
         "enum": [
           "moduleStart",
@@ -182715,38 +183807,34 @@
           ]
         }
       },
-      "PostScenarioLabelsByLabelIdScenarios200ResponseResultsItemStatus": {
+      "Im013Code": {
         "enum": [
-          "applied",
-          "rejected"
+          "IM013"
         ],
         "type": "string",
         "additionalProperties": false,
+        "description": "Always \u0060IM013\u0060; missing, non-team, and different-team labels are indistinguishable.",
         "x-ms-enum": {
-          "name": "PostScenarioLabelsByLabelIdScenarios200ResponseResultsItemStatus",
+          "name": "Im013Code",
           "modelAsString": false,
           "values": [
             {
-              "value": "applied",
-              "name": "Applied"
-            },
-            {
-              "value": "rejected",
-              "name": "Rejected"
+              "value": "IM013",
+              "name": "Im013"
             }
           ]
         }
       },
-      "PostScenarioLabelsByLabelIdScenarios200ResponseResultsItemCode": {
+      "PostScenarioLabelsAssignScenarios200ResponseRejectedScenariosItemCode": {
         "enum": [
           "IM002",
           "IM301"
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "\u0060IM002\u0060 when a scenario is missing or belongs to another team; \u0060IM301\u0060 for an authorized but trashed scenario in the label\u0027s team.",
+        "description": "\u0060IM002\u0060 when a scenario is missing or belongs to another team; \u0060IM301\u0060 for a trashed scenario in the requested team.",
         "x-ms-enum": {
-          "name": "PostScenarioLabelsByLabelIdScenarios200ResponseResultsItemCode",
+          "name": "PostScenarioLabelsAssignScenarios200ResponseRejectedScenariosItemCode",
           "modelAsString": false,
           "values": [
             {
@@ -182760,38 +183848,16 @@
           ]
         }
       },
-      "DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItemStatus": {
-        "enum": [
-          "removed",
-          "rejected"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItemStatus",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "removed",
-              "name": "Removed"
-            },
-            {
-              "value": "rejected",
-              "name": "Rejected"
-            }
-          ]
-        }
-      },
-      "DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItemCode": {
+      "PostScenarioLabelsUnassignScenarios200ResponseRejectedScenariosItemCode": {
         "enum": [
           "IM002",
           "IM301"
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "\u0060IM002\u0060 when a scenario is missing or belongs to another team; \u0060IM301\u0060 for an authorized but trashed scenario in the label\u0027s team.",
+        "description": "\u0060IM002\u0060 when a scenario is missing or belongs to another team; \u0060IM301\u0060 for a trashed scenario in the requested team.",
         "x-ms-enum": {
-          "name": "DeleteScenarioLabelsByLabelIdScenarios200ResponseResultsItemCode",
+          "name": "PostScenarioLabelsUnassignScenarios200ResponseRejectedScenariosItemCode",
           "modelAsString": false,
           "values": [
             {

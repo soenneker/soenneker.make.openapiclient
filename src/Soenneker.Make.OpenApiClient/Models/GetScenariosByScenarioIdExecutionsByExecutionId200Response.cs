@@ -22,6 +22,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseError Error { get; set; }
 #endif
+        /// <summary>Only present when `status` is `PAUSED`: id of the module that parked the execution.</summary>
+        public int? InterruptModuleId { get; set; }
+        /// <summary>Only present when `status` is `PAUSED`: why the execution parked. `sleep` = a timed wait (has `resumeAt`); `hitl` = waiting for human input (no `resumeAt`).</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseInterruptReason? InterruptReason { get; set; }
         /// <summary>Outputs of the scenario execution. The structure of the outputs depends on the scenario configuration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -30,14 +34,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseOutputs Outputs { get; set; }
 #endif
-        /// <summary>Status of the scenario execution:- RUNNING - SUCCESS - WARNING - ERROR </summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Status { get; set; }
-#nullable restore
-#else
-        public string Status { get; set; }
-#endif
+        /// <summary>Only present when `status` is `PAUSED` and the wait is time-based: the ISO-8601 timestamp the execution is scheduled to resume. Absent for waits on an external signal (e.g. human-in-the-loop).</summary>
+        public DateTimeOffset? ResumeAt { get; set; }
+        /// <summary>Status of the scenario execution:- RUNNING - SUCCESS - WARNING - ERROR - PAUSED — the execution is parked (interrupted) and waiting to resume </summary>
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200Response"/> and sets the default values.
         /// </summary>
@@ -64,8 +64,11 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "error", n => { Error = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseError>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseError.CreateFromDiscriminatorValue); } },
+                { "interruptModuleId", n => { InterruptModuleId = n.GetIntValue(); } },
+                { "interruptReason", n => { InterruptReason = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseInterruptReason>(); } },
                 { "outputs", n => { Outputs = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseOutputs>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseOutputs.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetStringValue(); } },
+                { "resumeAt", n => { ResumeAt = n.GetDateTimeOffsetValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseStatus>(); } },
             };
         }
         /// <summary>
@@ -76,8 +79,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseError>("error", Error);
+            writer.WriteIntValue("interruptModuleId", InterruptModuleId);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseInterruptReason>("interruptReason", InterruptReason);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseOutputs>("outputs", Outputs);
-            writer.WriteStringValue("status", Status);
+            writer.WriteDateTimeOffsetValue("resumeAt", ResumeAt);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
