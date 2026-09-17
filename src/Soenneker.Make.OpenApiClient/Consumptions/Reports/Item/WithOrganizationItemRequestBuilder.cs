@@ -35,9 +35,11 @@ namespace Soenneker.Make.OpenApiClient.Consumptions.Reports.Item
         /// Builds and executes requests for operations under \consumptions\reports\{organizationId}\{teamId}?
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdRequestBuilder"/></returns>
-        public global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdRequestBuilder WithTeamId()
+        /// <param name="teamId">The path parameter: teamId</param>
+        public global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdRequestBuilder WithTeamId(string teamId)
         {
-            return new global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdRequestBuilder(PathParameters, RequestAdapter);
+            if(string.IsNullOrEmpty(teamId)) throw new ArgumentNullException(nameof(teamId));
+            return new global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdRequestBuilder(PathParameters, RequestAdapter, teamId);
         }
     }
 }

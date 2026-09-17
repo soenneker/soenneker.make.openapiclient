@@ -21,8 +21,10 @@ namespace Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTeamIdRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/consumptions/reports/{organizationId}/{teamId}?", pathParameters)
+        /// <param name="teamId">The path parameter: teamId</param>
+        public WithTeamIdRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter, string teamId = "") : base(requestAdapter, "{+baseurl}/consumptions/reports/{organizationId}/{teamId}?", pathParameters)
         {
+            if (!string.IsNullOrWhiteSpace(teamId)) PathParameters.Add("teamId", teamId);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdRequestBuilder"/> and sets the default values.

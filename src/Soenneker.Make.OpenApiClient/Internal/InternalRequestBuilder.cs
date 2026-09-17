@@ -10,6 +10,7 @@ using Soenneker.Make.OpenApiClient.Internal.Hooks;
 using Soenneker.Make.OpenApiClient.Internal.Organizations;
 using Soenneker.Make.OpenApiClient.Internal.PrivateSpaces;
 using Soenneker.Make.OpenApiClient.Internal.Scenarios;
+using Soenneker.Make.OpenApiClient.Internal.Sdk;
 using Soenneker.Make.OpenApiClient.Internal.Settings;
 using Soenneker.Make.OpenApiClient.Internal.Teams;
 using Soenneker.Make.OpenApiClient.Internal.Users;
@@ -65,6 +66,11 @@ namespace Soenneker.Make.OpenApiClient.Internal
         public global::Soenneker.Make.OpenApiClient.Internal.Scenarios.ScenariosRequestBuilder Scenarios
         {
             get => new global::Soenneker.Make.OpenApiClient.Internal.Scenarios.ScenariosRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The sdk property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Sdk.SdkRequestBuilder Sdk
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Sdk.SdkRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The settings property</summary>
         public global::Soenneker.Make.OpenApiClient.Internal.Settings.SettingsRequestBuilder Settings

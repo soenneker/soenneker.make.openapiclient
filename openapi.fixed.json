@@ -6398,6 +6398,14 @@
               "type": "string"
             },
             "example": "c37c7292-35cd-4dc4-9113-21b23beaea7d"
+          },
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -12091,37 +12099,7 @@
                                     "put",
                                     "patch",
                                     "delete"
-                                  ],
-                                  "x-ms-enum": {
-                                    "name": "GeneratedEnum",
-                                    "modelAsString": false,
-                                    "values": [
-                                      {
-                                        "value": "get",
-                                        "name": "Get"
-                                      },
-                                      {
-                                        "value": "head",
-                                        "name": "Head"
-                                      },
-                                      {
-                                        "value": "post",
-                                        "name": "Post"
-                                      },
-                                      {
-                                        "value": "put",
-                                        "name": "Put"
-                                      },
-                                      {
-                                        "value": "patch",
-                                        "name": "Patch"
-                                      },
-                                      {
-                                        "value": "delete",
-                                        "name": "Delete"
-                                      }
-                                    ]
-                                  }
+                                  ]
                                 }
                               },
                               {
@@ -12177,25 +12155,7 @@
                                     "raw",
                                     "x_www_form_urlencoded",
                                     "multipart_form_data"
-                                  ],
-                                  "x-ms-enum": {
-                                    "name": "GeneratedEnum",
-                                    "modelAsString": false,
-                                    "values": [
-                                      {
-                                        "value": "raw",
-                                        "name": "Raw"
-                                      },
-                                      {
-                                        "value": "x_www_form_urlencoded",
-                                        "name": "XWwwFormUrlencoded"
-                                      },
-                                      {
-                                        "value": "multipart_form_data",
-                                        "name": "MultipartFormData"
-                                      }
-                                    ]
-                                  }
+                                  ]
                                 }
                               },
                               {
@@ -12488,37 +12448,7 @@
                                     "put",
                                     "patch",
                                     "delete"
-                                  ],
-                                  "x-ms-enum": {
-                                    "name": "GeneratedEnum",
-                                    "modelAsString": false,
-                                    "values": [
-                                      {
-                                        "value": "get",
-                                        "name": "Get"
-                                      },
-                                      {
-                                        "value": "head",
-                                        "name": "Head"
-                                      },
-                                      {
-                                        "value": "post",
-                                        "name": "Post"
-                                      },
-                                      {
-                                        "value": "put",
-                                        "name": "Put"
-                                      },
-                                      {
-                                        "value": "patch",
-                                        "name": "Patch"
-                                      },
-                                      {
-                                        "value": "delete",
-                                        "name": "Delete"
-                                      }
-                                    ]
-                                  }
+                                  ]
                                 }
                               },
                               {
@@ -12574,25 +12504,7 @@
                                     "raw",
                                     "x_www_form_urlencoded",
                                     "multipart_form_data"
-                                  ],
-                                  "x-ms-enum": {
-                                    "name": "GeneratedEnum",
-                                    "modelAsString": false,
-                                    "values": [
-                                      {
-                                        "value": "raw",
-                                        "name": "Raw"
-                                      },
-                                      {
-                                        "value": "x_www_form_urlencoded",
-                                        "name": "XWwwFormUrlencoded"
-                                      },
-                                      {
-                                        "value": "multipart_form_data",
-                                        "name": "MultipartFormData"
-                                      }
-                                    ]
-                                  }
+                                  ]
                                 }
                               },
                               {
@@ -13081,6 +12993,271 @@
           {
             "token": [
               "dlqs:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/imt-forms/endpoints/{app}/{version}/{endpoint}": {
+      "get": {
+        "tags": [
+          "Endpoints"
+        ],
+        "summary": "Get an Endpoint input form",
+        "description": "Returns an IMT Form for testing an SDK (\u0060app#name\u0060) or native app Endpoint.\nRequires TEAM_VIEW for the supplied team (ORGANIZATION_VIEW for admin requests),\nruntime app access for SDK apps, and the endpoint-execution feature flag.\nNative endpoints are resolved directly, including private and deprecated definitions.\nSDK authors see pending input, attached-account and scope edits; other callers see published values.\n\nThe required \u0060connectionId\u0060 account field is omitted when there are no attached accounts.\nIts \u0060options.scope\u0060 maps each resolved account type (including SDK aliases) to that endpoint\u0027s\nrequired OAuth scopes. Native account types can require different scopes. Connection-default\nscope injection remains in the existing connection backend flow.\n\n\u0060input.spec\u0060 contains the endpoint input fields, expanded from JSON Schema where supported,\nand is always present, including when empty. Hidden fields preserve the execution coordinates\nand authorized team. Version lookup and submission use the numeric major version.\nThe Test button submits the complete JSON values directly to POST /endpoints/execute,\nwithout an RPC data wrapper. The response omits multipart because this form uses JSON.\n",
+        "operationId": "GetEndpointInputForm",
+        "parameters": [
+          {
+            "name": "app",
+            "in": "path",
+            "description": "Native package name or SDK name prefixed with app# (URL-encode the hash). App names can contain up to 37 characters, including the generated suffix.",
+            "required": true,
+            "schema": {
+              "maxLength": 41,
+              "minLength": 3,
+              "pattern": "^(app#)?[a-z][0-9a-z-]{1,35}[0-9a-z]$",
+              "type": "string"
+            },
+            "examples": {
+              "connected": {
+                "value": "app#example"
+              },
+              "no-account": {
+                "value": "example"
+              }
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "Major or full numeric version without leading zeros in any component; the major must be a positive integer no greater than 32767 (the database smallint limit).",
+            "required": true,
+            "schema": {
+              "pattern": "^[1-9][0-9]*(?:\\.(?:0|[1-9][0-9]*)){0,2}$",
+              "type": "string"
+            },
+            "examples": {
+              "connected": {
+                "value": "1.2.3"
+              },
+              "no-account": {
+                "value": "1"
+              }
+            }
+          },
+          {
+            "name": "endpoint",
+            "in": "path",
+            "description": "Endpoint name.",
+            "required": true,
+            "schema": {
+              "maxLength": 128,
+              "minLength": 3,
+              "pattern": "^[a-zA-Z][0-9a-zA-Z]{1,126}[0-9a-zA-Z]$",
+              "type": "string"
+            },
+            "examples": {
+              "connected": {
+                "value": "listItems"
+              },
+              "no-account": {
+                "value": "ping"
+              }
+            }
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "Team authorized for the subsequent execution.",
+            "required": true,
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "connected": {
+                "value": 123
+              },
+              "no-account": {
+                "value": 123
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Endpoint input form.",
+            "headers": {
+              "imt-remote-formula": {
+                "description": "Identifies an IMT Form response.",
+                "schema": {
+                  "enum": [
+                    "1"
+                  ],
+                  "type": "string",
+                  "additionalProperties": false,
+                  "x-ms-enum": {
+                    "name": "ImtRemoteFormula",
+                    "modelAsString": false,
+                    "values": [
+                      {
+                        "value": "1",
+                        "name": "Value1"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetEndpointInputForm200Response"
+                },
+                "examples": {
+                  "connected": {
+                    "value": {
+                      "config": [
+                        {
+                          "name": "connectionId",
+                          "type": "account:app#example",
+                          "label": "{{!apps.forms.connection}}",
+                          "required": true,
+                          "options": {
+                            "scope": {
+                              "app#example": [
+                                "items.read"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "name": "input",
+                          "type": "collection",
+                          "label": "Input",
+                          "spec": [
+                            {
+                              "name": "limit",
+                              "type": "number"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "appName",
+                          "type": "hidden",
+                          "default": "app#example"
+                        },
+                        {
+                          "name": "appVersion",
+                          "type": "hidden",
+                          "default": 1
+                        },
+                        {
+                          "name": "endpointName",
+                          "type": "hidden",
+                          "default": "listItems"
+                        },
+                        {
+                          "name": "teamId",
+                          "type": "hidden",
+                          "default": 123
+                        }
+                      ],
+                      "values": {
+                        "appName": "app#example",
+                        "appVersion": 1,
+                        "endpointName": "listItems",
+                        "teamId": 123
+                      },
+                      "buttons": [
+                        {
+                          "label": "{{!common.close}}",
+                          "action": "close"
+                        },
+                        {
+                          "label": "{{!common.test}}",
+                          "action": "http",
+                          "method": "POST",
+                          "address": "/endpoints/execute"
+                        }
+                      ]
+                    }
+                  },
+                  "no-account": {
+                    "value": {
+                      "config": [
+                        {
+                          "name": "input",
+                          "type": "collection",
+                          "label": "Input",
+                          "spec": []
+                        },
+                        {
+                          "name": "appName",
+                          "type": "hidden",
+                          "default": "example"
+                        },
+                        {
+                          "name": "appVersion",
+                          "type": "hidden",
+                          "default": 1
+                        },
+                        {
+                          "name": "endpointName",
+                          "type": "hidden",
+                          "default": "ping"
+                        },
+                        {
+                          "name": "teamId",
+                          "type": "hidden",
+                          "default": 123
+                        }
+                      ],
+                      "values": {
+                        "appName": "example",
+                        "appVersion": 1,
+                        "endpointName": "ping",
+                        "teamId": 123
+                      },
+                      "buttons": [
+                        {
+                          "label": "{{!common.close}}",
+                          "action": "close"
+                        },
+                        {
+                          "label": "{{!common.test}}",
+                          "action": "http",
+                          "method": "POST",
+                          "address": "/endpoints/execute"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid coordinates or teamId, or the SDK endpoint does not exist (IM005)."
+          },
+          "401": {
+            "description": "Authentication or the imt-forms:read token scope is missing."
+          },
+          "403": {
+            "description": "The caller lacks team permission or SDK app access, or the SDK app does not exist."
+          },
+          "404": {
+            "description": "The native app endpoint does not exist (IM013)."
+          },
+          "501": {
+            "description": "Endpoint execution is not enabled on this environment."
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "imt-forms:read"
             ]
           }
         ]
@@ -21081,6 +21258,176 @@
         }
       }
     },
+    "/internal/sdk/apps/{appName}/{appVersion}/access": {
+      "get": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Check whether an SDK app version is installed in an organization",
+        "description": "Reports whether the SDK app version has an \u0060apps.access\u0060 row for the organization \u2014 the runtime gate the Executor checks before running one of the app\u0027s Endpoints, because that execution is billed to this organization.\n\nDeliberately stricter than the \u0060apps.app_check_access\u0060 routine used elsewhere: authorship of the app, its \u0060opensource\u0060 flag and admin rights all grant no pass. Only an explicit installation in this organization counts.\n\nA missing installation is reported as \u0060installed: false\u0060 with a \u0060200\u0060, not a \u0060403\u0060 \u2014 the caller owns the resulting status and message, which is what lets the Executor name both the app and the organization in its own error.\n\nThe organization\u0027s deletion state is **not** checked: \u0060apps.access\u0060 keeps its row when an organization is soft-deleted, so a caller that cares must check that separately.\n",
+        "operationId": "GetInternalSdkAppsByAppNameByAppVersionAccess",
+        "parameters": [
+          {
+            "name": "appName",
+            "in": "path",
+            "description": "The app\u0027s bare name, without the \u0060app#\u0060 prefix \u2014 same as the sibling \u0060/internal/sdk/apps/...\u0060 routes. The 37-character bound covers the 30-character base name plus the \u0060-xxxxxx\u0060 suffix \u0060apps.app_add\u0060 appends for authors without the \u0060allow_apps\u0060 feature.\n",
+            "required": true,
+            "schema": {
+              "maxLength": 37,
+              "minLength": 3,
+              "pattern": "^[a-z][0-9a-z-]\u002B[0-9a-z]$",
+              "type": "string"
+            },
+            "examples": {
+              "installed": {
+                "summary": "App installed in the organization",
+                "value": "my-custom-app"
+              },
+              "suffixed": {
+                "summary": "App whose name carries the generated suffix",
+                "value": "my-custom-app-a1b2c3"
+              },
+              "not-installed": {
+                "summary": "App not installed in the organization",
+                "value": "someone-elses-app"
+              }
+            }
+          },
+          {
+            "name": "appVersion",
+            "in": "path",
+            "description": "The app\u0027s major version. Installations are tracked per version.",
+            "required": true,
+            "schema": {
+              "maximum": 32767,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "installed": {
+                "summary": "Installed version",
+                "value": 1
+              },
+              "suffixed": {
+                "summary": "Installed version",
+                "value": 1
+              },
+              "not-installed": {
+                "summary": "Version that is not installed",
+                "value": 1
+              }
+            }
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "description": "The organization the execution is billed to.",
+            "required": true,
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "installed": {
+                "summary": "Organization holding the access row",
+                "value": 1234
+              },
+              "suffixed": {
+                "summary": "Organization holding the access row",
+                "value": 1234
+              },
+              "not-installed": {
+                "summary": "Organization without an access row for this app",
+                "value": 5678
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Check completed (the app may or may not be installed).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionAccess200Response"
+                },
+                "examples": {
+                  "installed": {
+                    "summary": "App is installed in the organization",
+                    "value": {
+                      "access": {
+                        "installed": true
+                      }
+                    }
+                  },
+                  "suffixed": {
+                    "summary": "Suffixed app name is installed in the organization",
+                    "value": {
+                      "access": {
+                        "installed": true
+                      }
+                    }
+                  },
+                  "not-installed": {
+                    "summary": "App is not installed in the organization",
+                    "value": {
+                      "access": {
+                        "installed": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\u0060appName\u0060 exceeds 37 characters, \u0060appVersion\u0060 is outside 1-32767, or \u0060organizationId\u0060 is missing or outside 1-2147483647. A malformed \u0060appName\u0060 or non-numeric \u0060appVersion\u0060 doesn\u0027t match this route at all and is handled elsewhere in the routing chain, not by this endpoint.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionAccess400Response"
+                },
+                "examples": {
+                  "invalid-version": {
+                    "summary": "App version exceeds the PostgreSQL smallint limit",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "suberrors": [
+                        {
+                          "name": "ValidationError",
+                          "message": "Expected integer to be less or equal to 32767"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid ISC authorization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionAccess401Response"
+                },
+                "examples": {
+                  "missing-authorization": {
+                    "summary": "Request has no ISC authorization",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/keys": {
       "get": {
         "tags": [
@@ -28290,6 +28637,9 @@
           },
           "403": {
             "description": "The draft being promoted places a locked connection or key the user is not allowed to use (\u0060IM002\u0060, placement guard). Returned only when locked-entities enforcement is enabled for the organization; a draft whose frozen modules are unchanged against the live blueprint passes.\n"
+          },
+          "409": {
+            "description": "The scenario was modified concurrently between the placement-guard check and the promotion (\u0060SC409\u0060) \u2014 typically the draft was rewritten after it was checked. Nothing was published; retry the request. Returned only when locked-entities enforcement is enabled for the organization, since only then is the publish serialised against other writes to the scenario.\n"
           }
         },
         "security": [
@@ -29899,6 +30249,16 @@
         "summary": "Create scenario note",
         "description": "Creates a new scenario note with data passed in the request body. As the response, it returns all details of the created scenario note.",
         "operationId": "PostScenariosByScenarioIdNotes",
+        "parameters": [
+          {
+            "name": "scenarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -36413,6 +36773,14 @@
           },
           {
             "name": "sdkModuleName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sdkModuleSection",
             "in": "path",
             "required": true,
             "schema": {
@@ -49611,6 +49979,24 @@
         "summary": "Get consumption list",
         "description": "List consumption reports for specified time range and organization. Endpoint is proxy for the Pacman API. Documentation is available at https://github.com/integromat/make-pacman/blob/master/openapi/openapi.json",
         "operationId": "GetConsumptionsReportsByOrganizationIdTeamId",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "teamId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Default",
@@ -97185,6 +97571,31 @@
           }
         }
       },
+      "GetEndpointInputForm200Response": {
+        "required": [
+          "config",
+          "values",
+          "buttons"
+        ],
+        "type": "object",
+        "properties": {
+          "config": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetEndpointInputForm200ResponseConfigItem"
+            }
+          },
+          "values": {
+            "$ref": "#/components/schemas/GetEndpointInputForm200ResponseValues"
+          },
+          "buttons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetEndpointInputForm200ResponseButtonsItem"
+            }
+          }
+        }
+      },
       "PostEndpointsExecuteRequest": {
         "required": [
           "appName",
@@ -97195,11 +97606,11 @@
         "type": "object",
         "properties": {
           "appName": {
-            "maxLength": 38,
+            "maxLength": 43,
             "minLength": 3,
-            "pattern": "^(app(#|%23))?[a-z][0-9a-z-]{1,30}[0-9a-z]$",
+            "pattern": "^(app(#|%23))?[a-z][0-9a-z-]{1,35}[0-9a-z]$",
             "type": "string",
-            "description": "Name of the App from which the Endpoint should be executed."
+            "description": "App name (up to 37 characters, including a generated suffix), optionally prefixed with app# or app%23."
           },
           "appVersion": {
             "minimum": 0,
@@ -98700,6 +99111,50 @@
           "message": {
             "type": "string",
             "example": "Only the Web Streamer can check entity placements remotely."
+          }
+        }
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionAccess200Response": {
+        "type": "object",
+        "properties": {
+          "access": {
+            "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionAccess200ResponseAccess"
+          }
+        }
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionAccess400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/Sc400Code"
+          },
+          "message": {
+            "type": "string"
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionAccess400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionAccess401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/Im001Code"
+          },
+          "message": {
+            "type": "string"
           }
         }
       },
@@ -145119,6 +145574,35 @@
           }
         }
       },
+      "GetEndpointInputForm200ResponseConfigItem": {
+        "type": "object"
+      },
+      "GetEndpointInputForm200ResponseValues": {
+        "required": [
+          "appName",
+          "appVersion",
+          "endpointName",
+          "teamId"
+        ],
+        "type": "object",
+        "properties": {
+          "appName": {
+            "type": "string"
+          },
+          "appVersion": {
+            "type": "integer"
+          },
+          "endpointName": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "integer"
+          }
+        }
+      },
+      "GetEndpointInputForm200ResponseButtonsItem": {
+        "type": "object"
+      },
       "PostEndpointsExecuteRequestInput": {
         "type": "object",
         "description": "Object containing input values of the Endpoint."
@@ -146613,6 +147097,30 @@
             "items": {
               "$ref": "#/components/schemas/PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem"
             }
+          }
+        }
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionAccess200ResponseAccess": {
+        "type": "object",
+        "properties": {
+          "installed": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 only when an \u0060apps.access\u0060 row exists for this app name, app version and organization.\n"
+          }
+        }
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionAccess400ResponseSuberrorsItem": {
+        "required": [
+          "name",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
           }
         }
       },
@@ -179691,6 +180199,40 @@
             {
               "value": "multiselect",
               "name": "Multiselect"
+            }
+          ]
+        }
+      },
+      "Sc400Code": {
+        "enum": [
+          "SC400"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "Sc400Code",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "SC400",
+              "name": "Sc400"
+            }
+          ]
+        }
+      },
+      "Im001Code": {
+        "enum": [
+          "IM001"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "Im001Code",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "IM001",
+              "name": "Im001"
             }
           ]
         }

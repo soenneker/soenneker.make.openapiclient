@@ -31,6 +31,7 @@ using Soenneker.Make.OpenApiClient.Functions;
 using Soenneker.Make.OpenApiClient.Hooks;
 using Soenneker.Make.OpenApiClient.Hq;
 using Soenneker.Make.OpenApiClient.Imt;
+using Soenneker.Make.OpenApiClient.ImtForms;
 using Soenneker.Make.OpenApiClient.Internal;
 using Soenneker.Make.OpenApiClient.Keys;
 using Soenneker.Make.OpenApiClient.Login;
@@ -188,6 +189,11 @@ namespace Soenneker.Make.OpenApiClient
         public global::Soenneker.Make.OpenApiClient.Imt.ImtRequestBuilder Imt
         {
             get => new global::Soenneker.Make.OpenApiClient.Imt.ImtRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The imtForms property</summary>
+        public global::Soenneker.Make.OpenApiClient.ImtForms.ImtFormsRequestBuilder ImtForms
+        {
+            get => new global::Soenneker.Make.OpenApiClient.ImtForms.ImtFormsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The internal property</summary>
         public global::Soenneker.Make.OpenApiClient.Internal.InternalRequestBuilder Internal
