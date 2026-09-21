@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Owners;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -18,6 +19,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class GithubRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The owners property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Owners.OwnersRequestBuilder Owners
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Owners.OwnersRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.sdk.apps.item.item.github.item collection</summary>
         /// <param name="position">ID of the GitHub binding.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.WithSdkGithubBindingItemRequestBuilder"/></returns>
@@ -65,7 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Binds the app version to a GitHub repository through a Make GitHub connection. When the repository does not exist yet under the connection&apos;s GitHub user, a clean private repository is created (initialized with GitHub&apos;s default README only — no app source is pushed; content sync is a separate flow). GitHub&apos;s response is authoritative for the stored `owner`, `repoUrl`, `defaultBranch` and `private` values — the optional request fields of the same names are hints only. Re-binding the same `(connection, owner/repo, branch)` combination updates the existing binding instead of failing. Requires a connection whose provider is GitHub, otherwise responds with `400`. Only the app&apos;s author (or an administrator) may create bindings.
+        /// Binds the app version to a GitHub repository through a Make GitHub connection. When the repository does not exist yet, a clean private repository is created under the selected `owner` — the connection&apos;s own account or one of its organizations (see the owners endpoint) — initialized with GitHub&apos;s default README only (no app source is pushed; content sync is a separate flow). GitHub&apos;s response is authoritative for the stored `owner`, `repoUrl`, `defaultBranch` and `private` values. Re-binding the same `(connection, owner/repo, branch)` combination updates the existing binding instead of failing. Requires a connection whose provider is GitHub, otherwise responds with `400`. Only the app&apos;s author (or an administrator) may create bindings.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithub200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -109,7 +115,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github
             return requestInfo;
         }
         /// <summary>
-        /// Binds the app version to a GitHub repository through a Make GitHub connection. When the repository does not exist yet under the connection&apos;s GitHub user, a clean private repository is created (initialized with GitHub&apos;s default README only — no app source is pushed; content sync is a separate flow). GitHub&apos;s response is authoritative for the stored `owner`, `repoUrl`, `defaultBranch` and `private` values — the optional request fields of the same names are hints only. Re-binding the same `(connection, owner/repo, branch)` combination updates the existing binding instead of failing. Requires a connection whose provider is GitHub, otherwise responds with `400`. Only the app&apos;s author (or an administrator) may create bindings.
+        /// Binds the app version to a GitHub repository through a Make GitHub connection. When the repository does not exist yet, a clean private repository is created under the selected `owner` — the connection&apos;s own account or one of its organizations (see the owners endpoint) — initialized with GitHub&apos;s default README only (no app source is pushed; content sync is a separate flow). GitHub&apos;s response is authoritative for the stored `owner`, `repoUrl`, `defaultBranch` and `private` values. Re-binding the same `(connection, owner/repo, branch)` combination updates the existing binding instead of failing. Requires a connection whose provider is GitHub, otherwise responds with `400`. Only the app&apos;s author (or an administrator) may create bindings.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

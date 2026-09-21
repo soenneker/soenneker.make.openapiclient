@@ -67,7 +67,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/logout": {
@@ -92,7 +93,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/sso/authorize": {
@@ -141,7 +143,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/sso/login": {
@@ -188,7 +191,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/admin/teams": {
@@ -296,7 +300,8 @@
               "teams:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       },
       "post": {
         "tags": [
@@ -352,7 +357,8 @@
               "teams:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/teams/{teamId}": {
@@ -414,7 +420,8 @@
               "teams:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       },
       "delete": {
         "tags": [
@@ -457,7 +464,8 @@
               "teams:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/organizations": {
@@ -700,7 +708,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       },
       "post": {
         "tags": [
@@ -855,7 +864,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/organizations/lookup": {
@@ -946,7 +956,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/organizations/{organizationId}": {
@@ -1122,7 +1133,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       },
       "delete": {
         "tags": [
@@ -1165,7 +1177,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/organizations/{organizationId}/billing-audit-logs": {
@@ -1297,7 +1310,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/admin/organizations/{organizationId}/universal-discount-options": {
@@ -1336,6 +1350,7 @@
                       "value": "GRANDFATHERED_PRICE",
                       "forceActivateImmediately": false,
                       "defaultBannerText": null,
+                      "defaultPostClaimText": null,
                       "defaultPercentOff": null
                     },
                     {
@@ -1343,6 +1358,7 @@
                       "value": "SOME_OTHER_DISCOUNT",
                       "forceActivateImmediately": true,
                       "defaultBannerText": "Special discount offer!",
+                      "defaultPostClaimText": "Your discount is now active!",
                       "defaultPercentOff": 20
                     }
                   ]
@@ -1358,7 +1374,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/admin/organizations/{organizationId}/assign-universal-discount": {
@@ -1394,7 +1411,8 @@
                 "activateImmediately": false,
                 "redeemUntil": "2024-12-31",
                 "durationInMonths": 12,
-                "bannerText": "Special offer just for you!"
+                "bannerText": "Special offer just for you!",
+                "postClaimText": "Your discount is now active!"
               }
             }
           },
@@ -1422,7 +1440,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/admin/organizations/{organizationId}/universal-discount": {
@@ -1467,7 +1486,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/admin/experiments/organization/{organizationId}": {
@@ -1524,7 +1544,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/admin/install/apps/{app}/logs": {
@@ -1595,7 +1616,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/apps/{app}/installation-history": {
@@ -1698,7 +1720,8 @@
               "apps:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/sdk/app-review/categories": {
@@ -1927,7 +1950,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/sdk/apps/{app}/connections/{connection}/rename": {
@@ -2067,7 +2091,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/sdk/apps/{app}/webhooks/{webhook}/rename": {
@@ -2219,7 +2244,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/users-detail": {
@@ -2403,7 +2429,8 @@
               "user:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/users": {
@@ -2648,7 +2675,8 @@
               "user:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       },
       "post": {
         "tags": [
@@ -2757,7 +2785,8 @@
               "user:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/users/lookup": {
@@ -2851,7 +2880,8 @@
               "user:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/users/{userId}": {
@@ -2928,7 +2958,8 @@
               "user:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       },
       "delete": {
         "tags": [
@@ -2989,7 +3020,8 @@
               "users:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/users/{userId}/user-organization-roles/{organizationId}": {
@@ -3159,7 +3191,8 @@
               "users:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/users/{userId}/user-organization-roles/{organizationId}/transfer": {
@@ -3227,7 +3260,8 @@
               "user:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/users/{userId}/user-team-roles/{teamId}": {
@@ -3352,7 +3386,8 @@
               "users:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/users/admins-roles": {
@@ -3472,7 +3507,8 @@
               "admin:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/users/{userId}/affiliate/stats": {
@@ -3572,7 +3608,8 @@
               "user:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/users/{userId}/affiliate/commission-info": {
@@ -3659,7 +3696,8 @@
               "user:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/users/{userId}/affiliate/commissions": {
@@ -3825,7 +3863,8 @@
               "user:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/system-settings/{key}": {
@@ -3867,7 +3906,8 @@
               "admin:write"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/admin/system-settings/default-license": {
@@ -3919,7 +3959,8 @@
               "system:read"
             ]
           }
-        ]
+        ],
+        "x-private": true
       }
     },
     "/agents": {
@@ -4995,7 +5036,8 @@
               "keys:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/ai-browser/context-setups/{setupId}": {
@@ -5057,7 +5099,8 @@
               "keys:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "delete": {
         "tags": [
@@ -5116,7 +5159,8 @@
               "keys:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/ai-browser/context-setups/{setupId}/complete": {
@@ -5184,7 +5228,8 @@
               "keys:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/ai-browser/contexts/{keyId}/refresh-setups": {
@@ -5249,7 +5294,8 @@
               "keys:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/ai-error-analysis": {
@@ -5314,7 +5360,8 @@
               "scenarios:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/affiliate/partner-register": {
@@ -6814,7 +6861,8 @@
               }
             }
           }
-        }
+        },
+        "x-private": true
       }
     },
     "/cashier/prices/{priceId}": {
@@ -13260,7 +13308,8 @@
               "imt-forms:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/endpoints/execute": {
@@ -13357,7 +13406,8 @@
               "endpoints:run"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/execution-capacity/{organizationId}": {
@@ -13474,7 +13524,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/execution-capacity/{organizationId}/live": {
@@ -13534,7 +13585,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/enums/module-types": {
@@ -19419,7 +19471,8 @@
               "apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/imt/apps-meta": {
@@ -19515,7 +19568,8 @@
               "apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/imt/endpoints-usable": {
@@ -19615,7 +19669,8 @@
               "apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/imt/apps/{name}/{version}/modules-with-credentials": {
@@ -19809,7 +19864,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/organizations/{organizationId}/paused": {
@@ -19843,7 +19899,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/organizations/{organizationId}/internal-organization": {
@@ -19880,7 +19937,8 @@
           "404": {
             "description": "Organization not found"
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/scenarios/{scenarioId}/credentials": {
@@ -19934,7 +19992,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/devices/enrichments": {
@@ -20024,7 +20083,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/scenarios/executions": {
@@ -20078,7 +20138,8 @@
               "scenarios:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/internal/scenarios/list-for-team": {
@@ -20138,7 +20199,8 @@
           "401": {
             "description": "Missing or invalid ISC authentication."
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/users/{userId}/features": {
@@ -20193,7 +20255,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/users/lookup-by-email": {
@@ -20250,7 +20313,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/v2/auth/browser-session": {
@@ -20293,7 +20357,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/settings": {
@@ -20336,7 +20401,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/config/runtime": {
@@ -20358,7 +20424,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/private-spaces/lookup": {
@@ -20454,7 +20521,8 @@
           "401": {
             "description": "Missing or invalid ISC authorization."
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/teams/{teamId}/connections": {
@@ -20512,7 +20580,8 @@
           "422": {
             "description": "Connection was created but failed verification \u2014 the connection has been deleted."
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/teams/{teamId}/connections/exists": {
@@ -20597,7 +20666,8 @@
           "401": {
             "description": "Missing or invalid ISC authorization."
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/teams/{teamId}/paused": {
@@ -20631,7 +20701,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/data-structures/{dataStructureId}": {
@@ -20672,7 +20743,8 @@
           "404": {
             "description": "Data structure not found."
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/hooks/register": {
@@ -20768,7 +20840,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/hooks/{hookId}/data": {
@@ -20874,7 +20947,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/hooks/{hookId}/uid": {
@@ -20985,7 +21059,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/hooks/{hookId}/unregister": {
@@ -21091,7 +21166,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/entity-placements/check": {
@@ -21255,7 +21331,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/internal/sdk/apps/{appName}/{appVersion}/access": {
@@ -21425,7 +21502,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/keys": {
@@ -22599,7 +22677,8 @@
             }
           }
         },
-        "deprecated": true
+        "deprecated": true,
+        "x-internal": true
       },
       "get": {
         "tags": [
@@ -22631,7 +22710,8 @@
           "302": {
             "description": "Redirect to connection\u0027s authorization page"
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/oauth/reauth/{connectionId}": {
@@ -22689,7 +22769,8 @@
             }
           }
         },
-        "deprecated": true
+        "deprecated": true,
+        "x-internal": true
       },
       "get": {
         "tags": [
@@ -22721,7 +22802,8 @@
           "302": {
             "description": "Redirect to connection authorization page"
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/oauth/extend/{connectionId}": {
@@ -22761,7 +22843,8 @@
             }
           }
         },
-        "deprecated": true
+        "deprecated": true,
+        "x-internal": true
       },
       "get": {
         "tags": [
@@ -22798,7 +22881,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/oauth/cb/{connectionType}": {
@@ -22838,7 +22922,8 @@
             }
           }
         },
-        "deprecated": true
+        "deprecated": true,
+        "x-internal": true
       },
       "get": {
         "tags": [
@@ -22860,7 +22945,8 @@
           "302": {
             "description": "Redirect to connection authorization page"
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/oauth/cb/{connectionType}/{connectionId}": {
@@ -22908,7 +22994,8 @@
             }
           }
         },
-        "deprecated": true
+        "deprecated": true,
+        "x-internal": true
       },
       "get": {
         "tags": [
@@ -22938,7 +23025,8 @@
           "302": {
             "description": "Redirect to connection authorization page"
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/oauth/convert/saml-xml-to-json": {
@@ -22970,7 +23058,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/organizations": {
@@ -25019,7 +25108,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/test-clock/advance": {
@@ -25072,7 +25162,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/test-pause-unpause": {
@@ -25113,7 +25204,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/variables": {
@@ -25500,7 +25592,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/usage": {
@@ -25653,7 +25746,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/scenarios/executions/io-data/search": {
@@ -25759,7 +25853,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/scenarios/{scenarioId}/executions/{executionId}/io-data/search": {
@@ -25879,7 +25974,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/scenarios/executions/io-data/counts": {
@@ -25951,7 +26047,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/scenarios/executions/modules/io-data/counts": {
@@ -26019,7 +26116,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/feature-controls": {
@@ -28227,7 +28325,8 @@
               "scenarios:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/scenarios/{scenarioId}/data/{moduleId}": {
@@ -28548,7 +28647,8 @@
               "scenarios:run"
             ]
           }
-        ]
+        ],
+        "x-internal": false
       }
     },
     "/scenarios/replayable-executions/{scenarioId}": {
@@ -28591,7 +28691,8 @@
               "scenarios:run"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/scenarios/{scenarioId}/publish": {
@@ -28648,7 +28749,8 @@
               "scenarios:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/scenarios/{scenarioId}/interface": {
@@ -29006,7 +29108,8 @@
               "scenarios:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "put": {
         "tags": [
@@ -29065,7 +29168,8 @@
               "scenarios:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "delete": {
         "tags": [
@@ -29117,7 +29221,8 @@
               "scenarios:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/scenarios/logs": {
@@ -29209,7 +29314,8 @@
               "scenarios:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/scenarios/{scenarioId}/logs": {
@@ -29723,7 +29829,8 @@
               "scenarios:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/scenarios/{scenarioId}/executions/{executionId}": {
@@ -29981,7 +30088,8 @@
               "scenarios:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/scenarios/{scenarioId}/modules/operations": {
@@ -30669,7 +30777,8 @@
               "scenarios:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/scenarios/{scenarioId}/blueprint": {
@@ -31273,7 +31382,8 @@
               "scenarios:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/scenarios/tools/{scenarioId}": {
@@ -31330,7 +31440,8 @@
               "scenarios:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "patch": {
         "tags": [
@@ -35385,7 +35496,8 @@
               "apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/invites/{sdkAppInviteToken}": {
@@ -37618,7 +37730,8 @@
               "sdk-apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "post": {
         "tags": [
@@ -37780,7 +37893,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/endpoints/{sdkEndpointName}": {
@@ -37865,7 +37979,8 @@
               "sdk-apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "patch": {
         "tags": [
@@ -37982,7 +38097,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "delete": {
         "tags": [
@@ -38062,7 +38178,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/endpoints/{sdkEndpointName}/{sdkEndpointSection}": {
@@ -38131,7 +38248,8 @@
               "sdk-apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "put": {
         "tags": [
@@ -38213,7 +38331,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "post": {
         "tags": [
@@ -38282,7 +38401,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/endpoints/{sdkEndpointName}/clone": {
@@ -38377,7 +38497,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/endpoints/{sdkEndpointName}/consumable": {
@@ -38472,7 +38593,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/endpoints/{sdkEndpointName}/connections": {
@@ -38587,7 +38709,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "delete": {
         "tags": [
@@ -38679,7 +38802,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/functions": {
@@ -39294,14 +39418,15 @@
               "sdk-apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "post": {
         "tags": [
           "SDK Apps / GitHub"
         ],
         "summary": "Create GitHub binding",
-        "description": "Binds the app version to a GitHub repository through a Make GitHub connection. When the repository does not exist yet under the connection\u0027s GitHub user, a clean private repository is created (initialized with GitHub\u0027s default README only \u2014 no app source is pushed; content sync is a separate flow). GitHub\u0027s response is authoritative for the stored \u0060owner\u0060, \u0060repoUrl\u0060, \u0060defaultBranch\u0060 and \u0060private\u0060 values \u2014 the optional request fields of the same names are hints only. Re-binding the same \u0060(connection, owner/repo, branch)\u0060 combination updates the existing binding instead of failing. Requires a connection whose provider is GitHub, otherwise responds with \u0060400\u0060. Only the app\u0027s author (or an administrator) may create bindings.",
+        "description": "Binds the app version to a GitHub repository through a Make GitHub connection. When the repository does not exist yet, a clean private repository is created under the selected \u0060owner\u0060 \u2014 the connection\u0027s own account or one of its organizations (see the owners endpoint) \u2014 initialized with GitHub\u0027s default README only (no app source is pushed; content sync is a separate flow). GitHub\u0027s response is authoritative for the stored \u0060owner\u0060, \u0060repoUrl\u0060, \u0060defaultBranch\u0060 and \u0060private\u0060 values. Re-binding the same \u0060(connection, owner/repo, branch)\u0060 combination updates the existing binding instead of failing. Requires a connection whose provider is GitHub, otherwise responds with \u0060400\u0060. Only the app\u0027s author (or an administrator) may create bindings.",
         "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionGithub",
         "parameters": [
           {
@@ -39420,7 +39545,130 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
+      }
+    },
+    "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/owners": {
+      "get": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "List GitHub owners",
+        "description": "Lists the GitHub owners a new repository can be created under through the given connection: the connection\u0027s own account (\u0060user\u0060) first, followed by every organization its OAuth token can see (\u0060organization\u0060). Listing organizations requires the connection\u0027s token to carry the \u0060read:org\u0060 scope \u2014 connections created before that scope was requested (or tokens lacking it) degrade gracefully to the personal account (plus any public-membership organizations GitHub still returns) instead of failing. Any other GitHub failure fails the call with \u0060424\u0060 rather than returning a shortened owner list. The reachable owners depend on the connection\u0027s token, so \u0060connectionId\u0060 is required. Only the app\u0027s author (or an administrator) may list owners.",
+        "operationId": "GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-github-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "connectionId",
+            "in": "query",
+            "description": "ID of the Make GitHub connection whose reachable owners to list.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 137
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners200Response"
+                },
+                "examples": {
+                  "list-owners": {
+                    "summary": "Personal account plus two organizations",
+                    "value": {
+                      "owners": [
+                        {
+                          "login": "octocat",
+                          "type": "user"
+                        },
+                        {
+                          "login": "acme-inc",
+                          "type": "organization"
+                        },
+                        {
+                          "login": "globex",
+                          "type": "organization"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The connection does not exist or is not a GitHub connection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners400ResponseSchema"
+                },
+                "examples": {
+                  "not-a-github-connection": {
+                    "summary": "Connection is not a GitHub connection",
+                    "value": {
+                      "message": "Connection is not a GitHub connection or does not exist.",
+                      "code": "IM005"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "424": {
+            "description": "GitHub rejected a request or was unreachable (invalid/revoked token, API outage). A \u0060403\u0060 on the organization listing alone is the one exception \u2014 it degrades to the personal account, see the description above.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners424ResponseSchema"
+                },
+                "examples": {
+                  "github-failed": {
+                    "summary": "GitHub call failed",
+                    "value": {
+                      "message": "GitHub API GET /user failed: 401 Bad credentials",
+                      "code": "SC424"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:read"
+            ]
+          }
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/{sdkGithubBindingId}": {
@@ -39538,7 +39786,8 @@
               "sdk-apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "patch": {
         "tags": [
@@ -39691,7 +39940,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "delete": {
         "tags": [
@@ -39762,7 +40012,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/{sdkGithubBindingId}/push": {
@@ -39944,7 +40195,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/{sdkGithubBindingId}/pull": {
@@ -40116,7 +40368,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/{sdkGithubBindingId}/diff": {
@@ -40215,7 +40468,8 @@
               "sdk-apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/{sdkGithubBindingId}/diff/files": {
@@ -40348,7 +40602,8 @@
               "sdk-apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/app-review": {
@@ -40449,7 +40704,8 @@
               "sdk-apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/app-review/form": {
@@ -40601,7 +40857,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/app-review/start": {
@@ -40697,7 +40954,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/app-review/submit": {
@@ -40812,7 +41070,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/app-review/cancel": {
@@ -40916,7 +41175,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/app-review/categories": {
@@ -40992,7 +41252,8 @@
               "sdk-apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/publisher": {
@@ -41045,7 +41306,8 @@
               "sdk-apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "patch": {
         "tags": [
@@ -41128,7 +41390,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/publisher/logo": {
@@ -41175,7 +41438,8 @@
               "sdk-apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "put": {
         "tags": [
@@ -41280,7 +41544,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "delete": {
         "tags": [
@@ -41300,7 +41565,8 @@
               "sdk-apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/connections": {
@@ -42890,7 +43156,8 @@
               "private-spaces:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/users/me/pinned-apps": {
@@ -42930,7 +43197,8 @@
               "apps:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "post": {
         "tags": [
@@ -42970,7 +43238,8 @@
               "apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/users/me/pinned-apps/{appName}": {
@@ -43020,7 +43289,8 @@
               "apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/users/me/pinned-apps/{appName}/modules": {
@@ -43074,7 +43344,8 @@
               "apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/users/me/pinned-apps/{appName}/modules/{moduleName}": {
@@ -43133,7 +43404,8 @@
               "apps:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/teams": {
@@ -44218,7 +44490,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/teams/{teamId}/usage": {
@@ -45048,7 +45321,8 @@
               "keys:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/templates": {
@@ -47290,7 +47564,8 @@
               "user-preferences:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "patch": {
         "tags": [
@@ -47357,7 +47632,8 @@
               "user-preferences:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/users/me/organization-invitations": {
@@ -48974,7 +49250,8 @@
               "user:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/users/{userId}/user-organization-roles": {
@@ -49478,7 +49755,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/users/set-ui-settings": {
@@ -49517,7 +49795,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/mailhub/users/{userId}/preferences": {
@@ -49947,7 +50226,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/hq/sanity-check": {
@@ -49968,7 +50248,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/consumptions/reports/{organizationId}/{teamId}?": {
@@ -50017,7 +50298,8 @@
               "organization:view"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/consumptions/reports/totals/{organizationId}/{teamId}?": {
@@ -50109,7 +50391,8 @@
               "pacman:use"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/outbound-webhooks/organizations/{organizationId}/webhooks": {
@@ -50173,7 +50456,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "post": {
         "tags": [
@@ -50224,7 +50508,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/outbound-webhooks/organizations/{organizationId}/webhooks/{webhookId}": {
@@ -50277,7 +50562,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "patch": {
         "tags": [
@@ -50341,7 +50627,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "delete": {
         "tags": [
@@ -50392,7 +50679,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/outbound-webhooks/organizations/{organizationId}/webhooks/{webhookId}/activate": {
@@ -50448,7 +50736,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/outbound-webhooks/organizations/{organizationId}/webhooks/{webhookId}/deactivate": {
@@ -50504,7 +50793,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     }
   },
@@ -94542,14 +94832,14 @@
           },
           "activateImmediately": {
             "type": "boolean",
-            "description": "Whether to activate the discount immediately",
-            "default": false,
+            "description": "Whether to activate the discount immediately.",
             "example": true
           },
           "redeemUntil": {
             "type": "string",
-            "description": "The date until which the discount can be redeemed",
+            "description": "The date until which the discount can be redeemed. Must not be in the past. Send null for no expiry.",
             "format": "date",
+            "nullable": true,
             "example": "2024-12-31"
           },
           "durationInMonths": {
@@ -94562,7 +94852,15 @@
             "maxLength": 1000,
             "type": "string",
             "description": "Custom banner text for the discount (overrides the type default)",
+            "nullable": true,
             "example": "Special offer just for you!"
+          },
+          "postClaimText": {
+            "maxLength": 1000,
+            "type": "string",
+            "description": "Custom text shown after the discount has been claimed (overrides the type default)",
+            "nullable": true,
+            "example": "Your discount is now active!"
           }
         }
       },
@@ -103528,13 +103826,13 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "Owner hint; the stored owner is taken from GitHub\u0027s response."
+            "description": "Target owner (account or organization) for the bound repository \u2014 the connection\u0027s own account or one of its organizations (see the owners endpoint). When omitted, falls back to the owner parsed from \u0060repoUrl\u0060, then to the connection\u0027s own account. The stored owner is taken from GitHub\u0027s response."
           },
           "repoUrl": {
             "maxLength": 2048,
             "minLength": 1,
             "type": "string",
-            "description": "Repository URL hint; the stored URL is taken from GitHub\u0027s response."
+            "description": "Repository URL. Also resolves the target \u0060owner\u0060 when \u0060owner\u0060 is omitted \u2014 e.g. binding an existing organization repository by its URL. The stored URL is taken from GitHub\u0027s response."
           },
           "branch": {
             "maxLength": 255,
@@ -103567,6 +103865,23 @@
         }
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionGithub400Response": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners200Response": {
+        "type": "object",
+        "properties": {
+          "owners": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners200ResponseOwnersItem"
+            }
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners400Response": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners424Response": {
         "type": "object"
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200Response": {
@@ -137886,6 +138201,12 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionGithub400ResponseSchema": {
         "type": "object"
       },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners400ResponseSchema": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners424ResponseSchema": {
+        "type": "object"
+      },
       "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404ResponseSchema": {
         "type": "object"
       },
@@ -141214,6 +141535,12 @@
           "defaultBannerText": {
             "type": "string",
             "description": "Default banner text for this discount type",
+            "nullable": true,
+            "example": null
+          },
+          "defaultPostClaimText": {
+            "type": "string",
+            "description": "Default post-claim text for this discount type",
             "nullable": true,
             "example": null
           },
@@ -148193,6 +148520,10 @@
             "type": "string",
             "nullable": true
           },
+          "postClaimText": {
+            "type": "string",
+            "nullable": true
+          },
           "redeemUntil": {
             "type": "string",
             "format": "date-time",
@@ -153497,6 +153828,18 @@
         },
         "description": "A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch)."
       },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners200ResponseOwnersItem": {
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string",
+            "description": "GitHub login of the account or organization."
+          },
+          "type": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners200ResponseOwnersItemType"
+          }
+        }
+      },
       "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBinding": {
         "type": "object",
         "properties": {
@@ -154994,6 +155337,7 @@
           "transferLimit": {
             "type": "integer",
             "description": "The transfer limit in bytes derived from the operations limit; \u0060null\u0060 when unlimited.",
+            "format": "int64",
             "nullable": true
           },
           "isPaused": {
@@ -184485,6 +184829,29 @@
             {
               "value": "error",
               "name": "Error"
+            }
+          ]
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners200ResponseOwnersItemType": {
+        "enum": [
+          "user",
+          "organization"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0060user\u0060 for the connection\u0027s own account, \u0060organization\u0060 for an org it belongs to.",
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionGithubOwners200ResponseOwnersItemType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "organization",
+              "name": "Organization"
             }
           ]
         }

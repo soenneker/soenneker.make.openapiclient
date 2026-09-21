@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>Visibility hint; the stored value is taken from GitHub&apos;s response.</summary>
         public bool? IsPrivate { get; set; }
-        /// <summary>Owner hint; the stored owner is taken from GitHub&apos;s response.</summary>
+        /// <summary>Target owner (account or organization) for the bound repository — the connection&apos;s own account or one of its organizations (see the owners endpoint). When omitted, falls back to the owner parsed from `repoUrl`, then to the connection&apos;s own account. The stored owner is taken from GitHub&apos;s response.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Owner { get; set; }
@@ -50,7 +50,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Repo { get; set; }
 #endif
-        /// <summary>Repository URL hint; the stored URL is taken from GitHub&apos;s response.</summary>
+        /// <summary>Repository URL. Also resolves the target `owner` when `owner` is omitted — e.g. binding an existing organization repository by its URL. The stored URL is taken from GitHub&apos;s response.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RepoUrl { get; set; }

@@ -24,6 +24,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>Default discount percentage for this type</summary>
         public double? DefaultPercentOff { get; set; }
+        /// <summary>Default post-claim text for this discount type</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DefaultPostClaimText { get; set; }
+#nullable restore
+#else
+        public string DefaultPostClaimText { get; set; }
+#endif
         /// <summary>Whether this discount type must be activated immediately (not redeemable by users)</summary>
         public bool? ForceActivateImmediately { get; set; }
         /// <summary>Display label for the discount option</summary>
@@ -69,6 +77,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "defaultBannerText", n => { DefaultBannerText = n.GetStringValue(); } },
                 { "defaultPercentOff", n => { DefaultPercentOff = n.GetDoubleValue(); } },
+                { "defaultPostClaimText", n => { DefaultPostClaimText = n.GetStringValue(); } },
                 { "forceActivateImmediately", n => { ForceActivateImmediately = n.GetBoolValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "value", n => { Value = n.GetStringValue(); } },
@@ -83,6 +92,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("defaultBannerText", DefaultBannerText);
             writer.WriteDoubleValue("defaultPercentOff", DefaultPercentOff);
+            writer.WriteStringValue("defaultPostClaimText", DefaultPostClaimText);
             writer.WriteBoolValue("forceActivateImmediately", ForceActivateImmediately);
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("value", Value);

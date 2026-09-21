@@ -13,7 +13,7 @@ namespace Soenneker.Make.OpenApiClient.Models
     public partial class PostAdminOrganizationsByOrganizationIdAssignUniversalDiscountRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Whether to activate the discount immediately</summary>
+        /// <summary>Whether to activate the discount immediately.</summary>
         public bool? ActivateImmediately { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -37,7 +37,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         public int? DurationInMonths { get; set; }
         /// <summary>The percentage off for the discount (1-100)</summary>
         public double? PercentOff { get; set; }
-        /// <summary>The date until which the discount can be redeemed</summary>
+        /// <summary>Custom text shown after the discount has been claimed (overrides the type default)</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PostClaimText { get; set; }
+#nullable restore
+#else
+        public string PostClaimText { get; set; }
+#endif
+        /// <summary>The date until which the discount can be redeemed. Must not be in the past. Send null for no expiry.</summary>
         public Date? RedeemUntil { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminOrganizationsByOrganizationIdAssignUniversalDiscountRequest"/> and sets the default values.
@@ -45,7 +53,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         public PostAdminOrganizationsByOrganizationIdAssignUniversalDiscountRequest()
         {
             AdditionalData = new Dictionary<string, object>();
-            ActivateImmediately = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -70,6 +77,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "discountType", n => { DiscountType = n.GetStringValue(); } },
                 { "durationInMonths", n => { DurationInMonths = n.GetIntValue(); } },
                 { "percentOff", n => { PercentOff = n.GetDoubleValue(); } },
+                { "postClaimText", n => { PostClaimText = n.GetStringValue(); } },
                 { "redeemUntil", n => { RedeemUntil = n.GetDateValue(); } },
             };
         }
@@ -85,6 +93,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("discountType", DiscountType);
             writer.WriteIntValue("durationInMonths", DurationInMonths);
             writer.WriteDoubleValue("percentOff", PercentOff);
+            writer.WriteStringValue("postClaimText", PostClaimText);
             writer.WriteDateValue("redeemUntil", RedeemUntil);
             writer.WriteAdditionalData(AdditionalData);
         }

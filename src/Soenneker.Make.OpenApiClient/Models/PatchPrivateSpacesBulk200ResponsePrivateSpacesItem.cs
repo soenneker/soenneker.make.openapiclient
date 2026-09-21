@@ -29,7 +29,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The operations (credit) limit now in effect; `null` when unlimited.</summary>
         public int? OperationsLimit { get; set; }
         /// <summary>The transfer limit in bytes derived from the operations limit; `null` when unlimited.</summary>
-        public int? TransferLimit { get; set; }
+        public long? TransferLimit { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk200ResponsePrivateSpacesItem"/> and sets the default values.
         /// </summary>
@@ -59,7 +59,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "isPaused", n => { IsPaused = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "operationsLimit", n => { OperationsLimit = n.GetIntValue(); } },
-                { "transferLimit", n => { TransferLimit = n.GetIntValue(); } },
+                { "transferLimit", n => { TransferLimit = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -73,7 +73,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("isPaused", IsPaused);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("operationsLimit", OperationsLimit);
-            writer.WriteIntValue("transferLimit", TransferLimit);
+            writer.WriteLongValue("transferLimit", TransferLimit);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -30,6 +30,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public bool? IsActive { get; set; }
         /// <summary>The percentOff property</summary>
         public double? PercentOff { get; set; }
+        /// <summary>The postClaimText property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PostClaimText { get; set; }
+#nullable restore
+#else
+        public string PostClaimText { get; set; }
+#endif
         /// <summary>The redeemUntil property</summary>
         public DateTimeOffset? RedeemUntil { get; set; }
         /// <summary>The rules property</summary>
@@ -80,6 +88,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "isActive", n => { IsActive = n.GetBoolValue(); } },
                 { "percentOff", n => { PercentOff = n.GetDoubleValue(); } },
+                { "postClaimText", n => { PostClaimText = n.GetStringValue(); } },
                 { "redeemUntil", n => { RedeemUntil = n.GetDateTimeOffsetValue(); } },
                 { "rules", n => { Rules = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdUniversalDiscount200ResponseUniversalDiscountRules>(global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdUniversalDiscount200ResponseUniversalDiscountRules.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
@@ -98,6 +107,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("id", Id);
             writer.WriteBoolValue("isActive", IsActive);
             writer.WriteDoubleValue("percentOff", PercentOff);
+            writer.WriteStringValue("postClaimText", PostClaimText);
             writer.WriteDateTimeOffsetValue("redeemUntil", RedeemUntil);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdUniversalDiscount200ResponseUniversalDiscountRules>("rules", Rules);
             writer.WriteStringValue("type", Type);
