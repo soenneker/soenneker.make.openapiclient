@@ -25816,6 +25816,9 @@
                           },
                           "highlight": [
                             "...,\u0022order_id\u0022:\u0022\u003Cem\u003E12345\u003C/em\u003E\u0022,..."
+                          ],
+                          "matchedFields": [
+                            "IO_DATA"
                           ]
                         }
                       ],
@@ -25939,6 +25942,9 @@
                       },
                       "highlight": [
                         "...,\u0022order_id\u0022:\u0022\u003Cem\u003E12345\u003C/em\u003E\u0022,..."
+                      ],
+                      "matchedFields": [
+                        "IO_DATA"
                       ]
                     }
                   ],
@@ -148915,6 +148921,13 @@
               "type": "string"
             },
             "description": "Snippets from the matched field (\u0060data\u0060, \u0060warning.message\u0060, or \u0060err.message\u0060) that matched \u0060query\u0060, with the matched substring wrapped in \u0060\u003Cem\u003E\u0060 markers. Empty when nothing matched. Snippets are not remapped to per-bundle paths.\n"
+          },
+          "matchedFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMatchedFieldsItem"
+            },
+            "description": "Which field(s) of the record actually matched \u0060query\u0060 \u2014 \u0060IO_DATA\u0060 for the module\u0027s data, \u0060ERROR_MESSAGE\u0060 for an error message, \u0060WARNING_MESSAGE\u0060 for a warning message. This endpoint is already scoped to one execution, so \u0060matchedFields\u0060 never includes an execution-id match.\n"
           }
         }
       },
@@ -161083,6 +161096,13 @@
               "type": "string"
             },
             "description": "Snippets from the matched field (\u0060data\u0060, \u0060warning.message\u0060, or \u0060err.message\u0060) that matched \u0060query\u0060, with the matched substring wrapped in \u0060\u003Cem\u003E\u0060 markers. Empty when nothing matched. Snippets are not remapped to per-bundle paths.\n"
+          },
+          "matchedFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMatchedFieldsItem"
+            },
+            "description": "Which field(s) of the record actually matched \u0060query\u0060 \u2014 \u0060IO_DATA\u0060 for the module\u0027s data, \u0060ERROR_MESSAGE\u0060 for an error message, \u0060WARNING_MESSAGE\u0060 for a warning message, \u0060EXECUTION_ID\u0060 when \u0060query\u0060 is itself the execution\u0027s ID.\n"
           }
         }
       },
@@ -184244,6 +184264,33 @@
         "additionalProperties": false,
         "description": "The execution status. \u00601\u0060 is for success, \u00602\u0060 is for warning, and \u00603\u0060 is for error."
       },
+      "PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMatchedFieldsItem": {
+        "enum": [
+          "IO_DATA",
+          "ERROR_MESSAGE",
+          "WARNING_MESSAGE"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMatchedFieldsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "IO_DATA",
+              "name": "IoData"
+            },
+            {
+              "value": "ERROR_MESSAGE",
+              "name": "ErrorMessage"
+            },
+            {
+              "value": "WARNING_MESSAGE",
+              "name": "WarningMessage"
+            }
+          ]
+        }
+      },
       "PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecutionStatus": {
         "enum": [
           1,
@@ -187951,6 +187998,38 @@
             {
               "value": "key",
               "name": "Key"
+            }
+          ]
+        }
+      },
+      "PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMatchedFieldsItem": {
+        "enum": [
+          "IO_DATA",
+          "ERROR_MESSAGE",
+          "WARNING_MESSAGE",
+          "EXECUTION_ID"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMatchedFieldsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "IO_DATA",
+              "name": "IoData"
+            },
+            {
+              "value": "ERROR_MESSAGE",
+              "name": "ErrorMessage"
+            },
+            {
+              "value": "WARNING_MESSAGE",
+              "name": "WarningMessage"
+            },
+            {
+              "value": "EXECUTION_ID",
+              "name": "ExecutionId"
             }
           ]
         }

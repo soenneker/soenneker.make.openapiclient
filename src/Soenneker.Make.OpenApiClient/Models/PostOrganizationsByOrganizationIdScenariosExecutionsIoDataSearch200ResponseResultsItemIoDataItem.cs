@@ -40,6 +40,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The ID of the scenario the record belongs to.</summary>
         public int? KindId { get; set; }
+        /// <summary>Which field(s) of the record actually matched `query` — `IO_DATA` for the module&apos;s data, `ERROR_MESSAGE` for an error message, `WARNING_MESSAGE` for a warning message, `EXECUTION_ID` when `query` is itself the execution&apos;s ID.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMatchedFieldsItem?>? MatchedFields { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMatchedFieldsItem?> MatchedFields { get; set; }
+#endif
         /// <summary>Free-form metadata captured alongside the IO record.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -77,6 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "highlight", n => { Highlight = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "kind", n => { Kind = n.GetStringValue(); } },
                 { "kindId", n => { KindId = n.GetIntValue(); } },
+                { "matchedFields", n => { MatchedFields = n.GetCollectionOfEnumValues<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMatchedFieldsItem>()?.AsList(); } },
                 { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMetadata>(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMetadata.CreateFromDiscriminatorValue); } },
             };
         }
@@ -91,6 +100,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("highlight", Highlight);
             writer.WriteStringValue("kind", Kind);
             writer.WriteIntValue("kindId", KindId);
+            writer.WriteCollectionOfEnumValues<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMatchedFieldsItem>("matchedFields", MatchedFields);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch200ResponseResultsItemIoDataItemMetadata>("metadata", Metadata);
             writer.WriteAdditionalData(AdditionalData);
         }
