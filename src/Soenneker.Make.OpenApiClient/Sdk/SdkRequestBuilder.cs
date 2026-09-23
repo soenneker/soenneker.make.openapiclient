@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Sdk.AppReview;
 using Soenneker.Make.OpenApiClient.Sdk.Apps;
+using Soenneker.Make.OpenApiClient.Sdk.Github;
 using Soenneker.Make.OpenApiClient.Sdk.Publisher;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.AppsRequestBuilder Apps
         {
             get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.AppsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The github property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Github.GithubRequestBuilder Github
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Github.GithubRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The publisher property</summary>
         public global::Soenneker.Make.OpenApiClient.Sdk.Publisher.PublisherRequestBuilder Publisher

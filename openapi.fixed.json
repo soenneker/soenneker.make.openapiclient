@@ -41262,6 +41262,127 @@
         "x-internal": true
       }
     },
+    "/sdk/github/owners": {
+      "get": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "List GitHub owners for a connection",
+        "description": "Lists the GitHub owners reachable through the given connection: the connection\u0027s own account (\u0060user\u0060) first, followed by every organization its OAuth token can see (\u0060organization\u0060). Same list as \u0060GET /sdk/apps/{SDK_appName}/{SDK_appVersion}/github/owners\u0060, but without an app in the path \u2014 the \u0022import an app from GitHub\u0022 flow has to pick an owner before the SDK app it creates exists. Access is gated by the connection: only connections reachable by the calling user resolve. Listing organizations requires the connection\u0027s token to carry the \u0060read:org\u0060 scope \u2014 connections created before that scope was requested (or tokens lacking it) degrade gracefully to the personal account (plus any public-membership organizations GitHub still returns) instead of failing. Any other GitHub failure fails the call with \u0060424\u0060 rather than returning a shortened owner list. A caller who cannot reach the connection\u0027s team gets \u0060403\u0060.",
+        "operationId": "GetSdkGithubOwners",
+        "parameters": [
+          {
+            "name": "connectionId",
+            "in": "query",
+            "description": "ID of the Make GitHub connection whose reachable owners to list.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 137
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkGithubOwners200Response"
+                },
+                "examples": {
+                  "list-owners": {
+                    "summary": "Personal account plus two organizations",
+                    "value": {
+                      "owners": [
+                        {
+                          "login": "octocat",
+                          "type": "user"
+                        },
+                        {
+                          "login": "acme-inc",
+                          "type": "organization"
+                        },
+                        {
+                          "login": "globex",
+                          "type": "organization"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The connection does not exist or is not a GitHub connection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkGithubOwners400ResponseSchema"
+                },
+                "examples": {
+                  "not-a-github-connection": {
+                    "summary": "Connection is not a GitHub connection",
+                    "value": {
+                      "message": "Connection is not a GitHub connection or does not exist.",
+                      "code": "IM005"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The calling user cannot reach the connection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkGithubOwners403ResponseSchema"
+                },
+                "examples": {
+                  "insufficient-rights": {
+                    "summary": "Connection belongs to a team the caller has no access to",
+                    "value": {
+                      "message": "Insufficient rights",
+                      "code": "IM002"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "424": {
+            "description": "GitHub rejected a request or was unreachable (invalid/revoked token, API outage). A \u0060403\u0060 on the organization listing alone is the one exception \u2014 it degrades to the personal account, see the description above.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkGithubOwners424ResponseSchema"
+                },
+                "examples": {
+                  "github-failed": {
+                    "summary": "GitHub call failed",
+                    "value": {
+                      "message": "GitHub API GET /user failed: 401 Bad credentials",
+                      "code": "SC424"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:read"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
     "/sdk/publisher": {
       "get": {
         "tags": [
@@ -104205,6 +104326,26 @@
           }
         }
       },
+      "GetSdkGithubOwners200Response": {
+        "type": "object",
+        "properties": {
+          "owners": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetSdkGithubOwners200ResponseOwnersItem"
+            }
+          }
+        }
+      },
+      "GetSdkGithubOwners400Response": {
+        "type": "object"
+      },
+      "GetSdkGithubOwners403Response": {
+        "type": "object"
+      },
+      "GetSdkGithubOwners424Response": {
+        "type": "object"
+      },
       "GetSdkPublisher200Response": {
         "type": "object",
         "properties": {
@@ -138264,6 +138405,15 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel409ResponseSchema": {
         "type": "object"
       },
+      "GetSdkGithubOwners400ResponseSchema": {
+        "type": "object"
+      },
+      "GetSdkGithubOwners403ResponseSchema": {
+        "type": "object"
+      },
+      "GetSdkGithubOwners424ResponseSchema": {
+        "type": "object"
+      },
       "PatchSdkPublisher400ResponseSchema": {
         "type": "object"
       },
@@ -154709,6 +154859,18 @@
           }
         },
         "description": "One category of the taxonomy offered by the new SDK app review form, with its subcategories. \u0060slug\u0060 is the category\u0027s stable identity \u2014 it is what a review form stores in \u0060categories\u0060 / \u0060subcategories\u0060, and it survives a rename of \u0060name\u0060. Array order is display order."
+      },
+      "GetSdkGithubOwners200ResponseOwnersItem": {
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string",
+            "description": "GitHub login of the account or organization."
+          },
+          "type": {
+            "$ref": "#/components/schemas/GetSdkGithubOwners200ResponseOwnersItemType"
+          }
+        }
       },
       "GetSdkPublisher200ResponsePublisher": {
         "type": "object",
@@ -185662,6 +185824,29 @@
             {
               "value": "changes_required_update",
               "name": "ChangesRequiredUpdate"
+            }
+          ]
+        }
+      },
+      "GetSdkGithubOwners200ResponseOwnersItemType": {
+        "enum": [
+          "user",
+          "organization"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0060user\u0060 for the connection\u0027s own account, \u0060organization\u0060 for an org it belongs to.",
+        "x-ms-enum": {
+          "name": "GetSdkGithubOwners200ResponseOwnersItemType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "organization",
+              "name": "Organization"
             }
           ]
         }
