@@ -36,6 +36,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprint200ResponseResponseScheduling Scheduling { get; set; }
 #endif
+        /// <summary>The scenario&apos;s current version number (the highest version in its history, draft or published; `0` for a scenario without versions). It is the scenario&apos;s current version even when `blueprintId` selects an older blueprint. Send it back as `baseVersion` in `PATCH /scenarios/{scenarioId}` to have the save rejected if the scenario changed meanwhile.</summary>
+        public int? Version { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprint200ResponseResponse"/> and sets the default values.
         /// </summary>
@@ -66,6 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "idSequence", n => { IdSequence = n.GetIntValue(); } },
                 { "last_edit", n => { LastEdit = n.GetDateTimeOffsetValue(); } },
                 { "scheduling", n => { Scheduling = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprint200ResponseResponseScheduling>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprint200ResponseResponseScheduling.CreateFromDiscriminatorValue); } },
+                { "version", n => { Version = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -80,6 +83,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("idSequence", IdSequence);
             writer.WriteDateTimeOffsetValue("last_edit", LastEdit);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprint200ResponseResponseScheduling>("scheduling", Scheduling);
+            writer.WriteIntValue("version", Version);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

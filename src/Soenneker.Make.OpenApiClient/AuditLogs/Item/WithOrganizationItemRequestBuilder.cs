@@ -18,6 +18,7 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Item
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.auditLogs.item.item collection</summary>
         /// <param name="position">The UUID of the audit log entry.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.AuditLogs.Item.Item.WithUuItemRequestBuilder"/></returns>
+        [Obsolete("")]
         public global::Soenneker.Make.OpenApiClient.AuditLogs.Item.Item.WithUuItemRequestBuilder this[string position]
         {
             get

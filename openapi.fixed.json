@@ -195,6 +195,128 @@
         "x-internal": true
       }
     },
+    "/admin/scenarios/reactivate": {
+      "post": {
+        "tags": [
+          "Admin / Scenarios"
+        ],
+        "summary": "Reactivate scenarios",
+        "description": "Reactivates up to 10,000 scenario IDs in the current zone, or 20 with \u0060reanalyze: true\u0060 (before deduplication). Duplicate IDs are processed once.\nRequires the \u0060scenarios get\u0060 admin permission. Deleted, locked and executing scenarios are skipped.\n\nWith \u0060reanalyze: true\u0060, also requires the \u0060scenario edit\u0060 admin permission. Rebuilds derived\nbindings from the stored published blueprint and draft before activation. Existing resources can\nbe relinked; deleted resources, invalid connection credentials and gone webhooks cannot be repaired.\nUse reanalysis only to repair missing bindings, for example after restoring an accidentally deleted scenario.\nScenarios are processed sequentially within each request, each in its own atomic transaction.\nEach reanalysis database statement is limited to 5 seconds, with at most 1 second waiting for a lock.\nTimeouts roll back that scenario and return a failed result; subsequent IDs are still processed.\nResults retain input order after deduplication. A failure rolls back that scenario and does not stop other IDs.\nDeleted teams and organizations are skipped. A scenario without a published blueprint cannot be activated.\nStored blueprint JSON and versions are preserved; the draft is never published.\n\nAlready active scenarios are reanalyzed but their scheduling is reset only with \u0060forceIfActive: true\u0060.\n\u0060reanalysis\u0060 describes the analysis phase separately from the existing activation \u0060status\u0060.\nMerely reanalyzing an active scenario does not increment \u0060summary.reactivated\u0060.\n\nWith both \u0060dryRun\u0060 and \u0060reanalyze\u0060, performs the real database operation and rolls its transaction back,\nincluding derived bindings, runtime state, scheduling and scenario events.\nIt has the same database cost and locking impact as execution and the same 20-ID limit. Request auditing still applies.\nDry-run results describe the state at the time of the check and do not guarantee a later execution succeeds.\nWithout \u0060reanalyze\u0060, the existing reactivation and dry-run behavior is unchanged.\n",
+        "operationId": "PostAdminScenariosReactivate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostAdminScenariosReactivateRequest"
+              },
+              "examples": {
+                "reanalyze": {
+                  "value": {
+                    "scenarioIds": [
+                      123,
+                      456
+                    ],
+                    "reanalyze": true
+                  }
+                },
+                "dryRun": {
+                  "value": {
+                    "scenarioIds": [
+                      123
+                    ],
+                    "reanalyze": true,
+                    "dryRun": true
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Individual results and counts grouped by activation status. Per-scenario failures also use HTTP 200.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminScenariosReactivate200Response"
+                },
+                "examples": {
+                  "reanalyze": {
+                    "value": {
+                      "results": [
+                        {
+                          "scenarioId": 123,
+                          "status": "reactivated",
+                          "message": "Scenario reactivated successfully",
+                          "reanalysis": "succeeded",
+                          "prevIslinked": false,
+                          "prevIsinvalid": true,
+                          "prevInvalidationReason": "Restored scenario",
+                          "prevErrorOccurCount": 3
+                        },
+                        {
+                          "scenarioId": 456,
+                          "status": "already_active",
+                          "message": "Scenario is already active",
+                          "reanalysis": "succeeded",
+                          "prevIslinked": true,
+                          "prevIsinvalid": false,
+                          "prevInvalidationReason": "",
+                          "prevErrorOccurCount": 0
+                        }
+                      ],
+                      "summary": {
+                        "total": 2,
+                        "reactivated": 1,
+                        "already_active": 1
+                      }
+                    }
+                  },
+                  "dryRun": {
+                    "value": {
+                      "results": [
+                        {
+                          "scenarioId": 123,
+                          "status": "would_reactivate",
+                          "message": "Would reactivate (dry run)",
+                          "reanalysis": "would_succeed",
+                          "prevIslinked": false,
+                          "prevIsinvalid": true,
+                          "prevInvalidationReason": "Restored scenario",
+                          "prevErrorOccurCount": 3
+                        }
+                      ],
+                      "summary": {
+                        "total": 1,
+                        "would_reactivate": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid scenario IDs, more than 20 submitted IDs with reanalyze enabled (including dry runs), more than 10,000 IDs otherwise, or non-boolean options."
+          },
+          "401": {
+            "description": "Authentication is required."
+          },
+          "403": {
+            "description": "The caller is not an administrator or lacks a required admin permission."
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:write"
+            ]
+          }
+        ],
+        "x-private": true
+      }
+    },
     "/admin/teams": {
       "get": {
         "tags": [
@@ -5769,7 +5891,7 @@
           "Audit logs"
         ],
         "summary": "List organization audit logs",
-        "description": "Gets a list of all audit log entries for the specified organization.\n\nThe audit log entries in the response are sorted by the \u0060triggeredAt\u0060 property in descending order by default. You can use pagination to navigate through a large number of entries.\n\nYou can get the audit log entries only for organizations in which you have the \u0022Admin\u0022 or \u0022Owner\u0022 roles. Otherwise, you get the 403 error.\n",
+        "description": "Gets a list of all audit log entries for the specified organization.\n\nThe audit log entries in the response are sorted by the \u0060triggeredAt\u0060 property in descending order by default. You can use pagination to navigate through a large number of entries.\n\nYou can get the audit log entries only for organizations in which you have the \u0022Admin\u0022 or \u0022Owner\u0022 roles. Otherwise, you get the 403 error.\n\n**Deprecated.** Use \u0060GET /audit-logs/v2/organization/{organizationId}\u0060 instead. That endpoint requires the\n\u0060audit-logs:read\u0060 scope on the API token.\n",
         "operationId": "GetOrganizationAuditLogs",
         "parameters": [
           {
@@ -6050,7 +6172,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/audit-logs/organization/{organizationId}/filters": {
@@ -6059,7 +6182,7 @@
           "Audit logs"
         ],
         "summary": "Get organization audit log filters",
-        "description": "Gets available audit logs filters for the organization.\n\nYou can use the data in the response to filter audit log entries you get from the \u0060GET /audit-logs/organization/{organizationId}\u0060 endpoint.\n",
+        "description": "Gets available audit logs filters for the organization.\n\nYou can use the data in the response to filter audit log entries you get from the \u0060GET /audit-logs/organization/{organizationId}\u0060 endpoint.\n\n**Deprecated.** Use \u0060GET /audit-logs/v2/organization/{organizationId}/filters\u0060 instead. That endpoint requires the\n\u0060audit-logs:read\u0060 scope on the API token.\n",
         "operationId": "GetOrganizationAuditLogsFilters",
         "parameters": [
           {
@@ -6114,7 +6237,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/audit-logs/team/{teamId}": {
@@ -6123,7 +6247,7 @@
           "Audit logs"
         ],
         "summary": "List team audit logs",
-        "description": "Gets a list of all audit log entries for the specified team.\n\nThe audit log entries in the response are sorted by the \u0060triggeredAt\u0060 property in descending order by default. You can use pagination to navigate through a large number of entries.\n\nYou can get the audit log entries only for teams in which you have the \u0022Team Admin\u0022 role. Otherwise, you get the 403 error.\n",
+        "description": "Gets a list of all audit log entries for the specified team.\n\nThe audit log entries in the response are sorted by the \u0060triggeredAt\u0060 property in descending order by default. You can use pagination to navigate through a large number of entries.\n\nYou can get the audit log entries only for teams in which you have the \u0022Team Admin\u0022 role. Otherwise, you get the 403 error.\n\n**Deprecated.** Use \u0060GET /audit-logs/v2/team/{teamId}\u0060 instead. That endpoint requires the\n\u0060audit-logs:read\u0060 scope on the API token.\n",
         "operationId": "GetTeamAuditLogs",
         "parameters": [
           {
@@ -6366,7 +6490,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/audit-logs/team/{teamId}/filters": {
@@ -6375,7 +6500,7 @@
           "Audit logs"
         ],
         "summary": "Get organization audit log filters",
-        "description": "Gets available audit logs filters for the team.\n\nYou can use the data in the response to filter audit log entries you get from the \u0060GET /audit-logs/team/{teamId}\u0060 endpoint.\n",
+        "description": "Gets available audit logs filters for the team.\n\nYou can use the data in the response to filter audit log entries you get from the \u0060GET /audit-logs/team/{teamId}\u0060 endpoint.\n\n**Deprecated.** Use \u0060GET /audit-logs/v2/team/{teamId}/filters\u0060 instead. That endpoint requires the\n\u0060audit-logs:read\u0060 scope on the API token.\n",
         "operationId": "GetTeamAuditLogsFilters",
         "parameters": [
           {
@@ -6424,7 +6549,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/audit-logs/{organizationId}/{uuid}": {
@@ -6433,7 +6559,7 @@
           "Audit logs"
         ],
         "summary": "Get audit log detail",
-        "description": "Gets details of the audit log entry with the specified UUID.\n",
+        "description": "Gets details of the audit log entry with the specified UUID.\n\n**Deprecated.** Use \u0060GET /audit-logs/v2/{organizationId}/{uuid}\u0060 instead. That endpoint requires the\n\u0060audit-logs:read\u0060 scope on the API token.\n",
         "operationId": "GetAuditLogDetail",
         "parameters": [
           {
@@ -6495,7 +6621,1327 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
+      }
+    },
+    "/audit-logs/v2/organization/{organizationId}": {
+      "get": {
+        "tags": [
+          "Audit logs"
+        ],
+        "summary": "List organization audit logs",
+        "description": "Gets a list of all audit log entries for the specified organization.\n\nRequires the \u0060audit-logs:read\u0060 scope on the API token.\n\nThe audit log entries in the response are sorted by the \u0060triggeredAt\u0060 property in ascending order by default. Use the \u0060pg\u0060 object to change the sorting or navigate through a large result set. For cursor pagination, pass the last entry\u0027s \u0060imtId\u0060 as \u0060pg[last]\u0060.\n\nYou can get the audit log entries only for organizations in which you have the \u0022Admin\u0022 or \u0022Owner\u0022 roles. Otherwise, you get the 403 error.\n",
+        "operationId": "GetOrganizationAuditLogsV2",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "The positive ID of the organization.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 11
+          },
+          {
+            "name": "team",
+            "in": "query",
+            "description": "Filter by one or more positive team IDs or team names. Repeat the parameter to provide multiple values.",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "teams": {
+                "value": [
+                  212,
+                  "Operations"
+                ]
+              }
+            }
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "description": "Return entries triggered at or after this ISO 8601 date, ISO 8601 date-time, or Unix timestamp in milliseconds.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              ]
+            },
+            "examples": {
+              "date": {
+                "value": "2026-09-01"
+              },
+              "date-time": {
+                "value": "2026-09-01T12:00:00.000Z"
+              },
+              "timestamp": {
+                "value": 1788264000000
+              }
+            }
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "description": "Return entries triggered at or before this ISO 8601 date, ISO 8601 date-time, or Unix timestamp in milliseconds.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              ]
+            },
+            "examples": {
+              "date": {
+                "value": "2026-09-22"
+              },
+              "date-time": {
+                "value": "2026-09-22T23:59:59.999Z"
+              },
+              "timestamp": {
+                "value": 1790121599999
+              }
+            }
+          },
+          {
+            "name": "event",
+            "in": "query",
+            "description": "Filter by one or more event names. Repeat the parameter to provide multiple values.",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "events": {
+                "value": [
+                  "key_created",
+                  "connection_created"
+                ]
+              }
+            }
+          },
+          {
+            "name": "author",
+            "in": "query",
+            "description": "Filter by one or more positive actor IDs, names, or email addresses. Repeat the parameter to provide multiple values.",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "authors": {
+                "value": [
+                  212,
+                  "john.doe@example.com"
+                ]
+              }
+            }
+          },
+          {
+            "name": "pg",
+            "in": "query",
+            "description": "Pagination and sorting options encoded as a deep object, for example \u0060pg[limit]=100\u0026pg[offset]=0\u0060.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sortBy": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsV2PgParameterSortBy"
+                },
+                "sortDir": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsV2PgParameterSortDir"
+                },
+                "returnTotalCount": {
+                  "type": "boolean",
+                  "description": "When true, the response\u0027s \u0060pg\u0060 object includes \u0060totalCount\u0060.",
+                  "default": false
+                },
+                "last": {
+                  "pattern": "^[0-9]{13}_[^_]\u002B$",
+                  "type": "string",
+                  "description": "The \u0060imtId\u0060 of the last entry from the previous page. When provided, \u0060offset\u0060 is ignored.",
+                  "example": "1788264000000_c37c729235cd4dc4911323b23beaea7d"
+                },
+                "limit": {
+                  "maximum": 10000,
+                  "minimum": 1,
+                  "type": "integer",
+                  "description": "The maximum number of entries to return.",
+                  "default": 1000
+                },
+                "offset": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "description": "The number of matching entries to skip. This value is ignored when \u0060last\u0060 is provided.",
+                  "default": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "examples": {
+              "first-page": {
+                "value": {
+                  "sortBy": "triggeredAt",
+                  "sortDir": "desc",
+                  "returnTotalCount": true,
+                  "limit": 100,
+                  "offset": 0
+                }
+              },
+              "cursor-page": {
+                "value": {
+                  "sortBy": "triggeredAt",
+                  "sortDir": "desc",
+                  "last": "1788264000000_c37c729235cd4dc4911323b23beaea7d",
+                  "limit": 100
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Audit log entries for the specified organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsV2200Response"
+                },
+                "examples": {
+                  "default": {
+                    "summary": "Audit log entries using the default pagination options",
+                    "value": {
+                      "auditLogs": [
+                        {
+                          "uuid": "c37c729235cd4dc4911321b23beaea7d",
+                          "imtId": "1713528322000_c37c729235cd4dc4911321b23beaea7d",
+                          "createdAt": "2024-05-24T14:22:16.879Z",
+                          "triggeredAt": "2024-04-19T12:05:22.000Z",
+                          "organizationId": 3,
+                          "organization": {
+                            "id": 3,
+                            "name": "John\u0027s Organization"
+                          },
+                          "eventName": "webhook_created",
+                          "team": {
+                            "id": 212,
+                            "name": "Operations"
+                          },
+                          "actor": {
+                            "id": 212,
+                            "name": "John Doe",
+                            "email": "john.doe@example.com"
+                          },
+                          "targetId": "3000",
+                          "version": {
+                            "from": "1.0.0",
+                            "to": "1.0.1"
+                          }
+                        }
+                      ],
+                      "pg": {
+                        "sortDir": "asc",
+                        "returnTotalCount": false,
+                        "limit": 1000,
+                        "offset": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An identifier, date, filter, pagination, or sorting value is invalid (\u0060SC400\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsV2400Response"
+                },
+                "examples": {
+                  "invalidRequest": {
+                    "summary": "Invalid request parameter",
+                    "value": {
+                      "code": "SC400",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed, the authorization lacks \u0060audit-logs:read\u0060, or an organization-bound authorization cannot access the requested entity (\u0060IM001\u0060 or \u0060SC401\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsV2401Response"
+                },
+                "examples": {
+                  "missingScope": {
+                    "summary": "Authorization lacks the required scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: audit-logs:read"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The organization license does not include the audit logs feature (\u0060IM027\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsV2402Response"
+                },
+                "examples": {
+                  "licenseLimit": {
+                    "summary": "Audit logs are not included in the organization license",
+                    "value": {
+                      "code": "IM027",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller lacks permission to view audit logs for the requested organization or team, or the audit log entry belongs to a different organization (\u0060SC403\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsV2403Response"
+                },
+                "examples": {
+                  "permissionDenied": {
+                    "summary": "Caller lacks permission to view the requested audit logs",
+                    "value": {
+                      "code": "SC403",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested organization, team, or audit log entry does not exist (\u0060SC404\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsV2404Response"
+                },
+                "examples": {
+                  "resourceNotFound": {
+                    "summary": "Requested audit-log resource does not exist",
+                    "value": {
+                      "code": "SC404",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "audit-logs:read"
+            ]
+          }
+        ]
+      }
+    },
+    "/audit-logs/v2/organization/{organizationId}/filters": {
+      "get": {
+        "tags": [
+          "Audit logs"
+        ],
+        "summary": "Get organization audit log filters",
+        "description": "Gets available audit logs filters for the organization.\n\nRequires the \u0060audit-logs:read\u0060 scope on the API token.\n\nUse the data in the response to build filters for the \u0060GET /audit-logs/v2/organization/{organizationId}\u0060 endpoint: \u0060users\u0060 and \u0060teams\u0060 supply the values for the \u0060author\u0060 and \u0060team\u0060 parameters, and \u0060events\u0060 supplies the values for the \u0060event\u0060 parameter. The endpoint takes no query parameters.\n",
+        "operationId": "GetOrganizationAuditLogsFiltersV2",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "The positive ID of the organization.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 11
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Available audit logs filters for the specified organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2200Response"
+                },
+                "examples": {
+                  "default": {
+                    "summary": "Organization audit-log filter options",
+                    "value": {
+                      "users": [
+                        {
+                          "id": 212,
+                          "name": "John Doe",
+                          "email": "john.doe@example.com"
+                        }
+                      ],
+                      "teams": [
+                        {
+                          "id": 212,
+                          "name": "Operations"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "header": "Webhooks",
+                          "items": [
+                            {
+                              "label": "Webhook created",
+                              "value": "webhook_created"
+                            },
+                            {
+                              "label": "Webhook updated",
+                              "value": "webhook_updated"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An identifier, date, filter, pagination, or sorting value is invalid (\u0060SC400\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2400Response"
+                },
+                "examples": {
+                  "invalidRequest": {
+                    "summary": "Invalid request parameter",
+                    "value": {
+                      "code": "SC400",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed, the authorization lacks \u0060audit-logs:read\u0060, or an organization-bound authorization cannot access the requested entity (\u0060IM001\u0060 or \u0060SC401\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2401Response"
+                },
+                "examples": {
+                  "missingScope": {
+                    "summary": "Authorization lacks the required scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: audit-logs:read"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The organization license does not include the audit logs feature (\u0060IM027\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2402Response"
+                },
+                "examples": {
+                  "licenseLimit": {
+                    "summary": "Audit logs are not included in the organization license",
+                    "value": {
+                      "code": "IM027",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller lacks permission to view audit logs for the requested organization or team, or the audit log entry belongs to a different organization (\u0060SC403\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2403Response"
+                },
+                "examples": {
+                  "permissionDenied": {
+                    "summary": "Caller lacks permission to view the requested audit logs",
+                    "value": {
+                      "code": "SC403",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested organization, team, or audit log entry does not exist (\u0060SC404\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2404Response"
+                },
+                "examples": {
+                  "resourceNotFound": {
+                    "summary": "Requested audit-log resource does not exist",
+                    "value": {
+                      "code": "SC404",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "audit-logs:read"
+            ]
+          }
+        ]
+      }
+    },
+    "/audit-logs/v2/team/{teamId}": {
+      "get": {
+        "tags": [
+          "Audit logs"
+        ],
+        "summary": "List team audit logs",
+        "description": "Gets a list of all audit log entries for the specified team.\n\nRequires the \u0060audit-logs:read\u0060 scope on the API token.\n\nThe audit log entries in the response are sorted by the \u0060triggeredAt\u0060 property in ascending order by default. Use the \u0060pg\u0060 object to change the sorting or navigate through a large result set. For cursor pagination, pass the last entry\u0027s \u0060imtId\u0060 as \u0060pg[last]\u0060.\n\nYou can get the audit log entries only for teams in which you have the \u0022Team Admin\u0022 role. Otherwise, you get the 403 error.\n",
+        "operationId": "GetTeamAuditLogsV2",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The positive ID of the team.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 212
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "description": "Return entries triggered at or after this ISO 8601 date, ISO 8601 date-time, or Unix timestamp in milliseconds.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              ]
+            },
+            "examples": {
+              "date": {
+                "value": "2026-09-01"
+              },
+              "date-time": {
+                "value": "2026-09-01T12:00:00.000Z"
+              },
+              "timestamp": {
+                "value": 1788264000000
+              }
+            }
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "description": "Return entries triggered at or before this ISO 8601 date, ISO 8601 date-time, or Unix timestamp in milliseconds.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              ]
+            },
+            "examples": {
+              "date": {
+                "value": "2026-09-22"
+              },
+              "date-time": {
+                "value": "2026-09-22T23:59:59.999Z"
+              },
+              "timestamp": {
+                "value": 1790121599999
+              }
+            }
+          },
+          {
+            "name": "event",
+            "in": "query",
+            "description": "Filter by one or more event names. Repeat the parameter to provide multiple values.",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "events": {
+                "value": [
+                  "key_created",
+                  "connection_created"
+                ]
+              }
+            }
+          },
+          {
+            "name": "author",
+            "in": "query",
+            "description": "Filter by one or more positive actor IDs, names, or email addresses. Repeat the parameter to provide multiple values.",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "examples": {
+              "authors": {
+                "value": [
+                  212,
+                  "john.doe@example.com"
+                ]
+              }
+            }
+          },
+          {
+            "name": "pg",
+            "in": "query",
+            "description": "Pagination and sorting options encoded as a deep object, for example \u0060pg[limit]=100\u0026pg[offset]=0\u0060.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sortBy": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsV2PgParameterSortBy"
+                },
+                "sortDir": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsV2PgParameterSortDir"
+                },
+                "returnTotalCount": {
+                  "type": "boolean",
+                  "description": "When true, the response\u0027s \u0060pg\u0060 object includes \u0060totalCount\u0060.",
+                  "default": false
+                },
+                "last": {
+                  "pattern": "^[0-9]{13}_[^_]\u002B$",
+                  "type": "string",
+                  "description": "The \u0060imtId\u0060 of the last entry from the previous page. When provided, \u0060offset\u0060 is ignored.",
+                  "example": "1788264000000_c37c729235cd4dc4911323b23beaea7d"
+                },
+                "limit": {
+                  "maximum": 10000,
+                  "minimum": 1,
+                  "type": "integer",
+                  "description": "The maximum number of entries to return.",
+                  "default": 1000
+                },
+                "offset": {
+                  "minimum": 0,
+                  "type": "integer",
+                  "description": "The number of matching entries to skip. This value is ignored when \u0060last\u0060 is provided.",
+                  "default": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "examples": {
+              "first-page": {
+                "value": {
+                  "sortBy": "triggeredAt",
+                  "sortDir": "desc",
+                  "returnTotalCount": true,
+                  "limit": 100,
+                  "offset": 0
+                }
+              },
+              "cursor-page": {
+                "value": {
+                  "sortBy": "triggeredAt",
+                  "sortDir": "desc",
+                  "last": "1788264000000_c37c729235cd4dc4911323b23beaea7d",
+                  "limit": 100
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Audit log entries for the specified team.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsV2200Response"
+                },
+                "examples": {
+                  "default": {
+                    "summary": "Audit log entries using the default pagination options",
+                    "value": {
+                      "auditLogs": [
+                        {
+                          "uuid": "c37c729235cd4dc4911321b23beaea7d",
+                          "imtId": "1713528322000_c37c729235cd4dc4911321b23beaea7d",
+                          "createdAt": "2024-05-24T14:22:16.879Z",
+                          "triggeredAt": "2024-04-19T12:05:22.000Z",
+                          "organizationId": 3,
+                          "organization": {
+                            "id": 3,
+                            "name": "John\u0027s Organization"
+                          },
+                          "eventName": "webhook_created",
+                          "team": {
+                            "id": 212,
+                            "name": "Operations"
+                          },
+                          "actor": {
+                            "id": 212,
+                            "name": "John Doe",
+                            "email": "john.doe@example.com"
+                          },
+                          "targetId": "3000",
+                          "version": {
+                            "from": "1.0.0",
+                            "to": "1.0.1"
+                          }
+                        }
+                      ],
+                      "pg": {
+                        "sortDir": "asc",
+                        "returnTotalCount": false,
+                        "limit": 1000,
+                        "offset": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An identifier, date, filter, pagination, or sorting value is invalid (\u0060SC400\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsV2400Response"
+                },
+                "examples": {
+                  "invalidRequest": {
+                    "summary": "Invalid request parameter",
+                    "value": {
+                      "code": "SC400",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed, the authorization lacks \u0060audit-logs:read\u0060, or an organization-bound authorization cannot access the requested entity (\u0060IM001\u0060 or \u0060SC401\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsV2401Response"
+                },
+                "examples": {
+                  "missingScope": {
+                    "summary": "Authorization lacks the required scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: audit-logs:read"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The organization license does not include the audit logs feature (\u0060IM027\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsV2402Response"
+                },
+                "examples": {
+                  "licenseLimit": {
+                    "summary": "Audit logs are not included in the organization license",
+                    "value": {
+                      "code": "IM027",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller lacks permission to view audit logs for the requested organization or team, or the audit log entry belongs to a different organization (\u0060SC403\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsV2403Response"
+                },
+                "examples": {
+                  "permissionDenied": {
+                    "summary": "Caller lacks permission to view the requested audit logs",
+                    "value": {
+                      "code": "SC403",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested organization, team, or audit log entry does not exist (\u0060SC404\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsV2404Response"
+                },
+                "examples": {
+                  "resourceNotFound": {
+                    "summary": "Requested audit-log resource does not exist",
+                    "value": {
+                      "code": "SC404",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "audit-logs:read"
+            ]
+          }
+        ]
+      }
+    },
+    "/audit-logs/v2/team/{teamId}/filters": {
+      "get": {
+        "tags": [
+          "Audit logs"
+        ],
+        "summary": "Get team audit log filters",
+        "description": "Gets available audit logs filters for the team.\n\nRequires the \u0060audit-logs:read\u0060 scope on the API token.\n\nUse the data in the response to build filters for the \u0060GET /audit-logs/v2/team/{teamId}\u0060 endpoint: \u0060users\u0060 supplies the values for the \u0060author\u0060 parameter and \u0060events\u0060 supplies the values for the \u0060event\u0060 parameter. The response has no \u0060teams\u0060 array \u2014 the team is already fixed by the path. The endpoint takes no query parameters.\n",
+        "operationId": "GetTeamAuditLogsFiltersV2",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "The positive ID of the team.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 212
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Available audit logs filters for the specified team.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2200Response"
+                },
+                "examples": {
+                  "default": {
+                    "summary": "Team audit-log filter options",
+                    "value": {
+                      "users": [
+                        {
+                          "id": 212,
+                          "name": "John Doe",
+                          "email": "john.doe@example.com"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "header": "Webhooks",
+                          "items": [
+                            {
+                              "label": "Webhook created",
+                              "value": "webhook_created"
+                            },
+                            {
+                              "label": "Webhook updated",
+                              "value": "webhook_updated"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An identifier, date, filter, pagination, or sorting value is invalid (\u0060SC400\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2400Response"
+                },
+                "examples": {
+                  "invalidRequest": {
+                    "summary": "Invalid request parameter",
+                    "value": {
+                      "code": "SC400",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed, the authorization lacks \u0060audit-logs:read\u0060, or an organization-bound authorization cannot access the requested entity (\u0060IM001\u0060 or \u0060SC401\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2401Response"
+                },
+                "examples": {
+                  "missingScope": {
+                    "summary": "Authorization lacks the required scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: audit-logs:read"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The organization license does not include the audit logs feature (\u0060IM027\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2402Response"
+                },
+                "examples": {
+                  "licenseLimit": {
+                    "summary": "Audit logs are not included in the organization license",
+                    "value": {
+                      "code": "IM027",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller lacks permission to view audit logs for the requested organization or team, or the audit log entry belongs to a different organization (\u0060SC403\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2403Response"
+                },
+                "examples": {
+                  "permissionDenied": {
+                    "summary": "Caller lacks permission to view the requested audit logs",
+                    "value": {
+                      "code": "SC403",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested organization, team, or audit log entry does not exist (\u0060SC404\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2404Response"
+                },
+                "examples": {
+                  "resourceNotFound": {
+                    "summary": "Requested audit-log resource does not exist",
+                    "value": {
+                      "code": "SC404",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "audit-logs:read"
+            ]
+          }
+        ]
+      }
+    },
+    "/audit-logs/v2/{organizationId}/{uuid}": {
+      "get": {
+        "tags": [
+          "Audit logs"
+        ],
+        "summary": "Get audit log detail",
+        "description": "Gets details of the audit log entry with the specified UUID.\n\nRequires the \u0060audit-logs:read\u0060 scope on the API token.\n\nThe \u0060organizationId\u0060 in the path must be the organization the entry belongs to.\n",
+        "operationId": "GetAuditLogDetailV2",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "The positive ID of the organization.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 11
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "The UUIDv4 of the audit log entry. Hyphens are optional.",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?4[0-9a-fA-F]{3}-?[89abAB][0-9a-fA-F]{3}-?[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "example": "c37c7292-35cd-4dc4-9113-21b23beaea7d"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detail of the specified audit log entry.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAuditLogDetailV2200Response"
+                },
+                "examples": {
+                  "default": {
+                    "summary": "Audit log detail",
+                    "value": {
+                      "uuid": "c37c729235cd4dc4911321b23beaea7d",
+                      "createdAt": "2024-05-24T14:22:16.879Z",
+                      "triggeredAt": "2024-04-19T12:05:22.000Z",
+                      "organizationId": 3,
+                      "organization": {
+                        "id": 3,
+                        "name": "John\u0027s Organization"
+                      },
+                      "eventName": "webhook_created",
+                      "team": {
+                        "id": 212,
+                        "name": "Operations"
+                      },
+                      "actor": {
+                        "id": 212,
+                        "name": "John Doe",
+                        "email": "john.doe@example.com"
+                      },
+                      "targetId": "3000",
+                      "version": {
+                        "from": "1.0.0",
+                        "to": "1.0.1"
+                      },
+                      "detail": {
+                        "webhookName": "Orders webhook",
+                        "webhookType": "http"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An identifier, date, filter, pagination, or sorting value is invalid (\u0060SC400\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAuditLogDetailV2400Response"
+                },
+                "examples": {
+                  "invalidRequest": {
+                    "summary": "Invalid request parameter",
+                    "value": {
+                      "code": "SC400",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed, the authorization lacks \u0060audit-logs:read\u0060, or an organization-bound authorization cannot access the requested entity (\u0060IM001\u0060 or \u0060SC401\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAuditLogDetailV2401Response"
+                },
+                "examples": {
+                  "missingScope": {
+                    "summary": "Authorization lacks the required scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: audit-logs:read"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The organization license does not include the audit logs feature (\u0060IM027\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAuditLogDetailV2402Response"
+                },
+                "examples": {
+                  "licenseLimit": {
+                    "summary": "Audit logs are not included in the organization license",
+                    "value": {
+                      "code": "IM027",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller lacks permission to view audit logs for the requested organization or team, or the audit log entry belongs to a different organization (\u0060SC403\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAuditLogDetailV2403Response"
+                },
+                "examples": {
+                  "permissionDenied": {
+                    "summary": "Caller lacks permission to view the requested audit logs",
+                    "value": {
+                      "code": "SC403",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested organization, team, or audit log entry does not exist (\u0060SC404\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAuditLogDetailV2404Response"
+                },
+                "examples": {
+                  "resourceNotFound": {
+                    "summary": "Requested audit-log resource does not exist",
+                    "value": {
+                      "code": "SC404",
+                      "name": "Error",
+                      "message": "There was an error while generating the response. Please try again later."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "audit-logs:read"
+            ]
+          }
+        ]
       }
     },
     "/analytics/{organizationId}": {
@@ -27763,7 +29209,8 @@
                     "blueprint": "{ \u0022name\u0022: \u0022Empty integration\u0022, \u0022flow\u0022: [ { \u0022id\u0022: 2, \u0022module\u0022: \u0022json:ParseJSON\u0022, \u0022version\u0022: 1, \u0022metadata\u0022: { \u0022designer\u0022: { \u0022x\u0022: -46, \u0022y\u0022: 47, \u0022messages\u0022: [ { \u0022category\u0022: \u0022last\u0022, \u0022severity\u0022: \u0022warning\u0022, \u0022message\u0022: \u0022A transformer should not be the last module in the route.\u0022 } ] } } } ], \u0022metadata\u0022: { \u0022version\u0022: 1, \u0022scenario\u0022: { \u0022roundtrips\u0022: 1, \u0022maxErrors\u0022: 3, \u0022autoCommit\u0022: true, \u0022autoCommitTriggerLast\u0022: true, \u0022sequential\u0022: false, \u0022confidential\u0022: false, \u0022dataloss\u0022: false, \u0022dlq\u0022: false, \u0022freshVariables\u0022: false }, \u0022designer\u0022: { \u0022orphans\u0022: [ ] } } }",
                     "scheduling": "{ \u0022type\u0022: \u0022indefinitely\u0022, \u0022interval\u0022: 900 }",
                     "folderId": 1,
-                    "name": "My New Integration"
+                    "name": "My New Integration",
+                    "baseVersion": 12
                   }
                 }
               }
@@ -27822,6 +29269,11 @@
                     "type": "scenario",
                     "chainingRole": null,
                     "isShared": false
+                  },
+                  "scenarioVersion": {
+                    "scenarioId": 925,
+                    "version": 13,
+                    "draft": false
                   }
                 }
               }
@@ -27834,7 +29286,30 @@
             "description": "A module in the blueprint places a locked connection or key the user is not allowed to use (\u0060IM002\u0060, placement guard). Returned only when locked-entities enforcement is enabled for the organization; an untouched frozen module and releasing a locked entity (swapping it out or removing its module) always pass.\n"
           },
           "409": {
-            "description": "The scenario was modified concurrently between the placement-guard check and the save (\u0060SC409\u0060). The save was not applied; retry the request.\n"
+            "description": "\u0060SC409\u0060 \u2014 the save was not applied. Either the request carried \u0060baseVersion\u0060 and the scenario has a newer version (saved by another client such as the Make MCP server, or another editor session); the response \u0060metadata\u0060 then contains \u0060reason: scenario_version_conflict\u0060, \u0060baseVersion\u0060, \u0060currentVersion\u0060, \u0060lastEdit\u0060 and \u0060lastEditedBy\u0060 (\u0060{ id, name, email }\u0060 or \u0060null\u0060) so the client can reload the current blueprint or retry without \u0060baseVersion\u0060 to overwrite. Or the scenario was modified concurrently between the placement-guard check and the save; retry the request.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchScenariosByScenarioId409Response"
+                },
+                "example": {
+                  "code": "SC409",
+                  "message": "Scenario has been modified since version 12 was loaded, current version is 13.",
+                  "metadata": {
+                    "reason": "scenario_version_conflict",
+                    "baseVersion": 12,
+                    "currentVersion": 13,
+                    "lastEdit": "2026-09-21T14:03:11.482619\u002B00:00",
+                    "lastEditedBy": {
+                      "id": 42,
+                      "name": "Jane Doe",
+                      "email": "jane.doe@example.com"
+                    }
+                  }
+                },
+                "x-schema-inferred-from-examples": true
+              }
+            }
           }
         },
         "security": [
@@ -30882,7 +32357,8 @@
                     },
                     "idSequence": 4,
                     "created": "2021-09-22T09:28:41.129Z",
-                    "last_edit": "2021-09-22T09:40:31.488Z"
+                    "last_edit": "2021-09-22T09:40:31.488Z",
+                    "version": 12
                   }
                 }
               }
@@ -31582,6 +33058,156 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetScenariosAiAgents200Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:read"
+            ]
+          }
+        ]
+      }
+    },
+    "/scenarios/ai-agents/modules": {
+      "post": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Get AI agent module details for scenarios",
+        "description": "Retrieves local AI agent module and tool details for scenarios belonging to the specified team. The underlying query recursively walks each scenario\u0027s blueprint and is expensive, so requests are hard-capped at 100 scenarios.\n\nProvide \u0060scenarioIds\u0060 in the request body to look up specific scenarios - all of them must belong to \u0060teamId\u0060, or the request fails with a 403. Omit \u0060scenarioIds\u0060 to page through the team\u0027s own AI agent scenarios instead, using \u0060pg[limit]\u0060/\u0060pg[offset]\u0060 (same scenarios and ordering as \u0060GET /scenarios/ai-agents\u0060); the response then also includes a \u0060pg\u0060 object so you can request the next page. \u0060pg\u0060 parameters are ignored when \u0060scenarioIds\u0060 is provided.\n\nAgents nested as another agent\u0027s own tool are not included - only agents found directly in a scenario\u0027s flow (including inside routes, branches, and error handlers).",
+        "operationId": "PostScenariosAiAgentsModules",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "The unique ID of the team whose AI agent scenarios will be retrieved.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "pg[offset]",
+            "in": "query",
+            "description": "Only used when \u0060scenarioIds\u0060 is omitted from the request body.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pg[limit]",
+            "in": "query",
+            "description": "Only used when \u0060scenarioIds\u0060 is omitted from the request body. Default and maximum value is 100.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostScenariosAiAgentsModulesRequest"
+              },
+              "examples": {
+                "byScenarioIds": {
+                  "summary": "Look up specific scenarios",
+                  "value": {
+                    "scenarioIds": [
+                      42,
+                      43
+                    ]
+                  }
+                },
+                "pageThroughTeam": {
+                  "summary": "Page through all of the team\u0027s AI agent scenarios",
+                  "value": {}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Retrieved AI agent module details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostScenariosAiAgentsModules200Response"
+                },
+                "examples": {
+                  "byScenarioIds": {
+                    "summary": "Response for a scenarioIds lookup",
+                    "value": {
+                      "agentModules": [
+                        {
+                          "scenarioId": 42,
+                          "id": 3,
+                          "module": "ai-local-agent:RunLocalAIAgent",
+                          "userLabel": "Support Agent",
+                          "tools": [
+                            {
+                              "moduleId": 4,
+                              "module": "knowledge:KnowledgeStandAlone",
+                              "name": "Product Docs",
+                              "fileIds": [
+                                "5f8a1c2b-1234-4a5b-8c9d-0e1f2a3b4c5d"
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "pageThroughTeam": {
+                    "summary": "Response when paging through the team",
+                    "value": {
+                      "agentModules": [
+                        {
+                          "scenarioId": 42,
+                          "id": 3,
+                          "module": "ai-local-agent:RunLocalAIAgent",
+                          "userLabel": "Support Agent",
+                          "tools": []
+                        }
+                      ],
+                      "pg": {
+                        "limit": 100,
+                        "offset": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input - e.g. more than 100 scenarioIds, or pg[limit] greater than 100.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostScenariosAiAgentsModules400Response"
+                },
+                "example": {
+                  "message": "A maximum of 100 scenario IDs can be requested at once."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "One or more requested scenarioIds do not belong to teamId, or the caller lacks permission for the team.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostScenariosAiAgentsModules403Response"
+                },
+                "example": {
+                  "message": "One or more scenario IDs do not belong to this team."
                 }
               }
             }
@@ -94731,6 +96357,67 @@
           }
         }
       },
+      "PostAdminScenariosReactivateRequest": {
+        "required": [
+          "scenarioIds"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/PostAdminScenariosReactivateRequestOneOf1"
+          },
+          {
+            "$ref": "#/components/schemas/PostAdminScenariosReactivateRequestOneOf2"
+          }
+        ],
+        "properties": {
+          "scenarioIds": {
+            "maxItems": 10000,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Scenario IDs in the current zone. Duplicates are removed before processing. With reanalyze enabled, at most 20 IDs may be submitted (before deduplication), including dry runs."
+          },
+          "dryRun": {
+            "type": "boolean",
+            "description": "Return predicted results. With reanalyze, perform the real operation in a transaction and roll it back; this has the same database cost and the same 20-ID limit as execution.",
+            "default": false
+          },
+          "forceIfActive": {
+            "type": "boolean",
+            "description": "Reset state and scheduling even for already active scenarios.",
+            "default": false
+          },
+          "reanalyze": {
+            "type": "boolean",
+            "description": "Rebuild bindings to existing resources before reactivation; also analyze already active scenarios.",
+            "default": false
+          }
+        }
+      },
+      "PostAdminScenariosReactivate200Response": {
+        "required": [
+          "results",
+          "summary"
+        ],
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostAdminScenariosReactivate200ResponseResultsItem"
+            }
+          },
+          "summary": {
+            "$ref": "#/components/schemas/PostAdminScenariosReactivate200ResponseSummary"
+          }
+        }
+      },
       "GetAdminTeams200Response": {
         "type": "object",
         "properties": {
@@ -96653,6 +98340,938 @@
           },
           "details": {
             "$ref": "#/components/schemas/GetAuditLogDetail200ResponseDetails"
+          }
+        }
+      },
+      "GetOrganizationAuditLogsV2200Response": {
+        "required": [
+          "auditLogs",
+          "pg"
+        ],
+        "type": "object",
+        "properties": {
+          "auditLogs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetOrganizationAuditLogsV2200ResponseAuditLogsItem"
+            }
+          },
+          "pg": {
+            "$ref": "#/components/schemas/GetOrganizationAuditLogsV2200ResponsePg"
+          }
+        }
+      },
+      "GetOrganizationAuditLogsV2400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetOrganizationAuditLogsV2401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetOrganizationAuditLogsV2402Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetOrganizationAuditLogsV2403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetOrganizationAuditLogsV2404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2200Response": {
+        "required": [
+          "users",
+          "teams",
+          "events"
+        ],
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2200ResponseUsersItem"
+            }
+          },
+          "teams": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2200ResponseTeamsItem"
+            }
+          },
+          "events": {
+            "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2200ResponseEvents"
+          }
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2402Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetTeamAuditLogsV2200Response": {
+        "required": [
+          "auditLogs",
+          "pg"
+        ],
+        "type": "object",
+        "properties": {
+          "auditLogs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamAuditLogsV2200ResponseAuditLogsItem"
+            }
+          },
+          "pg": {
+            "$ref": "#/components/schemas/GetTeamAuditLogsV2200ResponsePg"
+          }
+        }
+      },
+      "GetTeamAuditLogsV2400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetTeamAuditLogsV2401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetTeamAuditLogsV2402Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetTeamAuditLogsV2403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetTeamAuditLogsV2404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetTeamAuditLogsFiltersV2200Response": {
+        "required": [
+          "users",
+          "events"
+        ],
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2200ResponseUsersItem"
+            }
+          },
+          "events": {
+            "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2200ResponseEvents"
+          }
+        }
+      },
+      "GetTeamAuditLogsFiltersV2400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetTeamAuditLogsFiltersV2401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetTeamAuditLogsFiltersV2402Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetTeamAuditLogsFiltersV2403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetTeamAuditLogsFiltersV2404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetAuditLogDetailV2200Response": {
+        "required": [
+          "uuid",
+          "createdAt",
+          "triggeredAt",
+          "eventName",
+          "actor",
+          "targetId"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?4[0-9a-fA-F]{3}-?[89abAB][0-9a-fA-F]{3}-?[0-9a-fA-F]{12}$",
+            "type": "string",
+            "description": "The UUIDv4 of the audit log entry. Hyphens are optional."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When Auditman stored the entry.",
+            "format": "date-time"
+          },
+          "triggeredAt": {
+            "type": "string",
+            "description": "When the audited event occurred.",
+            "format": "date-time"
+          },
+          "organizationId": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/GetAuditLogDetailV2200ResponseOrganization"
+          },
+          "eventName": {
+            "type": "string"
+          },
+          "team": {
+            "$ref": "#/components/schemas/GetAuditLogDetailV2200ResponseTeam"
+          },
+          "actor": {
+            "$ref": "#/components/schemas/GetAuditLogDetailV2200ResponseActor"
+          },
+          "targetId": {
+            "type": "string"
+          },
+          "version": {
+            "$ref": "#/components/schemas/GetAuditLogDetailV2200ResponseVersion"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GetAuditLogDetailV2200ResponseDetail"
+          }
+        }
+      },
+      "GetAuditLogDetailV2400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetAuditLogDetailV2401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetAuditLogDetailV2402Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetAuditLogDetailV2403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
+          }
+        }
+      },
+      "GetAuditLogDetailV2404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable Make API or Auditman error code."
+          },
+          "name": {
+            "type": "string",
+            "description": "Error name included in responses returned by Auditman."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message. Auditman uses a generic message in production responses."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the response safely exposes one."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Individual validation failures included by Auditman outside production."
           }
         }
       },
@@ -101251,6 +103870,11 @@
           "name": {
             "type": "string",
             "description": "A new name of the scenario. The name does not need to be unique."
+          },
+          "baseVersion": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Optimistic concurrency token: the scenario \u0060version\u0060 the submitted blueprint is based on, as returned by \u0060GET /scenarios/{scenarioId}/blueprint\u0060 (\u0060response.version\u0060) or by a previous update (\u0060scenarioVersion.version\u0060). When provided and the scenario has been saved since (its current version is higher), the update is rejected with \u0060409\u0060 / \u0060SC409\u0060 and nothing is changed; the error\u0027s \u0060metadata\u0060 carries \u0060currentVersion\u0060, \u0060baseVersion\u0060, \u0060lastEdit\u0060 and \u0060lastEditedBy\u0060. Omit it to save unconditionally.\n"
           }
         }
       },
@@ -101259,6 +103883,23 @@
         "properties": {
           "scenario": {
             "$ref": "#/components/schemas/PatchScenariosByScenarioId200ResponseScenario"
+          },
+          "scenarioVersion": {
+            "$ref": "#/components/schemas/PatchScenariosByScenarioId200ResponseScenarioVersion"
+          }
+        }
+      },
+      "PatchScenariosByScenarioId409Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/PatchScenariosByScenarioId409ResponseMetadata"
           }
         }
       },
@@ -102037,6 +104678,50 @@
           },
           "pg": {
             "$ref": "#/components/schemas/GetScenariosAiAgents200ResponsePg"
+          }
+        }
+      },
+      "PostScenariosAiAgentsModulesRequest": {
+        "type": "object",
+        "properties": {
+          "scenarioIds": {
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "The scenario IDs to retrieve agent module details for. All must belong to \u0060teamId\u0060. Omit this field to page through the team\u0027s AI agent scenarios instead."
+          }
+        }
+      },
+      "PostScenariosAiAgentsModules200Response": {
+        "type": "object",
+        "properties": {
+          "agentModules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostScenariosAiAgentsModules200ResponseAgentModulesItem"
+            }
+          },
+          "pg": {
+            "$ref": "#/components/schemas/PostScenariosAiAgentsModules200ResponsePg"
+          }
+        }
+      },
+      "PostScenariosAiAgentsModules400Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "PostScenariosAiAgentsModules403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
           }
         }
       },
@@ -138456,6 +141141,28 @@
         },
         "description": "\u0060{ [namespace]: value | null }\u0060. Each non-\u0060null\u0060 value must match the namespace\u0027s schema.\n"
       },
+      "PostAdminScenariosReactivateRequestOneOf1": {
+        "type": "object",
+        "properties": {
+          "reanalyze": {
+            "$ref": "#/components/schemas/PostAdminScenariosReactivateRequestOneOf1Reanalyze"
+          }
+        }
+      },
+      "PostAdminScenariosReactivateRequestOneOf2": {
+        "required": [
+          "reanalyze"
+        ],
+        "type": "object",
+        "properties": {
+          "reanalyze": {
+            "$ref": "#/components/schemas/PostAdminScenariosReactivateRequestOneOf2Reanalyze"
+          },
+          "scenarioIds": {
+            "$ref": "#/components/schemas/PostAdminScenariosReactivateRequestOneOf2ScenarioIds"
+          }
+        }
+      },
       "PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItem": {
         "type": "object",
         "oneOf": [
@@ -138691,6 +141398,28 @@
           }
         },
         "description": "Optional nested specification for complex fields"
+      },
+      "GetOrganizationAuditLogsFiltersV2200ResponseEvents": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2200ResponseEventsAnyOf1"
+          },
+          {
+            "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2200ResponseEventsAnyOf2"
+          }
+        ]
+      },
+      "GetTeamAuditLogsFiltersV2200ResponseEvents": {
+        "type": "object",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2200ResponseEventsAnyOf1"
+          },
+          {
+            "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2200ResponseEventsAnyOf2"
+          }
+        ]
       },
       "GetHooksByHookIdLogsByLogId200ResponseHookLogDataRequestBody": {
         "type": "object",
@@ -139238,6 +141967,32 @@
             "type": "boolean",
             "default": false
           }
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2200ResponseEventsAnyOf1": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2200ResponseEventsAnyOf1Item"
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2200ResponseEventsAnyOf2": {
+        "maxItems": 1,
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2200ResponseEventsAnyOf2Item"
+        }
+      },
+      "GetTeamAuditLogsFiltersV2200ResponseEventsAnyOf1": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2200ResponseEventsAnyOf1Item"
+        }
+      },
+      "GetTeamAuditLogsFiltersV2200ResponseEventsAnyOf2": {
+        "maxItems": 1,
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2200ResponseEventsAnyOf2Item"
         }
       },
       "GetImtApps200ResponseAppsItemOneOf1": {
@@ -141228,6 +143983,65 @@
             "$ref": "#/components/schemas/PostSsoLogin200ResponseRedirectActionData"
           }
         }
+      },
+      "PostAdminScenariosReactivate200ResponseResultsItem": {
+        "required": [
+          "scenarioId",
+          "status",
+          "message",
+          "prevIslinked",
+          "prevIsinvalid",
+          "prevInvalidationReason",
+          "prevErrorOccurCount"
+        ],
+        "type": "object",
+        "properties": {
+          "scenarioId": {
+            "type": "integer"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PostAdminScenariosReactivate200ResponseResultsItemStatus"
+          },
+          "message": {
+            "type": "string",
+            "description": "Reason for the activation result or a safe description of a reanalysis error.",
+            "nullable": true
+          },
+          "reanalysis": {
+            "$ref": "#/components/schemas/PostAdminScenariosReactivate200ResponseResultsItemReanalysis"
+          },
+          "prevIslinked": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "prevIsinvalid": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "prevInvalidationReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "prevErrorOccurCount": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "PostAdminScenariosReactivate200ResponseSummary": {
+        "required": [
+          "total"
+        ],
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer"
+          }
+        },
+        "additionalProperties": {
+          "type": "integer"
+        },
+        "description": "Total unique IDs plus a count for each activation status present in results."
       },
       "GetAdminTeams200ResponseTeamsItem": {
         "type": "object",
@@ -143515,6 +146329,300 @@
         }
       },
       "GetAuditLogDetail200ResponseDetails": {
+        "type": "object"
+      },
+      "GetOrganizationAuditLogsV2200ResponseAuditLogsItem": {
+        "required": [
+          "uuid",
+          "createdAt",
+          "triggeredAt",
+          "eventName",
+          "actor",
+          "targetId"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?4[0-9a-fA-F]{3}-?[89abAB][0-9a-fA-F]{3}-?[0-9a-fA-F]{12}$",
+            "type": "string",
+            "description": "The UUIDv4 of the audit log entry. Hyphens are optional."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When Auditman stored the entry.",
+            "format": "date-time"
+          },
+          "triggeredAt": {
+            "type": "string",
+            "description": "When the audited event occurred.",
+            "format": "date-time"
+          },
+          "organizationId": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/GetOrganizationAuditLogsV2200ResponseAuditLogsItemOrganization"
+          },
+          "eventName": {
+            "type": "string"
+          },
+          "team": {
+            "$ref": "#/components/schemas/GetOrganizationAuditLogsV2200ResponseAuditLogsItemTeam"
+          },
+          "actor": {
+            "$ref": "#/components/schemas/GetOrganizationAuditLogsV2200ResponseAuditLogsItemActor"
+          },
+          "targetId": {
+            "type": "string"
+          },
+          "version": {
+            "$ref": "#/components/schemas/GetOrganizationAuditLogsV2200ResponseAuditLogsItemVersion"
+          },
+          "imtId": {
+            "pattern": "^[0-9]{13}_[^_]\u002B$",
+            "type": "string",
+            "description": "Cursor identifier to pass as \u0060pg[last]\u0060 when requesting the next page."
+          }
+        }
+      },
+      "GetOrganizationAuditLogsV2200ResponsePg": {
+        "required": [
+          "limit"
+        ],
+        "type": "object",
+        "properties": {
+          "sortBy": {
+            "$ref": "#/components/schemas/GetOrganizationAuditLogsV2200ResponsePgSortBy"
+          },
+          "sortDir": {
+            "$ref": "#/components/schemas/GetOrganizationAuditLogsV2200ResponsePgSortDir"
+          },
+          "returnTotalCount": {
+            "type": "boolean"
+          },
+          "last": {
+            "pattern": "^[0-9]{13}_[^_]\u002B$",
+            "type": "string"
+          },
+          "limit": {
+            "maximum": 10000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "totalCount": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2200ResponseUsersItem": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2200ResponseTeamsItem": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetTeamAuditLogsV2200ResponseAuditLogsItem": {
+        "required": [
+          "uuid",
+          "createdAt",
+          "triggeredAt",
+          "eventName",
+          "actor",
+          "targetId"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "pattern": "^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?4[0-9a-fA-F]{3}-?[89abAB][0-9a-fA-F]{3}-?[0-9a-fA-F]{12}$",
+            "type": "string",
+            "description": "The UUIDv4 of the audit log entry. Hyphens are optional."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When Auditman stored the entry.",
+            "format": "date-time"
+          },
+          "triggeredAt": {
+            "type": "string",
+            "description": "When the audited event occurred.",
+            "format": "date-time"
+          },
+          "organizationId": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/GetTeamAuditLogsV2200ResponseAuditLogsItemOrganization"
+          },
+          "eventName": {
+            "type": "string"
+          },
+          "team": {
+            "$ref": "#/components/schemas/GetTeamAuditLogsV2200ResponseAuditLogsItemTeam"
+          },
+          "actor": {
+            "$ref": "#/components/schemas/GetTeamAuditLogsV2200ResponseAuditLogsItemActor"
+          },
+          "targetId": {
+            "type": "string"
+          },
+          "version": {
+            "$ref": "#/components/schemas/GetTeamAuditLogsV2200ResponseAuditLogsItemVersion"
+          },
+          "imtId": {
+            "pattern": "^[0-9]{13}_[^_]\u002B$",
+            "type": "string",
+            "description": "Cursor identifier to pass as \u0060pg[last]\u0060 when requesting the next page."
+          }
+        }
+      },
+      "GetTeamAuditLogsV2200ResponsePg": {
+        "required": [
+          "limit"
+        ],
+        "type": "object",
+        "properties": {
+          "sortBy": {
+            "$ref": "#/components/schemas/GetTeamAuditLogsV2200ResponsePgSortBy"
+          },
+          "sortDir": {
+            "$ref": "#/components/schemas/GetTeamAuditLogsV2200ResponsePgSortDir"
+          },
+          "returnTotalCount": {
+            "type": "boolean"
+          },
+          "last": {
+            "pattern": "^[0-9]{13}_[^_]\u002B$",
+            "type": "string"
+          },
+          "limit": {
+            "maximum": 10000,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "totalCount": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        }
+      },
+      "GetTeamAuditLogsFiltersV2200ResponseUsersItem": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAuditLogDetailV2200ResponseOrganization": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAuditLogDetailV2200ResponseTeam": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAuditLogDetailV2200ResponseActor": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAuditLogDetailV2200ResponseVersion": {
+        "required": [
+          "to"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAuditLogDetailV2200ResponseDetail": {
         "type": "object"
       },
       "GetAnalyticsByOrganizationId200ResponseTotal": {
@@ -150119,6 +153227,44 @@
           }
         }
       },
+      "PatchScenariosByScenarioId200ResponseScenarioVersion": {
+        "type": "object",
+        "properties": {
+          "scenarioId": {
+            "type": "integer"
+          },
+          "version": {
+            "type": "integer"
+          },
+          "draft": {
+            "type": "boolean",
+            "description": "Whether the version is a draft (teams with scenario drafts enabled) or published."
+          }
+        },
+        "description": "The scenario version this update created. Present only when the update changed the blueprint or its metadata; an update that stored nothing new (identical blueprint, or scheduling/name only) has no \u0060scenarioVersion\u0060 and the scenario\u0027s version is unchanged. Send \u0060version\u0060 back as \u0060baseVersion\u0060 on the next update to detect concurrent saves.\n"
+      },
+      "PatchScenariosByScenarioId409ResponseMetadata": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string"
+          },
+          "baseVersion": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currentVersion": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lastEdit": {
+            "type": "string"
+          },
+          "lastEditedBy": {
+            "$ref": "#/components/schemas/PatchScenariosByScenarioId409ResponseMetadataLastEditedBy"
+          }
+        }
+      },
       "GetScenariosByScenarioIdTriggers200ResponseFlags": {
         "type": "object"
       },
@@ -151117,6 +154263,10 @@
           "last_edit": {
             "type": "string",
             "format": "date-time"
+          },
+          "version": {
+            "type": "integer",
+            "description": "The scenario\u0027s current version number (the highest version in its history, draft or published; \u00600\u0060 for a scenario without versions). It is the scenario\u0027s current version even when \u0060blueprintId\u0060 selects an older blueprint. Send it back as \u0060baseVersion\u0060 in \u0060PATCH /scenarios/{scenarioId}\u0060 to have the save rejected if the scenario changed meanwhile.\n"
           }
         }
       },
@@ -151354,6 +154504,53 @@
             "description": "The number of results skipped."
           }
         }
+      },
+      "PostScenariosAiAgentsModules200ResponseAgentModulesItem": {
+        "type": "object",
+        "properties": {
+          "scenarioId": {
+            "type": "integer",
+            "description": "The unique ID of the scenario the agent module belongs to.",
+            "example": 42
+          },
+          "id": {
+            "type": "integer",
+            "description": "The unique ID of the agent module within the scenario\u0027s blueprint.",
+            "example": 3
+          },
+          "module": {
+            "type": "string",
+            "description": "The app:module identifier of the agent module.",
+            "example": "ai-local-agent:RunLocalAIAgent"
+          },
+          "userLabel": {
+            "type": "string",
+            "description": "The user-defined label of the agent module, if set.",
+            "nullable": true,
+            "example": "Support Agent"
+          },
+          "tools": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem"
+            },
+            "description": "The tools available to the agent module."
+          }
+        }
+      },
+      "PostScenariosAiAgentsModules200ResponsePg": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "The maximum number of scenarios processed."
+          },
+          "offset": {
+            "type": "integer",
+            "description": "The number of scenarios skipped."
+          }
+        },
+        "description": "Present only when \u0060scenarioIds\u0060 is omitted from the request body."
       },
       "GetScenariosFolders200ResponseScenariosFoldersItem": {
         "type": "object",
@@ -158560,6 +161757,78 @@
         "type": "object",
         "nullable": true
       },
+      "PostAdminScenariosReactivateRequestOneOf2ScenarioIds": {
+        "maxItems": 20,
+        "type": "object"
+      },
+      "GetOrganizationAuditLogsFiltersV2200ResponseEventsAnyOf1Item": {
+        "required": [
+          "header",
+          "items"
+        ],
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "string"
+          },
+          "items": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2200ResponseEventsAnyOf1ItemItemsItem"
+            }
+          }
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2200ResponseEventsAnyOf2Item": {
+        "required": [
+          "items"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetOrganizationAuditLogsFiltersV2200ResponseEventsAnyOf2ItemItemsItem"
+            }
+          }
+        }
+      },
+      "GetTeamAuditLogsFiltersV2200ResponseEventsAnyOf1Item": {
+        "required": [
+          "header",
+          "items"
+        ],
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "string"
+          },
+          "items": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2200ResponseEventsAnyOf1ItemItemsItem"
+            }
+          }
+        }
+      },
+      "GetTeamAuditLogsFiltersV2200ResponseEventsAnyOf2Item": {
+        "required": [
+          "items"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamAuditLogsFiltersV2200ResponseEventsAnyOf2ItemItemsItem"
+            }
+          }
+        }
+      },
       "GetImtApps200ResponseAppsItemOneOf1VersionsItem": {
         "required": [
           "version",
@@ -159705,6 +162974,130 @@
             "type": "string"
           },
           "value": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationAuditLogsV2200ResponseAuditLogsItemOrganization": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationAuditLogsV2200ResponseAuditLogsItemTeam": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationAuditLogsV2200ResponseAuditLogsItemActor": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationAuditLogsV2200ResponseAuditLogsItemVersion": {
+        "required": [
+          "to"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          }
+        }
+      },
+      "GetTeamAuditLogsV2200ResponseAuditLogsItemOrganization": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetTeamAuditLogsV2200ResponseAuditLogsItemTeam": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetTeamAuditLogsV2200ResponseAuditLogsItemActor": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "GetTeamAuditLogsV2200ResponseAuditLogsItemVersion": {
+        "required": [
+          "to"
+        ],
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
             "type": "string"
           }
         }
@@ -161883,6 +165276,21 @@
           }
         }
       },
+      "PatchScenariosByScenarioId409ResponseMetadataLastEditedBy": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
       "PostScenariosByScenarioIdCloneRequestAccountAdditionalProperties": {
         "type": "object"
       },
@@ -162331,6 +165739,33 @@
         },
         "description": "The user who created the scenario.",
         "nullable": true
+      },
+      "PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem": {
+        "type": "object",
+        "properties": {
+          "moduleId": {
+            "type": "integer",
+            "description": "The unique ID of the tool\u0027s module within the scenario\u0027s blueprint.",
+            "example": 4
+          },
+          "module": {
+            "type": "string",
+            "description": "The app:module identifier of the tool.",
+            "example": "knowledge:KnowledgeStandAlone"
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name of the tool.",
+            "example": "Product Docs"
+          },
+          "fileIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The IDs of the knowledge files attached to the tool, present only for knowledge tools."
+          }
+        }
       },
       "GetScenariosFolders200ResponseScenariosFoldersItemChildrenItem": {
         "type": "object",
@@ -165246,6 +168681,66 @@
           },
           "enabled": {
             "type": "boolean"
+          }
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2200ResponseEventsAnyOf1ItemItemsItem": {
+        "required": [
+          "label",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationAuditLogsFiltersV2200ResponseEventsAnyOf2ItemItemsItem": {
+        "required": [
+          "label",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "GetTeamAuditLogsFiltersV2200ResponseEventsAnyOf1ItemItemsItem": {
+        "required": [
+          "label",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "GetTeamAuditLogsFiltersV2200ResponseEventsAnyOf2ItemItemsItem": {
+        "required": [
+          "label",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
           }
         }
       },
@@ -182326,6 +185821,20 @@
         "type": "string",
         "additionalProperties": false
       },
+      "PostAdminScenariosReactivateRequestOneOf1Reanalyze": {
+        "enum": [
+          false
+        ],
+        "type": "boolean",
+        "additionalProperties": false
+      },
+      "PostAdminScenariosReactivateRequestOneOf2Reanalyze": {
+        "enum": [
+          true
+        ],
+        "type": "boolean",
+        "additionalProperties": false
+      },
       "GetImtApps200ResponseAppsItemOneOf1Type": {
         "enum": [
           "native",
@@ -182598,6 +186107,91 @@
             {
               "value": "array",
               "name": "Array"
+            }
+          ]
+        }
+      },
+      "PostAdminScenariosReactivate200ResponseResultsItemStatus": {
+        "enum": [
+          "reactivated",
+          "would_reactivate",
+          "already_active",
+          "deleted",
+          "executing",
+          "locked",
+          "not_found",
+          "failed"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostAdminScenariosReactivate200ResponseResultsItemStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "reactivated",
+              "name": "Reactivated"
+            },
+            {
+              "value": "would_reactivate",
+              "name": "WouldReactivate"
+            },
+            {
+              "value": "already_active",
+              "name": "AlreadyActive"
+            },
+            {
+              "value": "deleted",
+              "name": "Deleted"
+            },
+            {
+              "value": "executing",
+              "name": "Executing"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            },
+            {
+              "value": "not_found",
+              "name": "NotFound"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            }
+          ]
+        }
+      },
+      "PostAdminScenariosReactivate200ResponseResultsItemReanalysis": {
+        "enum": [
+          "succeeded",
+          "would_succeed",
+          "failed",
+          "skipped"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Present only when reanalyze is true. Failed analysis leaves the scenario unchanged.",
+        "x-ms-enum": {
+          "name": "PostAdminScenariosReactivate200ResponseResultsItemReanalysis",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "succeeded",
+              "name": "Succeeded"
+            },
+            {
+              "value": "would_succeed",
+              "name": "WouldSucceed"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            },
+            {
+              "value": "skipped",
+              "name": "Skipped"
             }
           ]
         }
@@ -183497,6 +187091,114 @@
             {
               "value": "openai-api-spec-compatible",
               "name": "OpenaiApiSpecCompatible"
+            }
+          ]
+        }
+      },
+      "GetOrganizationAuditLogsV2200ResponsePgSortBy": {
+        "enum": [
+          "triggeredAt",
+          "createdAt",
+          "eventName",
+          "targetId"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetOrganizationAuditLogsV2200ResponsePgSortBy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "triggeredAt",
+              "name": "TriggeredAt"
+            },
+            {
+              "value": "createdAt",
+              "name": "CreatedAt"
+            },
+            {
+              "value": "eventName",
+              "name": "EventName"
+            },
+            {
+              "value": "targetId",
+              "name": "TargetId"
+            }
+          ]
+        }
+      },
+      "GetOrganizationAuditLogsV2200ResponsePgSortDir": {
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetOrganizationAuditLogsV2200ResponsePgSortDir",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "asc",
+              "name": "Asc"
+            },
+            {
+              "value": "desc",
+              "name": "Desc"
+            }
+          ]
+        }
+      },
+      "GetTeamAuditLogsV2200ResponsePgSortBy": {
+        "enum": [
+          "triggeredAt",
+          "createdAt",
+          "eventName",
+          "targetId"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetTeamAuditLogsV2200ResponsePgSortBy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "triggeredAt",
+              "name": "TriggeredAt"
+            },
+            {
+              "value": "createdAt",
+              "name": "CreatedAt"
+            },
+            {
+              "value": "eventName",
+              "name": "EventName"
+            },
+            {
+              "value": "targetId",
+              "name": "TargetId"
+            }
+          ]
+        }
+      },
+      "GetTeamAuditLogsV2200ResponsePgSortDir": {
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetTeamAuditLogsV2200ResponsePgSortDir",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "asc",
+              "name": "Asc"
+            },
+            {
+              "value": "desc",
+              "name": "Desc"
             }
           ]
         }
@@ -190911,6 +194613,118 @@
         "additionalProperties": false,
         "x-ms-enum": {
           "name": "GetTeamAuditLogsPgSortDirParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "asc",
+              "name": "Asc"
+            },
+            {
+              "value": "desc",
+              "name": "Desc"
+            }
+          ]
+        }
+      },
+      "GetOrganizationAuditLogsV2PgParameterSortBy": {
+        "enum": [
+          "triggeredAt",
+          "createdAt",
+          "eventName",
+          "targetId"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The audit-log property used for sorting.",
+        "x-ms-enum": {
+          "name": "GetOrganizationAuditLogsV2PgParameterSortBy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "triggeredAt",
+              "name": "TriggeredAt"
+            },
+            {
+              "value": "createdAt",
+              "name": "CreatedAt"
+            },
+            {
+              "value": "eventName",
+              "name": "EventName"
+            },
+            {
+              "value": "targetId",
+              "name": "TargetId"
+            }
+          ]
+        }
+      },
+      "GetOrganizationAuditLogsV2PgParameterSortDir": {
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The sort direction.",
+        "x-ms-enum": {
+          "name": "GetOrganizationAuditLogsV2PgParameterSortDir",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "asc",
+              "name": "Asc"
+            },
+            {
+              "value": "desc",
+              "name": "Desc"
+            }
+          ]
+        }
+      },
+      "GetTeamAuditLogsV2PgParameterSortBy": {
+        "enum": [
+          "triggeredAt",
+          "createdAt",
+          "eventName",
+          "targetId"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The audit-log property used for sorting.",
+        "x-ms-enum": {
+          "name": "GetTeamAuditLogsV2PgParameterSortBy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "triggeredAt",
+              "name": "TriggeredAt"
+            },
+            {
+              "value": "createdAt",
+              "name": "CreatedAt"
+            },
+            {
+              "value": "eventName",
+              "name": "EventName"
+            },
+            {
+              "value": "targetId",
+              "name": "TargetId"
+            }
+          ]
+        }
+      },
+      "GetTeamAuditLogsV2PgParameterSortDir": {
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The sort direction.",
+        "x-ms-enum": {
+          "name": "GetTeamAuditLogsV2PgParameterSortDir",
           "modelAsString": false,
           "values": [
             {

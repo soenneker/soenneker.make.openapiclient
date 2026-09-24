@@ -18,6 +18,7 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Team
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.auditLogs.team.item collection</summary>
         /// <param name="position">The ID of the team.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.AuditLogs.Team.Item.WithTeamItemRequestBuilder"/></returns>
+        [Obsolete("")]
         public global::Soenneker.Make.OpenApiClient.AuditLogs.Team.Item.WithTeamItemRequestBuilder this[int position]
         {
             get

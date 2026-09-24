@@ -34,11 +34,12 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.Filters
         {
         }
         /// <summary>
-        /// Gets available audit logs filters for the organization.You can use the data in the response to filter audit log entries you get from the `GET /audit-logs/organization/{organizationId}` endpoint.
+        /// Gets available audit logs filters for the organization.You can use the data in the response to filter audit log entries you get from the `GET /audit-logs/organization/{organizationId}` endpoint.**Deprecated.** Use `GET /audit-logs/v2/organization/{organizationId}/filters` instead. That endpoint requires the`audit-logs:read` scope on the API token.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogsFilters200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogsFilters200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -52,10 +53,11 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.Filters
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogsFilters200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogsFilters200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Gets available audit logs filters for the organization.You can use the data in the response to filter audit log entries you get from the `GET /audit-logs/organization/{organizationId}` endpoint.
+        /// Gets available audit logs filters for the organization.You can use the data in the response to filter audit log entries you get from the `GET /audit-logs/organization/{organizationId}` endpoint.**Deprecated.** Use `GET /audit-logs/v2/organization/{organizationId}/filters` instead. That endpoint requires the`audit-logs:read` scope on the API token.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
@@ -75,6 +77,7 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.Filters
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.Filters.FiltersRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        [Obsolete("")]
         public global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.Filters.FiltersRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.Filters.FiltersRequestBuilder(rawUrl, RequestAdapter);

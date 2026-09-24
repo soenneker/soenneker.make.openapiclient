@@ -19,6 +19,7 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item
     public partial class WithOrganizationItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The filters property</summary>
+        [Obsolete("")]
         public global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.Filters.FiltersRequestBuilder Filters
         {
             get => new global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.Filters.FiltersRequestBuilder(PathParameters, RequestAdapter);
@@ -40,11 +41,12 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item
         {
         }
         /// <summary>
-        /// Gets a list of all audit log entries for the specified organization.The audit log entries in the response are sorted by the `triggeredAt` property in descending order by default. You can use pagination to navigate through a large number of entries.You can get the audit log entries only for organizations in which you have the &quot;Admin&quot; or &quot;Owner&quot; roles. Otherwise, you get the 403 error.
+        /// Gets a list of all audit log entries for the specified organization.The audit log entries in the response are sorted by the `triggeredAt` property in descending order by default. You can use pagination to navigate through a large number of entries.You can get the audit log entries only for organizations in which you have the &quot;Admin&quot; or &quot;Owner&quot; roles. Otherwise, you get the 403 error.**Deprecated.** Use `GET /audit-logs/v2/organization/{organizationId}` instead. That endpoint requires the`audit-logs:read` scope on the API token.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -58,10 +60,11 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Gets a list of all audit log entries for the specified organization.The audit log entries in the response are sorted by the `triggeredAt` property in descending order by default. You can use pagination to navigate through a large number of entries.You can get the audit log entries only for organizations in which you have the &quot;Admin&quot; or &quot;Owner&quot; roles. Otherwise, you get the 403 error.
+        /// Gets a list of all audit log entries for the specified organization.The audit log entries in the response are sorted by the `triggeredAt` property in descending order by default. You can use pagination to navigate through a large number of entries.You can get the audit log entries only for organizations in which you have the &quot;Admin&quot; or &quot;Owner&quot; roles. Otherwise, you get the 403 error.**Deprecated.** Use `GET /audit-logs/v2/organization/{organizationId}` instead. That endpoint requires the`audit-logs:read` scope on the API token.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.WithOrganizationItemRequestBuilder.WithOrganizationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
@@ -81,12 +84,13 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.WithOrganizationItemRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
+        [Obsolete("")]
         public global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.WithOrganizationItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.WithOrganizationItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Gets a list of all audit log entries for the specified organization.The audit log entries in the response are sorted by the `triggeredAt` property in descending order by default. You can use pagination to navigate through a large number of entries.You can get the audit log entries only for organizations in which you have the &quot;Admin&quot; or &quot;Owner&quot; roles. Otherwise, you get the 403 error.
+        /// Gets a list of all audit log entries for the specified organization.The audit log entries in the response are sorted by the `triggeredAt` property in descending order by default. You can use pagination to navigate through a large number of entries.You can get the audit log entries only for organizations in which you have the &quot;Admin&quot; or &quot;Owner&quot; roles. Otherwise, you get the 403 error.**Deprecated.** Use `GET /audit-logs/v2/organization/{organizationId}` instead. That endpoint requires the`audit-logs:read` scope on the API token.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithOrganizationItemRequestBuilderGetQueryParameters 

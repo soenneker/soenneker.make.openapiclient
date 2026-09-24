@@ -6,6 +6,7 @@ using Soenneker.Make.OpenApiClient.Admin.Apps;
 using Soenneker.Make.OpenApiClient.Admin.Experiments;
 using Soenneker.Make.OpenApiClient.Admin.Install;
 using Soenneker.Make.OpenApiClient.Admin.Organizations;
+using Soenneker.Make.OpenApiClient.Admin.Scenarios;
 using Soenneker.Make.OpenApiClient.Admin.Sdk;
 using Soenneker.Make.OpenApiClient.Admin.SystemSettings;
 using Soenneker.Make.OpenApiClient.Admin.Teams;
@@ -42,6 +43,11 @@ namespace Soenneker.Make.OpenApiClient.Admin
         public global::Soenneker.Make.OpenApiClient.Admin.Organizations.OrganizationsRequestBuilder Organizations
         {
             get => new global::Soenneker.Make.OpenApiClient.Admin.Organizations.OrganizationsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The scenarios property</summary>
+        public global::Soenneker.Make.OpenApiClient.Admin.Scenarios.ScenariosRequestBuilder Scenarios
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Admin.Scenarios.ScenariosRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The sdk property</summary>
         public global::Soenneker.Make.OpenApiClient.Admin.Sdk.SdkRequestBuilder Sdk

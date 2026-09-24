@@ -22,6 +22,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenario Scenario { get; set; }
 #endif
+        /// <summary>The scenario version this update created. Present only when the update changed the blueprint or its metadata; an update that stored nothing new (identical blueprint, or scheduling/name only) has no `scenarioVersion` and the scenario&apos;s version is unchanged. Send `version` back as `baseVersion` on the next update to detect concurrent saves.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioVersion? ScenarioVersion { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioVersion ScenarioVersion { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200Response"/> and sets the default values.
         /// </summary>
@@ -48,6 +56,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "scenario", n => { Scenario = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenario>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenario.CreateFromDiscriminatorValue); } },
+                { "scenarioVersion", n => { ScenarioVersion = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioVersion>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioVersion.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -58,6 +67,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenario>("scenario", Scenario);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioVersion>("scenarioVersion", ScenarioVersion);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

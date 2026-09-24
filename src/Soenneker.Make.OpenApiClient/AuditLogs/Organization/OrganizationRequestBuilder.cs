@@ -18,6 +18,7 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Organization
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.auditLogs.organization.item collection</summary>
         /// <param name="position">The ID of the organization.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.WithOrganizationItemRequestBuilder"/></returns>
+        [Obsolete("")]
         public global::Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.WithOrganizationItemRequestBuilder this[int position]
         {
             get

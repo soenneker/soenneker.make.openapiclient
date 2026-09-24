@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.Scenarios.AiAgents.Modules;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,6 +18,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.AiAgents
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class AiAgentsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The modules property</summary>
+        public global::Soenneker.Make.OpenApiClient.Scenarios.AiAgents.Modules.ModulesRequestBuilder Modules
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Scenarios.AiAgents.Modules.ModulesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Scenarios.AiAgents.AiAgentsRequestBuilder"/> and sets the default values.
         /// </summary>

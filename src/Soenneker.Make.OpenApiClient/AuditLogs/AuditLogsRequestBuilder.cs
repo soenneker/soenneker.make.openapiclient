@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.AuditLogs.Item;
 using Soenneker.Make.OpenApiClient.AuditLogs.Organization;
 using Soenneker.Make.OpenApiClient.AuditLogs.Team;
+using Soenneker.Make.OpenApiClient.AuditLogs.V2;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -26,6 +27,11 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs
         public global::Soenneker.Make.OpenApiClient.AuditLogs.Team.TeamRequestBuilder Team
         {
             get => new global::Soenneker.Make.OpenApiClient.AuditLogs.Team.TeamRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The v2 property</summary>
+        public global::Soenneker.Make.OpenApiClient.AuditLogs.V2.V2RequestBuilder V2
+        {
+            get => new global::Soenneker.Make.OpenApiClient.AuditLogs.V2.V2RequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.auditLogs.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>

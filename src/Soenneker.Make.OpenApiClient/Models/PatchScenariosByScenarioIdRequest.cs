@@ -14,6 +14,8 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Optimistic concurrency token: the scenario `version` the submitted blueprint is based on, as returned by `GET /scenarios/{scenarioId}/blueprint` (`response.version`) or by a previous update (`scenarioVersion.version`). When provided and the scenario has been saved since (its current version is higher), the update is rejected with `409` / `SC409` and nothing is changed; the error&apos;s `metadata` carries `currentVersion`, `baseVersion`, `lastEdit` and `lastEditedBy`. Omit it to save unconditionally.</summary>
+        public int? BaseVersion { get; set; }
         /// <summary>The scenario blueprint. To save resources, the blueprint is sent as a string, not as an object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -65,6 +67,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "baseVersion", n => { BaseVersion = n.GetIntValue(); } },
                 { "blueprint", n => { Blueprint = n.GetStringValue(); } },
                 { "folderId", n => { FolderId = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -78,6 +81,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteIntValue("baseVersion", BaseVersion);
             writer.WriteStringValue("blueprint", Blueprint);
             writer.WriteIntValue("folderId", FolderId);
             writer.WriteStringValue("name", Name);
