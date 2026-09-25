@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Functions.Eval;
 using Soenneker.Make.OpenApiClient.Functions.Item;
+using Soenneker.Make.OpenApiClient.Functions.V2;
 using Soenneker.Make.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,11 @@ namespace Soenneker.Make.OpenApiClient.Functions
         public global::Soenneker.Make.OpenApiClient.Functions.Eval.EvalRequestBuilder Eval
         {
             get => new global::Soenneker.Make.OpenApiClient.Functions.Eval.EvalRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The v2 property</summary>
+        public global::Soenneker.Make.OpenApiClient.Functions.V2.V2RequestBuilder V2
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Functions.V2.V2RequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.functions.item collection</summary>
         /// <param name="position">The ID of the custom function.</param>

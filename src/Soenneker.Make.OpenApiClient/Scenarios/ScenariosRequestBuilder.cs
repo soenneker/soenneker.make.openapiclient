@@ -9,6 +9,7 @@ using Soenneker.Make.OpenApiClient.Scenarios.Consumptions;
 using Soenneker.Make.OpenApiClient.Scenarios.Item;
 using Soenneker.Make.OpenApiClient.Scenarios.Logs;
 using Soenneker.Make.OpenApiClient.Scenarios.Modules;
+using Soenneker.Make.OpenApiClient.Scenarios.MoveToTrash;
 using Soenneker.Make.OpenApiClient.Scenarios.ReplayableExecutions;
 using Soenneker.Make.OpenApiClient.Scenarios.Tools;
 using Soenneker.Make.OpenApiClient.Scenarios.Trash;
@@ -44,6 +45,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         public global::Soenneker.Make.OpenApiClient.Scenarios.Modules.ModulesRequestBuilder Modules
         {
             get => new global::Soenneker.Make.OpenApiClient.Scenarios.Modules.ModulesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The moveToTrash property</summary>
+        public global::Soenneker.Make.OpenApiClient.Scenarios.MoveToTrash.MoveToTrashRequestBuilder MoveToTrash
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Scenarios.MoveToTrash.MoveToTrashRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The replayableExecutions property</summary>
         public global::Soenneker.Make.OpenApiClient.Scenarios.ReplayableExecutions.ReplayableExecutionsRequestBuilder ReplayableExecutions
