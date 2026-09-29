@@ -6,6 +6,7 @@ using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Diff;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Pull;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.PullRequest;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Push;
 using System.Collections.Generic;
 using System.IO;
@@ -29,6 +30,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Pull.PullRequestBuilder Pull
         {
             get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Pull.PullRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The pullRequest property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.PullRequest.PullRequestRequestBuilder PullRequest
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.PullRequest.PullRequestRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The push property</summary>
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Push.PushRequestBuilder Push

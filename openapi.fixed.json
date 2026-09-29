@@ -3146,6 +3146,68 @@
         "x-private": true
       }
     },
+    "/admin/users/{userId}/anonymize-audit-logs": {
+      "post": {
+        "tags": [
+          "Admin / Users"
+        ],
+        "summary": "Anonymize a deleted user\u0027s audit logs",
+        "description": "Anonymizes a deleted user\u0027s audit logs in this zone\u0027s auditman. Available on master only, which runs its own auditman and has no swarm connection to HQ \u2014 the audit logs master produces (login, registration, SSO) can only be anonymized here. HQ\u0027s endpoint of the same name covers the zones a user\u0027s organizations live in; neither covers the other\u0027s storage. Answers \u0060{ \u0022ok\u0022: 1 }\u0060 once auditman has accepted the request \u2014 auditman answers without waiting for the work, so where the anonymization stands is read from auditman rather than reported here. Requesting again is safe: auditman reuses its in-flight request for the same user instead of starting a second run.",
+        "operationId": "PostAdminUsersByUserIdAnonymizeAuditLogs",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the deleted user whose audit logs are anonymized.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Auditman accepted the anonymization request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminUsersByUserIdAnonymizeAuditLogs200Response"
+                },
+                "example": {
+                  "ok": 1
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input parameters."
+          },
+          "403": {
+            "description": "Insufficient rights."
+          },
+          "404": {
+            "description": "User not found, or the endpoint was called on a slave zone."
+          },
+          "409": {
+            "description": "The user is not deleted, so their audit logs cannot be anonymized."
+          },
+          "503": {
+            "description": "Auditman is not available in this deployment."
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:write",
+              "user:write"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
     "/admin/users/{userId}/user-organization-roles/{organizationId}": {
       "post": {
         "tags": [
@@ -45444,6 +45506,177 @@
                     "summary": "Bound branch has no commits yet",
                     "value": {
                       "message": "GitHub branch octocat/my-github-app@main has no commit yet \u2014 push from Make first.",
+                      "code": "SC424"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:write"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
+    "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/{sdkGithubBindingId}/pull-request": {
+      "post": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "Open a pull request with the app",
+        "description": "Commits the app version\u0027s complete source tree \u2014 exactly what \u0060/push\u0060 would commit \u2014 to the binding\u0027s head branch \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060 and opens a pull request from it into the bound branch. The bound branch itself is not touched, so the binding\u0027s sync state (\u0060lastPushedAt\u0060, \u0060lastPushedCommitSha\u0060, \u0060syncStatus\u0060, checksum snapshot) does not move: the app stays \u0022ahead\u0022 until the pull request is merged and pulled back with \u0060/pull\u0060.\n\nNothing about the pull request is stored. On every call GitHub is asked whether the head branch already has an open pull request into the bound branch. If it does, the commit is appended to that pull request (\u0060pullRequest.created: false\u0060) \u2014 regardless of whether Make or someone in an IDE opened it. If it does not, the head branch is restarted from the bound branch\u0027s current tip and a new pull request is opened, so its diff is exactly \u0022the app as it is now vs. the bound branch\u0022 and never carries a previous, since-merged-or-closed round along.\n\nA failure here does not mark the binding with \u0060syncStatus: error\u0060 / \u0060lastError\u0060 \u2014 those describe syncs of the bound branch. Only the app\u0027s author (or an administrator) may open a pull request.",
+        "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-github-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "sdkGithubBindingId",
+            "in": "path",
+            "description": "ID of the GitHub binding.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequestRequest"
+              },
+              "examples": {
+                "with-message": {
+                  "summary": "Open a pull request with a custom commit message",
+                  "value": {
+                    "message": "Add the listRecords module"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200Response"
+                },
+                "examples": {
+                  "opened": {
+                    "summary": "A new pull request was opened",
+                    "value": {
+                      "commitSha": "8f5b3a2c1d9e7f6a5b4c3d2e1f0a9b8c7d6e5f4a",
+                      "branch": "make/my-github-app-v1",
+                      "pullRequest": {
+                        "number": 12,
+                        "url": "https://github.com/octocat/my-github-app/pull/12",
+                        "created": true
+                      }
+                    }
+                  },
+                  "updated": {
+                    "summary": "The head branch\u0027s open pull request received another commit",
+                    "value": {
+                      "commitSha": "3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b",
+                      "branch": "make/my-github-app-v1",
+                      "pullRequest": {
+                        "number": 12,
+                        "url": "https://github.com/octocat/my-github-app/pull/12",
+                        "created": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The bound connection no longer exists or is not a GitHub connection, or the bound branch is itself the binding\u0027s head branch.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest400ResponseSchema"
+                },
+                "examples": {
+                  "connection-unavailable": {
+                    "summary": "Bound connection unavailable",
+                    "value": {
+                      "detail": "Bound connection is not available or is not a GitHub connection.",
+                      "code": "IM005"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The binding does not exist or belongs to a different app version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest404ResponseSchema"
+                },
+                "examples": {
+                  "binding-not-found": {
+                    "summary": "Binding not found",
+                    "value": {
+                      "detail": "GitHub binding not found for this app.",
+                      "code": "IM013"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "424": {
+            "description": "GitHub rejected a request or was unreachable (invalid/revoked token, API outage), or the bound branch has no commit yet to open a pull request against. The reason is in \u0060detail\u0060; the binding is left as it was.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest424ResponseSchema"
+                },
+                "examples": {
+                  "empty-base-branch": {
+                    "summary": "Bound branch has no commits",
+                    "value": {
+                      "message": "The request failed due to failure of a previous request.",
+                      "detail": "GitHub branch octocat/my-github-app@main has no commit yet, so there is nothing to open a pull request against. Push once to initialize the branch.",
+                      "code": "SC424"
+                    }
+                  },
+                  "github-failed": {
+                    "summary": "GitHub call failed",
+                    "value": {
+                      "message": "The request failed due to failure of a previous request.",
+                      "detail": "GitHub API GET /user failed: 401 Bad credentials",
                       "code": "SC424"
                     }
                   }
@@ -100547,6 +100780,14 @@
           }
         }
       },
+      "PostAdminUsersByUserIdAnonymizeAuditLogs200Response": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "integer"
+          }
+        }
+      },
       "PostAdminUsersByUserIdUserOrganizationRolesByOrganizationIdRequest": {
         "type": "object",
         "properties": {
@@ -112233,6 +112474,41 @@
         "type": "object"
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull424Response": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequestRequest": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "maxLength": 1024,
+            "type": "string",
+            "description": "Commit message. Its first line doubles as the title of a newly opened pull request. Defaults to \u0060Sync \u003CappName\u003E@\u003CappVersion\u003E from Make\u0060 when omitted."
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200Response": {
+        "type": "object",
+        "properties": {
+          "commitSha": {
+            "type": "string",
+            "description": "SHA of the commit created on the head branch. Not a commit on the bound branch."
+          },
+          "branch": {
+            "type": "string",
+            "description": "Head branch the commit landed on \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060."
+          },
+          "pullRequest": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponsePullRequest"
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest400Response": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest404Response": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest424Response": {
         "type": "object"
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200Response": {
@@ -148022,6 +148298,15 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull424ResponseSchema": {
         "type": "object"
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest400ResponseSchema": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest404ResponseSchema": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest424ResponseSchema": {
+        "type": "object"
+      },
       "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff404ResponseSchema": {
         "type": "object"
       },
@@ -166769,6 +167054,23 @@
           "item": {
             "type": "string",
             "description": "Name of the created entity (auto-generated for connections and webhooks)."
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponsePullRequest": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer",
+            "description": "Pull request number on GitHub."
+          },
+          "url": {
+            "type": "string",
+            "description": "HTML URL of the pull request."
+          },
+          "created": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when this call opened the pull request; \u0060false\u0060 when the head branch\u0027s already-open pull request received the commit instead."
           }
         }
       },

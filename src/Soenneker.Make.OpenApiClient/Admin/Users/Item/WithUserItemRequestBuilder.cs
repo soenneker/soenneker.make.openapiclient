@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Admin.Users.Item.Affiliate;
+using Soenneker.Make.OpenApiClient.Admin.Users.Item.AnonymizeAuditLogs;
 using Soenneker.Make.OpenApiClient.Admin.Users.Item.UserOrganizationRoles;
 using Soenneker.Make.OpenApiClient.Admin.Users.Item.UserTeamRoles;
 using Soenneker.Make.OpenApiClient.Models;
@@ -24,6 +25,11 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item
         public global::Soenneker.Make.OpenApiClient.Admin.Users.Item.Affiliate.AffiliateRequestBuilder Affiliate
         {
             get => new global::Soenneker.Make.OpenApiClient.Admin.Users.Item.Affiliate.AffiliateRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The anonymizeAuditLogs property</summary>
+        public global::Soenneker.Make.OpenApiClient.Admin.Users.Item.AnonymizeAuditLogs.AnonymizeAuditLogsRequestBuilder AnonymizeAuditLogs
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Admin.Users.Item.AnonymizeAuditLogs.AnonymizeAuditLogsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The userOrganizationRoles property</summary>
         public global::Soenneker.Make.OpenApiClient.Admin.Users.Item.UserOrganizationRoles.UserOrganizationRolesRequestBuilder UserOrganizationRoles
