@@ -14,7 +14,7 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The ID of the user role. Check the `GET /users/roles` API call for the available `usersRoleId` values.</summary>
+        /// <summary>The ID of the user role. Check the `GET /users/roles` API call for the available `usersRoleId` values. Send `null` (or omit) to remove the user&apos;s role / remove them from the team.</summary>
         public int? UsersRoleId { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserTeamRolesByTeamIdRequest"/> and sets the default values.

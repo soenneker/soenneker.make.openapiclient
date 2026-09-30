@@ -14,7 +14,15 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Head branch the commit landed on — `make/&lt;appName&gt;-v&lt;appVersion&gt;`.</summary>
+        /// <summary>A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding? Binding { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding Binding { get; set; }
+#endif
+        /// <summary>The pull-request branch the commit landed on and the binding now tracks — `make/&lt;appName&gt;-v&lt;appVersion&gt;`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Branch { get; set; }
@@ -22,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Branch { get; set; }
 #endif
-        /// <summary>SHA of the commit created on the head branch. Not a commit on the bound branch.</summary>
+        /// <summary>SHA of the commit created on the pull-request branch — the binding&apos;s new bound branch.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CommitSha { get; set; }
@@ -63,6 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "binding", n => { Binding = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding.CreateFromDiscriminatorValue); } },
                 { "branch", n => { Branch = n.GetStringValue(); } },
                 { "commitSha", n => { CommitSha = n.GetStringValue(); } },
                 { "pullRequest", n => { PullRequest = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponsePullRequest>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponsePullRequest.CreateFromDiscriminatorValue); } },
@@ -75,6 +84,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding>("binding", Binding);
             writer.WriteStringValue("branch", Branch);
             writer.WriteStringValue("commitSha", CommitSha);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponsePullRequest>("pullRequest", PullRequest);

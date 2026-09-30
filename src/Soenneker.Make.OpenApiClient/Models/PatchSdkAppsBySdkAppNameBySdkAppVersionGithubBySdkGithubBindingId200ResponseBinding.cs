@@ -123,6 +123,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>Whether the remote repository is private.</summary>
         public bool? Private { get; set; }
+        /// <summary>Branch the pull-request flow commits to — `make/&lt;appName&gt;-v&lt;appVersion&gt;`. Opening a pull request moves the binding onto it (`branch` becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PullRequestBranch { get; set; }
+#nullable restore
+#else
+        public string PullRequestBranch { get; set; }
+#endif
         /// <summary>Last observed HEAD SHA of the bound branch. Refreshed best-effort on read; `null` when the branch has no commits or GitHub is unreachable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -197,6 +205,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "nameMap", n => { NameMap = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMap>(global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMap.CreateFromDiscriminatorValue); } },
                 { "owner", n => { Owner = n.GetStringValue(); } },
                 { "private", n => { Private = n.GetBoolValue(); } },
+                { "pullRequestBranch", n => { PullRequestBranch = n.GetStringValue(); } },
                 { "remoteHeadSha", n => { RemoteHeadSha = n.GetStringValue(); } },
                 { "repo", n => { Repo = n.GetStringValue(); } },
                 { "repoUrl", n => { RepoUrl = n.GetStringValue(); } },
@@ -232,6 +241,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMap>("nameMap", NameMap);
             writer.WriteStringValue("owner", Owner);
             writer.WriteBoolValue("private", Private);
+            writer.WriteStringValue("pullRequestBranch", PullRequestBranch);
             writer.WriteStringValue("remoteHeadSha", RemoteHeadSha);
             writer.WriteStringValue("repo", Repo);
             writer.WriteStringValue("repoUrl", RepoUrl);

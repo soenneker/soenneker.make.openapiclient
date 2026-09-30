@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Admin.Organizations.Item.AssignUniversalDiscount;
 using Soenneker.Make.OpenApiClient.Admin.Organizations.Item.BillingAuditLogs;
+using Soenneker.Make.OpenApiClient.Admin.Organizations.Item.Subscription;
 using Soenneker.Make.OpenApiClient.Admin.Organizations.Item.UniversalDiscount;
 using Soenneker.Make.OpenApiClient.Admin.Organizations.Item.UniversalDiscountOptions;
 using Soenneker.Make.OpenApiClient.Models;
@@ -30,6 +31,11 @@ namespace Soenneker.Make.OpenApiClient.Admin.Organizations.Item
         public global::Soenneker.Make.OpenApiClient.Admin.Organizations.Item.BillingAuditLogs.BillingAuditLogsRequestBuilder BillingAuditLogs
         {
             get => new global::Soenneker.Make.OpenApiClient.Admin.Organizations.Item.BillingAuditLogs.BillingAuditLogsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The subscription property</summary>
+        public global::Soenneker.Make.OpenApiClient.Admin.Organizations.Item.Subscription.SubscriptionRequestBuilder Subscription
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Admin.Organizations.Item.Subscription.SubscriptionRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The universalDiscount property</summary>
         public global::Soenneker.Make.OpenApiClient.Admin.Organizations.Item.UniversalDiscount.UniversalDiscountRequestBuilder UniversalDiscount

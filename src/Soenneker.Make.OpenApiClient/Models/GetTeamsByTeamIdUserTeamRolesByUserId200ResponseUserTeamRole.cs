@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public int? TeamId { get; set; }
         /// <summary>The userId property</summary>
         public int? UserId { get; set; }
-        /// <summary>The usersRoleId property</summary>
+        /// <summary>The user&apos;s role in the team, or `null` when the user has no role (e.g. after removal).</summary>
         public int? UsersRoleId { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdUserTeamRolesByUserId200ResponseUserTeamRole"/> and sets the default values.

@@ -1612,6 +1612,133 @@
         "x-internal": true
       }
     },
+    "/admin/organizations/{organizationId}/subscription/customer/price-group": {
+      "patch": {
+        "tags": [
+          "Admin / Organizations"
+        ],
+        "summary": "Change the customer\u0027s price group",
+        "description": "Moves the organization\u0027s cashier customer to another price group. The running subscription is\nnot changed, open Stripe Checkout sessions of the customer are expired, and the change is\nwritten to the billing audit log. Fails with \u0060IM005\u0060 when the group does not exist, is already\nassigned, is disabled, or has its feature flag off, and with \u0060SC404\u0060 when the organization has\nno cashier customer. Requires the admin permission \u0022organization subscription edit\u0022.\n",
+        "operationId": "PatchAdminOrganizationsByOrganizationIdSubscriptionCustomerPriceGroup",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "The ID of the organization.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 10
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchAdminOrganizationsByOrganizationIdSubscriptionCustomerPriceGroupRequest"
+              },
+              "examples": {
+                "default": {
+                  "summary": "Move the customer to price group 2",
+                  "value": {
+                    "priceGroupId": 2
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchAdminOrganizationsByOrganizationIdSubscriptionCustomerPriceGroup200Response"
+                },
+                "examples": {
+                  "default": {
+                    "summary": "Price group changed",
+                    "value": {
+                      "ok": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:write",
+              "organizations:write"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
+    "/admin/price-groups": {
+      "get": {
+        "tags": [
+          "Admin / Organizations"
+        ],
+        "summary": "List price groups",
+        "description": "Lists every cashier price group, including disabled and experiment groups. A customer belongs to\nexactly one group. A group can be assigned with\n\u0060PATCH /admin/organizations/{organizationId}/subscription/customer/price-group\u0060. Requires the admin permission\n\u0022organization subscription edit\u0022.\n",
+        "operationId": "GetAdminPriceGroups",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAdminPriceGroups200Response"
+                },
+                "examples": {
+                  "default": {
+                    "summary": "Default and one geo price group",
+                    "value": {
+                      "priceGroups": [
+                        {
+                          "id": 1,
+                          "name": "default",
+                          "isDefault": true,
+                          "isExperiment": false,
+                          "featureFlag": null,
+                          "disabledAt": null,
+                          "isAssignable": true
+                        },
+                        {
+                          "id": 2,
+                          "name": "T1",
+                          "isDefault": false,
+                          "isExperiment": false,
+                          "featureFlag": "price-group-t1",
+                          "disabledAt": null,
+                          "isAssignable": true
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:read"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
     "/admin/experiments/organization/{organizationId}": {
       "get": {
         "tags": [
@@ -44534,6 +44661,7 @@
                           "repo": "my-github-app",
                           "branch": "main",
                           "defaultBranch": "main",
+                          "pullRequestBranch": "make/my-github-app-v1",
                           "private": true,
                           "connectionId": 137,
                           "connectionName": "My GitHub connection",
@@ -44642,6 +44770,7 @@
                         "repo": "my-github-app",
                         "branch": "main",
                         "defaultBranch": "main",
+                        "pullRequestBranch": "make/my-github-app-v1",
                         "private": true,
                         "connectionId": 137,
                         "connectionName": "My GitHub connection",
@@ -44884,6 +45013,7 @@
                         "repo": "my-github-app",
                         "branch": "main",
                         "defaultBranch": "main",
+                        "pullRequestBranch": "make/my-github-app-v1",
                         "private": true,
                         "connectionId": 137,
                         "connectionName": "My GitHub connection",
@@ -44946,7 +45076,7 @@
           "SDK Apps / GitHub"
         ],
         "summary": "Update GitHub binding",
-        "description": "Updates editable metadata of an existing GitHub binding \u2014 typically the sync branch or the Make connection the binding authenticates through. When \u0060connectionId\u0060 is changed, the new connection must be a GitHub connection, otherwise responds with \u0060400\u0060. At least one field must be provided. Only the app\u0027s author (or an administrator) may update bindings.",
+        "description": "Updates editable metadata of an existing GitHub binding \u2014 the bound branch or the Make connection the binding authenticates through. At least one field must be provided. Only the app\u0027s author (or an administrator) may update bindings.\n\nChanging \u0060branch\u0060 moves the binding to another branch of the same repository. The branch must already exist on GitHub (pick it from \u0060GET .../github/{SDK_githubBindingId}/branches\u0060), otherwise responds with \u0060400\u0060; the move also fails with \u0060400\u0060 when this app already has a binding on that branch or when the binding\u0027s directory would nest inside or around another app\u0027s binding there. The push snapshot and the last synced commit are kept \u2014 they describe the app, not the branch \u2014 while \u0060remoteHeadSha\u0060, \u0060behindBy\u0060 and \u0060syncStatus\u0060 are recomputed for the new branch. That is what makes switching back to the base branch after a merged pull request read \u0060in_sync\u0060 right away.\n\nWhen \u0060connectionId\u0060 is changed, the new connection must be a GitHub connection, otherwise responds with \u0060400\u0060.",
         "operationId": "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId",
         "parameters": [
           {
@@ -45019,6 +45149,7 @@
                         "repo": "my-github-app",
                         "branch": "develop",
                         "defaultBranch": "main",
+                        "pullRequestBranch": "make/my-github-app-v1",
                         "private": true,
                         "connectionId": 137,
                         "connectionName": "My GitHub connection",
@@ -45028,9 +45159,9 @@
                         "lastPushedCommitSha": null,
                         "lastPulledAt": null,
                         "lastPulledCommitSha": null,
-                        "remoteHeadSha": null,
+                        "remoteHeadSha": "9c1e3f2a7b6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f",
                         "behindBy": null,
-                        "syncStatus": "idle",
+                        "syncStatus": "behind",
                         "lastError": null,
                         "lastPushedChecksums": null,
                         "nameMap": {
@@ -45048,7 +45179,7 @@
             }
           },
           "400": {
-            "description": "The new connection does not exist or is not a GitHub connection.",
+            "description": "The new connection does not exist or is not a GitHub connection, or the new branch is not usable: it does not exist on GitHub, this app is already bound to it, or the binding\u0027s directory would nest with another app\u0027s binding on it.",
             "content": {
               "application/json": {
                 "schema": {
@@ -45059,6 +45190,20 @@
                     "summary": "Connection is not a GitHub connection",
                     "value": {
                       "message": "Connection is not a GitHub connection or does not exist.",
+                      "code": "IM005"
+                    }
+                  },
+                  "branch-missing": {
+                    "summary": "Branch does not exist on GitHub",
+                    "value": {
+                      "message": "Branch \u0022develop\u0022 does not exist in octocat/my-github-app.",
+                      "code": "IM005"
+                    }
+                  },
+                  "branch-taken": {
+                    "summary": "The app already has a binding on the branch",
+                    "value": {
+                      "message": "This app is already bound to octocat/my-github-app@develop.",
                       "code": "IM005"
                     }
                   }
@@ -45079,6 +45224,26 @@
                     "value": {
                       "detail": "GitHub binding not found for this app.",
                       "code": "IM013"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "424": {
+            "description": "GitHub rejected the branch lookup or was unreachable (invalid/revoked token, API outage). The reason is in \u0060detail\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId424ResponseSchema"
+                },
+                "examples": {
+                  "github-failed": {
+                    "summary": "GitHub call failed",
+                    "value": {
+                      "message": "The request failed due to failure of a previous request.",
+                      "detail": "GitHub API GET /repos/octocat/my-github-app/git/refs/heads/develop failed: 401 Bad credentials",
+                      "code": "SC424"
                     }
                   }
                 }
@@ -45246,6 +45411,7 @@
                         "repo": "my-github-app",
                         "branch": "main",
                         "defaultBranch": "main",
+                        "pullRequestBranch": "make/my-github-app-v1",
                         "private": true,
                         "connectionId": 137,
                         "connectionName": "My GitHub connection",
@@ -45412,6 +45578,7 @@
                         "repo": "my-github-app",
                         "branch": "main",
                         "defaultBranch": "main",
+                        "pullRequestBranch": "make/my-github-app-v1",
                         "private": true,
                         "connectionId": 137,
                         "connectionName": "My GitHub connection",
@@ -45530,7 +45697,7 @@
           "SDK Apps / GitHub"
         ],
         "summary": "Open a pull request with the app",
-        "description": "Commits the app version\u0027s complete source tree \u2014 exactly what \u0060/push\u0060 would commit \u2014 to the binding\u0027s head branch \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060 and opens a pull request from it into the bound branch. The bound branch itself is not touched, so the binding\u0027s sync state (\u0060lastPushedAt\u0060, \u0060lastPushedCommitSha\u0060, \u0060syncStatus\u0060, checksum snapshot) does not move: the app stays \u0022ahead\u0022 until the pull request is merged and pulled back with \u0060/pull\u0060.\n\nNothing about the pull request is stored. On every call GitHub is asked whether the head branch already has an open pull request into the bound branch. If it does, the commit is appended to that pull request (\u0060pullRequest.created: false\u0060) \u2014 regardless of whether Make or someone in an IDE opened it. If it does not, the head branch is restarted from the bound branch\u0027s current tip and a new pull request is opened, so its diff is exactly \u0022the app as it is now vs. the bound branch\u0022 and never carries a previous, since-merged-or-closed round along.\n\nA failure here does not mark the binding with \u0060syncStatus: error\u0060 / \u0060lastError\u0060 \u2014 those describe syncs of the bound branch. Only the app\u0027s author (or an administrator) may open a pull request.",
+        "description": "Commits the app version\u0027s complete source tree \u2014 exactly what \u0060/push\u0060 would commit \u2014 to the app\u0027s pull-request branch \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060 (\u0060pullRequestBranch\u0060 on the binding), opens a pull request from it into the bound branch, and moves the binding onto the pull-request branch: the response\u0027s \u0060binding.branch\u0060 is the pull-request branch and the commit is recorded as a push of it (\u0060lastPushedCommitSha\u0060, \u0060lastSyncedCommitSha\u0060, snapshot, \u0060syncStatus: in_sync\u0060). From then on a plain \u0060/push\u0060 updates the pull request. Once it is merged, switch the binding back to the base branch with \u0060PATCH .../github/{SDK_githubBindingId}\u0060 \u2014 the merge put the last synced tree there, so the binding reads \u0060in_sync\u0060 straight away. The bound branch itself is never written.\n\nNothing about the pull request is stored. On every call GitHub is asked whether the pull-request branch already has an open pull request into the bound branch. If it does, the commit is appended to that pull request (\u0060pullRequest.created: false\u0060) \u2014 regardless of whether Make or someone in an IDE opened it. If it does not, the pull-request branch is restarted from the bound branch\u0027s current tip and a new pull request is opened, so its diff is exactly \u0022the app as it is now vs. the bound branch\u0022 and never carries a previous, since-merged-or-closed round along.\n\nResponds with \u0060400\u0060 while the binding already tracks the pull-request branch \u2014 push to it directly instead. A failure does not mark the binding with \u0060syncStatus: error\u0060 / \u0060lastError\u0060: the bound branch did not move. Only the app\u0027s author (or an administrator) may open a pull request.",
         "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest",
         "parameters": [
           {
@@ -45591,8 +45758,43 @@
                 },
                 "examples": {
                   "opened": {
-                    "summary": "A new pull request was opened",
+                    "summary": "A new pull request was opened; the binding now tracks its branch",
                     "value": {
+                      "binding": {
+                        "id": 42,
+                        "appName": "my-github-app",
+                        "appVersion": 1,
+                        "repoUrl": "https://github.com/octocat/my-github-app",
+                        "owner": "octocat",
+                        "repo": "my-github-app",
+                        "branch": "make/my-github-app-v1",
+                        "defaultBranch": "main",
+                        "pullRequestBranch": "make/my-github-app-v1",
+                        "private": true,
+                        "connectionId": 137,
+                        "connectionName": "My GitHub connection",
+                        "lastSyncedAt": "2026-08-12T10:05:00.000Z",
+                        "lastSyncedCommitSha": "8f5b3a2c1d9e7f6a5b4c3d2e1f0a9b8c7d6e5f4a",
+                        "lastPushedAt": "2026-08-12T10:05:00.000Z",
+                        "lastPushedCommitSha": "8f5b3a2c1d9e7f6a5b4c3d2e1f0a9b8c7d6e5f4a",
+                        "lastPulledAt": null,
+                        "lastPulledCommitSha": null,
+                        "remoteHeadSha": "8f5b3a2c1d9e7f6a5b4c3d2e1f0a9b8c7d6e5f4a",
+                        "behindBy": 0,
+                        "syncStatus": "in_sync",
+                        "lastError": null,
+                        "lastPushedChecksums": {
+                          "metadata.json": "2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b3a",
+                          "readme.md": "1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b3a2b"
+                        },
+                        "nameMap": {
+                          "connections": {},
+                          "webhooks": {}
+                        },
+                        "createdAt": "2026-08-12T10:00:00.000Z",
+                        "updatedAt": "2026-08-12T10:05:00.000Z",
+                        "createdByUserId": 1
+                      },
                       "commitSha": "8f5b3a2c1d9e7f6a5b4c3d2e1f0a9b8c7d6e5f4a",
                       "branch": "make/my-github-app-v1",
                       "pullRequest": {
@@ -45603,8 +45805,43 @@
                     }
                   },
                   "updated": {
-                    "summary": "The head branch\u0027s open pull request received another commit",
+                    "summary": "The pull-request branch\u0027s open pull request received another commit",
                     "value": {
+                      "binding": {
+                        "id": 42,
+                        "appName": "my-github-app",
+                        "appVersion": 1,
+                        "repoUrl": "https://github.com/octocat/my-github-app",
+                        "owner": "octocat",
+                        "repo": "my-github-app",
+                        "branch": "make/my-github-app-v1",
+                        "defaultBranch": "main",
+                        "pullRequestBranch": "make/my-github-app-v1",
+                        "private": true,
+                        "connectionId": 137,
+                        "connectionName": "My GitHub connection",
+                        "lastSyncedAt": "2026-08-12T10:20:00.000Z",
+                        "lastSyncedCommitSha": "3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b",
+                        "lastPushedAt": "2026-08-12T10:20:00.000Z",
+                        "lastPushedCommitSha": "3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b",
+                        "lastPulledAt": null,
+                        "lastPulledCommitSha": null,
+                        "remoteHeadSha": "3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b",
+                        "behindBy": 0,
+                        "syncStatus": "in_sync",
+                        "lastError": null,
+                        "lastPushedChecksums": {
+                          "metadata.json": "2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b3a",
+                          "readme.md": "0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b3a2b1a"
+                        },
+                        "nameMap": {
+                          "connections": {},
+                          "webhooks": {}
+                        },
+                        "createdAt": "2026-08-12T10:00:00.000Z",
+                        "updatedAt": "2026-08-12T10:20:00.000Z",
+                        "createdByUserId": 1
+                      },
                       "commitSha": "3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b",
                       "branch": "make/my-github-app-v1",
                       "pullRequest": {
@@ -45619,7 +45856,7 @@
             }
           },
           "400": {
-            "description": "The bound connection no longer exists or is not a GitHub connection, or the bound branch is itself the binding\u0027s head branch.",
+            "description": "The bound connection no longer exists or is not a GitHub connection, the binding already tracks its pull-request branch, or another app\u0027s binding on the pull-request branch nests with this binding\u0027s directory.",
             "content": {
               "application/json": {
                 "schema": {
@@ -45629,7 +45866,14 @@
                   "connection-unavailable": {
                     "summary": "Bound connection unavailable",
                     "value": {
-                      "detail": "Bound connection is not available or is not a GitHub connection.",
+                      "message": "Bound connection is not available or is not a GitHub connection.",
+                      "code": "IM005"
+                    }
+                  },
+                  "already-on-pull-request-branch": {
+                    "summary": "The binding already tracks the pull-request branch",
+                    "value": {
+                      "message": "The bound branch \u0022make/my-github-app-v1\u0022 is the branch pull requests are opened from \u2014 push to it directly instead.",
                       "code": "IM005"
                     }
                   }
@@ -45689,6 +45933,144 @@
           {
             "token": [
               "sdk-apps:write"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
+    "/sdk/apps/{sdkAppName}/{sdkAppVersion}/github/{sdkGithubBindingId}/branches": {
+      "get": {
+        "tags": [
+          "SDK Apps / GitHub"
+        ],
+        "summary": "List branches of the bound repository",
+        "description": "Lists the branches of the repository the binding points at, read from GitHub on every call through the binding\u0027s connection \u2014 nothing is cached in Make. These are the values the binding\u0027s \u0060branch\u0060 can be switched to with \u0060PATCH /sdk/apps/{SDK_appName}/{SDK_appVersion}/github/{SDK_githubBindingId}\u0060. Up to 1000 branches are returned (GitHub pages of 100, at most 10 pages), in GitHub\u0027s order. Only the app\u0027s author (or an administrator) may list branches.",
+        "operationId": "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-github-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "sdkGithubBindingId",
+            "in": "path",
+            "description": "ID of the GitHub binding.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches200Response"
+                },
+                "examples": {
+                  "list-branches": {
+                    "summary": "Default branch, a feature branch and the app\u0027s pull-request branch",
+                    "value": {
+                      "branches": [
+                        {
+                          "name": "develop"
+                        },
+                        {
+                          "name": "main"
+                        },
+                        {
+                          "name": "make/my-github-app-v1"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The bound connection no longer exists or is not a GitHub connection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches400ResponseSchema"
+                },
+                "examples": {
+                  "connection-unavailable": {
+                    "summary": "Bound connection unavailable",
+                    "value": {
+                      "message": "Bound connection is not available or is not a GitHub connection.",
+                      "code": "IM005"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The binding does not exist or belongs to a different app version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches404ResponseSchema"
+                },
+                "examples": {
+                  "binding-not-found": {
+                    "summary": "Binding not found",
+                    "value": {
+                      "detail": "GitHub binding not found for this app.",
+                      "code": "IM013"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "424": {
+            "description": "GitHub rejected the request or was unreachable (invalid/revoked token, API outage). The reason is in \u0060detail\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches424ResponseSchema"
+                },
+                "examples": {
+                  "github-failed": {
+                    "summary": "GitHub call failed",
+                    "value": {
+                      "message": "The request failed due to failure of a previous request.",
+                      "detail": "GitHub API GET /repos/octocat/my-github-app/branches?per_page=100\u0026page=1 failed: 401 Bad credentials",
+                      "code": "SC424"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:read"
             ]
           }
         ],
@@ -48523,7 +48905,7 @@
             }
           },
           "400": {
-            "description": "Invalid input, for example an empty or over-100 \u0060privateSpaceIds\u0060, a negative \u0060operationsLimit\u0060, or a missing \u0060organizationId\u0060 \u2014 or private spaces are not enabled for the organization (\u0060IM903\u0060).\n",
+            "description": "Invalid input, for example an empty or over-100 \u0060privateSpaceIds\u0060, a negative \u0060operationsLimit\u0060, or a missing \u0060organizationId\u0060.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -48874,7 +49256,7 @@
           {
             "name": "includePrivateSpaces",
             "in": "query",
-            "description": "When \u0060true\u0060, the caller\u0027s private space(s) \u2014 companies of type \u0060personal\u0060 \u2014 are included\nin the list alongside standard teams. Defaults to \u0060false\u0060. Has no effect when private\nspaces are not enabled for the organization. Request \u0060cols[]=type\u0060 to tell private spaces\napart from standard teams in the response.\n",
+            "description": "When \u0060true\u0060, the caller\u0027s private space(s) \u2014 companies of type \u0060personal\u0060 \u2014 are included\nin the list alongside standard teams. Defaults to \u0060false\u0060. Has no effect on instances where\nprivate spaces are not available. Request \u0060cols[]=type\u0060 to tell private spaces apart from\nstandard teams in the response.\n",
             "schema": {
               "type": "boolean",
               "default": false
@@ -53449,7 +53831,7 @@
           "Users / User team roles"
         ],
         "summary": "Update user role",
-        "description": "Updates the user role in the team with the specified \u0060teamId\u0060. Get the mapping of the \u0060userRoleId\u0060 and the user role \u0060name\u0060 with the API call \u0060GET /users/roles\u0060.",
+        "description": "Updates the user role in the team with the specified \u0060teamId\u0060. Get the mapping of the \u0060userRoleId\u0060 and the user role \u0060name\u0060 with the API call \u0060GET /users/roles\u0060. Organizations limited to a single team cannot assign team roles; such requests are rejected with \u0060SC402\u0060. Removing a user\u0027s role (omitting \u0060usersRoleId\u0060 or sending \u0060null\u0060) remains available on those plans.",
         "operationId": "PostUsersByUserIdUserTeamRolesByTeamId",
         "parameters": [
           {
@@ -53479,8 +53861,19 @@
               "schema": {
                 "$ref": "#/components/schemas/PostUsersByUserIdUserTeamRolesByTeamIdRequest"
               },
-              "example": {
-                "usersRoleId": 3
+              "examples": {
+                "assign": {
+                  "summary": "Assign a role",
+                  "value": {
+                    "usersRoleId": 3
+                  }
+                },
+                "remove": {
+                  "summary": "Remove the user\u0027s role",
+                  "value": {
+                    "usersRoleId": null
+                  }
+                }
               }
             }
           }
@@ -53493,12 +53886,48 @@
                 "schema": {
                   "$ref": "#/components/schemas/PostUsersByUserIdUserTeamRolesByTeamId200Response"
                 },
-                "example": {
-                  "userTeamRole": {
-                    "usersRoleId": 3,
-                    "userId": 13,
-                    "teamId": 1,
-                    "changeable": true
+                "examples": {
+                  "assign": {
+                    "summary": "Role assigned",
+                    "value": {
+                      "userTeamRole": {
+                        "usersRoleId": 3,
+                        "userId": 13,
+                        "teamId": 1,
+                        "changeable": true
+                      }
+                    }
+                  },
+                  "remove": {
+                    "summary": "Role removed",
+                    "value": {
+                      "userTeamRole": {
+                        "usersRoleId": null,
+                        "userId": 13,
+                        "teamId": 1,
+                        "changeable": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required - the organization is limited to a single team and cannot assign team roles. Upgrade to a multi-team plan.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostUsersByUserIdUserTeamRolesByTeamId402Response"
+                },
+                "examples": {
+                  "assign": {
+                    "summary": "Blocked assignment on a single-team plan",
+                    "value": {
+                      "message": "Subscription required",
+                      "code": "SC402",
+                      "detail": "Customizing team roles is not available on your current plan."
+                    }
                   }
                 }
               }
@@ -56471,7 +56900,9 @@
         "type": "object",
         "properties": {
           "usersRoleId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The user\u0027s role in the team, or \u0060null\u0060 when the user has no role (e.g. after removal).",
+            "nullable": true
           },
           "userId": {
             "type": "integer"
@@ -58034,6 +58465,10 @@
           "private": {
             "type": "boolean",
             "description": "Whether the remote repository is private."
+          },
+          "pullRequestBranch": {
+            "type": "string",
+            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
           },
           "connectionId": {
             "type": "integer",
@@ -100382,6 +100817,47 @@
           }
         }
       },
+      "PatchAdminOrganizationsByOrganizationIdSubscriptionCustomerPriceGroupRequest": {
+        "required": [
+          "priceGroupId"
+        ],
+        "type": "object",
+        "properties": {
+          "priceGroupId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "ID of the target price group; it must be reported as \u0060isAssignable\u0060 by \u0060GET /admin/price-groups\u0060",
+            "example": 2
+          }
+        }
+      },
+      "PatchAdminOrganizationsByOrganizationIdSubscriptionCustomerPriceGroup200Response": {
+        "required": [
+          "ok"
+        ],
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "GetAdminPriceGroups200Response": {
+        "required": [
+          "priceGroups"
+        ],
+        "type": "object",
+        "properties": {
+          "priceGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAdminPriceGroups200ResponsePriceGroupsItem"
+            }
+          }
+        }
+      },
       "GetAdminExperimentsOrganizationByOrganizationId200Response": {
         "type": "object",
         "properties": {
@@ -112384,7 +112860,7 @@
             "maxLength": 255,
             "minLength": 1,
             "type": "string",
-            "description": "Branch on the remote to sync against."
+            "description": "Branch of the bound repository to sync against. Must exist on GitHub."
           },
           "connectionId": {
             "minimum": 1,
@@ -112405,6 +112881,9 @@
         "type": "object"
       },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404Response": {
+        "type": "object"
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId424Response": {
         "type": "object"
       },
       "DeleteSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404Response": {
@@ -112489,13 +112968,16 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200Response": {
         "type": "object",
         "properties": {
+          "binding": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding"
+          },
           "commitSha": {
             "type": "string",
-            "description": "SHA of the commit created on the head branch. Not a commit on the bound branch."
+            "description": "SHA of the commit created on the pull-request branch \u2014 the binding\u0027s new bound branch."
           },
           "branch": {
             "type": "string",
-            "description": "Head branch the commit landed on \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060."
+            "description": "The pull-request branch the commit landed on and the binding now tracks \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060."
           },
           "pullRequest": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponsePullRequest"
@@ -112509,6 +112991,26 @@
         "type": "object"
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest424Response": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches200Response": {
+        "type": "object",
+        "properties": {
+          "branches": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches200ResponseBranchesItem"
+            }
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches400Response": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches404Response": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches424Response": {
         "type": "object"
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200Response": {
@@ -114210,7 +114712,8 @@
         "properties": {
           "usersRoleId": {
             "type": "integer",
-            "description": "The ID of the user role. Check the \u0060GET /users/roles\u0060 API call for the available \u0060usersRoleId\u0060 values."
+            "description": "The ID of the user role. Check the \u0060GET /users/roles\u0060 API call for the available \u0060usersRoleId\u0060 values. Send \u0060null\u0060 (or omit) to remove the user\u0027s role / remove them from the team.",
+            "nullable": true
           }
         }
       },
@@ -114219,6 +114722,20 @@
         "properties": {
           "userTeamRole": {
             "$ref": "#/components/schemas/PostUsersByUserIdUserTeamRolesByTeamId200ResponseUserTeamRole"
+          }
+        }
+      },
+      "PostUsersByUserIdUserTeamRolesByTeamId402Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
           }
         }
       },
@@ -148277,6 +148794,9 @@
       "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404ResponseSchema": {
         "type": "object"
       },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId424ResponseSchema": {
+        "type": "object"
+      },
       "DeleteSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404ResponseSchema": {
         "type": "object"
       },
@@ -148305,6 +148825,15 @@
         "type": "object"
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest424ResponseSchema": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches400ResponseSchema": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches404ResponseSchema": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches424ResponseSchema": {
         "type": "object"
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff404ResponseSchema": {
@@ -152296,7 +152825,9 @@
         "type": "object",
         "properties": {
           "usersRoleId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The user\u0027s role in the team, or \u0060null\u0060 when the user has no role (e.g. after removal).",
+            "nullable": true
           },
           "userId": {
             "type": "integer"
@@ -152694,6 +153225,59 @@
             "description": "Default discount percentage for this type",
             "nullable": true,
             "example": 20
+          }
+        }
+      },
+      "GetAdminPriceGroups200ResponsePriceGroupsItem": {
+        "required": [
+          "id",
+          "name",
+          "isDefault",
+          "isExperiment",
+          "featureFlag",
+          "disabledAt",
+          "isAssignable"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Price group ID",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Internal name of the price group",
+            "example": "default"
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "Whether this is the default group assigned when no geo rule matches",
+            "example": true
+          },
+          "isExperiment": {
+            "type": "boolean",
+            "description": "Whether the group belongs to a pricing experiment",
+            "example": false
+          },
+          "featureFlag": {
+            "type": "string",
+            "description": "GrowthBook flag gating automatic assignment to this group, or null when ungated",
+            "nullable": true,
+            "example": null
+          },
+          "disabledAt": {
+            "type": "string",
+            "description": "When the group was retired; a retired group cannot be assigned",
+            "format": "date-time",
+            "nullable": true,
+            "example": null
+          },
+          "isAssignable": {
+            "type": "boolean",
+            "description": "Whether the group can be assigned right now; false when the group is retired or its feature flag is off",
+            "example": true
           }
         }
       },
@@ -153229,7 +153813,9 @@
         "type": "object",
         "properties": {
           "usersRoleId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The user\u0027s role in the team, or \u0060null\u0060 when the user has no role (e.g. after removal).",
+            "nullable": true
           },
           "userId": {
             "type": "integer"
@@ -166358,6 +166944,10 @@
             "type": "boolean",
             "description": "Whether the remote repository is private."
           },
+          "pullRequestBranch": {
+            "type": "string",
+            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+          },
           "connectionId": {
             "type": "integer",
             "description": "ID of the Make GitHub connection used for OAuth."
@@ -166472,6 +167062,10 @@
           "private": {
             "type": "boolean",
             "description": "Whether the remote repository is private."
+          },
+          "pullRequestBranch": {
+            "type": "string",
+            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
           },
           "connectionId": {
             "type": "integer",
@@ -166600,6 +167194,10 @@
             "type": "boolean",
             "description": "Whether the remote repository is private."
           },
+          "pullRequestBranch": {
+            "type": "string",
+            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+          },
           "connectionId": {
             "type": "integer",
             "description": "ID of the Make GitHub connection used for OAuth."
@@ -166714,6 +167312,10 @@
           "private": {
             "type": "boolean",
             "description": "Whether the remote repository is private."
+          },
+          "pullRequestBranch": {
+            "type": "string",
+            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
           },
           "connectionId": {
             "type": "integer",
@@ -166830,6 +167432,10 @@
             "type": "boolean",
             "description": "Whether the remote repository is private."
           },
+          "pullRequestBranch": {
+            "type": "string",
+            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+          },
           "connectionId": {
             "type": "integer",
             "description": "ID of the Make GitHub connection used for OAuth."
@@ -166945,6 +167551,10 @@
             "type": "boolean",
             "description": "Whether the remote repository is private."
           },
+          "pullRequestBranch": {
+            "type": "string",
+            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+          },
           "connectionId": {
             "type": "integer",
             "description": "ID of the Make GitHub connection used for OAuth."
@@ -167057,6 +167667,125 @@
           }
         }
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Binding ID. Unique across all apps; assigned by Make."
+          },
+          "appName": {
+            "type": "string",
+            "description": "Name of the SDK app the binding belongs to."
+          },
+          "appVersion": {
+            "type": "integer",
+            "description": "Major version of the SDK app the binding targets."
+          },
+          "repoUrl": {
+            "type": "string",
+            "description": "Canonical URL of the bound repository, as reported by GitHub."
+          },
+          "owner": {
+            "type": "string",
+            "description": "GitHub owner login (user or organization), as reported by GitHub at bind time."
+          },
+          "repo": {
+            "type": "string",
+            "description": "GitHub repository name."
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch on the remote the binding syncs against."
+          },
+          "defaultBranch": {
+            "type": "string",
+            "description": "Default branch reported by GitHub when the binding was last established."
+          },
+          "private": {
+            "type": "boolean",
+            "description": "Whether the remote repository is private."
+          },
+          "pullRequestBranch": {
+            "type": "string",
+            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+          },
+          "connectionId": {
+            "type": "integer",
+            "description": "ID of the Make GitHub connection used for OAuth."
+          },
+          "connectionName": {
+            "type": "string",
+            "description": "Display name of the Make connection, or \u0060null\u0060 when the connection no longer exists.",
+            "nullable": true
+          },
+          "lastSyncedAt": {
+            "type": "string",
+            "description": "Timestamp of the last successful sync in any direction. \u0060null\u0060 until the push/pull flows are available.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastSyncedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPushedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPushedCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastPulledAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastPulledCommitSha": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteHeadSha": {
+            "type": "string",
+            "description": "Last observed HEAD SHA of the bound branch. Refreshed best-effort on read; \u0060null\u0060 when the branch has no commits or GitHub is unreachable.",
+            "nullable": true
+          },
+          "behindBy": {
+            "type": "integer",
+            "description": "Number of commits the app is behind the remote branch. \u00600\u0060 when in sync; \u0060null\u0060 when unknown.",
+            "nullable": true
+          },
+          "syncStatus": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingSyncStatus"
+          },
+          "lastError": {
+            "type": "string",
+            "description": "Most recent error message from a failed sync; cleared on the next successful sync.",
+            "nullable": true
+          },
+          "lastPushedChecksums": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingLastPushedChecksums"
+          },
+          "nameMap": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMap"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdByUserId": {
+            "type": "integer",
+            "description": "ID of the user who created the binding."
+          }
+        },
+        "description": "A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch)."
+      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponsePullRequest": {
         "type": "object",
         "properties": {
@@ -167071,6 +167800,15 @@
           "created": {
             "type": "boolean",
             "description": "\u0060true\u0060 when this call opened the pull request; \u0060false\u0060 when the head branch\u0027s already-open pull request received the commit instead."
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdBranches200ResponseBranchesItem": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Branch name, as GitHub reports it."
           }
         }
       },
@@ -168254,7 +168992,9 @@
         "type": "object",
         "properties": {
           "usersRoleId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The user\u0027s role in the team, or \u0060null\u0060 when the user has no role (e.g. after removal).",
+            "nullable": true
           },
           "userId": {
             "type": "integer"
@@ -168320,7 +169060,9 @@
         "type": "object",
         "properties": {
           "usersRoleId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The user\u0027s role in the team, or \u0060null\u0060 when the user has no role (e.g. after removal).",
+            "nullable": true
           },
           "userId": {
             "type": "integer"
@@ -168340,7 +169082,9 @@
         "type": "object",
         "properties": {
           "usersRoleId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The user\u0027s role in the team, or \u0060null\u0060 when the user has no role (e.g. after removal).",
+            "nullable": true
           },
           "userId": {
             "type": "integer"
@@ -169789,7 +170533,9 @@
         "type": "object",
         "properties": {
           "usersRoleId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The user\u0027s role in the team, or \u0060null\u0060 when the user has no role (e.g. after removal).",
+            "nullable": true
           },
           "userId": {
             "type": "integer"
@@ -169809,7 +170555,9 @@
         "type": "object",
         "properties": {
           "usersRoleId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The user\u0027s role in the team, or \u0060null\u0060 when the user has no role (e.g. after removal).",
+            "nullable": true
           },
           "userId": {
             "type": "integer"
@@ -169829,7 +170577,9 @@
         "type": "object",
         "properties": {
           "usersRoleId": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The user\u0027s role in the team, or \u0060null\u0060 when the user has no role (e.g. after removal).",
+            "nullable": true
           },
           "userId": {
             "type": "integer"
@@ -177289,6 +178039,26 @@
         },
         "description": "Repo-side identity map for connections and webhooks. Empty until the first sync."
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingLastPushedChecksums": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Per-file checksum snapshot captured at the last successful push. \u0060null\u0060 until the push flow is available.",
+        "nullable": true
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMap": {
+        "type": "object",
+        "properties": {
+          "connections": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMapConnections"
+          },
+          "webhooks": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMapWebhooks"
+          }
+        },
+        "description": "Repo-side identity map for connections and webhooks. Empty until the first sync."
+      },
       "GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItem": {
         "type": "object",
         "properties": {
@@ -180452,6 +181222,18 @@
           "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingNameMapWebhooksAdditionalProperties"
         }
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMapConnections": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMapConnectionsAdditionalProperties"
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMapWebhooks": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMapWebhooksAdditionalProperties"
+        }
+      },
       "GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewDraftFormSubcategories": {
         "type": "object",
         "additionalProperties": {
@@ -181722,6 +182504,28 @@
         }
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPull200ResponseBindingNameMapWebhooksAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMapConnectionsAdditionalProperties": {
+        "type": "object",
+        "properties": {
+          "dbName": {
+            "type": "string"
+          },
+          "repoPath": {
+            "type": "string"
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMapWebhooksAdditionalProperties": {
         "type": "object",
         "properties": {
           "dbName": {
@@ -200396,6 +201200,44 @@
             {
               "value": "account",
               "name": "Account"
+            }
+          ]
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingSyncStatus": {
+        "enum": [
+          "idle",
+          "syncing",
+          "in_sync",
+          "behind",
+          "error"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Derived sync status of the binding.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingSyncStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "idle",
+              "name": "Idle"
+            },
+            {
+              "value": "syncing",
+              "name": "Syncing"
+            },
+            {
+              "value": "in_sync",
+              "name": "InSync"
+            },
+            {
+              "value": "behind",
+              "name": "Behind"
+            },
+            {
+              "value": "error",
+              "name": "Error"
             }
           ]
         }

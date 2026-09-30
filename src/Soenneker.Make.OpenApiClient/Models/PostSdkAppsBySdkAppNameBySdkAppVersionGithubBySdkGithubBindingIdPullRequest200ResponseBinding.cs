@@ -11,7 +11,7 @@ namespace Soenneker.Make.OpenApiClient.Models
     /// A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch).
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItem : IAdditionalDataHolder, IParsable
+    public partial class PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -82,10 +82,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Per-file checksum snapshot captured at the last successful push. `null` until the push flow is available.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemLastPushedChecksums? LastPushedChecksums { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingLastPushedChecksums? LastPushedChecksums { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemLastPushedChecksums LastPushedChecksums { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingLastPushedChecksums LastPushedChecksums { get; set; }
 #endif
         /// <summary>The lastPushedCommitSha property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -108,10 +108,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Repo-side identity map for connections and webhooks. Empty until the first sync.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMap? NameMap { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMap? NameMap { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMap NameMap { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMap NameMap { get; set; }
 #endif
         /// <summary>GitHub owner login (user or organization), as reported by GitHub at bind time.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -156,25 +156,25 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string RepoUrl { get; set; }
 #endif
         /// <summary>Derived sync status of the binding.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemSyncStatus? SyncStatus { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingSyncStatus? SyncStatus { get; set; }
         /// <summary>The updatedAt property</summary>
         public DateTimeOffset? UpdatedAt { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItem"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding"/> and sets the default values.
         /// </summary>
-        public GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItem()
+        public PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItem"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItem();
+            return new global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -198,18 +198,18 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "lastPulledAt", n => { LastPulledAt = n.GetDateTimeOffsetValue(); } },
                 { "lastPulledCommitSha", n => { LastPulledCommitSha = n.GetStringValue(); } },
                 { "lastPushedAt", n => { LastPushedAt = n.GetDateTimeOffsetValue(); } },
-                { "lastPushedChecksums", n => { LastPushedChecksums = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemLastPushedChecksums>(global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemLastPushedChecksums.CreateFromDiscriminatorValue); } },
+                { "lastPushedChecksums", n => { LastPushedChecksums = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingLastPushedChecksums>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingLastPushedChecksums.CreateFromDiscriminatorValue); } },
                 { "lastPushedCommitSha", n => { LastPushedCommitSha = n.GetStringValue(); } },
                 { "lastSyncedAt", n => { LastSyncedAt = n.GetDateTimeOffsetValue(); } },
                 { "lastSyncedCommitSha", n => { LastSyncedCommitSha = n.GetStringValue(); } },
-                { "nameMap", n => { NameMap = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMap>(global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMap.CreateFromDiscriminatorValue); } },
+                { "nameMap", n => { NameMap = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMap>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMap.CreateFromDiscriminatorValue); } },
                 { "owner", n => { Owner = n.GetStringValue(); } },
                 { "private", n => { Private = n.GetBoolValue(); } },
                 { "pullRequestBranch", n => { PullRequestBranch = n.GetStringValue(); } },
                 { "remoteHeadSha", n => { RemoteHeadSha = n.GetStringValue(); } },
                 { "repo", n => { Repo = n.GetStringValue(); } },
                 { "repoUrl", n => { RepoUrl = n.GetStringValue(); } },
-                { "syncStatus", n => { SyncStatus = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemSyncStatus>(); } },
+                { "syncStatus", n => { SyncStatus = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingSyncStatus>(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -234,18 +234,18 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("lastPulledAt", LastPulledAt);
             writer.WriteStringValue("lastPulledCommitSha", LastPulledCommitSha);
             writer.WriteDateTimeOffsetValue("lastPushedAt", LastPushedAt);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemLastPushedChecksums>("lastPushedChecksums", LastPushedChecksums);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingLastPushedChecksums>("lastPushedChecksums", LastPushedChecksums);
             writer.WriteStringValue("lastPushedCommitSha", LastPushedCommitSha);
             writer.WriteDateTimeOffsetValue("lastSyncedAt", LastSyncedAt);
             writer.WriteStringValue("lastSyncedCommitSha", LastSyncedCommitSha);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemNameMap>("nameMap", NameMap);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingNameMap>("nameMap", NameMap);
             writer.WriteStringValue("owner", Owner);
             writer.WriteBoolValue("private", Private);
             writer.WriteStringValue("pullRequestBranch", PullRequestBranch);
             writer.WriteStringValue("remoteHeadSha", RemoteHeadSha);
             writer.WriteStringValue("repo", Repo);
             writer.WriteStringValue("repoUrl", RepoUrl);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemSyncStatus>("syncStatus", SyncStatus);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBindingSyncStatus>("syncStatus", SyncStatus);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteAdditionalData(AdditionalData);
         }

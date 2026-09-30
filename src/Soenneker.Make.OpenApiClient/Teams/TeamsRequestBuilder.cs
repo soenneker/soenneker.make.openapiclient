@@ -150,7 +150,7 @@ namespace Soenneker.Make.OpenApiClient.Teams
             [QueryParameter("cols%5B%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetTeamsColsParameterItem[] Cols { get; set; }
 #endif
-            /// <summary>When `true`, the caller&apos;s private space(s) — companies of type `personal` — are includedin the list alongside standard teams. Defaults to `false`. Has no effect when privatespaces are not enabled for the organization. Request `cols[]=type` to tell private spacesapart from standard teams in the response.</summary>
+            /// <summary>When `true`, the caller&apos;s private space(s) — companies of type `personal` — are includedin the list alongside standard teams. Defaults to `false`. Has no effect on instances whereprivate spaces are not available. Request `cols[]=type` to tell private spaces apart fromstandard teams in the response.</summary>
             [QueryParameter("includePrivateSpaces")]
             public bool? IncludePrivateSpaces { get; set; }
             /// <summary>The ID of the organization.</summary>

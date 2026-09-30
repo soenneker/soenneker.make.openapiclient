@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Branches;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Diff;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Pull;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.PullRequest;
@@ -21,6 +22,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithSdkGithubBindingItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The branches property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Branches.BranchesRequestBuilder Branches
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Branches.BranchesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The diff property</summary>
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item.Diff.DiffRequestBuilder Diff
         {
@@ -103,7 +109,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates editable metadata of an existing GitHub binding — typically the sync branch or the Make connection the binding authenticates through. When `connectionId` is changed, the new connection must be a GitHub connection, otherwise responds with `400`. At least one field must be provided. Only the app&apos;s author (or an administrator) may update bindings.
+        /// Updates editable metadata of an existing GitHub binding — the bound branch or the Make connection the binding authenticates through. At least one field must be provided. Only the app&apos;s author (or an administrator) may update bindings.Changing `branch` moves the binding to another branch of the same repository. The branch must already exist on GitHub (pick it from `GET .../github/{SDK_githubBindingId}/branches`), otherwise responds with `400`; the move also fails with `400` when this app already has a binding on that branch or when the binding&apos;s directory would nest inside or around another app&apos;s binding there. The push snapshot and the last synced commit are kept — they describe the app, not the branch — while `remoteHeadSha`, `behindBy` and `syncStatus` are recomputed for the new branch. That is what makes switching back to the base branch after a merged pull request read `in_sync` right away.When `connectionId` is changed, the new connection must be a GitHub connection, otherwise responds with `400`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -111,6 +117,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId400ResponseSchema">When receiving a 400 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404ResponseSchema">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId424ResponseSchema">When receiving a 424 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -126,6 +133,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item
             {
                 { "400", global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId400ResponseSchema.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId404ResponseSchema.CreateFromDiscriminatorValue },
+                { "424", global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId424ResponseSchema.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -168,7 +176,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Github.Item
             return requestInfo;
         }
         /// <summary>
-        /// Updates editable metadata of an existing GitHub binding — typically the sync branch or the Make connection the binding authenticates through. When `connectionId` is changed, the new connection must be a GitHub connection, otherwise responds with `400`. At least one field must be provided. Only the app&apos;s author (or an administrator) may update bindings.
+        /// Updates editable metadata of an existing GitHub binding — the bound branch or the Make connection the binding authenticates through. At least one field must be provided. Only the app&apos;s author (or an administrator) may update bindings.Changing `branch` moves the binding to another branch of the same repository. The branch must already exist on GitHub (pick it from `GET .../github/{SDK_githubBindingId}/branches`), otherwise responds with `400`; the move also fails with `400` when this app already has a binding on that branch or when the binding&apos;s directory would nest inside or around another app&apos;s binding there. The push snapshot and the last synced commit are kept — they describe the app, not the branch — while `remoteHeadSha`, `behindBy` and `syncStatus` are recomputed for the new branch. That is what makes switching back to the base branch after a merged pull request read `in_sync` right away.When `connectionId` is changed, the new connection must be a GitHub connection, otherwise responds with `400`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

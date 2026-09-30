@@ -6,6 +6,7 @@ using Soenneker.Make.OpenApiClient.Admin.Apps;
 using Soenneker.Make.OpenApiClient.Admin.Experiments;
 using Soenneker.Make.OpenApiClient.Admin.Install;
 using Soenneker.Make.OpenApiClient.Admin.Organizations;
+using Soenneker.Make.OpenApiClient.Admin.PriceGroups;
 using Soenneker.Make.OpenApiClient.Admin.Scenarios;
 using Soenneker.Make.OpenApiClient.Admin.Sdk;
 using Soenneker.Make.OpenApiClient.Admin.SystemSettings;
@@ -43,6 +44,11 @@ namespace Soenneker.Make.OpenApiClient.Admin
         public global::Soenneker.Make.OpenApiClient.Admin.Organizations.OrganizationsRequestBuilder Organizations
         {
             get => new global::Soenneker.Make.OpenApiClient.Admin.Organizations.OrganizationsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The priceGroups property</summary>
+        public global::Soenneker.Make.OpenApiClient.Admin.PriceGroups.PriceGroupsRequestBuilder PriceGroups
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Admin.PriceGroups.PriceGroupsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The scenarios property</summary>
         public global::Soenneker.Make.OpenApiClient.Admin.Scenarios.ScenariosRequestBuilder Scenarios
