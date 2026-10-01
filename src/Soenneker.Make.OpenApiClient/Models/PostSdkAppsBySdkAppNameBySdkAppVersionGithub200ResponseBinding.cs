@@ -123,7 +123,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>Whether the remote repository is private.</summary>
         public bool? Private { get; set; }
-        /// <summary>Branch the pull-request flow commits to — `make/&lt;appName&gt;-v&lt;appVersion&gt;`. Opening a pull request moves the binding onto it (`branch` becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored.</summary>
+        /// <summary>Default branch the pull-request flow commits to — `make/&lt;appName&gt;-v&lt;appVersion&gt;`; a request may name another. Opening a pull request moves the binding onto its branch (`branch` becomes it) so later pushes update the pull request. Derived from the app name and version, never stored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PullRequestBranch { get; set; }

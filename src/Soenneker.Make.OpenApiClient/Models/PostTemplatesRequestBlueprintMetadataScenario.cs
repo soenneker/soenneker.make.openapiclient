@@ -18,7 +18,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public bool? AutoCommit { get; set; }
         /// <summary>The maxErrors property</summary>
         public int? MaxErrors { get; set; }
-        /// <summary>The roundtrips property</summary>
+        /// <summary>This property is deprecated. Any value sent in a request is ignored: it is always stored and returned as `1`, and every execution runs a single cycle.</summary>
+        [Obsolete("")]
         public int? Roundtrips { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostTemplatesRequestBlueprintMetadataScenario"/> and sets the default values.

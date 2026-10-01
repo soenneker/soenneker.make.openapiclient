@@ -3335,6 +3335,69 @@
         "x-internal": true
       }
     },
+    "/admin/users/{userId}/anonymization-request": {
+      "get": {
+        "tags": [
+          "Admin / Users"
+        ],
+        "summary": "Read how far a user\u0027s audit-log anonymization has got",
+        "description": "Reports the anonymization request on record for this user in this zone\u0027s auditman \u2014 the read counterpart of \u0060POST /admin/users/{userId}/anonymize-audit-logs\u0060. Available on master only, for the same reason as that endpoint: master runs its own auditman that HQ\u0027s per-zone fan-out cannot reach, so this is the only way to see the state of the audit logs master itself produces. A zone\u0027s state is read by HQ over the \u0060user.auditLogsAnonymizationGet\u0060 swarm ask instead. Answers \u0060{ \u0022request\u0022: null }\u0060 for a user nobody ever asked about \u2014 that is a real state, not an error, so a caller reading several zones can tell it apart from a zone that failed to answer. A \u0060404\u0060 here means the user does not exist at all. As with the anonymization endpoint, only a soft-deleted user qualifies; a live one is refused with \u0060409\u0060.",
+        "operationId": "GetAdminUsersByUserIdAnonymizationRequest",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The ID of the user whose anonymization request is read.",
+            "required": true,
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 42
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The anonymization request on record for this user, or null when nothing was ever requested in this zone.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAdminUsersByUserIdAnonymizationRequest200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input parameters."
+          },
+          "403": {
+            "description": "Insufficient rights."
+          },
+          "404": {
+            "description": "User not found, or the endpoint was called on a slave zone."
+          },
+          "409": {
+            "description": "The user is not soft-deleted, so they have no audit-log anonymization to report. \u0060deleted\u0060 is the soft-delete flag; a hard-deleted user is a \u0060404\u0060 instead."
+          },
+          "502": {
+            "description": "Auditman answered with an anonymization request this service does not recognize. Reported separately from \u0060400\u0060 because the caller\u0027s input was valid; the fault is upstream."
+          },
+          "503": {
+            "description": "Auditman is not available in this deployment, or audit-log anonymization is not enabled in this zone."
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:read",
+              "user:read"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
     "/admin/users/{userId}/user-organization-roles/{organizationId}": {
       "post": {
         "tags": [
@@ -25658,6 +25721,54 @@
         "x-internal": true
       }
     },
+    "/internal/teams/enrichments": {
+      "get": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Internal - Get team enrichments by IDs",
+        "description": "Retrieves enriched details for specified teams by their IDs. Returns minimal team information including ID, name, organization ID, and team type (standard or personal).",
+        "operationId": "GetInternalTeamsEnrichments",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "An array of team IDs to retrieve enrichments for.",
+            "required": true,
+            "schema": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "minimum": 0,
+                "type": "integer"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalTeamsEnrichments200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - empty IDs array or invalid parameters"
+          },
+          "401": {
+            "description": "Unauthorized - caller is not authorized for internal access"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "x-internal": true
+      }
+    },
     "/internal/data-structures/{dataStructureId}": {
       "get": {
         "tags": [
@@ -26451,6 +26562,279 @@
                       "message": "Access denied"
                     }
                   }
+                }
+              }
+            }
+          }
+        },
+        "x-internal": true
+      }
+    },
+    "/internal/sdk/apps/{appName}/{appVersion}/modules/{moduleName}/runtime": {
+      "get": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Get an SDK module runtime snapshot",
+        "description": "Returns the complete runtime snapshot the Executor needs to run an SDK Action or Search module. The snapshot includes the merged API and custom IML functions, decrypted common data, module fields, normalized connection aliases, merged flags, app metadata and pricing fields. App authors receive pending app and module changes; other callers receive saved values. At least one of \u0060forUserId\u0060 or \u0060forTeamId\u0060 is required. When both are present, team installation determines app access and the user identity determines authorship, private-module visibility and admin fallback.\n",
+        "operationId": "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime",
+        "parameters": [
+          {
+            "name": "appName",
+            "in": "path",
+            "description": "The app\u0027s bare name without the \u0060app#\u0060 prefix.",
+            "required": true,
+            "schema": {
+              "maxLength": 37,
+              "minLength": 3,
+              "pattern": "^[a-z][0-9a-z-]\u002B[0-9a-z]$",
+              "type": "string"
+            },
+            "examples": {
+              "saved-runtime": {
+                "value": "acme-crm"
+              },
+              "author-runtime": {
+                "value": "acme-crm"
+              }
+            }
+          },
+          {
+            "name": "appVersion",
+            "in": "path",
+            "description": "The app\u0027s major version.",
+            "required": true,
+            "schema": {
+              "maximum": 32767,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "saved-runtime": {
+                "value": 1
+              },
+              "author-runtime": {
+                "value": 1
+              }
+            }
+          },
+          {
+            "name": "moduleName",
+            "in": "path",
+            "description": "The module name within the app version.",
+            "required": true,
+            "schema": {
+              "maxLength": 48,
+              "minLength": 3,
+              "pattern": "^[a-zA-Z][0-9a-zA-Z]\u002B[0-9a-zA-Z]$",
+              "type": "string"
+            },
+            "examples": {
+              "saved-runtime": {
+                "value": "GetContacts"
+              },
+              "author-runtime": {
+                "value": "GetContacts"
+              }
+            }
+          },
+          {
+            "name": "forUserId",
+            "in": "query",
+            "description": "User identity used for authorship, private-module visibility and admin permission fallback.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "saved-runtime": {
+                "value": 12001
+              },
+              "author-runtime": {
+                "value": 12002
+              }
+            }
+          },
+          {
+            "name": "forTeamId",
+            "in": "query",
+            "description": "Team whose organization installation and existing scenario usage are evaluated.",
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "saved-runtime": {
+                "value": 31001
+              },
+              "author-runtime": {
+                "value": 31002
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Runtime snapshot assembled successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200Response"
+                },
+                "examples": {
+                  "saved-runtime": {
+                    "summary": "Saved Action runtime for an installed user",
+                    "value": {
+                      "module": {
+                        "typeId": 4,
+                        "api": {
+                          "baseUrl": "https://api.example.com",
+                          "url": "/contacts",
+                          "iml": {
+                            "functions": {
+                              "normalize": "return input;"
+                            }
+                          },
+                          "metadata": {
+                            "account": {
+                              "type": "oauth",
+                              "version": 2
+                            }
+                          }
+                        },
+                        "common": {
+                          "region": "eu1"
+                        },
+                        "parameters": [
+                          {
+                            "name": "__IMTCONN__",
+                            "label": "Connection",
+                            "type": "account:acme-oauth",
+                            "required": true
+                          },
+                          {
+                            "name": "limit",
+                            "type": "number"
+                          }
+                        ],
+                        "expect": [],
+                        "interface": [
+                          {
+                            "name": "id",
+                            "type": "text"
+                          }
+                        ],
+                        "allowedAccountNames": [
+                          "acme-oauth"
+                        ],
+                        "flags": {
+                          "response": {
+                            "flatten": true
+                          }
+                        },
+                        "debug": false,
+                        "manifestVersion": 2,
+                        "appVersionFull": "1.4.0",
+                        "billable": true,
+                        "centicreditsFormula": "100",
+                        "centicreditsFormulaMeta": null
+                      }
+                    }
+                  },
+                  "author-runtime": {
+                    "summary": "Pending Search runtime for the app author",
+                    "value": {
+                      "module": {
+                        "typeId": 9,
+                        "api": {
+                          "baseUrl": "https://draft-api.example.com",
+                          "url": "/contacts/search",
+                          "iml": {
+                            "functions": {
+                              "normalize": "return draftInput;"
+                            }
+                          }
+                        },
+                        "common": {
+                          "region": "eu1"
+                        },
+                        "parameters": [
+                          {
+                            "name": "query",
+                            "type": "text"
+                          }
+                        ],
+                        "expect": [],
+                        "interface": [],
+                        "allowedAccountNames": [],
+                        "flags": {},
+                        "debug": true,
+                        "manifestVersion": 2,
+                        "appVersionFull": "1.4.0",
+                        "billable": true,
+                        "centicreditsFormula": null,
+                        "centicreditsFormulaMeta": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid path or identity input, or a module type other than Action or Search.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime400Response"
+                },
+                "example": {
+                  "code": "SC400",
+                  "message": "Only Action and Search modules are supported."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid ISC authorization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime401Response"
+                },
+                "example": {
+                  "code": "IM001",
+                  "message": "Access denied."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller is not the Executor, cannot access the app, or cannot access the module.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime403Response"
+                },
+                "example": {
+                  "code": "SC403",
+                  "message": "Access denied."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested module does not exist in the app version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime404Response"
+                },
+                "example": {
+                  "code": "IM612",
+                  "message": "Module not found."
                 }
               }
             }
@@ -45697,7 +46081,7 @@
           "SDK Apps / GitHub"
         ],
         "summary": "Open a pull request with the app",
-        "description": "Commits the app version\u0027s complete source tree \u2014 exactly what \u0060/push\u0060 would commit \u2014 to the app\u0027s pull-request branch \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060 (\u0060pullRequestBranch\u0060 on the binding), opens a pull request from it into the bound branch, and moves the binding onto the pull-request branch: the response\u0027s \u0060binding.branch\u0060 is the pull-request branch and the commit is recorded as a push of it (\u0060lastPushedCommitSha\u0060, \u0060lastSyncedCommitSha\u0060, snapshot, \u0060syncStatus: in_sync\u0060). From then on a plain \u0060/push\u0060 updates the pull request. Once it is merged, switch the binding back to the base branch with \u0060PATCH .../github/{SDK_githubBindingId}\u0060 \u2014 the merge put the last synced tree there, so the binding reads \u0060in_sync\u0060 straight away. The bound branch itself is never written.\n\nNothing about the pull request is stored. On every call GitHub is asked whether the pull-request branch already has an open pull request into the bound branch. If it does, the commit is appended to that pull request (\u0060pullRequest.created: false\u0060) \u2014 regardless of whether Make or someone in an IDE opened it. If it does not, the pull-request branch is restarted from the bound branch\u0027s current tip and a new pull request is opened, so its diff is exactly \u0022the app as it is now vs. the bound branch\u0022 and never carries a previous, since-merged-or-closed round along.\n\nResponds with \u0060400\u0060 while the binding already tracks the pull-request branch \u2014 push to it directly instead. A failure does not mark the binding with \u0060syncStatus: error\u0060 / \u0060lastError\u0060: the bound branch did not move. Only the app\u0027s author (or an administrator) may open a pull request.",
+        "description": "Commits the app version\u0027s complete source tree \u2014 exactly what \u0060/push\u0060 would commit \u2014 to a pull-request branch, opens a pull request from it into the bound branch, and moves the binding onto the pull-request branch: the response\u0027s \u0060binding.branch\u0060 is the pull-request branch and the commit is recorded as a push of it (\u0060lastPushedCommitSha\u0060, \u0060lastSyncedCommitSha\u0060, snapshot, \u0060syncStatus: in_sync\u0060). From then on a plain \u0060/push\u0060 updates the pull request. Once it is merged, switch the binding back to the base branch with \u0060PATCH .../github/{SDK_githubBindingId}\u0060 \u2014 the merge put the last synced tree there, so the binding reads \u0060in_sync\u0060 straight away. The bound branch itself is never written.\n\nThe pull-request branch is \u0060branch\u0060 from the request, or the app\u0027s \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060 (\u0060pullRequestBranch\u0060 on the binding) when omitted. A different branch is a different pull request, so several can be kept open side by side; switch between them with \u0060PATCH .../github/{SDK_githubBindingId}\u0060 (\u0060branch\u0060).\n\nNothing about pull requests is stored. On every call GitHub is asked whether the pull-request branch already has an open pull request into the bound branch. If it does, the commit is appended to that pull request (\u0060pullRequest.created: false\u0060) \u2014 regardless of whether Make or someone in an IDE opened it. If it does not, a new pull request is opened: the branch is created from the bound branch\u0027s current tip when it does not exist yet, and continued as it is otherwise \u2014 it is never reset, so naming an existing branch cannot lose its history.\n\nResponds with \u0060400\u0060 when the pull-request branch is the bound branch itself \u2014 push to it directly instead \u2014 or is not a valid Git branch name. A failure does not mark the binding with \u0060syncStatus: error\u0060 / \u0060lastError\u0060: the bound branch did not move. Only the app\u0027s author (or an administrator) may open a pull request.",
         "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest",
         "parameters": [
           {
@@ -45741,6 +46125,13 @@
                 "with-message": {
                   "summary": "Open a pull request with a custom commit message",
                   "value": {
+                    "message": "Add the listRecords module"
+                  }
+                },
+                "named-branch": {
+                  "summary": "Open a pull request from a branch of your choice",
+                  "value": {
+                    "branch": "make/my-github-app-v1-list-records",
                     "message": "Add the listRecords module"
                   }
                 }
@@ -45856,7 +46247,7 @@
             }
           },
           "400": {
-            "description": "The bound connection no longer exists or is not a GitHub connection, the binding already tracks its pull-request branch, or another app\u0027s binding on the pull-request branch nests with this binding\u0027s directory.",
+            "description": "The bound connection no longer exists or is not a GitHub connection, the pull-request branch is the bound branch itself or not a valid Git branch name, or another app\u0027s binding on the pull-request branch nests with this binding\u0027s directory.",
             "content": {
               "application/json": {
                 "schema": {
@@ -45874,6 +46265,13 @@
                     "summary": "The binding already tracks the pull-request branch",
                     "value": {
                       "message": "The bound branch \u0022make/my-github-app-v1\u0022 is the branch pull requests are opened from \u2014 push to it directly instead.",
+                      "code": "IM005"
+                    }
+                  },
+                  "invalid-branch-name": {
+                    "summary": "The pull-request branch is not a valid Git branch name",
+                    "value": {
+                      "message": "\u0022feature/../oops\u0022 is not a valid Git branch name.",
                       "code": "IM005"
                     }
                   }
@@ -58468,7 +58866,7 @@
           },
           "pullRequestBranch": {
             "type": "string",
-            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+            "description": "Default branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060; a request may name another. Opening a pull request moves the binding onto its branch (\u0060branch\u0060 becomes it) so later pushes update the pull request. Derived from the app name and version, never stored."
           },
           "connectionId": {
             "type": "integer",
@@ -94688,7 +95086,9 @@
             "type": "boolean"
           },
           "roundtrips": {
-            "type": "integer"
+            "type": "integer",
+            "description": "This property is deprecated. Any value sent in a request is ignored: it is always stored and returned as \u00601\u0060, and every execution runs a single cycle.\n",
+            "deprecated": true
           }
         }
       },
@@ -101264,6 +101664,17 @@
           }
         }
       },
+      "GetAdminUsersByUserIdAnonymizationRequest200Response": {
+        "required": [
+          "request"
+        ],
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/GetAdminUsersByUserIdAnonymizationRequest200ResponseRequest"
+          }
+        }
+      },
       "PostAdminUsersByUserIdUserOrganizationRolesByOrganizationIdRequest": {
         "type": "object",
         "properties": {
@@ -107665,6 +108076,20 @@
           }
         }
       },
+      "GetInternalTeamsEnrichments200Response": {
+        "required": [
+          "teams"
+        ],
+        "type": "object",
+        "properties": {
+          "teams": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetInternalTeamsEnrichments200ResponseTeamsItem"
+            }
+          }
+        }
+      },
       "GetInternalDataStructuresByDataStructureId200Response": {
         "type": "object",
         "properties": {
@@ -108200,6 +108625,78 @@
         "properties": {
           "code": {
             "$ref": "#/components/schemas/Im001Code"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200Response": {
+        "required": [
+          "module"
+        ],
+        "type": "object",
+        "properties": {
+          "module": {
+            "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModule"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime400ResponseCode"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/Im001Code"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime403ResponseCode"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/Im612Code"
           },
           "message": {
             "type": "string"
@@ -112962,6 +113459,12 @@
             "maxLength": 1024,
             "type": "string",
             "description": "Commit message. Its first line doubles as the title of a newly opened pull request. Defaults to \u0060Sync \u003CappName\u003E@\u003CappVersion\u003E from Make\u0060 when omitted."
+          },
+          "branch": {
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string",
+            "description": "Head branch of the pull request \u2014 any valid Git branch name. Defaults to the app\u0027s \u0060pullRequestBranch\u0060 (\u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060) when omitted."
           }
         }
       },
@@ -112977,7 +113480,7 @@
           },
           "branch": {
             "type": "string",
-            "description": "The pull-request branch the commit landed on and the binding now tracks \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060."
+            "description": "The pull-request branch the commit landed on and the binding now tracks \u2014 \u0060branch\u0060 from the request, \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060 by default."
           },
           "pullRequest": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponsePullRequest"
@@ -153775,6 +154278,25 @@
           }
         }
       },
+      "GetAdminUsersByUserIdAnonymizationRequest200ResponseRequest": {
+        "required": [
+          "status",
+          "error"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/GetAdminUsersByUserIdAnonymizationRequest200ResponseRequestStatus"
+          },
+          "error": {
+            "type": "string",
+            "description": "Why the anonymization job stopped, set only on a failed request. A stalled request is failed with \u0027No progress since \u003Ctimestamp\u003E.\u0027, so a stuck run surfaces here.",
+            "nullable": true
+          }
+        },
+        "description": "The anonymization state, or null when none was ever requested for this user.",
+        "nullable": true
+      },
       "PostAdminUsersByUserIdUserOrganizationRolesByOrganizationId200ResponseUserOrganizationRole": {
         "type": "object",
         "properties": {
@@ -160373,6 +160895,47 @@
           }
         }
       },
+      "GetInternalTeamsEnrichments200ResponseTeamsItem": {
+        "required": [
+          "id",
+          "name",
+          "organizationId",
+          "deleted",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The team\u0027s unique identifier.",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the team."
+          },
+          "organizationId": {
+            "type": "integer",
+            "description": "The ID of the organization that owns this team.",
+            "format": "int64"
+          },
+          "deleted": {
+            "type": "boolean",
+            "description": "True when the team itself, or the organization that owns it, is deleted. Deleted teams are still returned."
+          },
+          "type": {
+            "$ref": "#/components/schemas/GetInternalTeamsEnrichments200ResponseTeamsItemType"
+          }
+        },
+        "description": "Represents a team\u0027s enriched details.",
+        "example": {
+          "id": 123,
+          "name": "Engineering Team",
+          "organizationId": 456,
+          "deleted": false,
+          "type": "standard"
+        }
+      },
       "GetInternalDataStructuresByDataStructureId200ResponseDataStructure": {
         "type": "object",
         "properties": {
@@ -160577,6 +161140,77 @@
             "type": "string"
           }
         }
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModule": {
+        "required": [
+          "typeId",
+          "api",
+          "common",
+          "parameters",
+          "expect",
+          "interface",
+          "allowedAccountNames",
+          "flags",
+          "debug",
+          "manifestVersion",
+          "appVersionFull",
+          "billable",
+          "centicreditsFormula",
+          "centicreditsFormulaMeta"
+        ],
+        "type": "object",
+        "properties": {
+          "typeId": {
+            "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleTypeId"
+          },
+          "api": {
+            "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleApi"
+          },
+          "common": {
+            "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleCommon"
+          },
+          "parameters": {
+            "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleParameters"
+          },
+          "expect": {
+            "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleExpect"
+          },
+          "interface": {
+            "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleInterface"
+          },
+          "allowedAccountNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Normalized connection aliases accepted by the module."
+          },
+          "flags": {
+            "$ref": "#/components/schemas/GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleFlags"
+          },
+          "debug": {
+            "type": "boolean",
+            "description": "Whether the caller receives the author\u0027s draft runtime."
+          },
+          "manifestVersion": {
+            "type": "integer"
+          },
+          "appVersionFull": {
+            "type": "string"
+          },
+          "billable": {
+            "type": "boolean"
+          },
+          "centicreditsFormula": {
+            "type": "string",
+            "nullable": true
+          },
+          "centicreditsFormulaMeta": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "GetKeys200ResponseKeysItem": {
         "type": "object",
@@ -166946,7 +167580,7 @@
           },
           "pullRequestBranch": {
             "type": "string",
-            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+            "description": "Default branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060; a request may name another. Opening a pull request moves the binding onto its branch (\u0060branch\u0060 becomes it) so later pushes update the pull request. Derived from the app name and version, never stored."
           },
           "connectionId": {
             "type": "integer",
@@ -167065,7 +167699,7 @@
           },
           "pullRequestBranch": {
             "type": "string",
-            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+            "description": "Default branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060; a request may name another. Opening a pull request moves the binding onto its branch (\u0060branch\u0060 becomes it) so later pushes update the pull request. Derived from the app name and version, never stored."
           },
           "connectionId": {
             "type": "integer",
@@ -167196,7 +167830,7 @@
           },
           "pullRequestBranch": {
             "type": "string",
-            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+            "description": "Default branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060; a request may name another. Opening a pull request moves the binding onto its branch (\u0060branch\u0060 becomes it) so later pushes update the pull request. Derived from the app name and version, never stored."
           },
           "connectionId": {
             "type": "integer",
@@ -167315,7 +167949,7 @@
           },
           "pullRequestBranch": {
             "type": "string",
-            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+            "description": "Default branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060; a request may name another. Opening a pull request moves the binding onto its branch (\u0060branch\u0060 becomes it) so later pushes update the pull request. Derived from the app name and version, never stored."
           },
           "connectionId": {
             "type": "integer",
@@ -167434,7 +168068,7 @@
           },
           "pullRequestBranch": {
             "type": "string",
-            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+            "description": "Default branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060; a request may name another. Opening a pull request moves the binding onto its branch (\u0060branch\u0060 becomes it) so later pushes update the pull request. Derived from the app name and version, never stored."
           },
           "connectionId": {
             "type": "integer",
@@ -167553,7 +168187,7 @@
           },
           "pullRequestBranch": {
             "type": "string",
-            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+            "description": "Default branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060; a request may name another. Opening a pull request moves the binding onto its branch (\u0060branch\u0060 becomes it) so later pushes update the pull request. Derived from the app name and version, never stored."
           },
           "connectionId": {
             "type": "integer",
@@ -167708,7 +168342,7 @@
           },
           "pullRequestBranch": {
             "type": "string",
-            "description": "Branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060. Opening a pull request moves the binding onto it (\u0060branch\u0060 becomes this value) so later pushes update the pull request. Derived from the app name and version, never stored."
+            "description": "Default branch the pull-request flow commits to \u2014 \u0060make/\u003CappName\u003E-v\u003CappVersion\u003E\u0060; a request may name another. Opening a pull request moves the binding onto its branch (\u0060branch\u0060 becomes it) so later pushes update the pull request. Derived from the app name and version, never stored."
           },
           "connectionId": {
             "type": "integer",
@@ -175540,6 +176174,30 @@
           }
         }
       },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleApi": {
+        "type": "object",
+        "description": "App base and module API merged with the app\u0027s custom IML functions."
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleCommon": {
+        "type": "object",
+        "description": "Decrypted app common data used by the module runtime."
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleParameters": {
+        "type": "object",
+        "description": "Module input parameters, including the generated \u0060__IMTCONN__\u0060 parameter when connections are attached."
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleExpect": {
+        "type": "object",
+        "description": "Module expectation definition."
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleInterface": {
+        "type": "object",
+        "description": "Module output interface definition."
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleFlags": {
+        "type": "object",
+        "description": "Deep merge of app-level and module-level runtime flags."
+      },
       "GetKeys200ResponseKeysItemScenarioUsagesItem": {
         "type": "object",
         "properties": {
@@ -181503,7 +182161,9 @@
             "type": "boolean"
           },
           "roundtrips": {
-            "type": "integer"
+            "type": "integer",
+            "description": "This property is deprecated. Any value sent in a request is ignored: it is always stored and returned as \u00601\u0060, and every execution runs a single cycle.\n",
+            "deprecated": true
           }
         }
       },
@@ -181629,7 +182289,9 @@
             "type": "boolean"
           },
           "roundtrips": {
-            "type": "integer"
+            "type": "integer",
+            "description": "This property is deprecated. Any value sent in a request is ignored: it is always stored and returned as \u00601\u0060, and every execution runs a single cycle.\n",
+            "deprecated": true
           }
         }
       },
@@ -181755,7 +182417,9 @@
             "type": "boolean"
           },
           "roundtrips": {
-            "type": "integer"
+            "type": "integer",
+            "description": "This property is deprecated. Any value sent in a request is ignored: it is always stored and returned as \u00601\u0060, and every execution runs a single cycle.\n",
+            "deprecated": true
           }
         }
       },
@@ -181881,7 +182545,9 @@
             "type": "boolean"
           },
           "roundtrips": {
-            "type": "integer"
+            "type": "integer",
+            "description": "This property is deprecated. Any value sent in a request is ignored: it is always stored and returned as \u00601\u0060, and every execution runs a single cycle.\n",
+            "deprecated": true
           }
         }
       },
@@ -182093,7 +182759,9 @@
             "type": "boolean"
           },
           "roundtrips": {
-            "type": "integer"
+            "type": "integer",
+            "description": "This property is deprecated. Any value sent in a request is ignored: it is always stored and returned as \u00601\u0060, and every execution runs a single cycle.\n",
+            "deprecated": true
           }
         }
       },
@@ -182219,7 +182887,9 @@
             "type": "boolean"
           },
           "roundtrips": {
-            "type": "integer"
+            "type": "integer",
+            "description": "This property is deprecated. Any value sent in a request is ignored: it is always stored and returned as \u00601\u0060, and every execution runs a single cycle.\n",
+            "deprecated": true
           }
         }
       },
@@ -182378,7 +183048,9 @@
             "type": "boolean"
           },
           "roundtrips": {
-            "type": "integer"
+            "type": "integer",
+            "description": "This property is deprecated. Any value sent in a request is ignored: it is always stored and returned as \u00601\u0060, and every execution runs a single cycle.\n",
+            "deprecated": true
           }
         }
       },
@@ -195926,6 +196598,67 @@
           ]
         }
       },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime400ResponseCode": {
+        "enum": [
+          "SC400",
+          "IM005"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime400ResponseCode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "SC400",
+              "name": "Sc400"
+            },
+            {
+              "value": "IM005",
+              "name": "Im005"
+            }
+          ]
+        }
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime403ResponseCode": {
+        "enum": [
+          "SC403",
+          "IM002"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime403ResponseCode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "SC403",
+              "name": "Sc403"
+            },
+            {
+              "value": "IM002",
+              "name": "Im002"
+            }
+          ]
+        }
+      },
+      "Im612Code": {
+        "enum": [
+          "IM612"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "Im612Code",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "IM612",
+              "name": "Im612"
+            }
+          ]
+        }
+      },
       "PostKeysRequestVisibility": {
         "enum": [
           "team",
@@ -197983,6 +198716,33 @@
         ],
         "type": "integer",
         "additionalProperties": false
+      },
+      "GetAdminUsersByUserIdAnonymizationRequest200ResponseRequestStatus": {
+        "enum": [
+          "in_progress",
+          "completed",
+          "failed"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetAdminUsersByUserIdAnonymizationRequest200ResponseRequestStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "in_progress",
+              "name": "InProgress"
+            },
+            {
+              "value": "completed",
+              "name": "Completed"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            }
+          ]
+        }
       },
       "GetAdminUsersAdminsRoles200ResponseUsersAdminsRolesItemCategory": {
         "enum": [
@@ -200288,6 +201048,38 @@
             }
           ]
         }
+      },
+      "GetInternalTeamsEnrichments200ResponseTeamsItemType": {
+        "enum": [
+          "standard",
+          "personal"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The team type. \u0027standard\u0027 represents a collaborative team space, \u0027personal\u0027 represents a single-user private sandbox.",
+        "x-ms-enum": {
+          "name": "GetInternalTeamsEnrichments200ResponseTeamsItemType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "standard",
+              "name": "Standard"
+            },
+            {
+              "value": "personal",
+              "name": "Personal"
+            }
+          ]
+        }
+      },
+      "GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleTypeId": {
+        "enum": [
+          4,
+          9
+        ],
+        "type": "integer",
+        "additionalProperties": false,
+        "description": "Module type. \u00604\u0060 is Action and \u00609\u0060 is Search."
       },
       "GetOrganizationsInvitation200ResponseUserTfaStatus": {
         "enum": [

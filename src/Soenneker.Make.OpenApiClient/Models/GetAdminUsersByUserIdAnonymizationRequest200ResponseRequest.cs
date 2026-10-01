@@ -7,45 +7,40 @@ using System.IO;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
+    /// <summary>
+    /// The anonymization state, or null when none was ever requested for this user.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequestRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class GetAdminUsersByUserIdAnonymizationRequest200ResponseRequest : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Head branch of the pull request — any valid Git branch name. Defaults to the app&apos;s `pullRequestBranch` (`make/&lt;appName&gt;-v&lt;appVersion&gt;`) when omitted.</summary>
+        /// <summary>Why the anonymization job stopped, set only on a failed request. A stalled request is failed with &apos;No progress since &lt;timestamp&gt;.&apos;, so a stuck run surfaces here.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Branch { get; set; }
+        public string? Error { get; set; }
 #nullable restore
 #else
-        public string Branch { get; set; }
+        public string Error { get; set; }
 #endif
-        /// <summary>Commit message. Its first line doubles as the title of a newly opened pull request. Defaults to `Sync &lt;appName&gt;@&lt;appVersion&gt; from Make` when omitted.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Message { get; set; }
-#nullable restore
-#else
-        public string Message { get; set; }
-#endif
+        /// <summary>The status property</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAnonymizationRequest200ResponseRequestStatus? Status { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequestRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAnonymizationRequest200ResponseRequest"/> and sets the default values.
         /// </summary>
-        public PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequestRequest()
+        public GetAdminUsersByUserIdAnonymizationRequest200ResponseRequest()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequestRequest"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAnonymizationRequest200ResponseRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequestRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAnonymizationRequest200ResponseRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequestRequest();
+            return new global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAnonymizationRequest200ResponseRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,8 +50,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "branch", n => { Branch = n.GetStringValue(); } },
-                { "message", n => { Message = n.GetStringValue(); } },
+                { "error", n => { Error = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAnonymizationRequest200ResponseRequestStatus>(); } },
             };
         }
         /// <summary>
@@ -66,8 +61,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("branch", Branch);
-            writer.WriteStringValue("message", Message);
+            writer.WriteStringValue("error", Error);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAnonymizationRequest200ResponseRequestStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

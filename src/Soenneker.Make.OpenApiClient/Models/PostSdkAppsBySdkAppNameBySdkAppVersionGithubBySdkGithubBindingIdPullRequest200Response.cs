@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdPullRequest200ResponseBinding Binding { get; set; }
 #endif
-        /// <summary>The pull-request branch the commit landed on and the binding now tracks — `make/&lt;appName&gt;-v&lt;appVersion&gt;`.</summary>
+        /// <summary>The pull-request branch the commit landed on and the binding now tracks — `branch` from the request, `make/&lt;appName&gt;-v&lt;appVersion&gt;` by default.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Branch { get; set; }

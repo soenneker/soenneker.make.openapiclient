@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Internal.Teams.Enrichments;
 using Soenneker.Make.OpenApiClient.Internal.Teams.Item;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,11 @@ namespace Soenneker.Make.OpenApiClient.Internal.Teams
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TeamsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The enrichments property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Teams.Enrichments.EnrichmentsRequestBuilder Enrichments
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Teams.Enrichments.EnrichmentsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.internal.teams.item collection</summary>
         /// <param name="position">The ID of the team to create the connection for.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Internal.Teams.Item.WithTeamItemRequestBuilder"/></returns>

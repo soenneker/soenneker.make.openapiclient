@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Internal.Sdk.Apps.Item.Item.Access;
+using Soenneker.Make.OpenApiClient.Internal.Sdk.Apps.Item.Item.Modules;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.Make.OpenApiClient.Internal.Sdk.Apps.Item.Item
         public global::Soenneker.Make.OpenApiClient.Internal.Sdk.Apps.Item.Item.Access.AccessRequestBuilder Access
         {
             get => new global::Soenneker.Make.OpenApiClient.Internal.Sdk.Apps.Item.Item.Access.AccessRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The modules property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Sdk.Apps.Item.Item.Modules.ModulesRequestBuilder Modules
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Sdk.Apps.Item.Item.Modules.ModulesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Internal.Sdk.Apps.Item.Item.WithAppVersionItemRequestBuilder"/> and sets the default values.
