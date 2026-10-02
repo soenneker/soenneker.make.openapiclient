@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.Scenarios.Item.Executions.Item.Replay;
 using Soenneker.Make.OpenApiClient.Scenarios.Item.Executions.Item.Stop;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Executions.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithExecutionItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The replay property</summary>
+        public global::Soenneker.Make.OpenApiClient.Scenarios.Item.Executions.Item.Replay.ReplayRequestBuilder Replay
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Scenarios.Item.Executions.Item.Replay.ReplayRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The stop property</summary>
         public global::Soenneker.Make.OpenApiClient.Scenarios.Item.Executions.Item.Stop.StopRequestBuilder Stop
         {

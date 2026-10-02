@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups
         {
         }
         /// <summary>
-        /// Starts an interactive setup flow for a new AI Browser context (a managed `ai-browser-context` keychain key).Opens a fresh remote browser session where the user logs in to their services; the returned `liveViewUrl`is rendered in the Make UI. The flow is then driven with the returned `setupId`: poll its status, andcomplete or cancel it. The flow expires 15 minutes after it starts.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
+        /// Starts an interactive setup flow for a new AI Browser context (a managed `ai-browser-context` keychain key).Opens a fresh remote browser session where the user logs in to their services; the returned live viewsare rendered in the Make UI — `pages` holds one per open page (tab or popup), `liveViewUrl` thesession-level fallback. The flow is then driven with the returned `setupId`: poll its status (passing`pagesVersion` back to wait for new pages), and complete or cancel it. The flow expires 15 minutes afterit starts.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetups200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetups200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetups200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Starts an interactive setup flow for a new AI Browser context (a managed `ai-browser-context` keychain key).Opens a fresh remote browser session where the user logs in to their services; the returned `liveViewUrl`is rendered in the Make UI. The flow is then driven with the returned `setupId`: poll its status, andcomplete or cancel it. The flow expires 15 minutes after it starts.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
+        /// Starts an interactive setup flow for a new AI Browser context (a managed `ai-browser-context` keychain key).Opens a fresh remote browser session where the user logs in to their services; the returned live viewsare rendered in the Make UI — `pages` holds one per open page (tab or popup), `liveViewUrl` thesession-level fallback. The flow is then driven with the returned `setupId`: poll its status (passing`pagesVersion` back to wait for new pages), and complete or cancel it. The flow expires 15 minutes afterit starts.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

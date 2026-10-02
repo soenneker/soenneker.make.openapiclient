@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.Complete;
+using Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.Pages;
 using Soenneker.Make.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
@@ -23,12 +24,17 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item
         {
             get => new global::Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.Complete.CompleteRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The pages property</summary>
+        public global::Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.Pages.PagesRequestBuilder Pages
+        {
+            get => new global::Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.Pages.PagesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.WithSetupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithSetupItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/ai-browser/context-setups/{setupId}", pathParameters)
+        public WithSetupItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/ai-browser/context-setups/{setupId}{?pagesVersion*,waitForChange*}", pathParameters)
         {
         }
         /// <summary>
@@ -36,7 +42,7 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithSetupItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/ai-browser/context-setups/{setupId}", rawUrl)
+        public WithSetupItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/ai-browser/context-setups/{setupId}{?pagesVersion*,waitForChange*}", rawUrl)
         {
         }
         /// <summary>
@@ -58,22 +64,29 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteAiBrowserContextSetupsBySetupId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteAiBrowserContextSetupsBySetupId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Polls the status of a running browser context setup flow. Only the user who started the flowcan read it. A flow that has expired, completed, or been cancelled responds with `404`.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
+        /// Polls the status of a running browser context setup flow. Only the user who started the flowcan read it. A flow that has expired, completed, or been cancelled responds with `404`.`pages` lists every open page (tab or popup) of the remote browser, each with its own live view,so a sign-in popup opened by the site can be shown as soon as it appears. The session-level`liveViewUrl` shows the first page and remains as a fallback. Live-view URLs are re-signed onevery response: match pages by `id` and detect changes with `pagesVersion`. A page the user nolonger needs can be closed with `DELETE /ai-browser/context-setups/{setupId}/pages/{pageId}`.To wait for a change instead of polling in a tight loop, send `waitForChange` (1–20 seconds)together with the `pagesVersion` of the previous response. The request is then held and answeredas soon as the open pages differ from that version (they are re-checked about once per second);if nothing changes, the unchanged status is returned once `waitForChange` seconds have passed. Arequest without `pagesVersion`, or with one that no longer matches, is answered right away. Sendthe next request after each response. A flow that ends while a request is held responds with `404`.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId400Response">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId404Response">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.WithSetupItemRequestBuilder.WithSetupItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.WithSetupItemRequestBuilder.WithSetupItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId400Response.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId404Response.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Cancels a running browser context setup flow: releases the remote browser session and, for acreate flow, deletes the not-yet-adopted browser context. Only the user who started the flowcan cancel it.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
@@ -95,17 +108,17 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item
             return requestInfo;
         }
         /// <summary>
-        /// Polls the status of a running browser context setup flow. Only the user who started the flowcan read it. A flow that has expired, completed, or been cancelled responds with `404`.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
+        /// Polls the status of a running browser context setup flow. Only the user who started the flowcan read it. A flow that has expired, completed, or been cancelled responds with `404`.`pages` lists every open page (tab or popup) of the remote browser, each with its own live view,so a sign-in popup opened by the site can be shown as soon as it appears. The session-level`liveViewUrl` shows the first page and remains as a fallback. Live-view URLs are re-signed onevery response: match pages by `id` and detect changes with `pagesVersion`. A page the user nolonger needs can be closed with `DELETE /ai-browser/context-setups/{setupId}/pages/{pageId}`.To wait for a change instead of polling in a tight loop, send `waitForChange` (1–20 seconds)together with the `pagesVersion` of the previous response. The request is then held and answeredas soon as the open pages differ from that version (they are re-checked about once per second);if nothing changes, the unchanged status is returned once `waitForChange` seconds have passed. Arequest without `pagesVersion`, or with one that no longer matches, is answered right away. Sendthe next request after each response. A flow that ends while a request is held responds with `404`.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.WithSetupItemRequestBuilder.WithSetupItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.WithSetupItemRequestBuilder.WithSetupItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -121,6 +134,26 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item
         public global::Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.WithSetupItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.WithSetupItemRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Polls the status of a running browser context setup flow. Only the user who started the flowcan read it. A flow that has expired, completed, or been cancelled responds with `404`.`pages` lists every open page (tab or popup) of the remote browser, each with its own live view,so a sign-in popup opened by the site can be shown as soon as it appears. The session-level`liveViewUrl` shows the first page and remains as a fallback. Live-view URLs are re-signed onevery response: match pages by `id` and detect changes with `pagesVersion`. A page the user nolonger needs can be closed with `DELETE /ai-browser/context-setups/{setupId}/pages/{pageId}`.To wait for a change instead of polling in a tight loop, send `waitForChange` (1–20 seconds)together with the `pagesVersion` of the previous response. The request is then held and answeredas soon as the open pages differ from that version (they are re-checked about once per second);if nothing changes, the unchanged status is returned once `waitForChange` seconds have passed. Arequest without `pagesVersion`, or with one that no longer matches, is answered right away. Sendthe next request after each response. A flow that ends while a request is held responds with `404`.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class WithSetupItemRequestBuilderGetQueryParameters 
+        {
+            /// <summary>The `pagesVersion` from the previous response. Used only together with `waitForChange`; when it is missing or no longer matches the current pages, the request is answered right away.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("pagesVersion")]
+            public string? PagesVersion { get; set; }
+#nullable restore
+#else
+            [QueryParameter("pagesVersion")]
+            public string PagesVersion { get; set; }
+#endif
+            /// <summary>Hold the request for up to this many seconds until the open pages of the setup session differ from `pagesVersion`. The request is answered as soon as they differ, or with the unchanged status once the time is up. Without this parameter the current status is returned right away.</summary>
+            [QueryParameter("waitForChange")]
+            public int? WaitForChange { get; set; }
         }
     }
 }

@@ -9,35 +9,43 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PostScenariosByScenarioIdReplayRequest : IAdditionalDataHolder, IParsable
+    public partial class PostScenariosByScenarioIdReplay202ResponseReplayedItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>IDs of the executions to replay; unique IDs of executions of the same scenario, at most 100 per call. Get the IDs with the API call `GET /scenarios/{scenarioId}/logs`; only executions marked as replayable can be replayed.</summary>
+        /// <summary>ID of the original execution.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ExecutionIds { get; set; }
+        public string? ExecutionId { get; set; }
 #nullable restore
 #else
-        public List<string> ExecutionIds { get; set; }
+        public string ExecutionId { get; set; }
+#endif
+        /// <summary>ID of the new execution that replays the original one.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ReplayExecutionId { get; set; }
+#nullable restore
+#else
+        public string ReplayExecutionId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplayRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseReplayedItem"/> and sets the default values.
         /// </summary>
-        public PostScenariosByScenarioIdReplayRequest()
+        public PostScenariosByScenarioIdReplay202ResponseReplayedItem()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplayRequest"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseReplayedItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplayRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseReplayedItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplayRequest();
+            return new global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseReplayedItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,7 +55,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "executionIds", n => { ExecutionIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "executionId", n => { ExecutionId = n.GetStringValue(); } },
+                { "replayExecutionId", n => { ReplayExecutionId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -57,7 +66,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("executionIds", ExecutionIds);
+            writer.WriteStringValue("executionId", ExecutionId);
+            writer.WriteStringValue("replayExecutionId", ReplayExecutionId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

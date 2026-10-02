@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
         {
         }
         /// <summary>
-        /// Returns the details of a single private space. Requires the `personal team own view` organization permission. Non-members receive a 404.
+        /// Returns the details of a single private space. Requires the `personal team own view` organization permission (admins: `organization view`) and the `private-spaces:read` scope. Callers lacking the permission receive `403` (`IM002`); non-members of the private space receive `404`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates a private space. Currently supports changing the operations limit (credit limit). Requires the `personal team manage` organization permission.
+        /// Updates a private space. Currently supports changing the operations limit (credit limit). Requires the `personal team manage` organization permission (admins: `organization edit`) and the `private-spaces:write` scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceId200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -72,7 +72,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the details of a single private space. Requires the `personal team own view` organization permission. Non-members receive a 404.
+        /// Returns the details of a single private space. Requires the `personal team own view` organization permission (admins: `organization view`) and the `private-spaces:read` scope. Callers lacking the permission receive `403` (`IM002`); non-members of the private space receive `404`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -91,7 +91,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
             return requestInfo;
         }
         /// <summary>
-        /// Updates a private space. Currently supports changing the operations limit (credit limit). Requires the `personal team manage` organization permission.
+        /// Updates a private space. Currently supports changing the operations limit (credit limit). Requires the `personal team manage` organization permission (admins: `organization edit`) and the `private-spaces:write` scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -122,7 +122,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
             return new global::Soenneker.Make.OpenApiClient.PrivateSpaces.Item.WithPrivateSpaceItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns the details of a single private space. Requires the `personal team own view` organization permission. Non-members receive a 404.
+        /// Returns the details of a single private space. Requires the `personal team own view` organization permission (admins: `organization view`) and the `private-spaces:read` scope. Callers lacking the permission receive `403` (`IM002`); non-members of the private space receive `404`.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithPrivateSpaceItemRequestBuilderGetQueryParameters 
@@ -139,7 +139,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
 #endif
         }
         /// <summary>
-        /// Updates a private space. Currently supports changing the operations limit (credit limit). Requires the `personal team manage` organization permission.
+        /// Updates a private space. Currently supports changing the operations limit (credit limit). Requires the `personal team manage` organization permission (admins: `organization edit`) and the `private-spaces:write` scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithPrivateSpaceItemRequestBuilderPatchQueryParameters 

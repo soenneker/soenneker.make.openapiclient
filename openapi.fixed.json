@@ -5350,7 +5350,7 @@
           "AI"
         ],
         "summary": "Start a browser context create setup",
-        "description": "Starts an interactive setup flow for a new AI Browser context (a managed \u0060ai-browser-context\u0060 keychain key).\nOpens a fresh remote browser session where the user logs in to their services; the returned \u0060liveViewUrl\u0060\nis rendered in the Make UI. The flow is then driven with the returned \u0060setupId\u0060: poll its status, and\ncomplete or cancel it. The flow expires 15 minutes after it starts.\n\nAvailable only when the \u0060is_ai_browser_contexts_enabled\u0060 feature flag is enabled.\n",
+        "description": "Starts an interactive setup flow for a new AI Browser context (a managed \u0060ai-browser-context\u0060 keychain key).\nOpens a fresh remote browser session where the user logs in to their services; the returned live views\nare rendered in the Make UI \u2014 \u0060pages\u0060 holds one per open page (tab or popup), \u0060liveViewUrl\u0060 the\nsession-level fallback. The flow is then driven with the returned \u0060setupId\u0060: poll its status (passing\n\u0060pagesVersion\u0060 back to wait for new pages), and complete or cancel it. The flow expires 15 minutes after\nit starts.\n\nAvailable only when the \u0060is_ai_browser_contexts_enabled\u0060 feature flag is enabled.\n",
         "operationId": "PostAiBrowserContextSetups",
         "requestBody": {
           "content": {
@@ -5381,10 +5381,20 @@
                 },
                 "examples": {
                   "create-setup": {
-                    "summary": "Setup flow started",
+                    "summary": "Setup flow started with one blank page",
                     "value": {
                       "setupId": "3f9c2b7e4d1a8c6f5e0b9d2a7c4e1f8b6a3d0c9e2f7b4a1d8e5c2f9b6a3e0d7c",
-                      "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c"
+                      "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c",
+                      "pagesVersion": "c6ad53eda3aea52b8beeb89b91efd5a620942708382a1987a87cd8a11fb1ae88",
+                      "pages": [
+                        {
+                          "id": "5E0C3F1A9B7D4E2C8A6F0B1D3C5E7A9B",
+                          "title": "",
+                          "url": "about:blank",
+                          "faviconUrl": "",
+                          "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c\u0026pageId=5E0C3F1A9B7D4E2C8A6F0B1D3C5E7A9B"
+                        }
+                      ]
                     }
                   }
                 }
@@ -5392,13 +5402,13 @@
             }
           },
           "400": {
-            "description": "Validation error"
+            "description": "Validation error, or the feature flag is disabled (\u0060IM903\u0060)"
           },
           "401": {
             "description": "Unauthorized"
           },
           "403": {
-            "description": "Missing the \u0027key add\u0027 team permission, or the feature flag is disabled"
+            "description": "Missing the \u0027key add\u0027 team permission (\u0060IM002\u0060)"
           },
           "500": {
             "description": "AI Browser is not configured on this environment"
@@ -5420,7 +5430,7 @@
           "AI"
         ],
         "summary": "Get browser context setup status",
-        "description": "Polls the status of a running browser context setup flow. Only the user who started the flow\ncan read it. A flow that has expired, completed, or been cancelled responds with \u0060404\u0060.\n\nAvailable only when the \u0060is_ai_browser_contexts_enabled\u0060 feature flag is enabled.\n",
+        "description": "Polls the status of a running browser context setup flow. Only the user who started the flow\ncan read it. A flow that has expired, completed, or been cancelled responds with \u0060404\u0060.\n\n\u0060pages\u0060 lists every open page (tab or popup) of the remote browser, each with its own live view,\nso a sign-in popup opened by the site can be shown as soon as it appears. The session-level\n\u0060liveViewUrl\u0060 shows the first page and remains as a fallback. Live-view URLs are re-signed on\nevery response: match pages by \u0060id\u0060 and detect changes with \u0060pagesVersion\u0060. A page the user no\nlonger needs can be closed with \u0060DELETE /ai-browser/context-setups/{setupId}/pages/{pageId}\u0060.\n\nTo wait for a change instead of polling in a tight loop, send \u0060waitForChange\u0060 (1\u201320 seconds)\ntogether with the \u0060pagesVersion\u0060 of the previous response. The request is then held and answered\nas soon as the open pages differ from that version (they are re-checked about once per second);\nif nothing changes, the unchanged status is returned once \u0060waitForChange\u0060 seconds have passed. A\nrequest without \u0060pagesVersion\u0060, or with one that no longer matches, is answered right away. Send\nthe next request after each response. A flow that ends while a request is held responds with \u0060404\u0060.\n\nAvailable only when the \u0060is_ai_browser_contexts_enabled\u0060 feature flag is enabled.\n",
         "operationId": "GetAiBrowserContextSetupsBySetupId",
         "parameters": [
           {
@@ -5431,6 +5441,51 @@
             "schema": {
               "pattern": "^[0-9a-f]{64}$",
               "type": "string"
+            },
+            "examples": {
+              "single-tab": {
+                "value": "3f9c2b7e4d1a8c6f5e0b9d2a7c4e1f8b6a3d0c9e2f7b4a1d8e5c2f9b6a3e0d7c"
+              },
+              "oauth-popup": {
+                "value": "3f9c2b7e4d1a8c6f5e0b9d2a7c4e1f8b6a3d0c9e2f7b4a1d8e5c2f9b6a3e0d7c"
+              }
+            }
+          },
+          {
+            "name": "waitForChange",
+            "in": "query",
+            "description": "Hold the request for up to this many seconds until the open pages of the setup session differ from \u0060pagesVersion\u0060. The request is answered as soon as they differ, or with the unchanged status once the time is up. Without this parameter the current status is returned right away.",
+            "schema": {
+              "maximum": 20,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "single-tab": {
+                "summary": "First request after the dialog opens",
+                "description": "No \u0060pagesVersion\u0060 is known yet, so the current pages are returned right away.",
+                "value": 20
+              },
+              "oauth-popup": {
+                "summary": "Wait for the next change",
+                "description": "Held until the site opens a sign-in popup, then answered with both pages.",
+                "value": 20
+              }
+            }
+          },
+          {
+            "name": "pagesVersion",
+            "in": "query",
+            "description": "The \u0060pagesVersion\u0060 from the previous response. Used only together with \u0060waitForChange\u0060; when it is missing or no longer matches the current pages, the request is answered right away.",
+            "schema": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "examples": {
+              "oauth-popup": {
+                "summary": "Version of the single-tab response",
+                "value": "ace7ce872c510bc289f21d0152143dc82987ef622b8da97fcf04183341eba642"
+              }
             }
           }
         ],
@@ -5443,11 +5498,70 @@
                   "$ref": "#/components/schemas/GetAiBrowserContextSetupsBySetupId200Response"
                 },
                 "examples": {
-                  "pending-setup": {
-                    "summary": "Running setup flow",
+                  "single-tab": {
+                    "summary": "The user is on the site\u0027s login page",
                     "value": {
                       "status": "pending",
-                      "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c"
+                      "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c",
+                      "pagesVersion": "ace7ce872c510bc289f21d0152143dc82987ef622b8da97fcf04183341eba642",
+                      "pages": [
+                        {
+                          "id": "5E0C3F1A9B7D4E2C8A6F0B1D3C5E7A9B",
+                          "title": "Log in | My Shop",
+                          "url": "https://shop.example.com/login",
+                          "faviconUrl": "https://shop.example.com/favicon.ico",
+                          "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c\u0026pageId=5E0C3F1A9B7D4E2C8A6F0B1D3C5E7A9B"
+                        }
+                      ]
+                    }
+                  },
+                  "oauth-popup": {
+                    "summary": "The site opened a \u0022Sign in with Google\u0022 popup",
+                    "value": {
+                      "status": "pending",
+                      "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c",
+                      "pagesVersion": "10c56351c539c1a7c27f1041d731c0c48b551f535e6c41b437610686eac0b8cf",
+                      "pages": [
+                        {
+                          "id": "5E0C3F1A9B7D4E2C8A6F0B1D3C5E7A9B",
+                          "title": "Log in | My Shop",
+                          "url": "https://shop.example.com/login",
+                          "faviconUrl": "https://shop.example.com/favicon.ico",
+                          "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c\u0026pageId=5E0C3F1A9B7D4E2C8A6F0B1D3C5E7A9B"
+                        },
+                        {
+                          "id": "D41F8B2E6A0C4B7E9F3A5C1E7B9D2F40",
+                          "title": "Sign in - Google Accounts",
+                          "url": "https://accounts.google.com/v3/signin/identifier",
+                          "faviconUrl": "https://accounts.google.com/favicon.ico",
+                          "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c\u0026pageId=D41F8B2E6A0C4B7E9F3A5C1E7B9D2F40"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\u0060waitForChange\u0060 is not an integer from 1 to 20 or \u0060pagesVersion\u0060 is not a 64-character hex string (\u0060SC400\u0060), or the feature flag is disabled (\u0060IM903\u0060).\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAiBrowserContextSetupsBySetupId400Response"
+                },
+                "examples": {
+                  "waitTooLong": {
+                    "summary": "waitForChange is above 20 seconds",
+                    "value": {
+                      "message": "Bad Request",
+                      "code": "SC400",
+                      "suberrors": [
+                        {
+                          "message": "Expected integer to be less or equal to 20",
+                          "name": "ValidationError"
+                        }
+                      ]
                     }
                   }
                 }
@@ -5455,16 +5569,36 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "The setup flow was started by another user, or the feature flag is disabled"
+            "description": "Authentication failed or the token lacks \u0060keys:read\u0060, or the setup flow was started by another user (\u0060IM001\u0060).\n"
           },
           "404": {
-            "description": "Setup flow not found or expired"
+            "description": "Setup flow not found or expired, including a flow that ends while a request is held (\u0060IM013\u0060).\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAiBrowserContextSetupsBySetupId404Response"
+                },
+                "examples": {
+                  "setupGone": {
+                    "summary": "The flow was completed, cancelled or has expired",
+                    "value": {
+                      "message": "Entity not found.",
+                      "code": "IM013",
+                      "detail": "Setup not found or expired."
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "description": "AI Browser is not configured on this environment"
+          },
+          "502": {
+            "description": "The request to Browserbase failed (\u0060SC502\u0060); send the request again."
+          },
+          "503": {
+            "description": "The request to Browserbase timed out (\u0060SC503\u0060); send the request again."
           }
         },
         "security": [
@@ -5514,11 +5648,11 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized"
+          "400": {
+            "description": "The feature flag is disabled (\u0060IM903\u0060)"
           },
-          "403": {
-            "description": "The setup flow was started by another user, or the feature flag is disabled"
+          "401": {
+            "description": "Unauthorized, or the setup flow was started by another user (\u0060IM001\u0060)"
           },
           "410": {
             "description": "Setup flow not found, expired, or already finished"
@@ -5606,13 +5740,196 @@
         "x-internal": true
       }
     },
+    "/ai-browser/context-setups/{setupId}/pages/{pageId}": {
+      "delete": {
+        "tags": [
+          "AI"
+        ],
+        "summary": "Close a browser context setup tab",
+        "description": "Closes one tab (page) of the remote browser of a running browser context setup flow, for example a\nsign-in popup the user no longer needs. Only the user who started the flow can close its tabs. The\nflow keeps running and its expiration does not change; the next status response no longer lists the\nclosed tab.\n\nBrowserbase cannot close a tab through its REST API, so the tab is closed with a single Chrome\nDevTools Protocol command (\u0060Target.closeTarget\u0060) over a connection that lasts only for that command.\n\nClosing is idempotent: a tab that is no longer open \u2014 a popup may close itself \u2014 responds with \u0060200\u0060\nwithout closing anything. The last open tab cannot be closed (\u0060409\u0060), because the login needs a tab\nto continue in. While another tab of the same flow is being closed, the request is rejected with\n\u0060409\u0060 as well; send it again.\n\nAvailable only when the \u0060is_ai_browser_contexts_enabled\u0060 feature flag is enabled.\n",
+        "operationId": "DeleteAiBrowserContextSetupsBySetupIdPagesByPageId",
+        "parameters": [
+          {
+            "name": "setupId",
+            "in": "path",
+            "description": "Identifier of the setup flow, as returned when the flow was started.",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "examples": {
+              "oauth-popup": {
+                "value": "3f9c2b7e4d1a8c6f5e0b9d2a7c4e1f8b6a3d0c9e2f7b4a1d8e5c2f9b6a3e0d7c"
+              }
+            }
+          },
+          {
+            "name": "pageId",
+            "in": "path",
+            "description": "Identifier of the tab to close, as listed in \u0060pages\u0060 of the setup flow status.",
+            "required": true,
+            "schema": {
+              "maxLength": 128,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_-]\u002B$",
+              "type": "string"
+            },
+            "examples": {
+              "oauth-popup": {
+                "summary": "The \u0022Sign in with Google\u0022 popup of the status example",
+                "value": "D41F8B2E6A0C4B7E9F3A5C1E7B9D2F40"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The tab was closed, or was no longer open",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAiBrowserContextSetupsBySetupIdPagesByPageId200Response"
+                },
+                "examples": {
+                  "oauth-popup": {
+                    "summary": "The sign-in popup was closed",
+                    "value": {
+                      "setupId": "3f9c2b7e4d1a8c6f5e0b9d2a7c4e1f8b6a3d0c9e2f7b4a1d8e5c2f9b6a3e0d7c",
+                      "pageId": "D41F8B2E6A0C4B7E9F3A5C1E7B9D2F40"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\u0060setupId\u0060 is not a 64-character hex string or \u0060pageId\u0060 is not 1\u2013128 letters, digits, \u0060-\u0060 or \u0060_\u0060 (\u0060SC400\u0060), or the feature flag is disabled (\u0060IM903\u0060).\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAiBrowserContextSetupsBySetupIdPagesByPageId400Response"
+                },
+                "examples": {
+                  "invalidPageId": {
+                    "summary": "pageId contains a character that is not allowed",
+                    "value": {
+                      "message": "Bad Request",
+                      "code": "SC400",
+                      "suberrors": [
+                        {
+                          "message": "Expected string to match \u0027^[A-Za-z0-9_-]\u002B$\u0027",
+                          "name": "ValidationError"
+                        }
+                      ]
+                    }
+                  },
+                  "featureDisabled": {
+                    "summary": "AI Browser Contexts are disabled on this environment",
+                    "value": {
+                      "message": "Feature flag is disabled",
+                      "code": "IM903",
+                      "detail": "AI Browser Contexts are not enabled on this environment."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed or the token lacks \u0060keys:write\u0060, or the setup flow was started by another user (\u0060IM001\u0060).\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAiBrowserContextSetupsBySetupIdPagesByPageId401Response"
+                },
+                "examples": {
+                  "anotherUsersFlow": {
+                    "summary": "The setup flow was started by another user",
+                    "value": {
+                      "message": "Access denied",
+                      "code": "IM001"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The tab is the last open tab of the setup flow, or another tab of the same flow is being closed right now (\u0060SC409\u0060). Only the second case succeeds when the request is sent again.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAiBrowserContextSetupsBySetupIdPagesByPageId409Response"
+                },
+                "examples": {
+                  "lastTab": {
+                    "summary": "The last open tab must remain open",
+                    "value": {
+                      "message": "Unexpected error occurred",
+                      "code": "SC409",
+                      "detail": "The last browser tab must remain open."
+                    }
+                  },
+                  "concurrentClose": {
+                    "summary": "Another tab of the flow is being closed",
+                    "value": {
+                      "message": "Unexpected error occurred",
+                      "code": "SC409",
+                      "detail": "Another tab of this setup is being closed; try again."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Setup flow not found, expired, or already finished (\u0060SC410\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAiBrowserContextSetupsBySetupIdPagesByPageId410Response"
+                },
+                "examples": {
+                  "setupGone": {
+                    "summary": "The flow was completed, cancelled or has expired",
+                    "value": {
+                      "message": "Content has been permanently deleted",
+                      "code": "SC410",
+                      "detail": "Setup not found or expired."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "AI Browser is not configured on this environment"
+          },
+          "502": {
+            "description": "Browserbase could not be reached, the browser session could not be connected to, or the tab was not closed (\u0060SC502\u0060); send the request again.\n"
+          },
+          "503": {
+            "description": "Browserbase or the tab close timed out (\u0060SC503\u0060); send the request again."
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "keys:write"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
     "/ai-browser/contexts/{keyId}/refresh-setups": {
       "post": {
         "tags": [
           "AI"
         ],
         "summary": "Start a browser context refresh setup",
-        "description": "Starts an interactive refresh flow for an existing AI Browser context key. Opens a remote browser\nsession attached to the key\u0027s existing context so the user can re-authenticate expired logins; the\ncontext (and the key) keep their identity. The flow is then driven with the returned \u0060setupId\u0060,\nexactly like a create flow. The flow expires 15 minutes after it starts.\n\nAvailable only when the \u0060is_ai_browser_contexts_enabled\u0060 feature flag is enabled.\n",
+        "description": "Starts an interactive refresh flow for an existing AI Browser context key. Opens a remote browser\nsession attached to the key\u0027s existing context so the user can re-authenticate expired logins; the\ncontext (and the key) keep their identity. Like a create flow, the response carries one live view per\nopen page in \u0060pages\u0060 plus the session-level \u0060liveViewUrl\u0060, and the flow is then driven with the returned\n\u0060setupId\u0060. The flow expires 15 minutes after it starts.\n\nAvailable only when the \u0060is_ai_browser_contexts_enabled\u0060 feature flag is enabled.\n",
         "operationId": "PostAiBrowserContextsByKeyIdRefreshSetups",
         "parameters": [
           {
@@ -5636,10 +5953,20 @@
                 },
                 "examples": {
                   "refresh-setup": {
-                    "summary": "Refresh flow started",
+                    "summary": "Refresh flow started with one blank page",
                     "value": {
                       "setupId": "3f9c2b7e4d1a8c6f5e0b9d2a7c4e1f8b6a3d0c9e2f7b4a1d8e5c2f9b6a3e0d7c",
-                      "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c"
+                      "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c",
+                      "pagesVersion": "c6ad53eda3aea52b8beeb89b91efd5a620942708382a1987a87cd8a11fb1ae88",
+                      "pages": [
+                        {
+                          "id": "5E0C3F1A9B7D4E2C8A6F0B1D3C5E7A9B",
+                          "title": "",
+                          "url": "about:blank",
+                          "faviconUrl": "",
+                          "liveViewUrl": "https://connect.browserbase.com/devtools-fullscreen/inspector.html?sessionId=6ab3f1c2-4e5d-4f6a-8b9c-0d1e2f3a4b5c\u0026pageId=5E0C3F1A9B7D4E2C8A6F0B1D3C5E7A9B"
+                        }
+                      ]
                     }
                   }
                 }
@@ -5647,13 +5974,13 @@
             }
           },
           "400": {
-            "description": "Validation error"
+            "description": "Validation error, or the feature flag is disabled (\u0060IM903\u0060)"
           },
           "401": {
             "description": "Unauthorized"
           },
           "403": {
-            "description": "Missing the \u0027key edit\u0027 team permission, or the feature flag is disabled"
+            "description": "Missing the \u0027key edit\u0027 team permission (\u0060IM002\u0060)"
           },
           "404": {
             "description": "The key does not exist or is not an AI Browser context"
@@ -28405,7 +28732,7 @@
           "Organizations"
         ],
         "summary": "List user organizations",
-        "description": "Retrieves a collection of all organizations, in which the user has membership. The response contains information about the organization \u0060name\u0060, \u0060organizationId\u0060 and \u0060timezoneId\u0060. You can get more data about the user organizations with specifying the \u0060cols[]\u0060 query parameter.\n\nHowever, the values for parameters \u0060license\u0060, \u0060serviceName\u0060 and \u0060isPaused\u0060 are returned only for organizations in your current Make zone.\n\nReturned organizations are sorted by the organization name in ascending order by default. You can specify sorting order with the query parameter \u0060pg[sortBy].\u0060",
+        "description": "Retrieves a collection of all organizations, in which the user has membership. The response contains information about the organization \u0060name\u0060, \u0060organizationId\u0060 and \u0060timezoneId\u0060. You can get more data about the user organizations with specifying the \u0060cols[]\u0060 query parameter.\n\nHowever, the values for parameters \u0060license\u0060, \u0060serviceName\u0060 and \u0060isPaused\u0060 are returned only for organizations in your current Make zone.\n\nThe \u0060privateSpaces\u0060 column lists the private spaces the caller is a member of in each organization (own private spaces only; app zones only). It needs no organization permission, unlike \u0060GET /private-spaces\u0060.\nReturned organizations are sorted by the organization name in ascending order by default. You can specify sorting order with the query parameter \u0060pg[sortBy].\u0060",
         "operationId": "GetOrganizations",
         "parameters": [
           {
@@ -34116,8 +34443,8 @@
         "tags": [
           "Scenarios"
         ],
-        "summary": "Replay a scenario execution",
-        "description": "Replays the specified scenario execution. The scenario has to be active. ",
+        "summary": "Replay scenario executions",
+        "description": "Replays the specified executions of the scenario. Each replay creates a new execution that runs the latest version of the scenario with the data of the original execution. The scenario has to be active, and only executions marked as replayable can be replayed. To replay one execution you can also use \u0060POST /scenarios/{scenarioId}/executions/{executionId}/replay\u0060.\n\nUp to 100 executions can be replayed in one call. The executions are processed one by one in the order of the request, so a call with many executions takes proportionally longer to respond. Executions that cannot be replayed (not found, not replayable, or belonging to another team) are skipped and listed in \u0060failed\u0060; the other executions are still queued. If the organization runs out of execution slots or the replay service becomes unavailable, the remaining executions are not attempted and are listed in \u0060failed\u0060 with the same reason.\n\nThe call returns \u0060202\u0060 as long as at least one execution was queued. If no execution was queued, the call fails with the error of the first execution, for example \u0060422\u0060 when a single execution is not replayable. The response property \u0060executionId\u0060 holds the ID of the first queued replay and is kept for backward compatibility; use \u0060replayed\u0060 to map each original execution to its replay.\n\nThe scenario is not replayed when its organization or team is paused because an operations or data transfer limit was exceeded. In that case the call returns \u0060429\u0060 with the code \u0060IM310\u0060.\n",
         "operationId": "PostScenariosByScenarioIdReplay",
         "parameters": [
           {
@@ -34137,20 +34464,96 @@
               "schema": {
                 "$ref": "#/components/schemas/PostScenariosByScenarioIdReplayRequest"
               },
-              "example": {
-                "executionIds": [
-                  "509f0457d2804ba7b115faf1637beea6"
-                ]
+              "examples": {
+                "single": {
+                  "summary": "Replay one execution",
+                  "value": {
+                    "executionIds": [
+                      "509f0457d2804ba7b115faf1637beea6"
+                    ]
+                  }
+                },
+                "multiple": {
+                  "summary": "Replay several executions",
+                  "value": {
+                    "executionIds": [
+                      "509f0457d2804ba7b115faf1637beea6",
+                      "a07e16f2ad134bf49cf83a00aa95c0a5",
+                      "d949cee5ac204fddb833041a3b4169cc"
+                    ]
+                  }
+                }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "202": {
-            "description": "202 Accepted - Successful response"
+            "description": "202 Accepted - at least one execution was queued for replay",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostScenariosByScenarioIdReplay202Response"
+                },
+                "examples": {
+                  "single": {
+                    "summary": "One execution replayed",
+                    "value": {
+                      "executionId": "9c4874979d974c3ebdef1e8aaa7dc452",
+                      "replayed": [
+                        {
+                          "executionId": "509f0457d2804ba7b115faf1637beea6",
+                          "replayExecutionId": "9c4874979d974c3ebdef1e8aaa7dc452"
+                        }
+                      ],
+                      "failed": []
+                    }
+                  },
+                  "partialFailure": {
+                    "summary": "Some executions could not be replayed",
+                    "value": {
+                      "executionId": "9c4874979d974c3ebdef1e8aaa7dc452",
+                      "replayed": [
+                        {
+                          "executionId": "509f0457d2804ba7b115faf1637beea6",
+                          "replayExecutionId": "9c4874979d974c3ebdef1e8aaa7dc452"
+                        },
+                        {
+                          "executionId": "a07e16f2ad134bf49cf83a00aa95c0a5",
+                          "replayExecutionId": "1f0c3b7d2e4a4c8f9b6d5e7a8c9d0e1f"
+                        }
+                      ],
+                      "failed": [
+                        {
+                          "executionId": "d949cee5ac204fddb833041a3b4169cc",
+                          "code": "SC422",
+                          "message": "Execution is not replayable"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400 Bad Request - invalid request body, for example an empty list, more than 100 IDs, duplicate IDs or a malformed ID (\u0060IM005\u0060)"
+          },
+          "403": {
+            "description": "403 Forbidden - no execution was queued and the first one belongs to another team (\u0060SC403\u0060)"
           },
           "404": {
-            "description": "404 Not Found"
+            "description": "404 Not Found - no execution was queued and the first one was not found (\u0060SC404\u0060)"
+          },
+          "422": {
+            "description": "422 Unprocessable Entity - the organization or team is paused, or no execution was queued and the first one is not replayable (\u0060SC422\u0060)"
+          },
+          "429": {
+            "description": "429 Too Many Requests - the organization or team is paused because a limit was exceeded (\u0060IM310\u0060), or no execution slot was available (\u0060SC429\u0060)"
+          },
+          "503": {
+            "description": "503 Service Unavailable - execution replays are temporarily unavailable (\u0060SC503\u0060)"
           }
         },
         "security": [
@@ -35520,6 +35923,79 @@
             ]
           }
         ]
+      }
+    },
+    "/scenarios/{scenarioId}/executions/{executionId}/replay": {
+      "post": {
+        "tags": [
+          "Scenarios / Logs"
+        ],
+        "summary": "Replay a scenario execution",
+        "description": "Replays one execution of the scenario. The replay creates a new execution that runs the latest version of the scenario with the data of the original execution. The scenario has to be active, and only executions marked as replayable can be replayed.\n\nTo replay several executions (up to 100) in one call, use \u0060POST /scenarios/{scenarioId}/replay\u0060.\n\nThe scenario is not replayed when its organization or team is paused because an operations or data transfer limit was exceeded. In that case the call returns \u0060429\u0060 with the code \u0060IM310\u0060.\n",
+        "operationId": "PostScenariosByScenarioIdExecutionsByExecutionIdReplay",
+        "parameters": [
+          {
+            "name": "scenarioId",
+            "in": "path",
+            "description": "The ID of the scenario. You can get the \u0060scenarioId\u0060 with the [List scenarios](/api-reference/scenarios/get--scenarios.md) API call.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 112
+          },
+          {
+            "name": "executionId",
+            "in": "path",
+            "description": "The unique ID of the scenario execution. It can be retrieved from the [List scenario logs](/api-reference/scenarios/logs/get--scenarios--scenarioid--logs.md) endpoint under the ID key.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "cc1c49323b344687a324888762206003"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "202 Accepted - the replay was queued",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostScenariosByScenarioIdExecutionsByExecutionIdReplay202Response"
+                },
+                "example": {
+                  "executionId": "9c4874979d974c3ebdef1e8aaa7dc452"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400 Bad Request - malformed execution ID (\u0060IM005\u0060)"
+          },
+          "403": {
+            "description": "403 Forbidden - the execution belongs to another team (\u0060SC403\u0060)"
+          },
+          "404": {
+            "description": "404 Not Found - the execution was not found (\u0060SC404\u0060)"
+          },
+          "422": {
+            "description": "422 Unprocessable Entity - the organization or team is paused, or the execution is not replayable (\u0060SC422\u0060)"
+          },
+          "429": {
+            "description": "429 Too Many Requests - the organization or team is paused because a limit was exceeded (\u0060IM310\u0060), or no execution slot was available (\u0060SC429\u0060)"
+          },
+          "503": {
+            "description": "503 Service Unavailable - execution replays are temporarily unavailable (\u0060SC503\u0060)"
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:run"
+            ]
+          }
+        ],
+        "x-internal": false
       }
     },
     "/scenarios/modules/consumptions": {
@@ -48926,7 +49402,7 @@
           "Private spaces"
         ],
         "summary": "List private spaces",
-        "description": "Gets the list of private spaces in the organization with specified \u0060organizationId\u0060.",
+        "description": "Gets the list of private spaces in the organization with specified \u0060organizationId\u0060.\n\nRequires the \u0060personal team manage\u0060 organization permission (admins: \u0060organization view\u0060) and the \u0060private-spaces:read\u0060 scope. Members without that permission receive \u0060403\u0060 (\u0060IM002\u0060); they can list their own private spaces with \u0060GET /organizations?cols[]=privateSpaces\u0060 instead.\n\nAvailable on app zones only.\n",
         "operationId": "GetPrivateSpaces",
         "parameters": [
           {
@@ -49052,6 +49528,20 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "The caller lacks the \u0060personal team manage\u0060 permission on the organization (\u0060IM002\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPrivateSpaces403Response"
+                },
+                "example": {
+                  "message": "Insufficient rights.",
+                  "code": "IM002"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -49069,7 +49559,7 @@
           "Private spaces"
         ],
         "summary": "Get a private space",
-        "description": "Returns the details of a single private space. Requires the \u0060personal team own view\u0060 organization permission. Non-members receive a 404.",
+        "description": "Returns the details of a single private space. Requires the \u0060personal team own view\u0060 organization permission (admins: \u0060organization view\u0060) and the \u0060private-spaces:read\u0060 scope. Callers lacking the permission receive \u0060403\u0060 (\u0060IM002\u0060); non-members of the private space receive \u0060404\u0060.",
         "operationId": "GetPrivateSpacesByPrivateSpaceId",
         "parameters": [
           {
@@ -49131,7 +49621,7 @@
           "Private spaces"
         ],
         "summary": "Update a private space",
-        "description": "Updates a private space. Currently supports changing the operations limit (credit limit). Requires the \u0060personal team manage\u0060 organization permission.",
+        "description": "Updates a private space. Currently supports changing the operations limit (credit limit). Requires the \u0060personal team manage\u0060 organization permission (admins: \u0060organization edit\u0060) and the \u0060private-spaces:write\u0060 scope.",
         "operationId": "PatchPrivateSpacesByPrivateSpaceId",
         "parameters": [
           {
@@ -102543,7 +103033,9 @@
       "PostAiBrowserContextSetups200Response": {
         "required": [
           "setupId",
-          "liveViewUrl"
+          "liveViewUrl",
+          "pagesVersion",
+          "pages"
         ],
         "type": "object",
         "properties": {
@@ -102554,14 +103046,28 @@
           },
           "liveViewUrl": {
             "type": "string",
-            "description": "URL of the live browser view where the user logs in to their services."
+            "description": "URL of the live view of the session\u0027s first page; kept as a fallback for \u0060pages\u0060."
+          },
+          "pagesVersion": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string",
+            "description": "Identifies the current set of open pages: it changes whenever a page opens, closes, navigates or changes its title or favicon. Live-view URLs are left out because they are re-signed on every response. Send it back as the \u0060pagesVersion\u0060 query parameter to wait for the next change."
+          },
+          "pages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostAiBrowserContextSetups200ResponsePagesItem"
+            },
+            "description": "Every open page (tab or popup) of the remote browser, each with its own live view. Match pages by \u0060id\u0060: a page keeps its \u0060id\u0060 for its lifetime, while its title, URL and live-view URL change. The list is empty when no page is open."
           }
         }
       },
       "GetAiBrowserContextSetupsBySetupId200Response": {
         "required": [
           "status",
-          "liveViewUrl"
+          "liveViewUrl",
+          "pagesVersion",
+          "pages"
         ],
         "type": "object",
         "properties": {
@@ -102570,7 +103076,75 @@
           },
           "liveViewUrl": {
             "type": "string",
-            "description": "URL of the live browser view of the running setup session."
+            "description": "URL of the live view of the session\u0027s first page; kept as a fallback for \u0060pages\u0060."
+          },
+          "pagesVersion": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string",
+            "description": "Identifies the current set of open pages: it changes whenever a page opens, closes, navigates or changes its title or favicon. Live-view URLs are left out because they are re-signed on every response. Send it back as the \u0060pagesVersion\u0060 query parameter to wait for the next change."
+          },
+          "pages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAiBrowserContextSetupsBySetupId200ResponsePagesItem"
+            },
+            "description": "Every open page (tab or popup) of the remote browser, each with its own live view. Match pages by \u0060id\u0060: a page keeps its \u0060id\u0060 for its lifetime, while its title, URL and live-view URL change. The list is empty when no page is open."
+          }
+        }
+      },
+      "GetAiBrowserContextSetupsBySetupId400Response": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Localized summary for the error code."
+          },
+          "code": {
+            "type": "string",
+            "description": "Stable Make API error code."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the error safely exposes one."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAiBrowserContextSetupsBySetupId400ResponseSuberrorsItem"
+            },
+            "description": "Individual validation failures, when request validation reports them."
+          }
+        }
+      },
+      "GetAiBrowserContextSetupsBySetupId404Response": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Localized summary for the error code."
+          },
+          "code": {
+            "type": "string",
+            "description": "Stable Make API error code."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the error safely exposes one."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAiBrowserContextSetupsBySetupId404ResponseSuberrorsItem"
+            },
+            "description": "Individual validation failures, when request validation reports them."
           }
         }
       },
@@ -102604,10 +103178,142 @@
           }
         }
       },
+      "DeleteAiBrowserContextSetupsBySetupIdPagesByPageId200Response": {
+        "required": [
+          "setupId",
+          "pageId"
+        ],
+        "type": "object",
+        "properties": {
+          "setupId": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string",
+            "description": "Identifier of the setup flow."
+          },
+          "pageId": {
+            "type": "string",
+            "description": "Identifier of the closed tab."
+          }
+        }
+      },
+      "DeleteAiBrowserContextSetupsBySetupIdPagesByPageId400Response": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Localized summary for the error code."
+          },
+          "code": {
+            "type": "string",
+            "description": "Stable Make API error code."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the error safely exposes one."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeleteAiBrowserContextSetupsBySetupIdPagesByPageId400ResponseSuberrorsItem"
+            },
+            "description": "Individual validation failures, when request validation reports them."
+          }
+        }
+      },
+      "DeleteAiBrowserContextSetupsBySetupIdPagesByPageId401Response": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Localized summary for the error code."
+          },
+          "code": {
+            "type": "string",
+            "description": "Stable Make API error code."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the error safely exposes one."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeleteAiBrowserContextSetupsBySetupIdPagesByPageId401ResponseSuberrorsItem"
+            },
+            "description": "Individual validation failures, when request validation reports them."
+          }
+        }
+      },
+      "DeleteAiBrowserContextSetupsBySetupIdPagesByPageId409Response": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Localized summary for the error code."
+          },
+          "code": {
+            "type": "string",
+            "description": "Stable Make API error code."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the error safely exposes one."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeleteAiBrowserContextSetupsBySetupIdPagesByPageId409ResponseSuberrorsItem"
+            },
+            "description": "Individual validation failures, when request validation reports them."
+          }
+        }
+      },
+      "DeleteAiBrowserContextSetupsBySetupIdPagesByPageId410Response": {
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Localized summary for the error code."
+          },
+          "code": {
+            "type": "string",
+            "description": "Stable Make API error code."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Request-specific detail when the error safely exposes one."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeleteAiBrowserContextSetupsBySetupIdPagesByPageId410ResponseSuberrorsItem"
+            },
+            "description": "Individual validation failures, when request validation reports them."
+          }
+        }
+      },
       "PostAiBrowserContextsByKeyIdRefreshSetups200Response": {
         "required": [
           "setupId",
-          "liveViewUrl"
+          "liveViewUrl",
+          "pagesVersion",
+          "pages"
         ],
         "type": "object",
         "properties": {
@@ -102618,7 +103324,19 @@
           },
           "liveViewUrl": {
             "type": "string",
-            "description": "URL of the live browser view where the user re-authenticates their services."
+            "description": "URL of the live view of the session\u0027s first page; kept as a fallback for \u0060pages\u0060."
+          },
+          "pagesVersion": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string",
+            "description": "Identifies the current set of open pages: it changes whenever a page opens, closes, navigates or changes its title or favicon. Live-view URLs are left out because they are re-signed on every response. Send it back as the \u0060pagesVersion\u0060 query parameter to wait for the next change."
+          },
+          "pages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostAiBrowserContextsByKeyIdRefreshSetups200ResponsePagesItem"
+            },
+            "description": "Every open page (tab or popup) of the remote browser, each with its own live view. Match pages by \u0060id\u0060: a page keeps its \u0060id\u0060 for its lifetime, while its title, URL and live-view URL change. The list is empty when no page is open."
           }
         }
       },
@@ -110729,15 +111447,51 @@
         }
       },
       "PostScenariosByScenarioIdReplayRequest": {
+        "required": [
+          "executionIds"
+        ],
         "type": "object",
         "properties": {
           "executionIds": {
+            "maxItems": 100,
+            "minItems": 1,
+            "uniqueItems": true,
             "type": "array",
             "items": {
-              "type": "object",
-              "description": "Fallback array item schema"
+              "maxLength": 32,
+              "minLength": 32,
+              "pattern": "^[a-zA-Z0-9]\u002B$",
+              "type": "string"
             },
-            "description": "An array of executionIds. Currently only the first one will be replayed."
+            "description": "IDs of the executions to replay; unique IDs of executions of the same scenario, at most 100 per call. Get the IDs with the API call \u0060GET /scenarios/{scenarioId}/logs\u0060; only executions marked as replayable can be replayed."
+          }
+        }
+      },
+      "PostScenariosByScenarioIdReplay202Response": {
+        "required": [
+          "executionId",
+          "replayed",
+          "failed"
+        ],
+        "type": "object",
+        "properties": {
+          "executionId": {
+            "type": "string",
+            "description": "ID of the first replay execution that was queued. Kept for backward compatibility; use \u0060replayed\u0060 to map every original execution to its replay."
+          },
+          "replayed": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostScenariosByScenarioIdReplay202ResponseReplayedItem"
+            },
+            "description": "Executions that were queued for replay, in the order of the request."
+          },
+          "failed": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostScenariosByScenarioIdReplay202ResponseFailedItem"
+            },
+            "description": "Executions that could not be queued, in the order of the request. Empty when every execution was queued."
           }
         }
       },
@@ -110955,6 +111709,18 @@
       },
       "PostScenariosByScenarioIdExecutionsByExecutionIdStop200Response": {
         "type": "object"
+      },
+      "PostScenariosByScenarioIdExecutionsByExecutionIdReplay202Response": {
+        "required": [
+          "executionId"
+        ],
+        "type": "object",
+        "properties": {
+          "executionId": {
+            "type": "string",
+            "description": "ID of the new execution that replays the original one."
+          }
+        }
       },
       "PostScenariosModulesConsumptionsRequest": {
         "type": "object",
@@ -114055,6 +114821,17 @@
           },
           "pg": {
             "$ref": "#/components/schemas/GetPrivateSpaces200ResponsePg"
+          }
+        }
+      },
+      "GetPrivateSpaces403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
           }
         }
       },
@@ -155283,6 +156060,192 @@
           }
         }
       },
+      "PostAiBrowserContextSetups200ResponsePagesItem": {
+        "required": [
+          "id",
+          "title",
+          "url",
+          "faviconUrl",
+          "liveViewUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifier of the page, stable while the page is open."
+          },
+          "title": {
+            "type": "string",
+            "description": "Current title of the page; may be empty."
+          },
+          "url": {
+            "type": "string",
+            "description": "Current URL of the page; \u0060about:blank\u0060 for a page that has not navigated yet."
+          },
+          "faviconUrl": {
+            "type": "string",
+            "description": "URL of the page favicon; empty when the page has none."
+          },
+          "liveViewUrl": {
+            "type": "string",
+            "description": "URL of the interactive live view of this page. Re-signed on every response."
+          }
+        }
+      },
+      "GetAiBrowserContextSetupsBySetupId200ResponsePagesItem": {
+        "required": [
+          "id",
+          "title",
+          "url",
+          "faviconUrl",
+          "liveViewUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifier of the page, stable while the page is open."
+          },
+          "title": {
+            "type": "string",
+            "description": "Current title of the page; may be empty."
+          },
+          "url": {
+            "type": "string",
+            "description": "Current URL of the page; \u0060about:blank\u0060 for a page that has not navigated yet."
+          },
+          "faviconUrl": {
+            "type": "string",
+            "description": "URL of the page favicon; empty when the page has none."
+          },
+          "liveViewUrl": {
+            "type": "string",
+            "description": "URL of the interactive live view of this page. Re-signed on every response."
+          }
+        }
+      },
+      "GetAiBrowserContextSetupsBySetupId400ResponseSuberrorsItem": {
+        "required": [
+          "message",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAiBrowserContextSetupsBySetupId404ResponseSuberrorsItem": {
+        "required": [
+          "message",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteAiBrowserContextSetupsBySetupIdPagesByPageId400ResponseSuberrorsItem": {
+        "required": [
+          "message",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteAiBrowserContextSetupsBySetupIdPagesByPageId401ResponseSuberrorsItem": {
+        "required": [
+          "message",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteAiBrowserContextSetupsBySetupIdPagesByPageId409ResponseSuberrorsItem": {
+        "required": [
+          "message",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteAiBrowserContextSetupsBySetupIdPagesByPageId410ResponseSuberrorsItem": {
+        "required": [
+          "message",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "PostAiBrowserContextsByKeyIdRefreshSetups200ResponsePagesItem": {
+        "required": [
+          "id",
+          "title",
+          "url",
+          "faviconUrl",
+          "liveViewUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifier of the page, stable while the page is open."
+          },
+          "title": {
+            "type": "string",
+            "description": "Current title of the page; may be empty."
+          },
+          "url": {
+            "type": "string",
+            "description": "Current URL of the page; \u0060about:blank\u0060 for a page that has not navigated yet."
+          },
+          "faviconUrl": {
+            "type": "string",
+            "description": "URL of the page favicon; empty when the page has none."
+          },
+          "liveViewUrl": {
+            "type": "string",
+            "description": "URL of the interactive live view of this page. Re-signed on every response."
+          }
+        }
+      },
       "PostAiErrorAnalysisRequestBlueprint": {
         "type": "object",
         "description": "The scenario blueprint JSON. Optional but recommended for more accurate analysis. The API trims designer-only metadata before forwarding it to the AI webhook."
@@ -164133,6 +165096,45 @@
       "PostScenariosByScenarioIdRunRequestData": {
         "type": "object",
         "description": "If your scenario has inputs specify the input parameters and values in the \u0060data\u0060 object."
+      },
+      "PostScenariosByScenarioIdReplay202ResponseReplayedItem": {
+        "required": [
+          "executionId",
+          "replayExecutionId"
+        ],
+        "type": "object",
+        "properties": {
+          "executionId": {
+            "type": "string",
+            "description": "ID of the original execution."
+          },
+          "replayExecutionId": {
+            "type": "string",
+            "description": "ID of the new execution that replays the original one."
+          }
+        }
+      },
+      "PostScenariosByScenarioIdReplay202ResponseFailedItem": {
+        "required": [
+          "executionId",
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "executionId": {
+            "type": "string",
+            "description": "ID of the original execution."
+          },
+          "code": {
+            "type": "string",
+            "description": "Error code: \u0060SC404\u0060 execution not found, \u0060SC422\u0060 execution is not replayable, \u0060SC403\u0060 execution belongs to another team, \u0060SC429\u0060 no execution slot was available, \u0060SC503\u0060 replays are temporarily unavailable."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable reason."
+          }
+        }
       },
       "PostScenariosByScenarioIdPublish200ResponseScenario": {
         "type": "object",

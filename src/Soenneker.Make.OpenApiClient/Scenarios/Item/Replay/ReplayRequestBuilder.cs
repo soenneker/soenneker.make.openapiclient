@@ -34,26 +34,27 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Replay
         {
         }
         /// <summary>
-        /// Replays the specified scenario execution. The scenario has to be active. 
+        /// Replays the specified executions of the scenario. Each replay creates a new execution that runs the latest version of the scenario with the data of the original execution. The scenario has to be active, and only executions marked as replayable can be replayed. To replay one execution you can also use `POST /scenarios/{scenarioId}/executions/{executionId}/replay`.Up to 100 executions can be replayed in one call. The executions are processed one by one in the order of the request, so a call with many executions takes proportionally longer to respond. Executions that cannot be replayed (not found, not replayable, or belonging to another team) are skipped and listed in `failed`; the other executions are still queued. If the organization runs out of execution slots or the replay service becomes unavailable, the remaining executions are not attempted and are listed in `failed` with the same reason.The call returns `202` as long as at least one execution was queued. If no execution was queued, the call fails with the error of the first execution, for example `422` when a single execution is not replayable. The response property `executionId` holds the ID of the first queued replay and is kept for backward compatibility; use `replayed` to map each original execution to its replay.The scenario is not replayed when its organization or team is paused because an operations or data transfer limit was exceeded. In that case the call returns `429` with the code `IM310`.
         /// </summary>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplayRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplayRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplayRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplayRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Replays the specified scenario execution. The scenario has to be active. 
+        /// Replays the specified executions of the scenario. Each replay creates a new execution that runs the latest version of the scenario with the data of the original execution. The scenario has to be active, and only executions marked as replayable can be replayed. To replay one execution you can also use `POST /scenarios/{scenarioId}/executions/{executionId}/replay`.Up to 100 executions can be replayed in one call. The executions are processed one by one in the order of the request, so a call with many executions takes proportionally longer to respond. Executions that cannot be replayed (not found, not replayable, or belonging to another team) are skipped and listed in `failed`; the other executions are still queued. If the organization runs out of execution slots or the replay service becomes unavailable, the remaining executions are not attempted and are listed in `failed` with the same reason.The call returns `202` as long as at least one execution was queued. If no execution was queued, the call fails with the error of the first execution, for example `422` when a single execution is not replayable. The response property `executionId` holds the ID of the first queued replay and is kept for backward compatibility; use `replayed` to map each original execution to its replay.The scenario is not replayed when its organization or team is paused because an operations or data transfer limit was exceeded. In that case the call returns `429` with the code `IM310`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -70,6 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Replay
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }

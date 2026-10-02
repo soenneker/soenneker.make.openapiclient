@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.Contexts.Item.RefreshSetups
         {
         }
         /// <summary>
-        /// Starts an interactive refresh flow for an existing AI Browser context key. Opens a remote browsersession attached to the key&apos;s existing context so the user can re-authenticate expired logins; thecontext (and the key) keep their identity. The flow is then driven with the returned `setupId`,exactly like a create flow. The flow expires 15 minutes after it starts.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
+        /// Starts an interactive refresh flow for an existing AI Browser context key. Opens a remote browsersession attached to the key&apos;s existing context so the user can re-authenticate expired logins; thecontext (and the key) keep their identity. Like a create flow, the response carries one live view peropen page in `pages` plus the session-level `liveViewUrl`, and the flow is then driven with the returned`setupId`. The flow expires 15 minutes after it starts.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextsByKeyIdRefreshSetups200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.Contexts.Item.RefreshSetups
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextsByKeyIdRefreshSetups200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextsByKeyIdRefreshSetups200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Starts an interactive refresh flow for an existing AI Browser context key. Opens a remote browsersession attached to the key&apos;s existing context so the user can re-authenticate expired logins; thecontext (and the key) keep their identity. The flow is then driven with the returned `setupId`,exactly like a create flow. The flow expires 15 minutes after it starts.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
+        /// Starts an interactive refresh flow for an existing AI Browser context key. Opens a remote browsersession attached to the key&apos;s existing context so the user can re-authenticate expired logins; thecontext (and the key) keep their identity. Like a create flow, the response carries one live view peropen page in `pages` plus the session-level `liveViewUrl`, and the flow is then driven with the returned`setupId`. The flow expires 15 minutes after it starts.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

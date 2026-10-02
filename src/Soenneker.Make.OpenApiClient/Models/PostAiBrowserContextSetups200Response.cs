@@ -14,13 +14,29 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>URL of the live browser view where the user logs in to their services.</summary>
+        /// <summary>URL of the live view of the session&apos;s first page; kept as a fallback for `pages`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LiveViewUrl { get; set; }
 #nullable restore
 #else
         public string LiveViewUrl { get; set; }
+#endif
+        /// <summary>Every open page (tab or popup) of the remote browser, each with its own live view. Match pages by `id`: a page keeps its `id` for its lifetime, while its title, URL and live-view URL change. The list is empty when no page is open.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetups200ResponsePagesItem>? Pages { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetups200ResponsePagesItem> Pages { get; set; }
+#endif
+        /// <summary>Identifies the current set of open pages: it changes whenever a page opens, closes, navigates or changes its title or favicon. Live-view URLs are left out because they are re-signed on every response. Send it back as the `pagesVersion` query parameter to wait for the next change.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PagesVersion { get; set; }
+#nullable restore
+#else
+        public string PagesVersion { get; set; }
 #endif
         /// <summary>Identifier of the setup flow. Only the user who started the flow can use it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,6 +72,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "liveViewUrl", n => { LiveViewUrl = n.GetStringValue(); } },
+                { "pages", n => { Pages = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetups200ResponsePagesItem>(global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetups200ResponsePagesItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "pagesVersion", n => { PagesVersion = n.GetStringValue(); } },
                 { "setupId", n => { SetupId = n.GetStringValue(); } },
             };
         }
@@ -67,6 +85,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("liveViewUrl", LiveViewUrl);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetups200ResponsePagesItem>("pages", Pages);
+            writer.WriteStringValue("pagesVersion", PagesVersion);
             writer.WriteStringValue("setupId", SetupId);
             writer.WriteAdditionalData(AdditionalData);
         }

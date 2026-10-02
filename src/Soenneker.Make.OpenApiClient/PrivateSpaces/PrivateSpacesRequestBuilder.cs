@@ -53,11 +53,12 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces
         {
         }
         /// <summary>
-        /// Gets the list of private spaces in the organization with specified `organizationId`.
+        /// Gets the list of private spaces in the organization with specified `organizationId`.Requires the `personal team manage` organization permission (admins: `organization view`) and the `private-spaces:read` scope. Members without that permission receive `403` (`IM002`); they can list their own private spaces with `GET /organizations?cols[]=privateSpaces` instead.Available on app zones only.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpaces200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpaces403Response">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpaces200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.PrivateSpaces.PrivateSpacesRequestBuilder.PrivateSpacesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -68,10 +69,14 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpaces200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpaces200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "403", global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpaces403Response.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpaces200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpaces200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Gets the list of private spaces in the organization with specified `organizationId`.
+        /// Gets the list of private spaces in the organization with specified `organizationId`.Requires the `personal team manage` organization permission (admins: `organization view`) and the `private-spaces:read` scope. Members without that permission receive `403` (`IM002`); they can list their own private spaces with `GET /organizations?cols[]=privateSpaces` instead.Available on app zones only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -99,7 +104,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces
             return new global::Soenneker.Make.OpenApiClient.PrivateSpaces.PrivateSpacesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Gets the list of private spaces in the organization with specified `organizationId`.
+        /// Gets the list of private spaces in the organization with specified `organizationId`.Requires the `personal team manage` organization permission (admins: `organization view`) and the `private-spaces:read` scope. Members without that permission receive `403` (`IM002`); they can list their own private spaces with `GET /organizations?cols[]=privateSpaces` instead.Available on app zones only.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PrivateSpacesRequestBuilderGetQueryParameters 
