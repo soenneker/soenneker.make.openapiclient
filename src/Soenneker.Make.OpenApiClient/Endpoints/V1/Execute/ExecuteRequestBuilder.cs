@@ -9,49 +9,49 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace Soenneker.Make.OpenApiClient.Endpoints.Execute
+namespace Soenneker.Make.OpenApiClient.Endpoints.V1.Execute
 {
     /// <summary>
-    /// Builds and executes requests for operations under \endpoints\execute
+    /// Builds and executes requests for operations under \endpoints\v1\execute
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ExecuteRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Endpoints.Execute.ExecuteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Endpoints.V1.Execute.ExecuteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ExecuteRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/endpoints/execute", pathParameters)
+        public ExecuteRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/endpoints/v1/execute", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Endpoints.Execute.ExecuteRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Endpoints.V1.Execute.ExecuteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ExecuteRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/endpoints/execute", rawUrl)
+        public ExecuteRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/endpoints/v1/execute", rawUrl)
         {
         }
         /// <summary>
         /// Executes an App Endpoint (see `GET /imt/endpoints-usable` and the SDK Apps / Endpoints section for howEndpoints are defined) and returns its raw output.The response&apos;s `output` is currently a free-form, executor-defined value — its shape depends entirely onthe executed Endpoint and is not constrained by this route.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecute200Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecute200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1ExecuteRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecute200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1ExecuteRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecute200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecute200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Executes an App Endpoint (see `GET /imt/endpoints-usable` and the SDK Apps / Endpoints section for howEndpoints are defined) and returns its raw output.The response&apos;s `output` is currently a free-form, executor-defined value — its shape depends entirely onthe executed Endpoint and is not constrained by this route.
@@ -61,11 +61,11 @@ namespace Soenneker.Make.OpenApiClient.Endpoints.Execute
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1ExecuteRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1ExecuteRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -78,11 +78,11 @@ namespace Soenneker.Make.OpenApiClient.Endpoints.Execute
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Endpoints.Execute.ExecuteRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Endpoints.V1.Execute.ExecuteRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::Soenneker.Make.OpenApiClient.Endpoints.Execute.ExecuteRequestBuilder WithUrl(string rawUrl)
+        public global::Soenneker.Make.OpenApiClient.Endpoints.V1.Execute.ExecuteRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::Soenneker.Make.OpenApiClient.Endpoints.Execute.ExecuteRequestBuilder(rawUrl, RequestAdapter);
+            return new global::Soenneker.Make.OpenApiClient.Endpoints.V1.Execute.ExecuteRequestBuilder(rawUrl, RequestAdapter);
         }
     }
 }

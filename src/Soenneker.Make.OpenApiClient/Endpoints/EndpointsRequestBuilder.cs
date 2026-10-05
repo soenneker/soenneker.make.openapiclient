@@ -2,7 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
-using Soenneker.Make.OpenApiClient.Endpoints.Execute;
+using Soenneker.Make.OpenApiClient.Endpoints.V1;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,10 +15,10 @@ namespace Soenneker.Make.OpenApiClient.Endpoints
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class EndpointsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The execute property</summary>
-        public global::Soenneker.Make.OpenApiClient.Endpoints.Execute.ExecuteRequestBuilder Execute
+        /// <summary>The v1 property</summary>
+        public global::Soenneker.Make.OpenApiClient.Endpoints.V1.V1RequestBuilder V1
         {
-            get => new global::Soenneker.Make.OpenApiClient.Endpoints.Execute.ExecuteRequestBuilder(PathParameters, RequestAdapter);
+            get => new global::Soenneker.Make.OpenApiClient.Endpoints.V1.V1RequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Endpoints.EndpointsRequestBuilder"/> and sets the default values.

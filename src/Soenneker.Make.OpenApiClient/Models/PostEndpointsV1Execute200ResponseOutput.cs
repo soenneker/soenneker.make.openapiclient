@@ -8,29 +8,29 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Object containing input values of the Endpoint.
+    /// Raw result of the Endpoint execution. The shape is defined by the executed Endpoint itself and is not constrained by this route.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PostEndpointsExecuteRequestInput : IAdditionalDataHolder, IParsable
+    public partial class PostEndpointsV1Execute200ResponseOutput : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequestInput"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseOutput"/> and sets the default values.
         /// </summary>
-        public PostEndpointsExecuteRequestInput()
+        public PostEndpointsV1Execute200ResponseOutput()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequestInput"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseOutput"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequestInput CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseOutput CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostEndpointsExecuteRequestInput();
+            return new global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseOutput();
         }
         /// <summary>
         /// The deserialization information for the current model

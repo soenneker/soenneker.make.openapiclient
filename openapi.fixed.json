@@ -5363,7 +5363,8 @@
                   "summary": "Start a create flow for a new browser context key",
                   "value": {
                     "teamId": 22,
-                    "name": "My shop logins"
+                    "name": "My shop logins",
+                    "startUrl": "https://shop.example.com/login"
                   }
                 }
               }
@@ -15077,7 +15078,7 @@
           "Endpoints"
         ],
         "summary": "Get an Endpoint input form",
-        "description": "Returns an IMT Form for testing an SDK (\u0060app#name\u0060) or native app Endpoint.\nRequires TEAM_VIEW for the supplied team (ORGANIZATION_VIEW for admin requests),\nruntime app access for SDK apps, and the endpoint-execution feature flag.\nNative endpoints are resolved directly, including private and deprecated definitions.\nSDK authors see pending input, attached-account and scope edits; other callers see published values.\n\nThe required \u0060connectionId\u0060 account field is omitted when there are no attached accounts.\nIts \u0060options.scope\u0060 maps each resolved account type (including SDK aliases) to that endpoint\u0027s\nrequired OAuth scopes. Native account types can require different scopes. Connection-default\nscope injection remains in the existing connection backend flow.\n\n\u0060input.spec\u0060 contains the endpoint input fields, expanded from JSON Schema where supported,\nand is always present, including when empty. Hidden fields preserve the execution coordinates\nand authorized team. Version lookup and submission use the numeric major version.\nThe Test button submits the complete JSON values directly to POST /endpoints/execute,\nwithout an RPC data wrapper. The response omits multipart because this form uses JSON.\n",
+        "description": "Returns an IMT Form for testing an SDK (\u0060app#name\u0060) or native app Endpoint.\nRequires TEAM_VIEW for the supplied team (ORGANIZATION_VIEW for admin requests),\nruntime app access for SDK apps, and the endpoint-execution feature flag.\nNative endpoints are resolved directly, including private and deprecated definitions.\nSDK authors see pending input, attached-account and scope edits; other callers see published values.\n\nThe required \u0060connectionId\u0060 account field is omitted when there are no attached accounts.\nIts \u0060options.scope\u0060 maps each resolved account type (including SDK aliases) to that endpoint\u0027s\nrequired OAuth scopes. Native account types can require different scopes. Connection-default\nscope injection remains in the existing connection backend flow.\n\n\u0060input.spec\u0060 contains the endpoint input fields, expanded from JSON Schema where supported,\nand is always present, including when empty. Hidden fields preserve the execution coordinates\nand authorized team. Version lookup and submission use the numeric major version.\nThe Test button submits the complete JSON values directly to POST /endpoints/v1/execute,\nwithout an RPC data wrapper. The response omits multipart because this form uses JSON.\n",
         "operationId": "GetEndpointInputForm",
         "parameters": [
           {
@@ -15252,7 +15253,7 @@
                           "label": "{{!common.test}}",
                           "action": "http",
                           "method": "POST",
-                          "address": "/endpoints/execute"
+                          "address": "/endpoints/v1/execute"
                         }
                       ]
                     }
@@ -15302,7 +15303,7 @@
                           "label": "{{!common.test}}",
                           "action": "http",
                           "method": "POST",
-                          "address": "/endpoints/execute"
+                          "address": "/endpoints/v1/execute"
                         }
                       ]
                     }
@@ -15337,19 +15338,19 @@
         "x-internal": true
       }
     },
-    "/endpoints/execute": {
+    "/endpoints/v1/execute": {
       "post": {
         "tags": [
           "Endpoints"
         ],
         "summary": "Execute Endpoint",
         "description": "Executes an App Endpoint (see \u0060GET /imt/endpoints-usable\u0060 and the SDK Apps / Endpoints section for how\nEndpoints are defined) and returns its raw output.\n\nThe response\u0027s \u0060output\u0060 is currently a free-form, executor-defined value \u2014 its shape depends entirely on\nthe executed Endpoint and is not constrained by this route.\n",
-        "operationId": "PostEndpointsExecute",
+        "operationId": "PostEndpointsV1Execute",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PostEndpointsExecuteRequest"
+                "$ref": "#/components/schemas/PostEndpointsV1ExecuteRequest"
               },
               "examples": {
                 "list-contacts": {
@@ -15384,7 +15385,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostEndpointsExecute200Response"
+                  "$ref": "#/components/schemas/PostEndpointsV1Execute200Response"
                 },
                 "examples": {
                   "list-contacts": {
@@ -49559,7 +49560,7 @@
           "Private spaces"
         ],
         "summary": "Get a private space",
-        "description": "Returns the details of a single private space. Requires the \u0060personal team own view\u0060 organization permission (admins: \u0060organization view\u0060) and the \u0060private-spaces:read\u0060 scope. Callers lacking the permission receive \u0060403\u0060 (\u0060IM002\u0060); non-members of the private space receive \u0060404\u0060.",
+        "description": "Returns the details of a single private space. Requires the \u0060private-spaces:read\u0060 scope. Users with the \u0060personal team manage\u0060 organization permission can get any private space in the organization (admins: \u0060organization view\u0060). Other users need the \u0060personal team own view\u0060 organization permission and can only get their own private space: callers lacking the permission receive \u0060403\u0060 (\u0060IM002\u0060), and anyone else\u0027s private space returns \u0060404\u0060. When called with an API token or OAuth, the caller must also be a member of the private space (its owner or an observer); otherwise the API responds with \u0060403\u0060.",
         "operationId": "GetPrivateSpacesByPrivateSpaceId",
         "parameters": [
           {
@@ -103027,6 +103028,12 @@
             "minLength": 1,
             "type": "string",
             "description": "Display name of the new browser context key."
+          },
+          "startUrl": {
+            "maxLength": 2048,
+            "pattern": "^https://[^\\s@/?#]\u002B(?:[/?#]\\S*)?$",
+            "type": "string",
+            "description": "Website to open in the session\u0027s first page before the live view is returned. Must be an \u0060https\u0060\nURL without credentials. Best effort: if it cannot be opened, the flow still starts on a blank\npage. It is not stored.\n"
           }
         }
       },
@@ -105944,7 +105951,7 @@
           }
         }
       },
-      "PostEndpointsExecuteRequest": {
+      "PostEndpointsV1ExecuteRequest": {
         "required": [
           "appName",
           "appVersion",
@@ -105990,18 +105997,18 @@
             "description": "ID of the Connection to be used for executing the Endpoint."
           },
           "input": {
-            "$ref": "#/components/schemas/PostEndpointsExecuteRequestInput"
+            "$ref": "#/components/schemas/PostEndpointsV1ExecuteRequestInput"
           }
         }
       },
-      "PostEndpointsExecute200Response": {
+      "PostEndpointsV1Execute200Response": {
         "required": [
           "output"
         ],
         "type": "object",
         "properties": {
           "output": {
-            "$ref": "#/components/schemas/PostEndpointsExecute200ResponseOutput"
+            "$ref": "#/components/schemas/PostEndpointsV1Execute200ResponseOutput"
           }
         }
       },
@@ -159440,11 +159447,11 @@
       "GetEndpointInputForm200ResponseButtonsItem": {
         "type": "object"
       },
-      "PostEndpointsExecuteRequestInput": {
+      "PostEndpointsV1ExecuteRequestInput": {
         "type": "object",
         "description": "Object containing input values of the Endpoint."
       },
-      "PostEndpointsExecute200ResponseOutput": {
+      "PostEndpointsV1Execute200ResponseOutput": {
         "type": "object",
         "description": "Raw result of the Endpoint execution. The shape is defined by the executed Endpoint itself and is not constrained by this route."
       },

@@ -22,6 +22,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>Website to open in the session&apos;s first page before the live view is returned. Must be an `https`URL without credentials. Best effort: if it cannot be opened, the flow still starts on a blankpage. It is not stored.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StartUrl { get; set; }
+#nullable restore
+#else
+        public string StartUrl { get; set; }
+#endif
         /// <summary>The ID of the team the new browser context key will belong to.</summary>
         public int? TeamId { get; set; }
         /// <summary>
@@ -50,6 +58,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "startUrl", n => { StartUrl = n.GetStringValue(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
             };
         }
@@ -61,6 +70,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("startUrl", StartUrl);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteAdditionalData(AdditionalData);
         }

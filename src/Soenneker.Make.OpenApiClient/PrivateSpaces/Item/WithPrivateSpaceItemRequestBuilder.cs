@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
         {
         }
         /// <summary>
-        /// Returns the details of a single private space. Requires the `personal team own view` organization permission (admins: `organization view`) and the `private-spaces:read` scope. Callers lacking the permission receive `403` (`IM002`); non-members of the private space receive `404`.
+        /// Returns the details of a single private space. Requires the `private-spaces:read` scope. Users with the `personal team manage` organization permission can get any private space in the organization (admins: `organization view`). Other users need the `personal team own view` organization permission and can only get their own private space: callers lacking the permission receive `403` (`IM002`), and anyone else&apos;s private space returns `404`. When called with an API token or OAuth, the caller must also be a member of the private space (its owner or an observer); otherwise the API responds with `403`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the details of a single private space. Requires the `personal team own view` organization permission (admins: `organization view`) and the `private-spaces:read` scope. Callers lacking the permission receive `403` (`IM002`); non-members of the private space receive `404`.
+        /// Returns the details of a single private space. Requires the `private-spaces:read` scope. Users with the `personal team manage` organization permission can get any private space in the organization (admins: `organization view`). Other users need the `personal team own view` organization permission and can only get their own private space: callers lacking the permission receive `403` (`IM002`), and anyone else&apos;s private space returns `404`. When called with an API token or OAuth, the caller must also be a member of the private space (its owner or an observer); otherwise the API responds with `403`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -122,7 +122,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
             return new global::Soenneker.Make.OpenApiClient.PrivateSpaces.Item.WithPrivateSpaceItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns the details of a single private space. Requires the `personal team own view` organization permission (admins: `organization view`) and the `private-spaces:read` scope. Callers lacking the permission receive `403` (`IM002`); non-members of the private space receive `404`.
+        /// Returns the details of a single private space. Requires the `private-spaces:read` scope. Users with the `personal team manage` organization permission can get any private space in the organization (admins: `organization view`). Other users need the `personal team own view` organization permission and can only get their own private space: callers lacking the permission receive `403` (`IM002`), and anyone else&apos;s private space returns `404`. When called with an API token or OAuth, the caller must also be a member of the private space (its owner or an observer); otherwise the API responds with `403`.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithPrivateSpaceItemRequestBuilderGetQueryParameters 
