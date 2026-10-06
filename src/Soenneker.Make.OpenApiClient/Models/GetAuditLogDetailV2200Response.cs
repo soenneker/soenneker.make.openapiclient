@@ -24,7 +24,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>When Auditman stored the entry.</summary>
         public DateTimeOffset? CreatedAt { get; set; }
-        /// <summary>The detail property</summary>
+        /// <summary>Event-specific data. When a user named here was anonymized, their personal data is removed and `anonymized` is `true`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetailV2200ResponseDetail? Detail { get; set; }

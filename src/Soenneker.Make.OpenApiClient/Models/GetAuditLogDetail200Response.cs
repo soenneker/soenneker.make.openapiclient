@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string CreatedAt { get; set; }
 #endif
-        /// <summary>The details property</summary>
+        /// <summary>Event-specific data. When a user named here was anonymized, their personal data is removed and `anonymized` is `true`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseDetails? Details { get; set; }
