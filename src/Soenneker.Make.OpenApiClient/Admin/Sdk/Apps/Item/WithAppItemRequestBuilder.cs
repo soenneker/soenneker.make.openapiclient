@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Connections;
+using Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item;
 using Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Webhooks;
 using System.Collections.Generic;
 using System.IO;
@@ -25,6 +26,18 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item
         public global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Webhooks.WebhooksRequestBuilder Webhooks
         {
             get => new global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Webhooks.WebhooksRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.admin.sdk.apps.item.item collection</summary>
+        /// <param name="position">Major version of the SDK app.</param>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.WithVersionItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.WithVersionItemRequestBuilder this[int position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("version", position);
+                return new global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.WithVersionItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.WithAppItemRequestBuilder"/> and sets the default values.

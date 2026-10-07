@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Sdk.AppReview.Categories;
+using Soenneker.Make.OpenApiClient.Sdk.AppReview.SupportContacts;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.AppReview
         public global::Soenneker.Make.OpenApiClient.Sdk.AppReview.Categories.CategoriesRequestBuilder Categories
         {
             get => new global::Soenneker.Make.OpenApiClient.Sdk.AppReview.Categories.CategoriesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The supportContacts property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.AppReview.SupportContacts.SupportContactsRequestBuilder SupportContacts
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.AppReview.SupportContacts.SupportContactsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Sdk.AppReview.AppReviewRequestBuilder"/> and sets the default values.

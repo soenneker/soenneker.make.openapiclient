@@ -50,7 +50,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string LogoFilename { get; set; }
 #endif
-        /// <summary>Make partner program of the publisher; `null` means not a partner. Always `null` today — the partner-system integration that feeds it does not exist yet, and no endpoint sets it.</summary>
+        /// <summary>Make partner program of the publisher; `null` means not a partner (the default). Assigned by Make administrators only, through `PATCH /admin/sdk/apps/{app}/{version}/publisher` — the developer&apos;s own `PATCH /sdk/publisher` cannot change it.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.GetSdkPublisher200ResponsePublisherPartnerType? PartnerType { get; set; }
         /// <summary>When the profile was last updated.</summary>
         public DateTimeOffset? UpdatedAt { get; set; }

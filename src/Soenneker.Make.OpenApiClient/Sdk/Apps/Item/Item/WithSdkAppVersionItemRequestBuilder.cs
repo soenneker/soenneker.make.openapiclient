@@ -22,6 +22,7 @@ using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Install;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Item;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Modules;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Opensource;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Publisher;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Readme;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Review;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Rollback;
@@ -124,6 +125,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Opensource.OpensourceRequestBuilder Opensource
         {
             get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Opensource.OpensourceRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The publisher property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Publisher.PublisherRequestBuilder Publisher
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Publisher.PublisherRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The readme property</summary>
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Readme.ReadmeRequestBuilder Readme

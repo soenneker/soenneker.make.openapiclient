@@ -3,9 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
-    /// <summary>Make partner program of the publisher; `null` means not a partner (the default). Assigned by Make administrators only, through `PATCH /admin/sdk/apps/{app}/{version}/publisher` — the developer&apos;s own `PATCH /sdk/publisher` cannot change it.</summary>
+    /// <summary>The partner program to assign; `null` marks the author as not a partner.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum PatchSdkPublisher200ResponsePublisherPartnerType
+    public enum PatchAdminSdkAppsByAppByVersionPublisherRequestPartnerType
     {
         [EnumMember(Value = "technology")]
         #pragma warning disable CS1591

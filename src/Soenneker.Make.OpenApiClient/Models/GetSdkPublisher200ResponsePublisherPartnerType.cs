@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
-    /// <summary>Make partner program of the publisher; `null` means not a partner. Always `null` today — the partner-system integration that feeds it does not exist yet, and no endpoint sets it.</summary>
+    /// <summary>Make partner program of the publisher; `null` means not a partner (the default). Assigned by Make administrators only, through `PATCH /admin/sdk/apps/{app}/{version}/publisher` — the developer&apos;s own `PATCH /sdk/publisher` cannot change it.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum GetSdkPublisher200ResponsePublisherPartnerType
     {

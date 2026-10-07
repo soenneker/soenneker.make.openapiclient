@@ -7,11 +7,10 @@ using System.IO;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
-    /// <summary>
-    /// Account-level publisher profile of an SDK app developer (&quot;App developer contact&quot;). One profile per user; its values appear on the landing pages of all apps the user publishes.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PatchSdkPublisher200ResponsePublisher : IAdditionalDataHolder, IParsable
+    #pragma warning disable CS1591
+    public partial class PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisher : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -52,27 +51,27 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string LogoFilename { get; set; }
 #endif
         /// <summary>Make partner program of the publisher; `null` means not a partner (the default). Assigned by Make administrators only, through `PATCH /admin/sdk/apps/{app}/{version}/publisher` — the developer&apos;s own `PATCH /sdk/publisher` cannot change it.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisherPartnerType? PartnerType { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisherPartnerType? PartnerType { get; set; }
         /// <summary>When the profile was last updated.</summary>
         public DateTimeOffset? UpdatedAt { get; set; }
         /// <summary>Owning user.</summary>
         public int? UserId { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisher"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisher"/> and sets the default values.
         /// </summary>
-        public PatchSdkPublisher200ResponsePublisher()
+        public PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisher()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisher"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisher"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisher CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisher CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisher();
+            return new global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisher();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,7 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "hasLogo", n => { HasLogo = n.GetBoolValue(); } },
                 { "logoFilename", n => { LogoFilename = n.GetStringValue(); } },
-                { "partnerType", n => { PartnerType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisherPartnerType>(); } },
+                { "partnerType", n => { PartnerType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisherPartnerType>(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "userId", n => { UserId = n.GetIntValue(); } },
             };
@@ -106,7 +105,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteBoolValue("hasLogo", HasLogo);
             writer.WriteStringValue("logoFilename", LogoFilename);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisherPartnerType>("partnerType", PartnerType);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisherPartnerType>("partnerType", PartnerType);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteIntValue("userId", UserId);
             writer.WriteAdditionalData(AdditionalData);

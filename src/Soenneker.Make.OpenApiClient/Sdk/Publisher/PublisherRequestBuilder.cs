@@ -40,7 +40,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Publisher
         {
         }
         /// <summary>
-        /// Returns the calling user&apos;s account-level publisher profile (&quot;App developer contact&quot; of the new SDK app review flow), or `null` when the user has no profile yet. The profile is strictly self-scoped — there is no way to read another user&apos;s profile. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
+        /// Returns the calling user&apos;s account-level publisher profile (&quot;App developer contact&quot; of the new SDK app review flow), or `null` when the user has no profile yet. The profile is self-scoped — the only other way to it is `GET /sdk/apps/{SDK_appName}/{SDK_appVersion}/publisher`, which serves an app author&apos;s profile to the author and to administrators. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkPublisher200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -58,7 +58,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Publisher
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkPublisher200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkPublisher200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates or updates the calling user&apos;s publisher profile with the provided fields (at least one is required; omitted fields keep their value, `null` clears a field). Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
+        /// Creates or updates the calling user&apos;s publisher profile with the provided fields (at least one is required; omitted fields keep their value, `null` clears a field). The partner program (`partnerType`) is not among them — Make administrators assign it through `PATCH /admin/sdk/apps/{app}/{version}/publisher`. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -83,7 +83,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Publisher
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the calling user&apos;s account-level publisher profile (&quot;App developer contact&quot; of the new SDK app review flow), or `null` when the user has no profile yet. The profile is strictly self-scoped — there is no way to read another user&apos;s profile. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
+        /// Returns the calling user&apos;s account-level publisher profile (&quot;App developer contact&quot; of the new SDK app review flow), or `null` when the user has no profile yet. The profile is self-scoped — the only other way to it is `GET /sdk/apps/{SDK_appName}/{SDK_appVersion}/publisher`, which serves an app author&apos;s profile to the author and to administrators. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -102,7 +102,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Publisher
             return requestInfo;
         }
         /// <summary>
-        /// Creates or updates the calling user&apos;s publisher profile with the provided fields (at least one is required; omitted fields keep their value, `null` clears a field). Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
+        /// Creates or updates the calling user&apos;s publisher profile with the provided fields (at least one is required; omitted fields keep their value, `null` clears a field). The partner program (`partnerType`) is not among them — Make administrators assign it through `PATCH /admin/sdk/apps/{app}/{version}/publisher`. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

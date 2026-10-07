@@ -2497,6 +2497,162 @@
         "x-private": true
       }
     },
+    "/admin/sdk/apps/{app}/{version}/publisher": {
+      "patch": {
+        "tags": [
+          "Admin / SDK Apps / Publisher"
+        ],
+        "summary": "Set the app author\u0027s partner program",
+        "description": "Assigns the Make partner program of the app\u0027s author \u2014 \u0060technology\u0060, \u0060solution\u0060, or \u0060null\u0060 for \u0022not a partner\u0022 \u2014 and answers with the author\u0027s profile the way \u0060GET /sdk/apps/{app}/{version}/publisher\u0060 does. The program decides which variant of the new review form the developer sees (the verified-partner card instead of the \u0022Learn about the partner program\u0022 call to action), so only Make administrators holding the \u0060apps edit\u0060 permission may set it; the developer\u0027s own \u0060PATCH /sdk/publisher\u0060 has no such field and this route exists under \u0060/admin\u0060 only. Assigning a program to a developer who never saved a profile creates the profile with just that program; clearing the program of such a developer changes nothing (\u0060publisher\u0060 stays \u0060null\u0060). Any other profile field in the body is ignored \u2014 this endpoint changes the program and nothing else. Responds \u0060403\u0060 (IM002) without the permission (checked before the app is looked up) and \u0060404\u0060 (IM013) when the app version does not exist. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "operationId": "PatchAdminSdkAppsByAppByVersionPublisher",
+        "parameters": [
+          {
+            "name": "app",
+            "in": "path",
+            "description": "The SDK app name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-crm-app"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchAdminSdkAppsByAppByVersionPublisherRequest"
+              },
+              "examples": {
+                "technology-partner": {
+                  "summary": "Mark the author as a Technology Partner",
+                  "value": {
+                    "partnerType": "technology"
+                  }
+                },
+                "not-a-partner": {
+                  "summary": "Remove the author from the partner programs",
+                  "value": {
+                    "partnerType": null
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchAdminSdkAppsByAppByVersionPublisher200Response"
+                },
+                "examples": {
+                  "technology-partner": {
+                    "summary": "Profile after the assignment",
+                    "value": {
+                      "publisher": {
+                        "userId": 42,
+                        "authorName": "Jane Developer",
+                        "contactEmail": null,
+                        "companyName": "Acme Automations s.r.o.",
+                        "partnerType": "technology",
+                        "hasLogo": false,
+                        "logoFilename": null,
+                        "createdAt": "2026-08-20T09:00:00.000Z",
+                        "updatedAt": "2026-10-07T10:00:00.000Z"
+                      },
+                      "authorEmail": "jane@example.com"
+                    }
+                  },
+                  "not-a-partner": {
+                    "summary": "The author never saved a profile, so clearing created nothing",
+                    "value": {
+                      "publisher": null,
+                      "authorEmail": "jane@example.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\u0060partnerType\u0060 is missing or not one of \u0060technology\u0060, \u0060solution\u0060, \u0060null\u0060. The per-field validation failures are listed in \u0060suberrors\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchAdminSdkAppsByAppByVersionPublisher400ResponseSchema"
+                },
+                "examples": {
+                  "unknown-program": {
+                    "summary": "Unsupported program name",
+                    "value": {
+                      "message": "Bad Request",
+                      "code": "SC400"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is not an administrator holding the \u0060apps edit\u0060 permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchAdminSdkAppsByAppByVersionPublisher403Response"
+                },
+                "example": {
+                  "code": "IM002",
+                  "message": "Insufficient rights"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The app version does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchAdminSdkAppsByAppByVersionPublisher404Response"
+                },
+                "examples": {
+                  "app-not-found": {
+                    "summary": "Unknown app or version",
+                    "value": {
+                      "code": "IM013",
+                      "message": "Entity not found",
+                      "detail": "SDK app not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:write",
+              "sdk-apps:write"
+            ]
+          }
+        ],
+        "x-private": true
+      }
+    },
     "/admin/users-detail": {
       "get": {
         "tags": [
@@ -47817,6 +47973,124 @@
         "x-internal": true
       }
     },
+    "/sdk/apps/{sdkAppName}/{sdkAppVersion}/publisher": {
+      "get": {
+        "tags": [
+          "SDK Apps / Publisher"
+        ],
+        "summary": "Get the app author\u0027s publisher profile",
+        "description": "Returns the publisher profile (\u0022App developer contact\u0022 of the new SDK app review flow) of the app\u0027s author \u2014 \u0060publisher\u0060 is \u0060null\u0060 while the author has no profile yet \u2014 together with the author\u0027s account email, which is the contact fallback while \u0060publisher.contactEmail\u0060 is unset. The author gets the same profile \u0060GET /sdk/publisher\u0060 serves. An administrator holding the \u0060apps get\u0060 permission reads the developer\u0027s profile through the \u0060/admin\u0060 prefix (\u0060GET /admin/sdk/apps/{SDK_appName}/{SDK_appVersion}/publisher\u0060), which is what the admin review page uses; anyone else is refused with \u0060403\u0060 (IM002). The partner program carried by \u0060partnerType\u0060 is assigned by Make administrators through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060. Responds \u0060404\u0060 (IM013) when the app version does not exist. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "operationId": "GetSdkAppsBySdkAppNameBySdkAppVersionPublisher",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-crm-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionPublisher200Response"
+                },
+                "examples": {
+                  "partner-profile": {
+                    "summary": "Author marked as a Technology Partner by an administrator",
+                    "value": {
+                      "publisher": {
+                        "userId": 42,
+                        "authorName": "Jane Developer",
+                        "contactEmail": null,
+                        "companyName": "Acme Automations s.r.o.",
+                        "partnerType": "technology",
+                        "hasLogo": true,
+                        "logoFilename": "acme-logo.png",
+                        "createdAt": "2026-08-20T09:00:00.000Z",
+                        "updatedAt": "2026-10-07T10:00:00.000Z"
+                      },
+                      "authorEmail": "jane@example.com"
+                    }
+                  },
+                  "no-profile-yet": {
+                    "summary": "Author has not saved a profile yet",
+                    "value": {
+                      "publisher": null,
+                      "authorEmail": "jane@example.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is neither the app\u0027s author nor an administrator holding \u0060apps get\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionPublisher403Response"
+                },
+                "examples": {
+                  "not-the-author": {
+                    "summary": "Another developer\u0027s app",
+                    "value": {
+                      "code": "IM002",
+                      "message": "Insufficient rights",
+                      "detail": "Access denied."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The app version does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionPublisher404Response"
+                },
+                "examples": {
+                  "app-not-found": {
+                    "summary": "Unknown app or version",
+                    "value": {
+                      "code": "IM013",
+                      "message": "Entity not found",
+                      "detail": "SDK app not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:read"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
     "/sdk/app-review/categories": {
       "get": {
         "tags": [
@@ -47877,6 +48151,59 @@
                     "summary": "No catalog has been synced yet",
                     "value": {
                       "categories": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:read"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
+    "/sdk/app-review/support-contacts": {
+      "get": {
+        "tags": [
+          "SDK Apps / Review"
+        ],
+        "summary": "List the caller\u0027s support contacts",
+        "description": "Returns the distinct support contacts the caller has entered in the review forms of their own SDK apps, most recently used first \u2014 the list the review form\u0027s support-contact picker offers, so a contact already used for one app can be reused for another. Contacts are read from the review drafts (\u0060supportContactName\u0060 / \u0060supportContactEmail\u0060 of \u0060PUT /sdk/apps/{app}/{version}/app-review/form\u0060) and deduplicated by email compared case-insensitively; each entry carries the name and email spelling of its most recent use. Drafts without an email are skipped. The list is scoped to the authenticated user \u2014 apps of other authors never appear, and an administrator calling this gets their own contacts, not a developer\u0027s. An empty array means the caller has not entered a support contact anywhere yet. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "operationId": "GetSdkAppReviewSupportContacts",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppReviewSupportContacts200Response"
+                },
+                "examples": {
+                  "contacts": {
+                    "summary": "Contacts reused across two apps",
+                    "value": {
+                      "supportContacts": [
+                        {
+                          "name": "Acme Automations support",
+                          "email": "support@acme-automations.com"
+                        },
+                        {
+                          "name": "Acme billing",
+                          "email": "billing@acme-automations.com"
+                        }
+                      ]
+                    }
+                  },
+                  "no-contacts": {
+                    "summary": "No support contact entered in any review form yet",
+                    "value": {
+                      "supportContacts": []
                     }
                   }
                 }
@@ -48021,7 +48348,7 @@
           "SDK Apps / Publisher"
         ],
         "summary": "Get publisher profile",
-        "description": "Returns the calling user\u0027s account-level publisher profile (\u0022App developer contact\u0022 of the new SDK app review flow), or \u0060null\u0060 when the user has no profile yet. The profile is strictly self-scoped \u2014 there is no way to read another user\u0027s profile. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "description": "Returns the calling user\u0027s account-level publisher profile (\u0022App developer contact\u0022 of the new SDK app review flow), or \u0060null\u0060 when the user has no profile yet. The profile is self-scoped \u2014 the only other way to it is \u0060GET /sdk/apps/{SDK_appName}/{SDK_appVersion}/publisher\u0060, which serves an app author\u0027s profile to the author and to administrators. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
         "operationId": "GetSdkPublisher",
         "responses": {
           "200": {
@@ -48073,7 +48400,7 @@
           "SDK Apps / Publisher"
         ],
         "summary": "Update publisher profile",
-        "description": "Creates or updates the calling user\u0027s publisher profile with the provided fields (at least one is required; omitted fields keep their value, \u0060null\u0060 clears a field). Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "description": "Creates or updates the calling user\u0027s publisher profile with the provided fields (at least one is required; omitted fields keep their value, \u0060null\u0060 clears a field). The partner program (\u0060partnerType\u0060) is not among them \u2014 Make administrators assign it through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
         "operationId": "PatchSdkPublisher",
         "requestBody": {
           "content": {
@@ -59204,6 +59531,26 @@
           }
         },
         "description": "One category of the taxonomy offered by the new SDK app review form, with its subcategories. \u0060slug\u0060 is the category\u0027s stable identity \u2014 it is what a review form stores in \u0060categories\u0060 / \u0060subcategories\u0060, and it survives a rename of \u0060name\u0060. Array order is display order."
+      },
+      "SdkAppReviewSupportContact": {
+        "required": [
+          "name",
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Contact name as last entered for this email. Empty string when the draft carried an email without a name."
+          },
+          "email": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Contact email, in the spelling of its most recent use. Contacts are distinct by email compared case-insensitively."
+          }
+        },
+        "description": "A support contact as entered in the support-contact section of the new SDK app review form (\u0060supportContactName\u0060 / \u0060supportContactEmail\u0060 of the review draft)."
       },
       "SdkAppCategoryChangeSet": {
         "type": "object",
@@ -102072,6 +102419,59 @@
           }
         }
       },
+      "PatchAdminSdkAppsByAppByVersionPublisherRequest": {
+        "required": [
+          "partnerType"
+        ],
+        "type": "object",
+        "properties": {
+          "partnerType": {
+            "$ref": "#/components/schemas/PatchAdminSdkAppsByAppByVersionPublisherRequestPartnerType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PatchAdminSdkAppsByAppByVersionPublisher200Response": {
+        "type": "object",
+        "properties": {
+          "publisher": {
+            "$ref": "#/components/schemas/PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisher"
+          },
+          "authorEmail": {
+            "type": "string",
+            "description": "Account email of the app\u0027s author.",
+            "format": "email"
+          }
+        }
+      },
+      "PatchAdminSdkAppsByAppByVersionPublisher400Response": {
+        "type": "object"
+      },
+      "PatchAdminSdkAppsByAppByVersionPublisher403Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchAdminSdkAppsByAppByVersionPublisher404Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
       "GetAdminUsersDetail200Response": {
         "type": "object",
         "properties": {
@@ -114540,6 +114940,47 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel409Response": {
         "type": "object"
       },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionPublisher200Response": {
+        "type": "object",
+        "properties": {
+          "publisher": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionPublisher200ResponsePublisher"
+          },
+          "authorEmail": {
+            "type": "string",
+            "description": "Account email of the app\u0027s author \u2014 the contact fallback while \u0060publisher.contactEmail\u0060 is unset.",
+            "format": "email"
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionPublisher403Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionPublisher404Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
       "GetSdkAppReviewCategories200Response": {
         "type": "object",
         "properties": {
@@ -114548,6 +114989,18 @@
             "items": {
               "$ref": "#/components/schemas/GetSdkAppReviewCategories200ResponseCategoriesItem"
             }
+          }
+        }
+      },
+      "GetSdkAppReviewSupportContacts200Response": {
+        "type": "object",
+        "properties": {
+          "supportContacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetSdkAppReviewSupportContacts200ResponseSupportContactsItem"
+            },
+            "description": "Distinct contacts, most recently used first."
           }
         }
       },
@@ -149929,6 +150382,9 @@
         },
         "description": "The complete category list, in display order."
       },
+      "PatchAdminSdkAppsByAppByVersionPublisher400ResponseSchema": {
+        "type": "object"
+      },
       "PostAiAgentsV1AgentsByAgentIdRunStream200EventStreamResponseSchema": {
         "type": "object",
         "description": "Server-Sent Events stream (text/event-stream)"
@@ -154801,6 +155257,53 @@
           "name": {
             "type": "string",
             "description": "The new webhook name."
+          }
+        }
+      },
+      "PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisher": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "description": "Owning user."
+          },
+          "authorName": {
+            "type": "string",
+            "description": "Author name shown as the publisher (non-partner variant).",
+            "nullable": true
+          },
+          "contactEmail": {
+            "type": "string",
+            "description": "Developer contact email. \u0060null\u0060 means the account email is used.",
+            "format": "email",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "description": "Company (ISV) name shown as the publisher.",
+            "nullable": true
+          },
+          "partnerType": {
+            "$ref": "#/components/schemas/PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisherPartnerType"
+          },
+          "hasLogo": {
+            "type": "boolean",
+            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060)."
+          },
+          "logoFilename": {
+            "type": "string",
+            "description": "Original filename of the uploaded logo.",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the profile was created.",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "When the profile was last updated.",
+            "format": "date-time"
           }
         }
       },
@@ -169876,6 +170379,53 @@
         },
         "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
       },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionPublisher200ResponsePublisher": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "description": "Owning user."
+          },
+          "authorName": {
+            "type": "string",
+            "description": "Author name shown as the publisher (non-partner variant).",
+            "nullable": true
+          },
+          "contactEmail": {
+            "type": "string",
+            "description": "Developer contact email. \u0060null\u0060 means the account email is used.",
+            "format": "email",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "description": "Company (ISV) name shown as the publisher.",
+            "nullable": true
+          },
+          "partnerType": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionPublisher200ResponsePublisherPartnerType"
+          },
+          "hasLogo": {
+            "type": "boolean",
+            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060)."
+          },
+          "logoFilename": {
+            "type": "string",
+            "description": "Original filename of the uploaded logo.",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the profile was created.",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "When the profile was last updated.",
+            "format": "date-time"
+          }
+        }
+      },
       "GetSdkAppReviewCategories200ResponseCategoriesItem": {
         "type": "object",
         "properties": {
@@ -169899,6 +170449,26 @@
           }
         },
         "description": "One category of the taxonomy offered by the new SDK app review form, with its subcategories. \u0060slug\u0060 is the category\u0027s stable identity \u2014 it is what a review form stores in \u0060categories\u0060 / \u0060subcategories\u0060, and it survives a rename of \u0060name\u0060. Array order is display order."
+      },
+      "GetSdkAppReviewSupportContacts200ResponseSupportContactsItem": {
+        "required": [
+          "name",
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Contact name as last entered for this email. Empty string when the draft carried an email without a name."
+          },
+          "email": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Contact email, in the spelling of its most recent use. Contacts are distinct by email compared case-insensitively."
+          }
+        },
+        "description": "A support contact as entered in the support-contact section of the new SDK app review form (\u0060supportContactName\u0060 / \u0060supportContactEmail\u0060 of the review draft)."
       },
       "GetSdkGithubOwners200ResponseOwnersItem": {
         "type": "object",
@@ -185916,7 +186486,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Make partner program of the publisher; \u0060null\u0060 means not a partner. Always \u0060null\u0060 today \u2014 the partner-system integration that feeds it does not exist yet, and no endpoint sets it.",
+        "description": "Make partner program of the publisher; \u0060null\u0060 means not a partner (the default). Assigned by Make administrators only, through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060 \u2014 the developer\u0027s own \u0060PATCH /sdk/publisher\u0060 cannot change it.",
         "nullable": true,
         "x-ms-enum": {
           "name": "SdkPublisherPartnerType",
@@ -197584,6 +198154,30 @@
           ]
         }
       },
+      "PatchAdminSdkAppsByAppByVersionPublisherRequestPartnerType": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The partner program to assign; \u0060null\u0060 marks the author as not a partner.",
+        "nullable": true,
+        "x-ms-enum": {
+          "name": "PatchAdminSdkAppsByAppByVersionPublisherRequestPartnerType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
       "PendingStatus": {
         "enum": [
           "pending"
@@ -199813,6 +200407,30 @@
             {
               "value": "failed",
               "name": "Failed"
+            }
+          ]
+        }
+      },
+      "PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisherPartnerType": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program of the publisher; \u0060null\u0060 means not a partner (the default). Assigned by Make administrators only, through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060 \u2014 the developer\u0027s own \u0060PATCH /sdk/publisher\u0060 cannot change it.",
+        "nullable": true,
+        "x-ms-enum": {
+          "name": "PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisherPartnerType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
             }
           ]
         }
@@ -203673,6 +204291,30 @@
           ]
         }
       },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionPublisher200ResponsePublisherPartnerType": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program of the publisher; \u0060null\u0060 means not a partner (the default). Assigned by Make administrators only, through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060 \u2014 the developer\u0027s own \u0060PATCH /sdk/publisher\u0060 cannot change it.",
+        "nullable": true,
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionPublisher200ResponsePublisherPartnerType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
       "GetSdkGithubOwners200ResponseOwnersItemType": {
         "enum": [
           "user",
@@ -203703,7 +204345,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Make partner program of the publisher; \u0060null\u0060 means not a partner. Always \u0060null\u0060 today \u2014 the partner-system integration that feeds it does not exist yet, and no endpoint sets it.",
+        "description": "Make partner program of the publisher; \u0060null\u0060 means not a partner (the default). Assigned by Make administrators only, through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060 \u2014 the developer\u0027s own \u0060PATCH /sdk/publisher\u0060 cannot change it.",
         "nullable": true,
         "x-ms-enum": {
           "name": "GetSdkPublisher200ResponsePublisherPartnerType",
@@ -203727,7 +204369,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Make partner program of the publisher; \u0060null\u0060 means not a partner. Always \u0060null\u0060 today \u2014 the partner-system integration that feeds it does not exist yet, and no endpoint sets it.",
+        "description": "Make partner program of the publisher; \u0060null\u0060 means not a partner (the default). Assigned by Make administrators only, through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060 \u2014 the developer\u0027s own \u0060PATCH /sdk/publisher\u0060 cannot change it.",
         "nullable": true,
         "x-ms-enum": {
           "name": "PatchSdkPublisher200ResponsePublisherPartnerType",
