@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.Organizations.Item.AffiliatePartners;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Apps;
 using Soenneker.Make.OpenApiClient.Organizations.Item.CheckTeamPermission;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Domains;
@@ -37,6 +38,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithOrganizationItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The affiliatePartners property</summary>
+        public global::Soenneker.Make.OpenApiClient.Organizations.Item.AffiliatePartners.AffiliatePartnersRequestBuilder AffiliatePartners
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.AffiliatePartners.AffiliatePartnersRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The apps property</summary>
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.Apps.AppsRequestBuilder Apps
         {

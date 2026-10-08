@@ -97,13 +97,13 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.AiAgents.Modules
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ModulesRequestBuilderPostQueryParameters 
         {
-            /// <summary>Only used when `scenarioIds` is omitted from the request body. Default and maximum value is 100.</summary>
+            /// <summary>The maximum number of entities you want to get in the response.</summary>
             [QueryParameter("pg%5Blimit%5D")]
             public int? Pglimit { get; set; }
-            /// <summary>Only used when `scenarioIds` is omitted from the request body.</summary>
+            /// <summary>The number of entities you want to skip before getting entities you want.</summary>
             [QueryParameter("pg%5Boffset%5D")]
             public int? Pgoffset { get; set; }
-            /// <summary>The unique ID of the team whose AI agent scenarios will be retrieved.</summary>
+            /// <summary>The unique ID of the team whose scenarios folders will be retrieved.</summary>
             [QueryParameter("teamId")]
             public int? TeamId { get; set; }
         }

@@ -629,13 +629,13 @@
             }
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetAdminOrganizationsColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -2688,13 +2688,13 @@
             }
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetAdminUsersDetailColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -2939,13 +2939,13 @@
             }
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetAdminUsersColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -3584,13 +3584,13 @@
             "example": 22
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/PostAdminUsersByUserIdUserOrganizationRolesByOrganizationIdColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -3943,13 +3943,13 @@
             }
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetAdminUsersAdminsRolesColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -4280,7 +4280,7 @@
             "in": "query",
             "description": "The value that will be used to sort returned entities by.",
             "schema": {
-              "$ref": "#/components/schemas/IdPgSortBy"
+              "type": "string"
             },
             "example": "id"
           },
@@ -4322,7 +4322,7 @@
                     {
                       "id": 1,
                       "organization_id": 3,
-                      "created": "2021-10-01T12:19:49.227Z",
+                      "created": "2021-10-01 12:19:49.227869",
                       "type": "Registration",
                       "status": "Registration",
                       "commission": null,
@@ -4334,7 +4334,7 @@
                     {
                       "id": 2,
                       "organization_id": 3,
-                      "created": "2021-10-01T12:19:49.227Z",
+                      "created": "2021-10-01 12:19:49.227869",
                       "type": "Payment",
                       "status": "Available",
                       "commission": 300,
@@ -4346,39 +4346,39 @@
                     {
                       "id": 3,
                       "organization_id": 3,
-                      "created": "2021-11-21T12:19:49.227Z",
+                      "created": "2021-11-21 12:19:49.227869",
                       "type": "Payment",
                       "status": "Requested",
                       "commission": 500,
                       "source": null,
-                      "payout_requested": "2021-12-21T12:19:49.227Z",
+                      "payout_requested": "2021-12-21 12:19:49.227869",
                       "payout_approved": null,
                       "payout_realized": null
                     },
                     {
                       "id": 4,
                       "organization_id": 4,
-                      "created": "2021-11-21T12:19:49.227Z",
+                      "created": "2021-11-21 12:19:49.227869",
                       "type": "Payment",
                       "status": "Approved",
                       "commission": 658.5,
                       "source": null,
-                      "payout_requested": "2021-12-01T12:19:49.227Z",
-                      "payout_approved": "2021-12-03T12:19:49.227Z",
+                      "payout_requested": "2021-12-01 12:19:49.227869",
+                      "payout_approved": "2021-12-03 12:19:49.227869",
                       "payout_realized": null
                     },
                     {
                       "id": 5,
                       "partner_id": 1,
                       "organization_id": 4,
-                      "created": "2021-11-21T12:19:49.227Z",
+                      "created": "2021-11-21 12:19:49.227869",
                       "type": "Payment",
                       "status": "Paid",
                       "commission": 300,
                       "source": null,
-                      "payout_requested": "2021-02-01T12:19:49.227Z",
-                      "payout_approved": "2021-02-03T12:19:49.227Z",
-                      "payout_realized": "2021-02-04T12:19:49.227Z"
+                      "payout_requested": "2021-02-01 12:19:49.227869",
+                      "payout_approved": "2021-02-03 12:19:49.227869",
+                      "payout_realized": "2021-02-04 12:19:49.227869"
                     }
                   ]
                 }
@@ -6398,7 +6398,7 @@
             "in": "query",
             "description": "The value that will be used to sort returned entities by.",
             "schema": {
-              "$ref": "#/components/schemas/IdPgSortBy"
+              "type": "string"
             },
             "example": "id"
           },
@@ -6440,7 +6440,7 @@
                     {
                       "id": 1,
                       "organization_id": 3,
-                      "created": "2021-10-01T12:19:49.227Z",
+                      "created": "2021-10-01 12:19:49.227869",
                       "type": "Registration",
                       "status": "Registration",
                       "commission": null,
@@ -6452,7 +6452,7 @@
                     {
                       "id": 2,
                       "organization_id": 3,
-                      "created": "2021-10-01T12:19:49.227Z",
+                      "created": "2021-10-01 12:19:49.227869",
                       "type": "Payment",
                       "status": "Available",
                       "commission": 300,
@@ -6464,39 +6464,39 @@
                     {
                       "id": 3,
                       "organization_id": 3,
-                      "created": "2021-11-21T12:19:49.227Z",
+                      "created": "2021-11-21 12:19:49.227869",
                       "type": "Payment",
                       "status": "Requested",
                       "commission": 500,
                       "source": null,
-                      "payout_requested": "2021-12-21T12:19:49.227Z",
+                      "payout_requested": "2021-12-21 12:19:49.227869",
                       "payout_approved": null,
                       "payout_realized": null
                     },
                     {
                       "id": 4,
                       "organization_id": 4,
-                      "created": "2021-11-21T12:19:49.227Z",
+                      "created": "2021-11-21 12:19:49.227869",
                       "type": "Payment",
                       "status": "Approved",
                       "commission": 658.5,
                       "source": null,
-                      "payout_requested": "2021-12-01T12:19:49.227Z",
-                      "payout_approved": "2021-12-03T12:19:49.227Z",
+                      "payout_requested": "2021-12-01 12:19:49.227869",
+                      "payout_approved": "2021-12-03 12:19:49.227869",
                       "payout_realized": null
                     },
                     {
                       "id": 5,
                       "partner_id": 1,
                       "organization_id": 4,
-                      "created": "2021-11-21T12:19:49.227Z",
+                      "created": "2021-11-21 12:19:49.227869",
                       "type": "Payment",
                       "status": "Paid",
                       "commission": 300,
                       "source": null,
-                      "payout_requested": "2021-02-01T12:19:49.227Z",
-                      "payout_approved": "2021-02-03T12:19:49.227Z",
-                      "payout_realized": "2021-02-04T12:19:49.227Z"
+                      "payout_requested": "2021-02-01 12:19:49.227869",
+                      "payout_approved": "2021-02-03 12:19:49.227869",
+                      "payout_realized": "2021-02-04 12:19:49.227869"
                     }
                   ]
                 }
@@ -6686,7 +6686,7 @@
               "type": "string",
               "format": "date"
             },
-            "example": "2021-09-23T00:00:00.000Z"
+            "example": "2021-09-23"
           },
           {
             "name": "dateTo",
@@ -6696,7 +6696,7 @@
               "type": "string",
               "format": "date"
             },
-            "example": "2021-09-24T00:00:00.000Z"
+            "example": "2021-09-24"
           },
           {
             "name": "event",
@@ -7008,7 +7008,7 @@
               "type": "string",
               "format": "date"
             },
-            "example": "2021-09-23T00:00:00.000Z"
+            "example": "2021-09-23"
           },
           {
             "name": "dateTo",
@@ -7018,7 +7018,7 @@
               "type": "string",
               "format": "date"
             },
-            "example": "2021-09-24T00:00:00.000Z"
+            "example": "2021-09-24"
           },
           {
             "name": "event",
@@ -11800,7 +11800,7 @@
           {
             "name": "pg[sortBy]",
             "in": "query",
-            "description": "The value that will be used to sort returned entities by. Data stores can be currently sorted only by name.",
+            "description": "The value that will be used to sort returned entities by.",
             "schema": {
               "$ref": "#/components/schemas/NamePgSortBy"
             }
@@ -12549,7 +12549,7 @@
           {
             "name": "pg[sortBy]",
             "in": "query",
-            "description": "The value that will be used to sort returned entities by. Data structures can be currently sorted only by name.",
+            "description": "The value that will be used to sort returned entities by.",
             "schema": {
               "$ref": "#/components/schemas/NamePgSortBy"
             }
@@ -13628,7 +13628,7 @@
                       "id": 5,
                       "scope": "text",
                       "size": 5,
-                      "created": "2004-10-19T08:23:54.000Z",
+                      "created": "2004-10-19 10:23:54\u002B02",
                       "data": "text"
                     }
                   }
@@ -13920,7 +13920,7 @@
                       "id": 5,
                       "scope": "text",
                       "size": 5,
-                      "created": "2004-10-19T08:23:54.000Z",
+                      "created": "2004-10-19 10:23:54\u002B02",
                       "data": "text"
                     }
                   }
@@ -17533,169 +17533,169 @@
                       "id": 48,
                       "name": "(GMT\u002B08:00) Asia/Brunei",
                       "code": "Asia/Brunei",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 264,
                       "name": "(GMT\u002B08:00) Asia/Chita",
                       "code": "Asia/Chita",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 196,
                       "name": "(GMT\u002B08:00) Asia/Choibalsan",
                       "code": "Asia/Choibalsan",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 149,
                       "name": "(GMT\u002B08:00) Asia/Hong_Kong",
                       "code": "Asia/Hong_Kong",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 263,
                       "name": "(GMT\u002B08:00) Asia/Irkutsk",
                       "code": "Asia/Irkutsk",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 214,
                       "name": "(GMT\u002B08:00) Asia/Kuala_Lumpur",
                       "code": "Asia/Kuala_Lumpur",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 215,
                       "name": "(GMT\u002B08:00) Asia/Kuching",
                       "code": "Asia/Kuching",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 197,
                       "name": "(GMT\u002B08:00) Asia/Macau",
                       "code": "Asia/Macau",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 155,
                       "name": "(GMT\u002B08:00) Asia/Makassar",
                       "code": "Asia/Makassar",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 236,
                       "name": "(GMT\u002B08:00) Asia/Manila",
                       "code": "Asia/Manila",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 104,
                       "name": "(GMT\u002B08:00) Asia/Shanghai",
                       "code": "Asia/Shanghai",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 279,
                       "name": "(GMT\u002B08:00) Asia/Singapore",
                       "code": "Asia/Singapore",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 296,
                       "name": "(GMT\u002B08:00) Asia/Taipei",
                       "code": "Asia/Taipei",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 194,
                       "name": "(GMT\u002B08:00) Asia/Ulaanbaatar",
                       "code": "Asia/Ulaanbaatar",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 105,
                       "name": "(GMT\u002B08:00) Asia/Urumqi",
                       "code": "Asia/Urumqi",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 40,
                       "name": "(GMT\u002B08:00) Australia/Perth",
                       "code": "Australia/Perth",
-                      "offset": "\u002B0800"
+                      "offset": 800
                     },
                     {
                       "id": 173,
                       "name": "(GMT\u002B08:30) Asia/Pyongyang",
                       "code": "Asia/Pyongyang",
-                      "offset": "\u002B0830"
+                      "offset": 830
                     },
                     {
                       "id": 41,
                       "name": "(GMT\u002B08:45) Australia/Eucla",
                       "code": "Australia/Eucla",
-                      "offset": "\u002B0845"
+                      "offset": 845
                     },
                     {
                       "id": 289,
                       "name": "(GMT\u002B09:00) Asia/Dili",
                       "code": "Asia/Dili",
-                      "offset": "\u002B0900"
+                      "offset": 900
                     },
                     {
                       "id": 156,
                       "name": "(GMT\u002B09:00) Asia/Jayapura",
                       "code": "Asia/Jayapura",
-                      "offset": "\u002B0900"
+                      "offset": 900
                     },
                     {
                       "id": 266,
                       "name": "(GMT\u002B09:00) Asia/Khandyga",
                       "code": "Asia/Khandyga",
-                      "offset": "\u002B0900"
+                      "offset": 900
                     },
                     {
                       "id": 174,
                       "name": "(GMT\u002B09:00) Asia/Seoul",
                       "code": "Asia/Seoul",
-                      "offset": "\u002B0900"
+                      "offset": 900
                     },
                     {
                       "id": 167,
                       "name": "(GMT\u002B09:00) Asia/Tokyo",
                       "code": "Asia/Tokyo",
-                      "offset": "\u002B0900"
+                      "offset": 900
                     },
                     {
                       "id": 265,
                       "name": "(GMT\u002B09:00) Asia/Yakutsk",
                       "code": "Asia/Yakutsk",
-                      "offset": "\u002B0900"
+                      "offset": 900
                     },
                     {
                       "id": 247,
                       "name": "(GMT\u002B09:00) Pacific/Palau",
                       "code": "Pacific/Palau",
-                      "offset": "\u002B0900"
+                      "offset": 900
                     },
                     {
                       "id": 38,
                       "name": "(GMT\u002B09:30) Australia/Adelaide",
                       "code": "Australia/Adelaide",
-                      "offset": "\u002B0930"
+                      "offset": 930
                     },
                     {
                       "id": 35,
                       "name": "(GMT\u002B09:30) Australia/Broken_Hill",
                       "code": "Australia/Broken_Hill",
-                      "offset": "\u002B0930"
+                      "offset": 930
                     },
                     {
                       "id": 39,
                       "name": "(GMT\u002B09:30) Australia/Darwin",
                       "code": "Australia/Darwin",
-                      "offset": "\u002B0930"
+                      "offset": 930
                     },
                     {
                       "id": 12,
@@ -23237,13 +23237,13 @@
             "example": 11
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetFunctionsColsParameterItem"
+                "type": "string"
               }
             }
           }
@@ -23445,13 +23445,13 @@
             "example": 44
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetFunctionsByFunctionIdColsParameterItem"
+                "type": "string"
               }
             }
           }
@@ -28973,13 +28973,13 @@
             }
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetOrganizationsColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -30598,13 +30598,13 @@
             "example": 11
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdUserOrganizationRolesColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -30718,13 +30718,13 @@
             "example": 111
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdUserOrganizationRolesByUserIdColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -30902,8 +30902,8 @@
                     {
                       "id": 4,
                       "type": "saml",
-                      "validFrom": "2024-01-29T22:10:51.903Z",
-                      "validTo": "2026-03-01T22:10:51.903Z",
+                      "validFrom": "2024-01-29 22:10:51.903509 \u002B00:00",
+                      "validTo": "2026-02-29 22:10:51.903509 \u002B00:00",
                       "certificate": "QOIHAD4CB0igAWIBAgIQSmIEMVCBvWhuNu5CWs4gQzANBgkqhkiG9w0BAQwFADBDMQswCQYDVQQGEwJDWjEWMBQGA1UEChMNQWxwaXJvIHMuci5vLjEcMBoGA1UEAxMTQWxwaXJvU1NMIFJTQSBEViBDQTAeFw0yMjA0MDUwMDAwMDBaFw0yMzA0MDUyMzU5NTlaMB8xHTAbBgNVBAMTFHVzMS5tYWtlLmNlbG9uaXMuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArgM5r629dzv9i8kYffmLgd5\u002BPRfvMkiBAPPVUd72k5oebCoJRhLFkvi/pmzgmAhS1hWp7G5y6rv0sKInj8x92Dp8JKIn1E0gHeoG6r1boLoJ7MOqAeEQZLESTmeMEzzcbn81OcTU0/wNZMvOEOxeC6slf/6wszy2W6xLgpnyj2z7LZXuV00ICOSH5F9UyH8Za\u002Bbe4JI22w3DVlK4c9Y/lWsp2psjEv5BZUS3\u002B\u002B\u002BYJhniL7I5YfZwEg92KECOicc6fkSfIVFLnABbIoA0/\u002BlYEGUxl9oZ45e1TcBvtvJyPs58sAIKMRqJ8v\u002Bu5hQFksF0Qqtc5L9wtb88FS5j8ormAwIDAQABo4IDEjCCAw4wHwYDVR0jBBgwFoAUE5wiOqhkQBcstSaY2gXJNSUrv1swHQYDVR0OBBYEFJEbmZiFaAjBGHKajL/\u002BFkRr0B2sMA4GA1UdDwEB/wQEAwIFoDAMBgNVHRMBAf8EAjAAMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBJBgNVHSAEQjBAMDQGCysGAQQBsjEBAgJXMCUwIwYIKwYBBQUHAgEWF2h0dHBzOi8vc2VjdGlnby5jb20vQ1BTMAgGBmeBDAECATB6BggrBgEFBQcBAQRuMGwwPgYIKwYBBQUHMAKGMmh0dHA6Ly9hbHBpcm8uY3J0LnNlY3RpZ28uY29tL0FscGlyb1NTTFJTQURWQ0EuY3J0MCoGCCsGAQUFBzABhh5odHRwOi8vYWxwaXJvLm9jc3Auc2VjdGlnby5jb20wggF\u002BBgorBgEEAdZ5AgQCBIIBbgSCAWoBaAB1AK33vvp8/xDIi509nB4\u002BGGq0Zyldz7EMJMqFhjTr3IKKAAABf/nur\u002B8AAAQDAEYwRAIgGw3CjbX7xKIzKNN6Ev1YVCa5f\u002B4OrxH9AppgHj6oefECIEtJUMjb2pn27kslObbMKQLmeP6aNufHGyhjxyt4Zi\u002B3AHYAejKMVNi3LbYg6jjgUh7phBZwMhOFTTvSK8E6V6NS61IAAAF/\u002Be6v9wAABAMARzBFAiBVtaS7cTyK1egJWsyhkXZnbNzji0GfPCt90A//L2u8VgIhAI5wDbveymAq8rDV1jCDTpeRCEKOCfhhV66u2in/GhpZAHcA6D7Q2j71BjUy51covIlryQPTy9ERa\u002BzraeF3fW0GvW4AAAF/\u002Be6vzgAABAMASDBGAiEA0\u002B7dcwKmgfY2QzKaXloyMjbDgnXk2nVBStQSY9Q\u002BLSUCIQCu9YAC4fmabUyKPth/pZ/T9vgBGTPCMJo/WOybAaZnOTBGBgNVHREEPzA9ghR1czEubWFrZS5jZWxvbmlzLmNvbYIlZW50ZXJwcmlzZS51czEuaW50ZWdyb21hdC5jZWxvbmlzLmNvbTANBgkqhkiG9w0BAQwFAAOCAgEAkr375yZ1G1GmSWUeYm7aPmfJeqBPrL/SJyQRMFTU2K9K3uJqgmMSQ9RVoi3pM2tKhqTAPYaX1Jnbv1594JPI\u002BGdsSAFX/B8zJppXzkL7sqxWuBj474PFobptJzmtLPJMKIgMypmQ9sbJwIz/LyXGLeJ9yMURyZvw4\u002Bg9X1BM8hn8CR83E/ecdnfYcPra2V436lB3HfNSUiw\u002BlFMY6364dCFhPxcrlWfFwhzUGas5dVDl\u002BTR4jpRlLFCk7AQQodyVXInDWZZCNnay1OZha9wtBN0mUos4GLcsNBXYPS/0Wc8LfkFEKDXFlohSb3Wm5wjMPVhdBMixZh7/J2a\u002BH9GNy\u002BbJpWQFf23SgPzHivY1SpFhyeTPwVVarUcbpEDOLKVjQ7DjK3NBf6hIVNwNPk2XAXF5tt7fn1qiPRBJlAwzvm9hzgAIckBg6eS8rG3JYCbp1btVF4HcXO2TFRuqcTbE9BQVuJsafpZ9w8kLPF/zj7IJvSoXiC5iu9VrkbCr4emE\u002BZnlIkwlfcKqJF7Id\u002BPaSTbpIx9ER8dPSPWqKwjXwi2o15xpOyxYcfUa50bkolkflygezH4\u002B8E4kGcUTk/cmWcLFnBOL5veQF0vZby77\u002BZtK1rX8P\u002Bbb6vw1/QU5nbmp5biuTTuMEVT0Jy1Zq9zdYwrFYc2q\u002BzY8ry/64U1Fmn11",
                       "status": "active",
                       "deactivationDate": null
@@ -30911,17 +30911,17 @@
                     {
                       "id": 3,
                       "type": "saml",
-                      "validFrom": "2023-01-29T22:10:51.903Z",
-                      "validTo": "2025-03-01T22:10:51.903Z",
+                      "validFrom": "2023-01-29 22:10:51.903509 \u002B00:00",
+                      "validTo": "2025-02-29 22:10:51.903509 \u002B00:00",
                       "certificate": "AOIHAD4CB0igAWIBAgIQSmIEMVCBvWhuNu5CWs4gQzANBgkqhkiG9w0BAQwFADBDMQswCQYDVQQGEwJDWjEWMBQGA1UEChMNQWxwaXJvIHMuci5vLjEcMBoGA1UEAxMTQWxwaXJvU1NMIFJTQSBEViBDQTAeFw0yMjA0MDUwMDAwMDBaFw0yMzA0MDUyMzU5NTlaMB8xHTAbBgNVBAMTFHVzMS5tYWtlLmNlbG9uaXMuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArgM5r629dzv9i8kYffmLgd5\u002BPRfvMkiBAPPVUd72k5oebCoJRhLFkvi/pmzgmAhS1hWp7G5y6rv0sKInj8x92Dp8JKIn1E0gHeoG6r1boLoJ7MOqAeEQZLESTmeMEzzcbn81OcTU0/wNZMvOEOxeC6slf/6wszy2W6xLgpnyj2z7LZXuV00ICOSH5F9UyH8Za\u002Bbe4JI22w3DVlK4c9Y/lWsp2psjEv5BZUS3\u002B\u002B\u002BYJhniL7I5YfZwEg92KECOicc6fkSfIVFLnABbIoA0/\u002BlYEGUxl9oZ45e1TcBvtvJyPs58sAIKMRqJ8v\u002Bu5hQFksF0Qqtc5L9wtb88FS5j8ormAwIDAQABo4IDEjCCAw4wHwYDVR0jBBgwFoAUE5wiOqhkQBcstSaY2gXJNSUrv1swHQYDVR0OBBYEFJEbmZiFaAjBGHKajL/\u002BFkRr0B2sMA4GA1UdDwEB/wQEAwIFoDAMBgNVHRMBAf8EAjAAMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBJBgNVHSAEQjBAMDQGCysGAQQBsjEBAgJXMCUwIwYIKwYBBQUHAgEWF2h0dHBzOi8vc2VjdGlnby5jb20vQ1BTMAgGBmeBDAECATB6BggrBgEFBQcBAQRuMGwwPgYIKwYBBQUHMAKGMmh0dHA6Ly9hbHBpcm8uY3J0LnNlY3RpZ28uY29tL0FscGlyb1NTTFJTQURWQ0EuY3J0MCoGCCsGAQUFBzABhh5odHRwOi8vYWxwaXJvLm9jc3Auc2VjdGlnby5jb20wggF\u002BBgorBgEEAdZ5AgQCBIIBbgSCAWoBaAB1AK33vvp8/xDIi509nB4\u002BGGq0Zyldz7EMJMqFhjTr3IKKAAABf/nur\u002B8AAAQDAEYwRAIgGw3CjbX7xKIzKNN6Ev1YVCa5f\u002B4OrxH9AppgHj6oefECIEtJUMjb2pn27kslObbMKQLmeP6aNufHGyhjxyt4Zi\u002B3AHYAejKMVNi3LbYg6jjgUh7phBZwMhOFTTvSK8E6V6NS61IAAAF/\u002Be6v9wAABAMARzBFAiBVtaS7cTyK1egJWsyhkXZnbNzji0GfPCt90A//L2u8VgIhAI5wDbveymAq8rDV1jCDTpeRCEKOCfhhV66u2in/GhpZAHcA6D7Q2j71BjUy51covIlryQPTy9ERa\u002BzraeF3fW0GvW4AAAF/\u002Be6vzgAABAMASDBGAiEA0\u002B7dcwKmgfY2QzKaXloyMjbDgnXk2nVBStQSY9Q\u002BLSUCIQCu9YAC4fmabUyKPth/pZ/T9vgBGTPCMJo/WOybAaZnOTBGBgNVHREEPzA9ghR1czEubWFrZS5jZWxvbmlzLmNvbYIlZW50ZXJwcmlzZS51czEuaW50ZWdyb21hdC5jZWxvbmlzLmNvbTANBgkqhkiG9w0BAQwFAAOCAgEAkr375yZ1G1GmSWUeYm7aPmfJeqBPrL/SJyQRMFTU2K9K3uJqgmMSQ9RVoi3pM2tKhqTAPYaX1Jnbv1594JPI\u002BGdsSAFX/B8zJppXzkL7sqxWuBj474PFobptJzmtLPJMKIgMypmQ9sbJwIz/LyXGLeJ9yMURyZvw4\u002Bg9X1BM8hn8CR83E/ecdnfYcPra2V436lB3HfNSUiw\u002BlFMY6364dCFhPxcrlWfFwhzUGas5dVDl\u002BTR4jpRlLFCk7AQQodyVXInDWZZCNnay1OZha9wtBN0mUos4GLcsNBXYPS/0Wc8LfkFEKDXFlohSb3Wm5wjMPVhdBMixZh7/J2a\u002BH9GNy\u002BbJpWQFf23SgPzHivY1SpFhyeTPwVVarUcbpEDOLKVjQ7DjK3NBf6hIVNwNPk2XAXF5tt7fn1qiPRBJlAwzvm9hzgAIckBg6eS8rG3JYCbp1btVF4HcXO2TFRuqcTbE9BQVuJsafpZ9w8kLPF/zj7IJvSoXiC5iu9VrkbCr4emE\u002BZnlIkwlfcKqJF7Id\u002BPaSTbpIx9ER8dPSPWqKwjXwi2o15xpOyxYcfUa50bkolkflygezH4\u002B8E4kGcUTk/cmWcLFnBOL5veQF0vZby77\u002BZtK1rX8P\u002Bbb6vw1/QU5nbmp5biuTTuMEVT0Jy1Zq9zdYwrFYc2q\u002BzY8ry/64U1Fmn11",
                       "status": "active",
-                      "deactivationDate": "2025-09-29T22:10:51.903Z"
+                      "deactivationDate": "2025-09-29 22:10:51.903509 \u002B00:00"
                     },
                     {
                       "id": 2,
                       "type": "saml",
-                      "validFrom": "2024-02-01T22:10:51.903Z",
-                      "validTo": "2025-08-01T22:10:51.903Z",
+                      "validFrom": "2024-02-01 22:10:51.903509 \u002B00:00",
+                      "validTo": "2025-08-01 22:10:51.903509 \u002B00:00",
                       "certificate": "11=UAD4CB0igAWIBAgIQSmIEMVCBvWhuNu5CWs4gQzANBgkqhkiG9w0BAQwFADBDMQswCQYDVQQGEwJDWjEWMBQGA1UEChMNQWxwaXJvIHMuci5vLjEcMBoGA1UEAxMTQWxwaXJvU1NMIFJTQSBEViBDQTAeFw0yMjA0MDUwMDAwMDBaFw0yMzPlMDUyMzU5NTlaMB8xHTAbBgNVBAMTFHVzMS5tYWtlLmNlbG9uaXMuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArgM5r629dzv9i8kYffmLgd5\u002BPRfvMkiBAPPVUd72k5oebCoJRhLFkvi/pmzgmAhS1hWp7G5y6rv0sKInj8x92Dp8JKIn1E0gHeoG6r1boLoJ7MOqAeEQZLESTmeMEzzcbn81OcTU0/wNZMvOEOxeC6slf/6wszy2W6xLgpnyj2z7LZXuV00ICOSH5F9UyH8Za\u002Bbe4JI22w3DVlK4c9Y/lWsp2psjEv5BZUS3\u002B\u002B\u002BYJhniL7I5YfZwEg92KECOicc6fkSfIVFLnABbIoA0/\u002BlYEGUxl9oZ45e1TcBvtvJyPs58sAIKMRqJ8v\u002Bu5hQFksF0Qqtc5L9wtb88FS5j8ormAwIDAQABo4IDEjCCAw4wHwYDVR0jBBgwFoAUE5wiOqhkQBcstSaY2gXJNSUrv1swHQYDVR0OBBYEFJEbmZiFaAjBGHKajL/\u002BFkRr0B2sMA4GA1UdDwEB/wQEAwIFoDAMBgNVHRMBAf8EAjAAMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBJBgNVHSAEQjBAMDQGCysGAQQBsjEBAgJXMCUwIwYIKwYBBQUHAgEWF2h0dHBzOi8vc2VjdGlnby5jb20vQ1BTMAgGBmeBDAECATB6BggrBgEFBQcBAQRuMGwwPgYIKwYBBQUHMAKGMmh0dHA6Ly9hbHBpcm8uY3J0LnNlY3RpZ28uY29tL0FscGlyb1NTTFJTQURWQ0EuY3J0MCoGCCsGAQUFBzABhh5odHRwOi8vYWxwaXJvLm9jc3Auc2VjdGlnby5jb20wggF\u002BBgorBgEEAdZ5AgQCBIIBbgSCAWoBaAB1AK33vvp8/xDIi509nB4\u002BGGq0Zyldz7EMJMqFhjTr3IKKAAABf/nur\u002B8AAAQDAEYwRAIgGw3CjbX7xKIzKNN6Ev1YVCa5f\u002B4OrxH9AppgHj6oefECIEtJUMjb2pn27kslObbMKQLmeP6aNufHGyhjxyt4Zi\u002B3AHYAejKMVNi3LbYg6jjgUh7phBZwMhOFTTvSK8E6V6NS61IAAAF/\u002Be6v9wAABAMARzBFAiBVtaS7cTyK1egJWsyhkXZnbNzji0GfPCt90A//L2u8VgIhAI5wDbveymAq8rDV1jCDTpeRCEKOCfhhV66u2in/GhpZAHcA6D7Q2j71BjUy51covIlryQPTy9ERa\u002BzraeF3fW0GvW4AAAF/\u002Be6vzgAABAMASDBGAiEA0\u002B7dcwKmgfY2QzKaXloyMjbDgnXk2nVBStQSY9Q\u002BLSUCIQCu9YAC4fmabUyKPth/pZ/T9vgBGTPCMJo/WOybAaZnOTBGBgNVHREEPzA9ghR1czEubWFrZS5jZWxvbmlzLmNvbYIlZW50ZXJwcmlzZS51czEuaW50ZWdyb21hdC5jZWxvbmlzLmNvbTANBgkqhkiG9w0BAQwFAAOCAgEAkr375yZ1G1GmSWUeYm7aPmfJeqBPrL/SJyQRMFTU2K9K3uJqgmMSQ9RVoi3pM2tKhqTAPYaX1Jnbv1594JPI\u002BGdsSAFX/B8zJppXzkL7sqxWuBj474PFobptJzmtLPJMKIgMypmQ9sbJwIz/LyXGLeJ9yMURyZvw4\u002Bg9X1BM8hn8CR83E/ecdnfYcPra2V436lB3HfNSUiw\u002BlFMY6364dCFhPxcrlWfFwhzUhh$5dVDl\u002BUR4jpRlLFCk7AQQodyVXInDWZZCNnay1OZha9wtBN0mUos4GLcsNBXYPS/0Wc8LfkFEKDXFlohSb3Wm5wjMPVhdBMixZh7/J2a\u002BH9GNy\u002BbJpWQFf23SgPzHivY1SpFhyeTPwVVarUcbpEDOLKVjQ7DjK3NBf6hIVNwNPk2XAXF5tt7fn1qiPRBJlAwzvm9hzgAIckBg6eS8rG3JYCbp1btVF4HcXO2TFRuqcTbE9BQVuJsafpZ9w8kLPF/zj7IJvSoXiC5iu9VrkbCr4emE\u002BZnlIkwlfcKqJF7Id\u002BPaSTbpIx9ER8dPSPWqKwjXwi2o15xpOyxYcfUa50bkolkflygezH4\u002B8E4kGcUTk/cmWcLFnBOL5veQF0vZby77\u002BZtK1rX8P\u002Bbb6vw1/QU5nbmp5biuTTuMEVT0Jy1Zq9zdYwrFYc2q\u002BzY8ry/64U1Fqq9M",
                       "status": "inactive",
                       "deactivationDate": null
@@ -32034,13 +32034,13 @@
             "example": "Make AI Tools"
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdFeatureControlsColsParameterItem"
+                "type": "string"
               }
             }
           }
@@ -32456,6 +32456,71 @@
             ]
           }
         ]
+      }
+    },
+    "/organizations/{organizationId}/affiliate-partners": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "summary": "List the organization\u0027s affiliate partners",
+        "description": "Returns the organization\u0027s affiliate partners \u2014 the members who have joined the affiliate program and can\ntherefore be picked as the affiliate partner earning commission for scenarios shared from the organization\n(the \u0060sharedScenarioPartnerCode\u0060 organization attribute).\n\nReturns an empty array when nobody in the organization has joined the affiliate program yet.\n\nAvailable only on zone instances; the affiliate program does not exist on the master instance.\n",
+        "operationId": "GetOrganizationsByOrganizationIdAffiliatePartners",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "The ID of the organization.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 11
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdAffiliatePartners200Response"
+                },
+                "example": {
+                  "affiliatePartners": [
+                    {
+                      "partnerCode": "a1b2c3",
+                      "name": "Jane Doe"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - the user lacks the organization view permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdAffiliatePartners403Response"
+                },
+                "example": {
+                  "message": "organization permission \u0022organization view\u0022 is needed.",
+                  "code": "IM002"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "organizations:read"
+            ]
+          }
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/check-team-permission": {
@@ -33215,7 +33280,7 @@
           {
             "name": "pg[sortDir]",
             "in": "query",
-            "description": "The sorting direction. Ascending order (\u0060asc\u0060) is rejected only when sorting by the default \u0060proprietal\u0060 column; for every other \u0060sortBy\u0060 value both \u0060asc\u0060 and \u0060desc\u0060 are allowed. Defaults to \u0060desc\u0060.",
+            "description": "The sorting order. It accepts the ascending and descending direction specifiers.",
             "schema": {
               "$ref": "#/components/schemas/GetScenariosPgSortDirParameter"
             }
@@ -37429,7 +37494,7 @@
           {
             "name": "teamId",
             "in": "query",
-            "description": "The ID of the team.",
+            "description": "The unique ID of the team whose scenarios folders will be retrieved.",
             "required": true,
             "schema": {
               "type": "integer"
@@ -37749,7 +37814,7 @@
           {
             "name": "teamId",
             "in": "query",
-            "description": "The unique ID of the team whose AI agent scenarios will be retrieved.",
+            "description": "The unique ID of the team whose scenarios folders will be retrieved.",
             "required": true,
             "schema": {
               "type": "integer"
@@ -37806,7 +37871,7 @@
           {
             "name": "teamId",
             "in": "query",
-            "description": "The unique ID of the team whose AI agent scenarios will be retrieved.",
+            "description": "The unique ID of the team whose scenarios folders will be retrieved.",
             "required": true,
             "schema": {
               "type": "integer"
@@ -37816,7 +37881,7 @@
           {
             "name": "pg[offset]",
             "in": "query",
-            "description": "Only used when \u0060scenarioIds\u0060 is omitted from the request body.",
+            "description": "The number of entities you want to skip before getting entities you want.",
             "schema": {
               "type": "integer"
             }
@@ -37824,7 +37889,7 @@
           {
             "name": "pg[limit]",
             "in": "query",
-            "description": "Only used when \u0060scenarioIds\u0060 is omitted from the request body. Default and maximum value is 100.",
+            "description": "The maximum number of entities you want to get in the response.",
             "schema": {
               "type": "integer"
             }
@@ -49811,13 +49876,13 @@
             "example": "42"
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetPrivateSpacesColsParameterItem"
+                "type": "string"
               }
             }
           },
@@ -49959,13 +50024,13 @@
             "example": 10
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetPrivateSpacesByPrivateSpaceIdColsParameterItem"
+                "type": "string"
               }
             }
           }
@@ -50538,13 +50603,13 @@
             "example": true
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetTeamsColsParameterItem"
+                "type": "string"
               }
             }
           },
@@ -50744,13 +50809,13 @@
             "example": 22
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetTeamsByTeamIdColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -50852,13 +50917,13 @@
             "example": 22
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/PatchTeamsByTeamIdColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -51026,13 +51091,13 @@
             "example": 22
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetTeamsByTeamIdUserTeamRolesColsParameterItem"
+                "type": "string"
               }
             }
           },
@@ -51136,13 +51201,13 @@
             "example": 111
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetTeamsByTeamIdUserTeamRolesByUserIdColsParameterItem"
+                "type": "string"
               }
             }
           },
@@ -51689,13 +51754,13 @@
             "example": "Make AI Tools"
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetTeamsByTeamIdFeatureControlsColsParameterItem"
+                "type": "string"
               }
             }
           }
@@ -52480,7 +52545,7 @@
           {
             "name": "pg[sortBy]",
             "in": "query",
-            "description": "The value that will be used to sort returned entities by. Templates can be currently sorted only by ID or name.",
+            "description": "The value that will be used to sort returned entities by.",
             "schema": {
               "type": "string"
             }
@@ -54270,13 +54335,13 @@
             }
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetUsersMeColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -55470,13 +55535,13 @@
             "example": 2
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetUsersByPermissionColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -55752,13 +55817,13 @@
         "operationId": "GetUsersRoles",
         "parameters": [
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetUsersRolesColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -56421,13 +56486,13 @@
             "example": 111
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetUsersByUserIdUserOrganizationRolesColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -56541,13 +56606,13 @@
             "example": 11
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/GetUsersByUserIdUserOrganizationRolesByOrganizationIdColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -56641,13 +56706,13 @@
             "example": 22
           },
           {
-            "name": "cols[]",
+            "name": "cols",
             "in": "query",
             "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for every column that you want to return in the response. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/PostUsersByUserIdUserOrganizationRolesByOrganizationIdColsParameterItem"
+                "type": "string"
               }
             },
             "examples": {
@@ -58930,6 +58995,11 @@
           "tfaEnforced": {
             "type": "boolean",
             "description": "Whether TFA is enforced for the organization."
+          },
+          "userSessionTimeout": {
+            "type": "integer",
+            "description": "How long, in seconds, a user of the organization may stay inactive before being logged out.",
+            "example": 86400
           },
           "featureControls": {
             "type": "array",
@@ -111286,6 +111356,31 @@
           }
         }
       },
+      "GetOrganizationsByOrganizationIdAffiliatePartners200Response": {
+        "required": [
+          "affiliatePartners"
+        ],
+        "type": "object",
+        "properties": {
+          "affiliatePartners": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdAffiliatePartners200ResponseAffiliatePartnersItem"
+            }
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdAffiliatePartners403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
       "GetOrganizationsByOrganizationIdCheckTeamPermission200Response": {
         "type": "object",
         "properties": {
@@ -154815,6 +154910,11 @@
             "type": "boolean",
             "description": "Whether TFA is enforced for the organization."
           },
+          "userSessionTimeout": {
+            "type": "integer",
+            "description": "How long, in seconds, a user of the organization may stay inactive before being logged out.",
+            "example": 86400
+          },
           "featureControls": {
             "type": "array",
             "items": {
@@ -154921,6 +155021,11 @@
           "tfaEnforced": {
             "type": "boolean",
             "description": "Whether TFA is enforced for the organization."
+          },
+          "userSessionTimeout": {
+            "type": "integer",
+            "description": "How long, in seconds, a user of the organization may stay inactive before being logged out.",
+            "example": 86400
           },
           "featureControls": {
             "type": "array",
@@ -163124,6 +163229,11 @@
             "type": "boolean",
             "description": "Whether TFA is enforced for the organization."
           },
+          "userSessionTimeout": {
+            "type": "integer",
+            "description": "How long, in seconds, a user of the organization may stay inactive before being logged out.",
+            "example": 86400
+          },
           "featureControls": {
             "type": "array",
             "items": {
@@ -163227,6 +163337,11 @@
           "tfaEnforced": {
             "type": "boolean",
             "description": "Whether TFA is enforced for the organization."
+          },
+          "userSessionTimeout": {
+            "type": "integer",
+            "description": "How long, in seconds, a user of the organization may stay inactive before being logged out.",
+            "example": 86400
           },
           "featureControls": {
             "type": "array",
@@ -163466,6 +163581,11 @@
             "type": "boolean",
             "description": "Whether TFA is enforced for the organization."
           },
+          "userSessionTimeout": {
+            "type": "integer",
+            "description": "How long, in seconds, a user of the organization may stay inactive before being logged out.",
+            "example": 86400
+          },
           "featureControls": {
             "type": "array",
             "items": {
@@ -163546,6 +163666,11 @@
           "tfaEnforced": {
             "type": "boolean",
             "description": "Whether TFA is enforced for the organization."
+          },
+          "userSessionTimeout": {
+            "type": "integer",
+            "description": "How long, in seconds, a user of the organization may stay inactive before being logged out.",
+            "example": 86400
           },
           "featureControls": {
             "type": "array",
@@ -164439,6 +164564,24 @@
           },
           "addAdminsAsObservers": {
             "type": "boolean"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdAffiliatePartners200ResponseAffiliatePartnersItem": {
+        "required": [
+          "partnerCode",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "partnerCode": {
+            "type": "string",
+            "description": "The partner code identifying the affiliate partner. Used as the value of the organization\u0027s \u0060sharedScenarioPartnerCode\u0060 attribute."
+          },
+          "name": {
+            "type": "string",
+            "description": "The display name of the affiliate partner.",
+            "nullable": true
           }
         }
       },
@@ -209531,88 +209674,6 @@
           ]
         }
       },
-      "GetAdminOrganizationsColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "countryId",
-          "timezoneId",
-          "license",
-          "zone",
-          "serviceName",
-          "teams",
-          "isPaused",
-          "scenarios",
-          "activeScenarios",
-          "deleted",
-          "externalId",
-          "tfaEnforced"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetAdminOrganizationsColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "countryId",
-              "name": "CountryId"
-            },
-            {
-              "value": "timezoneId",
-              "name": "TimezoneId"
-            },
-            {
-              "value": "license",
-              "name": "License"
-            },
-            {
-              "value": "zone",
-              "name": "Zone"
-            },
-            {
-              "value": "serviceName",
-              "name": "ServiceName"
-            },
-            {
-              "value": "teams",
-              "name": "Teams"
-            },
-            {
-              "value": "isPaused",
-              "name": "IsPaused"
-            },
-            {
-              "value": "scenarios",
-              "name": "Scenarios"
-            },
-            {
-              "value": "activeScenarios",
-              "name": "ActiveScenarios"
-            },
-            {
-              "value": "deleted",
-              "name": "Deleted"
-            },
-            {
-              "value": "externalId",
-              "name": "ExternalId"
-            },
-            {
-              "value": "tfaEnforced",
-              "name": "TfaEnforced"
-            }
-          ]
-        }
-      },
       "GetAdminOrganizationsPgSortDirParameter": {
         "enum": [
           "asc",
@@ -209696,113 +209757,6 @@
           ]
         }
       },
-      "GetAdminUsersDetailColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "email",
-          "language",
-          "timezoneId",
-          "localeId",
-          "countryId",
-          "features",
-          "avatar",
-          "lastLogin",
-          "organizations",
-          "scenarios",
-          "activeScenarios",
-          "deleted",
-          "created",
-          "usersAdminsRoleId",
-          "tfaEnabled",
-          "suspended",
-          "suspensionReason"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetAdminUsersDetailColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "email",
-              "name": "Email"
-            },
-            {
-              "value": "language",
-              "name": "Language"
-            },
-            {
-              "value": "timezoneId",
-              "name": "TimezoneId"
-            },
-            {
-              "value": "localeId",
-              "name": "LocaleId"
-            },
-            {
-              "value": "countryId",
-              "name": "CountryId"
-            },
-            {
-              "value": "features",
-              "name": "Features"
-            },
-            {
-              "value": "avatar",
-              "name": "Avatar"
-            },
-            {
-              "value": "lastLogin",
-              "name": "LastLogin"
-            },
-            {
-              "value": "organizations",
-              "name": "Organizations"
-            },
-            {
-              "value": "scenarios",
-              "name": "Scenarios"
-            },
-            {
-              "value": "activeScenarios",
-              "name": "ActiveScenarios"
-            },
-            {
-              "value": "deleted",
-              "name": "Deleted"
-            },
-            {
-              "value": "created",
-              "name": "Created"
-            },
-            {
-              "value": "usersAdminsRoleId",
-              "name": "UsersAdminsRoleId"
-            },
-            {
-              "value": "tfaEnabled",
-              "name": "TfaEnabled"
-            },
-            {
-              "value": "suspended",
-              "name": "Suspended"
-            },
-            {
-              "value": "suspensionReason",
-              "name": "SuspensionReason"
-            }
-          ]
-        }
-      },
       "GetAdminUsersDetailPgSortByParameter": {
         "enum": [
           "name",
@@ -209860,108 +209814,6 @@
         ],
         "type": "integer",
         "additionalProperties": false
-      },
-      "GetAdminUsersColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "email",
-          "language",
-          "timezoneId",
-          "localeId",
-          "countryId",
-          "features",
-          "avatar",
-          "lastLogin",
-          "organizations",
-          "scenarios",
-          "activeScenarios",
-          "deleted",
-          "created",
-          "usersAdminsRoleId",
-          "tfaEnabled",
-          "tfaStatus"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetAdminUsersColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "email",
-              "name": "Email"
-            },
-            {
-              "value": "language",
-              "name": "Language"
-            },
-            {
-              "value": "timezoneId",
-              "name": "TimezoneId"
-            },
-            {
-              "value": "localeId",
-              "name": "LocaleId"
-            },
-            {
-              "value": "countryId",
-              "name": "CountryId"
-            },
-            {
-              "value": "features",
-              "name": "Features"
-            },
-            {
-              "value": "avatar",
-              "name": "Avatar"
-            },
-            {
-              "value": "lastLogin",
-              "name": "LastLogin"
-            },
-            {
-              "value": "organizations",
-              "name": "Organizations"
-            },
-            {
-              "value": "scenarios",
-              "name": "Scenarios"
-            },
-            {
-              "value": "activeScenarios",
-              "name": "ActiveScenarios"
-            },
-            {
-              "value": "deleted",
-              "name": "Deleted"
-            },
-            {
-              "value": "created",
-              "name": "Created"
-            },
-            {
-              "value": "usersAdminsRoleId",
-              "name": "UsersAdminsRoleId"
-            },
-            {
-              "value": "tfaEnabled",
-              "name": "TfaEnabled"
-            },
-            {
-              "value": "tfaStatus",
-              "name": "TfaStatus"
-            }
-          ]
-        }
       },
       "GetAdminUsersPgSortByParameter": {
         "enum": [
@@ -210039,53 +209891,6 @@
           ]
         }
       },
-      "PostAdminUsersByUserIdUserOrganizationRolesByOrganizationIdColsParameterItem": {
-        "enum": [
-          "userId",
-          "organizationId",
-          "usersRoleId",
-          "invitation",
-          "organizationTeamsCount",
-          "joinedTeamsCount",
-          "ssoPending"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PostAdminUsersByUserIdUserOrganizationRolesByOrganizationIdColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "userId",
-              "name": "UserId"
-            },
-            {
-              "value": "organizationId",
-              "name": "OrganizationId"
-            },
-            {
-              "value": "usersRoleId",
-              "name": "UsersRoleId"
-            },
-            {
-              "value": "invitation",
-              "name": "Invitation"
-            },
-            {
-              "value": "organizationTeamsCount",
-              "name": "OrganizationTeamsCount"
-            },
-            {
-              "value": "joinedTeamsCount",
-              "name": "JoinedTeamsCount"
-            },
-            {
-              "value": "ssoPending",
-              "name": "SsoPending"
-            }
-          ]
-        }
-      },
       "GetAdminUsersAdminsRolesCategoryParameter": {
         "enum": [
           "system",
@@ -210109,48 +209914,6 @@
             {
               "value": "support",
               "name": "Support"
-            }
-          ]
-        }
-      },
-      "GetAdminUsersAdminsRolesColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "permissions",
-          "category",
-          "identifier",
-          "managementType"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetAdminUsersAdminsRolesColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "permissions",
-              "name": "Permissions"
-            },
-            {
-              "value": "category",
-              "name": "Category"
-            },
-            {
-              "value": "identifier",
-              "name": "Identifier"
-            },
-            {
-              "value": "managementType",
-              "name": "ManagementType"
             }
           ]
         }
@@ -212134,110 +211897,6 @@
           ]
         }
       },
-      "GetFunctionsColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "description",
-          "args",
-          "updatedAt",
-          "createdAt",
-          "createdByUser"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetFunctionsColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "description",
-              "name": "Description"
-            },
-            {
-              "value": "args",
-              "name": "Args"
-            },
-            {
-              "value": "updatedAt",
-              "name": "UpdatedAt"
-            },
-            {
-              "value": "createdAt",
-              "name": "CreatedAt"
-            },
-            {
-              "value": "createdByUser",
-              "name": "CreatedByUser"
-            }
-          ]
-        }
-      },
-      "GetFunctionsByFunctionIdColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "args",
-          "code",
-          "scenarios",
-          "description",
-          "updatedAt",
-          "createdByUser",
-          "createdAt"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetFunctionsByFunctionIdColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "args",
-              "name": "Args"
-            },
-            {
-              "value": "code",
-              "name": "Code"
-            },
-            {
-              "value": "scenarios",
-              "name": "Scenarios"
-            },
-            {
-              "value": "description",
-              "name": "Description"
-            },
-            {
-              "value": "updatedAt",
-              "name": "UpdatedAt"
-            },
-            {
-              "value": "createdByUser",
-              "name": "CreatedByUser"
-            },
-            {
-              "value": "createdAt",
-              "name": "CreatedAt"
-            }
-          ]
-        }
-      },
       "GetHooksByHookIdIncomingsPgSortDirParameter": {
         "enum": [
           "asc",
@@ -212489,83 +212148,6 @@
           ]
         }
       },
-      "GetOrganizationsColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "countryId",
-          "timezoneId",
-          "license",
-          "zone",
-          "serviceName",
-          "teams",
-          "isPaused",
-          "externalId",
-          "productName",
-          "tfaEnforced",
-          "privateSpaces"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetOrganizationsColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "countryId",
-              "name": "CountryId"
-            },
-            {
-              "value": "timezoneId",
-              "name": "TimezoneId"
-            },
-            {
-              "value": "license",
-              "name": "License"
-            },
-            {
-              "value": "zone",
-              "name": "Zone"
-            },
-            {
-              "value": "serviceName",
-              "name": "ServiceName"
-            },
-            {
-              "value": "teams",
-              "name": "Teams"
-            },
-            {
-              "value": "isPaused",
-              "name": "IsPaused"
-            },
-            {
-              "value": "externalId",
-              "name": "ExternalId"
-            },
-            {
-              "value": "productName",
-              "name": "ProductName"
-            },
-            {
-              "value": "tfaEnforced",
-              "name": "TfaEnforced"
-            },
-            {
-              "value": "privateSpaces",
-              "name": "PrivateSpaces"
-            }
-          ]
-        }
-      },
       "GetOrganizationsPgSortDirParameter": {
         "enum": [
           "asc",
@@ -212606,137 +212188,6 @@
             {
               "value": "desc",
               "name": "Desc"
-            }
-          ]
-        }
-      },
-      "GetOrganizationsByOrganizationIdUserOrganizationRolesColsParameterItem": {
-        "enum": [
-          "userId",
-          "organizationId",
-          "userRoleId",
-          "invitation",
-          "organizationTeamsCount",
-          "joinedTeamsCount"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetOrganizationsByOrganizationIdUserOrganizationRolesColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "userId",
-              "name": "UserId"
-            },
-            {
-              "value": "organizationId",
-              "name": "OrganizationId"
-            },
-            {
-              "value": "userRoleId",
-              "name": "UserRoleId"
-            },
-            {
-              "value": "invitation",
-              "name": "Invitation"
-            },
-            {
-              "value": "organizationTeamsCount",
-              "name": "OrganizationTeamsCount"
-            },
-            {
-              "value": "joinedTeamsCount",
-              "name": "JoinedTeamsCount"
-            }
-          ]
-        }
-      },
-      "GetOrganizationsByOrganizationIdUserOrganizationRolesByUserIdColsParameterItem": {
-        "enum": [
-          "userId",
-          "organizationId",
-          "userRoleId",
-          "invitation",
-          "organizationTeamsCount",
-          "joinedTeamsCount"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetOrganizationsByOrganizationIdUserOrganizationRolesByUserIdColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "userId",
-              "name": "UserId"
-            },
-            {
-              "value": "organizationId",
-              "name": "OrganizationId"
-            },
-            {
-              "value": "userRoleId",
-              "name": "UserRoleId"
-            },
-            {
-              "value": "invitation",
-              "name": "Invitation"
-            },
-            {
-              "value": "organizationTeamsCount",
-              "name": "OrganizationTeamsCount"
-            },
-            {
-              "value": "joinedTeamsCount",
-              "name": "JoinedTeamsCount"
-            }
-          ]
-        }
-      },
-      "GetOrganizationsByOrganizationIdFeatureControlsColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "label",
-          "description",
-          "tags",
-          "warning_message",
-          "enabled"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetOrganizationsByOrganizationIdFeatureControlsColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "label",
-              "name": "Label"
-            },
-            {
-              "value": "description",
-              "name": "Description"
-            },
-            {
-              "value": "tags",
-              "name": "Tags"
-            },
-            {
-              "value": "warning_message",
-              "name": "WarningMessage"
-            },
-            {
-              "value": "enabled",
-              "name": "Enabled"
             }
           ]
         }
@@ -215230,88 +214681,6 @@
           ]
         }
       },
-      "GetPrivateSpacesColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "organizationId",
-          "globalAgentsEnabled",
-          "type",
-          "privateSpaceOwnerName",
-          "privateSpaceOwnerEmail",
-          "privateSpaceOwnerId",
-          "operationsLimit",
-          "transferLimit",
-          "consumedOperations",
-          "consumedTransfer",
-          "isPaused",
-          "consumedCenticredits"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetPrivateSpacesColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "organizationId",
-              "name": "OrganizationId"
-            },
-            {
-              "value": "globalAgentsEnabled",
-              "name": "GlobalAgentsEnabled"
-            },
-            {
-              "value": "type",
-              "name": "Type"
-            },
-            {
-              "value": "privateSpaceOwnerName",
-              "name": "PrivateSpaceOwnerName"
-            },
-            {
-              "value": "privateSpaceOwnerEmail",
-              "name": "PrivateSpaceOwnerEmail"
-            },
-            {
-              "value": "privateSpaceOwnerId",
-              "name": "PrivateSpaceOwnerId"
-            },
-            {
-              "value": "operationsLimit",
-              "name": "OperationsLimit"
-            },
-            {
-              "value": "transferLimit",
-              "name": "TransferLimit"
-            },
-            {
-              "value": "consumedOperations",
-              "name": "ConsumedOperations"
-            },
-            {
-              "value": "consumedTransfer",
-              "name": "ConsumedTransfer"
-            },
-            {
-              "value": "isPaused",
-              "name": "IsPaused"
-            },
-            {
-              "value": "consumedCenticredits",
-              "name": "ConsumedCenticredits"
-            }
-          ]
-        }
-      },
       "GetPrivateSpacesPgSortDirParameter": {
         "enum": [
           "asc",
@@ -215330,165 +214699,6 @@
             {
               "value": "desc",
               "name": "Desc"
-            }
-          ]
-        }
-      },
-      "GetPrivateSpacesByPrivateSpaceIdColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "organizationId",
-          "globalAgentsEnabled",
-          "type",
-          "privateSpaceOwnerName",
-          "privateSpaceOwnerEmail",
-          "privateSpaceOwnerId",
-          "operationsLimit",
-          "transferLimit",
-          "consumedOperations",
-          "consumedTransfer",
-          "isPaused",
-          "consumedCenticredits",
-          "operations",
-          "transfer",
-          "centicredits"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetPrivateSpacesByPrivateSpaceIdColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "organizationId",
-              "name": "OrganizationId"
-            },
-            {
-              "value": "globalAgentsEnabled",
-              "name": "GlobalAgentsEnabled"
-            },
-            {
-              "value": "type",
-              "name": "Type"
-            },
-            {
-              "value": "privateSpaceOwnerName",
-              "name": "PrivateSpaceOwnerName"
-            },
-            {
-              "value": "privateSpaceOwnerEmail",
-              "name": "PrivateSpaceOwnerEmail"
-            },
-            {
-              "value": "privateSpaceOwnerId",
-              "name": "PrivateSpaceOwnerId"
-            },
-            {
-              "value": "operationsLimit",
-              "name": "OperationsLimit"
-            },
-            {
-              "value": "transferLimit",
-              "name": "TransferLimit"
-            },
-            {
-              "value": "consumedOperations",
-              "name": "ConsumedOperations"
-            },
-            {
-              "value": "consumedTransfer",
-              "name": "ConsumedTransfer"
-            },
-            {
-              "value": "isPaused",
-              "name": "IsPaused"
-            },
-            {
-              "value": "consumedCenticredits",
-              "name": "ConsumedCenticredits"
-            },
-            {
-              "value": "operations",
-              "name": "Operations"
-            },
-            {
-              "value": "transfer",
-              "name": "Transfer"
-            },
-            {
-              "value": "centicredits",
-              "name": "Centicredits"
-            }
-          ]
-        }
-      },
-      "GetTeamsColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "organizationId",
-          "operationsLimit",
-          "transferLimit",
-          "consumedOperations",
-          "consumedTransfer",
-          "isPaused",
-          "consumedCenticredits",
-          "type"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetTeamsColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "organizationId",
-              "name": "OrganizationId"
-            },
-            {
-              "value": "operationsLimit",
-              "name": "OperationsLimit"
-            },
-            {
-              "value": "transferLimit",
-              "name": "TransferLimit"
-            },
-            {
-              "value": "consumedOperations",
-              "name": "ConsumedOperations"
-            },
-            {
-              "value": "consumedTransfer",
-              "name": "ConsumedTransfer"
-            },
-            {
-              "value": "isPaused",
-              "name": "IsPaused"
-            },
-            {
-              "value": "consumedCenticredits",
-              "name": "ConsumedCenticredits"
-            },
-            {
-              "value": "type",
-              "name": "Type"
             }
           ]
         }
@@ -215515,237 +214725,6 @@
           ]
         }
       },
-      "GetTeamsByTeamIdColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "organizationId",
-          "activeScenarios",
-          "activeApps",
-          "operations",
-          "transfer",
-          "centicredits",
-          "operationsLimit",
-          "transferLimit",
-          "consumedOperations",
-          "consumedTransfer",
-          "isPaused",
-          "consumedCenticredits",
-          "type"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "organizationId",
-              "name": "OrganizationId"
-            },
-            {
-              "value": "activeScenarios",
-              "name": "ActiveScenarios"
-            },
-            {
-              "value": "activeApps",
-              "name": "ActiveApps"
-            },
-            {
-              "value": "operations",
-              "name": "Operations"
-            },
-            {
-              "value": "transfer",
-              "name": "Transfer"
-            },
-            {
-              "value": "centicredits",
-              "name": "Centicredits"
-            },
-            {
-              "value": "operationsLimit",
-              "name": "OperationsLimit"
-            },
-            {
-              "value": "transferLimit",
-              "name": "TransferLimit"
-            },
-            {
-              "value": "consumedOperations",
-              "name": "ConsumedOperations"
-            },
-            {
-              "value": "consumedTransfer",
-              "name": "ConsumedTransfer"
-            },
-            {
-              "value": "isPaused",
-              "name": "IsPaused"
-            },
-            {
-              "value": "consumedCenticredits",
-              "name": "ConsumedCenticredits"
-            },
-            {
-              "value": "type",
-              "name": "Type"
-            }
-          ]
-        }
-      },
-      "PatchTeamsByTeamIdColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "organizationId",
-          "activeScenarios",
-          "activeApps",
-          "operations",
-          "transfer",
-          "centicredits",
-          "operationsLimit",
-          "transferLimit",
-          "consumedOperations",
-          "consumedTransfer",
-          "isPaused",
-          "consumedCenticredits",
-          "type"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PatchTeamsByTeamIdColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "organizationId",
-              "name": "OrganizationId"
-            },
-            {
-              "value": "activeScenarios",
-              "name": "ActiveScenarios"
-            },
-            {
-              "value": "activeApps",
-              "name": "ActiveApps"
-            },
-            {
-              "value": "operations",
-              "name": "Operations"
-            },
-            {
-              "value": "transfer",
-              "name": "Transfer"
-            },
-            {
-              "value": "centicredits",
-              "name": "Centicredits"
-            },
-            {
-              "value": "operationsLimit",
-              "name": "OperationsLimit"
-            },
-            {
-              "value": "transferLimit",
-              "name": "TransferLimit"
-            },
-            {
-              "value": "consumedOperations",
-              "name": "ConsumedOperations"
-            },
-            {
-              "value": "consumedTransfer",
-              "name": "ConsumedTransfer"
-            },
-            {
-              "value": "isPaused",
-              "name": "IsPaused"
-            },
-            {
-              "value": "consumedCenticredits",
-              "name": "ConsumedCenticredits"
-            },
-            {
-              "value": "type",
-              "name": "Type"
-            }
-          ]
-        }
-      },
-      "GetTeamsByTeamIdUserTeamRolesColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "country",
-          "timezone",
-          "license",
-          "zone",
-          "serviceName",
-          "teams",
-          "ispaused"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdUserTeamRolesColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "country",
-              "name": "Country"
-            },
-            {
-              "value": "timezone",
-              "name": "Timezone"
-            },
-            {
-              "value": "license",
-              "name": "License"
-            },
-            {
-              "value": "zone",
-              "name": "Zone"
-            },
-            {
-              "value": "serviceName",
-              "name": "ServiceName"
-            },
-            {
-              "value": "teams",
-              "name": "Teams"
-            },
-            {
-              "value": "ispaused",
-              "name": "Ispaused"
-            }
-          ]
-        }
-      },
       "GetTeamsByTeamIdUserTeamRolesPgSortDirParameter": {
         "enum": [
           "asc",
@@ -215768,38 +214747,6 @@
           ]
         }
       },
-      "GetTeamsByTeamIdUserTeamRolesByUserIdColsParameterItem": {
-        "enum": [
-          "usersRoleId",
-          "userId",
-          "teamId",
-          "changeable"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdUserTeamRolesByUserIdColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "usersRoleId",
-              "name": "UsersRoleId"
-            },
-            {
-              "value": "userId",
-              "name": "UserId"
-            },
-            {
-              "value": "teamId",
-              "name": "TeamId"
-            },
-            {
-              "value": "changeable",
-              "name": "Changeable"
-            }
-          ]
-        }
-      },
       "GetTeamsByTeamIdUserTeamRolesByUserIdPgSortDirParameter": {
         "enum": [
           "asc",
@@ -215818,53 +214765,6 @@
             {
               "value": "desc",
               "name": "Desc"
-            }
-          ]
-        }
-      },
-      "GetTeamsByTeamIdFeatureControlsColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "label",
-          "description",
-          "tags",
-          "warning_message",
-          "enabled"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetTeamsByTeamIdFeatureControlsColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "label",
-              "name": "Label"
-            },
-            {
-              "value": "description",
-              "name": "Description"
-            },
-            {
-              "value": "tags",
-              "name": "Tags"
-            },
-            {
-              "value": "warning_message",
-              "name": "WarningMessage"
-            },
-            {
-              "value": "enabled",
-              "name": "Enabled"
             }
           ]
         }
@@ -216624,128 +215524,6 @@
           ]
         }
       },
-      "GetUsersMeColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "email",
-          "language",
-          "timezoneId",
-          "localeId",
-          "countryId",
-          "features",
-          "avatar",
-          "timezone",
-          "locale",
-          "emailNotifications",
-          "usersAdminsRoleId",
-          "userOrganizationRoles",
-          "userTeamRoles",
-          "forceSetPassword",
-          "hasPassword",
-          "tfaEnabled",
-          "tfaStatus",
-          "isAffiliatePartner",
-          "hasAddedApp",
-          "supportEligible"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetUsersMeColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "email",
-              "name": "Email"
-            },
-            {
-              "value": "language",
-              "name": "Language"
-            },
-            {
-              "value": "timezoneId",
-              "name": "TimezoneId"
-            },
-            {
-              "value": "localeId",
-              "name": "LocaleId"
-            },
-            {
-              "value": "countryId",
-              "name": "CountryId"
-            },
-            {
-              "value": "features",
-              "name": "Features"
-            },
-            {
-              "value": "avatar",
-              "name": "Avatar"
-            },
-            {
-              "value": "timezone",
-              "name": "Timezone"
-            },
-            {
-              "value": "locale",
-              "name": "Locale"
-            },
-            {
-              "value": "emailNotifications",
-              "name": "EmailNotifications"
-            },
-            {
-              "value": "usersAdminsRoleId",
-              "name": "UsersAdminsRoleId"
-            },
-            {
-              "value": "userOrganizationRoles",
-              "name": "UserOrganizationRoles"
-            },
-            {
-              "value": "userTeamRoles",
-              "name": "UserTeamRoles"
-            },
-            {
-              "value": "forceSetPassword",
-              "name": "ForceSetPassword"
-            },
-            {
-              "value": "hasPassword",
-              "name": "HasPassword"
-            },
-            {
-              "value": "tfaEnabled",
-              "name": "TfaEnabled"
-            },
-            {
-              "value": "tfaStatus",
-              "name": "TfaStatus"
-            },
-            {
-              "value": "isAffiliatePartner",
-              "name": "IsAffiliatePartner"
-            },
-            {
-              "value": "hasAddedApp",
-              "name": "HasAddedApp"
-            },
-            {
-              "value": "supportEligible",
-              "name": "SupportEligible"
-            }
-          ]
-        }
-      },
       "GetUsersByPermissionTypeParameter": {
         "enum": [
           "organization",
@@ -216764,125 +215542,6 @@
             {
               "value": "company",
               "name": "Company"
-            }
-          ]
-        }
-      },
-      "GetUsersByPermissionColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "email",
-          "privateSpaceId",
-          "language",
-          "timezoneId",
-          "localeId",
-          "countryId",
-          "avatar",
-          "lastLogin",
-          "invitationStatus"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetUsersByPermissionColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "email",
-              "name": "Email"
-            },
-            {
-              "value": "privateSpaceId",
-              "name": "PrivateSpaceId"
-            },
-            {
-              "value": "language",
-              "name": "Language"
-            },
-            {
-              "value": "timezoneId",
-              "name": "TimezoneId"
-            },
-            {
-              "value": "localeId",
-              "name": "LocaleId"
-            },
-            {
-              "value": "countryId",
-              "name": "CountryId"
-            },
-            {
-              "value": "avatar",
-              "name": "Avatar"
-            },
-            {
-              "value": "lastLogin",
-              "name": "LastLogin"
-            },
-            {
-              "value": "invitationStatus",
-              "name": "InvitationStatus"
-            }
-          ]
-        }
-      },
-      "GetUsersRolesColsParameterItem": {
-        "enum": [
-          "id",
-          "name",
-          "identifier",
-          "subsidiary",
-          "category",
-          "permissions",
-          "description",
-          "managementType"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetUsersRolesColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "id",
-              "name": "Id"
-            },
-            {
-              "value": "name",
-              "name": "Name"
-            },
-            {
-              "value": "identifier",
-              "name": "Identifier"
-            },
-            {
-              "value": "subsidiary",
-              "name": "Subsidiary"
-            },
-            {
-              "value": "category",
-              "name": "Category"
-            },
-            {
-              "value": "permissions",
-              "name": "Permissions"
-            },
-            {
-              "value": "description",
-              "name": "Description"
-            },
-            {
-              "value": "managementType",
-              "name": "ManagementType"
             }
           ]
         }
@@ -216927,132 +215586,6 @@
             {
               "value": "organization",
               "name": "Organization"
-            }
-          ]
-        }
-      },
-      "GetUsersByUserIdUserOrganizationRolesColsParameterItem": {
-        "enum": [
-          "userId",
-          "organizationId",
-          "usersRoleId",
-          "invitation",
-          "organizationTeamsCount",
-          "joinedTeamsCount"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetUsersByUserIdUserOrganizationRolesColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "userId",
-              "name": "UserId"
-            },
-            {
-              "value": "organizationId",
-              "name": "OrganizationId"
-            },
-            {
-              "value": "usersRoleId",
-              "name": "UsersRoleId"
-            },
-            {
-              "value": "invitation",
-              "name": "Invitation"
-            },
-            {
-              "value": "organizationTeamsCount",
-              "name": "OrganizationTeamsCount"
-            },
-            {
-              "value": "joinedTeamsCount",
-              "name": "JoinedTeamsCount"
-            }
-          ]
-        }
-      },
-      "GetUsersByUserIdUserOrganizationRolesByOrganizationIdColsParameterItem": {
-        "enum": [
-          "userId",
-          "organizationId",
-          "userRoleId",
-          "invitation",
-          "organizationTeamsCount",
-          "joinedTeamsCount"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "GetUsersByUserIdUserOrganizationRolesByOrganizationIdColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "userId",
-              "name": "UserId"
-            },
-            {
-              "value": "organizationId",
-              "name": "OrganizationId"
-            },
-            {
-              "value": "userRoleId",
-              "name": "UserRoleId"
-            },
-            {
-              "value": "invitation",
-              "name": "Invitation"
-            },
-            {
-              "value": "organizationTeamsCount",
-              "name": "OrganizationTeamsCount"
-            },
-            {
-              "value": "joinedTeamsCount",
-              "name": "JoinedTeamsCount"
-            }
-          ]
-        }
-      },
-      "PostUsersByUserIdUserOrganizationRolesByOrganizationIdColsParameterItem": {
-        "enum": [
-          "userId",
-          "organizationId",
-          "usersRoleId",
-          "invitation",
-          "organizationTeamsCount",
-          "joinedTeamsCount"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PostUsersByUserIdUserOrganizationRolesByOrganizationIdColsParameterItem",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "userId",
-              "name": "UserId"
-            },
-            {
-              "value": "organizationId",
-              "name": "OrganizationId"
-            },
-            {
-              "value": "usersRoleId",
-              "name": "UsersRoleId"
-            },
-            {
-              "value": "invitation",
-              "name": "Invitation"
-            },
-            {
-              "value": "organizationTeamsCount",
-              "name": "OrganizationTeamsCount"
-            },
-            {
-              "value": "joinedTeamsCount",
-              "name": "JoinedTeamsCount"
             }
           ]
         }

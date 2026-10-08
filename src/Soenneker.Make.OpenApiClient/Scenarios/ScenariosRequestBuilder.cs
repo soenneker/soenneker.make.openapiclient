@@ -278,7 +278,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
             /// <summary>The value that will be used to sort returned entities by.</summary>
             [QueryParameter("pg%5BsortBy%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetScenariosPgSortByParameter? PgsortBy { get; set; }
-            /// <summary>The sorting direction. Ascending order (`asc`) is rejected only when sorting by the default `proprietal` column; for every other `sortBy` value both `asc` and `desc` are allowed. Defaults to `desc`.</summary>
+            /// <summary>The sorting order. It accepts the ascending and descending direction specifiers.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.GetScenariosPgSortDirParameter? PgsortDir { get; set; }
             /// <summary>Searches scenario names using a case-insensitive literal substring match. An empty value is treated as omitted. A positive integer, optionally surrounded by spaces, also matches the scenario with that exact ID; the original untrimmed value remains the name substring. A blank-only value therefore searches names for those spaces and does not match by ID. Partial, signed, decimal, leading-zero, and out-of-range IDs do not match by ID.</summary>

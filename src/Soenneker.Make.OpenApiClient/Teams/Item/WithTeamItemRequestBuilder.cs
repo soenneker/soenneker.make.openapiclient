@@ -70,7 +70,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTeamItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{teamId}{?cols%5B%5D*,confirmed*}", pathParameters)
+        public WithTeamItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{teamId}{?cols*,confirmed*}", pathParameters)
         {
         }
         /// <summary>
@@ -78,7 +78,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithTeamItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{teamId}{?cols%5B%5D*,confirmed*}", rawUrl)
+        public WithTeamItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/teams/{teamId}{?cols*,confirmed*}", rawUrl)
         {
         }
         /// <summary>
@@ -225,12 +225,12 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item
             /// <summary>Specifies columns that are returned in the response. Use the `cols[]` parameter for every column that you want to return in the response. For example `GET /endpoint?cols[]=key1&amp;cols[]=key2` to get both `key1` and `key2` columns in the response.[Check the &quot;Filtering&quot; section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdColsParameterItem[]? Cols { get; set; }
+            [QueryParameter("cols")]
+            public string[]? Cols { get; set; }
 #nullable restore
 #else
-            [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdColsParameterItem[] Cols { get; set; }
+            [QueryParameter("cols")]
+            public string[] Cols { get; set; }
 #endif
         }
         /// <summary>
@@ -242,12 +242,12 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item
             /// <summary>Specifies columns that are returned in the response. Use the `cols[]` parameter for every column that you want to return in the response. For example `GET /endpoint?cols[]=key1&amp;cols[]=key2` to get both `key1` and `key2` columns in the response.[Check the &quot;Filtering&quot; section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-            [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdColsParameterItem[]? Cols { get; set; }
+            [QueryParameter("cols")]
+            public string[]? Cols { get; set; }
 #nullable restore
 #else
-            [QueryParameter("cols%5B%5D")]
-            public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdColsParameterItem[] Cols { get; set; }
+            [QueryParameter("cols")]
+            public string[] Cols { get; set; }
 #endif
         }
     }

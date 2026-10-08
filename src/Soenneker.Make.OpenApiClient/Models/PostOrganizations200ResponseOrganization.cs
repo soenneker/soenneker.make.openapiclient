@@ -100,6 +100,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public bool? TfaEnforced { get; set; }
         /// <summary>The timezoneId property</summary>
         public int? TimezoneId { get; set; }
+        /// <summary>How long, in seconds, a user of the organization may stay inactive before being logged out.</summary>
+        public int? UserSessionTimeout { get; set; }
         /// <summary>The zone property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -152,6 +154,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "teams", n => { Teams = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200ResponseOrganizationTeamsItem>(global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200ResponseOrganizationTeamsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "tfaEnforced", n => { TfaEnforced = n.GetBoolValue(); } },
                 { "timezoneId", n => { TimezoneId = n.GetIntValue(); } },
+                { "userSessionTimeout", n => { UserSessionTimeout = n.GetIntValue(); } },
                 { "zone", n => { Zone = n.GetStringValue(); } },
             };
         }
@@ -181,6 +184,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200ResponseOrganizationTeamsItem>("teams", Teams);
             writer.WriteBoolValue("tfaEnforced", TfaEnforced);
             writer.WriteIntValue("timezoneId", TimezoneId);
+            writer.WriteIntValue("userSessionTimeout", UserSessionTimeout);
             writer.WriteStringValue("zone", Zone);
             writer.WriteAdditionalData(AdditionalData);
         }
