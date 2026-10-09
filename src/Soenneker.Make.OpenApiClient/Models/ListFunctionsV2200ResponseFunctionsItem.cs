@@ -12,6 +12,8 @@ namespace Soenneker.Make.OpenApiClient.Models
     public partial class ListFunctionsV2200ResponseFunctionsItem : IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Whether published versions accept Runs. New and restored Functions are off; inline Runs work either way.</summary>
+        public bool? Active { get; set; }
         /// <summary>The createdAt property</summary>
         public DateTimeOffset? CreatedAt { get; set; }
         /// <summary>The description property</summary>
@@ -62,6 +64,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "active", n => { Active = n.GetBoolValue(); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
@@ -78,6 +81,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("active", Active);
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteStringValue("description", Description);
             writer.WriteIntValue("id", Id);

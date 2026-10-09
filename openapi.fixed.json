@@ -195,6 +195,304 @@
         "x-internal": true
       }
     },
+    "/admin/functions/v2/trash": {
+      "get": {
+        "tags": [
+          "Admin / Functions V2"
+        ],
+        "summary": "List trashed Functions of a team",
+        "description": "Lists the team\u0027s Functions V2 that were deleted less than 30 days ago and can still be restored, newest deletion first.\nRequires the \u0060scenario view\u0060 admin permission.\n\nDeleting a Function moves it to trash: it is switched off, its in-flight Runs are cancelled, and the Function, its versions\nand its Runs disappear from every non-admin route. After 30 days a background job deletes them permanently, and they no\nlonger appear here.\n",
+        "operationId": "GetAdminFunctionsV2Trash",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "Team that owns the Function collection.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 42
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Trashed Functions of the team that can still be restored.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAdminFunctionsV2Trash200Response"
+                },
+                "examples": {
+                  "trash": {
+                    "value": {
+                      "functions": [
+                        {
+                          "id": 741,
+                          "teamId": 42,
+                          "name": "normalizeInvoices",
+                          "description": "Normalizes invoice records.",
+                          "active": false,
+                          "latestVersion": {
+                            "version": 3,
+                            "inputSchema": {},
+                            "outputSchema": {},
+                            "connections": {
+                              "crm": 22019
+                            },
+                            "endpoints": [
+                              {
+                                "alias": "Get customer",
+                                "appName": "salesforce",
+                                "appVersion": 4,
+                                "endpointName": "getCustomer",
+                                "connectionKey": "crm"
+                              }
+                            ],
+                            "createdAt": "2026-09-20T10:30:00.000Z"
+                          },
+                          "createdAt": "2026-09-18T09:00:00.000Z",
+                          "updatedAt": "2026-09-22T08:00:00.000Z",
+                          "ownerUserId": 1001,
+                          "deletedAt": "2026-09-22T08:00:00.000Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request validation failed.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAdminFunctionsV2Trash400Response"
+                },
+                "example": {
+                  "code": "IM005",
+                  "message": "teamId must be a positive integer."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is missing or invalid.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAdminFunctionsV2Trash401Response"
+                },
+                "example": {
+                  "code": "IM102",
+                  "message": "Authentication required."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is authenticated but cannot perform the requested action.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAdminFunctionsV2Trash403Response"
+                },
+                "example": {
+                  "code": "IM001",
+                  "message": "Access denied."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:read",
+              "functions:read"
+            ]
+          }
+        ],
+        "x-private": true
+      }
+    },
+    "/admin/functions/v2/{functionId}/restore": {
+      "post": {
+        "tags": [
+          "Admin / Functions V2"
+        ],
+        "summary": "Restore a trashed Function",
+        "description": "Restores a Function V2 deleted less than 30 days ago, together with its versions and Runs.\nRequires the \u0060scenario edit\u0060 admin permission. The request has no body.\n\nThe restored Function is switched off; its owner must switch it on before published versions accept Runs again.\nRuns cancelled by the deletion stay cancelled. Restoring a Function that is not in trash returns it unchanged.\nReturns \u0060404\u0060 when the Function does not exist or was deleted 30 or more days ago.\n",
+        "operationId": "PostAdminFunctionsV2ByFunctionIdRestore",
+        "responses": {
+          "200": {
+            "description": "The restored Function, switched off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore200Response"
+                },
+                "examples": {
+                  "restored": {
+                    "value": {
+                      "function": {
+                        "id": 741,
+                        "teamId": 42,
+                        "name": "normalizeInvoices",
+                        "description": "Normalizes invoice records.",
+                        "active": false,
+                        "latestVersion": {
+                          "version": 3,
+                          "inputSchema": {},
+                          "outputSchema": {},
+                          "connections": {
+                            "crm": 22019
+                          },
+                          "endpoints": [
+                            {
+                              "alias": "Get customer",
+                              "appName": "salesforce",
+                              "appVersion": 4,
+                              "endpointName": "getCustomer",
+                              "connectionKey": "crm"
+                            }
+                          ],
+                          "createdAt": "2026-09-20T10:30:00.000Z"
+                        },
+                        "createdAt": "2026-09-18T09:00:00.000Z",
+                        "updatedAt": "2026-09-23T09:10:00.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is missing or invalid.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore401Response"
+                },
+                "example": {
+                  "code": "IM102",
+                  "message": "Authentication required."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is authenticated but cannot perform the requested action.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore403Response"
+                },
+                "example": {
+                  "code": "IM001",
+                  "message": "Access denied."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The resource does not exist or is not visible to the caller.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore404Response"
+                },
+                "example": {
+                  "code": "SC404",
+                  "message": "Function resource not found."
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:write",
+              "functions:write"
+            ]
+          }
+        ],
+        "x-private": true
+      },
+      "parameters": [
+        {
+          "name": "functionId",
+          "in": "path",
+          "description": "Function identifier. Functions Control resolves its owning Team and performs authoritative\nTeam and resource authorization for this Function and every nested resource.\n",
+          "required": true,
+          "schema": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "example": 741
+        }
+      ]
+    },
     "/admin/scenarios/reactivate": {
       "post": {
         "tags": [
@@ -20057,6 +20355,7 @@
                           "teamId": 42,
                           "name": "normalizeInvoices",
                           "description": "Normalizes invoice records.",
+                          "active": true,
                           "latestVersion": {
                             "version": 3,
                             "inputSchema": {},
@@ -20066,9 +20365,11 @@
                             },
                             "endpoints": [
                               {
+                                "alias": "Get customer",
                                 "appName": "salesforce",
                                 "appVersion": 4,
-                                "endpointName": "getCustomer"
+                                "endpointName": "getCustomer",
+                                "connectionKey": "crm"
                               }
                             ],
                             "createdAt": "2026-09-20T10:30:00.000Z"
@@ -20209,9 +20510,11 @@
                       },
                       "endpoints": [
                         {
+                          "alias": "Get customer",
                           "appName": "salesforce",
                           "appVersion": 4,
-                          "endpointName": "getCustomer"
+                          "endpointName": "getCustomer",
+                          "connectionKey": "crm"
                         }
                       ]
                     }
@@ -20282,6 +20585,7 @@
                         "teamId": 42,
                         "name": "normalizeInvoices",
                         "description": "Normalizes invoice records.",
+                        "active": false,
                         "latestVersion": {
                           "version": 1,
                           "inputSchema": {},
@@ -20291,9 +20595,11 @@
                           },
                           "endpoints": [
                             {
+                              "alias": "Get customer",
                               "appName": "salesforce",
                               "appVersion": 4,
-                              "endpointName": "getCustomer"
+                              "endpointName": "getCustomer",
+                              "connectionKey": "crm"
                             }
                           ],
                           "createdAt": "2026-09-21T12:15:00.000Z"
@@ -20497,6 +20803,7 @@
                         "teamId": 42,
                         "name": "normalizeInvoices",
                         "description": "Normalizes invoice records.",
+                        "active": true,
                         "latestVersion": {
                           "version": 3,
                           "inputSchema": {},
@@ -20506,9 +20813,11 @@
                           },
                           "endpoints": [
                             {
+                              "alias": "Get customer",
                               "appName": "salesforce",
                               "appVersion": 4,
-                              "endpointName": "getCustomer"
+                              "endpointName": "getCustomer",
+                              "connectionKey": "crm"
                             }
                           ],
                           "createdAt": "2026-09-20T10:30:00.000Z"
@@ -20691,6 +21000,7 @@
                         "teamId": 42,
                         "name": "normalizePaidInvoices",
                         "description": "Normalizes invoice records.",
+                        "active": true,
                         "latestVersion": {
                           "version": 3,
                           "inputSchema": {},
@@ -20700,9 +21010,11 @@
                           },
                           "endpoints": [
                             {
+                              "alias": "Get customer",
                               "appName": "salesforce",
                               "appVersion": 4,
-                              "endpointName": "getCustomer"
+                              "endpointName": "getCustomer",
+                              "connectionKey": "crm"
                             }
                           ],
                           "createdAt": "2026-09-20T10:30:00.000Z"
@@ -21139,9 +21451,11 @@
                           },
                           "endpoints": [
                             {
+                              "alias": "Get customer",
                               "appName": "salesforce",
                               "appVersion": 4,
-                              "endpointName": "getCustomer"
+                              "endpointName": "getCustomer",
+                              "connectionKey": "crm"
                             }
                           ],
                           "createdAt": "2026-09-20T10:30:00.000Z"
@@ -21264,9 +21578,11 @@
                       },
                       "endpoints": [
                         {
+                          "alias": "Get customer",
                           "appName": "salesforce",
                           "appVersion": 4,
-                          "endpointName": "getCustomer"
+                          "endpointName": "getCustomer",
+                          "connectionKey": "crm"
                         }
                       ]
                     }
@@ -21334,9 +21650,11 @@
                         },
                         "endpoints": [
                           {
+                            "alias": "Get customer",
                             "appName": "salesforce",
                             "appVersion": 4,
-                            "endpointName": "getCustomer"
+                            "endpointName": "getCustomer",
+                            "connectionKey": "crm"
                           }
                         ],
                         "createdAt": "2026-09-20T10:30:00.000Z"
@@ -21595,9 +21913,11 @@
                         },
                         "endpoints": [
                           {
+                            "alias": "Get customer",
                             "appName": "salesforce",
                             "appVersion": 4,
-                            "endpointName": "getCustomer"
+                            "endpointName": "getCustomer",
+                            "connectionKey": "crm"
                           }
                         ],
                         "createdAt": "2026-09-20T10:30:00.000Z"
@@ -101849,6 +102169,177 @@
           }
         }
       },
+      "GetAdminFunctionsV2Trash200Response": {
+        "required": [
+          "functions"
+        ],
+        "type": "object",
+        "properties": {
+          "functions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAdminFunctionsV2Trash200ResponseFunctionsItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetAdminFunctionsV2Trash400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash400ResponseDetail"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "detail": "Function resource not found.",
+          "code": "SC404",
+          "message": "Function resource not found."
+        }
+      },
+      "GetAdminFunctionsV2Trash401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash401ResponseDetail"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "detail": "Function resource not found.",
+          "code": "SC404",
+          "message": "Function resource not found."
+        }
+      },
+      "GetAdminFunctionsV2Trash403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash403ResponseDetail"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "detail": "Function resource not found.",
+          "code": "SC404",
+          "message": "Function resource not found."
+        }
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore200Response": {
+        "required": [
+          "function"
+        ],
+        "type": "object",
+        "properties": {
+          "function": {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore200ResponseFunction"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore401ResponseDetail"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "detail": "Function resource not found.",
+          "code": "SC404",
+          "message": "Function resource not found."
+        }
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore403ResponseDetail"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "detail": "Function resource not found.",
+          "code": "SC404",
+          "message": "Function resource not found."
+        }
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore404ResponseDetail"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "detail": "Function resource not found.",
+          "code": "SC404",
+          "message": "Function resource not found."
+        }
+      },
       "PostAdminScenariosReactivateRequest": {
         "required": [
           "scenarioIds"
@@ -107911,7 +108402,7 @@
             "format": "int32"
           },
           "timeoutSeconds": {
-            "maximum": 3600,
+            "maximum": 300,
             "minimum": 1,
             "type": "integer",
             "default": 60
@@ -108183,7 +108674,7 @@
             "$ref": "#/components/schemas/CreateInlineFunctionV2RunRequestData"
           },
           "timeoutSeconds": {
-            "maximum": 3600,
+            "maximum": 300,
             "minimum": 1,
             "type": "integer",
             "default": 60
@@ -148327,6 +148818,156 @@
           }
         }
       },
+      "GetAdminFunctionsV2Trash400ResponseDetailBranch1": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAdminFunctionsV2Trash400ResponseDetailBranch3": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAdminFunctionsV2Trash400ResponseDetailBranch3ValueItem"
+            }
+          }
+        }
+      },
+      "GetAdminFunctionsV2Trash401ResponseDetailBranch1": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAdminFunctionsV2Trash401ResponseDetailBranch3": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAdminFunctionsV2Trash401ResponseDetailBranch3ValueItem"
+            }
+          }
+        }
+      },
+      "GetAdminFunctionsV2Trash403ResponseDetailBranch1": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAdminFunctionsV2Trash403ResponseDetailBranch3": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAdminFunctionsV2Trash403ResponseDetailBranch3ValueItem"
+            }
+          }
+        }
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore401ResponseDetailBranch1": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore401ResponseDetailBranch3": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore401ResponseDetailBranch3ValueItem"
+            }
+          }
+        }
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore403ResponseDetailBranch1": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore403ResponseDetailBranch3": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore403ResponseDetailBranch3ValueItem"
+            }
+          }
+        }
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore404ResponseDetailBranch1": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore404ResponseDetailBranch3": {
+        "required": [
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore404ResponseDetailBranch3ValueItem"
+            }
+          }
+        }
+      },
       "PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItemBranch1": {
         "required": [
           "value"
@@ -150803,6 +151444,96 @@
           "$ref": "#/components/schemas/PatchUsersMePreferencesRequestRequestBodyAdditionalProperties"
         },
         "description": "\u0060{ [namespace]: value | null }\u0060. Each non-\u0060null\u0060 value must match the namespace\u0027s schema.\n"
+      },
+      "GetAdminFunctionsV2Trash400ResponseDetail": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash400ResponseDetailBranch1"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash400ResponseDetailBranch3"
+          }
+        ],
+        "description": "Human-readable or structured error details."
+      },
+      "GetAdminFunctionsV2Trash401ResponseDetail": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash401ResponseDetailBranch1"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash401ResponseDetailBranch3"
+          }
+        ],
+        "description": "Human-readable or structured error details."
+      },
+      "GetAdminFunctionsV2Trash403ResponseDetail": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash403ResponseDetailBranch1"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash403ResponseDetailBranch3"
+          }
+        ],
+        "description": "Human-readable or structured error details."
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore401ResponseDetail": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore401ResponseDetailBranch1"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore401ResponseDetailBranch3"
+          }
+        ],
+        "description": "Human-readable or structured error details."
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore403ResponseDetail": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore403ResponseDetailBranch1"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore403ResponseDetailBranch3"
+          }
+        ],
+        "description": "Human-readable or structured error details."
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore404ResponseDetail": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore404ResponseDetailBranch1"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore404ResponseDetailBranch3"
+          }
+        ],
+        "description": "Human-readable or structured error details."
       },
       "PostAdminScenariosReactivateRequestOneOf1": {
         "type": "object",
@@ -154583,6 +155314,113 @@
             "$ref": "#/components/schemas/PostSsoLogin200ResponseRedirectActionData"
           }
         }
+      },
+      "GetAdminFunctionsV2Trash200ResponseFunctionsItem": {
+        "required": [
+          "id",
+          "teamId",
+          "name",
+          "active",
+          "latestVersion",
+          "createdAt",
+          "updatedAt",
+          "ownerUserId",
+          "deletedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "teamId": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash200ResponseFunctionsItemActive"
+          },
+          "latestVersion": {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash200ResponseFunctionsItemLatestVersion"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ownerUserId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "ID of the user who created the Function.",
+            "format": "int32"
+          },
+          "deletedAt": {
+            "type": "string",
+            "description": "When the Function was moved to trash. It is purged 30 days later.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Function in trash. Trashed Functions are always off."
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore200ResponseFunction": {
+        "required": [
+          "id",
+          "teamId",
+          "name",
+          "active",
+          "latestVersion",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "teamId": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether published versions accept Runs. New and restored Functions are off; inline Runs work either way."
+          },
+          "latestVersion": {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore200ResponseFunctionLatestVersion"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
       },
       "PostAdminScenariosReactivate200ResponseResultsItem": {
         "required": [
@@ -160388,6 +161226,7 @@
           "id",
           "teamId",
           "name",
+          "active",
           "latestVersion",
           "createdAt",
           "updatedAt"
@@ -160410,6 +161249,10 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether published versions accept Runs. New and restored Functions are off; inline Runs work either way."
           },
           "latestVersion": {
             "$ref": "#/components/schemas/ListFunctionsV2200ResponseFunctionsItemLatestVersion"
@@ -160489,6 +161332,7 @@
           "id",
           "teamId",
           "name",
+          "active",
           "latestVersion",
           "createdAt",
           "updatedAt"
@@ -160511,6 +161355,10 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether published versions accept Runs. New and restored Functions are off; inline Runs work either way."
           },
           "latestVersion": {
             "$ref": "#/components/schemas/CreateFunctionV2201ResponseFunctionLatestVersion"
@@ -160531,6 +161379,7 @@
           "id",
           "teamId",
           "name",
+          "active",
           "latestVersion",
           "createdAt",
           "updatedAt"
@@ -160553,6 +161402,10 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether published versions accept Runs. New and restored Functions are off; inline Runs work either way."
           },
           "latestVersion": {
             "$ref": "#/components/schemas/GetFunctionV2200ResponseFunctionLatestVersion"
@@ -160573,6 +161426,7 @@
           "id",
           "teamId",
           "name",
+          "active",
           "latestVersion",
           "createdAt",
           "updatedAt"
@@ -160595,6 +161449,10 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether published versions accept Runs. New and restored Functions are off; inline Runs work either way."
           },
           "latestVersion": {
             "$ref": "#/components/schemas/UpdateFunctionV2200ResponseFunctionLatestVersion"
@@ -160834,7 +161692,7 @@
             "type": "integer"
           },
           "timeoutSeconds": {
-            "maximum": 3600,
+            "maximum": 300,
             "minimum": 1,
             "type": "integer"
           },
@@ -160939,7 +161797,7 @@
             "type": "integer"
           },
           "timeoutSeconds": {
-            "maximum": 3600,
+            "maximum": 300,
             "minimum": 1,
             "type": "integer"
           },
@@ -161026,7 +161884,7 @@
             "type": "integer"
           },
           "timeoutSeconds": {
-            "maximum": 3600,
+            "maximum": 300,
             "minimum": 1,
             "type": "integer"
           },
@@ -161136,7 +161994,7 @@
             "type": "integer"
           },
           "timeoutSeconds": {
-            "maximum": 3600,
+            "maximum": 300,
             "minimum": 1,
             "type": "integer"
           },
@@ -161223,7 +162081,7 @@
             "type": "integer"
           },
           "timeoutSeconds": {
-            "maximum": 3600,
+            "maximum": 300,
             "minimum": 1,
             "type": "integer"
           },
@@ -161297,7 +162155,7 @@
             "type": "integer"
           },
           "timeoutSeconds": {
-            "maximum": 3600,
+            "maximum": 300,
             "minimum": 1,
             "type": "integer"
           },
@@ -161384,7 +162242,7 @@
             "type": "integer"
           },
           "timeoutSeconds": {
-            "maximum": 3600,
+            "maximum": 300,
             "minimum": 1,
             "type": "integer"
           },
@@ -161456,7 +162314,7 @@
             "type": "integer"
           },
           "timeoutSeconds": {
-            "maximum": 3600,
+            "maximum": 300,
             "minimum": 1,
             "type": "integer"
           },
@@ -174053,6 +174911,24 @@
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParametersJsoncRequestAnyOf1ItemOptionsAnyOf4StoreAnyOf3ItemOptionsItemValueBranch2ValueItem": {
         "type": "object"
       },
+      "GetAdminFunctionsV2Trash400ResponseDetailBranch3ValueItem": {
+        "type": "object"
+      },
+      "GetAdminFunctionsV2Trash401ResponseDetailBranch3ValueItem": {
+        "type": "object"
+      },
+      "GetAdminFunctionsV2Trash403ResponseDetailBranch3ValueItem": {
+        "type": "object"
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore401ResponseDetailBranch3ValueItem": {
+        "type": "object"
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore403ResponseDetailBranch3ValueItem": {
+        "type": "object"
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore404ResponseDetailBranch3ValueItem": {
+        "type": "object"
+      },
       "PostAiAgentsV1AgentsRequestOutputParserFormatOneOf2SchemaItemSpecBranch2ValueItem": {
         "type": "object",
         "properties": {
@@ -174951,6 +175827,84 @@
       },
       "PostSsoLogin200ResponseRedirectActionData": {
         "type": "object"
+      },
+      "GetAdminFunctionsV2Trash200ResponseFunctionsItemLatestVersion": {
+        "required": [
+          "version",
+          "inputSchema",
+          "outputSchema",
+          "connections",
+          "endpoints",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "version": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "inputSchema": {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash200ResponseFunctionsItemLatestVersionInputSchema"
+          },
+          "outputSchema": {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash200ResponseFunctionsItemLatestVersionOutputSchema"
+          },
+          "connections": {
+            "$ref": "#/components/schemas/GetAdminFunctionsV2Trash200ResponseFunctionsItemLatestVersionConnections"
+          },
+          "endpoints": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAdminFunctionsV2Trash200ResponseFunctionsItemLatestVersionEndpointsItem"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore200ResponseFunctionLatestVersion": {
+        "required": [
+          "version",
+          "inputSchema",
+          "outputSchema",
+          "connections",
+          "endpoints",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "version": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "inputSchema": {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore200ResponseFunctionLatestVersionInputSchema"
+          },
+          "outputSchema": {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore200ResponseFunctionLatestVersionOutputSchema"
+          },
+          "connections": {
+            "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore200ResponseFunctionLatestVersionConnections"
+          },
+          "endpoints": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostAdminFunctionsV2ByFunctionIdRestore200ResponseFunctionLatestVersionEndpointsItem"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
       },
       "PostAdminTeams200ResponseTeamTransferLimit": {
         "type": "object"
@@ -176538,12 +177492,25 @@
       },
       "CreateFunctionV2RequestContentEndpointsItem": {
         "required": [
+          "alias",
           "appName",
           "appVersion",
           "endpointName"
         ],
         "type": "object",
         "properties": {
+          "alias": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias."
+          },
+          "connectionKey": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as \u0060connection\u0060."
+          },
           "appName": {
             "maxLength": 128,
             "minLength": 1,
@@ -176559,7 +177526,8 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "An Endpoint the Function source may call, each one declared once. Code calls it in the\nEndpoints SDK\u0027s shape with a declared connection label, for example\n\u0060make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: \u0027crm\u0027 })\u0060.\n"
       },
       "CreateFunctionV2201ResponseFunctionLatestVersion": {
         "required": [
@@ -176698,12 +177666,25 @@
       },
       "ListFunctionV2Versions200ResponseVersionsItemEndpointsItem": {
         "required": [
+          "alias",
           "appName",
           "appVersion",
           "endpointName"
         ],
         "type": "object",
         "properties": {
+          "alias": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias."
+          },
+          "connectionKey": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as \u0060connection\u0060."
+          },
           "appName": {
             "maxLength": 128,
             "minLength": 1,
@@ -176719,7 +177700,8 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "An Endpoint the Function source may call, each one declared once. Code calls it in the\nEndpoints SDK\u0027s shape with a declared connection label, for example\n\u0060make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: \u0027crm\u0027 })\u0060.\n"
       },
       "PublishFunctionV2VersionRequestContentInputSchema": {
         "maxProperties": 64,
@@ -176742,12 +177724,25 @@
       },
       "PublishFunctionV2VersionRequestContentEndpointsItem": {
         "required": [
+          "alias",
           "appName",
           "appVersion",
           "endpointName"
         ],
         "type": "object",
         "properties": {
+          "alias": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias."
+          },
+          "connectionKey": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as \u0060connection\u0060."
+          },
           "appName": {
             "maxLength": 128,
             "minLength": 1,
@@ -176763,7 +177758,8 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "An Endpoint the Function source may call, each one declared once. Code calls it in the\nEndpoints SDK\u0027s shape with a declared connection label, for example\n\u0060make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: \u0027crm\u0027 })\u0060.\n"
       },
       "PublishFunctionV2Version201ResponseFunctionVersionInputSchema": {
         "maxProperties": 64,
@@ -176785,12 +177781,25 @@
       },
       "PublishFunctionV2Version201ResponseFunctionVersionEndpointsItem": {
         "required": [
+          "alias",
           "appName",
           "appVersion",
           "endpointName"
         ],
         "type": "object",
         "properties": {
+          "alias": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias."
+          },
+          "connectionKey": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as \u0060connection\u0060."
+          },
           "appName": {
             "maxLength": 128,
             "minLength": 1,
@@ -176806,7 +177815,8 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "An Endpoint the Function source may call, each one declared once. Code calls it in the\nEndpoints SDK\u0027s shape with a declared connection label, for example\n\u0060make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: \u0027crm\u0027 })\u0060.\n"
       },
       "GetFunctionV2Version200ResponseFunctionVersionInputSchema": {
         "maxProperties": 64,
@@ -176828,12 +177838,25 @@
       },
       "GetFunctionV2Version200ResponseFunctionVersionEndpointsItem": {
         "required": [
+          "alias",
           "appName",
           "appVersion",
           "endpointName"
         ],
         "type": "object",
         "properties": {
+          "alias": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias."
+          },
+          "connectionKey": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as \u0060connection\u0060."
+          },
           "appName": {
             "maxLength": 128,
             "minLength": 1,
@@ -176849,7 +177872,8 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "An Endpoint the Function source may call, each one declared once. Code calls it in the\nEndpoints SDK\u0027s shape with a declared connection label, for example\n\u0060make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: \u0027crm\u0027 })\u0060.\n"
       },
       "ListFunctionV2Runs200ResponseRunsItemOrigin": {
         "required": [
@@ -177130,12 +178154,25 @@
       },
       "CreateInlineFunctionV2RunRequestContentEndpointsItem": {
         "required": [
+          "alias",
           "appName",
           "appVersion",
           "endpointName"
         ],
         "type": "object",
         "properties": {
+          "alias": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias."
+          },
+          "connectionKey": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as \u0060connection\u0060."
+          },
           "appName": {
             "maxLength": 128,
             "minLength": 1,
@@ -177151,7 +178188,8 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "An Endpoint the Function source may call, each one declared once. Code calls it in the\nEndpoints SDK\u0027s shape with a declared connection label, for example\n\u0060make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: \u0027crm\u0027 })\u0060.\n"
       },
       "CreateInlineFunctionV2Run200ResponseRunOrigin": {
         "required": [
@@ -182776,6 +183814,120 @@
           }
         }
       },
+      "GetAdminFunctionsV2Trash200ResponseFunctionsItemLatestVersionInputSchema": {
+        "maxProperties": 64,
+        "type": "object",
+        "description": "Authoritative client-authored JSON Schema using the bounded Make Functions subset of Draft\n2020-12. \u0060{}\u0060 is the explicit permissive schema. Each side is limited to 64 KiB canonical\nUTF-8, 32 expanded levels, 1,000 schema nodes, 500 named properties, 32 total composition\nbranches, and 256 enum values. Schema literals are limited to 32 JSON levels and 10,000 JSON nodes.\nRemote, dynamic, recursive, and non-fragment references are rejected.\n"
+      },
+      "GetAdminFunctionsV2Trash200ResponseFunctionsItemLatestVersionOutputSchema": {
+        "maxProperties": 64,
+        "type": "object",
+        "description": "Authoritative client-authored JSON Schema using the bounded Make Functions subset of Draft\n2020-12. \u0060{}\u0060 is the explicit permissive schema. Each side is limited to 64 KiB canonical\nUTF-8, 32 expanded levels, 1,000 schema nodes, 500 named properties, 32 total composition\nbranches, and 256 enum values. Schema literals are limited to 32 JSON levels and 10,000 JSON nodes.\nRemote, dynamic, recursive, and non-fragment references are rejected.\n"
+      },
+      "GetAdminFunctionsV2Trash200ResponseFunctionsItemLatestVersionConnections": {
+        "type": "object",
+        "additionalProperties": {
+          "minimum": 1,
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "GetAdminFunctionsV2Trash200ResponseFunctionsItemLatestVersionEndpointsItem": {
+        "required": [
+          "alias",
+          "appName",
+          "appVersion",
+          "endpointName"
+        ],
+        "type": "object",
+        "properties": {
+          "alias": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias."
+          },
+          "connectionKey": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as \u0060connection\u0060."
+          },
+          "appName": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "appVersion": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "endpointName": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "An Endpoint the Function source may call, each one declared once. Code calls it in the\nEndpoints SDK\u0027s shape with a declared connection label, for example\n\u0060make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: \u0027crm\u0027 })\u0060.\n"
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore200ResponseFunctionLatestVersionInputSchema": {
+        "maxProperties": 64,
+        "type": "object",
+        "description": "Authoritative client-authored JSON Schema using the bounded Make Functions subset of Draft\n2020-12. \u0060{}\u0060 is the explicit permissive schema. Each side is limited to 64 KiB canonical\nUTF-8, 32 expanded levels, 1,000 schema nodes, 500 named properties, 32 total composition\nbranches, and 256 enum values. Schema literals are limited to 32 JSON levels and 10,000 JSON nodes.\nRemote, dynamic, recursive, and non-fragment references are rejected.\n"
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore200ResponseFunctionLatestVersionOutputSchema": {
+        "maxProperties": 64,
+        "type": "object",
+        "description": "Authoritative client-authored JSON Schema using the bounded Make Functions subset of Draft\n2020-12. \u0060{}\u0060 is the explicit permissive schema. Each side is limited to 64 KiB canonical\nUTF-8, 32 expanded levels, 1,000 schema nodes, 500 named properties, 32 total composition\nbranches, and 256 enum values. Schema literals are limited to 32 JSON levels and 10,000 JSON nodes.\nRemote, dynamic, recursive, and non-fragment references are rejected.\n"
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore200ResponseFunctionLatestVersionConnections": {
+        "type": "object",
+        "additionalProperties": {
+          "minimum": 1,
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "PostAdminFunctionsV2ByFunctionIdRestore200ResponseFunctionLatestVersionEndpointsItem": {
+        "required": [
+          "alias",
+          "appName",
+          "appVersion",
+          "endpointName"
+        ],
+        "type": "object",
+        "properties": {
+          "alias": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias."
+          },
+          "connectionKey": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as \u0060connection\u0060."
+          },
+          "appName": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "appVersion": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "endpointName": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "description": "An Endpoint the Function source may call, each one declared once. Code calls it in the\nEndpoints SDK\u0027s shape with a declared connection label, for example\n\u0060make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: \u0027crm\u0027 })\u0060.\n"
+      },
       "GetAdminOrganizations200ResponseOrganizationsItemLicenseAdditionalProperties": {
         "type": "object"
       },
@@ -182989,12 +184141,25 @@
       },
       "ListFunctionsV2200ResponseFunctionsItemLatestVersionEndpointsItem": {
         "required": [
+          "alias",
           "appName",
           "appVersion",
           "endpointName"
         ],
         "type": "object",
         "properties": {
+          "alias": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias."
+          },
+          "connectionKey": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as \u0060connection\u0060."
+          },
           "appName": {
             "maxLength": 128,
             "minLength": 1,
@@ -183010,7 +184175,8 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "An Endpoint the Function source may call, each one declared once. Code calls it in the\nEndpoints SDK\u0027s shape with a declared connection label, for example\n\u0060make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: \u0027crm\u0027 })\u0060.\n"
       },
       "CreateFunctionV2201ResponseFunctionLatestVersionInputSchema": {
         "maxProperties": 64,
@@ -183032,12 +184198,25 @@
       },
       "CreateFunctionV2201ResponseFunctionLatestVersionEndpointsItem": {
         "required": [
+          "alias",
           "appName",
           "appVersion",
           "endpointName"
         ],
         "type": "object",
         "properties": {
+          "alias": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias."
+          },
+          "connectionKey": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as \u0060connection\u0060."
+          },
           "appName": {
             "maxLength": 128,
             "minLength": 1,
@@ -183053,7 +184232,8 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "An Endpoint the Function source may call, each one declared once. Code calls it in the\nEndpoints SDK\u0027s shape with a declared connection label, for example\n\u0060make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: \u0027crm\u0027 })\u0060.\n"
       },
       "GetFunctionV2200ResponseFunctionLatestVersionInputSchema": {
         "maxProperties": 64,
@@ -183075,12 +184255,25 @@
       },
       "GetFunctionV2200ResponseFunctionLatestVersionEndpointsItem": {
         "required": [
+          "alias",
           "appName",
           "appVersion",
           "endpointName"
         ],
         "type": "object",
         "properties": {
+          "alias": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias."
+          },
+          "connectionKey": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as \u0060connection\u0060."
+          },
           "appName": {
             "maxLength": 128,
             "minLength": 1,
@@ -183096,7 +184289,8 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "An Endpoint the Function source may call, each one declared once. Code calls it in the\nEndpoints SDK\u0027s shape with a declared connection label, for example\n\u0060make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: \u0027crm\u0027 })\u0060.\n"
       },
       "UpdateFunctionV2200ResponseFunctionLatestVersionInputSchema": {
         "maxProperties": 64,
@@ -183118,12 +184312,25 @@
       },
       "UpdateFunctionV2200ResponseFunctionLatestVersionEndpointsItem": {
         "required": [
+          "alias",
           "appName",
           "appVersion",
           "endpointName"
         ],
         "type": "object",
         "properties": {
+          "alias": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias."
+          },
+          "connectionKey": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string",
+            "description": "Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as \u0060connection\u0060."
+          },
           "appName": {
             "maxLength": 128,
             "minLength": 1,
@@ -183139,7 +184346,8 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "An Endpoint the Function source may call, each one declared once. Code calls it in the\nEndpoints SDK\u0027s shape with a declared connection label, for example\n\u0060make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: \u0027crm\u0027 })\u0060.\n"
       },
       "GetHooksByHookIdLogsByLogId200ResponseHookLogDataRequest": {
         "type": "object",
@@ -200371,6 +201579,13 @@
             }
           ]
         }
+      },
+      "GetAdminFunctionsV2Trash200ResponseFunctionsItemActive": {
+        "enum": [
+          false
+        ],
+        "type": "boolean",
+        "additionalProperties": false
       },
       "PostAdminScenariosReactivate200ResponseResultsItemStatus": {
         "enum": [

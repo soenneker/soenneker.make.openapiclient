@@ -7,11 +7,20 @@ using System.IO;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
+    /// <summary>
+    /// An Endpoint the Function source may call, each one declared once. Code calls it in theEndpoints SDK&apos;s shape with a declared connection label, for example`make.endpoints.salesforce.v4.getCustomer({ input: { id }, connection: &apos;crm&apos; })`.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class ListFunctionV2Versions200ResponseVersionsItemEndpointsItem : IParsable
-    #pragma warning restore CS1591
     {
+        /// <summary>Display name of the declaration. Code calls the Endpoint by its app, version and name, never by alias.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Alias { get; set; }
+#nullable restore
+#else
+        public string Alias { get; set; }
+#endif
         /// <summary>The appName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -22,6 +31,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The appVersion property</summary>
         public int? AppVersion { get; set; }
+        /// <summary>Label of the declared connection the editor binds this Endpoint to; its calls pass the same label as `connection`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ConnectionKey { get; set; }
+#nullable restore
+#else
+        public string ConnectionKey { get; set; }
+#endif
         /// <summary>The endpointName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -48,8 +65,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "alias", n => { Alias = n.GetStringValue(); } },
                 { "appName", n => { AppName = n.GetStringValue(); } },
                 { "appVersion", n => { AppVersion = n.GetIntValue(); } },
+                { "connectionKey", n => { ConnectionKey = n.GetStringValue(); } },
                 { "endpointName", n => { EndpointName = n.GetStringValue(); } },
             };
         }
@@ -60,8 +79,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("alias", Alias);
             writer.WriteStringValue("appName", AppName);
             writer.WriteIntValue("appVersion", AppVersion);
+            writer.WriteStringValue("connectionKey", ConnectionKey);
             writer.WriteStringValue("endpointName", EndpointName);
         }
     }
