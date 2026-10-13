@@ -47893,7 +47893,7 @@
           "SDK Apps / Review"
         ],
         "summary": "Save review form draft",
-        "description": "Overwrites the auto-saved draft of the review form. The whole draft is replaced with the request body, so send the complete current form value on every save (the client auto-saves it debounced). Allowed only while the phase is \u0060preparing\u0060 \u2014 in any other phase the call fails with \u0060409\u0060. Completeness is not validated here; the client\u0027s readiness gate decides when the form can be submitted. Only the app\u0027s author (or an administrator) may edit the draft. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "description": "Overwrites the auto-saved draft of the review form. The whole draft is replaced with the request body, so send the complete current form value on every save (the client auto-saves it debounced). Allowed only while the phase is \u0060preparing\u0060 \u2014 in any other phase the call fails with \u0060409\u0060. Completeness is not validated here; the client\u0027s readiness gate decides when the form can be submitted. Link formats are not validated here either \u2014 a half-typed link is a valid draft; they are checked when submitting (see the \u0060submit\u0060 endpoint). Only the app\u0027s author (or an administrator) may edit the draft. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
         "operationId": "PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm",
         "parameters": [
           {
@@ -48143,7 +48143,7 @@
           "SDK Apps / Review"
         ],
         "summary": "Submit for review",
-        "description": "Submits the prepared form: the review moves from \u0060preparing\u0060 to \u0060review\u0060 and enters the automatic step (\u0060reviewStep: auto\u0060). The current draft is snapshotted into \u0060submittedForm\u0060 \u2014 later draft edits do not change the submitted record. Completeness of the form is the client\u0027s responsibility (the readiness gate); the server does not re-validate it. Fails with \u0060409\u0060 in any other phase. Only the app\u0027s author (or an administrator) may submit. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "description": "Submits the prepared form: the review moves from \u0060preparing\u0060 to \u0060review\u0060 and enters the automatic step (\u0060reviewStep: auto\u0060). The current draft is snapshotted into \u0060submittedForm\u0060 \u2014 later draft edits do not change the submitted record. Completeness of the form is the client\u0027s responsibility (the readiness gate); the server does not re-validate it. Link formats are validated, though \u2014 the rules of the legacy review form: \u0060apiDocsUrl\u0060, \u0060homepageUrl\u0060, \u0060landingPageUrl\u0060 and \u0060appDocsUrl\u0060 must be \u0060http(s)\u0060 URLs, and every scenario link (\u0060testScenarioUrls\u0060, \u0060errorHandlingScenarioUrl\u0060, \u0060updatedScenarioUrls\u0060) must point at a scenario of this zone, i.e. \u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060 (a query string or fragment may follow). A malformed link fails with \u0060400\u0060 (IM005) naming every offending field, and nothing is submitted. Fails with \u0060409\u0060 in any other phase. Only the app\u0027s author (or an administrator) may submit. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
         "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit",
         "parameters": [
           {
@@ -48217,6 +48217,25 @@
                         ],
                         "updatedAt": "2026-08-24T10:20:00.000Z"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "A link in the draft is malformed; the message names every offending field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit400ResponseSchema"
+                },
+                "examples": {
+                  "malformed-links": {
+                    "summary": "A scenario of another zone and a documentation link without a scheme",
+                    "value": {
+                      "message": "The review form cannot be submitted: \u0022testScenarioUrls[1]\u0022 must link to a scenario on eu2.make.com (https://eu2.make.com/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit). \u0022apiDocsUrl\u0022 must be a valid http(s) URL.",
+                      "code": "IM005"
                     }
                   }
                 }
@@ -55174,7 +55193,7 @@
           "Users / API Tokens"
         ],
         "summary": "List users API tokens",
-        "description": "Gets the API tokens of the currently authenticated user.",
+        "description": "Gets the API tokens of the currently authenticated user, newest first. The token values are masked except for their first 8 characters. \u0060organizationId\u0060 shows the organization a token is scoped to, or \u0060null\u0060 for a token that works in every organization of the user. This call is rejected for an API token that is itself scoped to an organization.",
         "operationId": "GetUsersMeApiTokens",
         "responses": {
           "200": {
@@ -55184,25 +55203,52 @@
                 "schema": {
                   "$ref": "#/components/schemas/GetUsersMeApiTokens200Response"
                 },
-                "example": {
-                  "apiTokens": [
-                    {
-                      "token": "2544847b-****-****-****-************",
-                      "scope": [
-                        "apps:write"
-                      ],
-                      "created": "2019-11-05T09:22:31.249Z",
-                      "label": "token dva write"
-                    },
-                    {
-                      "token": "40aff759-****-****-****-************",
-                      "scope": [
-                        "apps:read"
-                      ],
-                      "created": "2019-11-05T09:22:22.615Z",
-                      "label": "token one read"
+                "examples": {
+                  "scoped-and-unscoped": {
+                    "summary": "One token scoped to an organization and one unscoped token",
+                    "value": {
+                      "apiTokens": [
+                        {
+                          "token": "2544847b-****-****-****-************",
+                          "scope": [
+                            "apps:write"
+                          ],
+                          "created": "2019-11-05T09:22:31.249Z",
+                          "label": "token dva write",
+                          "organizationId": 12
+                        },
+                        {
+                          "token": "40aff759-****-****-****-************",
+                          "scope": [
+                            "apps:read"
+                          ],
+                          "created": "2019-11-05T09:22:22.615Z",
+                          "label": "token one read",
+                          "organizationId": null
+                        }
+                      ]
                     }
-                  ]
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The request is authenticated with an API token that is scoped to an organization; such tokens cannot list or create API tokens.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUsersMeApiTokens403Response"
+                },
+                "examples": {
+                  "organization-bound-token": {
+                    "summary": "Called with an API token scoped to an organization",
+                    "value": {
+                      "message": "Permission denied",
+                      "code": "SC403",
+                      "detail": "Organization-bound request can\u0027t be used outside of the Organization Context."
+                    }
+                  }
                 }
               }
             }
@@ -55221,7 +55267,7 @@
           "Users / API Tokens"
         ],
         "summary": "Create new API token",
-        "description": "Create a new API token for the currently authenticated user. Specify the API token scopes in the \u0060scope\u0060 array parameter.",
+        "description": "Create a new API token for the currently authenticated user. Specify the API token scopes in the \u0060scope\u0060 array parameter. Optionally pass \u0060organizationId\u0060 to scope the token to one organization the user is an accepted member of; the token then works only within that organization. Omit \u0060organizationId\u0060 or send \u0060null\u0060 for a token that works in every organization of the user. A user can have at most 100 API tokens. This call is rejected for an API token that is itself scoped to an organization.",
         "operationId": "PostUsersMeApiTokens",
         "requestBody": {
           "content": {
@@ -55229,12 +55275,27 @@
               "schema": {
                 "$ref": "#/components/schemas/PostUsersMeApiTokensRequest"
               },
-              "example": {
-                "label": "example token",
-                "scope": [
-                  "apps:read",
-                  "apps:write"
-                ]
+              "examples": {
+                "unscoped": {
+                  "summary": "Token that works in every organization of the user",
+                  "value": {
+                    "label": "example token",
+                    "scope": [
+                      "apps:read",
+                      "apps:write"
+                    ]
+                  }
+                },
+                "scoped": {
+                  "summary": "Token scoped to one organization",
+                  "value": {
+                    "label": "example scoped token",
+                    "scope": [
+                      "scenarios:read"
+                    ],
+                    "organizationId": 12
+                  }
+                }
               }
             }
           }
@@ -55247,15 +55308,103 @@
                 "schema": {
                   "$ref": "#/components/schemas/PostUsersMeApiTokens200Response"
                 },
-                "example": {
-                  "apiToken": {
-                    "token": "7615989d-d213-48dc-b625-27133ae3f1a8",
-                    "scope": [
-                      "apps:read",
-                      "apps:write"
-                    ],
-                    "created": "2019-11-06T14:37:51.493Z",
-                    "label": "example token"
+                "examples": {
+                  "unscoped": {
+                    "summary": "Token that works in every organization of the user",
+                    "value": {
+                      "apiToken": {
+                        "token": "7615989d-d213-48dc-b625-27133ae3f1a8",
+                        "tokenHash": "5b1a0c4e1d3f0f0e8d6f2a9c7b4e3d2c1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d",
+                        "scope": [
+                          "apps:read",
+                          "apps:write"
+                        ],
+                        "created": "2019-11-06T14:37:51.493Z",
+                        "label": "example token",
+                        "organizationId": null
+                      }
+                    }
+                  },
+                  "scoped": {
+                    "summary": "Token scoped to one organization",
+                    "value": {
+                      "apiToken": {
+                        "token": "0d3a6c6f-9f4b-4f0e-8a51-2c7b1d4e9a10",
+                        "tokenHash": "9e2c4b7a1f0d3e6c8b5a2f9e1d4c7b0a3f6e9d2c5b8a1f4e7d0c3b6a9f2e5d8c",
+                        "scope": [
+                          "scenarios:read"
+                        ],
+                        "created": "2019-11-06T14:40:12.108Z",
+                        "label": "example scoped token",
+                        "organizationId": 12
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input, for example a missing \u0060label\u0060, an empty \u0060scope\u0060, a non-integer or non-positive \u0060organizationId\u0060 (\u0060SC400\u0060), an unknown scope (\u0060IM005\u0060), or the limit of 100 API tokens reached (\u0060IM117\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostUsersMeApiTokens400Response"
+                },
+                "examples": {
+                  "invalid-organization-id": {
+                    "summary": "organizationId is not a positive integer",
+                    "value": {
+                      "message": "Bad Request",
+                      "code": "SC400"
+                    }
+                  },
+                  "token-limit": {
+                    "summary": "The user already has 100 API tokens",
+                    "value": {
+                      "message": "You can have at most 100 api tokens.",
+                      "code": "IM117"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The token cannot be scoped to the organization: the user is not an accepted member of it, or it does not exist or is deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostUsersMeApiTokens401Response"
+                },
+                "examples": {
+                  "scoped": {
+                    "summary": "The user is not a member of the organization",
+                    "value": {
+                      "message": "Access denied",
+                      "code": "IM001",
+                      "detail": "You cannot create a token scoped to this organization."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The request is authenticated with an API token that is scoped to an organization; such tokens cannot list or create API tokens.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostUsersMeApiTokens403Response"
+                },
+                "examples": {
+                  "organization-bound-token": {
+                    "summary": "Called with an API token scoped to an organization",
+                    "value": {
+                      "message": "Permission denied",
+                      "code": "SC403",
+                      "detail": "Organization-bound request can\u0027t be used outside of the Organization Context."
+                    }
                   }
                 }
               }
@@ -58684,7 +58833,8 @@
         "type": "object",
         "properties": {
           "token": {
-            "type": "string"
+            "type": "string",
+            "description": "The API token. Only the response of the create call contains the full value; the list masks everything after the first 8 characters."
           },
           "scope": {
             "type": "array",
@@ -58699,6 +58849,12 @@
           },
           "label": {
             "type": "string"
+          },
+          "organizationId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "ID of the organization the API token is scoped to. A scoped token works only within that organization: requests that target another organization, or that have no organization context (for example \u0060GET /users/me/api-tokens\u0060 or \u0060/admin\u0060 routes), are rejected. \u0060null\u0060 means the token works in every organization the user belongs to.",
+            "nullable": true
           }
         }
       },
@@ -59791,6 +59947,9 @@
           "listingType": {
             "$ref": "#/components/schemas/SdkAppReviewDraftListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/SdkAppReviewDraftPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -59798,22 +59957,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -59838,12 +59997,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -59884,7 +60043,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -59896,7 +60055,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server."
+        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be \u0060http(s)\u0060 URLs and scenario links must point at a scenario of this zone (\u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060)."
       },
       "SdkAppCategory": {
         "type": "object",
@@ -63396,6 +63555,9 @@
           "listingType": {
             "$ref": "#/components/schemas/SdkAppReviewStateSubmittedFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/SdkAppReviewStateSubmittedFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -63403,22 +63565,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -63443,12 +63605,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -63489,7 +63651,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -66811,6 +66973,9 @@
           "listingType": {
             "$ref": "#/components/schemas/SdkAppReviewStateSubmittedFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/SdkAppReviewStateSubmittedFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -66818,22 +66983,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -66858,12 +67023,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -66904,7 +67069,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -66916,7 +67081,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server."
+        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be \u0060http(s)\u0060 URLs and scenario links must point at a scenario of this zone (\u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060)."
       },
       "CustomAppBaseAnyOf1Method": {
         "type": "object",
@@ -89482,6 +89647,9 @@
           "listingType": {
             "$ref": "#/components/schemas/SdkAppReviewStateDraftFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/SdkAppReviewStateDraftFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -89489,22 +89657,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -89529,12 +89697,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -89575,7 +89743,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -89587,7 +89755,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server."
+        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be \u0060http(s)\u0060 URLs and scenario links must point at a scenario of this zone (\u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060)."
       },
       "SdkAppReviewStateEventsItem": {
         "type": "object",
@@ -103405,7 +103573,9 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "pattern": "\\S",
+            "type": "string",
+            "description": "New name of the agent. Leading and trailing whitespace is removed before saving; a whitespace-only name is rejected."
           }
         }
       },
@@ -115375,6 +115545,9 @@
           "listingType": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewFormRequestListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewFormRequestPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -115382,22 +115555,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -115422,12 +115595,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -115468,7 +115641,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -115480,7 +115653,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server."
+        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be \u0060http(s)\u0060 URLs and scenario links must point at a scenario of this zone (\u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060)."
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200Response": {
         "type": "object",
@@ -115511,6 +115684,9 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReview"
           }
         }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit400Response": {
+        "type": "object"
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit409Response": {
         "type": "object"
@@ -117015,6 +117191,20 @@
           }
         }
       },
+      "GetUsersMeApiTokens403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
       "PostUsersMeApiTokensRequest": {
         "required": [
           "label",
@@ -117023,16 +117213,25 @@
         "type": "object",
         "properties": {
           "label": {
+            "minLength": 1,
             "type": "string",
             "description": "The API token label visible in the Make user profile."
           },
           "scope": {
+            "minItems": 1,
             "type": "array",
             "items": {
               "type": "string",
               "format": "uri"
             },
             "description": "The API scopes provided to the API token. The API scopes determine the scope of operations that you can do with the API token.\n\nCheck the list of all existing Make API scopes with the API call \u0060GET /enums/user-api-tokes-scopes\u0060."
+          },
+          "organizationId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "ID of the organization to scope the API token to. The user must be an accepted member (not just invited) of the organization, and the organization must not be deleted. Omit or send \u0060null\u0060 for a token that works in every organization of the user.",
+            "nullable": true
           }
         }
       },
@@ -117041,6 +117240,45 @@
         "properties": {
           "apiToken": {
             "$ref": "#/components/schemas/PostUsersMeApiTokens200ResponseApiToken"
+          }
+        }
+      },
+      "PostUsersMeApiTokens400Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "PostUsersMeApiTokens401Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostUsersMeApiTokens403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
           }
         }
       },
@@ -151388,6 +151626,9 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart409ResponseSchema": {
         "type": "object"
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit400ResponseSchema": {
+        "type": "object"
+      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit409ResponseSchema": {
         "type": "object"
       },
@@ -173766,7 +174007,8 @@
         "type": "object",
         "properties": {
           "token": {
-            "type": "string"
+            "type": "string",
+            "description": "The API token. Only the response of the create call contains the full value; the list masks everything after the first 8 characters."
           },
           "scope": {
             "type": "array",
@@ -173781,6 +174023,12 @@
           },
           "label": {
             "type": "string"
+          },
+          "organizationId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "ID of the organization the API token is scoped to. A scoped token works only within that organization: requests that target another organization, or that have no organization context (for example \u0060GET /users/me/api-tokens\u0060 or \u0060/admin\u0060 routes), are rejected. \u0060null\u0060 means the token works in every organization the user belongs to.",
+            "nullable": true
           }
         }
       },
@@ -173788,7 +174036,8 @@
         "type": "object",
         "properties": {
           "token": {
-            "type": "string"
+            "type": "string",
+            "description": "The API token. Only the response of the create call contains the full value; the list masks everything after the first 8 characters."
           },
           "scope": {
             "type": "array",
@@ -173803,6 +174052,21 @@
           },
           "label": {
             "type": "string"
+          },
+          "organizationId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "ID of the organization the API token is scoped to. A scoped token works only within that organization: requests that target another organization, or that have no organization context (for example \u0060GET /users/me/api-tokens\u0060 or \u0060/admin\u0060 routes), are rejected. \u0060null\u0060 means the token works in every organization the user belongs to.",
+            "nullable": true
+          },
+          "tokenHash": {
+            "type": "string",
+            "description": "SHA-256 hash of the token, hex-encoded."
+          },
+          "token_hash": {
+            "type": "string",
+            "description": "Master (on-premise) only. Same value as \u0060tokenHash\u0060, kept for backward compatibility; use \u0060tokenHash\u0060 instead.",
+            "deprecated": true
           }
         }
       },
@@ -181670,6 +181934,9 @@
           "listingType": {
             "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewDraftFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewDraftFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -181677,22 +181944,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -181717,12 +181984,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -181763,7 +182030,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -181775,7 +182042,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server."
+        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be \u0060http(s)\u0060 URLs and scenario links must point at a scenario of this zone (\u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060)."
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewSubmittedForm": {
         "type": "object",
@@ -181786,6 +182053,9 @@
           "listingType": {
             "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewSubmittedFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewSubmittedFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -181793,22 +182063,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -181833,12 +182103,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -181879,7 +182149,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -181922,6 +182192,9 @@
           "listingType": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200ResponseReviewDraftFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200ResponseReviewDraftFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -181929,22 +182202,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -181969,12 +182242,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -182015,7 +182288,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -182027,7 +182300,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server."
+        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be \u0060http(s)\u0060 URLs and scenario links must point at a scenario of this zone (\u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060)."
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200ResponseReviewSubmittedForm": {
         "type": "object",
@@ -182038,6 +182311,9 @@
           "listingType": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200ResponseReviewSubmittedFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200ResponseReviewSubmittedFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -182045,22 +182321,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -182085,12 +182361,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -182131,7 +182407,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -182174,6 +182450,9 @@
           "listingType": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReviewDraftFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReviewDraftFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -182181,22 +182460,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -182221,12 +182500,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -182267,7 +182546,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -182279,7 +182558,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server."
+        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be \u0060http(s)\u0060 URLs and scenario links must point at a scenario of this zone (\u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060)."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReviewSubmittedForm": {
         "type": "object",
@@ -182290,6 +182569,9 @@
           "listingType": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReviewSubmittedFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReviewSubmittedFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -182297,22 +182579,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -182337,12 +182619,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -182383,7 +182665,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -182426,6 +182708,9 @@
           "listingType": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -182433,22 +182718,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -182473,12 +182758,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -182519,7 +182804,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -182531,7 +182816,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server."
+        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be \u0060http(s)\u0060 URLs and scenario links must point at a scenario of this zone (\u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060)."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewSubmittedForm": {
         "type": "object",
@@ -182542,6 +182827,9 @@
           "listingType": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewSubmittedFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewSubmittedFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -182549,22 +182837,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -182589,12 +182877,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -182635,7 +182923,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -182678,6 +182966,9 @@
           "listingType": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewDraftFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewDraftFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -182685,22 +182976,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -182725,12 +183016,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -182771,7 +183062,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -182783,7 +183074,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server."
+        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be \u0060http(s)\u0060 URLs and scenario links must point at a scenario of this zone (\u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060)."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewSubmittedForm": {
         "type": "object",
@@ -182794,6 +183085,9 @@
           "listingType": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewSubmittedFormListingType"
           },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewSubmittedFormPartnerProgramApplication"
+          },
           "testScenarioUrls": {
             "maxItems": 50,
             "type": "array",
@@ -182801,22 +183095,22 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Scenarios where the review team can see every module of the app run successfully."
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
           },
           "errorHandlingScenarioUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error."
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
           },
           "apiDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Documentation of the API the app calls."
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "homepageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Homepage of the integrated software, shown on the app\u0027s landing page."
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "categories": {
             "maxItems": 20,
@@ -182841,12 +183135,12 @@
           "landingPageUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s own landing page."
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "appDocsUrl": {
             "maxLength": 2048,
             "type": "string",
-            "description": "Community listing only \u2014 the app\u0027s documentation."
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
           },
           "dataProcessingDescription": {
             "maxLength": 10000,
@@ -182887,7 +183181,7 @@
               "maxLength": 2048,
               "type": "string"
             },
-            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission."
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
           },
           "reRunConfirmed": {
             "type": "boolean",
@@ -187807,6 +188101,29 @@
           ]
         }
       },
+      "SdkAppReviewDraftPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "SdkAppReviewDraftPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
       "SdkAppReviewDraftPricing": {
         "enum": [
           "free",
@@ -188535,6 +188852,29 @@
             {
               "value": "community",
               "name": "Community"
+            }
+          ]
+        }
+      },
+      "SdkAppReviewStateSubmittedFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "SdkAppReviewStateSubmittedFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
             }
           ]
         }
@@ -199377,6 +199717,29 @@
           ]
         }
       },
+      "SdkAppReviewStateDraftFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "SdkAppReviewStateDraftFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
       "SdkAppReviewStateDraftFormPricing": {
         "enum": [
           "free",
@@ -200147,6 +200510,29 @@
             {
               "value": "community",
               "name": "Community"
+            }
+          ]
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewFormRequestPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewFormRequestPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
             }
           ]
         }
@@ -201893,7 +202279,8 @@
           "ACTIVE",
           "STOPPED",
           "NOT_RESPONDING",
-          "REGISTERED"
+          "REGISTERED",
+          "CORRUPTED"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -201916,6 +202303,10 @@
             {
               "value": "REGISTERED",
               "name": "Registered"
+            },
+            {
+              "value": "CORRUPTED",
+              "name": "Corrupted"
             }
           ]
         }
@@ -201925,7 +202316,8 @@
           "ACTIVE",
           "STOPPED",
           "NOT_RESPONDING",
-          "REGISTERED"
+          "REGISTERED",
+          "CORRUPTED"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -201948,6 +202340,10 @@
             {
               "value": "REGISTERED",
               "name": "Registered"
+            },
+            {
+              "value": "CORRUPTED",
+              "name": "Corrupted"
             }
           ]
         }
@@ -201957,7 +202353,8 @@
           "ACTIVE",
           "STOPPED",
           "NOT_RESPONDING",
-          "REGISTERED"
+          "REGISTERED",
+          "CORRUPTED"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -201980,6 +202377,10 @@
             {
               "value": "REGISTERED",
               "name": "Registered"
+            },
+            {
+              "value": "CORRUPTED",
+              "name": "Corrupted"
             }
           ]
         }
@@ -201989,7 +202390,8 @@
           "ACTIVE",
           "STOPPED",
           "NOT_RESPONDING",
-          "REGISTERED"
+          "REGISTERED",
+          "CORRUPTED"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -202012,6 +202414,10 @@
             {
               "value": "REGISTERED",
               "name": "Registered"
+            },
+            {
+              "value": "CORRUPTED",
+              "name": "Corrupted"
             }
           ]
         }
@@ -209529,6 +209935,29 @@
           ]
         }
       },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewDraftFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewDraftFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
       "GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewDraftFormPricing": {
         "enum": [
           "free",
@@ -209599,6 +210028,29 @@
             {
               "value": "community",
               "name": "Community"
+            }
+          ]
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewSubmittedFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewSubmittedFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
             }
           ]
         }
@@ -209700,6 +210152,29 @@
           ]
         }
       },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200ResponseReviewDraftFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200ResponseReviewDraftFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200ResponseReviewDraftFormPricing": {
         "enum": [
           "free",
@@ -209770,6 +210245,29 @@
             {
               "value": "community",
               "name": "Community"
+            }
+          ]
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200ResponseReviewSubmittedFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200ResponseReviewSubmittedFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
             }
           ]
         }
@@ -209871,6 +210369,29 @@
           ]
         }
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReviewDraftFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReviewDraftFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReviewDraftFormPricing": {
         "enum": [
           "free",
@@ -209941,6 +210462,29 @@
             {
               "value": "community",
               "name": "Community"
+            }
+          ]
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReviewSubmittedFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReviewSubmittedFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
             }
           ]
         }
@@ -210042,6 +210586,29 @@
           ]
         }
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormPricing": {
         "enum": [
           "free",
@@ -210112,6 +210679,29 @@
             {
               "value": "community",
               "name": "Community"
+            }
+          ]
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewSubmittedFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewSubmittedFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
             }
           ]
         }
@@ -210213,6 +210803,29 @@
           ]
         }
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewDraftFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewDraftFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewDraftFormPricing": {
         "enum": [
           "free",
@@ -210283,6 +210896,29 @@
             {
               "value": "community",
               "name": "Community"
+            }
+          ]
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewSubmittedFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewSubmittedFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
             }
           ]
         }

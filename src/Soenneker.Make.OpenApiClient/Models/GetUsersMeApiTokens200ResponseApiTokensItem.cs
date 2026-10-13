@@ -24,6 +24,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Label { get; set; }
 #endif
+        /// <summary>ID of the organization the API token is scoped to. A scoped token works only within that organization: requests that target another organization, or that have no organization context (for example `GET /users/me/api-tokens` or `/admin` routes), are rejected. `null` means the token works in every organization the user belongs to.</summary>
+        public int? OrganizationId { get; set; }
         /// <summary>The scope property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -32,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public List<string> Scope { get; set; }
 #endif
-        /// <summary>The token property</summary>
+        /// <summary>The API token. Only the response of the create call contains the full value; the list masks everything after the first 8 characters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Token { get; set; }
@@ -67,6 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "created", n => { Created = n.GetDateTimeOffsetValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
+                { "organizationId", n => { OrganizationId = n.GetIntValue(); } },
                 { "scope", n => { Scope = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "token", n => { Token = n.GetStringValue(); } },
             };
@@ -80,6 +83,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("created", Created);
             writer.WriteStringValue("label", Label);
+            writer.WriteIntValue("organizationId", OrganizationId);
             writer.WriteCollectionOfPrimitiveValues<string>("scope", Scope);
             writer.WriteStringValue("token", Token);
             writer.WriteAdditionalData(AdditionalData);

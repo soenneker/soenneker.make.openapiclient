@@ -22,6 +22,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Label { get; set; }
 #endif
+        /// <summary>ID of the organization to scope the API token to. The user must be an accepted member (not just invited) of the organization, and the organization must not be deleted. Omit or send `null` for a token that works in every organization of the user.</summary>
+        public int? OrganizationId { get; set; }
         /// <summary>The API scopes provided to the API token. The API scopes determine the scope of operations that you can do with the API token.Check the list of all existing Make API scopes with the API call `GET /enums/user-api-tokes-scopes`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -56,6 +58,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "label", n => { Label = n.GetStringValue(); } },
+                { "organizationId", n => { OrganizationId = n.GetIntValue(); } },
                 { "scope", n => { Scope = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -67,6 +70,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("label", Label);
+            writer.WriteIntValue("organizationId", OrganizationId);
             writer.WriteCollectionOfPrimitiveValues<string>("scope", Scope);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -8,12 +8,12 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// The new review form. Every field is optional — any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server.
+    /// The new review form. Every field is optional — any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be `http(s)` URLs and scenario links must point at a scenario of this zone (`https://&lt;zone web domain&gt;/&lt;teamId&gt;/scenarios/&lt;scenarioId&gt;/edit`).
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftForm : IParsable
     {
-        /// <summary>Documentation of the API the app calls.</summary>
+        /// <summary>Documentation of the API the app calls. Must be an `http(s)` URL when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ApiDocsUrl { get; set; }
@@ -21,7 +21,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string ApiDocsUrl { get; set; }
 #endif
-        /// <summary>Community listing only — the app&apos;s documentation.</summary>
+        /// <summary>Community listing only — the app&apos;s documentation. Must be an `http(s)` URL when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AppDocsUrl { get; set; }
@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string DataProcessingDescription { get; set; }
 #endif
-        /// <summary>Scenario that fails on purpose, demonstrating how the app surfaces an API error.</summary>
+        /// <summary>Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ErrorHandlingScenarioUrl { get; set; }
@@ -57,7 +57,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>External service terms compliance declaration.</summary>
         public bool? ExternalTcConsent { get; set; }
-        /// <summary>Homepage of the integrated software, shown on the app&apos;s landing page.</summary>
+        /// <summary>Homepage of the integrated software, shown on the app&apos;s landing page. Must be an `http(s)` URL when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? HomepageUrl { get; set; }
@@ -65,7 +65,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string HomepageUrl { get; set; }
 #endif
-        /// <summary>Community listing only — the app&apos;s own landing page.</summary>
+        /// <summary>Community listing only — the app&apos;s own landing page. Must be an `http(s)` URL when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LandingPageUrl { get; set; }
@@ -75,6 +75,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>Requested Marketplace listing type. The choice is only offered to Solution Partners without a vendor agreement.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormListingType? ListingType { get; set; }
+        /// <summary>Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: `none` → `solution`, otherwise `technology`.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormPartnerProgramApplication? PartnerProgramApplication { get; set; }
         /// <summary>Community listing only — whether the app itself is free or paid.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormPricing? Pricing { get; set; }
         /// <summary>Update/re-review only — confirmation that every scenario was re-run on the current app version.</summary>
@@ -113,7 +115,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>Community listing only — consent to the Make Apps Marketplace terms and conditions.</summary>
         public bool? TermsConsent { get; set; }
-        /// <summary>Scenarios where the review team can see every module of the app run successfully.</summary>
+        /// <summary>Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? TestScenarioUrls { get; set; }
@@ -123,7 +125,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>Trademark compliance declaration.</summary>
         public bool? TrademarkConsent { get; set; }
-        /// <summary>Update/re-review only — the test scenarios for the change, seeded from the approved submission.</summary>
+        /// <summary>Update/re-review only — the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? UpdatedScenarioUrls { get; set; }
@@ -169,6 +171,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "homepageUrl", n => { HomepageUrl = n.GetStringValue(); } },
                 { "landingPageUrl", n => { LandingPageUrl = n.GetStringValue(); } },
                 { "listingType", n => { ListingType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormListingType>(); } },
+                { "partnerProgramApplication", n => { PartnerProgramApplication = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormPartnerProgramApplication>(); } },
                 { "pricing", n => { Pricing = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormPricing>(); } },
                 { "reRunConfirmed", n => { ReRunConfirmed = n.GetBoolValue(); } },
                 { "shortDescription", n => { ShortDescription = n.GetStringValue(); } },
@@ -200,6 +203,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("homepageUrl", HomepageUrl);
             writer.WriteStringValue("landingPageUrl", LandingPageUrl);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormListingType>("listingType", ListingType);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormPartnerProgramApplication>("partnerProgramApplication", PartnerProgramApplication);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewDraftFormPricing>("pricing", Pricing);
             writer.WriteBoolValue("reRunConfirmed", ReRunConfirmed);
             writer.WriteStringValue("shortDescription", ShortDescription);

@@ -27,7 +27,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public int? AppVersion { get; set; }
         /// <summary>`true` when `phase` was derived from legacy review state instead of stored new-flow state.</summary>
         public bool? DerivedFromLegacy { get; set; }
-        /// <summary>The new review form. Every field is optional — any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server.</summary>
+        /// <summary>The new review form. Every field is optional — any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be `http(s)` URLs and scenario links must point at a scenario of this zone (`https://&lt;zone web domain&gt;/&lt;teamId&gt;/scenarios/&lt;scenarioId&gt;/edit`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewDraftForm? DraftForm { get; set; }

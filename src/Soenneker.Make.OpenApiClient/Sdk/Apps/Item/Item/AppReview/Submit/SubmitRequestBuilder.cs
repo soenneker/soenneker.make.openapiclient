@@ -34,11 +34,12 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Submit
         {
         }
         /// <summary>
-        /// Submits the prepared form: the review moves from `preparing` to `review` and enters the automatic step (`reviewStep: auto`). The current draft is snapshotted into `submittedForm` — later draft edits do not change the submitted record. Completeness of the form is the client&apos;s responsibility (the readiness gate); the server does not re-validate it. Fails with `409` in any other phase. Only the app&apos;s author (or an administrator) may submit. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
+        /// Submits the prepared form: the review moves from `preparing` to `review` and enters the automatic step (`reviewStep: auto`). The current draft is snapshotted into `submittedForm` — later draft edits do not change the submitted record. Completeness of the form is the client&apos;s responsibility (the readiness gate); the server does not re-validate it. Link formats are validated, though — the rules of the legacy review form: `apiDocsUrl`, `homepageUrl`, `landingPageUrl` and `appDocsUrl` must be `http(s)` URLs, and every scenario link (`testScenarioUrls`, `errorHandlingScenarioUrl`, `updatedScenarioUrls`) must point at a scenario of this zone, i.e. `https://&lt;zone web domain&gt;/&lt;teamId&gt;/scenarios/&lt;scenarioId&gt;/edit` (a query string or fragment may follow). A malformed link fails with `400` (IM005) naming every offending field, and nothing is submitted. Fails with `409` in any other phase. Only the app&apos;s author (or an administrator) may submit. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit400ResponseSchema">When receiving a 400 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit409ResponseSchema">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,12 +53,13 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Submit
             var requestInfo = ToPostRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
+                { "400", global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit400ResponseSchema.CreateFromDiscriminatorValue },
                 { "409", global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit409ResponseSchema.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Submits the prepared form: the review moves from `preparing` to `review` and enters the automatic step (`reviewStep: auto`). The current draft is snapshotted into `submittedForm` — later draft edits do not change the submitted record. Completeness of the form is the client&apos;s responsibility (the readiness gate); the server does not re-validate it. Fails with `409` in any other phase. Only the app&apos;s author (or an administrator) may submit. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
+        /// Submits the prepared form: the review moves from `preparing` to `review` and enters the automatic step (`reviewStep: auto`). The current draft is snapshotted into `submittedForm` — later draft edits do not change the submitted record. Completeness of the form is the client&apos;s responsibility (the readiness gate); the server does not re-validate it. Link formats are validated, though — the rules of the legacy review form: `apiDocsUrl`, `homepageUrl`, `landingPageUrl` and `appDocsUrl` must be `http(s)` URLs, and every scenario link (`testScenarioUrls`, `errorHandlingScenarioUrl`, `updatedScenarioUrls`) must point at a scenario of this zone, i.e. `https://&lt;zone web domain&gt;/&lt;teamId&gt;/scenarios/&lt;scenarioId&gt;/edit` (a query string or fragment may follow). A malformed link fails with `400` (IM005) naming every offending field, and nothing is submitted. Fails with `409` in any other phase. Only the app&apos;s author (or an administrator) may submit. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

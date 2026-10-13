@@ -24,5 +24,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         Registered,
         #pragma warning restore CS1591
+        [EnumMember(Value = "CORRUPTED")]
+        #pragma warning disable CS1591
+        Corrupted,
+        #pragma warning restore CS1591
     }
 }
