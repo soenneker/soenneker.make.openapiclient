@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Start
         {
         }
         /// <summary>
-        /// Moves the review from `dormant` to `preparing` and opens the form for editing. On the first new-flow contact with an app that has legacy review data, the draft is seeded best-effort from the legacy review form (API docs link, test scenarios, error-handling scenario). Fails with `409` in any other phase. Only the app&apos;s author (or an administrator) may do this. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
+        /// Moves the review from `dormant` to `preparing` and opens the form for editing. On the first new-flow contact with an app that has legacy review data, the draft is seeded best-effort from the legacy review form (API docs link, test scenarios, error-handling scenario). Fails with `409` in any other phase — an approved listing is updated with `start-update`, a returned submission is reopened with `start-rereview`. Only the app&apos;s author (or an administrator) may do this. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -57,7 +57,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Start
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Moves the review from `dormant` to `preparing` and opens the form for editing. On the first new-flow contact with an app that has legacy review data, the draft is seeded best-effort from the legacy review form (API docs link, test scenarios, error-handling scenario). Fails with `409` in any other phase. Only the app&apos;s author (or an administrator) may do this. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
+        /// Moves the review from `dormant` to `preparing` and opens the form for editing. On the first new-flow contact with an app that has legacy review data, the draft is seeded best-effort from the legacy review form (API docs link, test scenarios, error-handling scenario). Fails with `409` in any other phase — an approved listing is updated with `start-update`, a returned submission is reopened with `start-rereview`. Only the app&apos;s author (or an administrator) may do this. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

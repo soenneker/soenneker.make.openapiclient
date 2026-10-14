@@ -32,7 +32,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string AppVersionFull { get; set; }
 #endif
-        /// <summary>The createdAt property</summary>
+        /// <summary>The moment of the record. For a `started` record it equals `appInstall.init` of the install response, so it can be passed as `init` to `/admin/install/apps/{app}/check` and `/admin/install/apps/{app}/logs` to read the log of that installation.</summary>
         public DateTimeOffset? CreatedAt { get; set; }
         /// <summary>Surrogate ID of the history record.</summary>
         public int? Id { get; set; }

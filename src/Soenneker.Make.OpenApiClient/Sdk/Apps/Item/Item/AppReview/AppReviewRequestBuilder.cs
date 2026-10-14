@@ -5,8 +5,11 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Cancel;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.ConfirmAutoNotes;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Form;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Start;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.StartRereview;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.StartUpdate;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Submit;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +29,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview
         {
             get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Cancel.CancelRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The confirmAutoNotes property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.ConfirmAutoNotes.ConfirmAutoNotesRequestBuilder ConfirmAutoNotes
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.ConfirmAutoNotes.ConfirmAutoNotesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The form property</summary>
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Form.FormRequestBuilder Form
         {
@@ -35,6 +43,16 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Start.StartRequestBuilder Start
         {
             get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Start.StartRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The startRereview property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.StartRereview.StartRereviewRequestBuilder StartRereview
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.StartRereview.StartRereviewRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The startUpdate property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.StartUpdate.StartUpdateRequestBuilder StartUpdate
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.StartUpdate.StartUpdateRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The submit property</summary>
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Submit.SubmitRequestBuilder Submit

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
-    /// <summary>Lifecycle phase of the review. The developer endpoints of this flow currently move between `dormant`, `preparing` and `review`; the remaining phases are reachable through legacy-state derivation and are produced by the update/re-review and reviewer flows that follow.</summary>
+    /// <summary>Lifecycle phase of the review. `dormant` → `start` → `preparing` → `submit` → `review`; a reviewer then approves (`approved`) or requests changes (`changes_required`, reopened with `start-rereview` → `rereview` → `submit` back to `review`). An approved listing is updated through `start-update` → `updating` → `submit` → `update_review`, whose outcomes are `approved` or `changes_required_update` (re-reviewed through `rereview` back to `update_review`). `cancel` steps back one phase on every track.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewPhase
     {

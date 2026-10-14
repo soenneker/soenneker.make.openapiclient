@@ -18,6 +18,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public DateTimeOffset? Created { get; set; }
         /// <summary>The draft property</summary>
         public bool? Draft { get; set; }
+        /// <summary>How the version was saved. `null` for versions saved before it was recorded and for system saves.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200ResponseScenariosBlueprintsItemProvenance? Provenance { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200ResponseScenariosBlueprintsItemProvenance Provenance { get; set; }
+#endif
         /// <summary>The scenarioId property</summary>
         public int? ScenarioId { get; set; }
         /// <summary>The version property</summary>
@@ -57,6 +65,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "created", n => { Created = n.GetDateTimeOffsetValue(); } },
                 { "draft", n => { Draft = n.GetBoolValue(); } },
+                { "provenance", n => { Provenance = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200ResponseScenariosBlueprintsItemProvenance>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200ResponseScenariosBlueprintsItemProvenance.CreateFromDiscriminatorValue); } },
                 { "scenarioId", n => { ScenarioId = n.GetIntValue(); } },
                 { "version", n => { Version = n.GetIntValue(); } },
                 { "versionDescription", n => { VersionDescription = n.GetStringValue(); } },
@@ -71,6 +80,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("created", Created);
             writer.WriteBoolValue("draft", Draft);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200ResponseScenariosBlueprintsItemProvenance>("provenance", Provenance);
             writer.WriteIntValue("scenarioId", ScenarioId);
             writer.WriteIntValue("version", Version);
             writer.WriteStringValue("versionDescription", VersionDescription);

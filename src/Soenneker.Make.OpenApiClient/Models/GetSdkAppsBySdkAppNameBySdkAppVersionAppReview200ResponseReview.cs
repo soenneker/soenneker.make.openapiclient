@@ -43,7 +43,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewEventsItem> Events { get; set; }
 #endif
-        /// <summary>Lifecycle phase of the review. The developer endpoints of this flow currently move between `dormant`, `preparing` and `review`; the remaining phases are reachable through legacy-state derivation and are produced by the update/re-review and reviewer flows that follow.</summary>
+        /// <summary>Lifecycle phase of the review. `dormant` → `start` → `preparing` → `submit` → `review`; a reviewer then approves (`approved`) or requests changes (`changes_required`, reopened with `start-rereview` → `rereview` → `submit` back to `review`). An approved listing is updated through `start-update` → `updating` → `submit` → `update_review`, whose outcomes are `approved` or `changes_required_update` (re-reviewed through `rereview` back to `update_review`). `cancel` steps back one phase on every track.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewPhase? Phase { get; set; }
         /// <summary>While `phase` is `rereview`, the phase the re-review was started from. `null` otherwise.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewRereviewOrigin? RereviewOrigin { get; set; }

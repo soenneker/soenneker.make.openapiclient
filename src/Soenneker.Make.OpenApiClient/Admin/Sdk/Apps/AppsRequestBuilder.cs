@@ -16,7 +16,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps
     public partial class AppsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.admin.sdk.apps.item collection</summary>
-        /// <param name="position">The SDK app name.</param>
+        /// <param name="position">Name of the SDK app.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.WithAppItemRequestBuilder"/></returns>
         public global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.WithAppItemRequestBuilder this[string position]
         {

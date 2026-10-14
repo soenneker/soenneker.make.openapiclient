@@ -31,6 +31,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChange Change { get; set; }
 #endif
+        /// <summary>How the change was made. Absent on rows written before it was recorded and on system actions (for example plan downgrades).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailProvenance? Provenance { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailProvenance Provenance { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail"/> and sets the default values.
         /// </summary>
@@ -58,6 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "author", n => { Author = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailAuthor>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailAuthor.CreateFromDiscriminatorValue); } },
                 { "change", n => { Change = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChange>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChange.CreateFromDiscriminatorValue); } },
+                { "provenance", n => { Provenance = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailProvenance>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailProvenance.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -69,6 +78,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailAuthor>("author", Author);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChange>("change", Change);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailProvenance>("provenance", Provenance);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

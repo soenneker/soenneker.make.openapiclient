@@ -9,12 +9,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PatchTeamsByTeamIdRequest : IAdditionalDataHolder, IParsable
+    public partial class PatchTeamsByTeamIdRequest : IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The new name of the team. Maximum length is 128 characters.</summary>
+        /// <summary>The new name of the team.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -22,18 +20,11 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The maximum number of operations allowed for the team. The maximum matches the highest number of credits an organization can be licensed for.</summary>
+        /// <summary>The maximum number of operations allowed for the team. The maximum matches the highest number of credits an organization can be licensed for. `null` removes the limit.</summary>
         public int? OperationsLimit { get; set; }
         /// <summary>This property is deprecated. It is only supported on private instances and ignored on Make&apos;s public cloud.</summary>
         [Obsolete("")]
         public bool? ScenarioDrafts { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdRequest"/> and sets the default values.
-        /// </summary>
-        public PatchTeamsByTeamIdRequest()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -67,7 +58,6 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("operationsLimit", OperationsLimit);
             writer.WriteBoolValue("scenarioDrafts", ScenarioDrafts);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

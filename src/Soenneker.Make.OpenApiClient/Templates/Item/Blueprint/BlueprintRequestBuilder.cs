@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Templates.Item.Blueprint
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public BlueprintRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/templates/{templateId}/blueprint{?forUse*,templatePublicId*}", pathParameters)
+        public BlueprintRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/templates/{templateId}/blueprint{?forEdit*,forUse*,templatePublicId*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Templates.Item.Blueprint
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public BlueprintRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/templates/{templateId}/blueprint{?forUse*,templatePublicId*}", rawUrl)
+        public BlueprintRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/templates/{templateId}/blueprint{?forEdit*,forUse*,templatePublicId*}", rawUrl)
         {
         }
         /// <summary>
@@ -85,6 +85,9 @@ namespace Soenneker.Make.OpenApiClient.Templates.Item.Blueprint
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class BlueprintRequestBuilderGetQueryParameters 
         {
+            /// <summary>If this parameter is set to `true`, the blueprint is returned for editing the template: the values of the fields marked as &quot;Use in Wizard&quot; (for example connections) are filled in, and disabled or empty routes and agent tools are kept. Has no effect when `forUse` is `true`. Without either parameter, the values are filled in but disabled and empty routes and agent tools are left out.</summary>
+            [QueryParameter("forEdit")]
+            public bool? ForEdit { get; set; }
             /// <summary>If this parameter is set to `true`, it means the blueprint should be used for creating a scenario from the template.</summary>
             [QueryParameter("forUse")]
             public bool? ForUse { get; set; }
