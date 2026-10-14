@@ -15948,6 +15948,272 @@
         "x-internal": true
       }
     },
+    "/modules/v1/execute": {
+      "post": {
+        "tags": [
+          "Modules"
+        ],
+        "summary": "Execute a Module synchronously",
+        "description": "Executes one unsaved action or search through Executor without creating a scenario, history entry, result store, or replay mechanism.\nModule execution must be enabled explicitly. Dynamic configuration metadata, file transport, and deadline/disconnect propagation remain unavailable until their cross-service contracts are complete.\nWebAPI requires \u0060scenarios:run\u0060 and forwards the authenticated execution context to Executor. Executor enforces team \u0060SCENARIO_START\u0060, permits only verified admin requests with \u0060SCENARIO_VERIFY\u0060, validates the organization binding, and remains responsible for runtime eligibility. No separate facade license gate applies.\nAn HTTP error or missing response does not prove that execution did not start or that no external effects occurred, so callers must not retry automatically.\n",
+        "operationId": "PostModulesV1Execute",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostModulesV1ExecuteRequest"
+              },
+              "examples": {
+                "module-execution": {
+                  "value": {
+                    "teamId": 857,
+                    "module": {
+                      "module": "google-sheets:filterRows",
+                      "version": 2,
+                      "parameters": {
+                        "__IMTCONN__": 16705
+                      },
+                      "mapper": {}
+                    },
+                    "references": {
+                      "modules": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The Module completed successfully, including success with warnings.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostModulesV1Execute200Response"
+                },
+                "examples": {
+                  "module-execution": {
+                    "value": {
+                      "status": "succeeded",
+                      "executionId": "01JY6QPVN4P2J41H7D11WQ1RHT",
+                      "target": {
+                        "appName": "google-sheets",
+                        "appVersion": 2,
+                        "moduleName": "filterRows"
+                      },
+                      "durationMs": 83,
+                      "output": {
+                        "bundles": [
+                          {
+                            "rowNumber": 4,
+                            "values": [
+                              "Ada",
+                              "Lovelace"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The public request is malformed, or Executor returned an HTTP 400 rejection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostModulesV1Execute400Response"
+                },
+                "examples": {
+                  "module-execution": {
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "The request body is invalid."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The token lacks the \u0060scenarios:run\u0060 scope.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostModulesV1Execute401Response"
+                },
+                "examples": {
+                  "module-execution": {
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: scenarios:run"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller lacks the required Module execution authority or the execution context conflicts with the organization binding.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostModulesV1Execute403Response"
+                },
+                "examples": {
+                  "module-execution": {
+                    "value": {
+                      "code": "IM002",
+                      "message": "Insufficient rights"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The target or owner is unavailable or unsupported.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostModulesV1Execute422Response"
+                },
+                "examples": {
+                  "module-execution": {
+                    "value": {
+                      "code": "IM016",
+                      "message": "Action not possible due to dependencies"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "424": {
+            "description": "An authorization dependency, worker, execution, or output failure prevented completion.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostModulesV1Execute424Response"
+                },
+                "examples": {
+                  "module-execution": {
+                    "value": {
+                      "code": "SC424",
+                      "message": "The request failed due to failure of a previous request.",
+                      "suberrors": [
+                        {
+                          "message": "Module execution failed."
+                        }
+                      ],
+                      "module": {
+                        "status": "failed",
+                        "code": "EXECUTION_FAILED",
+                        "phase": "execution",
+                        "executionStarted": true,
+                        "sideEffects": "possible"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The organization is paused or has no available execution capacity.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostModulesV1Execute429Response"
+                },
+                "examples": {
+                  "module-execution": {
+                    "value": {
+                      "code": "SC429",
+                      "message": "Too Many Requests"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Executor failed internally or returned a malformed response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostModulesV1Execute500Response"
+                },
+                "examples": {
+                  "module-execution": {
+                    "value": {
+                      "code": "SC500",
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Module execution is disabled or the selected Module runtime is not implemented.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostModulesV1Execute501Response"
+                },
+                "examples": {
+                  "module-execution": {
+                    "value": {
+                      "code": "SC501",
+                      "message": "Not Implemented",
+                      "module": {
+                        "status": "rejected",
+                        "code": "NOT_IMPLEMENTED",
+                        "phase": "admission",
+                        "executionStarted": false,
+                        "sideEffects": "none"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Module execution state or capacity is unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostModulesV1Execute503Response"
+                },
+                "examples": {
+                  "module-execution": {
+                    "value": {
+                      "code": "SC503",
+                      "message": "Service unavailable"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:run"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
     "/execution-capacity/{organizationId}": {
       "get": {
         "tags": [
@@ -107201,6 +107467,279 @@
           }
         }
       },
+      "PostModulesV1ExecuteRequest": {
+        "required": [
+          "teamId",
+          "module",
+          "references"
+        ],
+        "type": "object",
+        "properties": {
+          "teamId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "module": {
+            "$ref": "#/components/schemas/PostModulesV1ExecuteRequestModule"
+          },
+          "references": {
+            "$ref": "#/components/schemas/PostModulesV1ExecuteRequestReferences"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute200Response": {
+        "required": [
+          "status",
+          "executionId",
+          "target",
+          "durationMs",
+          "output"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/SucceededStatus"
+          },
+          "executionId": {
+            "type": "string"
+          },
+          "target": {
+            "$ref": "#/components/schemas/PostModulesV1Execute200ResponseTarget"
+          },
+          "durationMs": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "output": {
+            "$ref": "#/components/schemas/PostModulesV1Execute200ResponseOutput"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute200ResponseWarningsItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "module": {
+            "$ref": "#/components/schemas/PostModulesV1Execute400ResponseModule"
+          }
+        }
+      },
+      "PostModulesV1Execute401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "module": {
+            "$ref": "#/components/schemas/PostModulesV1Execute401ResponseModule"
+          }
+        }
+      },
+      "PostModulesV1Execute403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "module": {
+            "$ref": "#/components/schemas/PostModulesV1Execute403ResponseModule"
+          }
+        }
+      },
+      "PostModulesV1Execute422Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "module": {
+            "$ref": "#/components/schemas/PostModulesV1Execute422ResponseModule"
+          }
+        }
+      },
+      "PostModulesV1Execute424Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "module": {
+            "$ref": "#/components/schemas/PostModulesV1Execute424ResponseModule"
+          }
+        }
+      },
+      "PostModulesV1Execute429Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "module": {
+            "$ref": "#/components/schemas/PostModulesV1Execute429ResponseModule"
+          }
+        }
+      },
+      "PostModulesV1Execute500Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "module": {
+            "$ref": "#/components/schemas/PostModulesV1Execute500ResponseModule"
+          }
+        }
+      },
+      "PostModulesV1Execute501Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "module": {
+            "$ref": "#/components/schemas/PostModulesV1Execute501ResponseModule"
+          }
+        }
+      },
+      "PostModulesV1Execute503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "module": {
+            "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModule"
+          }
+        }
+      },
       "GetExecutionCapacityByOrganizationId200Response": {
         "required": [
           "rollupSeconds",
@@ -152056,6 +152595,105 @@
           }
         ]
       },
+      "PostModulesV1Execute400ResponseModuleExecutionStarted": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "$ref": "#/components/schemas/PostModulesV1Execute400ResponseModuleExecutionStartedOneOf2"
+          }
+        ]
+      },
+      "PostModulesV1Execute401ResponseModuleExecutionStarted": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "$ref": "#/components/schemas/PostModulesV1Execute401ResponseModuleExecutionStartedOneOf2"
+          }
+        ]
+      },
+      "PostModulesV1Execute403ResponseModuleExecutionStarted": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "$ref": "#/components/schemas/PostModulesV1Execute403ResponseModuleExecutionStartedOneOf2"
+          }
+        ]
+      },
+      "PostModulesV1Execute422ResponseModuleExecutionStarted": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "$ref": "#/components/schemas/PostModulesV1Execute422ResponseModuleExecutionStartedOneOf2"
+          }
+        ]
+      },
+      "PostModulesV1Execute424ResponseModuleExecutionStarted": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "$ref": "#/components/schemas/PostModulesV1Execute424ResponseModuleExecutionStartedOneOf2"
+          }
+        ]
+      },
+      "PostModulesV1Execute429ResponseModuleExecutionStarted": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "$ref": "#/components/schemas/PostModulesV1Execute429ResponseModuleExecutionStartedOneOf2"
+          }
+        ]
+      },
+      "PostModulesV1Execute500ResponseModuleExecutionStarted": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "$ref": "#/components/schemas/PostModulesV1Execute500ResponseModuleExecutionStartedOneOf2"
+          }
+        ]
+      },
+      "PostModulesV1Execute501ResponseModuleExecutionStarted": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "$ref": "#/components/schemas/PostModulesV1Execute501ResponseModuleExecutionStartedOneOf2"
+          }
+        ]
+      },
+      "PostModulesV1Execute503ResponseModuleExecutionStarted": {
+        "type": "object",
+        "oneOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModuleExecutionStartedOneOf2"
+          }
+        ]
+      },
       "ListFunctionsV2400ResponseDetail": {
         "type": "object",
         "oneOf": [
@@ -161225,6 +161863,463 @@
       "PostEndpointsV1Execute200ResponseOutput": {
         "type": "object",
         "description": "Raw result of the Endpoint execution. The shape is defined by the executed Endpoint itself and is not constrained by this route."
+      },
+      "PostModulesV1ExecuteRequestModule": {
+        "required": [
+          "module",
+          "version",
+          "parameters",
+          "mapper"
+        ],
+        "type": "object",
+        "properties": {
+          "module": {
+            "maxLength": 83,
+            "minLength": 7,
+            "pattern": "^(?:app#)?[a-z][0-9a-z-]\u002B[0-9a-z]:[a-zA-Z][0-9a-zA-Z]\u002B[0-9a-zA-Z]$",
+            "type": "string"
+          },
+          "version": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "parameters": {
+            "$ref": "#/components/schemas/PostModulesV1ExecuteRequestModuleParameters"
+          },
+          "mapper": {
+            "$ref": "#/components/schemas/PostModulesV1ExecuteRequestModuleMapper"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Dynamic configuration metadata is not accepted until the signed configuration handoff is available."
+      },
+      "PostModulesV1ExecuteRequestReferences": {
+        "required": [
+          "modules"
+        ],
+        "type": "object",
+        "properties": {
+          "modules": {
+            "$ref": "#/components/schemas/PostModulesV1ExecuteRequestReferencesModules"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute200ResponseTarget": {
+        "required": [
+          "appName",
+          "appVersion",
+          "moduleName"
+        ],
+        "type": "object",
+        "properties": {
+          "appName": {
+            "type": "string"
+          },
+          "appVersion": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "moduleName": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute200ResponseOutput": {
+        "required": [
+          "bundles"
+        ],
+        "type": "object",
+        "properties": {
+          "bundles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute200ResponseOutputBundlesItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute200ResponseWarningsItem": {
+        "required": [
+          "code",
+          "phase",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute400ResponseModule": {
+        "required": [
+          "status",
+          "code",
+          "phase",
+          "executionStarted",
+          "sideEffects"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/PostModulesV1Execute400ResponseModuleStatus"
+          },
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "executionStarted": {
+            "$ref": "#/components/schemas/PostModulesV1Execute400ResponseModuleExecutionStarted"
+          },
+          "sideEffects": {
+            "$ref": "#/components/schemas/PostModulesV1Execute400ResponseModuleSideEffects"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute400ResponseModuleWarningsItem"
+            }
+          },
+          "output": {
+            "$ref": "#/components/schemas/PostModulesV1Execute400ResponseModuleOutput"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/PostModulesV1Execute400ResponseModuleUsage"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute401ResponseModule": {
+        "required": [
+          "status",
+          "code",
+          "phase",
+          "executionStarted",
+          "sideEffects"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/PostModulesV1Execute401ResponseModuleStatus"
+          },
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "executionStarted": {
+            "$ref": "#/components/schemas/PostModulesV1Execute401ResponseModuleExecutionStarted"
+          },
+          "sideEffects": {
+            "$ref": "#/components/schemas/PostModulesV1Execute401ResponseModuleSideEffects"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute401ResponseModuleWarningsItem"
+            }
+          },
+          "output": {
+            "$ref": "#/components/schemas/PostModulesV1Execute401ResponseModuleOutput"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/PostModulesV1Execute401ResponseModuleUsage"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute403ResponseModule": {
+        "required": [
+          "status",
+          "code",
+          "phase",
+          "executionStarted",
+          "sideEffects"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/PostModulesV1Execute403ResponseModuleStatus"
+          },
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "executionStarted": {
+            "$ref": "#/components/schemas/PostModulesV1Execute403ResponseModuleExecutionStarted"
+          },
+          "sideEffects": {
+            "$ref": "#/components/schemas/PostModulesV1Execute403ResponseModuleSideEffects"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute403ResponseModuleWarningsItem"
+            }
+          },
+          "output": {
+            "$ref": "#/components/schemas/PostModulesV1Execute403ResponseModuleOutput"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/PostModulesV1Execute403ResponseModuleUsage"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute422ResponseModule": {
+        "required": [
+          "status",
+          "code",
+          "phase",
+          "executionStarted",
+          "sideEffects"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/PostModulesV1Execute422ResponseModuleStatus"
+          },
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "executionStarted": {
+            "$ref": "#/components/schemas/PostModulesV1Execute422ResponseModuleExecutionStarted"
+          },
+          "sideEffects": {
+            "$ref": "#/components/schemas/PostModulesV1Execute422ResponseModuleSideEffects"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute422ResponseModuleWarningsItem"
+            }
+          },
+          "output": {
+            "$ref": "#/components/schemas/PostModulesV1Execute422ResponseModuleOutput"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/PostModulesV1Execute422ResponseModuleUsage"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute424ResponseModule": {
+        "required": [
+          "status",
+          "code",
+          "phase",
+          "executionStarted",
+          "sideEffects"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/PostModulesV1Execute424ResponseModuleStatus"
+          },
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "executionStarted": {
+            "$ref": "#/components/schemas/PostModulesV1Execute424ResponseModuleExecutionStarted"
+          },
+          "sideEffects": {
+            "$ref": "#/components/schemas/PostModulesV1Execute424ResponseModuleSideEffects"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute424ResponseModuleWarningsItem"
+            }
+          },
+          "output": {
+            "$ref": "#/components/schemas/PostModulesV1Execute424ResponseModuleOutput"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/PostModulesV1Execute424ResponseModuleUsage"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute429ResponseModule": {
+        "required": [
+          "status",
+          "code",
+          "phase",
+          "executionStarted",
+          "sideEffects"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/PostModulesV1Execute429ResponseModuleStatus"
+          },
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "executionStarted": {
+            "$ref": "#/components/schemas/PostModulesV1Execute429ResponseModuleExecutionStarted"
+          },
+          "sideEffects": {
+            "$ref": "#/components/schemas/PostModulesV1Execute429ResponseModuleSideEffects"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute429ResponseModuleWarningsItem"
+            }
+          },
+          "output": {
+            "$ref": "#/components/schemas/PostModulesV1Execute429ResponseModuleOutput"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/PostModulesV1Execute429ResponseModuleUsage"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute500ResponseModule": {
+        "required": [
+          "status",
+          "code",
+          "phase",
+          "executionStarted",
+          "sideEffects"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/PostModulesV1Execute500ResponseModuleStatus"
+          },
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "executionStarted": {
+            "$ref": "#/components/schemas/PostModulesV1Execute500ResponseModuleExecutionStarted"
+          },
+          "sideEffects": {
+            "$ref": "#/components/schemas/PostModulesV1Execute500ResponseModuleSideEffects"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute500ResponseModuleWarningsItem"
+            }
+          },
+          "output": {
+            "$ref": "#/components/schemas/PostModulesV1Execute500ResponseModuleOutput"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/PostModulesV1Execute500ResponseModuleUsage"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute501ResponseModule": {
+        "required": [
+          "status",
+          "code",
+          "phase",
+          "executionStarted",
+          "sideEffects"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/PostModulesV1Execute501ResponseModuleStatus"
+          },
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "executionStarted": {
+            "$ref": "#/components/schemas/PostModulesV1Execute501ResponseModuleExecutionStarted"
+          },
+          "sideEffects": {
+            "$ref": "#/components/schemas/PostModulesV1Execute501ResponseModuleSideEffects"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute501ResponseModuleWarningsItem"
+            }
+          },
+          "output": {
+            "$ref": "#/components/schemas/PostModulesV1Execute501ResponseModuleOutput"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/PostModulesV1Execute501ResponseModuleUsage"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute503ResponseModule": {
+        "required": [
+          "status",
+          "code",
+          "phase",
+          "executionStarted",
+          "sideEffects"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModuleStatus"
+          },
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "executionStarted": {
+            "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModuleExecutionStarted"
+          },
+          "sideEffects": {
+            "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModuleSideEffects"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModuleWarningsItem"
+            }
+          },
+          "output": {
+            "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModuleOutput"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModuleUsage"
+          }
+        },
+        "additionalProperties": false
       },
       "GetExecutionCapacityByOrganizationId200ResponseSamplesItem": {
         "required": [
@@ -177696,6 +178791,498 @@
       "GetDlqsByDlqIdLogsByExecutionDlqId200ResponseDlqLogCenticredits": {
         "type": "object"
       },
+      "PostModulesV1ExecuteRequestModuleParameters": {
+        "type": "object"
+      },
+      "PostModulesV1ExecuteRequestModuleMapper": {
+        "type": "object"
+      },
+      "PostModulesV1ExecuteRequestReferencesModules": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/PostModulesV1ExecuteRequestReferencesModulesAdditionalProperties"
+        }
+      },
+      "PostModulesV1Execute200ResponseOutputBundlesItem": {
+        "type": "object"
+      },
+      "PostModulesV1Execute400ResponseModuleWarningsItem": {
+        "required": [
+          "code",
+          "phase",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute400ResponseModuleOutput": {
+        "required": [
+          "bundles"
+        ],
+        "type": "object",
+        "properties": {
+          "bundles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute400ResponseModuleOutputBundlesItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute400ResponseModuleUsage": {
+        "type": "object",
+        "properties": {
+          "durationMs": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "operations": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "transfer": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute401ResponseModuleWarningsItem": {
+        "required": [
+          "code",
+          "phase",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute401ResponseModuleOutput": {
+        "required": [
+          "bundles"
+        ],
+        "type": "object",
+        "properties": {
+          "bundles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute401ResponseModuleOutputBundlesItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute401ResponseModuleUsage": {
+        "type": "object",
+        "properties": {
+          "durationMs": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "operations": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "transfer": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute403ResponseModuleWarningsItem": {
+        "required": [
+          "code",
+          "phase",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute403ResponseModuleOutput": {
+        "required": [
+          "bundles"
+        ],
+        "type": "object",
+        "properties": {
+          "bundles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute403ResponseModuleOutputBundlesItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute403ResponseModuleUsage": {
+        "type": "object",
+        "properties": {
+          "durationMs": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "operations": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "transfer": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute422ResponseModuleWarningsItem": {
+        "required": [
+          "code",
+          "phase",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute422ResponseModuleOutput": {
+        "required": [
+          "bundles"
+        ],
+        "type": "object",
+        "properties": {
+          "bundles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute422ResponseModuleOutputBundlesItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute422ResponseModuleUsage": {
+        "type": "object",
+        "properties": {
+          "durationMs": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "operations": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "transfer": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute424ResponseModuleWarningsItem": {
+        "required": [
+          "code",
+          "phase",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute424ResponseModuleOutput": {
+        "required": [
+          "bundles"
+        ],
+        "type": "object",
+        "properties": {
+          "bundles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute424ResponseModuleOutputBundlesItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute424ResponseModuleUsage": {
+        "type": "object",
+        "properties": {
+          "durationMs": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "operations": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "transfer": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute429ResponseModuleWarningsItem": {
+        "required": [
+          "code",
+          "phase",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute429ResponseModuleOutput": {
+        "required": [
+          "bundles"
+        ],
+        "type": "object",
+        "properties": {
+          "bundles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute429ResponseModuleOutputBundlesItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute429ResponseModuleUsage": {
+        "type": "object",
+        "properties": {
+          "durationMs": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "operations": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "transfer": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute500ResponseModuleWarningsItem": {
+        "required": [
+          "code",
+          "phase",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute500ResponseModuleOutput": {
+        "required": [
+          "bundles"
+        ],
+        "type": "object",
+        "properties": {
+          "bundles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute500ResponseModuleOutputBundlesItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute500ResponseModuleUsage": {
+        "type": "object",
+        "properties": {
+          "durationMs": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "operations": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "transfer": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute501ResponseModuleWarningsItem": {
+        "required": [
+          "code",
+          "phase",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute501ResponseModuleOutput": {
+        "required": [
+          "bundles"
+        ],
+        "type": "object",
+        "properties": {
+          "bundles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute501ResponseModuleOutputBundlesItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute501ResponseModuleUsage": {
+        "type": "object",
+        "properties": {
+          "durationMs": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "operations": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "transfer": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute503ResponseModuleWarningsItem": {
+        "required": [
+          "code",
+          "phase",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "phase": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute503ResponseModuleOutput": {
+        "required": [
+          "bundles"
+        ],
+        "type": "object",
+        "properties": {
+          "bundles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModuleOutputBundlesItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute503ResponseModuleUsage": {
+        "type": "object",
+        "properties": {
+          "durationMs": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "operations": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "transfer": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      },
       "ListFunctionsV2200ResponseFunctionsItemLatestVersion": {
         "required": [
           "version",
@@ -184415,6 +186002,45 @@
           }
         }
       },
+      "PostModulesV1ExecuteRequestReferencesModulesAdditionalProperties": {
+        "required": [
+          "bundle"
+        ],
+        "type": "object",
+        "properties": {
+          "bundle": {
+            "$ref": "#/components/schemas/PostModulesV1ExecuteRequestReferencesModulesAdditionalPropertiesBundle"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute400ResponseModuleOutputBundlesItem": {
+        "type": "object"
+      },
+      "PostModulesV1Execute401ResponseModuleOutputBundlesItem": {
+        "type": "object"
+      },
+      "PostModulesV1Execute403ResponseModuleOutputBundlesItem": {
+        "type": "object"
+      },
+      "PostModulesV1Execute422ResponseModuleOutputBundlesItem": {
+        "type": "object"
+      },
+      "PostModulesV1Execute424ResponseModuleOutputBundlesItem": {
+        "type": "object"
+      },
+      "PostModulesV1Execute429ResponseModuleOutputBundlesItem": {
+        "type": "object"
+      },
+      "PostModulesV1Execute500ResponseModuleOutputBundlesItem": {
+        "type": "object"
+      },
+      "PostModulesV1Execute501ResponseModuleOutputBundlesItem": {
+        "type": "object"
+      },
+      "PostModulesV1Execute503ResponseModuleOutputBundlesItem": {
+        "type": "object"
+      },
       "ListFunctionsV2200ResponseFunctionsItemLatestVersionInputSchema": {
         "maxProperties": 64,
         "type": "object",
@@ -186216,6 +187842,9 @@
             "deprecated": true
           }
         }
+      },
+      "PostModulesV1ExecuteRequestReferencesModulesAdditionalPropertiesBundle": {
+        "type": "object"
       },
       "GetHooksByHookIdLogsByLogId200ResponseHookLogDataRequestHeaders": {
         "type": "object",
@@ -199981,6 +201610,23 @@
           ]
         }
       },
+      "SucceededStatus": {
+        "enum": [
+          "succeeded"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "SucceededStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "succeeded",
+              "name": "Succeeded"
+            }
+          ]
+        }
+      },
       "Sc400Code": {
         "enum": [
           "SC400"
@@ -201675,6 +203321,159 @@
         ],
         "type": "boolean",
         "additionalProperties": false
+      },
+      "PostModulesV1Execute400ResponseModuleExecutionStartedOneOf2": {
+        "enum": [
+          "unknown"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute400ResponseModuleExecutionStartedOneOf2",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "unknown",
+              "name": "Unknown"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute401ResponseModuleExecutionStartedOneOf2": {
+        "enum": [
+          "unknown"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute401ResponseModuleExecutionStartedOneOf2",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "unknown",
+              "name": "Unknown"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute403ResponseModuleExecutionStartedOneOf2": {
+        "enum": [
+          "unknown"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute403ResponseModuleExecutionStartedOneOf2",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "unknown",
+              "name": "Unknown"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute422ResponseModuleExecutionStartedOneOf2": {
+        "enum": [
+          "unknown"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute422ResponseModuleExecutionStartedOneOf2",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "unknown",
+              "name": "Unknown"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute424ResponseModuleExecutionStartedOneOf2": {
+        "enum": [
+          "unknown"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute424ResponseModuleExecutionStartedOneOf2",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "unknown",
+              "name": "Unknown"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute429ResponseModuleExecutionStartedOneOf2": {
+        "enum": [
+          "unknown"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute429ResponseModuleExecutionStartedOneOf2",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "unknown",
+              "name": "Unknown"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute500ResponseModuleExecutionStartedOneOf2": {
+        "enum": [
+          "unknown"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute500ResponseModuleExecutionStartedOneOf2",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "unknown",
+              "name": "Unknown"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute501ResponseModuleExecutionStartedOneOf2": {
+        "enum": [
+          "unknown"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute501ResponseModuleExecutionStartedOneOf2",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "unknown",
+              "name": "Unknown"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute503ResponseModuleExecutionStartedOneOf2": {
+        "enum": [
+          "unknown"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute503ResponseModuleExecutionStartedOneOf2",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "unknown",
+              "name": "Unknown"
+            }
+          ]
+        }
       },
       "CreateFunctionV2RunRequestAllOf1AnyOf1Responsive": {
         "enum": [
@@ -204014,6 +205813,492 @@
             {
               "value": "utf8",
               "name": "Utf8"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute400ResponseModuleStatus": {
+        "enum": [
+          "rejected",
+          "failed",
+          "indeterminate"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute400ResponseModuleStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            },
+            {
+              "value": "indeterminate",
+              "name": "Indeterminate"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute400ResponseModuleSideEffects": {
+        "enum": [
+          "none",
+          "possible",
+          "known"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute400ResponseModuleSideEffects",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "possible",
+              "name": "Possible"
+            },
+            {
+              "value": "known",
+              "name": "Known"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute401ResponseModuleStatus": {
+        "enum": [
+          "rejected",
+          "failed",
+          "indeterminate"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute401ResponseModuleStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            },
+            {
+              "value": "indeterminate",
+              "name": "Indeterminate"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute401ResponseModuleSideEffects": {
+        "enum": [
+          "none",
+          "possible",
+          "known"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute401ResponseModuleSideEffects",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "possible",
+              "name": "Possible"
+            },
+            {
+              "value": "known",
+              "name": "Known"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute403ResponseModuleStatus": {
+        "enum": [
+          "rejected",
+          "failed",
+          "indeterminate"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute403ResponseModuleStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            },
+            {
+              "value": "indeterminate",
+              "name": "Indeterminate"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute403ResponseModuleSideEffects": {
+        "enum": [
+          "none",
+          "possible",
+          "known"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute403ResponseModuleSideEffects",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "possible",
+              "name": "Possible"
+            },
+            {
+              "value": "known",
+              "name": "Known"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute422ResponseModuleStatus": {
+        "enum": [
+          "rejected",
+          "failed",
+          "indeterminate"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute422ResponseModuleStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            },
+            {
+              "value": "indeterminate",
+              "name": "Indeterminate"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute422ResponseModuleSideEffects": {
+        "enum": [
+          "none",
+          "possible",
+          "known"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute422ResponseModuleSideEffects",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "possible",
+              "name": "Possible"
+            },
+            {
+              "value": "known",
+              "name": "Known"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute424ResponseModuleStatus": {
+        "enum": [
+          "rejected",
+          "failed",
+          "indeterminate"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute424ResponseModuleStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            },
+            {
+              "value": "indeterminate",
+              "name": "Indeterminate"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute424ResponseModuleSideEffects": {
+        "enum": [
+          "none",
+          "possible",
+          "known"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute424ResponseModuleSideEffects",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "possible",
+              "name": "Possible"
+            },
+            {
+              "value": "known",
+              "name": "Known"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute429ResponseModuleStatus": {
+        "enum": [
+          "rejected",
+          "failed",
+          "indeterminate"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute429ResponseModuleStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            },
+            {
+              "value": "indeterminate",
+              "name": "Indeterminate"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute429ResponseModuleSideEffects": {
+        "enum": [
+          "none",
+          "possible",
+          "known"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute429ResponseModuleSideEffects",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "possible",
+              "name": "Possible"
+            },
+            {
+              "value": "known",
+              "name": "Known"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute500ResponseModuleStatus": {
+        "enum": [
+          "rejected",
+          "failed",
+          "indeterminate"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute500ResponseModuleStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            },
+            {
+              "value": "indeterminate",
+              "name": "Indeterminate"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute500ResponseModuleSideEffects": {
+        "enum": [
+          "none",
+          "possible",
+          "known"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute500ResponseModuleSideEffects",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "possible",
+              "name": "Possible"
+            },
+            {
+              "value": "known",
+              "name": "Known"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute501ResponseModuleStatus": {
+        "enum": [
+          "rejected",
+          "failed",
+          "indeterminate"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute501ResponseModuleStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            },
+            {
+              "value": "indeterminate",
+              "name": "Indeterminate"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute501ResponseModuleSideEffects": {
+        "enum": [
+          "none",
+          "possible",
+          "known"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute501ResponseModuleSideEffects",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "possible",
+              "name": "Possible"
+            },
+            {
+              "value": "known",
+              "name": "Known"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute503ResponseModuleStatus": {
+        "enum": [
+          "rejected",
+          "failed",
+          "indeterminate"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute503ResponseModuleStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            },
+            {
+              "value": "indeterminate",
+              "name": "Indeterminate"
+            }
+          ]
+        }
+      },
+      "PostModulesV1Execute503ResponseModuleSideEffects": {
+        "enum": [
+          "none",
+          "possible",
+          "known"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostModulesV1Execute503ResponseModuleSideEffects",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "possible",
+              "name": "Possible"
+            },
+            {
+              "value": "known",
+              "name": "Known"
             }
           ]
         }

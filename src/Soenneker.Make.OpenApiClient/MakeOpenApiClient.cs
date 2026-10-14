@@ -37,6 +37,7 @@ using Soenneker.Make.OpenApiClient.Keys;
 using Soenneker.Make.OpenApiClient.Login;
 using Soenneker.Make.OpenApiClient.Logout;
 using Soenneker.Make.OpenApiClient.Mailhub;
+using Soenneker.Make.OpenApiClient.Modules;
 using Soenneker.Make.OpenApiClient.Notifications;
 using Soenneker.Make.OpenApiClient.Oauth;
 using Soenneker.Make.OpenApiClient.Organizations;
@@ -219,6 +220,11 @@ namespace Soenneker.Make.OpenApiClient
         public global::Soenneker.Make.OpenApiClient.Mailhub.MailhubRequestBuilder Mailhub
         {
             get => new global::Soenneker.Make.OpenApiClient.Mailhub.MailhubRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The modules property</summary>
+        public global::Soenneker.Make.OpenApiClient.Modules.ModulesRequestBuilder Modules
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Modules.ModulesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The notifications property</summary>
         public global::Soenneker.Make.OpenApiClient.Notifications.NotificationsRequestBuilder Notifications
