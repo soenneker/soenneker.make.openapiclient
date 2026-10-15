@@ -30734,6 +30734,247 @@
         ]
       }
     },
+    "/organizations/{organizationId}/hooks": {
+      "get": {
+        "tags": [
+          "Hooks"
+        ],
+        "summary": "List organization hooks",
+        "description": "Retrieves hooks from the teams of an organization, including private spaces. Only hooks from teams where the authenticated user has the \u0060hooks get\u0060 permission are returned; teams without that permission are skipped. Organization admins with the \u0060organization view\u0060 admin permission can list hooks from every team in the organization. Use \u0060teamId\u0060 to restrict the result to one team: the request fails with \u0060404\u0060 if the team does not belong to the organization, and with \u0060403\u0060 if the user cannot view hooks in that team. Returned hooks are sorted by ID in ascending order by default. Use \u0060pg[sortBy]\u0060 to sort by \u0060name\u0060 or \u0060hookName\u0060.",
+        "operationId": "GetOrganizationsByOrganizationIdHooks",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "The unique ID of the organization whose hooks will be retrieved.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 5
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "Restrict results to one team in the organization.",
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "filtered-by-team": {
+                "summary": "Only hooks of one team",
+                "value": 4
+              }
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Restrict results by a case-insensitive substring matched against the hook name.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "order"
+          },
+          {
+            "name": "typeName",
+            "in": "query",
+            "description": "Restrict results to a hook type. Two native Make hook types are \u0060gateway-webhook\u0060 and \u0060gateway-mailhook\u0060.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "gateway-webhook"
+          },
+          {
+            "name": "assigned",
+            "in": "query",
+            "description": "Restrict results by whether the hook is assigned to a scenario. If set to \u0060true\u0060, only hooks assigned to a scenario are returned.",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": true
+          },
+          {
+            "name": "enabled",
+            "in": "query",
+            "description": "Restrict results by enabled status.",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": true
+          },
+          {
+            "name": "pg[limit]",
+            "in": "query",
+            "description": "The maximum number of hooks you want to get in the response.",
+            "schema": {
+              "maximum": 10000,
+              "minimum": 0,
+              "type": "integer",
+              "default": 50
+            },
+            "example": 50
+          },
+          {
+            "name": "pg[offset]",
+            "in": "query",
+            "description": "The number of hooks you want to skip before getting the hooks you want.",
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "default": 0
+            },
+            "example": 0
+          },
+          {
+            "name": "pg[sortBy]",
+            "in": "query",
+            "description": "The value that will be used to sort returned hooks by.",
+            "schema": {
+              "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdHooksPgSortByParameter"
+            },
+            "example": "id"
+          },
+          {
+            "name": "pg[sortDir]",
+            "in": "query",
+            "description": "The sorting direction.",
+            "schema": {
+              "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdHooksPgSortDirParameter"
+            },
+            "example": "asc"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdHooks200Response"
+                },
+                "examples": {
+                  "all-hooks": {
+                    "summary": "Hooks from all teams the user can view",
+                    "value": {
+                      "hooks": [
+                        {
+                          "id": 11,
+                          "name": "My gateway-webhook webhook 1",
+                          "teamId": 4,
+                          "organizationId": 5,
+                          "type": "web",
+                          "typeName": "gateway-webhook",
+                          "theme": "#c73a63",
+                          "enabled": true,
+                          "gone": false,
+                          "url": "https://hook.make.com/1gqnexkk1vwxg2wpj39kg30pzp6uhe7h"
+                        },
+                        {
+                          "id": 58,
+                          "name": "Test 1",
+                          "teamId": 9,
+                          "organizationId": 5,
+                          "type": "web",
+                          "typeName": "gateway-webhook",
+                          "theme": "#c73a63",
+                          "enabled": false,
+                          "gone": false,
+                          "url": "https://hook.make.com/d4ezzfwgyav7qaukv8dbh3l21eru0fld"
+                        }
+                      ],
+                      "pg": {
+                        "sortBy": "id",
+                        "sortDir": "asc",
+                        "offset": 0,
+                        "limit": 50
+                      }
+                    }
+                  },
+                  "filtered-by-team": {
+                    "summary": "Hooks of a single team",
+                    "value": {
+                      "hooks": [
+                        {
+                          "id": 11,
+                          "name": "My gateway-webhook webhook 1",
+                          "teamId": 4,
+                          "organizationId": 5,
+                          "type": "web",
+                          "typeName": "gateway-webhook",
+                          "theme": "#c73a63",
+                          "enabled": true,
+                          "gone": false,
+                          "url": "https://hook.make.com/1gqnexkk1vwxg2wpj39kg30pzp6uhe7h"
+                        }
+                      ],
+                      "pg": {
+                        "sortBy": "id",
+                        "sortDir": "asc",
+                        "offset": 0,
+                        "limit": 50
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - a query parameter is invalid, for example \u0060teamId\u0060 is not a positive integer.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdHooks400Response"
+                },
+                "example": {
+                  "message": "Bad Request",
+                  "code": "SC400"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - \u0060teamId\u0060 was provided and the user lacks the permission to view hooks in that team.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdHooks403Response"
+                },
+                "example": {
+                  "message": "Insufficient rights.",
+                  "code": "IM002"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found - \u0060teamId\u0060 does not belong to the organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdHooks404Response"
+                },
+                "example": {
+                  "message": "Team not found in organization.",
+                  "code": "SC404"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "hooks:read",
+              "organizations:read"
+            ]
+          }
+        ]
+      }
+    },
     "/organizations/{organizationId}/payments": {
       "get": {
         "tags": [
@@ -59614,6 +59855,14 @@
           "organizationId": {
             "type": "integer"
           },
+          "activeScenarios": {
+            "type": "integer",
+            "description": "Number of active scenarios in the team. Only returned by \u0060GET /teams/{teamId}\u0060 when requested via \u0060cols[]\u0060."
+          },
+          "activeApps": {
+            "type": "integer",
+            "description": "Number of distinct apps that need a connection, used by the team\u0027s active scenarios. Only returned by \u0060GET /teams/{teamId}\u0060 when requested via \u0060cols[]\u0060."
+          },
           "operationsLimit": {
             "type": "integer"
           },
@@ -60432,6 +60681,54 @@
           "url": {
             "type": "string",
             "format": "uri"
+          }
+        }
+      },
+      "OrganizationHookSearchItem": {
+        "required": [
+          "id",
+          "name",
+          "teamId",
+          "organizationId",
+          "type",
+          "enabled",
+          "gone",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "integer"
+          },
+          "organizationId": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "typeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "theme": {
+            "type": "string",
+            "format": "color",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "gone": {
+            "type": "boolean"
+          },
+          "url": {
+            "type": "string"
           }
         }
       },
@@ -110041,7 +110338,7 @@
             "maximum": 300,
             "minimum": 1,
             "type": "integer",
-            "default": 60
+            "default": 300
           },
           "responsive": {
             "type": "boolean",
@@ -110313,7 +110610,7 @@
             "maximum": 300,
             "minimum": 1,
             "type": "integer",
-            "default": 60
+            "default": 300
           },
           "responsive": {
             "type": "boolean",
@@ -112439,6 +112736,53 @@
             "items": {
               "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdApps200ResponseInstalledAppsItem"
             }
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdHooks200Response": {
+        "type": "object",
+        "properties": {
+          "hooks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdHooks200ResponseHooksItem"
+            }
+          },
+          "pg": {
+            "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdHooks200ResponsePg"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdHooks400Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdHooks403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdHooks404Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
           }
         }
       },
@@ -157417,6 +157761,14 @@
           "organizationId": {
             "type": "integer"
           },
+          "activeScenarios": {
+            "type": "integer",
+            "description": "Number of active scenarios in the team. Only returned by \u0060GET /teams/{teamId}\u0060 when requested via \u0060cols[]\u0060."
+          },
+          "activeApps": {
+            "type": "integer",
+            "description": "Number of distinct apps that need a connection, used by the team\u0027s active scenarios. Only returned by \u0060GET /teams/{teamId}\u0060 when requested via \u0060cols[]\u0060."
+          },
           "operationsLimit": {
             "type": "integer"
           },
@@ -164166,6 +164518,9 @@
           "status": {
             "$ref": "#/components/schemas/ListFunctionV2Runs200ResponseRunsItemStatus"
           },
+          "consumption": {
+            "$ref": "#/components/schemas/ListFunctionV2Runs200ResponseRunsItemConsumption"
+          },
           "caller": {
             "$ref": "#/components/schemas/ListFunctionV2Runs200ResponseRunsItemCaller"
           },
@@ -164271,6 +164626,9 @@
           "status": {
             "$ref": "#/components/schemas/CreateFunctionV2Run200ResponseRunStatus"
           },
+          "consumption": {
+            "$ref": "#/components/schemas/CreateFunctionV2Run200ResponseRunConsumption"
+          },
           "caller": {
             "$ref": "#/components/schemas/CreateFunctionV2Run200ResponseRunCaller"
           },
@@ -164357,6 +164715,9 @@
           },
           "status": {
             "$ref": "#/components/schemas/CreateFunctionV2Run202ResponseRunStatus"
+          },
+          "consumption": {
+            "$ref": "#/components/schemas/CreateFunctionV2Run202ResponseRunConsumption"
           },
           "caller": {
             "$ref": "#/components/schemas/CreateFunctionV2Run202ResponseRunCaller"
@@ -164468,6 +164829,9 @@
           "status": {
             "$ref": "#/components/schemas/CreateInlineFunctionV2Run200ResponseRunStatus"
           },
+          "consumption": {
+            "$ref": "#/components/schemas/CreateInlineFunctionV2Run200ResponseRunConsumption"
+          },
           "caller": {
             "$ref": "#/components/schemas/CreateInlineFunctionV2Run200ResponseRunCaller"
           },
@@ -164555,6 +164919,9 @@
           "status": {
             "$ref": "#/components/schemas/CreateInlineFunctionV2Run202ResponseRunStatus"
           },
+          "consumption": {
+            "$ref": "#/components/schemas/CreateInlineFunctionV2Run202ResponseRunConsumption"
+          },
           "caller": {
             "$ref": "#/components/schemas/CreateInlineFunctionV2Run202ResponseRunCaller"
           },
@@ -164628,6 +164995,9 @@
           },
           "status": {
             "$ref": "#/components/schemas/GetFunctionV2Run200ResponseRunStatus"
+          },
+          "consumption": {
+            "$ref": "#/components/schemas/GetFunctionV2Run200ResponseRunConsumption"
           },
           "caller": {
             "$ref": "#/components/schemas/GetFunctionV2Run200ResponseRunCaller"
@@ -164716,6 +165086,9 @@
           "status": {
             "$ref": "#/components/schemas/CancelFunctionV2Run200ResponseRunStatus"
           },
+          "consumption": {
+            "$ref": "#/components/schemas/CancelFunctionV2Run200ResponseRunConsumption"
+          },
           "caller": {
             "$ref": "#/components/schemas/CancelFunctionV2Run200ResponseRunCaller"
           },
@@ -164787,6 +165160,9 @@
           },
           "status": {
             "$ref": "#/components/schemas/CancelFunctionV2Run202ResponseRunStatus"
+          },
+          "consumption": {
+            "$ref": "#/components/schemas/CancelFunctionV2Run202ResponseRunConsumption"
           },
           "caller": {
             "$ref": "#/components/schemas/CancelFunctionV2Run202ResponseRunCaller"
@@ -167049,6 +167425,77 @@
             "format": "date-time"
           },
           "installedBy": {
+            "type": "integer"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdHooks200ResponseHooksItem": {
+        "required": [
+          "id",
+          "name",
+          "teamId",
+          "organizationId",
+          "type",
+          "enabled",
+          "gone",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "integer"
+          },
+          "organizationId": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "typeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "theme": {
+            "type": "string",
+            "format": "color",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "gone": {
+            "type": "boolean"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdHooks200ResponsePg": {
+        "type": "object",
+        "properties": {
+          "last": {
+            "type": "string"
+          },
+          "showLast": {
+            "type": "boolean"
+          },
+          "sortBy": {
+            "type": "string"
+          },
+          "sortDir": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "offset": {
             "type": "integer"
           }
         }
@@ -169408,6 +169855,9 @@
             "description": "Only on a parked row: custom name of the module that parked the execution, resolved from the scenario blueprint. \u0060null\u0060 when the module has not been renamed.",
             "nullable": true
           },
+          "provenance": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemProvenance"
+          },
           "detail": {
             "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail"
           }
@@ -169508,6 +169958,9 @@
             "type": "string",
             "description": "Only on a parked row: custom name of the module that parked the execution, resolved from the scenario blueprint. \u0060null\u0060 when the module has not been renamed.",
             "nullable": true
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenance"
           },
           "detail": {
             "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetail"
@@ -174875,6 +175328,14 @@
           "organizationId": {
             "type": "integer"
           },
+          "activeScenarios": {
+            "type": "integer",
+            "description": "Number of active scenarios in the team. Only returned by \u0060GET /teams/{teamId}\u0060 when requested via \u0060cols[]\u0060."
+          },
+          "activeApps": {
+            "type": "integer",
+            "description": "Number of distinct apps that need a connection, used by the team\u0027s active scenarios. Only returned by \u0060GET /teams/{teamId}\u0060 when requested via \u0060cols[]\u0060."
+          },
           "operationsLimit": {
             "type": "integer"
           },
@@ -174921,6 +175382,14 @@
           "organizationId": {
             "type": "integer"
           },
+          "activeScenarios": {
+            "type": "integer",
+            "description": "Number of active scenarios in the team. Only returned by \u0060GET /teams/{teamId}\u0060 when requested via \u0060cols[]\u0060."
+          },
+          "activeApps": {
+            "type": "integer",
+            "description": "Number of distinct apps that need a connection, used by the team\u0027s active scenarios. Only returned by \u0060GET /teams/{teamId}\u0060 when requested via \u0060cols[]\u0060."
+          },
           "operationsLimit": {
             "type": "integer"
           },
@@ -174966,6 +175435,14 @@
           "organizationId": {
             "type": "integer"
           },
+          "activeScenarios": {
+            "type": "integer",
+            "description": "Number of active scenarios in the team. Only returned by \u0060GET /teams/{teamId}\u0060 when requested via \u0060cols[]\u0060."
+          },
+          "activeApps": {
+            "type": "integer",
+            "description": "Number of distinct apps that need a connection, used by the team\u0027s active scenarios. Only returned by \u0060GET /teams/{teamId}\u0060 when requested via \u0060cols[]\u0060."
+          },
           "operationsLimit": {
             "type": "integer"
           },
@@ -174988,6 +175465,14 @@
           },
           "organizationId": {
             "type": "integer"
+          },
+          "activeScenarios": {
+            "type": "integer",
+            "description": "Number of active scenarios in the team. Only returned by \u0060GET /teams/{teamId}\u0060 when requested via \u0060cols[]\u0060."
+          },
+          "activeApps": {
+            "type": "integer",
+            "description": "Number of distinct apps that need a connection, used by the team\u0027s active scenarios. Only returned by \u0060GET /teams/{teamId}\u0060 when requested via \u0060cols[]\u0060."
           },
           "operationsLimit": {
             "type": "integer"
@@ -181826,6 +182311,20 @@
           }
         }
       },
+      "ListFunctionV2Runs200ResponseRunsItemConsumption": {
+        "required": [
+          "centicredits"
+        ],
+        "type": "object",
+        "properties": {
+          "centicredits": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "One credit equals 100 centicredits."
+          }
+        },
+        "description": "Committed Run consumption, including Endpoint calls. Omitted before settlement or when historical consumption is unknown."
+      },
       "ListFunctionV2Runs200ResponseRunsItemCaller": {
         "required": [
           "type",
@@ -181885,6 +182384,20 @@
             "format": "int32"
           }
         }
+      },
+      "CreateFunctionV2Run200ResponseRunConsumption": {
+        "required": [
+          "centicredits"
+        ],
+        "type": "object",
+        "properties": {
+          "centicredits": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "One credit equals 100 centicredits."
+          }
+        },
+        "description": "Committed Run consumption, including Endpoint calls. Omitted before settlement or when historical consumption is unknown."
       },
       "CreateFunctionV2Run200ResponseRunCaller": {
         "required": [
@@ -182024,6 +182537,20 @@
           }
         }
       },
+      "CreateFunctionV2Run202ResponseRunConsumption": {
+        "required": [
+          "centicredits"
+        ],
+        "type": "object",
+        "properties": {
+          "centicredits": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "One credit equals 100 centicredits."
+          }
+        },
+        "description": "Committed Run consumption, including Endpoint calls. Omitted before settlement or when historical consumption is unknown."
+      },
       "CreateFunctionV2Run202ResponseRunCaller": {
         "required": [
           "type",
@@ -182141,6 +182668,20 @@
             "format": "int32"
           }
         }
+      },
+      "CreateInlineFunctionV2Run200ResponseRunConsumption": {
+        "required": [
+          "centicredits"
+        ],
+        "type": "object",
+        "properties": {
+          "centicredits": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "One credit equals 100 centicredits."
+          }
+        },
+        "description": "Committed Run consumption, including Endpoint calls. Omitted before settlement or when historical consumption is unknown."
       },
       "CreateInlineFunctionV2Run200ResponseRunCaller": {
         "required": [
@@ -182280,6 +182821,20 @@
           }
         }
       },
+      "CreateInlineFunctionV2Run202ResponseRunConsumption": {
+        "required": [
+          "centicredits"
+        ],
+        "type": "object",
+        "properties": {
+          "centicredits": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "One credit equals 100 centicredits."
+          }
+        },
+        "description": "Committed Run consumption, including Endpoint calls. Omitted before settlement or when historical consumption is unknown."
+      },
       "CreateInlineFunctionV2Run202ResponseRunCaller": {
         "required": [
           "type",
@@ -182339,6 +182894,20 @@
             "format": "int32"
           }
         }
+      },
+      "GetFunctionV2Run200ResponseRunConsumption": {
+        "required": [
+          "centicredits"
+        ],
+        "type": "object",
+        "properties": {
+          "centicredits": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "One credit equals 100 centicredits."
+          }
+        },
+        "description": "Committed Run consumption, including Endpoint calls. Omitted before settlement or when historical consumption is unknown."
       },
       "GetFunctionV2Run200ResponseRunCaller": {
         "required": [
@@ -182478,6 +183047,20 @@
           }
         }
       },
+      "CancelFunctionV2Run200ResponseRunConsumption": {
+        "required": [
+          "centicredits"
+        ],
+        "type": "object",
+        "properties": {
+          "centicredits": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "One credit equals 100 centicredits."
+          }
+        },
+        "description": "Committed Run consumption, including Endpoint calls. Omitted before settlement or when historical consumption is unknown."
+      },
       "CancelFunctionV2Run200ResponseRunCaller": {
         "required": [
           "type",
@@ -182537,6 +183120,20 @@
             "format": "int32"
           }
         }
+      },
+      "CancelFunctionV2Run202ResponseRunConsumption": {
+        "required": [
+          "centicredits"
+        ],
+        "type": "object",
+        "properties": {
+          "centicredits": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "One credit equals 100 centicredits."
+          }
+        },
+        "description": "Committed Run consumption, including Endpoint calls. Omitted before settlement or when historical consumption is unknown."
       },
       "CancelFunctionV2Run202ResponseRunCaller": {
         "required": [
@@ -184350,6 +184947,53 @@
       "PatchScenariosByScenarioIdInterface200ResponseInterfaceAdditionalProperties": {
         "type": "object"
       },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemProvenance": {
+        "required": [
+          "v",
+          "channel",
+          "auth"
+        ],
+        "type": "object",
+        "properties": {
+          "v": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemProvenanceV"
+          },
+          "channel": {
+            "type": "string",
+            "description": "How the request reached Make: \u0060ui\u0060, \u0060api_token\u0060, \u0060oauth_app\u0060, \u0060mcp\u0060, \u0060service\u0060, \u0060external\u0060 or \u0060unknown\u0060. New values may be added."
+          },
+          "auth": {
+            "type": "string",
+            "description": "How the request authenticated. New values may be added."
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Make services the request passed through, the original caller first."
+          },
+          "tokenLabel": {
+            "type": "string",
+            "description": "Label of the API token used."
+          },
+          "oauthClientId": {
+            "type": "string",
+            "description": "Client ID of the OAuth app used."
+          },
+          "mcp": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemProvenanceMcp"
+          },
+          "impersonated": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemProvenanceImpersonated"
+          },
+          "requestId": {
+            "type": "string",
+            "description": "ID of the HTTP request that made the change."
+          }
+        },
+        "description": "Only on execution rows of runs and replays requested through the API, an OAuth app or an MCP client: how the run was requested. Absent on other runs and on runs started before it was recorded."
+      },
       "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail": {
         "type": "object",
         "properties": {
@@ -184364,6 +185008,53 @@
           }
         },
         "description": "Event-specific details. Modify events can include a versioned Scenario History change."
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenance": {
+        "required": [
+          "v",
+          "channel",
+          "auth"
+        ],
+        "type": "object",
+        "properties": {
+          "v": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenanceV"
+          },
+          "channel": {
+            "type": "string",
+            "description": "How the request reached Make: \u0060ui\u0060, \u0060api_token\u0060, \u0060oauth_app\u0060, \u0060mcp\u0060, \u0060service\u0060, \u0060external\u0060 or \u0060unknown\u0060. New values may be added."
+          },
+          "auth": {
+            "type": "string",
+            "description": "How the request authenticated. New values may be added."
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Make services the request passed through, the original caller first."
+          },
+          "tokenLabel": {
+            "type": "string",
+            "description": "Label of the API token used."
+          },
+          "oauthClientId": {
+            "type": "string",
+            "description": "Client ID of the OAuth app used."
+          },
+          "mcp": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenanceMcp"
+          },
+          "impersonated": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenanceImpersonated"
+          },
+          "requestId": {
+            "type": "string",
+            "description": "ID of the HTTP request that made the change."
+          }
+        },
+        "description": "Only on execution rows of runs and replays requested through the API, an OAuth app or an MCP client: how the run was requested. Absent on other runs and on runs started before it was recorded."
       },
       "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetail": {
         "type": "object",
@@ -189430,6 +190121,38 @@
       "PostScenariosByScenarioIdClone200ResponseScenarioCustomPropertiesAdditionalProperties": {
         "type": "object"
       },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemProvenanceMcp": {
+        "type": "object",
+        "properties": {
+          "authMethod": {
+            "type": "string"
+          },
+          "client": {
+            "type": "string",
+            "description": "MCP client, for example \u0060claude\u0060, \u0060cursor\u0060 or \u0060openai-mcp\u0060; the client\u0027s User-Agent when not recognized."
+          },
+          "conversationId": {
+            "type": "string"
+          },
+          "entrypoint": {
+            "type": "string"
+          },
+          "tool": {
+            "type": "string"
+          },
+          "requestId": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "description": "Details of an MCP tool call."
+      },
       "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailAuthor": {
         "type": "object",
         "properties": {
@@ -189487,6 +190210,38 @@
           }
         },
         "description": "How the change was made. Absent on rows written before it was recorded and on system actions (for example plan downgrades)."
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenanceMcp": {
+        "type": "object",
+        "properties": {
+          "authMethod": {
+            "type": "string"
+          },
+          "client": {
+            "type": "string",
+            "description": "MCP client, for example \u0060claude\u0060, \u0060cursor\u0060 or \u0060openai-mcp\u0060; the client\u0027s User-Agent when not recognized."
+          },
+          "conversationId": {
+            "type": "string"
+          },
+          "entrypoint": {
+            "type": "string"
+          },
+          "tool": {
+            "type": "string"
+          },
+          "requestId": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "description": "Details of an MCP tool call."
       },
       "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailAuthor": {
         "type": "object",
@@ -216510,6 +217265,36 @@
           ]
         }
       },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemProvenanceV": {
+        "enum": [
+          1
+        ],
+        "type": "integer",
+        "additionalProperties": false
+      },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemProvenanceImpersonated": {
+        "enum": [
+          true
+        ],
+        "type": "boolean",
+        "additionalProperties": false,
+        "description": "Present when a Make admin made the change while logged in as the user."
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenanceV": {
+        "enum": [
+          1
+        ],
+        "type": "integer",
+        "additionalProperties": false
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenanceImpersonated": {
+        "enum": [
+          true
+        ],
+        "type": "boolean",
+        "additionalProperties": false,
+        "description": "Present when a Make admin made the change while logged in as the user."
+      },
       "GetScenariosByScenarioIdBlueprint200ResponseResponseSchedulingType": {
         "enum": [
           "immediately",
@@ -221534,6 +222319,55 @@
           ]
         }
       },
+      "GetOrganizationsByOrganizationIdHooksPgSortByParameter": {
+        "enum": [
+          "id",
+          "name",
+          "hookName"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetOrganizationsByOrganizationIdHooksPgSortByParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "id",
+              "name": "Id"
+            },
+            {
+              "value": "name",
+              "name": "Name"
+            },
+            {
+              "value": "hookName",
+              "name": "HookName"
+            }
+          ]
+        }
+      },
+      "GetOrganizationsByOrganizationIdHooksPgSortDirParameter": {
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetOrganizationsByOrganizationIdHooksPgSortDirParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "asc",
+              "name": "Asc"
+            },
+            {
+              "value": "desc",
+              "name": "Desc"
+            }
+          ]
+        }
+      },
       "GetOrganizationsByOrganizationIdPaymentsPgSortDirParameter": {
         "enum": [
           "asc",
@@ -224958,7 +225792,8 @@
         "enum": [
           "scenario",
           "ai-agent",
-          "maia"
+          "maia",
+          "function"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -224977,6 +225812,10 @@
             {
               "value": "maia",
               "name": "Maia"
+            },
+            {
+              "value": "function",
+              "name": "Function"
             }
           ]
         }

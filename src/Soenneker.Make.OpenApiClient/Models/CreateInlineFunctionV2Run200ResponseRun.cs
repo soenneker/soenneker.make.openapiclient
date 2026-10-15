@@ -34,6 +34,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The completedAt property</summary>
         public DateTimeOffset? CompletedAt { get; set; }
+        /// <summary>Committed Run consumption, including Endpoint calls. Omitted before settlement or when historical consumption is unknown.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunConsumption? Consumption { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunConsumption Consumption { get; set; }
+#endif
         /// <summary>The createdAt property</summary>
         public DateTimeOffset? CreatedAt { get; set; }
         /// <summary>The endpointCalls property</summary>
@@ -113,6 +121,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "attempts", n => { Attempts = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunAttemptsItem>(global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunAttemptsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "caller", n => { Caller = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunCaller>(global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunCaller.CreateFromDiscriminatorValue); } },
                 { "completedAt", n => { CompletedAt = n.GetDateTimeOffsetValue(); } },
+                { "consumption", n => { Consumption = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunConsumption>(global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunConsumption.CreateFromDiscriminatorValue); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "endpointCalls", n => { EndpointCalls = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunEndpointCallsItem>(global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunEndpointCallsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "error", n => { Error = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunError>(global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunError.CreateFromDiscriminatorValue); } },
@@ -139,6 +148,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunAttemptsItem>("attempts", Attempts);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunCaller>("caller", Caller);
             writer.WriteDateTimeOffsetValue("completedAt", CompletedAt);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunConsumption>("consumption", Consumption);
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunEndpointCallsItem>("endpointCalls", EndpointCalls);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunError>("error", Error);

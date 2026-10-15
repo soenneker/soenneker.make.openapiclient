@@ -9,6 +9,7 @@ using Soenneker.Make.OpenApiClient.Organizations.Item.Apps;
 using Soenneker.Make.OpenApiClient.Organizations.Item.CheckTeamPermission;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Domains;
 using Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls;
+using Soenneker.Make.OpenApiClient.Organizations.Item.Hooks;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Invite;
 using Soenneker.Make.OpenApiClient.Organizations.Item.ManagedOrganizations;
 using Soenneker.Make.OpenApiClient.Organizations.Item.ManagedOrganizationsConsumption;
@@ -62,6 +63,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls.FeatureControlsRequestBuilder FeatureControls
         {
             get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls.FeatureControlsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The hooks property</summary>
+        public global::Soenneker.Make.OpenApiClient.Organizations.Item.Hooks.HooksRequestBuilder Hooks
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.Hooks.HooksRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The invite property</summary>
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.Invite.InviteRequestBuilder Invite

@@ -20,5 +20,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         Maia,
         #pragma warning restore CS1591
+        [EnumMember(Value = "function")]
+        #pragma warning disable CS1591
+        Function,
+        #pragma warning restore CS1591
     }
 }

@@ -78,6 +78,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public int? Operations { get; set; }
         /// <summary>The organizationId property</summary>
         public int? OrganizationId { get; set; }
+        /// <summary>Only on execution rows of runs and replays requested through the API, an OAuth app or an MCP client: how the run was requested. Absent on other runs and on runs started before it was recorded.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenance? Provenance { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenance Provenance { get; set; }
+#endif
         /// <summary>Only on a parked (`eventType: EXECUTION_PAUSED`) row whose wait is time-based: the ISO-8601 timestamp the execution is scheduled to resume. Absent for waits on an external signal (e.g. human-in-the-loop).</summary>
         public DateTimeOffset? ResumeAt { get; set; }
         /// <summary>The status property</summary>
@@ -135,6 +143,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "interruptReason", n => { InterruptReason = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogInterruptReason>(); } },
                 { "operations", n => { Operations = n.GetIntValue(); } },
                 { "organizationId", n => { OrganizationId = n.GetIntValue(); } },
+                { "provenance", n => { Provenance = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenance>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenance.CreateFromDiscriminatorValue); } },
                 { "resumeAt", n => { ResumeAt = n.GetDateTimeOffsetValue(); } },
                 { "status", n => { Status = n.GetIntValue(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
@@ -164,6 +173,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogInterruptReason>("interruptReason", InterruptReason);
             writer.WriteIntValue("operations", Operations);
             writer.WriteIntValue("organizationId", OrganizationId);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogProvenance>("provenance", Provenance);
             writer.WriteDateTimeOffsetValue("resumeAt", ResumeAt);
             writer.WriteIntValue("status", Status);
             writer.WriteIntValue("teamId", TeamId);

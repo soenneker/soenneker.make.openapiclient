@@ -12,6 +12,10 @@ namespace Soenneker.Make.OpenApiClient.Models
     public partial class PatchTeamsByTeamId200ResponseTeam : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Number of distinct apps that need a connection, used by the team&apos;s active scenarios. Only returned by `GET /teams/{teamId}` when requested via `cols[]`.</summary>
+        public int? ActiveApps { get; set; }
+        /// <summary>Number of active scenarios in the team. Only returned by `GET /teams/{teamId}` when requested via `cols[]`.</summary>
+        public int? ActiveScenarios { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The id property</summary>
@@ -63,6 +67,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "activeApps", n => { ActiveApps = n.GetIntValue(); } },
+                { "activeScenarios", n => { ActiveScenarios = n.GetIntValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "operationsLimit", n => { OperationsLimit = n.GetIntValue(); } },
@@ -78,6 +84,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteIntValue("activeApps", ActiveApps);
+            writer.WriteIntValue("activeScenarios", ActiveScenarios);
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("operationsLimit", OperationsLimit);

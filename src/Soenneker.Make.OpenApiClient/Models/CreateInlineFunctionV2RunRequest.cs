@@ -43,7 +43,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             MaxWaitSeconds = 60;
             Responsive = false;
-            TimeoutSeconds = 60;
+            TimeoutSeconds = 300;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

@@ -26,6 +26,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The completedAt property</summary>
         public DateTimeOffset? CompletedAt { get; set; }
+        /// <summary>Committed Run consumption, including Endpoint calls. Omitted before settlement or when historical consumption is unknown.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemConsumption? Consumption { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemConsumption Consumption { get; set; }
+#endif
         /// <summary>The createdAt property</summary>
         public DateTimeOffset? CreatedAt { get; set; }
         /// <summary>The error property</summary>
@@ -88,6 +96,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "attemptCount", n => { AttemptCount = n.GetIntValue(); } },
                 { "caller", n => { Caller = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemCaller>(global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemCaller.CreateFromDiscriminatorValue); } },
                 { "completedAt", n => { CompletedAt = n.GetDateTimeOffsetValue(); } },
+                { "consumption", n => { Consumption = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemConsumption>(global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemConsumption.CreateFromDiscriminatorValue); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "error", n => { Error = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemError>(global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemError.CreateFromDiscriminatorValue); } },
                 { "functionId", n => { FunctionId = n.GetIntValue(); } },
@@ -111,6 +120,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("attemptCount", AttemptCount);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemCaller>("caller", Caller);
             writer.WriteDateTimeOffsetValue("completedAt", CompletedAt);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemConsumption>("consumption", Consumption);
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemError>("error", Error);
             writer.WriteIntValue("functionId", FunctionId);
