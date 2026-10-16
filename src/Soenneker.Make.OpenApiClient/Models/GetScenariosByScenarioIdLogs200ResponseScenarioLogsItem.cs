@@ -34,6 +34,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail Detail { get; set; }
 #endif
+        /// <summary>Canonical status derived from the execution document. `WAITING` identifies a timed, parked execution.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDisplayStatus? DisplayStatus { get; set; }
         /// <summary>The duration property</summary>
         public int? Duration { get; set; }
         /// <summary>Execution lifecycle marker on execution rows. `EXECUTION_PAUSED` means the execution is parked (interrupted) and waiting to resume; a parked row deliberately carries no `status`.</summary>
@@ -88,7 +90,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>Only on a parked (`eventType: EXECUTION_PAUSED`) row whose wait is time-based: the ISO-8601 timestamp the execution is scheduled to resume. Absent for waits on an external signal (e.g. human-in-the-loop).</summary>
         public DateTimeOffset? ResumeAt { get; set; }
-        /// <summary>The status property</summary>
+        /// <summary>Numeric terminal execution status. `1` is success, `2` is warning, and `3` is error. It is absent for active executions.</summary>
         public int? Status { get; set; }
         /// <summary>The teamId property</summary>
         public int? TeamId { get; set; }
@@ -133,6 +135,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "authorName", n => { AuthorName = n.GetStringValue(); } },
                 { "centicredits", n => { Centicredits = n.GetIntValue(); } },
                 { "detail", n => { Detail = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail>(global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail.CreateFromDiscriminatorValue); } },
+                { "displayStatus", n => { DisplayStatus = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDisplayStatus>(); } },
                 { "duration", n => { Duration = n.GetIntValue(); } },
                 { "eventType", n => { EventType = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
@@ -163,6 +166,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("authorName", AuthorName);
             writer.WriteIntValue("centicredits", Centicredits);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail>("detail", Detail);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDisplayStatus>("displayStatus", DisplayStatus);
             writer.WriteIntValue("duration", Duration);
             writer.WriteStringValue("eventType", EventType);
             writer.WriteStringValue("id", Id);

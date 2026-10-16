@@ -16329,7 +16329,7 @@
           "Endpoints"
         ],
         "summary": "Execute Endpoint",
-        "description": "Executes an App Endpoint (see \u0060GET /imt/endpoints-usable\u0060 and the SDK Apps / Endpoints section for how\nEndpoints are defined) and returns its raw output.\n\nThe response\u0027s \u0060output\u0060 is currently a free-form, executor-defined value \u2014 its shape depends entirely on\nthe executed Endpoint and is not constrained by this route.\n",
+        "description": "Executes an App Endpoint (see \u0060GET /imt/endpoints-usable\u0060 and the SDK Apps / Endpoints section for how\nEndpoints are defined) and returns its raw output.\n\nThe response\u0027s \u0060output\u0060 is currently a free-form, executor-defined value \u2014 its shape depends entirely on\nthe executed Endpoint and is not constrained by this route.\n\nTo make a request safe to retry, send an \u0060idempotencyKey\u0060. Within the Team, a repeated key returns the\noutcome of the execution that first used it instead of running the Endpoint again. The response\u0027s\n\u0060execution.replayed\u0060 tells a replay from a fresh execution.\n",
         "operationId": "PostEndpointsV1Execute",
         "requestBody": {
           "content": {
@@ -16346,6 +16346,34 @@
                     "endpointName": "listContacts",
                     "teamId": 1234,
                     "connectionId": 9001,
+                    "input": {
+                      "limit": 10
+                    }
+                  }
+                },
+                "confidential-list-contacts": {
+                  "summary": "Execute an Endpoint without keeping its data in the execution log",
+                  "value": {
+                    "appName": "app#my-crm",
+                    "appVersion": 1,
+                    "endpointName": "listContacts",
+                    "teamId": 1234,
+                    "connectionId": 9001,
+                    "confidential": true,
+                    "input": {
+                      "limit": 10
+                    }
+                  }
+                },
+                "idempotent-list-contacts": {
+                  "summary": "Execute an Endpoint safely retryable with an idempotencyKey",
+                  "value": {
+                    "appName": "app#my-crm",
+                    "appVersion": 1,
+                    "endpointName": "listContacts",
+                    "teamId": 1234,
+                    "connectionId": 9001,
+                    "idempotencyKey": "6f1d2c5e-9a3b-4c7d-8e1f-0a2b3c4d5e6f",
                     "input": {
                       "limit": 10
                     }
@@ -16383,6 +16411,26 @@
                             "name": "Jane Doe"
                           }
                         ]
+                      },
+                      "execution": {
+                        "id": "0199f3a2-7c1e-7b3a-9d4e-5f6a7b8c9d0e"
+                      }
+                    }
+                  },
+                  "idempotent-list-contacts": {
+                    "summary": "Repeat of an earlier request with the same idempotencyKey, replayed",
+                    "value": {
+                      "output": {
+                        "contacts": [
+                          {
+                            "id": 1,
+                            "name": "Jane Doe"
+                          }
+                        ]
+                      },
+                      "execution": {
+                        "id": "0199f3a2-7c1e-7b3a-9d4e-5f6a7b8c9d0e",
+                        "replayed": true
                       }
                     }
                   },
@@ -16391,6 +16439,9 @@
                     "value": {
                       "output": {
                         "status": "ok"
+                      },
+                      "execution": {
+                        "id": "0199f3a4-1b2c-7d3e-8f4a-5b6c7d8e9f0a"
                       }
                     }
                   }
@@ -16404,11 +16455,23 @@
           "403": {
             "description": "The Team is not accessible to the caller or conflicts with the signed organization context."
           },
+          "409": {
+            "description": "The \u0060idempotencyKey\u0060 belongs to an execution that is still running. Retry once it has finished."
+          },
+          "422": {
+            "description": "The \u0060idempotencyKey\u0060 was already used with a different request, or belongs to a confidential execution, whose output is never stored and so cannot be replayed."
+          },
+          "424": {
+            "description": "The Endpoint execution failed. A repeated request whose earlier execution with the same \u0060idempotencyKey\u0060 failed receives this status instead of running the Endpoint again."
+          },
           "429": {
             "description": "The owning organization has no shared execution capacity available."
           },
           "501": {
             "description": "Endpoint execution is not enabled on this environment."
+          },
+          "503": {
+            "description": "The \u0060idempotencyKey\u0060 could not be checked or claimed. Retry with the same key."
           }
         },
         "security": [
@@ -36853,11 +36916,24 @@
           {
             "name": "status",
             "in": "query",
-            "description": "Filters logs by the execution status. \u00601\u0060 is for success, \u00602\u0060 is for warning, and \u00603\u0060 is for error.",
+            "description": "Filters logs by numeric terminal execution status. \u00601\u0060 is for success, \u00602\u0060 is for warning, and \u00603\u0060 is for error. Do not use this parameter with \u0060displayStatus\u0060.",
             "schema": {
               "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsStatusParameter"
             },
             "example": 2
+          },
+          {
+            "name": "displayStatus",
+            "in": "query",
+            "description": "Filters execution logs by derived display status. \u0060WAITING\u0060 is a timed, parked execution. Do not use this parameter with \u0060status\u0060.",
+            "schema": {
+              "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsDisplayStatusParameter"
+            },
+            "examples": {
+              "waiting": {
+                "value": "WAITING"
+              }
+            }
           },
           {
             "name": "durationFrom",
@@ -37027,7 +37103,8 @@
                           "authorId": null,
                           "instant": false,
                           "timestamp": "2021-09-23T04:35:44.497Z",
-                          "status": 1
+                          "status": 1,
+                          "displayStatus": "SUCCESS"
                         }
                       ],
                       "pg": {
@@ -37058,6 +37135,7 @@
                           "instant": true,
                           "timestamp": "2021-09-23T11:55:22.946Z",
                           "status": 1,
+                          "displayStatus": "SUCCESS",
                           "executionName": "Fancy run name"
                         }
                       ],
@@ -37092,7 +37170,8 @@
                           "resumeAt": "2021-09-23T12:56:40.000Z",
                           "interruptReason": "sleep",
                           "interruptModuleId": 4,
-                          "interruptModuleName": "Wait for approval"
+                          "interruptModuleName": "Wait for approval",
+                          "displayStatus": "WAITING"
                         }
                       ],
                       "pg": {
@@ -37248,7 +37327,8 @@
                     "authorId": 5,
                     "instant": true,
                     "timestamp": "2021-09-23T11:55:22.946Z",
-                    "status": 1
+                    "status": 1,
+                    "displayStatus": "SUCCESS"
                   }
                 }
               }
@@ -56294,9 +56374,6 @@
                 "preferred_apps": [
                   "slack",
                   "gmail"
-                ],
-                "team_invite_emails": [
-                  "teammate@example.com"
                 ]
               }
             }
@@ -56305,7 +56382,7 @@
         },
         "responses": {
           "200": {
-            "description": "Survey submitted successfully. Side effects (app pinning) are reported individually; any \u0060team_invite_emails\u0060 are invited asynchronously in the background after this response is sent, so their outcome is not part of it.",
+            "description": "Survey submitted successfully. Side effects (app pinning) are reported individually.",
             "content": {
               "application/json": {
                 "schema": {
@@ -108677,6 +108754,18 @@
           },
           "input": {
             "$ref": "#/components/schemas/PostEndpointsV1ExecuteRequestInput"
+          },
+          "confidential": {
+            "type": "boolean",
+            "description": "Run confidentially, like a scenario with \u0022Data is confidential\u0022 enabled: the execution log keeps no input, output or error data, only metadata (status, duration, sizes for billing). The execution still appears in the Endpoint execution logs, marked \u0060confidential\u0060, with no data to retrieve.",
+            "default": false
+          },
+          "idempotencyKey": {
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.:-]\u002B$",
+            "type": "string",
+            "description": "Client-chosen key that makes the request safe to retry. Within the Team, a repeated key returns the outcome of the execution that first used it instead of running the Endpoint again; the same key with a different request fails with \u0060422\u0060. Use a fresh unique value, such as a UUID, for each logical request."
           }
         }
       },
@@ -108688,6 +108777,9 @@
         "properties": {
           "output": {
             "$ref": "#/components/schemas/PostEndpointsV1Execute200ResponseOutput"
+          },
+          "execution": {
+            "$ref": "#/components/schemas/PostEndpointsV1Execute200ResponseExecution"
           }
         }
       },
@@ -118942,16 +119034,6 @@
               "type": "string"
             },
             "description": "Optional list of native app package names to pin for the user. Apps that do not exist are reported as failed without blocking the submission."
-          },
-          "team_invite_emails": {
-            "maxItems": 3,
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "email"
-            },
-            "description": "Optional email addresses to invite as regular organization members. Invites are processed asynchronously in the background after this request\u0027s response is sent (best-effort, do not block the submission) and their outcome is not returned to the caller."
           }
         }
       },
@@ -163367,6 +163449,25 @@
         "type": "object",
         "description": "Raw result of the Endpoint execution. The shape is defined by the executed Endpoint itself and is not constrained by this route."
       },
+      "PostEndpointsV1Execute200ResponseExecution": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID of the execution, under which it appears in the Endpoint execution logs. On a replay, the ID of the earlier execution that used the \u0060idempotencyKey\u0060."
+          },
+          "replayed": {
+            "$ref": "#/components/schemas/PostEndpointsV1Execute200ResponseExecutionReplayed"
+          },
+          "confidential": {
+            "$ref": "#/components/schemas/PostEndpointsV1Execute200ResponseExecutionConfidential"
+          }
+        },
+        "description": "Identifies the execution that produced \u0060output\u0060."
+      },
       "PostModulesV1ExecuteRequestModule": {
         "required": [
           "module",
@@ -169832,7 +169933,8 @@
             "format": "date-time"
           },
           "status": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Numeric terminal execution status. \u00601\u0060 is success, \u00602\u0060 is warning, and \u00603\u0060 is error. It is absent for active executions."
           },
           "eventType": {
             "type": "string",
@@ -169860,6 +169962,9 @@
           },
           "detail": {
             "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetail"
+          },
+          "displayStatus": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDisplayStatus"
           }
         }
       },
@@ -169890,6 +169995,9 @@
         }
       },
       "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLog": {
+        "required": [
+          "displayStatus"
+        ],
         "type": "object",
         "properties": {
           "imtId": {
@@ -169936,7 +170044,8 @@
             "format": "date-time"
           },
           "status": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Numeric terminal execution status. \u00601\u0060 is success, \u00602\u0060 is warning, and \u00603\u0060 is error. It is absent for active executions."
           },
           "eventType": {
             "type": "string",
@@ -169964,6 +170073,9 @@
           },
           "detail": {
             "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetail"
+          },
+          "displayStatus": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDisplayStatus"
           }
         }
       },
@@ -210135,6 +210247,22 @@
           ]
         }
       },
+      "PostEndpointsV1Execute200ResponseExecutionReplayed": {
+        "enum": [
+          true
+        ],
+        "type": "boolean",
+        "additionalProperties": false,
+        "description": "Present, and \u0060true\u0060, only when \u0060output\u0060 is replayed from an earlier execution."
+      },
+      "PostEndpointsV1Execute200ResponseExecutionConfidential": {
+        "enum": [
+          true
+        ],
+        "type": "boolean",
+        "additionalProperties": false,
+        "description": "Present, and \u0060true\u0060, only when the execution kept no data in its log."
+      },
       "PostModulesV1Execute400ResponseModuleStatus": {
         "enum": [
           "rejected",
@@ -211415,6 +211543,44 @@
           ]
         }
       },
+      "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDisplayStatus": {
+        "enum": [
+          "RUNNING",
+          "WAITING",
+          "SUCCESS",
+          "WARNING",
+          "ERROR"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Canonical status derived from the execution document. \u0060WAITING\u0060 identifies a timed, parked execution.",
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDisplayStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "RUNNING",
+              "name": "Running"
+            },
+            {
+              "value": "WAITING",
+              "name": "Waiting"
+            },
+            {
+              "value": "SUCCESS",
+              "name": "Success"
+            },
+            {
+              "value": "WARNING",
+              "name": "Warning"
+            },
+            {
+              "value": "ERROR",
+              "name": "Error"
+            }
+          ]
+        }
+      },
       "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogInterruptReason": {
         "enum": [
           "sleep",
@@ -211434,6 +211600,44 @@
             {
               "value": "hitl",
               "name": "Hitl"
+            }
+          ]
+        }
+      },
+      "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDisplayStatus": {
+        "enum": [
+          "RUNNING",
+          "WAITING",
+          "SUCCESS",
+          "WARNING",
+          "ERROR"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Canonical status derived from the execution document. \u0060WAITING\u0060 identifies a timed, parked execution.",
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDisplayStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "RUNNING",
+              "name": "Running"
+            },
+            {
+              "value": "WAITING",
+              "name": "Waiting"
+            },
+            {
+              "value": "SUCCESS",
+              "name": "Success"
+            },
+            {
+              "value": "WARNING",
+              "name": "Warning"
+            },
+            {
+              "value": "ERROR",
+              "name": "Error"
             }
           ]
         }
@@ -223609,6 +223813,43 @@
         ],
         "type": "integer",
         "additionalProperties": false
+      },
+      "GetScenariosByScenarioIdLogsDisplayStatusParameter": {
+        "enum": [
+          "RUNNING",
+          "WAITING",
+          "SUCCESS",
+          "WARNING",
+          "ERROR"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdLogsDisplayStatusParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "RUNNING",
+              "name": "Running"
+            },
+            {
+              "value": "WAITING",
+              "name": "Waiting"
+            },
+            {
+              "value": "SUCCESS",
+              "name": "Success"
+            },
+            {
+              "value": "WARNING",
+              "name": "Warning"
+            },
+            {
+              "value": "ERROR",
+              "name": "Error"
+            }
+          ]
+        }
       },
       "GetScenariosByScenarioIdLogsPgSortDirParameter": {
         "enum": [

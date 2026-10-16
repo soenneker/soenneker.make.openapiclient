@@ -14,6 +14,14 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Identifies the execution that produced `output`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution? Execution { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution Execution { get; set; }
+#endif
         /// <summary>Raw result of the Endpoint execution. The shape is defined by the executed Endpoint itself and is not constrained by this route.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,6 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "execution", n => { Execution = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution>(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution.CreateFromDiscriminatorValue); } },
                 { "output", n => { Output = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseOutput>(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseOutput.CreateFromDiscriminatorValue); } },
             };
         }
@@ -57,6 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution>("execution", Execution);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseOutput>("output", Output);
             writer.WriteAdditionalData(AdditionalData);
         }

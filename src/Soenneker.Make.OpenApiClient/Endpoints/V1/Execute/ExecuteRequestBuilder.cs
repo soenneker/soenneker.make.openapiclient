@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Endpoints.V1.Execute
         {
         }
         /// <summary>
-        /// Executes an App Endpoint (see `GET /imt/endpoints-usable` and the SDK Apps / Endpoints section for howEndpoints are defined) and returns its raw output.The response&apos;s `output` is currently a free-form, executor-defined value — its shape depends entirely onthe executed Endpoint and is not constrained by this route.
+        /// Executes an App Endpoint (see `GET /imt/endpoints-usable` and the SDK Apps / Endpoints section for howEndpoints are defined) and returns its raw output.The response&apos;s `output` is currently a free-form, executor-defined value — its shape depends entirely onthe executed Endpoint and is not constrained by this route.To make a request safe to retry, send an `idempotencyKey`. Within the Team, a repeated key returns theoutcome of the execution that first used it instead of running the Endpoint again. The response&apos;s`execution.replayed` tells a replay from a fresh execution.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -54,7 +54,7 @@ namespace Soenneker.Make.OpenApiClient.Endpoints.V1.Execute
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Executes an App Endpoint (see `GET /imt/endpoints-usable` and the SDK Apps / Endpoints section for howEndpoints are defined) and returns its raw output.The response&apos;s `output` is currently a free-form, executor-defined value — its shape depends entirely onthe executed Endpoint and is not constrained by this route.
+        /// Executes an App Endpoint (see `GET /imt/endpoints-usable` and the SDK Apps / Endpoints section for howEndpoints are defined) and returns its raw output.The response&apos;s `output` is currently a free-form, executor-defined value — its shape depends entirely onthe executed Endpoint and is not constrained by this route.To make a request safe to retry, send an `idempotencyKey`. Within the Team, a repeated key returns theoutcome of the execution that first used it instead of running the Endpoint again. The response&apos;s`execution.replayed` tells a replay from a fresh execution.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

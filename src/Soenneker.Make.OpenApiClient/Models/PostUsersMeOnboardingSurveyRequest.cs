@@ -40,14 +40,6 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string SurveyType { get; set; }
 #endif
-        /// <summary>Optional email addresses to invite as regular organization members. Invites are processed asynchronously in the background after this request&apos;s response is sent (best-effort, do not block the submission) and their outcome is not returned to the caller.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<string>? TeamInviteEmails { get; set; }
-#nullable restore
-#else
-        public List<string> TeamInviteEmails { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequest"/> and sets the default values.
         /// </summary>
@@ -77,7 +69,6 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "preferred_apps", n => { PreferredApps = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "schema_version", n => { SchemaVersion = n.GetDoubleValue(); } },
                 { "survey_type", n => { SurveyType = n.GetStringValue(); } },
-                { "team_invite_emails", n => { TeamInviteEmails = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -91,7 +82,6 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("preferred_apps", PreferredApps);
             writer.WriteDoubleValue("schema_version", SchemaVersion);
             writer.WriteStringValue("survey_type", SurveyType);
-            writer.WriteCollectionOfPrimitiveValues<string>("team_invite_emails", TeamInviteEmails);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -24,6 +24,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>Version of the App from which the Endpoint should be executed.</summary>
         public int? AppVersion { get; set; }
+        /// <summary>Run confidentially, like a scenario with &quot;Data is confidential&quot; enabled: the execution log keeps no input, output or error data, only metadata (status, duration, sizes for billing). The execution still appears in the Endpoint execution logs, marked `confidential`, with no data to retrieve.</summary>
+        public bool? Confidential { get; set; }
         /// <summary>ID of the Connection to be used for executing the Endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -39,6 +41,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #nullable restore
 #else
         public string EndpointName { get; set; }
+#endif
+        /// <summary>Client-chosen key that makes the request safe to retry. Within the Team, a repeated key returns the outcome of the execution that first used it instead of running the Endpoint again; the same key with a different request fails with `422`. Use a fresh unique value, such as a UUID, for each logical request.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? IdempotencyKey { get; set; }
+#nullable restore
+#else
+        public string IdempotencyKey { get; set; }
 #endif
         /// <summary>Object containing input values of the Endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,6 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public PostEndpointsV1ExecuteRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            Confidential = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -77,8 +88,10 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "appName", n => { AppName = n.GetStringValue(); } },
                 { "appVersion", n => { AppVersion = n.GetIntValue(); } },
+                { "confidential", n => { Confidential = n.GetBoolValue(); } },
                 { "connectionId", n => { ConnectionId = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1ExecuteRequest.PostEndpointsV1ExecuteRequest_connectionId>(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1ExecuteRequest.PostEndpointsV1ExecuteRequest_connectionId.CreateFromDiscriminatorValue); } },
                 { "endpointName", n => { EndpointName = n.GetStringValue(); } },
+                { "idempotencyKey", n => { IdempotencyKey = n.GetStringValue(); } },
                 { "input", n => { Input = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1ExecuteRequestInput>(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1ExecuteRequestInput.CreateFromDiscriminatorValue); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
             };
@@ -92,8 +105,10 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("appName", AppName);
             writer.WriteIntValue("appVersion", AppVersion);
+            writer.WriteBoolValue("confidential", Confidential);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1ExecuteRequest.PostEndpointsV1ExecuteRequest_connectionId>("connectionId", ConnectionId);
             writer.WriteStringValue("endpointName", EndpointName);
+            writer.WriteStringValue("idempotencyKey", IdempotencyKey);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1ExecuteRequestInput>("input", Input);
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteAdditionalData(AdditionalData);

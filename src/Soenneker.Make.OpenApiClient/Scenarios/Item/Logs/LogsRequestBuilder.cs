@@ -35,7 +35,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Logs
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public LogsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios/{scenarioId}/logs{?creditsFrom*,creditsTo*,durationFrom*,durationTo*,executionName*,from*,operationsFrom*,operationsTo*,pg%5Blast%5D*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BshowLast%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,showCheckRuns*,status*,to*,transferFrom*,transferTo*}", pathParameters)
+        public LogsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios/{scenarioId}/logs{?creditsFrom*,creditsTo*,displayStatus*,durationFrom*,durationTo*,executionName*,from*,operationsFrom*,operationsTo*,pg%5Blast%5D*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BshowLast%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,showCheckRuns*,status*,to*,transferFrom*,transferTo*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Logs
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public LogsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios/{scenarioId}/logs{?creditsFrom*,creditsTo*,durationFrom*,durationTo*,executionName*,from*,operationsFrom*,operationsTo*,pg%5Blast%5D*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BshowLast%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,showCheckRuns*,status*,to*,transferFrom*,transferTo*}", rawUrl)
+        public LogsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios/{scenarioId}/logs{?creditsFrom*,creditsTo*,displayStatus*,durationFrom*,durationTo*,executionName*,from*,operationsFrom*,operationsTo*,pg%5Blast%5D*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BshowLast%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,showCheckRuns*,status*,to*,transferFrom*,transferTo*}", rawUrl)
         {
         }
         /// <summary>
@@ -104,6 +104,9 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Logs
             /// <summary>Filters logs to only include executions with credits less than or equal to this value (in centicredits).</summary>
             [QueryParameter("creditsTo")]
             public int? CreditsTo { get; set; }
+            /// <summary>Filters execution logs by derived display status. `WAITING` is a timed, parked execution. Do not use this parameter with `status`.</summary>
+            [QueryParameter("displayStatus")]
+            public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsDisplayStatusParameter? DisplayStatus { get; set; }
             /// <summary>Filters logs to only include executions with a duration greater than or equal to this value (in milliseconds).</summary>
             [QueryParameter("durationFrom")]
             public int? DurationFrom { get; set; }
@@ -157,7 +160,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Logs
             /// <summary>If set to `true`, check runs are included in the returned results. By default they are excluded. Check runs concern scenarios starting with a trigger in cases when the trigger does not find anything new.</summary>
             [QueryParameter("showCheckRuns")]
             public bool? ShowCheckRuns { get; set; }
-            /// <summary>Filters logs by the execution status. `1` is for success, `2` is for warning, and `3` is for error.</summary>
+            /// <summary>Filters logs by numeric terminal execution status. `1` is for success, `2` is for warning, and `3` is for error. Do not use this parameter with `displayStatus`.</summary>
             [QueryParameter("status")]
             public int? Status { get; set; }
             /// <summary>The timestamp in milliseconds that defines the ending point of time to which the logs should be retrieved. Newer logs will not be returned.</summary>
