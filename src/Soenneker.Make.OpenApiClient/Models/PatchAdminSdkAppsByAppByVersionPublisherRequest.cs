@@ -12,6 +12,14 @@ namespace Soenneker.Make.OpenApiClient.Models
     public partial class PatchAdminSdkAppsByAppByVersionPublisherRequest : IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>The company name the author&apos;s apps are published under — what a partner sees, read-only, on the verified-partner card. `null` clears it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CompanyName { get; set; }
+#nullable restore
+#else
+        public string CompanyName { get; set; }
+#endif
         /// <summary>The partner program to assign; `null` marks the author as not a partner.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisherRequestPartnerType? PartnerType { get; set; }
         /// <summary>
@@ -32,6 +40,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "companyName", n => { CompanyName = n.GetStringValue(); } },
                 { "partnerType", n => { PartnerType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisherRequestPartnerType>(); } },
             };
         }
@@ -42,6 +51,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("companyName", CompanyName);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisherRequestPartnerType>("partnerType", PartnerType);
         }
     }

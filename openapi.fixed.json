@@ -2974,6 +2974,167 @@
         "x-private": true
       }
     },
+    "/admin/sdk/apps/{app}/{version}/app-review/send-auto-notes": {
+      "post": {
+        "tags": [
+          "Admin / SDK Apps / Review"
+        ],
+        "summary": "Send the automatic-review notes (reviewer)",
+        "description": "Hands the automatic-review notes of the submission waiting with Make to the developer: while the phase is \u0060review\u0060 or \u0060update_review\u0060 with \u0060reviewStep: manual\u0060, the step moves to \u0060auto\u0060 and an \u0060auto_notes_sent\u0060 event is appended, carrying the optional \u0060note\u0060. The developer then implements the notes and confirms them (\u0060POST /sdk/apps/{SDK_appName}/{SDK_appVersion}/app-review/confirm-auto-notes\u0060), which hands the submission back (\u0060manual\u0060). The phase itself does not change, and the outcomes (\u0060approve\u0060, \u0060request-changes\u0060) stay available in both steps. Fails with \u0060409\u0060 while notes are already waiting for the developer (\u0060reviewStep: auto\u0060) and in any other phase.\nThis only records that the notes were sent \u2014 the notes themselves reach the developer by email from Make\u0027s app review process, or as the \u0060note\u0060.\nRequires an administrator with the \u0060apps edit\u0060 permission (the same one the legacy reviewer status form needs). Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "operationId": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes",
+        "parameters": [
+          {
+            "name": "app",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-crm-app"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotesRequest"
+              },
+              "examples": {
+                "with-note": {
+                  "summary": "Notes sent with a summary",
+                  "value": {
+                    "note": "The List deals module ignores the API\u0027s pagination."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200Response"
+                },
+                "examples": {
+                  "with-note": {
+                    "summary": "Notes waiting for the developer",
+                    "value": {
+                      "review": {
+                        "appName": "my-crm-app",
+                        "appVersion": 1,
+                        "phase": "review",
+                        "reviewStep": "auto",
+                        "rereviewOrigin": null,
+                        "derivedFromLegacy": false,
+                        "draftForm": {
+                          "vendorRelationship": "direct",
+                          "apiDocsUrl": "https://developers.example.com"
+                        },
+                        "submittedForm": {
+                          "vendorRelationship": "direct",
+                          "apiDocsUrl": "https://developers.example.com"
+                        },
+                        "submittedAt": "2026-08-24T10:20:00.000Z",
+                        "events": [
+                          {
+                            "type": "preparation_started",
+                            "actor": "developer",
+                            "createdAt": "2026-08-24T10:00:00.000Z"
+                          },
+                          {
+                            "type": "submitted",
+                            "actor": "developer",
+                            "createdAt": "2026-08-24T10:20:00.000Z"
+                          },
+                          {
+                            "type": "auto_notes_sent",
+                            "actor": "make",
+                            "note": "The List deals module ignores the API\u0027s pagination.",
+                            "createdAt": "2026-08-24T10:40:00.000Z"
+                          }
+                        ],
+                        "updatedAt": "2026-08-24T10:40:00.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is not an administrator with the \u0060apps edit\u0060 permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes403ResponseSchema"
+                },
+                "examples": {
+                  "forbidden": {
+                    "summary": "Insufficient rights",
+                    "value": {
+                      "message": "Insufficient rights.",
+                      "detail": "Access denied.",
+                      "code": "IM002"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Notes are already waiting for the developer, or nothing is in review.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes409ResponseSchema"
+                },
+                "examples": {
+                  "already-waiting": {
+                    "summary": "The developer has not confirmed the last notes yet",
+                    "value": {
+                      "message": "Conflict.",
+                      "detail": "The automatic-review notes are already waiting for the developer to confirm them.",
+                      "code": "SC409"
+                    }
+                  },
+                  "not-in-review": {
+                    "summary": "The developer has not submitted yet",
+                    "value": {
+                      "message": "Conflict.",
+                      "detail": "Action \u0022sendAutoNotes\u0022 is not allowed while the review is \u0022preparing\u0022.",
+                      "code": "SC409"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:write",
+              "sdk-apps:write"
+            ]
+          }
+        ],
+        "x-private": true
+      }
+    },
     "/admin/sdk/apps/{app}/connections/{connection}/rename": {
       "post": {
         "tags": [
@@ -3273,8 +3434,8 @@
         "tags": [
           "Admin / SDK Apps / Publisher"
         ],
-        "summary": "Set the app author\u0027s partner program",
-        "description": "Assigns the Make partner program of the app\u0027s author \u2014 \u0060technology\u0060, \u0060solution\u0060, or \u0060null\u0060 for \u0022not a partner\u0022 \u2014 and answers with the author\u0027s profile the way \u0060GET /sdk/apps/{app}/{version}/publisher\u0060 does. The program decides which variant of the new review form the developer sees (the verified-partner card instead of the \u0022Learn about the partner program\u0022 call to action), so only Make administrators holding the \u0060apps edit\u0060 permission may set it; the developer\u0027s own \u0060PATCH /sdk/publisher\u0060 has no such field and this route exists under \u0060/admin\u0060 only. Assigning a program to a developer who never saved a profile creates the profile with just that program; clearing the program of such a developer changes nothing (\u0060publisher\u0060 stays \u0060null\u0060). Any other profile field in the body is ignored \u2014 this endpoint changes the program and nothing else. Responds \u0060403\u0060 (IM002) without the permission (checked before the app is looked up) and \u0060404\u0060 (IM013) when the app version does not exist. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "summary": "Set the app author\u0027s partner program and company name",
+        "description": "Sets what Make manages on the profile of the app\u0027s author \u2014 the Make partner program (\u0060technology\u0060, \u0060solution\u0060, or \u0060null\u0060 for \u0022not a partner\u0022) and the company name \u2014 and answers with the author\u0027s profile the way \u0060GET /sdk/apps/{app}/{version}/publisher\u0060 does. The program decides which variant of the new review form the developer sees (the verified-partner card instead of the \u0022Learn about the partner program\u0022 call to action); a partner sees their company name and logo read-only, so Make sets them here and through \u0060PUT /admin/sdk/apps/{app}/{version}/publisher/logo\u0060. Only Make administrators holding the \u0060apps edit\u0060 permission may call it; the developer\u0027s own \u0060PATCH /sdk/publisher\u0060 has no \u0060partnerType\u0060 field and this route exists under \u0060/admin\u0060 only. Send at least one field: an omitted field keeps its value and \u0060null\u0060 clears it. Writing a value for a developer who never saved a profile creates the profile with just that value; a body that only clears values changes nothing for such a developer (\u0060publisher\u0060 stays \u0060null\u0060). Other profile fields are ignored \u2014 the author name and the contact email stay the developer\u0027s own. Responds \u0060403\u0060 (IM002) without the permission (checked before the app is looked up) and \u0060404\u0060 (IM013) when the app version does not exist. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
         "operationId": "PatchAdminSdkAppsByAppByVersionPublisher",
         "parameters": [
           {
@@ -3309,6 +3470,13 @@
                   "summary": "Mark the author as a Technology Partner",
                   "value": {
                     "partnerType": "technology"
+                  }
+                },
+                "first-setup": {
+                  "summary": "Set up a new partner \u2014 program and company name at once",
+                  "value": {
+                    "partnerType": "solution",
+                    "companyName": "Acme Automations s.r.o."
                   }
                 },
                 "not-a-partner": {
@@ -3348,6 +3516,23 @@
                       "authorEmail": "jane@example.com"
                     }
                   },
+                  "first-setup": {
+                    "summary": "A developer without a profile, set up as a partner",
+                    "value": {
+                      "publisher": {
+                        "userId": 42,
+                        "authorName": null,
+                        "contactEmail": null,
+                        "companyName": "Acme Automations s.r.o.",
+                        "partnerType": "solution",
+                        "hasLogo": false,
+                        "logoFilename": null,
+                        "createdAt": "2026-10-13T10:00:00.000Z",
+                        "updatedAt": "2026-10-13T10:00:00.000Z"
+                      },
+                      "authorEmail": "jane@example.com"
+                    }
+                  },
                   "not-a-partner": {
                     "summary": "The author never saved a profile, so clearing created nothing",
                     "value": {
@@ -3360,7 +3545,7 @@
             }
           },
           "400": {
-            "description": "\u0060partnerType\u0060 is missing or not one of \u0060technology\u0060, \u0060solution\u0060, \u0060null\u0060. The per-field validation failures are listed in \u0060suberrors\u0060.",
+            "description": "The body sets neither \u0060partnerType\u0060 nor \u0060companyName\u0060, \u0060partnerType\u0060 is not one of \u0060technology\u0060, \u0060solution\u0060, \u0060null\u0060, or \u0060companyName\u0060 is longer than 255 characters. The per-field validation failures are listed in \u0060suberrors\u0060.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3398,6 +3583,291 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PatchAdminSdkAppsByAppByVersionPublisher404Response"
+                },
+                "examples": {
+                  "app-not-found": {
+                    "summary": "Unknown app or version",
+                    "value": {
+                      "code": "IM013",
+                      "message": "Entity not found",
+                      "detail": "SDK app not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:write",
+              "sdk-apps:write"
+            ]
+          }
+        ],
+        "x-private": true
+      }
+    },
+    "/admin/sdk/apps/{app}/{version}/publisher/logo": {
+      "put": {
+        "tags": [
+          "Admin / SDK Apps / Publisher"
+        ],
+        "summary": "Upload the app author\u0027s logo",
+        "description": "Stores the company logo on the profile of the app\u0027s author, creating the profile when the developer never saved one, and answers with the author\u0027s profile the way \u0060GET /sdk/apps/{app}/{version}/publisher\u0060 does. A Make partner sees their logo read-only on the verified-partner card, so Make administrators holding the \u0060apps edit\u0060 permission set it here; the developer\u0027s own logo routes are \u0060/sdk/publisher/logo\u0060. The logo has the same requirements as there: the raw request body with content type \u0060image/png\u0060, a square PNG between 512\u00D7512 and 2048\u00D72048 pixels, at most 500 kB. A missing or non-binary body responds with \u0060400\u0060 (IM005), an invalid or non-square PNG with \u0060400\u0060 (SC400), a file over 500 kB with \u0060413\u0060. Responds \u0060403\u0060 (IM002) without the permission (checked before the app is looked up) and \u0060404\u0060 (IM013) when the app version does not exist. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "operationId": "PutAdminSdkAppsByAppByVersionPublisherLogo",
+        "parameters": [
+          {
+            "name": "app",
+            "in": "path",
+            "description": "The SDK app name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-crm-app"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "filename",
+            "in": "query",
+            "description": "Original filename of the uploaded logo, shown back in the UI.",
+            "schema": {
+              "maxLength": 255,
+              "minLength": 1,
+              "type": "string"
+            },
+            "example": "acme-logo.png"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "image/png": {
+              "schema": {
+                "$ref": "#/components/schemas/PutAdminSdkAppsByAppByVersionPublisherLogoPngRequestRequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutAdminSdkAppsByAppByVersionPublisherLogo200Response"
+                },
+                "examples": {
+                  "uploaded": {
+                    "summary": "Profile after the upload",
+                    "value": {
+                      "publisher": {
+                        "userId": 42,
+                        "authorName": null,
+                        "contactEmail": null,
+                        "companyName": "Acme Automations s.r.o.",
+                        "partnerType": "technology",
+                        "hasLogo": true,
+                        "logoFilename": "acme-logo.png",
+                        "createdAt": "2026-10-13T10:00:00.000Z",
+                        "updatedAt": "2026-10-13T10:05:00.000Z"
+                      },
+                      "authorEmail": "jane@example.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The body is missing, or is not a valid square PNG within the required dimensions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutAdminSdkAppsByAppByVersionPublisherLogo400ResponseSchema"
+                },
+                "examples": {
+                  "missing-body": {
+                    "summary": "No raw image/png body was sent",
+                    "value": {
+                      "message": "Send the logo as a raw request body with content-type image/png.",
+                      "code": "IM005"
+                    }
+                  },
+                  "invalid-png": {
+                    "summary": "Body is not a valid PNG",
+                    "value": {
+                      "message": "Bad Request",
+                      "code": "SC400",
+                      "detail": "Failed to save image. Invalid PNG image. Icon requirements: PNG format. Square size from 512x512 to 2048x2048 is required. File size must not exceed 500 kB."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is not an administrator holding the \u0060apps edit\u0060 permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutAdminSdkAppsByAppByVersionPublisherLogo403Response"
+                },
+                "example": {
+                  "code": "IM002",
+                  "message": "Insufficient rights"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The app version does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutAdminSdkAppsByAppByVersionPublisherLogo404Response"
+                },
+                "examples": {
+                  "app-not-found": {
+                    "summary": "Unknown app or version",
+                    "value": {
+                      "code": "IM013",
+                      "message": "Entity not found",
+                      "detail": "SDK app not found."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "The logo exceeds the maximum file size.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutAdminSdkAppsByAppByVersionPublisherLogo413ResponseSchema"
+                },
+                "examples": {
+                  "too-large": {
+                    "summary": "Logo over 500 kB",
+                    "value": {
+                      "message": "Payload is too large",
+                      "code": "SC413",
+                      "detail": "Failed to save image. Image exceeded max file size. Icon requirements: PNG format. Square size from 512x512 to 2048x2048 is required. File size must not exceed 500 kB."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:write",
+              "sdk-apps:write"
+            ]
+          }
+        ],
+        "x-private": true
+      },
+      "delete": {
+        "tags": [
+          "Admin / SDK Apps / Publisher"
+        ],
+        "summary": "Delete the app author\u0027s logo",
+        "description": "Removes the company logo from the profile of the app\u0027s author and answers with the author\u0027s profile the way \u0060GET /sdk/apps/{app}/{version}/publisher\u0060 does \u2014 unlike the developer\u0027s own \u0060DELETE /sdk/publisher/logo\u0060, which answers \u0060204\u0060. Succeeds even when no logo was stored, and in that case does not create a publisher profile (\u0060publisher\u0060 stays \u0060null\u0060 for a developer who never saved one). Only Make administrators holding the \u0060apps edit\u0060 permission may call it: responds \u0060403\u0060 (IM002) without the permission (checked before the app is looked up) and \u0060404\u0060 (IM013) when the app version does not exist. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "operationId": "DeleteAdminSdkAppsByAppByVersionPublisherLogo",
+        "parameters": [
+          {
+            "name": "app",
+            "in": "path",
+            "description": "The SDK app name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-crm-app"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAdminSdkAppsByAppByVersionPublisherLogo200Response"
+                },
+                "examples": {
+                  "removed": {
+                    "summary": "Profile after the removal",
+                    "value": {
+                      "publisher": {
+                        "userId": 42,
+                        "authorName": null,
+                        "contactEmail": null,
+                        "companyName": "Acme Automations s.r.o.",
+                        "partnerType": "technology",
+                        "hasLogo": false,
+                        "logoFilename": null,
+                        "createdAt": "2026-10-13T10:00:00.000Z",
+                        "updatedAt": "2026-10-13T10:10:00.000Z"
+                      },
+                      "authorEmail": "jane@example.com"
+                    }
+                  },
+                  "no-profile": {
+                    "summary": "The author never saved a profile, so the removal created nothing",
+                    "value": {
+                      "publisher": null,
+                      "authorEmail": "jane@example.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is not an administrator holding the \u0060apps edit\u0060 permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAdminSdkAppsByAppByVersionPublisherLogo403Response"
+                },
+                "example": {
+                  "code": "IM002",
+                  "message": "Insufficient rights"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The app version does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteAdminSdkAppsByAppByVersionPublisherLogo404Response"
                 },
                 "examples": {
                   "app-not-found": {
@@ -6338,6 +6808,9 @@
           "403": {
             "description": "Missing the \u0027key add\u0027 team permission (\u0060IM002\u0060)"
           },
+          "429": {
+            "description": "Too many browser context setups in progress for the user (2) or the team (5)"
+          },
           "500": {
             "description": "AI Browser is not configured on this environment"
           }
@@ -6912,6 +7385,9 @@
           },
           "404": {
             "description": "The key does not exist or is not an AI Browser context"
+          },
+          "429": {
+            "description": "Too many browser context setups in progress for the user (2) or the team (5)"
           },
           "500": {
             "description": "AI Browser is not configured on this environment"
@@ -49215,7 +49691,7 @@
           "SDK Apps / Review"
         ],
         "summary": "Submit for review",
-        "description": "Submits the prepared form and enters the automatic step (\u0060reviewStep: auto\u0060) of the track the form belongs to: \u0060preparing\u0060 \u2192 \u0060review\u0060 (event \u0060submitted\u0060), \u0060updating\u0060 \u2192 \u0060update_review\u0060 (\u0060update_submitted\u0060), and \u0060rereview\u0060 \u2192 back to \u0060review\u0060 or \u0060update_review\u0060 according to \u0060rereviewOrigin\u0060 (\u0060resubmitted\u0060). The current draft is snapshotted into \u0060submittedForm\u0060 \u2014 later draft edits do not change the submitted record. Completeness of the form is the client\u0027s responsibility (the readiness gate); the server does not re-validate it. Link formats are validated, though \u2014 the rules of the legacy review form: \u0060apiDocsUrl\u0060, \u0060homepageUrl\u0060, \u0060landingPageUrl\u0060 and \u0060appDocsUrl\u0060 must be \u0060http(s)\u0060 URLs, and every scenario link (\u0060testScenarioUrls\u0060, \u0060errorHandlingScenarioUrl\u0060, \u0060updatedScenarioUrls\u0060) must point at a scenario of this zone, i.e. \u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060 (a query string or fragment may follow). A malformed link fails with \u0060400\u0060 (IM005) naming every offending field, and nothing is submitted. Fails with \u0060409\u0060 in any other phase. Only the app\u0027s author (or an administrator) may submit. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "description": "Submits the prepared form, which then waits with Make (\u0060reviewStep: manual\u0060) in the review phase of the track the form belongs to: \u0060preparing\u0060 \u2192 \u0060review\u0060 (event \u0060submitted\u0060), \u0060updating\u0060 \u2192 \u0060update_review\u0060 (\u0060update_submitted\u0060), and \u0060rereview\u0060 \u2192 back to \u0060review\u0060 or \u0060update_review\u0060 according to \u0060rereviewOrigin\u0060 (\u0060resubmitted\u0060). The current draft is snapshotted into \u0060submittedForm\u0060 \u2014 later draft edits do not change the submitted record. Completeness of the form is the client\u0027s responsibility (the readiness gate); the server does not re-validate it. Link formats are validated, though \u2014 the rules of the legacy review form: \u0060apiDocsUrl\u0060, \u0060homepageUrl\u0060, \u0060landingPageUrl\u0060 and \u0060appDocsUrl\u0060 must be \u0060http(s)\u0060 URLs, and every scenario link (\u0060testScenarioUrls\u0060, \u0060errorHandlingScenarioUrl\u0060, \u0060updatedScenarioUrls\u0060) must point at a scenario of this zone, i.e. \u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060 (a query string or fragment may follow). A malformed link fails with \u0060400\u0060 (IM005) naming every offending field, and nothing is submitted. Fails with \u0060409\u0060 in any other phase.\nUnless the app is already approved or in review, a submission is also the app\u0027s review request \u2014 the same request as the legacy \u0022Request approval\u0022 (\u0060POST /sdk/apps/{SDK_appName}/{SDK_appVersion}/review\u0060): it traces the \u0060apps_review_requested\u0060 event Make\u0027s app review process starts from (its \u0060review_form\u0060 carries the submitted form) and marks the app in review (\u0060inReview: true\u0060; on a zone through HQ). That request needs a public app with at least one module \u2014 otherwise the submission fails with \u0060400\u0060 (IM005) and nothing is submitted.\nOnly the app\u0027s author (or an administrator) may submit. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
         "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit",
         "parameters": [
           {
@@ -49249,13 +49725,13 @@
                 },
                 "examples": {
                   "submitted": {
-                    "summary": "First submission entered the automatic review",
+                    "summary": "First submission waiting with Make",
                     "value": {
                       "review": {
                         "appName": "my-crm-app",
                         "appVersion": 1,
                         "phase": "review",
-                        "reviewStep": "auto",
+                        "reviewStep": "manual",
                         "rereviewOrigin": null,
                         "derivedFromLegacy": false,
                         "draftForm": {
@@ -49296,13 +49772,27 @@
             }
           },
           "400": {
-            "description": "A link in the draft is malformed; the message names every offending field.",
+            "description": "A link in the draft is malformed (the message names every offending field), or the app cannot be put in review yet.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit400ResponseSchema"
                 },
                 "examples": {
+                  "no-module": {
+                    "summary": "The app has no module to review",
+                    "value": {
+                      "message": "You cannot submit an app without a module.",
+                      "code": "IM005"
+                    }
+                  },
+                  "not-public": {
+                    "summary": "The app has not been published yet",
+                    "value": {
+                      "message": "App was not set public yet.",
+                      "code": "IM005"
+                    }
+                  },
                   "malformed-links": {
                     "summary": "A scenario of another zone and a documentation link without a scheme",
                     "value": {
@@ -49455,7 +49945,7 @@
           "SDK Apps / Review"
         ],
         "summary": "Confirm the automatic-review notes",
-        "description": "Hands a submission that is in the automatic review step to a human reviewer: while the phase is \u0060review\u0060 or \u0060update_review\u0060 with \u0060reviewStep: auto\u0060, the step moves to \u0060manual\u0060 and an \u0060auto_notes_confirmed\u0060 event is appended. The phase itself does not change. Calling it again once the step is already \u0060manual\u0060 fails with \u0060409\u0060 (\u0022already been confirmed\u0022), as does calling it in any other phase. Only the app\u0027s author may do this. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "description": "Confirms that the automatic-review notes Make sent (\u0060POST /admin/sdk/apps/{app}/{version}/app-review/send-auto-notes\u0060) are implemented, and hands the submission back to a reviewer: while the phase is \u0060review\u0060 or \u0060update_review\u0060 with \u0060reviewStep: auto\u0060, the step moves to \u0060manual\u0060 and an \u0060auto_notes_confirmed\u0060 event is appended. The phase itself does not change. While the step is \u0060manual\u0060 \u2014 no notes were sent, or they are already confirmed \u2014 it fails with \u0060409\u0060, as it does in any other phase. Only the app\u0027s author may do this. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
         "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewConfirmAutoNotes",
         "parameters": [
           {
@@ -49519,6 +50009,12 @@
                             "createdAt": "2026-08-24T10:20:00.000Z"
                           },
                           {
+                            "type": "auto_notes_sent",
+                            "actor": "make",
+                            "note": "The List deals module ignores the API\u0027s pagination.",
+                            "createdAt": "2026-08-24T10:40:00.000Z"
+                          },
+                          {
                             "type": "auto_notes_confirmed",
                             "actor": "developer",
                             "createdAt": "2026-08-24T11:00:00.000Z"
@@ -49533,18 +50029,18 @@
             }
           },
           "409": {
-            "description": "The submission is not in the automatic review step.",
+            "description": "No automatic-review notes are waiting for confirmation.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewConfirmAutoNotes409ResponseSchema"
                 },
                 "examples": {
-                  "already-confirmed": {
-                    "summary": "Notes were already confirmed",
+                  "nothing-to-confirm": {
+                    "summary": "No notes were sent, or they are already confirmed",
                     "value": {
                       "message": "Conflict.",
-                      "detail": "The automatic-review notes have already been confirmed; the submission is with a reviewer.",
+                      "detail": "No automatic-review notes are waiting for confirmation; the submission is with a reviewer.",
                       "code": "SC409"
                     }
                   },
@@ -49577,7 +50073,7 @@
           "SDK Apps / Review"
         ],
         "summary": "Start updating an approved listing",
-        "description": "Moves an \u0060approved\u0060 review to \u0060updating\u0060 and reopens the form, including the update fields (\u0060whatChanged\u0060, \u0060updatedScenarioUrls\u0060, \u0060reRunConfirmed\u0060, \u0060contactsConfirmed\u0060). The listing stays approved while the update is prepared: \u0060cancel\u0060 returns to \u0060approved\u0060 keeping the draft, \u0060submit\u0060 sends the update into \u0060update_review\u0060 (automatic step first). An app approved through the legacy flow (\u0060derivedFromLegacy: true\u0060) may start an update too; from then on the new flow owns the phase. Fails with \u0060409\u0060 in any phase other than \u0060approved\u0060. Only the app\u0027s author may do this. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "description": "Moves an \u0060approved\u0060 review to \u0060updating\u0060 and reopens the form, including the update fields (\u0060whatChanged\u0060, \u0060updatedScenarioUrls\u0060, \u0060reRunConfirmed\u0060, \u0060contactsConfirmed\u0060). The listing stays approved while the update is prepared: \u0060cancel\u0060 returns to \u0060approved\u0060 keeping the draft, \u0060submit\u0060 sends the update into \u0060update_review\u0060, where it waits with Make. An app approved through the legacy flow (\u0060derivedFromLegacy: true\u0060) may start an update too; from then on the new flow owns the phase. Fails with \u0060409\u0060 in any phase other than \u0060approved\u0060. Only the app\u0027s author may do this. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
         "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStartUpdate",
         "parameters": [
           {
@@ -61431,7 +61927,7 @@
             "nullable": true
           }
         },
-        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
       },
       "SdkAppReviewDraft": {
         "type": "object",
@@ -61662,7 +62158,7 @@
           },
           "companyName": {
             "type": "string",
-            "description": "Company (ISV) name shown as the publisher.",
+            "description": "Company (ISV) name shown as the publisher. For a Make partner it is the name their apps are published under, which the partner cannot change themselves \u2014 Make administrators set it through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060.",
             "nullable": true
           },
           "partnerType": {
@@ -61670,7 +62166,7 @@
           },
           "hasLogo": {
             "type": "boolean",
-            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060)."
+            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060). Make administrators set a partner\u0027s logo through \u0060PUT /admin/sdk/apps/{app}/{version}/publisher/logo\u0060."
           },
           "logoFilename": {
             "type": "string",
@@ -91257,7 +91753,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
           },
           "actor": {
             "$ref": "#/components/schemas/SdkAppReviewStateEventsItemActor"
@@ -104585,6 +105081,32 @@
       "PostAdminSdkAppsByAppByVersionAppReviewRequestChanges409Response": {
         "type": "object"
       },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotesRequest": {
+        "type": "object",
+        "properties": {
+          "note": {
+            "maxLength": 10000,
+            "minLength": 1,
+            "type": "string",
+            "description": "Optional notes for the developer, stored on the timeline event the developer sees."
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200Response": {
+        "type": "object",
+        "properties": {
+          "review": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReview"
+          }
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes403Response": {
+        "type": "object"
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes409Response": {
+        "type": "object"
+      },
       "PostAdminSdkAppsByAppConnectionsByConnectionRenameRequest": {
         "required": [
           "name"
@@ -104716,13 +105238,17 @@
         }
       },
       "PatchAdminSdkAppsByAppByVersionPublisherRequest": {
-        "required": [
-          "partnerType"
-        ],
+        "minProperties": 1,
         "type": "object",
         "properties": {
           "partnerType": {
             "$ref": "#/components/schemas/PatchAdminSdkAppsByAppByVersionPublisherRequestPartnerType"
+          },
+          "companyName": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "The company name the author\u0027s apps are published under \u2014 what a partner sees, read-only, on the verified-partner card. \u0060null\u0060 clears it.",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -104755,6 +105281,92 @@
         }
       },
       "PatchAdminSdkAppsByAppByVersionPublisher404Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PutAdminSdkAppsByAppByVersionPublisherLogoPngRequest": {
+        "type": "string",
+        "format": "binary"
+      },
+      "PutAdminSdkAppsByAppByVersionPublisherLogo200Response": {
+        "type": "object",
+        "properties": {
+          "publisher": {
+            "$ref": "#/components/schemas/PutAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisher"
+          },
+          "authorEmail": {
+            "type": "string",
+            "description": "Account email of the app\u0027s author.",
+            "format": "email"
+          }
+        }
+      },
+      "PutAdminSdkAppsByAppByVersionPublisherLogo400Response": {
+        "type": "object"
+      },
+      "PutAdminSdkAppsByAppByVersionPublisherLogo403Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "PutAdminSdkAppsByAppByVersionPublisherLogo404Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PutAdminSdkAppsByAppByVersionPublisherLogo413Response": {
+        "type": "object"
+      },
+      "DeleteAdminSdkAppsByAppByVersionPublisherLogo200Response": {
+        "type": "object",
+        "properties": {
+          "publisher": {
+            "$ref": "#/components/schemas/DeleteAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisher"
+          },
+          "authorEmail": {
+            "type": "string",
+            "description": "Account email of the app\u0027s author.",
+            "format": "email"
+          }
+        }
+      },
+      "DeleteAdminSdkAppsByAppByVersionPublisherLogo403Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteAdminSdkAppsByAppByVersionPublisherLogo404Response": {
         "type": "object",
         "properties": {
           "code": {
@@ -153306,7 +153918,23 @@
       "PostAdminSdkAppsByAppByVersionAppReviewRequestChanges409ResponseSchema": {
         "type": "object"
       },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes403ResponseSchema": {
+        "type": "object"
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes409ResponseSchema": {
+        "type": "object"
+      },
       "PatchAdminSdkAppsByAppByVersionPublisher400ResponseSchema": {
+        "type": "object"
+      },
+      "PutAdminSdkAppsByAppByVersionPublisherLogoPngRequestRequestBody": {
+        "type": "string",
+        "format": "binary"
+      },
+      "PutAdminSdkAppsByAppByVersionPublisherLogo400ResponseSchema": {
+        "type": "object"
+      },
+      "PutAdminSdkAppsByAppByVersionPublisherLogo413ResponseSchema": {
         "type": "object"
       },
       "PostAiAgentsV1AgentsByAgentIdRunStream200EventStreamResponseSchema": {
@@ -158543,7 +159171,7 @@
             "nullable": true
           }
         },
-        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
       },
       "PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReview": {
         "type": "object",
@@ -158595,7 +159223,7 @@
             "nullable": true
           }
         },
-        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
       },
       "PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReview": {
         "type": "object",
@@ -158647,7 +159275,59 @@
             "nullable": true
           }
         },
-        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReview": {
+        "type": "object",
+        "properties": {
+          "appName": {
+            "type": "string",
+            "description": "Name of the SDK app."
+          },
+          "appVersion": {
+            "type": "integer",
+            "description": "Major version of the SDK app."
+          },
+          "phase": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewPhase"
+          },
+          "reviewStep": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewReviewStep"
+          },
+          "rereviewOrigin": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewRereviewOrigin"
+          },
+          "derivedFromLegacy": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when \u0060phase\u0060 was derived from legacy review state instead of stored new-flow state."
+          },
+          "draftForm": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftForm"
+          },
+          "submittedForm": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedForm"
+          },
+          "submittedAt": {
+            "type": "string",
+            "description": "Timestamp of the last submit.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewEventsItem"
+            },
+            "description": "Review history timeline, oldest first."
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Last modification of the new-flow state. \u0060null\u0060 while no new-flow row exists.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
       },
       "PostAdminSdkAppsByAppConnectionsByConnectionRename200ResponseAppConnection": {
         "type": "object",
@@ -158687,7 +159367,7 @@
           },
           "companyName": {
             "type": "string",
-            "description": "Company (ISV) name shown as the publisher.",
+            "description": "Company (ISV) name shown as the publisher. For a Make partner it is the name their apps are published under, which the partner cannot change themselves \u2014 Make administrators set it through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060.",
             "nullable": true
           },
           "partnerType": {
@@ -158695,7 +159375,102 @@
           },
           "hasLogo": {
             "type": "boolean",
-            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060)."
+            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060). Make administrators set a partner\u0027s logo through \u0060PUT /admin/sdk/apps/{app}/{version}/publisher/logo\u0060."
+          },
+          "logoFilename": {
+            "type": "string",
+            "description": "Original filename of the uploaded logo.",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the profile was created.",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "When the profile was last updated.",
+            "format": "date-time"
+          }
+        }
+      },
+      "PutAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisher": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "description": "Owning user."
+          },
+          "authorName": {
+            "type": "string",
+            "description": "Author name shown as the publisher (non-partner variant).",
+            "nullable": true
+          },
+          "contactEmail": {
+            "type": "string",
+            "description": "Developer contact email. \u0060null\u0060 means the account email is used.",
+            "format": "email",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "description": "Company (ISV) name shown as the publisher. For a Make partner it is the name their apps are published under, which the partner cannot change themselves \u2014 Make administrators set it through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060.",
+            "nullable": true
+          },
+          "partnerType": {
+            "$ref": "#/components/schemas/PutAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisherPartnerType"
+          },
+          "hasLogo": {
+            "type": "boolean",
+            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060). Make administrators set a partner\u0027s logo through \u0060PUT /admin/sdk/apps/{app}/{version}/publisher/logo\u0060."
+          },
+          "logoFilename": {
+            "type": "string",
+            "description": "Original filename of the uploaded logo.",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the profile was created.",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "When the profile was last updated.",
+            "format": "date-time"
+          }
+        },
+        "description": "Account-level publisher profile of an SDK app developer (\u0022App developer contact\u0022). One profile per user; its values appear on the landing pages of all apps the user publishes."
+      },
+      "DeleteAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisher": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "description": "Owning user."
+          },
+          "authorName": {
+            "type": "string",
+            "description": "Author name shown as the publisher (non-partner variant).",
+            "nullable": true
+          },
+          "contactEmail": {
+            "type": "string",
+            "description": "Developer contact email. \u0060null\u0060 means the account email is used.",
+            "format": "email",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "description": "Company (ISV) name shown as the publisher. For a Make partner it is the name their apps are published under, which the partner cannot change themselves \u2014 Make administrators set it through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060.",
+            "nullable": true
+          },
+          "partnerType": {
+            "$ref": "#/components/schemas/DeleteAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisherPartnerType"
+          },
+          "hasLogo": {
+            "type": "boolean",
+            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060). Make administrators set a partner\u0027s logo through \u0060PUT /admin/sdk/apps/{app}/{version}/publisher/logo\u0060."
           },
           "logoFilename": {
             "type": "string",
@@ -174213,7 +174988,7 @@
             "nullable": true
           }
         },
-        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewFormRequestSubcategories": {
         "type": "object",
@@ -174277,7 +175052,7 @@
             "nullable": true
           }
         },
-        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReview": {
         "type": "object",
@@ -174329,7 +175104,7 @@
             "nullable": true
           }
         },
-        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReview": {
         "type": "object",
@@ -174381,7 +175156,7 @@
             "nullable": true
           }
         },
-        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReview": {
         "type": "object",
@@ -174433,7 +175208,7 @@
             "nullable": true
           }
         },
-        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewConfirmAutoNotes200ResponseReview": {
         "type": "object",
@@ -174485,7 +175260,7 @@
             "nullable": true
           }
         },
-        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStartUpdate200ResponseReview": {
         "type": "object",
@@ -174537,7 +175312,7 @@
             "nullable": true
           }
         },
-        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStartRereview200ResponseReview": {
         "type": "object",
@@ -174589,7 +175364,7 @@
             "nullable": true
           }
         },
-        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status)."
+        "description": "State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow\u0027s own storage or, while the new flow has never touched the app (\u0060derivedFromLegacy: true\u0060), is derived from the legacy review state (\u0060approved\u0060/\u0060in_review\u0060 flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as \u0060apps_review_requested\u0060, every other step (including the reviewer\u0027s) as \u0060apps_review_form_updated\u0060, whose \u0060review_form.event\u0060 is the timeline event the step appended. Auto-saving the draft (\u0060PUT \u2026/app-review/form\u0060) is not a step and is not traced."
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionPublisher200ResponsePublisher": {
         "type": "object",
@@ -174611,7 +175386,7 @@
           },
           "companyName": {
             "type": "string",
-            "description": "Company (ISV) name shown as the publisher.",
+            "description": "Company (ISV) name shown as the publisher. For a Make partner it is the name their apps are published under, which the partner cannot change themselves \u2014 Make administrators set it through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060.",
             "nullable": true
           },
           "partnerType": {
@@ -174619,7 +175394,7 @@
           },
           "hasLogo": {
             "type": "boolean",
-            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060)."
+            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060). Make administrators set a partner\u0027s logo through \u0060PUT /admin/sdk/apps/{app}/{version}/publisher/logo\u0060."
           },
           "logoFilename": {
             "type": "string",
@@ -174714,7 +175489,7 @@
           },
           "companyName": {
             "type": "string",
-            "description": "Company (ISV) name shown as the publisher.",
+            "description": "Company (ISV) name shown as the publisher. For a Make partner it is the name their apps are published under, which the partner cannot change themselves \u2014 Make administrators set it through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060.",
             "nullable": true
           },
           "partnerType": {
@@ -174722,7 +175497,7 @@
           },
           "hasLogo": {
             "type": "boolean",
-            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060)."
+            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060). Make administrators set a partner\u0027s logo through \u0060PUT /admin/sdk/apps/{app}/{version}/publisher/logo\u0060."
           },
           "logoFilename": {
             "type": "string",
@@ -174761,7 +175536,7 @@
           },
           "companyName": {
             "type": "string",
-            "description": "Company (ISV) name shown as the publisher.",
+            "description": "Company (ISV) name shown as the publisher. For a Make partner it is the name their apps are published under, which the partner cannot change themselves \u2014 Make administrators set it through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060.",
             "nullable": true
           },
           "partnerType": {
@@ -174769,7 +175544,7 @@
           },
           "hasLogo": {
             "type": "boolean",
-            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060)."
+            "description": "Whether a company logo is stored (served by \u0060GET /sdk/publisher/logo\u0060). Make administrators set a partner\u0027s logo through \u0060PUT /admin/sdk/apps/{app}/{version}/publisher/logo\u0060."
           },
           "logoFilename": {
             "type": "string",
@@ -179627,7 +180402,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
           },
           "actor": {
             "$ref": "#/components/schemas/GetAdminSdkAppsByAppByVersionAppReview200ResponseReviewEventsItemActor"
@@ -179885,7 +180660,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
           },
           "actor": {
             "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewEventsItemActor"
@@ -180143,10 +180918,268 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
           },
           "actor": {
             "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReviewEventsItemActor"
+          },
+          "note": {
+            "type": "string",
+            "description": "Optional free-text detail (e.g. the reviewer\u0027s request). Omitted when empty."
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "When the event happened.",
+            "format": "date-time"
+          }
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftForm": {
+        "type": "object",
+        "properties": {
+          "vendorRelationship": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormVendorRelationship"
+          },
+          "listingType": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormListingType"
+          },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormPartnerProgramApplication"
+          },
+          "testScenarioUrls": {
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "maxLength": 2048,
+              "type": "string"
+            },
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
+          },
+          "errorHandlingScenarioUrl": {
+            "maxLength": 2048,
+            "type": "string",
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
+          },
+          "apiDocsUrl": {
+            "maxLength": 2048,
+            "type": "string",
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
+          },
+          "homepageUrl": {
+            "maxLength": 2048,
+            "type": "string",
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
+          },
+          "categories": {
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "maxLength": 128,
+              "type": "string"
+            },
+            "description": "Marketplace categories the app belongs to."
+          },
+          "subcategories": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormSubcategories"
+          },
+          "shortDescription": {
+            "maxLength": 1024,
+            "type": "string",
+            "description": "Community listing only \u2014 short description of the app."
+          },
+          "pricing": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormPricing"
+          },
+          "landingPageUrl": {
+            "maxLength": 2048,
+            "type": "string",
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
+          },
+          "appDocsUrl": {
+            "maxLength": 2048,
+            "type": "string",
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
+          },
+          "dataProcessingDescription": {
+            "maxLength": 10000,
+            "type": "string",
+            "description": "Community listing only \u2014 how the app processes data. The developer is liable for this text."
+          },
+          "termsConsent": {
+            "type": "boolean",
+            "description": "Community listing only \u2014 consent to the Make Apps Marketplace terms and conditions."
+          },
+          "supportContactName": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Name Make forwards support and maintenance requests to."
+          },
+          "supportContactEmail": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Email Make forwards support and maintenance requests to."
+          },
+          "trademarkConsent": {
+            "type": "boolean",
+            "description": "Trademark compliance declaration."
+          },
+          "externalTcConsent": {
+            "type": "boolean",
+            "description": "External service terms compliance declaration."
+          },
+          "whatChanged": {
+            "maxLength": 10000,
+            "type": "string",
+            "description": "Update/re-review only \u2014 what changed in this version, or what was changed in response to the reviewer."
+          },
+          "updatedScenarioUrls": {
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "maxLength": 2048,
+              "type": "string"
+            },
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
+          },
+          "reRunConfirmed": {
+            "type": "boolean",
+            "description": "Update/re-review only \u2014 confirmation that every scenario was re-run on the current app version."
+          },
+          "contactsConfirmed": {
+            "type": "boolean",
+            "description": "Update/re-review only \u2014 confirmation that the developer and support contacts are up to date."
+          }
+        },
+        "additionalProperties": false,
+        "description": "The new review form. Every field is optional \u2014 any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be \u0060http(s)\u0060 URLs and scenario links must point at a scenario of this zone (\u0060https://\u003Czone web domain\u003E/\u003CteamId\u003E/scenarios/\u003CscenarioId\u003E/edit\u0060)."
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedForm": {
+        "type": "object",
+        "properties": {
+          "vendorRelationship": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormVendorRelationship"
+          },
+          "listingType": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormListingType"
+          },
+          "partnerProgramApplication": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormPartnerProgramApplication"
+          },
+          "testScenarioUrls": {
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "maxLength": 2048,
+              "type": "string"
+            },
+            "description": "Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting."
+          },
+          "errorHandlingScenarioUrl": {
+            "maxLength": 2048,
+            "type": "string",
+            "description": "Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting."
+          },
+          "apiDocsUrl": {
+            "maxLength": 2048,
+            "type": "string",
+            "description": "Documentation of the API the app calls. Must be an \u0060http(s)\u0060 URL when submitting."
+          },
+          "homepageUrl": {
+            "maxLength": 2048,
+            "type": "string",
+            "description": "Homepage of the integrated software, shown on the app\u0027s landing page. Must be an \u0060http(s)\u0060 URL when submitting."
+          },
+          "categories": {
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "maxLength": 128,
+              "type": "string"
+            },
+            "description": "Marketplace categories the app belongs to."
+          },
+          "subcategories": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormSubcategories"
+          },
+          "shortDescription": {
+            "maxLength": 1024,
+            "type": "string",
+            "description": "Community listing only \u2014 short description of the app."
+          },
+          "pricing": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormPricing"
+          },
+          "landingPageUrl": {
+            "maxLength": 2048,
+            "type": "string",
+            "description": "Community listing only \u2014 the app\u0027s own landing page. Must be an \u0060http(s)\u0060 URL when submitting."
+          },
+          "appDocsUrl": {
+            "maxLength": 2048,
+            "type": "string",
+            "description": "Community listing only \u2014 the app\u0027s documentation. Must be an \u0060http(s)\u0060 URL when submitting."
+          },
+          "dataProcessingDescription": {
+            "maxLength": 10000,
+            "type": "string",
+            "description": "Community listing only \u2014 how the app processes data. The developer is liable for this text."
+          },
+          "termsConsent": {
+            "type": "boolean",
+            "description": "Community listing only \u2014 consent to the Make Apps Marketplace terms and conditions."
+          },
+          "supportContactName": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Name Make forwards support and maintenance requests to."
+          },
+          "supportContactEmail": {
+            "maxLength": 255,
+            "type": "string",
+            "description": "Email Make forwards support and maintenance requests to."
+          },
+          "trademarkConsent": {
+            "type": "boolean",
+            "description": "Trademark compliance declaration."
+          },
+          "externalTcConsent": {
+            "type": "boolean",
+            "description": "External service terms compliance declaration."
+          },
+          "whatChanged": {
+            "maxLength": 10000,
+            "type": "string",
+            "description": "Update/re-review only \u2014 what changed in this version, or what was changed in response to the reviewer."
+          },
+          "updatedScenarioUrls": {
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "maxLength": 2048,
+              "type": "string"
+            },
+            "description": "Update/re-review only \u2014 the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting."
+          },
+          "reRunConfirmed": {
+            "type": "boolean",
+            "description": "Update/re-review only \u2014 confirmation that every scenario was re-run on the current app version."
+          },
+          "contactsConfirmed": {
+            "type": "boolean",
+            "description": "Update/re-review only \u2014 confirmation that the developer and support contacts are up to date."
+          }
+        },
+        "description": "Snapshot of \u0060draftForm\u0060 taken at the last submit. Later draft edits do not change it."
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewEventsItem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+          },
+          "actor": {
+            "$ref": "#/components/schemas/PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewEventsItemActor"
           },
           "note": {
             "type": "string",
@@ -186694,7 +187727,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
           },
           "actor": {
             "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewEventsItemActor"
@@ -186952,7 +187985,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
           },
           "actor": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200ResponseReviewEventsItemActor"
@@ -187210,7 +188243,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
           },
           "actor": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReviewEventsItemActor"
@@ -187468,7 +188501,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
           },
           "actor": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewEventsItemActor"
@@ -187726,7 +188759,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
           },
           "actor": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewEventsItemActor"
@@ -187984,7 +189017,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
           },
           "actor": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewConfirmAutoNotes200ResponseReviewEventsItemActor"
@@ -188242,7 +189275,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
           },
           "actor": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStartUpdate200ResponseReviewEventsItemActor"
@@ -188500,7 +189533,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
+            "description": "Event type. Developer-side (\u0060actor: developer\u0060): \u0060preparation_started\u0060, \u0060submitted\u0060, \u0060cancelled\u0060, \u0060submission_withdrawn\u0060, \u0060auto_notes_confirmed\u0060, \u0060rereview_started\u0060, \u0060rereview_cancelled\u0060, \u0060resubmitted\u0060, \u0060update_started\u0060, \u0060update_submitted\u0060, \u0060update_withdrawn\u0060, \u0060update_cancelled\u0060. Make-side (\u0060actor: make\u0060, with an optional \u0060note\u0060): \u0060auto_notes_sent\u0060, \u0060approved\u0060, \u0060changes_requested\u0060, \u0060update_approved\u0060, \u0060update_changes_requested\u0060."
           },
           "actor": {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStartRereview200ResponseReviewEventsItemActor"
@@ -189593,6 +190626,30 @@
         "description": "Selected subcategories, keyed by category."
       },
       "PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReviewSubmittedFormSubcategories": {
+        "type": "object",
+        "additionalProperties": {
+          "maxItems": 50,
+          "type": "array",
+          "items": {
+            "maxLength": 128,
+            "type": "string"
+          }
+        },
+        "description": "Selected subcategories, keyed by category."
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormSubcategories": {
+        "type": "object",
+        "additionalProperties": {
+          "maxItems": 50,
+          "type": "array",
+          "items": {
+            "maxLength": 128,
+            "type": "string"
+          }
+        },
+        "description": "Selected subcategories, keyed by category."
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormSubcategories": {
         "type": "object",
         "additionalProperties": {
           "maxItems": 50,
@@ -193750,7 +194807,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060auto\u0060 means the automatic review is waiting on the developer to confirm the emailed notes, \u0060manual\u0060 means a reviewer has the app. \u0060null\u0060 in every other phase.",
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
         "nullable": true,
         "x-ms-enum": {
           "name": "SdkAppReviewStateReviewStep",
@@ -208131,7 +209188,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060auto\u0060 means the automatic review is waiting on the developer to confirm the emailed notes, \u0060manual\u0060 means a reviewer has the app. \u0060null\u0060 in every other phase.",
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
         "nullable": true,
         "x-ms-enum": {
           "name": "GetAdminSdkAppsByAppByVersionAppReview200ResponseReviewReviewStep",
@@ -208237,7 +209294,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060auto\u0060 means the automatic review is waiting on the developer to confirm the emailed notes, \u0060manual\u0060 means a reviewer has the app. \u0060null\u0060 in every other phase.",
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
         "nullable": true,
         "x-ms-enum": {
           "name": "PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewReviewStep",
@@ -208343,7 +209400,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060auto\u0060 means the automatic review is waiting on the developer to confirm the emailed notes, \u0060manual\u0060 means a reviewer has the app. \u0060null\u0060 in every other phase.",
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
         "nullable": true,
         "x-ms-enum": {
           "name": "PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReviewReviewStep",
@@ -208384,6 +209441,112 @@
           ]
         }
       },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewPhase": {
+        "enum": [
+          "dormant",
+          "preparing",
+          "review",
+          "changes_required",
+          "approved",
+          "updating",
+          "update_review",
+          "changes_required_update",
+          "rereview"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Lifecycle phase of the review. \u0060dormant\u0060 \u2192 \u0060start\u0060 \u2192 \u0060preparing\u0060 \u2192 \u0060submit\u0060 \u2192 \u0060review\u0060; a reviewer then approves (\u0060approved\u0060) or requests changes (\u0060changes_required\u0060, reopened with \u0060start-rereview\u0060 \u2192 \u0060rereview\u0060 \u2192 \u0060submit\u0060 back to \u0060review\u0060). An approved listing is updated through \u0060start-update\u0060 \u2192 \u0060updating\u0060 \u2192 \u0060submit\u0060 \u2192 \u0060update_review\u0060, whose outcomes are \u0060approved\u0060 or \u0060changes_required_update\u0060 (re-reviewed through \u0060rereview\u0060 back to \u0060update_review\u0060). \u0060cancel\u0060 steps back one phase on every track.",
+        "x-ms-enum": {
+          "name": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewPhase",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "dormant",
+              "name": "Dormant"
+            },
+            {
+              "value": "preparing",
+              "name": "Preparing"
+            },
+            {
+              "value": "review",
+              "name": "Review"
+            },
+            {
+              "value": "changes_required",
+              "name": "ChangesRequired"
+            },
+            {
+              "value": "approved",
+              "name": "Approved"
+            },
+            {
+              "value": "updating",
+              "name": "Updating"
+            },
+            {
+              "value": "update_review",
+              "name": "UpdateReview"
+            },
+            {
+              "value": "changes_required_update",
+              "name": "ChangesRequiredUpdate"
+            },
+            {
+              "value": "rereview",
+              "name": "Rereview"
+            }
+          ]
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewReviewStep": {
+        "enum": [
+          "auto",
+          "manual"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
+        "nullable": true,
+        "x-ms-enum": {
+          "name": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewReviewStep",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "auto",
+              "name": "Auto"
+            },
+            {
+              "value": "manual",
+              "name": "Manual"
+            }
+          ]
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewRereviewOrigin": {
+        "enum": [
+          "changes_required",
+          "changes_required_update"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "While \u0060phase\u0060 is \u0060rereview\u0060, the phase the re-review was started from. \u0060null\u0060 otherwise.",
+        "nullable": true,
+        "x-ms-enum": {
+          "name": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewRereviewOrigin",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "changes_required",
+              "name": "ChangesRequired"
+            },
+            {
+              "value": "changes_required_update",
+              "name": "ChangesRequiredUpdate"
+            }
+          ]
+        }
+      },
       "PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisherPartnerType": {
         "enum": [
           "technology",
@@ -208395,6 +209558,54 @@
         "nullable": true,
         "x-ms-enum": {
           "name": "PatchAdminSdkAppsByAppByVersionPublisher200ResponsePublisherPartnerType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
+      "PutAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisherPartnerType": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program of the publisher; \u0060null\u0060 means not a partner (the default). Assigned by Make administrators only, through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060 \u2014 the developer\u0027s own \u0060PATCH /sdk/publisher\u0060 cannot change it.",
+        "nullable": true,
+        "x-ms-enum": {
+          "name": "PutAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisherPartnerType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
+      "DeleteAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisherPartnerType": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program of the publisher; \u0060null\u0060 means not a partner (the default). Assigned by Make administrators only, through \u0060PATCH /admin/sdk/apps/{app}/{version}/publisher\u0060 \u2014 the developer\u0027s own \u0060PATCH /sdk/publisher\u0060 cannot change it.",
+        "nullable": true,
+        "x-ms-enum": {
+          "name": "DeleteAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisherPartnerType",
           "modelAsString": false,
           "values": [
             {
@@ -212397,7 +213608,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060auto\u0060 means the automatic review is waiting on the developer to confirm the emailed notes, \u0060manual\u0060 means a reviewer has the app. \u0060null\u0060 in every other phase.",
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
         "nullable": true,
         "x-ms-enum": {
           "name": "GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewReviewStep",
@@ -212503,7 +213714,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060auto\u0060 means the automatic review is waiting on the developer to confirm the emailed notes, \u0060manual\u0060 means a reviewer has the app. \u0060null\u0060 in every other phase.",
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
         "nullable": true,
         "x-ms-enum": {
           "name": "PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200ResponseReviewReviewStep",
@@ -212609,7 +213820,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060auto\u0060 means the automatic review is waiting on the developer to confirm the emailed notes, \u0060manual\u0060 means a reviewer has the app. \u0060null\u0060 in every other phase.",
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
         "nullable": true,
         "x-ms-enum": {
           "name": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStart200ResponseReviewReviewStep",
@@ -212715,7 +213926,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060auto\u0060 means the automatic review is waiting on the developer to confirm the emailed notes, \u0060manual\u0060 means a reviewer has the app. \u0060null\u0060 in every other phase.",
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
         "nullable": true,
         "x-ms-enum": {
           "name": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewReviewStep",
@@ -212821,7 +214032,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060auto\u0060 means the automatic review is waiting on the developer to confirm the emailed notes, \u0060manual\u0060 means a reviewer has the app. \u0060null\u0060 in every other phase.",
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
         "nullable": true,
         "x-ms-enum": {
           "name": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewCancel200ResponseReviewReviewStep",
@@ -212927,7 +214138,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060auto\u0060 means the automatic review is waiting on the developer to confirm the emailed notes, \u0060manual\u0060 means a reviewer has the app. \u0060null\u0060 in every other phase.",
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
         "nullable": true,
         "x-ms-enum": {
           "name": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewConfirmAutoNotes200ResponseReviewReviewStep",
@@ -213033,7 +214244,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060auto\u0060 means the automatic review is waiting on the developer to confirm the emailed notes, \u0060manual\u0060 means a reviewer has the app. \u0060null\u0060 in every other phase.",
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
         "nullable": true,
         "x-ms-enum": {
           "name": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStartUpdate200ResponseReviewReviewStep",
@@ -213139,7 +214350,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060auto\u0060 means the automatic review is waiting on the developer to confirm the emailed notes, \u0060manual\u0060 means a reviewer has the app. \u0060null\u0060 in every other phase.",
+        "description": "Sub-step while \u0060phase\u0060 is \u0060review\u0060/\u0060update_review\u0060 \u2014 \u0060manual\u0060 means the submission waits with Make (where every submission starts), \u0060auto\u0060 means Make sent the automatic-review notes and waits on the developer to implement and confirm them. \u0060null\u0060 in every other phase.",
         "nullable": true,
         "x-ms-enum": {
           "name": "PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStartRereview200ResponseReviewReviewStep",
@@ -214674,6 +215885,223 @@
         "description": "Which side of the review produced the event.",
         "x-ms-enum": {
           "name": "PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReviewEventsItemActor",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "developer",
+              "name": "Developer"
+            },
+            {
+              "value": "make",
+              "name": "Make"
+            }
+          ]
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormVendorRelationship": {
+        "enum": [
+          "direct",
+          "agreement",
+          "none"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The developer\u0027s relationship to the vendor of the integrated software.",
+        "x-ms-enum": {
+          "name": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormVendorRelationship",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "direct",
+              "name": "Direct"
+            },
+            {
+              "value": "agreement",
+              "name": "Agreement"
+            },
+            {
+              "value": "none",
+              "name": "None"
+            }
+          ]
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormListingType": {
+        "enum": [
+          "verified",
+          "community"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Requested Marketplace listing type. The choice is only offered to Solution Partners without a vendor agreement.",
+        "x-ms-enum": {
+          "name": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormListingType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "verified",
+              "name": "Verified"
+            },
+            {
+              "value": "community",
+              "name": "Community"
+            }
+          ]
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormPricing": {
+        "enum": [
+          "free",
+          "paid"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Community listing only \u2014 whether the app itself is free or paid.",
+        "x-ms-enum": {
+          "name": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewDraftFormPricing",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "free",
+              "name": "Free"
+            },
+            {
+              "value": "paid",
+              "name": "Paid"
+            }
+          ]
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormVendorRelationship": {
+        "enum": [
+          "direct",
+          "agreement",
+          "none"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The developer\u0027s relationship to the vendor of the integrated software.",
+        "x-ms-enum": {
+          "name": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormVendorRelationship",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "direct",
+              "name": "Direct"
+            },
+            {
+              "value": "agreement",
+              "name": "Agreement"
+            },
+            {
+              "value": "none",
+              "name": "None"
+            }
+          ]
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormListingType": {
+        "enum": [
+          "verified",
+          "community"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Requested Marketplace listing type. The choice is only offered to Solution Partners without a vendor agreement.",
+        "x-ms-enum": {
+          "name": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormListingType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "verified",
+              "name": "Verified"
+            },
+            {
+              "value": "community",
+              "name": "Community"
+            }
+          ]
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormPartnerProgramApplication": {
+        "enum": [
+          "technology",
+          "solution"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: \u0060none\u0060 \u2192 \u0060solution\u0060, otherwise \u0060technology\u0060.",
+        "x-ms-enum": {
+          "name": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormPartnerProgramApplication",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "technology",
+              "name": "Technology"
+            },
+            {
+              "value": "solution",
+              "name": "Solution"
+            }
+          ]
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormPricing": {
+        "enum": [
+          "free",
+          "paid"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Community listing only \u2014 whether the app itself is free or paid.",
+        "x-ms-enum": {
+          "name": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewSubmittedFormPricing",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "free",
+              "name": "Free"
+            },
+            {
+              "value": "paid",
+              "name": "Paid"
+            }
+          ]
+        }
+      },
+      "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewEventsItemActor": {
+        "enum": [
+          "developer",
+          "make"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Which side of the review produced the event.",
+        "x-ms-enum": {
+          "name": "PostAdminSdkAppsByAppByVersionAppReviewSendAutoNotes200ResponseReviewEventsItemActor",
           "modelAsString": false,
           "values": [
             {

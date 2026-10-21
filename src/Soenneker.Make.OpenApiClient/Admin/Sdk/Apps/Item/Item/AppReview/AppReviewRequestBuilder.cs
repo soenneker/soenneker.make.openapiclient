@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.AppReview.Approve;
 using Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.AppReview.RequestChanges;
+using Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.AppReview.SendAutoNotes;
 using Soenneker.Make.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
@@ -28,6 +29,11 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.AppReview
         public global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.AppReview.RequestChanges.RequestChangesRequestBuilder RequestChanges
         {
             get => new global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.AppReview.RequestChanges.RequestChangesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The sendAutoNotes property</summary>
+        public global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.AppReview.SendAutoNotes.SendAutoNotesRequestBuilder SendAutoNotes
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.AppReview.SendAutoNotes.SendAutoNotesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.AppReview.AppReviewRequestBuilder"/> and sets the default values.

@@ -26,7 +26,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Note { get; set; }
 #endif
-        /// <summary>Event type. Developer-side (`actor: developer`): `preparation_started`, `submitted`, `cancelled`, `submission_withdrawn`, `auto_notes_confirmed`, `rereview_started`, `rereview_cancelled`, `resubmitted`, `update_started`, `update_submitted`, `update_withdrawn`, `update_cancelled`. Make-side (`actor: make`, with an optional `note`): `approved`, `changes_requested`, `update_approved`, `update_changes_requested`.</summary>
+        /// <summary>Event type. Developer-side (`actor: developer`): `preparation_started`, `submitted`, `cancelled`, `submission_withdrawn`, `auto_notes_confirmed`, `rereview_started`, `rereview_cancelled`, `resubmitted`, `update_started`, `update_submitted`, `update_withdrawn`, `update_cancelled`. Make-side (`actor: make`, with an optional `note`): `auto_notes_sent`, `approved`, `changes_requested`, `update_approved`, `update_changes_requested`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Type { get; set; }

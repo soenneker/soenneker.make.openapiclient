@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher.Logo;
 using Soenneker.Make.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,11 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PublisherRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The logo property</summary>
+        public global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher.Logo.LogoRequestBuilder Logo
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher.Logo.LogoRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher.PublisherRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,7 +40,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher
         {
         }
         /// <summary>
-        /// Assigns the Make partner program of the app&apos;s author — `technology`, `solution`, or `null` for &quot;not a partner&quot; — and answers with the author&apos;s profile the way `GET /sdk/apps/{app}/{version}/publisher` does. The program decides which variant of the new review form the developer sees (the verified-partner card instead of the &quot;Learn about the partner program&quot; call to action), so only Make administrators holding the `apps edit` permission may set it; the developer&apos;s own `PATCH /sdk/publisher` has no such field and this route exists under `/admin` only. Assigning a program to a developer who never saved a profile creates the profile with just that program; clearing the program of such a developer changes nothing (`publisher` stays `null`). Any other profile field in the body is ignored — this endpoint changes the program and nothing else. Responds `403` (IM002) without the permission (checked before the app is looked up) and `404` (IM013) when the app version does not exist. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
+        /// Sets what Make manages on the profile of the app&apos;s author — the Make partner program (`technology`, `solution`, or `null` for &quot;not a partner&quot;) and the company name — and answers with the author&apos;s profile the way `GET /sdk/apps/{app}/{version}/publisher` does. The program decides which variant of the new review form the developer sees (the verified-partner card instead of the &quot;Learn about the partner program&quot; call to action); a partner sees their company name and logo read-only, so Make sets them here and through `PUT /admin/sdk/apps/{app}/{version}/publisher/logo`. Only Make administrators holding the `apps edit` permission may call it; the developer&apos;s own `PATCH /sdk/publisher` has no `partnerType` field and this route exists under `/admin` only. Send at least one field: an omitted field keeps its value and `null` clears it. Writing a value for a developer who never saved a profile creates the profile with just that value; a body that only clears values changes nothing for such a developer (`publisher` stays `null`). Other profile fields are ignored — the author name and the contact email stay the developer&apos;s own. Responds `403` (IM002) without the permission (checked before the app is looked up) and `404` (IM013) when the app version does not exist. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisher200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -63,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisher200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchAdminSdkAppsByAppByVersionPublisher200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Assigns the Make partner program of the app&apos;s author — `technology`, `solution`, or `null` for &quot;not a partner&quot; — and answers with the author&apos;s profile the way `GET /sdk/apps/{app}/{version}/publisher` does. The program decides which variant of the new review form the developer sees (the verified-partner card instead of the &quot;Learn about the partner program&quot; call to action), so only Make administrators holding the `apps edit` permission may set it; the developer&apos;s own `PATCH /sdk/publisher` has no such field and this route exists under `/admin` only. Assigning a program to a developer who never saved a profile creates the profile with just that program; clearing the program of such a developer changes nothing (`publisher` stays `null`). Any other profile field in the body is ignored — this endpoint changes the program and nothing else. Responds `403` (IM002) without the permission (checked before the app is looked up) and `404` (IM013) when the app version does not exist. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
+        /// Sets what Make manages on the profile of the app&apos;s author — the Make partner program (`technology`, `solution`, or `null` for &quot;not a partner&quot;) and the company name — and answers with the author&apos;s profile the way `GET /sdk/apps/{app}/{version}/publisher` does. The program decides which variant of the new review form the developer sees (the verified-partner card instead of the &quot;Learn about the partner program&quot; call to action); a partner sees their company name and logo read-only, so Make sets them here and through `PUT /admin/sdk/apps/{app}/{version}/publisher/logo`. Only Make administrators holding the `apps edit` permission may call it; the developer&apos;s own `PATCH /sdk/publisher` has no `partnerType` field and this route exists under `/admin` only. Send at least one field: an omitted field keeps its value and `null` clears it. Writing a value for a developer who never saved a profile creates the profile with just that value; a body that only clears values changes nothing for such a developer (`publisher` stays `null`). Other profile fields are ignored — the author name and the contact email stay the developer&apos;s own. Responds `403` (IM002) without the permission (checked before the app is looked up) and `404` (IM013) when the app version does not exist. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

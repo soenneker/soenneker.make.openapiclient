@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
-    /// <summary>Sub-step while `phase` is `review`/`update_review` — `auto` means the automatic review is waiting on the developer to confirm the emailed notes, `manual` means a reviewer has the app. `null` in every other phase.</summary>
+    /// <summary>Sub-step while `phase` is `review`/`update_review` — `manual` means the submission waits with Make (where every submission starts), `auto` means Make sent the automatic-review notes and waits on the developer to implement and confirm them. `null` in every other phase.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewSubmit200ResponseReviewReviewStep
     {

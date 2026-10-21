@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow&apos;s own storage or, while the new flow has never touched the app (`derivedFromLegacy: true`), is derived from the legacy review state (`approved`/`in_review` flags and the legacy review status).
+    /// State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow&apos;s own storage or, while the new flow has never touched the app (`derivedFromLegacy: true`), is derived from the legacy review state (`approved`/`in_review` flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as `apps_review_requested`, every other step (including the reviewer&apos;s) as `apps_review_form_updated`, whose `review_form.event` is the timeline event the step appended. Auto-saving the draft (`PUT …/app-review/form`) is not a step and is not traced.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReview : IAdditionalDataHolder, IParsable
@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReviewPhase? Phase { get; set; }
         /// <summary>While `phase` is `rereview`, the phase the re-review was started from. `null` otherwise.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReviewRereviewOrigin? RereviewOrigin { get; set; }
-        /// <summary>Sub-step while `phase` is `review`/`update_review` — `auto` means the automatic review is waiting on the developer to confirm the emailed notes, `manual` means a reviewer has the app. `null` in every other phase.</summary>
+        /// <summary>Sub-step while `phase` is `review`/`update_review` — `manual` means the submission waits with Make (where every submission starts), `auto` means Make sent the automatic-review notes and waits on the developer to implement and confirm them. `null` in every other phase.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReviewReviewStep? ReviewStep { get; set; }
         /// <summary>Timestamp of the last submit.</summary>
         public DateTimeOffset? SubmittedAt { get; set; }

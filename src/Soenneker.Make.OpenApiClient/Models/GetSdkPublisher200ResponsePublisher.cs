@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string AuthorName { get; set; }
 #endif
-        /// <summary>Company (ISV) name shown as the publisher.</summary>
+        /// <summary>Company (ISV) name shown as the publisher. For a Make partner it is the name their apps are published under, which the partner cannot change themselves — Make administrators set it through `PATCH /admin/sdk/apps/{app}/{version}/publisher`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CompanyName { get; set; }
@@ -40,7 +40,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>When the profile was created.</summary>
         public DateTimeOffset? CreatedAt { get; set; }
-        /// <summary>Whether a company logo is stored (served by `GET /sdk/publisher/logo`).</summary>
+        /// <summary>Whether a company logo is stored (served by `GET /sdk/publisher/logo`). Make administrators set a partner&apos;s logo through `PUT /admin/sdk/apps/{app}/{version}/publisher/logo`.</summary>
         public bool? HasLogo { get; set; }
         /// <summary>Original filename of the uploaded logo.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
