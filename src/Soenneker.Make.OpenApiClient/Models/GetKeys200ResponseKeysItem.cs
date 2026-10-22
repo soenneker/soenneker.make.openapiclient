@@ -58,6 +58,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string TypeName { get; set; }
 #endif
+        /// <summary>Entity-tier visibility. With `locked` the key is restricted to its access list; `team` makes it visible to the whole team. Only returned when explicitly requested via `cols[]=visibility`.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.GetKeys200ResponseKeysItemVisibility? Visibility { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetKeys200ResponseKeysItem"/> and sets the default values.
         /// </summary>
@@ -90,6 +92,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
                 { "theme", n => { Theme = n.GetStringValue(); } },
                 { "typeName", n => { TypeName = n.GetStringValue(); } },
+                { "visibility", n => { Visibility = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetKeys200ResponseKeysItemVisibility>(); } },
             };
         }
         /// <summary>
@@ -106,6 +109,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("teamId", TeamId);
             writer.WriteStringValue("theme", Theme);
             writer.WriteStringValue("typeName", TypeName);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetKeys200ResponseKeysItemVisibility>("visibility", Visibility);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

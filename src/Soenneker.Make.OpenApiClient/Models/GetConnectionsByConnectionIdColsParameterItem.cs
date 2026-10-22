@@ -80,5 +80,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         OrganizationId,
         #pragma warning restore CS1591
+        [EnumMember(Value = "visibility")]
+        #pragma warning disable CS1591
+        Visibility,
+        #pragma warning restore CS1591
     }
 }

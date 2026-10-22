@@ -102,6 +102,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The upgradeable property</summary>
         public bool? Upgradeable { get; set; }
+        /// <summary>Entity-tier visibility. With `locked` the connection is restricted to its access list; `team` makes it visible to the whole team.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionVisibility? Visibility { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnection"/> and sets the default values.
         /// </summary>
@@ -144,6 +146,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "theme", n => { Theme = n.GetStringValue(); } },
                 { "uid", n => { Uid = n.GetStringValue(); } },
                 { "upgradeable", n => { Upgradeable = n.GetBoolValue(); } },
+                { "visibility", n => { Visibility = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionVisibility>(); } },
             };
         }
         /// <summary>
@@ -170,6 +173,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("theme", Theme);
             writer.WriteStringValue("uid", Uid);
             writer.WriteBoolValue("upgradeable", Upgradeable);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionVisibility>("visibility", Visibility);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -10980,7 +10980,8 @@
                       }
                     ],
                     "connectedSystemId": "4244156b-88cc-43cf-a5e9-e94bd0304745",
-                    "organizationId": 3
+                    "organizationId": 3,
+                    "visibility": "team"
                   }
                 }
               }
@@ -29467,7 +29468,8 @@
                   "typeName",
                   "teamId",
                   "packageName",
-                  "theme"
+                  "theme",
+                  "visibility"
                 ]
               }
             }
@@ -29502,7 +29504,8 @@
                         "typeName": "digest-secret",
                         "teamId": 1,
                         "packageName": "keychain-pro",
-                        "theme": "#010399"
+                        "theme": "#010399",
+                        "visibility": "team"
                       }
                     }
                   }
@@ -61348,6 +61351,9 @@
             "type": "string",
             "format": "color"
           },
+          "visibility": {
+            "$ref": "#/components/schemas/KeyVisibility"
+          },
           "scenarioUsages": {
             "type": "array",
             "items": {
@@ -61585,6 +61591,9 @@
           },
           "organizationId": {
             "type": "integer"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/ConnectionVisibility"
           }
         }
       },
@@ -61643,6 +61652,9 @@
           },
           "organizationId": {
             "type": "integer"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/ConnectionAllVisibility"
           },
           "scopes": {
             "type": "array",
@@ -65523,6 +65535,9 @@
           },
           "organizationId": {
             "type": "integer"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/ConnectionAllVisibility"
           }
         }
       },
@@ -112516,9 +112531,9 @@
             "$ref": "#/components/schemas/PostInternalHooksRegisterRequestData"
           },
           "externalAccountId": {
-            "minLength": 1,
             "type": "string",
             "description": "External account identifier to associate with the hook.",
+            "nullable": true,
             "example": "external-account-123"
           },
           "detachAccountId": {
@@ -112689,7 +112704,6 @@
             "example": 456
           },
           "externalAccountId": {
-            "minLength": 1,
             "type": "string",
             "description": "The external account id to associate with the hook, or \u0060null\u0060 to clear it.",
             "nullable": true,
@@ -161877,6 +161891,9 @@
           },
           "organizationId": {
             "type": "integer"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/GetConnections200ResponseConnectionsItemVisibility"
           }
         }
       },
@@ -161938,6 +161955,9 @@
           },
           "organizationId": {
             "type": "integer"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/PostConnections200ResponseConnectionVisibility"
           }
         }
       },
@@ -161999,6 +162019,9 @@
           },
           "organizationId": {
             "type": "integer"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/GetConnectionsByConnectionId200ResponseConnectionVisibility"
           },
           "scopes": {
             "type": "array",
@@ -162063,6 +162086,9 @@
           },
           "organizationId": {
             "type": "integer"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/PatchConnectionsByConnectionId200ResponseConnectionVisibility"
           }
         }
       },
@@ -164371,6 +164397,14 @@
               "$ref": "#/components/schemas/PostModulesV1Execute400ResponseModuleWarningsItem"
             }
           },
+          "errors": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute400ResponseModuleErrorsItem"
+            },
+            "description": "Module field errors for \u0060MAPPING_FAILED\u0060 (one entry) and \u0060VALIDATION_FAILED\u0060 (one per diagnostic). Messages are not localized."
+          },
           "output": {
             "$ref": "#/components/schemas/PostModulesV1Execute400ResponseModuleOutput"
           },
@@ -164410,6 +164444,14 @@
             "items": {
               "$ref": "#/components/schemas/PostModulesV1Execute401ResponseModuleWarningsItem"
             }
+          },
+          "errors": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute401ResponseModuleErrorsItem"
+            },
+            "description": "Module field errors for \u0060MAPPING_FAILED\u0060 (one entry) and \u0060VALIDATION_FAILED\u0060 (one per diagnostic). Messages are not localized."
           },
           "output": {
             "$ref": "#/components/schemas/PostModulesV1Execute401ResponseModuleOutput"
@@ -164451,6 +164493,14 @@
               "$ref": "#/components/schemas/PostModulesV1Execute403ResponseModuleWarningsItem"
             }
           },
+          "errors": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute403ResponseModuleErrorsItem"
+            },
+            "description": "Module field errors for \u0060MAPPING_FAILED\u0060 (one entry) and \u0060VALIDATION_FAILED\u0060 (one per diagnostic). Messages are not localized."
+          },
           "output": {
             "$ref": "#/components/schemas/PostModulesV1Execute403ResponseModuleOutput"
           },
@@ -164490,6 +164540,14 @@
             "items": {
               "$ref": "#/components/schemas/PostModulesV1Execute422ResponseModuleWarningsItem"
             }
+          },
+          "errors": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute422ResponseModuleErrorsItem"
+            },
+            "description": "Module field errors for \u0060MAPPING_FAILED\u0060 (one entry) and \u0060VALIDATION_FAILED\u0060 (one per diagnostic). Messages are not localized."
           },
           "output": {
             "$ref": "#/components/schemas/PostModulesV1Execute422ResponseModuleOutput"
@@ -164531,6 +164589,14 @@
               "$ref": "#/components/schemas/PostModulesV1Execute424ResponseModuleWarningsItem"
             }
           },
+          "errors": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute424ResponseModuleErrorsItem"
+            },
+            "description": "Module field errors for \u0060MAPPING_FAILED\u0060 (one entry) and \u0060VALIDATION_FAILED\u0060 (one per diagnostic). Messages are not localized."
+          },
           "output": {
             "$ref": "#/components/schemas/PostModulesV1Execute424ResponseModuleOutput"
           },
@@ -164570,6 +164636,14 @@
             "items": {
               "$ref": "#/components/schemas/PostModulesV1Execute429ResponseModuleWarningsItem"
             }
+          },
+          "errors": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute429ResponseModuleErrorsItem"
+            },
+            "description": "Module field errors for \u0060MAPPING_FAILED\u0060 (one entry) and \u0060VALIDATION_FAILED\u0060 (one per diagnostic). Messages are not localized."
           },
           "output": {
             "$ref": "#/components/schemas/PostModulesV1Execute429ResponseModuleOutput"
@@ -164611,6 +164685,14 @@
               "$ref": "#/components/schemas/PostModulesV1Execute500ResponseModuleWarningsItem"
             }
           },
+          "errors": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute500ResponseModuleErrorsItem"
+            },
+            "description": "Module field errors for \u0060MAPPING_FAILED\u0060 (one entry) and \u0060VALIDATION_FAILED\u0060 (one per diagnostic). Messages are not localized."
+          },
           "output": {
             "$ref": "#/components/schemas/PostModulesV1Execute500ResponseModuleOutput"
           },
@@ -164651,6 +164733,14 @@
               "$ref": "#/components/schemas/PostModulesV1Execute501ResponseModuleWarningsItem"
             }
           },
+          "errors": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute501ResponseModuleErrorsItem"
+            },
+            "description": "Module field errors for \u0060MAPPING_FAILED\u0060 (one entry) and \u0060VALIDATION_FAILED\u0060 (one per diagnostic). Messages are not localized."
+          },
           "output": {
             "$ref": "#/components/schemas/PostModulesV1Execute501ResponseModuleOutput"
           },
@@ -164690,6 +164780,14 @@
             "items": {
               "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModuleWarningsItem"
             }
+          },
+          "errors": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModuleErrorsItem"
+            },
+            "description": "Module field errors for \u0060MAPPING_FAILED\u0060 (one entry) and \u0060VALIDATION_FAILED\u0060 (one per diagnostic). Messages are not localized."
           },
           "output": {
             "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModuleOutput"
@@ -167493,6 +167591,9 @@
             "type": "string",
             "format": "color"
           },
+          "visibility": {
+            "$ref": "#/components/schemas/GetKeys200ResponseKeysItemVisibility"
+          },
           "scenarioUsages": {
             "type": "array",
             "items": {
@@ -167527,6 +167628,9 @@
           "theme": {
             "type": "string",
             "format": "color"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/PostKeys200ResponseKeyVisibility"
           },
           "scenarioUsages": {
             "type": "array",
@@ -167599,6 +167703,9 @@
             "type": "string",
             "format": "color"
           },
+          "visibility": {
+            "$ref": "#/components/schemas/GetKeysByKeyId200ResponseKeyVisibility"
+          },
           "scenarioUsages": {
             "type": "array",
             "items": {
@@ -167629,6 +167736,9 @@
           "theme": {
             "type": "string",
             "format": "color"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/PatchKeysByKeyId200ResponseKeyVisibility"
           },
           "scenarioUsages": {
             "type": "array",
@@ -182540,6 +182650,23 @@
         },
         "additionalProperties": false
       },
+      "PostModulesV1Execute400ResponseModuleErrorsItem": {
+        "required": [
+          "path",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON Pointer into the Mapper, such as \u0060/mapper/email\u0060, or \u0060/mapper\u0060 when no single field applies."
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "PostModulesV1Execute400ResponseModuleOutput": {
         "required": [
           "bundles"
@@ -182586,6 +182713,23 @@
           },
           "phase": {
             "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute401ResponseModuleErrorsItem": {
+        "required": [
+          "path",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON Pointer into the Mapper, such as \u0060/mapper/email\u0060, or \u0060/mapper\u0060 when no single field applies."
           },
           "message": {
             "type": "string"
@@ -182646,6 +182790,23 @@
         },
         "additionalProperties": false
       },
+      "PostModulesV1Execute403ResponseModuleErrorsItem": {
+        "required": [
+          "path",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON Pointer into the Mapper, such as \u0060/mapper/email\u0060, or \u0060/mapper\u0060 when no single field applies."
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "PostModulesV1Execute403ResponseModuleOutput": {
         "required": [
           "bundles"
@@ -182692,6 +182853,23 @@
           },
           "phase": {
             "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute422ResponseModuleErrorsItem": {
+        "required": [
+          "path",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON Pointer into the Mapper, such as \u0060/mapper/email\u0060, or \u0060/mapper\u0060 when no single field applies."
           },
           "message": {
             "type": "string"
@@ -182752,6 +182930,23 @@
         },
         "additionalProperties": false
       },
+      "PostModulesV1Execute424ResponseModuleErrorsItem": {
+        "required": [
+          "path",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON Pointer into the Mapper, such as \u0060/mapper/email\u0060, or \u0060/mapper\u0060 when no single field applies."
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "PostModulesV1Execute424ResponseModuleOutput": {
         "required": [
           "bundles"
@@ -182798,6 +182993,23 @@
           },
           "phase": {
             "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute429ResponseModuleErrorsItem": {
+        "required": [
+          "path",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON Pointer into the Mapper, such as \u0060/mapper/email\u0060, or \u0060/mapper\u0060 when no single field applies."
           },
           "message": {
             "type": "string"
@@ -182858,6 +183070,23 @@
         },
         "additionalProperties": false
       },
+      "PostModulesV1Execute500ResponseModuleErrorsItem": {
+        "required": [
+          "path",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON Pointer into the Mapper, such as \u0060/mapper/email\u0060, or \u0060/mapper\u0060 when no single field applies."
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "PostModulesV1Execute500ResponseModuleOutput": {
         "required": [
           "bundles"
@@ -182911,6 +183140,23 @@
         },
         "additionalProperties": false
       },
+      "PostModulesV1Execute501ResponseModuleErrorsItem": {
+        "required": [
+          "path",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON Pointer into the Mapper, such as \u0060/mapper/email\u0060, or \u0060/mapper\u0060 when no single field applies."
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "PostModulesV1Execute501ResponseModuleOutput": {
         "required": [
           "bundles"
@@ -182957,6 +183203,23 @@
           },
           "phase": {
             "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostModulesV1Execute503ResponseModuleErrorsItem": {
+        "required": [
+          "path",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON Pointer into the Mapper, such as \u0060/mapper/email\u0060, or \u0060/mapper\u0060 when no single field applies."
           },
           "message": {
             "type": "string"
@@ -194738,6 +195001,75 @@
             {
               "value": "custom_managed",
               "name": "CustomManaged"
+            }
+          ]
+        }
+      },
+      "KeyVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility. With \u0060locked\u0060 the key is restricted to its access list; \u0060team\u0060 makes it visible to the whole team. Only returned when explicitly requested via \u0060cols[]=visibility\u0060.",
+        "x-ms-enum": {
+          "name": "KeyVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
+      "ConnectionVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility. With \u0060locked\u0060 the connection is restricted to its access list; \u0060team\u0060 makes it visible to the whole team.",
+        "x-ms-enum": {
+          "name": "ConnectionVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
+      "ConnectionAllVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility. With \u0060locked\u0060 the connection is restricted to its access list; \u0060team\u0060 makes it visible to the whole team.",
+        "x-ms-enum": {
+          "name": "ConnectionAllVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
             }
           ]
         }
@@ -210603,6 +210935,98 @@
           ]
         }
       },
+      "GetConnections200ResponseConnectionsItemVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility. With \u0060locked\u0060 the connection is restricted to its access list; \u0060team\u0060 makes it visible to the whole team.",
+        "x-ms-enum": {
+          "name": "GetConnections200ResponseConnectionsItemVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
+      "PostConnections200ResponseConnectionVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility. With \u0060locked\u0060 the connection is restricted to its access list; \u0060team\u0060 makes it visible to the whole team.",
+        "x-ms-enum": {
+          "name": "PostConnections200ResponseConnectionVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
+      "GetConnectionsByConnectionId200ResponseConnectionVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility. With \u0060locked\u0060 the connection is restricted to its access list; \u0060team\u0060 makes it visible to the whole team.",
+        "x-ms-enum": {
+          "name": "GetConnectionsByConnectionId200ResponseConnectionVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
+      "PatchConnectionsByConnectionId200ResponseConnectionVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility. With \u0060locked\u0060 the connection is restricted to its access list; \u0060team\u0060 makes it visible to the whole team.",
+        "x-ms-enum": {
+          "name": "PatchConnectionsByConnectionId200ResponseConnectionVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
       "LockedVisibility": {
         "enum": [
           "locked"
@@ -212513,6 +212937,98 @@
         "type": "integer",
         "additionalProperties": false,
         "description": "Module type. \u00604\u0060 is Action and \u00609\u0060 is Search."
+      },
+      "GetKeys200ResponseKeysItemVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility. With \u0060locked\u0060 the key is restricted to its access list; \u0060team\u0060 makes it visible to the whole team. Only returned when explicitly requested via \u0060cols[]=visibility\u0060.",
+        "x-ms-enum": {
+          "name": "GetKeys200ResponseKeysItemVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
+      "PostKeys200ResponseKeyVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility. With \u0060locked\u0060 the key is restricted to its access list; \u0060team\u0060 makes it visible to the whole team. Only returned when explicitly requested via \u0060cols[]=visibility\u0060.",
+        "x-ms-enum": {
+          "name": "PostKeys200ResponseKeyVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
+      "GetKeysByKeyId200ResponseKeyVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility. With \u0060locked\u0060 the key is restricted to its access list; \u0060team\u0060 makes it visible to the whole team. Only returned when explicitly requested via \u0060cols[]=visibility\u0060.",
+        "x-ms-enum": {
+          "name": "GetKeysByKeyId200ResponseKeyVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
+      "PatchKeysByKeyId200ResponseKeyVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Entity-tier visibility. With \u0060locked\u0060 the key is restricted to its access list; \u0060team\u0060 makes it visible to the whole team. Only returned when explicitly requested via \u0060cols[]=visibility\u0060.",
+        "x-ms-enum": {
+          "name": "PatchKeysByKeyId200ResponseKeyVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
       },
       "GetOrganizationsInvitation200ResponseUserTfaStatus": {
         "enum": [
@@ -222275,7 +222791,8 @@
           "uid",
           "scopes",
           "connectedSystemId",
-          "organizationId"
+          "organizationId",
+          "visibility"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -222354,6 +222871,10 @@
             {
               "value": "organizationId",
               "name": "OrganizationId"
+            },
+            {
+              "value": "visibility",
+              "name": "Visibility"
             }
           ]
         }
@@ -223872,7 +224393,8 @@
           "typeName",
           "teamId",
           "packageName",
-          "theme"
+          "theme",
+          "visibility"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -223903,6 +224425,10 @@
             {
               "value": "theme",
               "name": "Theme"
+            },
+            {
+              "value": "visibility",
+              "name": "Visibility"
             }
           ]
         }

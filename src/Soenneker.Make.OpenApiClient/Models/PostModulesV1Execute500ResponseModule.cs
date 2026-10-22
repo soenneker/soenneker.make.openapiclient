@@ -20,6 +20,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Code { get; set; }
 #endif
+        /// <summary>Module field errors for `MAPPING_FAILED` (one entry) and `VALIDATION_FAILED` (one per diagnostic). Messages are not localized.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute500ResponseModuleErrorsItem>? Errors { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute500ResponseModuleErrorsItem> Errors { get; set; }
+#endif
         /// <summary>The executionStarted property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -83,6 +91,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "code", n => { Code = n.GetStringValue(); } },
+                { "errors", n => { Errors = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute500ResponseModuleErrorsItem>(global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute500ResponseModuleErrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "executionStarted", n => { ExecutionStarted = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute500ResponseModuleExecutionStarted>(global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute500ResponseModuleExecutionStarted.CreateFromDiscriminatorValue); } },
                 { "output", n => { Output = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute500ResponseModuleOutput>(global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute500ResponseModuleOutput.CreateFromDiscriminatorValue); } },
                 { "phase", n => { Phase = n.GetStringValue(); } },
@@ -100,6 +109,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute500ResponseModuleErrorsItem>("errors", Errors);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute500ResponseModuleExecutionStarted>("executionStarted", ExecutionStarted);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute500ResponseModuleOutput>("output", Output);
             writer.WriteStringValue("phase", Phase);
