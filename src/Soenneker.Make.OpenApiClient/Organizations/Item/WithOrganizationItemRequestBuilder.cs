@@ -13,6 +13,7 @@ using Soenneker.Make.OpenApiClient.Organizations.Item.Hooks;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Invite;
 using Soenneker.Make.OpenApiClient.Organizations.Item.ManagedOrganizations;
 using Soenneker.Make.OpenApiClient.Organizations.Item.ManagedOrganizationsConsumption;
+using Soenneker.Make.OpenApiClient.Organizations.Item.Otel;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Payments;
 using Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios;
@@ -83,6 +84,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.ManagedOrganizationsConsumption.ManagedOrganizationsConsumptionRequestBuilder ManagedOrganizationsConsumption
         {
             get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.ManagedOrganizationsConsumption.ManagedOrganizationsConsumptionRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The otel property</summary>
+        public global::Soenneker.Make.OpenApiClient.Organizations.Item.Otel.OtelRequestBuilder Otel
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.Otel.OtelRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The payments property</summary>
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.Payments.PaymentsRequestBuilder Payments

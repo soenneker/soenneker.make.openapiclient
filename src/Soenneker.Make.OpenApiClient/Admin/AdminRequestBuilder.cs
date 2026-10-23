@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Admin.Apps;
 using Soenneker.Make.OpenApiClient.Admin.Experiments;
 using Soenneker.Make.OpenApiClient.Admin.Functions;
+using Soenneker.Make.OpenApiClient.Admin.Hooks;
 using Soenneker.Make.OpenApiClient.Admin.Install;
 using Soenneker.Make.OpenApiClient.Admin.Organizations;
 using Soenneker.Make.OpenApiClient.Admin.PriceGroups;
@@ -40,6 +41,11 @@ namespace Soenneker.Make.OpenApiClient.Admin
         public global::Soenneker.Make.OpenApiClient.Admin.Functions.FunctionsRequestBuilder Functions
         {
             get => new global::Soenneker.Make.OpenApiClient.Admin.Functions.FunctionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The hooks property</summary>
+        public global::Soenneker.Make.OpenApiClient.Admin.Hooks.HooksRequestBuilder Hooks
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Admin.Hooks.HooksRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The install property</summary>
         public global::Soenneker.Make.OpenApiClient.Admin.Install.InstallRequestBuilder Install

@@ -26,6 +26,7 @@ using Soenneker.Make.OpenApiClient.Devices;
 using Soenneker.Make.OpenApiClient.Dlqs;
 using Soenneker.Make.OpenApiClient.Endpoints;
 using Soenneker.Make.OpenApiClient.Enums;
+using Soenneker.Make.OpenApiClient.EventSubscriptions;
 using Soenneker.Make.OpenApiClient.ExecutionCapacity;
 using Soenneker.Make.OpenApiClient.Functions;
 using Soenneker.Make.OpenApiClient.Hooks;
@@ -165,6 +166,11 @@ namespace Soenneker.Make.OpenApiClient
         public global::Soenneker.Make.OpenApiClient.Enums.EnumsRequestBuilder Enums
         {
             get => new global::Soenneker.Make.OpenApiClient.Enums.EnumsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The eventSubscriptions property</summary>
+        public global::Soenneker.Make.OpenApiClient.EventSubscriptions.EventSubscriptionsRequestBuilder EventSubscriptions
+        {
+            get => new global::Soenneker.Make.OpenApiClient.EventSubscriptions.EventSubscriptionsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The executionCapacity property</summary>
         public global::Soenneker.Make.OpenApiClient.ExecutionCapacity.ExecutionCapacityRequestBuilder ExecutionCapacity
