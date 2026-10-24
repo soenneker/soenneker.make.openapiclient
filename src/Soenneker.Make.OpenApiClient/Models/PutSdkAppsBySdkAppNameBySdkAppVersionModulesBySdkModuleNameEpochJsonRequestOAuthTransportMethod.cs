@@ -8,42 +8,24 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodBranch4"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper2"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper3"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf2"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf3"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethod : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodBranch4"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf1"/></summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf1? PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf1 { get; set; }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf2"/></summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf2? PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf2 { get; set; }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf3"/></summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf3? PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf3 { get; set; }
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodBranch4? PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodBranch4 { get; set; }
+        public string? String { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodBranch4 PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodBranch4 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper? PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper2"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper2? PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper2 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper2 PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper2 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper3"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper3? PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper3 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper3 PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper3 { get; set; }
+        public string String { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -54,10 +36,22 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethod();
-            result.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodBranch4 = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodBranch4();
-            result.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper();
-            result.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper2 = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper2();
-            result.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper3 = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper3();
+            if(parseNode.GetStringValue() is string stringValue)
+            {
+                result.String = stringValue;
+            }
+            else if(parseNode.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf1>() is global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf1 putSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf1Value)
+            {
+                result.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf1 = putSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf1Value;
+            }
+            else if(parseNode.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf2>() is global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf2 putSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf2Value)
+            {
+                result.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf2 = putSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf2Value;
+            }
+            else if(parseNode.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf3>() is global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf3 putSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf3Value)
+            {
+                result.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf3 = putSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf3Value;
+            }
             return result;
         }
         /// <summary>
@@ -66,10 +60,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodBranch4 != null || PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper != null || PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper2 != null || PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper3 != null)
-            {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodBranch4, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper2, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper3);
-            }
             return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
@@ -79,7 +69,22 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodBranch4>(null, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodBranch4, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper2, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodWrapper3);
+            if(String != null)
+            {
+                writer.WriteStringValue(null, String);
+            }
+            else if(PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf1 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf1>(null, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf1);
+            }
+            else if(PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf2 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf2>(null, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf2);
+            }
+            else if(PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf3 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf3>(null, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestOAuthTransportMethodAnyOf3);
+            }
         }
     }
 }

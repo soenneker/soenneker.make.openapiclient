@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Wrapper"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1"/>, List&lt;global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item&gt;
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequest : IComposedTypeWrapper, IParsable
@@ -21,13 +21,13 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1 PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Wrapper"/></summary>
+        /// <summary>Composed type representation for type List&lt;global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Wrapper? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Wrapper { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item>? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Wrapper PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Wrapper { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item> PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,8 +38,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequest();
-            result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1 = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1();
-            result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Wrapper = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Wrapper();
+            if(parseNode.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item>(global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item> patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemValue)
+            {
+                result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item = patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemValue;
+            }
+            else {
+                result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1 = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1();
+            }
             return result;
         }
         /// <summary>
@@ -48,9 +53,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1 != null || PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Wrapper != null)
+            if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1 != null)
             {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Wrapper);
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1);
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -61,7 +66,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Wrapper);
+            if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item != null)
+            {
+                writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item);
+            }
+            else {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1);
+            }
         }
     }
 }

@@ -9,47 +9,15 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequest : IAdditionalDataHolder, IParsable
+    public partial class PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequest : global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAllOf1, IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Authentication headers for the collector. On update, omitting this field preserves the saved set; supplying it replaces the whole set. An empty array is rejected. Names must be valid HTTP tokens and unique ignoring case. Reserved names such as Host and Content-Type are rejected.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAuthHeadersItem>? AuthHeaders { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAuthHeadersItem> AuthHeaders { get; set; }
-#endif
-        /// <summary>A destination name containing at least one non-whitespace character. Leading and trailing whitespace is removed.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Name { get; set; }
-#nullable restore
-#else
-        public string Name { get; set; }
-#endif
-        /// <summary>The signals property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.TracesItem?>? Signals { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.Make.OpenApiClient.Models.TracesItem?> Signals { get; set; }
-#endif
-        /// <summary>An HTTPS collector endpoint. Localhost, private addresses, credentials in the URL, and redirects are not allowed. The hostname is resolved and checked when written.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Url { get; set; }
-#nullable restore
-#else
-        public string Url { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequest"/> and sets the default values.
         /// </summary>
-        public PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequest()
+        public PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequest() : base()
         {
             AdditionalData = new Dictionary<string, object>();
         }
@@ -58,7 +26,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequest();
@@ -67,27 +35,20 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "authHeaders", n => { AuthHeaders = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAuthHeadersItem>(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAuthHeadersItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "name", n => { Name = n.GetStringValue(); } },
-                { "signals", n => { Signals = n.GetCollectionOfEnumValues<global::Soenneker.Make.OpenApiClient.Models.TracesItem>()?.AsList(); } },
-                { "url", n => { Url = n.GetStringValue(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer)
+        public override void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAuthHeadersItem>("authHeaders", AuthHeaders);
-            writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfEnumValues<global::Soenneker.Make.OpenApiClient.Models.TracesItem>("signals", Signals);
-            writer.WriteStringValue("url", Url);
+            base.Serialize(writer);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

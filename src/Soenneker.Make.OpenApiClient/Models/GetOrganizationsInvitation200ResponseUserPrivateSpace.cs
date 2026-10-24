@@ -22,10 +22,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The consumedTransfer property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserPrivateSpaceConsumedTransfer? ConsumedTransfer { get; set; }
+        public UntypedNode? ConsumedTransfer { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserPrivateSpaceConsumedTransfer ConsumedTransfer { get; set; }
+        public UntypedNode ConsumedTransfer { get; set; }
 #endif
         /// <summary>The globalAgentsEnabled property</summary>
         public bool? GlobalAgentsEnabled { get; set; }
@@ -46,10 +46,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The transferLimit property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserPrivateSpaceTransferLimit? TransferLimit { get; set; }
+        public UntypedNode? TransferLimit { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserPrivateSpaceTransferLimit TransferLimit { get; set; }
+        public UntypedNode TransferLimit { get; set; }
 #endif
         /// <summary>The type property</summary>
         public global::Soenneker.Make.OpenApiClient.Models.PersonalType? Type { get; set; }
@@ -80,13 +80,13 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "consumedCenticredits", n => { ConsumedCenticredits = n.GetIntValue(); } },
                 { "consumedOperations", n => { ConsumedOperations = n.GetIntValue(); } },
-                { "consumedTransfer", n => { ConsumedTransfer = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserPrivateSpaceConsumedTransfer>(global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserPrivateSpaceConsumedTransfer.CreateFromDiscriminatorValue); } },
+                { "consumedTransfer", n => { ConsumedTransfer = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "globalAgentsEnabled", n => { GlobalAgentsEnabled = n.GetBoolValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "isPaused", n => { IsPaused = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "operationsLimit", n => { OperationsLimit = n.GetIntValue(); } },
-                { "transferLimit", n => { TransferLimit = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserPrivateSpaceTransferLimit>(global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserPrivateSpaceTransferLimit.CreateFromDiscriminatorValue); } },
+                { "transferLimit", n => { TransferLimit = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PersonalType>(); } },
             };
         }
@@ -99,13 +99,13 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("consumedCenticredits", ConsumedCenticredits);
             writer.WriteIntValue("consumedOperations", ConsumedOperations);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserPrivateSpaceConsumedTransfer>("consumedTransfer", ConsumedTransfer);
+            writer.WriteObjectValue<UntypedNode>("consumedTransfer", ConsumedTransfer);
             writer.WriteBoolValue("globalAgentsEnabled", GlobalAgentsEnabled);
             writer.WriteIntValue("id", Id);
             writer.WriteBoolValue("isPaused", IsPaused);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("operationsLimit", OperationsLimit);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserPrivateSpaceTransferLimit>("transferLimit", TransferLimit);
+            writer.WriteObjectValue<UntypedNode>("transferLimit", TransferLimit);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PersonalType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

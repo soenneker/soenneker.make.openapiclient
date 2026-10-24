@@ -45,10 +45,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The zones property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdPreferences200ResponsePreferencesZonesItem>? Zones { get; set; }
+        public UntypedNode? Zones { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdPreferences200ResponsePreferencesZonesItem> Zones { get; set; }
+        public UntypedNode Zones { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdPreferences200ResponsePreferences"/> and sets the default values.
@@ -80,7 +80,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "is_email_verified", n => { IsEmailVerified = n.GetBoolValue(); } },
                 { "uuid", n => { Uuid = n.GetStringValue(); } },
-                { "zones", n => { Zones = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdPreferences200ResponsePreferencesZonesItem>(global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdPreferences200ResponsePreferencesZonesItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "zones", n => { Zones = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -95,7 +95,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("id", Id);
             writer.WriteBoolValue("is_email_verified", IsEmailVerified);
             writer.WriteStringValue("uuid", Uuid);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdPreferences200ResponsePreferencesZonesItem>("zones", Zones);
+            writer.WriteObjectValue<UntypedNode>("zones", Zones);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -8,30 +8,27 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Which event types the subscription receives. `all` also includes event types added later.
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf2"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class CreateEventSubscriptionRequestEvents : IAdditionalDataHolder, IParsable
+    public partial class CreateEventSubscriptionRequestEvents : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The mode property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsMode? Mode { get; set; }
-        /// <summary>Event types returned by List event types.</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Types { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf1? CreateEventSubscriptionRequestEventsOneOf1 { get; set; }
 #nullable restore
 #else
-        public List<string> Types { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf1 CreateEventSubscriptionRequestEventsOneOf1 { get; set; }
 #endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEvents"/> and sets the default values.
-        /// </summary>
-        public CreateEventSubscriptionRequestEvents()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf2"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf2? CreateEventSubscriptionRequestEventsOneOf2 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf2 CreateEventSubscriptionRequestEventsOneOf2 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -40,7 +37,17 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEvents CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEvents();
+            var mappingValue = parseNode.GetChildNode("mode")?.GetStringValue();
+            var result = new global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEvents();
+            if("all".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.CreateEventSubscriptionRequestEventsOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf1();
+            }
+            else if("selected".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.CreateEventSubscriptionRequestEventsOneOf2 = new global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf2();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -48,11 +55,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(CreateEventSubscriptionRequestEventsOneOf1 != null)
             {
-                { "mode", n => { Mode = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsMode>(); } },
-                { "types", n => { Types = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-            };
+                return CreateEventSubscriptionRequestEventsOneOf1.GetFieldDeserializers();
+            }
+            else if(CreateEventSubscriptionRequestEventsOneOf2 != null)
+            {
+                return CreateEventSubscriptionRequestEventsOneOf2.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -61,9 +72,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsMode>("mode", Mode);
-            writer.WriteCollectionOfPrimitiveValues<string>("types", Types);
-            writer.WriteAdditionalData(AdditionalData);
+            if(CreateEventSubscriptionRequestEventsOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf1>(null, CreateEventSubscriptionRequestEventsOneOf1);
+            }
+            else if(CreateEventSubscriptionRequestEventsOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf2>(null, CreateEventSubscriptionRequestEventsOneOf2);
+            }
         }
     }
 }

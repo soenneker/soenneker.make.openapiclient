@@ -21,10 +21,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The settings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemSettings? Settings { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings? Settings { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemSettings Settings { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings Settings { get; set; }
 #endif
         /// <summary>The tokenLimit property</summary>
         public int? TokenLimit { get; set; }
@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "model", n => { Model = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemModel>(); } },
                 { "provider", n => { Provider = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemProvider>(); } },
-                { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemSettings>(global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemSettings.CreateFromDiscriminatorValue); } },
+                { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings>(global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings.CreateFromDiscriminatorValue); } },
                 { "tokenLimit", n => { TokenLimit = n.GetIntValue(); } },
             };
         }
@@ -68,7 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemModel>("model", Model);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemProvider>("provider", Provider);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemSettings>("settings", Settings);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings>("settings", Settings);
             writer.WriteIntValue("tokenLimit", TokenLimit);
             writer.WriteAdditionalData(AdditionalData);
         }

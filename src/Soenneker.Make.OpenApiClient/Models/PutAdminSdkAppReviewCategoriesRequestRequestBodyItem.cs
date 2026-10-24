@@ -31,10 +31,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The category&apos;s subcategories in display order. Omit or pass an empty array for a category with none.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItem>? Subcategories { get; set; }
+        public List<string>? Subcategories { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItem> Subcategories { get; set; }
+        public List<string> Subcategories { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -56,7 +56,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "category", n => { Category = n.GetStringValue(); } },
                 { "slug", n => { Slug = n.GetStringValue(); } },
-                { "subcategories", n => { Subcategories = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItem>(global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "subcategories", n => { Subcategories = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -68,7 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("category", Category);
             writer.WriteStringValue("slug", Slug);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategoriesRequestItemSubcategoriesItem>("subcategories", Subcategories);
+            writer.WriteCollectionOfPrimitiveValues<string>("subcategories", Subcategories);
         }
     }
 }

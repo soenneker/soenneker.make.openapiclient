@@ -25,10 +25,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The centicredits property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogsByExecutionDlqId200ResponseDlqLogCenticredits? Centicredits { get; set; }
+        public UntypedNode? Centicredits { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogsByExecutionDlqId200ResponseDlqLogCenticredits Centicredits { get; set; }
+        public UntypedNode Centicredits { get; set; }
 #endif
         /// <summary>The duration property</summary>
         public int? Duration { get; set; }
@@ -96,7 +96,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "authorId", n => { AuthorId = n.GetStringValue(); } },
-                { "centicredits", n => { Centicredits = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogsByExecutionDlqId200ResponseDlqLogCenticredits>(global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogsByExecutionDlqId200ResponseDlqLogCenticredits.CreateFromDiscriminatorValue); } },
+                { "centicredits", n => { Centicredits = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "duration", n => { Duration = n.GetIntValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "imtId", n => { ImtId = n.GetStringValue(); } },
@@ -118,7 +118,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("authorId", AuthorId);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogsByExecutionDlqId200ResponseDlqLogCenticredits>("centicredits", Centicredits);
+            writer.WriteObjectValue<UntypedNode>("centicredits", Centicredits);
             writer.WriteIntValue("duration", Duration);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("imtId", ImtId);

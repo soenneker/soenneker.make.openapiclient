@@ -17,10 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The rpcs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcs200ResponseRpcsItem>? Rpcs { get; set; }
+        public UntypedNode? Rpcs { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcs200ResponseRpcsItem> Rpcs { get; set; }
+        public UntypedNode Rpcs { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcs200Response"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "rpcs", n => { Rpcs = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcs200ResponseRpcsItem>(global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcs200ResponseRpcsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "rpcs", n => { Rpcs = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcs200ResponseRpcsItem>("rpcs", Rpcs);
+            writer.WriteObjectValue<UntypedNode>("rpcs", Rpcs);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

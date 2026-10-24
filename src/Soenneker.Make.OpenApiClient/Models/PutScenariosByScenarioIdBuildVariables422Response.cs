@@ -38,10 +38,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Structured context for the error; its shape depends on the cause.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422ResponseMetadata? Metadata { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatch? Metadata { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422ResponseMetadata Metadata { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatch Metadata { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422Response"/> and sets the default values.
@@ -71,7 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "code", n => { Code = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.Im016Code>(); } },
                 { "detail", n => { Detail = n.GetStringValue(); } },
                 { "message", n => { MessageEscaped = n.GetStringValue(); } },
-                { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422ResponseMetadata>(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422ResponseMetadata.CreateFromDiscriminatorValue); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatch>(global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatch.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -84,7 +84,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.Im016Code>("code", Code);
             writer.WriteStringValue("detail", Detail);
             writer.WriteStringValue("message", MessageEscaped);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422ResponseMetadata>("metadata", Metadata);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422ResponseMetadataTypeMismatch>("metadata", Metadata);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

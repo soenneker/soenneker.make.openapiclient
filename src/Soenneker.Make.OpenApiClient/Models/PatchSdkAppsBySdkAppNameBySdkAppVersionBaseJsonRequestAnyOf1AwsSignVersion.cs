@@ -8,34 +8,22 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionBranch3"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper2"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf2"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersion : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionBranch3"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf1"/></summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf1? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf1 { get; set; }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf2"/></summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf2? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf2 { get; set; }
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionBranch3? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionBranch3 { get; set; }
+        public string? String { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionBranch3 PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionBranch3 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper2"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper2? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper2 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper2 PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper2 { get; set; }
+        public string String { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -46,9 +34,18 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersion();
-            result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionBranch3 = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionBranch3();
-            result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper();
-            result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper2 = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper2();
+            if(parseNode.GetStringValue() is string stringValue)
+            {
+                result.String = stringValue;
+            }
+            else if(parseNode.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf1>() is global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf1 patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf1Value)
+            {
+                result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf1 = patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf1Value;
+            }
+            else if(parseNode.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf2>() is global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf2 patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf2Value)
+            {
+                result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf2 = patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf2Value;
+            }
             return result;
         }
         /// <summary>
@@ -57,10 +54,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionBranch3 != null || PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper != null || PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper2 != null)
-            {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionBranch3, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper2);
-            }
             return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
@@ -70,7 +63,18 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionBranch3>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionBranch3, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionWrapper2);
+            if(String != null)
+            {
+                writer.WriteStringValue(null, String);
+            }
+            else if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf1 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf1>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf1);
+            }
+            else if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf2 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf2>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1AwsSignVersionAnyOf2);
+            }
         }
     }
 }

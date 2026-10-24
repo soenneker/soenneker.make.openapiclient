@@ -23,10 +23,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Optional argument passed to `main()`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestData? Data { get; set; }
+        public UntypedNode? Data { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestData Data { get; set; }
+        public UntypedNode Data { get; set; }
 #endif
         /// <summary>Optional Function association. The Function must belong to the requested Team.</summary>
         public int? FunctionId { get; set; }
@@ -64,7 +64,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "content", n => { Content = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContent>(global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContent.CreateFromDiscriminatorValue); } },
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestData>(global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestData.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "functionId", n => { FunctionId = n.GetIntValue(); } },
                 { "maxWaitSeconds", n => { MaxWaitSeconds = n.GetIntValue(); } },
                 { "responsive", n => { Responsive = n.GetBoolValue(); } },
@@ -79,7 +79,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContent>("content", Content);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestData>("data", Data);
+            writer.WriteObjectValue<UntypedNode>("data", Data);
             writer.WriteIntValue("functionId", FunctionId);
             writer.WriteIntValue("maxWaitSeconds", MaxWaitSeconds);
             writer.WriteBoolValue("responsive", Responsive);

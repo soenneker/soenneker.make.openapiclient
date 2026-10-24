@@ -41,10 +41,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The options available to users when filling in the item data. For the data types `dropdown` and `multiselect`, fill in an object like `{&quot;options&quot;:[{&quot;value&quot;: &quot;Marketing&quot;}, {&quot;value&quot;: &quot;Sales&quot;}]}`.You can omit the `options` parameter for the rest of the data types. </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItemsRequestOptions? Options { get; set; }
+        public UntypedNode? Options { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItemsRequestOptions Options { get; set; }
+        public UntypedNode Options { get; set; }
 #endif
         /// <summary>Set to `true` in order to make a structure item required when adding custom property data. Default value is `false`.</summary>
         public bool? Required { get; set; }
@@ -78,7 +78,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "options", n => { Options = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItemsRequestOptions>(global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItemsRequestOptions.CreateFromDiscriminatorValue); } },
+                { "options", n => { Options = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "required", n => { Required = n.GetBoolValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItemsRequestType>(); } },
             };
@@ -93,7 +93,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItemsRequestOptions>("options", Options);
+            writer.WriteObjectValue<UntypedNode>("options", Options);
             writer.WriteBoolValue("required", Required);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructuresByCustomPropertyStructureIdCustomPropertyStructureItemsRequestType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);

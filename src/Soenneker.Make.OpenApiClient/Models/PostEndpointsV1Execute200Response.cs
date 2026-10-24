@@ -25,10 +25,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Raw result of the Endpoint execution. The shape is defined by the executed Endpoint itself and is not constrained by this route.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseOutput? Output { get; set; }
+        public UntypedNode? Output { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseOutput Output { get; set; }
+        public UntypedNode Output { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200Response"/> and sets the default values.
@@ -56,7 +56,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "execution", n => { Execution = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution>(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution.CreateFromDiscriminatorValue); } },
-                { "output", n => { Output = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseOutput>(global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseOutput.CreateFromDiscriminatorValue); } },
+                { "output", n => { Output = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution>("execution", Execution);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseOutput>("output", Output);
+            writer.WriteObjectValue<UntypedNode>("output", Output);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

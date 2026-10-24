@@ -7,30 +7,28 @@ using System.IO;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormat : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormat : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The schema property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatSchemaItem>? Schema { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1? PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1 { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatSchemaItem> Schema { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1 PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1 { get; set; }
 #endif
-        /// <summary>The type property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatType? Type { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormat"/> and sets the default values.
-        /// </summary>
-        public PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormat()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2? PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2 PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -39,7 +37,17 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormat CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormat();
+            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var result = new global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormat();
+            if("text".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1();
+            }
+            else if("make-schema".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2 = new global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,11 +55,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1 != null)
             {
-                { "schema", n => { Schema = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatSchemaItem>(global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatSchemaItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatType>(); } },
-            };
+                return PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1.GetFieldDeserializers();
+            }
+            else if(PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2 != null)
+            {
+                return PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -60,9 +72,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatSchemaItem>("schema", Schema);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatType>("type", Type);
-            writer.WriteAdditionalData(AdditionalData);
+            if(PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1>(null, PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1);
+            }
+            else if(PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2>(null, PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2);
+            }
         }
     }
 }

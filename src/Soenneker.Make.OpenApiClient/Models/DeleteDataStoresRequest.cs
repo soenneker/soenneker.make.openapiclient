@@ -7,38 +7,28 @@ using System.IO;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequestOneOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequestOneOf2"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class DeleteDataStoresRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class DeleteDataStoresRequest : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>If set to `true`, all data stores will be deleted. It can be used alone or together with the `exceptIds` parameter.</summary>
-        public bool? All { get; set; }
-        /// <summary>The IDs of data stores to be excluded from deleting. It can be only used together with the `all` parameter set to `true`.</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequestOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? ExceptIds { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequestOneOf1? DeleteDataStoresRequestOneOf1 { get; set; }
 #nullable restore
 #else
-        public List<int?> ExceptIds { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequestOneOf1 DeleteDataStoresRequestOneOf1 { get; set; }
 #endif
-        /// <summary>The IDs of data stores to delete. You can either use only this parameter alone or use the `all` parameter, or the `all` parameter together with the `exceptIds` parameter.</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequestOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? Ids { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequestOneOf2? DeleteDataStoresRequestOneOf2 { get; set; }
 #nullable restore
 #else
-        public List<int?> Ids { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequestOneOf2 DeleteDataStoresRequestOneOf2 { get; set; }
 #endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequest"/> and sets the default values.
-        /// </summary>
-        public DeleteDataStoresRequest()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -47,7 +37,17 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequest();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var result = new global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequest();
+            if("DeleteDataStoresRequestOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.DeleteDataStoresRequestOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequestOneOf1();
+            }
+            else if("DeleteDataStoresRequestOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.DeleteDataStoresRequestOneOf2 = new global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequestOneOf2();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,12 +55,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(DeleteDataStoresRequestOneOf1 != null)
             {
-                { "all", n => { All = n.GetBoolValue(); } },
-                { "exceptIds", n => { ExceptIds = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
-                { "ids", n => { Ids = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
-            };
+                return DeleteDataStoresRequestOneOf1.GetFieldDeserializers();
+            }
+            else if(DeleteDataStoresRequestOneOf2 != null)
+            {
+                return DeleteDataStoresRequestOneOf2.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -69,10 +72,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteBoolValue("all", All);
-            writer.WriteCollectionOfPrimitiveValues<int?>("exceptIds", ExceptIds);
-            writer.WriteCollectionOfPrimitiveValues<int?>("ids", Ids);
-            writer.WriteAdditionalData(AdditionalData);
+            if(DeleteDataStoresRequestOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequestOneOf1>(null, DeleteDataStoresRequestOneOf1);
+            }
+            else if(DeleteDataStoresRequestOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresRequestOneOf2>(null, DeleteDataStoresRequestOneOf2);
+            }
         }
     }
 }

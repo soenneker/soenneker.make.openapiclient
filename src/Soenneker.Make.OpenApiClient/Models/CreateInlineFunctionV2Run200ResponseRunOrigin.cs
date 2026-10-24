@@ -7,24 +7,28 @@ using System.IO;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf2"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class CreateInlineFunctionV2Run200ResponseRunOrigin : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class CreateInlineFunctionV2Run200ResponseRunOrigin : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The type property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginType? Type { get; set; }
-        /// <summary>The version property</summary>
-        public int? Version { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOrigin"/> and sets the default values.
-        /// </summary>
-        public CreateInlineFunctionV2Run200ResponseRunOrigin()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf1"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf1? CreateInlineFunctionV2Run200ResponseRunOriginOneOf1 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf1 CreateInlineFunctionV2Run200ResponseRunOriginOneOf1 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf2"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf2? CreateInlineFunctionV2Run200ResponseRunOriginOneOf2 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf2 CreateInlineFunctionV2Run200ResponseRunOriginOneOf2 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -33,7 +37,17 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOrigin CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOrigin();
+            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var result = new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOrigin();
+            if("version".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.CreateInlineFunctionV2Run200ResponseRunOriginOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf1();
+            }
+            else if("inline".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.CreateInlineFunctionV2Run200ResponseRunOriginOneOf2 = new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf2();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -41,11 +55,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(CreateInlineFunctionV2Run200ResponseRunOriginOneOf1 != null)
             {
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginType>(); } },
-                { "version", n => { Version = n.GetIntValue(); } },
-            };
+                return CreateInlineFunctionV2Run200ResponseRunOriginOneOf1.GetFieldDeserializers();
+            }
+            else if(CreateInlineFunctionV2Run200ResponseRunOriginOneOf2 != null)
+            {
+                return CreateInlineFunctionV2Run200ResponseRunOriginOneOf2.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -54,9 +72,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginType>("type", Type);
-            writer.WriteIntValue("version", Version);
-            writer.WriteAdditionalData(AdditionalData);
+            if(CreateInlineFunctionV2Run200ResponseRunOriginOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf1>(null, CreateInlineFunctionV2Run200ResponseRunOriginOneOf1);
+            }
+            else if(CreateInlineFunctionV2Run200ResponseRunOriginOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf2>(null, CreateInlineFunctionV2Run200ResponseRunOriginOneOf2);
+            }
         }
     }
 }

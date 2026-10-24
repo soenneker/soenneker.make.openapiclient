@@ -53,10 +53,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The headers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMapperHeadersItem>? Headers { get; set; }
+        public UntypedNode? Headers { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMapperHeadersItem> Headers { get; set; }
+        public UntypedNode Headers { get; set; }
 #endif
         /// <summary>The method property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,10 +71,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The qs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMapperQsItem>? Qs { get; set; }
+        public UntypedNode? Qs { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMapperQsItem> Qs { get; set; }
+        public UntypedNode Qs { get; set; }
 #endif
         /// <summary>The rejectUnauthorized property</summary>
         public bool? RejectUnauthorized { get; set; }
@@ -129,10 +129,10 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "ca", n => { Ca = n.GetStringValue(); } },
                 { "followRedirect", n => { FollowRedirect = n.GetBoolValue(); } },
                 { "gzip", n => { Gzip = n.GetBoolValue(); } },
-                { "headers", n => { Headers = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMapperHeadersItem>(global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMapperHeadersItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "headers", n => { Headers = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "method", n => { Method = n.GetStringValue(); } },
                 { "parseResponse", n => { ParseResponse = n.GetBoolValue(); } },
-                { "qs", n => { Qs = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMapperQsItem>(global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMapperQsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "qs", n => { Qs = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "rejectUnauthorized", n => { RejectUnauthorized = n.GetBoolValue(); } },
                 { "shareCookies", n => { ShareCookies = n.GetBoolValue(); } },
                 { "timeout", n => { Timeout = n.GetStringValue(); } },
@@ -153,10 +153,10 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("ca", Ca);
             writer.WriteBoolValue("followRedirect", FollowRedirect);
             writer.WriteBoolValue("gzip", Gzip);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMapperHeadersItem>("headers", Headers);
+            writer.WriteObjectValue<UntypedNode>("headers", Headers);
             writer.WriteStringValue("method", Method);
             writer.WriteBoolValue("parseResponse", ParseResponse);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMapperQsItem>("qs", Qs);
+            writer.WriteObjectValue<UntypedNode>("qs", Qs);
             writer.WriteBoolValue("rejectUnauthorized", RejectUnauthorized);
             writer.WriteBoolValue("shareCookies", ShareCookies);
             writer.WriteStringValue("timeout", Timeout);

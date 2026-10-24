@@ -8,46 +8,43 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// One of `scenarioId`, `dlqId`, `templateId` or `teamId` locates the blueprint. When more than one is present they are resolved in that order of precedence and the others are ignored — in particular, `templateId` always wins over `teamId` so a caller cannot override the team a template resolves server-side.
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf2"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf4"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PostInternalEntityPlacementsCheckRequest : IAdditionalDataHolder, IParsable
+    public partial class PostInternalEntityPlacementsCheckRequest : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The blueprint about to be executed.</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestBlueprint? Blueprint { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf1? PostInternalEntityPlacementsCheckRequestAnyOf1 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestBlueprint Blueprint { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf1 PostInternalEntityPlacementsCheckRequestAnyOf1 { get; set; }
 #endif
-        /// <summary>The incomplete execution (DLQ record) being retried. Its stored blueprint is the comparison baseline — itself already guarded, since every `dlq_set` edit runs the same guard. The team is taken from the DLQ&apos;s owning scenario.</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DlqId { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf2? PostInternalEntityPlacementsCheckRequestAnyOf2 { get; set; }
 #nullable restore
 #else
-        public string DlqId { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf2 PostInternalEntityPlacementsCheckRequestAnyOf2 { get; set; }
 #endif
-        /// <summary>Untrusted hint that the execution comes from the admin UI. The check verifies the user&apos;s `scenario verify` HQ-admin permission itself before applying the same bypass the admin save endpoints do; a spoofed flag falls through to the normal verdict.</summary>
-        public bool? FromAdmin { get; set; }
-        /// <summary>The scenario whose stored blueprint (its unsaved draft when it has one) is compared against. The team is taken from the scenario itself.</summary>
-        public int? ScenarioId { get; set; }
-        /// <summary>The team of a scenario that was never saved. Without a stored blueprint every denied placement is a new one.</summary>
-        public int? TeamId { get; set; }
-        /// <summary>The template being run. The team is taken from the template record itself — a caller cannot influence which team is checked, even by also sending `teamId`. The template&apos;s own stored blueprint is the OLD side, the same grandfathering `scenarioId` and `dlqId` get: it is already guarded at save, so a module left untouched since then still runs after its connection is locked, while an edit or a new placement blocks. A template with no team (some templates have none) is unaffected — there is nothing team-scoped to check.</summary>
-        public int? TemplateId { get; set; }
-        /// <summary>The user the execution runs as.</summary>
-        public int? UserId { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequest"/> and sets the default values.
-        /// </summary>
-        public PostInternalEntityPlacementsCheckRequest()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3? PostInternalEntityPlacementsCheckRequestAnyOf3 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3 PostInternalEntityPlacementsCheckRequestAnyOf3 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf4"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf4? PostInternalEntityPlacementsCheckRequestAnyOf4 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf4 PostInternalEntityPlacementsCheckRequestAnyOf4 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -56,7 +53,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequest();
+            var result = new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequest();
+            result.PostInternalEntityPlacementsCheckRequestAnyOf1 = new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf1();
+            result.PostInternalEntityPlacementsCheckRequestAnyOf2 = new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf2();
+            result.PostInternalEntityPlacementsCheckRequestAnyOf3 = new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3();
+            result.PostInternalEntityPlacementsCheckRequestAnyOf4 = new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf4();
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,16 +66,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(PostInternalEntityPlacementsCheckRequestAnyOf1 != null || PostInternalEntityPlacementsCheckRequestAnyOf2 != null || PostInternalEntityPlacementsCheckRequestAnyOf3 != null || PostInternalEntityPlacementsCheckRequestAnyOf4 != null)
             {
-                { "blueprint", n => { Blueprint = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestBlueprint>(global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestBlueprint.CreateFromDiscriminatorValue); } },
-                { "dlqId", n => { DlqId = n.GetStringValue(); } },
-                { "fromAdmin", n => { FromAdmin = n.GetBoolValue(); } },
-                { "scenarioId", n => { ScenarioId = n.GetIntValue(); } },
-                { "teamId", n => { TeamId = n.GetIntValue(); } },
-                { "templateId", n => { TemplateId = n.GetIntValue(); } },
-                { "userId", n => { UserId = n.GetIntValue(); } },
-            };
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PostInternalEntityPlacementsCheckRequestAnyOf1, PostInternalEntityPlacementsCheckRequestAnyOf2, PostInternalEntityPlacementsCheckRequestAnyOf3, PostInternalEntityPlacementsCheckRequestAnyOf4);
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -82,14 +79,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestBlueprint>("blueprint", Blueprint);
-            writer.WriteStringValue("dlqId", DlqId);
-            writer.WriteBoolValue("fromAdmin", FromAdmin);
-            writer.WriteIntValue("scenarioId", ScenarioId);
-            writer.WriteIntValue("teamId", TeamId);
-            writer.WriteIntValue("templateId", TemplateId);
-            writer.WriteIntValue("userId", UserId);
-            writer.WriteAdditionalData(AdditionalData);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf1>(null, PostInternalEntityPlacementsCheckRequestAnyOf1, PostInternalEntityPlacementsCheckRequestAnyOf2, PostInternalEntityPlacementsCheckRequestAnyOf3, PostInternalEntityPlacementsCheckRequestAnyOf4);
         }
     }
 }

@@ -15,10 +15,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Optional argument validated against the selected published version&apos;s input contract.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunRequestData? Data { get; set; }
+        public UntypedNode? Data { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunRequestData Data { get; set; }
+        public UntypedNode Data { get; set; }
 #endif
         /// <summary>Valid only when `responsive` is true.</summary>
         public int? MaxWaitSeconds { get; set; }
@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunRequestData>(global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunRequestData.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "maxWaitSeconds", n => { MaxWaitSeconds = n.GetIntValue(); } },
                 { "responsive", n => { Responsive = n.GetBoolValue(); } },
                 { "timeoutSeconds", n => { TimeoutSeconds = n.GetIntValue(); } },
@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunRequestData>("data", Data);
+            writer.WriteObjectValue<UntypedNode>("data", Data);
             writer.WriteIntValue("maxWaitSeconds", MaxWaitSeconds);
             writer.WriteBoolValue("responsive", Responsive);
             writer.WriteIntValue("timeoutSeconds", TimeoutSeconds);

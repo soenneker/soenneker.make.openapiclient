@@ -8,43 +8,15 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueMember1"/>
+    /// Composed type wrapper for classes <see cref="bool"/>, <see cref="double"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueMember1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PatchTeamsByTeamIdVariablesByVariableNameRequestValue : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1? PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1 PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2? PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2 PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3? PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3 PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5? PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5 PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5 { get; set; }
-#endif
+        /// <summary>Composed type representation for type <see cref="bool"/></summary>
+        public bool? Boolean { get; set; }
+        /// <summary>Composed type representation for type <see cref="double"/></summary>
+        public double? Double { get; set; }
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueMember1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,6 +24,22 @@ namespace Soenneker.Make.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueMember1 PatchTeamsByTeamIdVariablesByVariableNameRequestValueMember1 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4? PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4 PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? String { get; set; }
+#nullable restore
+#else
+        public string String { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -63,21 +51,21 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValue();
-            if("PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1 = new global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1();
+                result.PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4 = new global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4();
             }
-            else if("PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if(parseNode.GetBoolValue() is bool booleanValue)
             {
-                result.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2 = new global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2();
+                result.Boolean = booleanValue;
             }
-            else if("PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if(parseNode.GetDoubleValue() is double doubleValue)
             {
-                result.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3 = new global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3();
+                result.Double = doubleValue;
             }
-            else if("PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if(parseNode.GetStringValue() is string stringValue)
             {
-                result.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5 = new global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5();
+                result.String = stringValue;
             }
             return result;
         }
@@ -87,25 +75,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1 != null)
-            {
-                return PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1.GetFieldDeserializers();
-            }
-            else if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2 != null)
-            {
-                return PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2.GetFieldDeserializers();
-            }
-            else if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3 != null)
-            {
-                return PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3.GetFieldDeserializers();
-            }
-            else if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5 != null)
-            {
-                return PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5.GetFieldDeserializers();
-            }
-            else if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueMember1 != null)
+            if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueMember1 != null)
             {
                 return PatchTeamsByTeamIdVariablesByVariableNameRequestValueMember1.GetFieldDeserializers();
+            }
+            else if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4 != null)
+            {
+                return PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4.GetFieldDeserializers();
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -116,25 +92,25 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1>(null, PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch1);
-            }
-            else if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2>(null, PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch2);
-            }
-            else if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3>(null, PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch3);
-            }
-            else if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5>(null, PatchTeamsByTeamIdVariablesByVariableNameRequestValueBranch5);
-            }
-            else if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueMember1 != null)
+            if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueMember1 != null)
             {
                 writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueMember1>(null, PatchTeamsByTeamIdVariablesByVariableNameRequestValueMember1);
+            }
+            else if(PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4>(null, PatchTeamsByTeamIdVariablesByVariableNameRequestValueOneOf4);
+            }
+            else if(Boolean != null)
+            {
+                writer.WriteBoolValue(null, Boolean);
+            }
+            else if(Double != null)
+            {
+                writer.WriteDoubleValue(null, Double);
+            }
+            else if(String != null)
+            {
+                writer.WriteStringValue(null, String);
             }
         }
     }

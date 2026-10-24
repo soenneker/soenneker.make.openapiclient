@@ -8,30 +8,27 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Provider information. Either an existing Make user ID or a new user to invite (name &amp; email).
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf2"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PostCredentialRequestsRequestsV2RequestProvider : IAdditionalDataHolder, IParsable
+    public partial class PostCredentialRequestsRequestsV2RequestProvider : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>New user to invite to the organization and add to the team.</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderNewUser? NewUser { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf1? PostCredentialRequestsRequestsV2RequestProviderOneOf1 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderNewUser NewUser { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf1 PostCredentialRequestsRequestsV2RequestProviderOneOf1 { get; set; }
 #endif
-        /// <summary>ID of the Provider&apos;s Make User. The user will be added to the team that owns the credential request.</summary>
-        public double? ProviderMakeUserId { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProvider"/> and sets the default values.
-        /// </summary>
-        public PostCredentialRequestsRequestsV2RequestProvider()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf2"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf2? PostCredentialRequestsRequestsV2RequestProviderOneOf2 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf2 PostCredentialRequestsRequestsV2RequestProviderOneOf2 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -40,7 +37,17 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProvider CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProvider();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var result = new global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProvider();
+            if("PostCredentialRequestsRequestsV2RequestProviderOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.PostCredentialRequestsRequestsV2RequestProviderOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf1();
+            }
+            else if("PostCredentialRequestsRequestsV2RequestProviderOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.PostCredentialRequestsRequestsV2RequestProviderOneOf2 = new global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf2();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -48,11 +55,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(PostCredentialRequestsRequestsV2RequestProviderOneOf1 != null)
             {
-                { "newUser", n => { NewUser = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderNewUser>(global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderNewUser.CreateFromDiscriminatorValue); } },
-                { "providerMakeUserId", n => { ProviderMakeUserId = n.GetDoubleValue(); } },
-            };
+                return PostCredentialRequestsRequestsV2RequestProviderOneOf1.GetFieldDeserializers();
+            }
+            else if(PostCredentialRequestsRequestsV2RequestProviderOneOf2 != null)
+            {
+                return PostCredentialRequestsRequestsV2RequestProviderOneOf2.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -61,9 +72,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderNewUser>("newUser", NewUser);
-            writer.WriteDoubleValue("providerMakeUserId", ProviderMakeUserId);
-            writer.WriteAdditionalData(AdditionalData);
+            if(PostCredentialRequestsRequestsV2RequestProviderOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf1>(null, PostCredentialRequestsRequestsV2RequestProviderOneOf1);
+            }
+            else if(PostCredentialRequestsRequestsV2RequestProviderOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf2>(null, PostCredentialRequestsRequestsV2RequestProviderOneOf2);
+            }
         }
     }
 }

@@ -21,10 +21,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The countries property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersion200ResponseAppCountriesItem>? Countries { get; set; }
+        public UntypedNode? Countries { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersion200ResponseAppCountriesItem> Countries { get; set; }
+        public UntypedNode Countries { get; set; }
 #endif
         /// <summary>The created property</summary>
         public DateTimeOffset? Created { get; set; }
@@ -103,7 +103,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "approved", n => { Approved = n.GetBoolValue(); } },
                 { "beta", n => { Beta = n.GetBoolValue(); } },
-                { "countries", n => { Countries = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersion200ResponseAppCountriesItem>(global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersion200ResponseAppCountriesItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "countries", n => { Countries = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "created", n => { Created = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "global", n => { Global = n.GetBoolValue(); } },
@@ -125,7 +125,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("approved", Approved);
             writer.WriteBoolValue("beta", Beta);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersion200ResponseAppCountriesItem>("countries", Countries);
+            writer.WriteObjectValue<UntypedNode>("countries", Countries);
             writer.WriteDateTimeOffsetValue("created", Created);
             writer.WriteStringValue("description", Description);
             writer.WriteBoolValue("global", Global);

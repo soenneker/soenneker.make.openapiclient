@@ -20,10 +20,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200ResponseAppsItemBrand? Brand { get; set; }
+        public UntypedNode? Brand { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200ResponseAppsItemBrand Brand { get; set; }
+        public UntypedNode Brand { get; set; }
 #endif
         /// <summary>array of strings [&apos;category1&apos;, &apos;category2&apos;], NOT YET IMPLEMENTED</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,10 +37,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200ResponseAppsItemComingSoon? ComingSoon { get; set; }
+        public UntypedNode? ComingSoon { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200ResponseAppsItemComingSoon ComingSoon { get; set; }
+        public UntypedNode ComingSoon { get; set; }
 #endif
         /// <summary>true if the app is installed from an invite link</summary>
         public bool? Foreign { get; set; }
@@ -108,9 +108,9 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "app", n => { App = n.GetBoolValue(); } },
-                { "brand", n => { Brand = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200ResponseAppsItemBrand>(global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200ResponseAppsItemBrand.CreateFromDiscriminatorValue); } },
+                { "brand", n => { Brand = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "categories", n => { Categories = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "coming_soon", n => { ComingSoon = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200ResponseAppsItemComingSoon>(global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200ResponseAppsItemComingSoon.CreateFromDiscriminatorValue); } },
+                { "coming_soon", n => { ComingSoon = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "foreign", n => { Foreign = n.GetBoolValue(); } },
                 { "isPrivate", n => { IsPrivate = n.GetBoolValue(); } },
                 { "keywords", n => { Keywords = n.GetStringValue(); } },
@@ -129,9 +129,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("app", App);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200ResponseAppsItemBrand>("brand", Brand);
+            writer.WriteObjectValue<UntypedNode>("brand", Brand);
             writer.WriteCollectionOfPrimitiveValues<string>("categories", Categories);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200ResponseAppsItemComingSoon>("coming_soon", ComingSoon);
+            writer.WriteObjectValue<UntypedNode>("coming_soon", ComingSoon);
             writer.WriteBoolValue("foreign", Foreign);
             writer.WriteBoolValue("isPrivate", IsPrivate);
             writer.WriteStringValue("keywords", Keywords);

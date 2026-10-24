@@ -8,42 +8,24 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodBranch4"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper2"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper3"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf2"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf3"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethod : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodBranch4"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf1"/></summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf1? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf1 { get; set; }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf2"/></summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf2? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf2 { get; set; }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf3"/></summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf3? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf3 { get; set; }
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodBranch4? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodBranch4 { get; set; }
+        public string? String { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodBranch4 PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodBranch4 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper2"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper2? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper2 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper2 PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper2 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper3"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper3? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper3 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper3 PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper3 { get; set; }
+        public string String { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -54,10 +36,22 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethod();
-            result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodBranch4 = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodBranch4();
-            result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper();
-            result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper2 = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper2();
-            result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper3 = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper3();
+            if(parseNode.GetStringValue() is string stringValue)
+            {
+                result.String = stringValue;
+            }
+            else if(parseNode.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf1>() is global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf1 patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf1Value)
+            {
+                result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf1 = patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf1Value;
+            }
+            else if(parseNode.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf2>() is global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf2 patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf2Value)
+            {
+                result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf2 = patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf2Value;
+            }
+            else if(parseNode.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf3>() is global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf3 patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf3Value)
+            {
+                result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf3 = patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf3Value;
+            }
             return result;
         }
         /// <summary>
@@ -66,10 +60,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodBranch4 != null || PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper != null || PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper2 != null || PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper3 != null)
-            {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodBranch4, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper2, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper3);
-            }
             return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
@@ -79,7 +69,22 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodBranch4>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodBranch4, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper2, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodWrapper3);
+            if(String != null)
+            {
+                writer.WriteStringValue(null, String);
+            }
+            else if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf1 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf1>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf1);
+            }
+            else if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf2 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf2>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf2);
+            }
+            else if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf3 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf3>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1OAuthSignatureMethodAnyOf3);
+            }
         }
     }
 }

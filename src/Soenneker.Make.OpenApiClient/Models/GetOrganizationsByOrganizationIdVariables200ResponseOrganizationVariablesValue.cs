@@ -8,43 +8,15 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1"/>
+    /// Composed type wrapper for classes <see cref="bool"/>, <see cref="double"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValue : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1? GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1 GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2? GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2 GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3? GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3 GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5? GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5 GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5 { get; set; }
-#endif
+        /// <summary>Composed type representation for type <see cref="bool"/></summary>
+        public bool? Boolean { get; set; }
+        /// <summary>Composed type representation for type <see cref="double"/></summary>
+        public double? Double { get; set; }
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,6 +24,22 @@ namespace Soenneker.Make.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1 GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4? GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4 GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? String { get; set; }
+#nullable restore
+#else
+        public string String { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -63,21 +51,21 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValue();
-            if("GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1 = new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1();
+                result.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4 = new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4();
             }
-            else if("GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if(parseNode.GetBoolValue() is bool booleanValue)
             {
-                result.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2 = new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2();
+                result.Boolean = booleanValue;
             }
-            else if("GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if(parseNode.GetDoubleValue() is double doubleValue)
             {
-                result.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3 = new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3();
+                result.Double = doubleValue;
             }
-            else if("GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if(parseNode.GetStringValue() is string stringValue)
             {
-                result.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5 = new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5();
+                result.String = stringValue;
             }
             return result;
         }
@@ -87,25 +75,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1 != null)
-            {
-                return GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1.GetFieldDeserializers();
-            }
-            else if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2 != null)
-            {
-                return GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2.GetFieldDeserializers();
-            }
-            else if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3 != null)
-            {
-                return GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3.GetFieldDeserializers();
-            }
-            else if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5 != null)
-            {
-                return GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5.GetFieldDeserializers();
-            }
-            else if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1 != null)
+            if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1 != null)
             {
                 return GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1.GetFieldDeserializers();
+            }
+            else if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4 != null)
+            {
+                return GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4.GetFieldDeserializers();
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -116,25 +92,25 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1>(null, GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch1);
-            }
-            else if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2>(null, GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch2);
-            }
-            else if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3>(null, GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch3);
-            }
-            else if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5>(null, GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueBranch5);
-            }
-            else if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1 != null)
+            if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1 != null)
             {
                 writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1>(null, GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueMember1);
+            }
+            else if(GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4>(null, GetOrganizationsByOrganizationIdVariables200ResponseOrganizationVariablesValueOneOf4);
+            }
+            else if(Boolean != null)
+            {
+                writer.WriteBoolValue(null, Boolean);
+            }
+            else if(Double != null)
+            {
+                writer.WriteDoubleValue(null, Double);
+            }
+            else if(String != null)
+            {
+                writer.WriteStringValue(null, String);
             }
         }
     }

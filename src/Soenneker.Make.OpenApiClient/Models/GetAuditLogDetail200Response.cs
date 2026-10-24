@@ -9,27 +9,11 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class GetAuditLogDetail200Response : IAdditionalDataHolder, IParsable
+    public partial class GetAuditLogDetail200Response : global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseAllOf1, IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>The actor property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseActor? Actor { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseActor Actor { get; set; }
-#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The createdAt property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CreatedAt { get; set; }
-#nullable restore
-#else
-        public string CreatedAt { get; set; }
-#endif
         /// <summary>Event-specific data. When a user named here was anonymized, their personal data is removed and `anonymized` is `true`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -38,62 +22,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseDetails Details { get; set; }
 #endif
-        /// <summary>The eventName property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? EventName { get; set; }
-#nullable restore
-#else
-        public string EventName { get; set; }
-#endif
-        /// <summary>The organization property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseOrganization? Organization { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseOrganization Organization { get; set; }
-#endif
-        /// <summary>The organizationId property</summary>
-        public int? OrganizationId { get; set; }
-        /// <summary>The targetId property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? TargetId { get; set; }
-#nullable restore
-#else
-        public string TargetId { get; set; }
-#endif
-        /// <summary>The team property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseTeam? Team { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseTeam Team { get; set; }
-#endif
-        /// <summary>The triggeredAt property</summary>
-        public int? TriggeredAt { get; set; }
-        /// <summary>The uuid property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Uuid { get; set; }
-#nullable restore
-#else
-        public string Uuid { get; set; }
-#endif
-        /// <summary>The version property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseVersion? Version { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseVersion Version { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200Response"/> and sets the default values.
         /// </summary>
-        public GetAuditLogDetail200Response()
+        public GetAuditLogDetail200Response() : base()
         {
             AdditionalData = new Dictionary<string, object>();
         }
@@ -102,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200Response"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200Response CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static new global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200Response();
@@ -111,41 +43,22 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "actor", n => { Actor = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseActor>(global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseActor.CreateFromDiscriminatorValue); } },
-                { "createdAt", n => { CreatedAt = n.GetStringValue(); } },
                 { "details", n => { Details = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseDetails>(global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseDetails.CreateFromDiscriminatorValue); } },
-                { "eventName", n => { EventName = n.GetStringValue(); } },
-                { "organization", n => { Organization = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseOrganization>(global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseOrganization.CreateFromDiscriminatorValue); } },
-                { "organizationId", n => { OrganizationId = n.GetIntValue(); } },
-                { "targetId", n => { TargetId = n.GetStringValue(); } },
-                { "team", n => { Team = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseTeam>(global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseTeam.CreateFromDiscriminatorValue); } },
-                { "triggeredAt", n => { TriggeredAt = n.GetIntValue(); } },
-                { "uuid", n => { Uuid = n.GetStringValue(); } },
-                { "version", n => { Version = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseVersion>(global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseVersion.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer)
+        public override void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseActor>("actor", Actor);
-            writer.WriteStringValue("createdAt", CreatedAt);
+            base.Serialize(writer);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseDetails>("details", Details);
-            writer.WriteStringValue("eventName", EventName);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseOrganization>("organization", Organization);
-            writer.WriteIntValue("organizationId", OrganizationId);
-            writer.WriteStringValue("targetId", TargetId);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseTeam>("team", Team);
-            writer.WriteIntValue("triggeredAt", TriggeredAt);
-            writer.WriteStringValue("uuid", Uuid);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200ResponseVersion>("version", Version);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

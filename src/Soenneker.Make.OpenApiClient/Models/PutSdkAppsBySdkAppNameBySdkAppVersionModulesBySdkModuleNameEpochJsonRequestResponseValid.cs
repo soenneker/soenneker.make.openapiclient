@@ -8,11 +8,13 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch2"/>
+    /// Composed type wrapper for classes <see cref="bool"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValid : IComposedTypeWrapper, IParsable
     {
+        /// <summary>Composed type representation for type <see cref="bool"/></summary>
+        public bool? Boolean { get; set; }
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -21,21 +23,13 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3 PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch1"/></summary>
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch1? PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch1 { get; set; }
+        public string? String { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch1 PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch1 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch2"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch2? PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch2 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch2 PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch2 { get; set; }
+        public string String { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -46,9 +40,17 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValid();
-            result.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3 = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3();
-            result.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch1 = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch1();
-            result.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch2 = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch2();
+            if(parseNode.GetBoolValue() is bool booleanValue)
+            {
+                result.Boolean = booleanValue;
+            }
+            else if(parseNode.GetStringValue() is string stringValue)
+            {
+                result.String = stringValue;
+            }
+            else {
+                result.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3 = new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3();
+            }
             return result;
         }
         /// <summary>
@@ -57,9 +59,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3 != null || PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch1 != null || PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch2 != null)
+            if(PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3 != null)
             {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch1, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch2);
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3);
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -70,7 +72,17 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3>(null, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch1, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidBranch2);
+            if(Boolean != null)
+            {
+                writer.WriteBoolValue(null, Boolean);
+            }
+            else if(String != null)
+            {
+                writer.WriteStringValue(null, String);
+            }
+            else {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3>(null, PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseValidAnyOf3);
+            }
         }
     }
 }

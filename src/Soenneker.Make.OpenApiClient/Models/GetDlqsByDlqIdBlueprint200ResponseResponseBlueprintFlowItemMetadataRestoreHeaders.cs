@@ -17,10 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The items property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataRestoreHeadersItemsItem>? Items { get; set; }
+        public UntypedNode? Items { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataRestoreHeadersItemsItem> Items { get; set; }
+        public UntypedNode Items { get; set; }
 #endif
         /// <summary>The mode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "items", n => { Items = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataRestoreHeadersItemsItem>(global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataRestoreHeadersItemsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "items", n => { Items = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "mode", n => { Mode = n.GetStringValue(); } },
             };
         }
@@ -66,7 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataRestoreHeadersItemsItem>("items", Items);
+            writer.WriteObjectValue<UntypedNode>("items", Items);
             writer.WriteStringValue("mode", Mode);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -9,18 +9,16 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PostOrganizationsByOrganizationIdOtelDestinationsRequest : IAdditionalDataHolder, IParsable
+    public partial class PostOrganizationsByOrganizationIdOtelDestinationsRequest : IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Authentication headers for the collector. On update, omitting this field preserves the saved set; supplying it replaces the whole set. An empty array is rejected. Names must be valid HTTP tokens and unique ignoring case. Reserved names such as Host and Content-Type are rejected.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinationsRequestAuthHeadersItem>? AuthHeaders { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinationsRequestAllOf1AuthHeadersItem>? AuthHeaders { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinationsRequestAuthHeadersItem> AuthHeaders { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinationsRequestAllOf1AuthHeadersItem> AuthHeaders { get; set; }
 #endif
         /// <summary>A destination name containing at least one non-whitespace character. Leading and trailing whitespace is removed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -47,13 +45,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string Url { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinationsRequest"/> and sets the default values.
-        /// </summary>
-        public PostOrganizationsByOrganizationIdOtelDestinationsRequest()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
-        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinationsRequest"/></returns>
@@ -71,7 +62,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "authHeaders", n => { AuthHeaders = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinationsRequestAuthHeadersItem>(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinationsRequestAuthHeadersItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "authHeaders", n => { AuthHeaders = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinationsRequestAllOf1AuthHeadersItem>(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinationsRequestAllOf1AuthHeadersItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "signals", n => { Signals = n.GetCollectionOfEnumValues<global::Soenneker.Make.OpenApiClient.Models.TracesItem>()?.AsList(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
@@ -84,11 +75,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinationsRequestAuthHeadersItem>("authHeaders", AuthHeaders);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinationsRequestAllOf1AuthHeadersItem>("authHeaders", AuthHeaders);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Make.OpenApiClient.Models.TracesItem>("signals", Signals);
             writer.WriteStringValue("url", Url);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

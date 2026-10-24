@@ -23,10 +23,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>App base and module API merged with the app&apos;s custom IML functions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleApi? Api { get; set; }
+        public UntypedNode? Api { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleApi Api { get; set; }
+        public UntypedNode Api { get; set; }
 #endif
         /// <summary>The appVersionFull property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -57,46 +57,46 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Decrypted app common data used by the module runtime.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleCommon? Common { get; set; }
+        public UntypedNode? Common { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleCommon Common { get; set; }
+        public UntypedNode Common { get; set; }
 #endif
         /// <summary>Whether the caller receives the author&apos;s draft runtime.</summary>
         public bool? Debug { get; set; }
         /// <summary>Module expectation definition.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleExpect? Expect { get; set; }
+        public UntypedNode? Expect { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleExpect Expect { get; set; }
+        public UntypedNode Expect { get; set; }
 #endif
         /// <summary>Deep merge of app-level and module-level runtime flags.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleFlags? Flags { get; set; }
+        public UntypedNode? Flags { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleFlags Flags { get; set; }
+        public UntypedNode Flags { get; set; }
 #endif
         /// <summary>Module output interface definition.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleInterface? Interface { get; set; }
+        public UntypedNode? Interface { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleInterface Interface { get; set; }
+        public UntypedNode Interface { get; set; }
 #endif
         /// <summary>The manifestVersion property</summary>
         public int? ManifestVersion { get; set; }
         /// <summary>Module input parameters, including the generated `__IMTCONN__` parameter when connections are attached.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleParameters? Parameters { get; set; }
+        public UntypedNode? Parameters { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleParameters Parameters { get; set; }
+        public UntypedNode Parameters { get; set; }
 #endif
         /// <summary>Module type. `4` is Action and `9` is Search.</summary>
         public int? TypeId { get; set; }
@@ -119,18 +119,18 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "allowedAccountNames", n => { AllowedAccountNames = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "api", n => { Api = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleApi>(global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleApi.CreateFromDiscriminatorValue); } },
+                { "api", n => { Api = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "appVersionFull", n => { AppVersionFull = n.GetStringValue(); } },
                 { "billable", n => { Billable = n.GetBoolValue(); } },
                 { "centicreditsFormula", n => { CenticreditsFormula = n.GetStringValue(); } },
                 { "centicreditsFormulaMeta", n => { CenticreditsFormulaMeta = n.GetStringValue(); } },
-                { "common", n => { Common = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleCommon>(global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleCommon.CreateFromDiscriminatorValue); } },
+                { "common", n => { Common = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "debug", n => { Debug = n.GetBoolValue(); } },
-                { "expect", n => { Expect = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleExpect>(global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleExpect.CreateFromDiscriminatorValue); } },
-                { "flags", n => { Flags = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleFlags>(global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleFlags.CreateFromDiscriminatorValue); } },
-                { "interface", n => { Interface = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleInterface>(global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleInterface.CreateFromDiscriminatorValue); } },
+                { "expect", n => { Expect = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
+                { "flags", n => { Flags = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
+                { "interface", n => { Interface = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "manifestVersion", n => { ManifestVersion = n.GetIntValue(); } },
-                { "parameters", n => { Parameters = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleParameters>(global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleParameters.CreateFromDiscriminatorValue); } },
+                { "parameters", n => { Parameters = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "typeId", n => { TypeId = n.GetIntValue(); } },
             };
         }
@@ -142,18 +142,18 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("allowedAccountNames", AllowedAccountNames);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleApi>("api", Api);
+            writer.WriteObjectValue<UntypedNode>("api", Api);
             writer.WriteStringValue("appVersionFull", AppVersionFull);
             writer.WriteBoolValue("billable", Billable);
             writer.WriteStringValue("centicreditsFormula", CenticreditsFormula);
             writer.WriteStringValue("centicreditsFormulaMeta", CenticreditsFormulaMeta);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleCommon>("common", Common);
+            writer.WriteObjectValue<UntypedNode>("common", Common);
             writer.WriteBoolValue("debug", Debug);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleExpect>("expect", Expect);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleFlags>("flags", Flags);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleInterface>("interface", Interface);
+            writer.WriteObjectValue<UntypedNode>("expect", Expect);
+            writer.WriteObjectValue<UntypedNode>("flags", Flags);
+            writer.WriteObjectValue<UntypedNode>("interface", Interface);
             writer.WriteIntValue("manifestVersion", ManifestVersion);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModuleParameters>("parameters", Parameters);
+            writer.WriteObjectValue<UntypedNode>("parameters", Parameters);
             writer.WriteIntValue("typeId", TypeId);
         }
     }

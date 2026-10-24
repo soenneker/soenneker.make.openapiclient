@@ -17,10 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>When `scoredSearch=true`, items are `ScoredSearchApp` (native/SDK) or`AddonApp`. When `scoredSearch` is omitted/false, items are the non-scoredmanifest shapes (not documented here).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItem>? Apps { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItemOneOf1>? Apps { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItem> Apps { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItemOneOf1> Apps { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetImtApps200Response"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "apps", n => { Apps = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItem>(global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "apps", n => { Apps = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItemOneOf1>(global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItemOneOf1.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItem>("apps", Apps);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItemOneOf1>("apps", Apps);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

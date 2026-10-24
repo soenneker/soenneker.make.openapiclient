@@ -17,10 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The config property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsByAppNameByAppVersionByRpcName200ResponseConfigItem>? Config { get; set; }
+        public UntypedNode? Config { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsByAppNameByAppVersionByRpcName200ResponseConfigItem> Config { get; set; }
+        public UntypedNode Config { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsByAppNameByAppVersionByRpcName200Response"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "config", n => { Config = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsByAppNameByAppVersionByRpcName200ResponseConfigItem>(global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsByAppNameByAppVersionByRpcName200ResponseConfigItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "config", n => { Config = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.OptionsRpcsByAppNameByAppVersionByRpcName200ResponseConfigItem>("config", Config);
+            writer.WriteObjectValue<UntypedNode>("config", Config);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

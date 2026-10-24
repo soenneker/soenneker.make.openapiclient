@@ -8,27 +8,11 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailBranch1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailBranch3"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailMember1"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailMember1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailMember2"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PublishFunctionV2Version409ResponseDetail : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailBranch1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailBranch1? PublishFunctionV2Version409ResponseDetailBranch1 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailBranch1 PublishFunctionV2Version409ResponseDetailBranch1 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailBranch3"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailBranch3? PublishFunctionV2Version409ResponseDetailBranch3 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailBranch3 PublishFunctionV2Version409ResponseDetailBranch3 { get; set; }
-#endif
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailMember1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -36,6 +20,22 @@ namespace Soenneker.Make.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailMember1 PublishFunctionV2Version409ResponseDetailMember1 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailMember2"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailMember2? PublishFunctionV2Version409ResponseDetailMember2 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailMember2 PublishFunctionV2Version409ResponseDetailMember2 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? String { get; set; }
+#nullable restore
+#else
+        public string String { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -47,13 +47,9 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetail();
-            if("PublishFunctionV2Version409ResponseDetailBranch1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if(parseNode.GetStringValue() is string stringValue)
             {
-                result.PublishFunctionV2Version409ResponseDetailBranch1 = new global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailBranch1();
-            }
-            else if("PublishFunctionV2Version409ResponseDetailBranch3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.PublishFunctionV2Version409ResponseDetailBranch3 = new global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailBranch3();
+                result.String = stringValue;
             }
             return result;
         }
@@ -63,17 +59,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(PublishFunctionV2Version409ResponseDetailBranch1 != null)
-            {
-                return PublishFunctionV2Version409ResponseDetailBranch1.GetFieldDeserializers();
-            }
-            else if(PublishFunctionV2Version409ResponseDetailBranch3 != null)
-            {
-                return PublishFunctionV2Version409ResponseDetailBranch3.GetFieldDeserializers();
-            }
-            else if(PublishFunctionV2Version409ResponseDetailMember1 != null)
+            if(PublishFunctionV2Version409ResponseDetailMember1 != null)
             {
                 return PublishFunctionV2Version409ResponseDetailMember1.GetFieldDeserializers();
+            }
+            else if(PublishFunctionV2Version409ResponseDetailMember2 != null)
+            {
+                return PublishFunctionV2Version409ResponseDetailMember2.GetFieldDeserializers();
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -84,17 +76,17 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(PublishFunctionV2Version409ResponseDetailBranch1 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailBranch1>(null, PublishFunctionV2Version409ResponseDetailBranch1);
-            }
-            else if(PublishFunctionV2Version409ResponseDetailBranch3 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailBranch3>(null, PublishFunctionV2Version409ResponseDetailBranch3);
-            }
-            else if(PublishFunctionV2Version409ResponseDetailMember1 != null)
+            if(PublishFunctionV2Version409ResponseDetailMember1 != null)
             {
                 writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailMember1>(null, PublishFunctionV2Version409ResponseDetailMember1);
+            }
+            else if(PublishFunctionV2Version409ResponseDetailMember2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409ResponseDetailMember2>(null, PublishFunctionV2Version409ResponseDetailMember2);
+            }
+            else if(String != null)
+            {
+                writer.WriteStringValue(null, String);
             }
         }
     }

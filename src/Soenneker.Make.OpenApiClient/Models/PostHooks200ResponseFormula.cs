@@ -17,10 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The success property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostHooks200ResponseFormulaSuccessItem>? Success { get; set; }
+        public UntypedNode? Success { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostHooks200ResponseFormulaSuccessItem> Success { get; set; }
+        public UntypedNode Success { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostHooks200ResponseFormula"/> and sets the default values.
@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "success", n => { Success = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostHooks200ResponseFormulaSuccessItem>(global::Soenneker.Make.OpenApiClient.Models.PostHooks200ResponseFormulaSuccessItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "success", n => { Success = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostHooks200ResponseFormulaSuccessItem>("success", Success);
+            writer.WriteObjectValue<UntypedNode>("success", Success);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

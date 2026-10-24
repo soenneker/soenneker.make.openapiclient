@@ -35,10 +35,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The transferLimit property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamId200ResponseTeamTransferLimit? TransferLimit { get; set; }
+        public UntypedNode? TransferLimit { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamId200ResponseTeamTransferLimit TransferLimit { get; set; }
+        public UntypedNode TransferLimit { get; set; }
 #endif
         /// <summary>Distinguishes a standard team from a private space (`personal`). Only returned when requested via`cols[]=type`. Private spaces are included in the list only when `includePrivateSpaces=true`.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamId200ResponseTeamType? Type { get; set; }
@@ -73,7 +73,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "operationsLimit", n => { OperationsLimit = n.GetIntValue(); } },
                 { "organizationId", n => { OrganizationId = n.GetIntValue(); } },
-                { "transferLimit", n => { TransferLimit = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamId200ResponseTeamTransferLimit>(global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamId200ResponseTeamTransferLimit.CreateFromDiscriminatorValue); } },
+                { "transferLimit", n => { TransferLimit = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamId200ResponseTeamType>(); } },
             };
         }
@@ -90,7 +90,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("operationsLimit", OperationsLimit);
             writer.WriteIntValue("organizationId", OrganizationId);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamId200ResponseTeamTransferLimit>("transferLimit", TransferLimit);
+            writer.WriteObjectValue<UntypedNode>("transferLimit", TransferLimit);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamId200ResponseTeamType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -8,34 +8,22 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeBranch3"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper2"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf2"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerType : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeBranch3"/></summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf1"/></summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf1? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf1 { get; set; }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf2"/></summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf2? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf2 { get; set; }
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeBranch3? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeBranch3 { get; set; }
+        public string? String { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeBranch3 PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeBranch3 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper2"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper2? PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper2 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper2 PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper2 { get; set; }
+        public string String { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -46,9 +34,18 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerType();
-            result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeBranch3 = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeBranch3();
-            result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper();
-            result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper2 = new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper2();
+            if(parseNode.GetStringValue() is string stringValue)
+            {
+                result.String = stringValue;
+            }
+            else if(parseNode.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf1>() is global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf1 patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf1Value)
+            {
+                result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf1 = patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf1Value;
+            }
+            else if(parseNode.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf2>() is global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf2 patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf2Value)
+            {
+                result.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf2 = patchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf2Value;
+            }
             return result;
         }
         /// <summary>
@@ -57,10 +54,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeBranch3 != null || PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper != null || PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper2 != null)
-            {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeBranch3, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper2);
-            }
             return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
@@ -70,7 +63,18 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeBranch3>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeBranch3, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeWrapper2);
+            if(String != null)
+            {
+                writer.WriteStringValue(null, String);
+            }
+            else if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf1 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf1>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf1);
+            }
+            else if(PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf2 != null)
+            {
+                writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf2>(null, PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTriggerTypeAnyOf2);
+            }
         }
     }
 }

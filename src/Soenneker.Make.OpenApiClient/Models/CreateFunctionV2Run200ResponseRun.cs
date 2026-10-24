@@ -77,10 +77,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Validated JSON returned by a succeeded Run.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200ResponseRunOutput? Output { get; set; }
+        public UntypedNode? Output { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200ResponseRunOutput Output { get; set; }
+        public UntypedNode Output { get; set; }
 #endif
         /// <summary>The queuedAt property</summary>
         public DateTimeOffset? QueuedAt { get; set; }
@@ -129,7 +129,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "maximumAttempts", n => { MaximumAttempts = n.GetIntValue(); } },
                 { "origin", n => { Origin = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200ResponseRunOrigin>(global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200ResponseRunOrigin.CreateFromDiscriminatorValue); } },
-                { "output", n => { Output = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200ResponseRunOutput>(global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200ResponseRunOutput.CreateFromDiscriminatorValue); } },
+                { "output", n => { Output = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "queuedAt", n => { QueuedAt = n.GetDateTimeOffsetValue(); } },
                 { "startedAt", n => { StartedAt = n.GetDateTimeOffsetValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200ResponseRunStatus>(); } },
@@ -156,7 +156,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteGuidValue("id", Id);
             writer.WriteIntValue("maximumAttempts", MaximumAttempts);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200ResponseRunOrigin>("origin", Origin);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200ResponseRunOutput>("output", Output);
+            writer.WriteObjectValue<UntypedNode>("output", Output);
             writer.WriteDateTimeOffsetValue("queuedAt", QueuedAt);
             writer.WriteDateTimeOffsetValue("startedAt", StartedAt);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200ResponseRunStatus>("status", Status);

@@ -27,10 +27,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The inputs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseTool_inputs>? Inputs { get; set; }
+        public UntypedNode? Inputs { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseTool_inputs> Inputs { get; set; }
+        public UntypedNode Inputs { get; set; }
 #endif
         /// <summary>The module property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -77,7 +77,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
-                { "inputs", n => { Inputs = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseTool_inputs>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseTool_inputs.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "inputs", n => { Inputs = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "module", n => { Module = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseToolModule>(global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseToolModule.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
@@ -92,7 +92,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteIntValue("id", Id);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseTool_inputs>("inputs", Inputs);
+            writer.WriteObjectValue<UntypedNode>("inputs", Inputs);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200ResponseToolModule>("module", Module);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("teamId", TeamId);

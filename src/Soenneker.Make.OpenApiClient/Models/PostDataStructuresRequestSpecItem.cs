@@ -7,56 +7,68 @@ using System.IO;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf2"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf3"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf4"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf5"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf6"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf7"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class PostDataStructuresRequestSpecItem : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class PostDataStructuresRequestSpecItem : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The codepage property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemCodepage? Codepage { get; set; }
-        /// <summary>The default property</summary>
-        public bool? Default { get; set; }
-        /// <summary>The label property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Label { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf1? PostDataStructuresRequestSpecItemOneOf1 { get; set; }
 #nullable restore
 #else
-        public string Label { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf1 PostDataStructuresRequestSpecItemOneOf1 { get; set; }
 #endif
-        /// <summary>The multiline property</summary>
-        public bool? Multiline { get; set; }
-        /// <summary>The name property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf2? PostDataStructuresRequestSpecItemOneOf2 { get; set; }
 #nullable restore
 #else
-        public string Name { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf2 PostDataStructuresRequestSpecItemOneOf2 { get; set; }
 #endif
-        /// <summary>The required property</summary>
-        public bool? Required { get; set; }
-        /// <summary>The sequence property</summary>
-        public bool? Sequence { get; set; }
-        /// <summary>The spec property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf3"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemSpecItem>? Spec { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf3? PostDataStructuresRequestSpecItemOneOf3 { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemSpecItem> Spec { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf3 PostDataStructuresRequestSpecItemOneOf3 { get; set; }
 #endif
-        /// <summary>The type property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemType? Type { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItem"/> and sets the default values.
-        /// </summary>
-        public PostDataStructuresRequestSpecItem()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf4"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf4? PostDataStructuresRequestSpecItemOneOf4 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf4 PostDataStructuresRequestSpecItemOneOf4 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf5"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf5? PostDataStructuresRequestSpecItemOneOf5 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf5 PostDataStructuresRequestSpecItemOneOf5 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf6"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf6? PostDataStructuresRequestSpecItemOneOf6 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf6 PostDataStructuresRequestSpecItemOneOf6 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf7"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf7? PostDataStructuresRequestSpecItemOneOf7 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf7 PostDataStructuresRequestSpecItemOneOf7 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -65,7 +77,37 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItem();
+            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var result = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItem();
+            if("boolean".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.PostDataStructuresRequestSpecItemOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf1();
+            }
+            else if("text".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.PostDataStructuresRequestSpecItemOneOf2 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf2();
+            }
+            else if("number".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.PostDataStructuresRequestSpecItemOneOf3 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf3();
+            }
+            else if("date".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.PostDataStructuresRequestSpecItemOneOf4 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf4();
+            }
+            else if("buffer".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.PostDataStructuresRequestSpecItemOneOf5 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf5();
+            }
+            else if("collection".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.PostDataStructuresRequestSpecItemOneOf6 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf6();
+            }
+            else if("array".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.PostDataStructuresRequestSpecItemOneOf7 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf7();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -73,18 +115,35 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(PostDataStructuresRequestSpecItemOneOf1 != null)
             {
-                { "codepage", n => { Codepage = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemCodepage>(); } },
-                { "default", n => { Default = n.GetBoolValue(); } },
-                { "label", n => { Label = n.GetStringValue(); } },
-                { "multiline", n => { Multiline = n.GetBoolValue(); } },
-                { "name", n => { Name = n.GetStringValue(); } },
-                { "required", n => { Required = n.GetBoolValue(); } },
-                { "sequence", n => { Sequence = n.GetBoolValue(); } },
-                { "spec", n => { Spec = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemSpecItem>(global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemSpecItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemType>(); } },
-            };
+                return PostDataStructuresRequestSpecItemOneOf1.GetFieldDeserializers();
+            }
+            else if(PostDataStructuresRequestSpecItemOneOf2 != null)
+            {
+                return PostDataStructuresRequestSpecItemOneOf2.GetFieldDeserializers();
+            }
+            else if(PostDataStructuresRequestSpecItemOneOf3 != null)
+            {
+                return PostDataStructuresRequestSpecItemOneOf3.GetFieldDeserializers();
+            }
+            else if(PostDataStructuresRequestSpecItemOneOf4 != null)
+            {
+                return PostDataStructuresRequestSpecItemOneOf4.GetFieldDeserializers();
+            }
+            else if(PostDataStructuresRequestSpecItemOneOf5 != null)
+            {
+                return PostDataStructuresRequestSpecItemOneOf5.GetFieldDeserializers();
+            }
+            else if(PostDataStructuresRequestSpecItemOneOf6 != null)
+            {
+                return PostDataStructuresRequestSpecItemOneOf6.GetFieldDeserializers();
+            }
+            else if(PostDataStructuresRequestSpecItemOneOf7 != null)
+            {
+                return PostDataStructuresRequestSpecItemOneOf7.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -93,16 +152,34 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemCodepage>("codepage", Codepage);
-            writer.WriteBoolValue("default", Default);
-            writer.WriteStringValue("label", Label);
-            writer.WriteBoolValue("multiline", Multiline);
-            writer.WriteStringValue("name", Name);
-            writer.WriteBoolValue("required", Required);
-            writer.WriteBoolValue("sequence", Sequence);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemSpecItem>("spec", Spec);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemType>("type", Type);
-            writer.WriteAdditionalData(AdditionalData);
+            if(PostDataStructuresRequestSpecItemOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf1>(null, PostDataStructuresRequestSpecItemOneOf1);
+            }
+            else if(PostDataStructuresRequestSpecItemOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf2>(null, PostDataStructuresRequestSpecItemOneOf2);
+            }
+            else if(PostDataStructuresRequestSpecItemOneOf3 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf3>(null, PostDataStructuresRequestSpecItemOneOf3);
+            }
+            else if(PostDataStructuresRequestSpecItemOneOf4 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf4>(null, PostDataStructuresRequestSpecItemOneOf4);
+            }
+            else if(PostDataStructuresRequestSpecItemOneOf5 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf5>(null, PostDataStructuresRequestSpecItemOneOf5);
+            }
+            else if(PostDataStructuresRequestSpecItemOneOf6 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf6>(null, PostDataStructuresRequestSpecItemOneOf6);
+            }
+            else if(PostDataStructuresRequestSpecItemOneOf7 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf7>(null, PostDataStructuresRequestSpecItemOneOf7);
+            }
         }
     }
 }

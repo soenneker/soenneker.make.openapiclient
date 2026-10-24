@@ -11,10 +11,8 @@ namespace Soenneker.Make.OpenApiClient.Models
     /// Snapshot of `draftForm` taken at the last submit. Later draft edits do not change it.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm : IAdditionalDataHolder, IParsable
+    public partial class PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm : IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Documentation of the API the app calls. Must be an `http(s)` URL when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -76,11 +74,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string LandingPageUrl { get; set; }
 #endif
         /// <summary>Requested Marketplace listing type. The choice is only offered to Solution Partners without a vendor agreement.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormListingType? ListingType { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1ListingType? ListingType { get; set; }
         /// <summary>Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: `none` → `solution`, otherwise `technology`.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormPartnerProgramApplication? PartnerProgramApplication { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1PartnerProgramApplication? PartnerProgramApplication { get; set; }
         /// <summary>Community listing only — whether the app itself is free or paid.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormPricing? Pricing { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Pricing? Pricing { get; set; }
         /// <summary>Update/re-review only — confirmation that every scenario was re-run on the current app version.</summary>
         public bool? ReRunConfirmed { get; set; }
         /// <summary>Community listing only — short description of the app.</summary>
@@ -94,10 +92,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Selected subcategories, keyed by category.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormSubcategories? Subcategories { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Subcategories? Subcategories { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormSubcategories Subcategories { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Subcategories Subcategories { get; set; }
 #endif
         /// <summary>Email Make forwards support and maintenance requests to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -136,7 +134,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public List<string> UpdatedScenarioUrls { get; set; }
 #endif
         /// <summary>The developer&apos;s relationship to the vendor of the integrated software.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormVendorRelationship? VendorRelationship { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1VendorRelationship? VendorRelationship { get; set; }
         /// <summary>Update/re-review only — what changed in this version, or what was changed in response to the reviewer.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -145,13 +143,6 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string WhatChanged { get; set; }
 #endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm"/> and sets the default values.
-        /// </summary>
-        public PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -179,19 +170,19 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "externalTcConsent", n => { ExternalTcConsent = n.GetBoolValue(); } },
                 { "homepageUrl", n => { HomepageUrl = n.GetStringValue(); } },
                 { "landingPageUrl", n => { LandingPageUrl = n.GetStringValue(); } },
-                { "listingType", n => { ListingType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormListingType>(); } },
-                { "partnerProgramApplication", n => { PartnerProgramApplication = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormPartnerProgramApplication>(); } },
-                { "pricing", n => { Pricing = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormPricing>(); } },
+                { "listingType", n => { ListingType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1ListingType>(); } },
+                { "partnerProgramApplication", n => { PartnerProgramApplication = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1PartnerProgramApplication>(); } },
+                { "pricing", n => { Pricing = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Pricing>(); } },
                 { "reRunConfirmed", n => { ReRunConfirmed = n.GetBoolValue(); } },
                 { "shortDescription", n => { ShortDescription = n.GetStringValue(); } },
-                { "subcategories", n => { Subcategories = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormSubcategories>(global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormSubcategories.CreateFromDiscriminatorValue); } },
+                { "subcategories", n => { Subcategories = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Subcategories>(global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Subcategories.CreateFromDiscriminatorValue); } },
                 { "supportContactEmail", n => { SupportContactEmail = n.GetStringValue(); } },
                 { "supportContactName", n => { SupportContactName = n.GetStringValue(); } },
                 { "termsConsent", n => { TermsConsent = n.GetBoolValue(); } },
                 { "testScenarioUrls", n => { TestScenarioUrls = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "trademarkConsent", n => { TrademarkConsent = n.GetBoolValue(); } },
                 { "updatedScenarioUrls", n => { UpdatedScenarioUrls = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "vendorRelationship", n => { VendorRelationship = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormVendorRelationship>(); } },
+                { "vendorRelationship", n => { VendorRelationship = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1VendorRelationship>(); } },
                 { "whatChanged", n => { WhatChanged = n.GetStringValue(); } },
             };
         }
@@ -211,21 +202,20 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("externalTcConsent", ExternalTcConsent);
             writer.WriteStringValue("homepageUrl", HomepageUrl);
             writer.WriteStringValue("landingPageUrl", LandingPageUrl);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormListingType>("listingType", ListingType);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormPartnerProgramApplication>("partnerProgramApplication", PartnerProgramApplication);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormPricing>("pricing", Pricing);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1ListingType>("listingType", ListingType);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1PartnerProgramApplication>("partnerProgramApplication", PartnerProgramApplication);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Pricing>("pricing", Pricing);
             writer.WriteBoolValue("reRunConfirmed", ReRunConfirmed);
             writer.WriteStringValue("shortDescription", ShortDescription);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormSubcategories>("subcategories", Subcategories);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Subcategories>("subcategories", Subcategories);
             writer.WriteStringValue("supportContactEmail", SupportContactEmail);
             writer.WriteStringValue("supportContactName", SupportContactName);
             writer.WriteBoolValue("termsConsent", TermsConsent);
             writer.WriteCollectionOfPrimitiveValues<string>("testScenarioUrls", TestScenarioUrls);
             writer.WriteBoolValue("trademarkConsent", TrademarkConsent);
             writer.WriteCollectionOfPrimitiveValues<string>("updatedScenarioUrls", UpdatedScenarioUrls);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormVendorRelationship>("vendorRelationship", VendorRelationship);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1VendorRelationship>("vendorRelationship", VendorRelationship);
             writer.WriteStringValue("whatChanged", WhatChanged);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

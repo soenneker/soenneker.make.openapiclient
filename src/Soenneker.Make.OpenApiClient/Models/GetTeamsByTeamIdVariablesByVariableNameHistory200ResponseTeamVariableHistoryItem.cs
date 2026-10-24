@@ -2,54 +2,33 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Abstractions;
 using System.Collections.Generic;
 using System.IO;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem : IComposedTypeWrapper, IParsable
     {
-        /// <summary>organization_variable_created or organization_variable_edited or team_variable_created or team_variable_edited</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Action { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1? GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1 { get; set; }
 #nullable restore
 #else
-        public string Action { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1 GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1 { get; set; }
 #endif
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The author property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Author { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2? GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2 { get; set; }
 #nullable restore
 #else
-        public string Author { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2 GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2 { get; set; }
 #endif
-        /// <summary>The changed property</summary>
-        public Date? Changed { get; set; }
-        /// <summary>The diffObject property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemDiffObject? DiffObject { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemDiffObject DiffObject { get; set; }
-#endif
-        /// <summary>The id property</summary>
-        public int? Id { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem"/> and sets the default values.
-        /// </summary>
-        public GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -58,7 +37,17 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var result = new global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem();
+            if("GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1();
+            }
+            else if("GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2 = new global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,14 +55,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1 != null)
             {
-                { "action", n => { Action = n.GetStringValue(); } },
-                { "author", n => { Author = n.GetStringValue(); } },
-                { "changed", n => { Changed = n.GetDateValue(); } },
-                { "diffObject", n => { DiffObject = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemDiffObject>(global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemDiffObject.CreateFromDiscriminatorValue); } },
-                { "id", n => { Id = n.GetIntValue(); } },
-            };
+                return GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1.GetFieldDeserializers();
+            }
+            else if(GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2 != null)
+            {
+                return GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -82,12 +72,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("action", Action);
-            writer.WriteStringValue("author", Author);
-            writer.WriteDateValue("changed", Changed);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemDiffObject>("diffObject", DiffObject);
-            writer.WriteIntValue("id", Id);
-            writer.WriteAdditionalData(AdditionalData);
+            if(GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1>(null, GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf1);
+            }
+            else if(GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2>(null, GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItemOneOf2);
+            }
         }
     }
 }

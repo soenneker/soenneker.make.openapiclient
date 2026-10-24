@@ -33,10 +33,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The options available to users when filling in the item data. For the data types `dropdown` and `multiselect`, fill in an object like `{&quot;options&quot;:[{&quot;value&quot;: &quot;Marketing&quot;}, {&quot;value&quot;: &quot;Sales&quot;}]}`.You can omit the `options` parameter for the rest of the data types. </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemIdRequestOptions? Options { get; set; }
+        public UntypedNode? Options { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemIdRequestOptions Options { get; set; }
+        public UntypedNode Options { get; set; }
 #endif
         /// <summary>Set to `true` if you require to fill in data to the structure item when adding custom property data. Default value is `false`.</summary>
         public bool? Required { get; set; }
@@ -67,7 +67,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
-                { "options", n => { Options = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemIdRequestOptions>(global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemIdRequestOptions.CreateFromDiscriminatorValue); } },
+                { "options", n => { Options = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "required", n => { Required = n.GetBoolValue(); } },
             };
         }
@@ -80,7 +80,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("label", Label);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemIdRequestOptions>("options", Options);
+            writer.WriteObjectValue<UntypedNode>("options", Options);
             writer.WriteBoolValue("required", Required);
             writer.WriteAdditionalData(AdditionalData);
         }

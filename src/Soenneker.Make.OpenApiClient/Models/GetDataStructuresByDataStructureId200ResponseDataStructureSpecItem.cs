@@ -7,56 +7,68 @@ using System.IO;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The codepage property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemCodepage? Codepage { get; set; }
-        /// <summary>The default property</summary>
-        public bool? Default { get; set; }
-        /// <summary>The label property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Label { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1? GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1 { get; set; }
 #nullable restore
 #else
-        public string Label { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1 GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1 { get; set; }
 #endif
-        /// <summary>The multiline property</summary>
-        public bool? Multiline { get; set; }
-        /// <summary>The name property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2? GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2 { get; set; }
 #nullable restore
 #else
-        public string Name { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2 GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2 { get; set; }
 #endif
-        /// <summary>The required property</summary>
-        public bool? Required { get; set; }
-        /// <summary>The sequence property</summary>
-        public bool? Sequence { get; set; }
-        /// <summary>The spec property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemSpecItem>? Spec { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3? GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3 { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemSpecItem> Spec { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3 GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3 { get; set; }
 #endif
-        /// <summary>The type property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemType? Type { get; set; }
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem"/> and sets the default values.
-        /// </summary>
-        public GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4? GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4 GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5? GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5 GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6? GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6 GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7? GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7 GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -65,7 +77,37 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem();
+            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var result = new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem();
+            if("boolean".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1();
+            }
+            else if("text".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2 = new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2();
+            }
+            else if("number".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3 = new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3();
+            }
+            else if("date".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4 = new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4();
+            }
+            else if("buffer".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5 = new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5();
+            }
+            else if("collection".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6 = new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6();
+            }
+            else if("array".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7 = new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -73,18 +115,35 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1 != null)
             {
-                { "codepage", n => { Codepage = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemCodepage>(); } },
-                { "default", n => { Default = n.GetBoolValue(); } },
-                { "label", n => { Label = n.GetStringValue(); } },
-                { "multiline", n => { Multiline = n.GetBoolValue(); } },
-                { "name", n => { Name = n.GetStringValue(); } },
-                { "required", n => { Required = n.GetBoolValue(); } },
-                { "sequence", n => { Sequence = n.GetBoolValue(); } },
-                { "spec", n => { Spec = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemSpecItem>(global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemSpecItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemType>(); } },
-            };
+                return GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1.GetFieldDeserializers();
+            }
+            else if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2 != null)
+            {
+                return GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2.GetFieldDeserializers();
+            }
+            else if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3 != null)
+            {
+                return GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3.GetFieldDeserializers();
+            }
+            else if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4 != null)
+            {
+                return GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4.GetFieldDeserializers();
+            }
+            else if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5 != null)
+            {
+                return GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5.GetFieldDeserializers();
+            }
+            else if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6 != null)
+            {
+                return GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6.GetFieldDeserializers();
+            }
+            else if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7 != null)
+            {
+                return GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -93,16 +152,34 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemCodepage>("codepage", Codepage);
-            writer.WriteBoolValue("default", Default);
-            writer.WriteStringValue("label", Label);
-            writer.WriteBoolValue("multiline", Multiline);
-            writer.WriteStringValue("name", Name);
-            writer.WriteBoolValue("required", Required);
-            writer.WriteBoolValue("sequence", Sequence);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemSpecItem>("spec", Spec);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemType>("type", Type);
-            writer.WriteAdditionalData(AdditionalData);
+            if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1>(null, GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1);
+            }
+            else if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2>(null, GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2);
+            }
+            else if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3>(null, GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3);
+            }
+            else if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4>(null, GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4);
+            }
+            else if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5>(null, GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5);
+            }
+            else if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6>(null, GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6);
+            }
+            else if(GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7>(null, GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7);
+            }
         }
     }
 }

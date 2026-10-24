@@ -19,10 +19,10 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The scenarioIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivateRequestOneOf2ScenarioIds? ScenarioIds { get; set; }
+        public UntypedNode? ScenarioIds { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivateRequestOneOf2ScenarioIds ScenarioIds { get; set; }
+        public UntypedNode ScenarioIds { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivateRequestOneOf2"/> and sets the default values.
@@ -50,7 +50,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "reanalyze", n => { Reanalyze = n.GetBoolValue(); } },
-                { "scenarioIds", n => { ScenarioIds = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivateRequestOneOf2ScenarioIds>(global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivateRequestOneOf2ScenarioIds.CreateFromDiscriminatorValue); } },
+                { "scenarioIds", n => { ScenarioIds = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("reanalyze", Reanalyze);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivateRequestOneOf2ScenarioIds>("scenarioIds", ScenarioIds);
+            writer.WriteObjectValue<UntypedNode>("scenarioIds", ScenarioIds);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
