@@ -19,15 +19,15 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens
     public partial class ApiTokensRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.users.me.apiTokens.item collection</summary>
-        /// <param name="position">The timestamp of the moment when you created the API key in the ISO 8601 compliant format.</param>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item.WithTimestampItemRequestBuilder"/></returns>
-        public global::Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item.WithTimestampItemRequestBuilder this[DateTimeOffset position]
+        /// <param name="position">The timestamp of the moment when you created the API token in the ISO 8601 compliant format.</param>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item.WithApiTokenTimestampItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item.WithApiTokenTimestampItemRequestBuilder this[DateTimeOffset position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("timestamp", position);
-                return new global::Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item.WithTimestampItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("apiTokenTimestamp", position);
+                return new global::Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item.WithApiTokenTimestampItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

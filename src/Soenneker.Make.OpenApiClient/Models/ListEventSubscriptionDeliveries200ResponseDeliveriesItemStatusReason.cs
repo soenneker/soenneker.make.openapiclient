@@ -15,9 +15,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         EndpointUnreachable,
         #pragma warning restore CS1591
-        [EnumMember(Value = "subscription_failing")]
+        [EnumMember(Value = "subscription_suspended")]
         #pragma warning disable CS1591
-        SubscriptionFailing,
+        SubscriptionSuspended,
         #pragma warning restore CS1591
         [EnumMember(Value = "platform_error")]
         #pragma warning disable CS1591

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
-    /// <summary>`active` receives events, `inactive` was disabled, and `failing` stopped receiving events after repeated failed deliveries.</summary>
+    /// <summary>`active` receives events, `inactive` was disabled, and `suspended` stopped sending after repeated failed deliveries until it is enabled again.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum DisableEventSubscription200ResponseSubscriptionStatusState
     {
@@ -15,9 +15,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         Inactive,
         #pragma warning restore CS1591
-        [EnumMember(Value = "failing")]
+        [EnumMember(Value = "suspended")]
         #pragma warning disable CS1591
-        Failing,
+        Suspended,
         #pragma warning restore CS1591
     }
 }

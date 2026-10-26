@@ -59,6 +59,31 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher.Logo
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteAdminSdkAppsByAppByVersionPublisherLogo200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteAdminSdkAppsByAppByVersionPublisherLogo200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
+        /// Serves the company logo stored on the profile of the app&apos;s author as a PNG image, or `404` with the message `Logo not found` when the author has none; the developer&apos;s own logo route is `GET /sdk/publisher/logo`. The `apps_review_*` Trackman traces link here from `review_form.publisher.logo_url` (`https://{zone}/api/v2/admin/sdk/apps/{app}/{version}/publisher/logo`), so Make&apos;s app review process can download the logo with an administrator&apos;s API token. It serves the logo stored at the time of the request, which differs from the one sent with the review once the developer replaces it. Only Make administrators holding the `apps get` permission may call it: responds `403` (IM002) without the permission (checked before the app is looked up) and `404` (IM013) when the app version does not exist. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
+        /// </summary>
+        /// <returns>A <see cref="Stream"/></returns>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminSdkAppsByAppByVersionPublisherLogo403Response">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminSdkAppsByAppByVersionPublisherLogo404Response">When receiving a 404 status code</exception>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<Stream?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<Stream> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToGetRequestInformation(requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "403", global::Soenneker.Make.OpenApiClient.Models.GetAdminSdkAppsByAppByVersionPublisherLogo403Response.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Make.OpenApiClient.Models.GetAdminSdkAppsByAppByVersionPublisherLogo404Response.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
         /// Stores the company logo on the profile of the app&apos;s author, creating the profile when the developer never saved one, and answers with the author&apos;s profile the way `GET /sdk/apps/{app}/{version}/publisher` does. A Make partner sees their logo read-only on the verified-partner card, so Make administrators holding the `apps edit` permission set it here; the developer&apos;s own logo routes are `/sdk/publisher/logo`. The logo has the same requirements as there: the raw request body with content type `image/png`, a square PNG between 512×512 and 2048×2048 pixels, at most 500 kB. A missing or non-binary body responds with `400` (IM005), an invalid or non-square PNG with `400` (SC400), a file over 500 kB with `413`. Responds `403` (IM002) without the permission (checked before the app is looked up) and `404` (IM013) when the app version does not exist. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo200Response"/></returns>
@@ -106,6 +131,25 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher.Logo
             var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// Serves the company logo stored on the profile of the app&apos;s author as a PNG image, or `404` with the message `Logo not found` when the author has none; the developer&apos;s own logo route is `GET /sdk/publisher/logo`. The `apps_review_*` Trackman traces link here from `review_form.publisher.logo_url` (`https://{zone}/api/v2/admin/sdk/apps/{app}/{version}/publisher/logo`), so Make&apos;s app review process can download the logo with an administrator&apos;s API token. It serves the logo stored at the time of the request, which differs from the one sent with the review once the developer replaces it. Only Make administrators holding the `apps get` permission may call it: responds `403` (IM002) without the permission (checked before the app is looked up) and `404` (IM013) when the app version does not exist. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "image/png, application/json");
             return requestInfo;
         }
         /// <summary>

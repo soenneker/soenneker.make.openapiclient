@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.ImtForms.Endpoints;
+using Soenneker.Make.OpenApiClient.ImtForms.Keys;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.Make.OpenApiClient.ImtForms
         public global::Soenneker.Make.OpenApiClient.ImtForms.Endpoints.EndpointsRequestBuilder Endpoints
         {
             get => new global::Soenneker.Make.OpenApiClient.ImtForms.Endpoints.EndpointsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The keys property</summary>
+        public global::Soenneker.Make.OpenApiClient.ImtForms.Keys.KeysRequestBuilder Keys
+        {
+            get => new global::Soenneker.Make.OpenApiClient.ImtForms.Keys.KeysRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.ImtForms.ImtFormsRequestBuilder"/> and sets the default values.

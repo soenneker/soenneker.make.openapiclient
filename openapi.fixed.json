@@ -3756,6 +3756,97 @@
       }
     },
     "/admin/sdk/apps/{app}/{version}/publisher/logo": {
+      "get": {
+        "tags": [
+          "Admin / SDK Apps / Publisher"
+        ],
+        "summary": "Get the app author\u0027s logo",
+        "description": "Serves the company logo stored on the profile of the app\u0027s author as a PNG image, or \u0060404\u0060 with the message \u0060Logo not found\u0060 when the author has none; the developer\u0027s own logo route is \u0060GET /sdk/publisher/logo\u0060. The \u0060apps_review_*\u0060 Trackman traces link here from \u0060review_form.publisher.logo_url\u0060 (\u0060https://{zone}/api/v2/admin/sdk/apps/{app}/{version}/publisher/logo\u0060), so Make\u0027s app review process can download the logo with an administrator\u0027s API token. It serves the logo stored at the time of the request, which differs from the one sent with the review once the developer replaces it. Only Make administrators holding the \u0060apps get\u0060 permission may call it: responds \u0060403\u0060 (IM002) without the permission (checked before the app is looked up) and \u0060404\u0060 (IM013) when the app version does not exist. Available only while the \u0060is_sdk_app_review_enabled\u0060 feature flag is on, otherwise responds with \u0060400\u0060 (IM903).",
+        "operationId": "GetAdminSdkAppsByAppByVersionPublisherLogo",
+        "parameters": [
+          {
+            "name": "app",
+            "in": "path",
+            "description": "The SDK app name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-crm-app"
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The logo stored on the profile of the app\u0027s author.",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAdminSdkAppsByAppByVersionPublisherLogo200PngResponseSchema"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is not an administrator holding the \u0060apps get\u0060 permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAdminSdkAppsByAppByVersionPublisherLogo403Response"
+                },
+                "example": {
+                  "code": "IM002",
+                  "message": "Insufficient rights"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The app version does not exist, or its author has no logo stored.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAdminSdkAppsByAppByVersionPublisherLogo404Response"
+                },
+                "examples": {
+                  "no-logo": {
+                    "summary": "The author has no logo stored",
+                    "value": {
+                      "message": "Logo not found"
+                    }
+                  },
+                  "app-not-found": {
+                    "summary": "Unknown app or version",
+                    "value": {
+                      "code": "IM013",
+                      "message": "Entity not found",
+                      "detail": "SDK app not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "admin:read",
+              "sdk-apps:read"
+            ]
+          }
+        ],
+        "x-private": true
+      },
       "put": {
         "tags": [
           "Admin / SDK Apps / Publisher"
@@ -21621,6 +21712,267 @@
         }
       }
     },
+    "/functions/v2/endpoint-catalog": {
+      "get": {
+        "tags": [
+          "Functions V2"
+        ],
+        "summary": "List usable endpoint definitions",
+        "description": "Live availability is authorized for the caller and Team. Generated public types are advisory. Catalog outages retain generic availability. Pin catalogId for a stable editor session; explicit-version failure returns catalogStatus unavailable. Missing private/custom definitions remain generic. The POST lookup is a read operation requiring both read scopes.",
+        "operationId": "GetFunctionEndpointCatalog",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "Team that owns the Function collection.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "example": 42
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized endpoint metadata and catalog status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFunctionEndpointCatalog200Response"
+                },
+                "examples": {
+                  "cold-start": {
+                    "value": {
+                      "catalogStatus": "unavailable",
+                      "endpoints": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request validation failed.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFunctionEndpointCatalog400Response"
+                },
+                "example": {
+                  "code": "IM005",
+                  "message": "teamId must be a positive integer."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is missing or invalid.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFunctionEndpointCatalog401Response"
+                },
+                "example": {
+                  "code": "IM102",
+                  "message": "Authentication required."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is authenticated but cannot perform the requested action.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFunctionEndpointCatalog403Response"
+                },
+                "example": {
+                  "code": "IM001",
+                  "message": "Access denied."
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Live endpoint availability could not be established; no unfiltered catalog is returned."
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "functions:read",
+              "apps:read"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
+    "/functions/v2/endpoint-catalog/types": {
+      "post": {
+        "tags": [
+          "Functions V2"
+        ],
+        "summary": "Get selected endpoint editor types",
+        "description": "Live availability is authorized for the caller and Team. Generated public types are advisory. Catalog outages retain generic availability. Pin catalogId for a stable editor session; explicit-version failure returns catalogStatus unavailable. Missing private/custom definitions remain generic. The POST lookup is a read operation requiring both read scopes.",
+        "operationId": "GetFunctionEndpointTypes",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetFunctionEndpointTypesRequest"
+              },
+              "examples": {
+                "selected-endpoints": {
+                  "value": {
+                    "teamId": 42,
+                    "functionId": 741,
+                    "endpoints": [
+                      {
+                        "appName": "slack",
+                        "appVersion": 4,
+                        "endpointName": "addPin"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Authorized endpoint metadata and catalog status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFunctionEndpointTypes200Response"
+                },
+                "examples": {
+                  "cold-start": {
+                    "value": {
+                      "catalogStatus": "unavailable",
+                      "endpoints": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request validation failed.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFunctionEndpointTypes400Response"
+                },
+                "example": {
+                  "code": "IM005",
+                  "message": "teamId must be a positive integer."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication is missing or invalid.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFunctionEndpointTypes401Response"
+                },
+                "example": {
+                  "code": "IM102",
+                  "message": "Authentication required."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is authenticated but cannot perform the requested action.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFunctionEndpointTypes403Response"
+                },
+                "example": {
+                  "code": "IM001",
+                  "message": "Access denied."
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Live endpoint availability could not be established; no unfiltered catalog is returned."
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "functions:read",
+              "apps:read"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
     "/functions/v2": {
       "get": {
         "tags": [
@@ -29930,6 +30282,148 @@
         ]
       }
     },
+    "/imt-forms/keys/create": {
+      "get": {
+        "tags": [
+          "Keys"
+        ],
+        "summary": "Get the key create form",
+        "description": "Returns an IMT Form for creating a key of the given type. The form is submitted to \u0060POST /imt-forms/keys\u0060.\nRequires KEY_ADD for the team.\n\nThe config holds the hidden \u0060imtKeyTeamId\u0060 and \u0060imtKeyTypeName\u0060 fields, the \u0060imtKeyName\u0060 field, and the\nparameters of the key type manifest, localized to the caller\u0027s language.\n\nThe \u0060imtKeyVisibility\u0060 (Team access) field lets the creator lock the key to themselves. It is included only\nwhen locked credentials are enabled for the organization, the team is not a private space, the caller has\nKEY_EDIT, and \u0060teamVisibilityOnly\u0060 is not set. Without the field, the key is created team-visible.\n\nManaged key types and interactive key types have their own creation flows and get no form.\n",
+        "operationId": "GetKeyCreateForm",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "Team that the key is created in.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "example": 123
+          },
+          {
+            "name": "typeName",
+            "in": "query",
+            "description": "Key type name.",
+            "required": true,
+            "schema": {
+              "pattern": "^[A-Za-z0-9_-]\u002B$",
+              "type": "string"
+            },
+            "example": "basicauth"
+          },
+          {
+            "name": "teamVisibilityOnly",
+            "in": "query",
+            "description": "Omits the Team access field. Set when the key is created for a scenario input, which must be team-visible.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Key create form.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetKeyCreateForm200Response"
+                },
+                "example": {
+                  "config": [
+                    {
+                      "type": "hidden",
+                      "name": "imtKeyTeamId",
+                      "default": 123
+                    },
+                    {
+                      "type": "hidden",
+                      "name": "imtKeyTypeName",
+                      "default": "basicauth",
+                      "required": true
+                    },
+                    {
+                      "type": "text",
+                      "name": "imtKeyName",
+                      "label": "{{!common.name}}",
+                      "required": true,
+                      "default": "{{!keychain.default}}",
+                      "translateData": {
+                        "default": {
+                          "service": "HTTP Basic Auth",
+                          "name": "Jane"
+                        }
+                      }
+                    },
+                    {
+                      "name": "authUser",
+                      "label": "Username",
+                      "type": "text",
+                      "required": true
+                    },
+                    {
+                      "name": "authPass",
+                      "label": "Password",
+                      "type": "password",
+                      "required": true
+                    },
+                    {
+                      "type": "select",
+                      "name": "imtKeyVisibility",
+                      "label": "{{!keychain.permissions.label}}",
+                      "help": "{{!keychain.permissions.help}}",
+                      "required": true,
+                      "default": "team",
+                      "options": [
+                        {
+                          "value": "locked",
+                          "label": "{{!keychain.permissions.locked.label}}",
+                          "description": "{{!keychain.permissions.locked.description}}",
+                          "icon": "lock"
+                        },
+                        {
+                          "value": "team",
+                          "label": "Marketing",
+                          "description": "{{!keychain.permissions.team.description}}",
+                          "icon": "user-group"
+                        }
+                      ]
+                    }
+                  ],
+                  "values": {},
+                  "multipart": false,
+                  "buttons": [
+                    {
+                      "label": "{{!common.create}}",
+                      "action": "submit"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query, unknown key type, or a managed or interactive key type (IM005)."
+          },
+          "401": {
+            "description": "Authentication, or the imt-forms:read or keys:read token scope, is missing."
+          },
+          "403": {
+            "description": "The caller lacks KEY_ADD for the team."
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "imt-forms:read",
+              "keys:read"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
     "/notifications": {
       "get": {
         "tags": [
@@ -32504,6 +32998,27 @@
                         "limit": 10000,
                         "offset": 0
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The API token or OAuth credential lacks the \u0060organizations:read\u0060 scope (\u0060IM001\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizations401Response"
+                },
+                "examples": {
+                  "missing-scope": {
+                    "summary": "Missing organizations:read scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: organizations:read",
+                      "suberrors": []
                     }
                   }
                 }
@@ -55206,6 +55721,27 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "The API token or OAuth credential lacks the \u0060teams:read\u0060 scope (\u0060IM001\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeams401Response"
+                },
+                "examples": {
+                  "missing-scope": {
+                    "summary": "Missing teams:read scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: teams:read",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -55367,6 +55903,27 @@
                         "consumedCenticredits": 1000,
                         "type": "standard"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The API token or OAuth credential lacks the \u0060teams:read\u0060 scope (\u0060IM001\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamsByTeamId401Response"
+                },
+                "examples": {
+                  "missing-scope": {
+                    "summary": "Missing teams:read scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: teams:read",
+                      "suberrors": []
                     }
                   }
                 }
@@ -55644,6 +56201,27 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "The API token or OAuth credential lacks the \u0060teams:read\u0060 scope (\u0060IM001\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamsByTeamIdUserTeamRoles401Response"
+                },
+                "examples": {
+                  "missing-scope": {
+                    "summary": "Missing teams:read scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: teams:read",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -55742,6 +56320,27 @@
                     "userId": 12,
                     "teamId": 1,
                     "changeable": true
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The API token or OAuth credential lacks the \u0060teams:read\u0060 scope (\u0060IM001\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamsByTeamIdUserTeamRolesByUserId401Response"
+                },
+                "examples": {
+                  "missing-scope": {
+                    "summary": "Missing teams:read scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: teams:read",
+                      "suberrors": []
+                    }
                   }
                 }
               }
@@ -56195,6 +56794,27 @@
                       "centicredits": 1500
                     }
                   ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The API token or OAuth credential lacks the \u0060teams:read\u0060 scope (\u0060IM001\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamsByTeamIdUsage401Response"
+                },
+                "examples": {
+                  "missing-scope": {
+                    "summary": "Missing teams:read scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: teams:read",
+                      "suberrors": []
+                    }
+                  }
                 }
               }
             }
@@ -59625,17 +60245,151 @@
         }
       }
     },
-    "/users/me/api-tokens/{timestamp}": {
+    "/users/me/api-tokens/{apiTokenTimestamp}": {
+      "patch": {
+        "tags": [
+          "Users / API Tokens"
+        ],
+        "summary": "Update API token scopes",
+        "description": "Replaces the scopes of the currently authenticated user\u0027s API token with the specified creation timestamp. The \u0060scope\u0060 array replaces the token\u0027s current scopes completely; it is not merged with them. The token value, its \u0060label\u0060 and its \u0060organizationId\u0060 stay unchanged, and requests authenticated with the token use the new scopes right away. Get the API token creation timestamp with the API call \u0060GET /users/me/api-tokens\u0060 in the parameter value \u0060created\u0060 and copy it to the API call path. The token is matched with a precision of one second. This call is rejected for an API token that is itself scoped to an organization.",
+        "operationId": "PatchUsersMeApiTokensByApiTokenTimestamp",
+        "parameters": [
+          {
+            "name": "apiTokenTimestamp",
+            "in": "path",
+            "description": "The timestamp of the moment when you created the API token in the ISO 8601 compliant format.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "example": "2020-03-27T05:53:27.368Z"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchUsersMeApiTokensByApiTokenTimestampRequest"
+              },
+              "examples": {
+                "read-only": {
+                  "summary": "Reduce the token to read-only access to scenarios",
+                  "value": {
+                    "scope": [
+                      "scenarios:read"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response with the updated API token. The token value is masked except for its first 8 characters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchUsersMeApiTokensByApiTokenTimestamp200Response"
+                },
+                "examples": {
+                  "read-only": {
+                    "summary": "The token now has read-only access to scenarios",
+                    "value": {
+                      "apiToken": {
+                        "token": "7615989d-****-****-****-************",
+                        "scope": [
+                          "scenarios:read"
+                        ],
+                        "created": "2020-03-27T05:53:27.368Z",
+                        "label": "example token",
+                        "organizationId": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input: an empty \u0060scope\u0060, a missing \u0060scope\u0060 or any other body property (\u0060SC400\u0060), or an unknown scope or a timestamp that cannot be parsed (\u0060IM005\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchUsersMeApiTokensByApiTokenTimestamp400Response"
+                },
+                "examples": {
+                  "unknown-scope": {
+                    "summary": "One of the scopes does not exist",
+                    "value": {
+                      "message": "Invalid scope list.",
+                      "code": "IM005"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The request is authenticated with an API token that is scoped to an organization; such tokens cannot update API tokens.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchUsersMeApiTokensByApiTokenTimestamp403Response"
+                },
+                "examples": {
+                  "organization-bound-token": {
+                    "summary": "Called with an API token scoped to an organization",
+                    "value": {
+                      "message": "Permission denied",
+                      "code": "SC403",
+                      "detail": "Organization-bound request can\u0027t be used outside of the Organization Context."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The currently authenticated user has no API token created at the specified timestamp.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchUsersMeApiTokensByApiTokenTimestamp404Response"
+                },
+                "examples": {
+                  "not-found": {
+                    "summary": "No API token of the user was created at that time",
+                    "value": {
+                      "message": "Entity not found.",
+                      "code": "IM013",
+                      "detail": "API token not found."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "user:write"
+            ]
+          }
+        ]
+      },
       "delete": {
         "tags": [
           "Users / API Tokens"
         ],
         "summary": "Delete API token",
         "description": "Deletes currently authenticated user\u0027s API token with the specified creation timestamp. Get the API token creation timestamp with the API call \u0060GET /users/me/api-tokens\u0060 in the parameter value \u0060created\u0060. Copy the timestamp string to the API call path to delete the API token.",
-        "operationId": "DeleteUsersMeApiTokensByTimestamp",
+        "operationId": "DeleteUsersMeApiTokensByApiTokenTimestamp",
         "parameters": [
           {
-            "name": "timestamp",
+            "name": "apiTokenTimestamp",
             "in": "path",
             "description": "The timestamp of the moment when you created the API key in the ISO 8601 compliant format.",
             "required": true,
@@ -59652,7 +60406,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteUsersMeApiTokensByTimestamp200Response"
+                  "$ref": "#/components/schemas/DeleteUsersMeApiTokensByApiTokenTimestamp200Response"
                 },
                 "example": {
                   "apiToken": "2020-03-27T05:53:27.368Z"
@@ -63961,7 +64715,7 @@
           "Event subscriptions"
         ],
         "summary": "Enable an event subscription",
-        "description": "Starts sending events to the subscription again, including one that is \u0060failing\u0060 after repeated failed deliveries. Enabling an active subscription has no effect.\n\nRequires the \u0060event-subscriptions:write\u0060 scope.\n",
+        "description": "Starts sending events to the subscription again, including one that is \u0060suspended\u0060 after repeated failed deliveries. Enabling an active subscription has no effect.\n\nRequires the \u0060event-subscriptions:write\u0060 scope.\n",
         "operationId": "EnableEventSubscription",
         "parameters": [
           {
@@ -65067,7 +65821,7 @@
             }
           },
           "409": {
-            "description": "The delivery can\u0027t be resent (\u0060DELIVERY_NOT_RETRYABLE\u0060, \u0060SUBSCRIPTION_INACTIVE\u0060 or \u0060SUBSCRIPTION_FAILING\u0060): it hasn\u0027t been attempted yet, it is too old to resend, or the subscription isn\u0027t active. Enable the subscription before resending.\n",
+            "description": "The delivery can\u0027t be resent (\u0060DELIVERY_NOT_RETRYABLE\u0060, \u0060SUBSCRIPTION_INACTIVE\u0060 or \u0060SUBSCRIPTION_SUSPENDED\u0060): it hasn\u0027t been attempted yet, it is too old to resend, or the subscription isn\u0027t active. Enable the subscription before resending.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -106833,6 +107587,35 @@
           }
         }
       },
+      "GetAdminSdkAppsByAppByVersionPublisherLogo200PngResponse": {
+        "type": "string",
+        "format": "binary"
+      },
+      "GetAdminSdkAppsByAppByVersionPublisherLogo403Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAdminSdkAppsByAppByVersionPublisherLogo404Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
       "PutAdminSdkAppsByAppByVersionPublisherLogoPngRequest": {
         "type": "string",
         "format": "binary"
@@ -111419,6 +112202,230 @@
           }
         }
       },
+      "GetFunctionEndpointCatalog200Response": {
+        "required": [
+          "catalogStatus",
+          "endpoints"
+        ],
+        "type": "object",
+        "properties": {
+          "catalogId": {
+            "type": "string",
+            "description": "Immutable SDK-version and SHA-256 identifier selected for this editor session."
+          },
+          "catalogStatus": {
+            "$ref": "#/components/schemas/GetFunctionEndpointCatalog200ResponseCatalogStatus"
+          },
+          "endpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetFunctionEndpointCatalog200ResponseEndpointsItem"
+            }
+          }
+        }
+      },
+      "GetFunctionEndpointCatalog400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GetFunctionEndpointCatalog400ResponseDetail"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "detail": "Function resource not found.",
+          "code": "SC404",
+          "message": "Function resource not found."
+        }
+      },
+      "GetFunctionEndpointCatalog401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GetFunctionEndpointCatalog401ResponseDetail"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "detail": "Function resource not found.",
+          "code": "SC404",
+          "message": "Function resource not found."
+        }
+      },
+      "GetFunctionEndpointCatalog403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GetFunctionEndpointCatalog403ResponseDetail"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "detail": "Function resource not found.",
+          "code": "SC404",
+          "message": "Function resource not found."
+        }
+      },
+      "GetFunctionEndpointTypesRequest": {
+        "required": [
+          "teamId",
+          "endpoints"
+        ],
+        "type": "object",
+        "properties": {
+          "teamId": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "functionId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Saved Function whose public types may be retained when its endpoints become unavailable; must be visible to the caller and belong to teamId."
+          },
+          "catalogId": {
+            "pattern": "^\\d\u002B\\.\\d\u002B\\.\\d\u002B-[a-f0-9]{64}$",
+            "type": "string",
+            "description": "Pin to a previously selected catalog; retrieval failure never substitutes another version."
+          },
+          "endpoints": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetFunctionEndpointTypesRequestEndpointsItem"
+            }
+          },
+          "functionVersion": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Saved version to retain types from; requires functionId. Defaults to the latest saved version."
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetFunctionEndpointTypes200Response": {
+        "required": [
+          "catalogStatus",
+          "endpoints"
+        ],
+        "type": "object",
+        "properties": {
+          "catalogId": {
+            "type": "string",
+            "description": "Immutable SDK-version and SHA-256 identifier selected for this editor session."
+          },
+          "catalogStatus": {
+            "$ref": "#/components/schemas/GetFunctionEndpointTypes200ResponseCatalogStatus"
+          },
+          "endpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetFunctionEndpointTypes200ResponseEndpointsItem"
+            }
+          }
+        }
+      },
+      "GetFunctionEndpointTypes400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GetFunctionEndpointTypes400ResponseDetail"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "detail": "Function resource not found.",
+          "code": "SC404",
+          "message": "Function resource not found."
+        }
+      },
+      "GetFunctionEndpointTypes401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GetFunctionEndpointTypes401ResponseDetail"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "detail": "Function resource not found.",
+          "code": "SC404",
+          "message": "Function resource not found."
+        }
+      },
+      "GetFunctionEndpointTypes403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "$ref": "#/components/schemas/GetFunctionEndpointTypes403ResponseDetail"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "detail": "Function resource not found.",
+          "code": "SC404",
+          "message": "Function resource not found."
+        }
+      },
       "ListFunctionsV2200Response": {
         "required": [
           "functions",
@@ -114681,6 +115688,34 @@
           }
         }
       },
+      "GetKeyCreateForm200Response": {
+        "required": [
+          "config",
+          "values",
+          "buttons"
+        ],
+        "type": "object",
+        "properties": {
+          "config": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetKeyCreateForm200ResponseConfigItem"
+            }
+          },
+          "values": {
+            "$ref": "#/components/schemas/GetKeyCreateForm200ResponseValues"
+          },
+          "multipart": {
+            "type": "boolean"
+          },
+          "buttons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetKeyCreateForm200ResponseButtonsItem"
+            }
+          }
+        }
+      },
       "GetNotifications200Response": {
         "type": "object",
         "properties": {
@@ -116461,6 +117496,33 @@
           },
           "pg": {
             "$ref": "#/components/schemas/GetOrganizations200ResponsePg"
+          }
+        }
+      },
+      "GetOrganizations401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetOrganizations401ResponseSuberrorsItem"
+            }
           }
         }
       },
@@ -122083,6 +123145,33 @@
           }
         }
       },
+      "GetTeams401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeams401ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
       "PostTeamsRequest": {
         "required": [
           "name",
@@ -122122,6 +123211,33 @@
         "properties": {
           "team": {
             "$ref": "#/components/schemas/GetTeamsByTeamId200ResponseTeam"
+          }
+        }
+      },
+      "GetTeamsByTeamId401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamsByTeamId401ResponseSuberrorsItem"
+            }
           }
         }
       },
@@ -122176,11 +123292,65 @@
           }
         }
       },
+      "GetTeamsByTeamIdUserTeamRoles401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamsByTeamIdUserTeamRoles401ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
       "GetTeamsByTeamIdUserTeamRolesByUserId200Response": {
         "type": "object",
         "properties": {
           "userTeamRole": {
             "$ref": "#/components/schemas/GetTeamsByTeamIdUserTeamRolesByUserId200ResponseUserTeamRole"
+          }
+        }
+      },
+      "GetTeamsByTeamIdUserTeamRolesByUserId401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamsByTeamIdUserTeamRolesByUserId401ResponseSuberrorsItem"
+            }
           }
         }
       },
@@ -122284,6 +123454,33 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/GetTeamsByTeamIdUsage200ResponseDataItem"
+            }
+          }
+        }
+      },
+      "GetTeamsByTeamIdUsage401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTeamsByTeamIdUsage401ResponseSuberrorsItem"
             }
           }
         }
@@ -123118,7 +124315,74 @@
           }
         }
       },
-      "DeleteUsersMeApiTokensByTimestamp200Response": {
+      "PatchUsersMeApiTokensByApiTokenTimestampRequest": {
+        "required": [
+          "scope"
+        ],
+        "type": "object",
+        "properties": {
+          "scope": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The new API scopes of the API token. They replace the current scopes completely. Check the list of all existing Make API scopes with the API call \u0060GET /enums/user-api-token-scopes\u0060."
+          }
+        },
+        "additionalProperties": false
+      },
+      "PatchUsersMeApiTokensByApiTokenTimestamp200Response": {
+        "type": "object",
+        "properties": {
+          "apiToken": {
+            "$ref": "#/components/schemas/PatchUsersMeApiTokensByApiTokenTimestamp200ResponseApiToken"
+          }
+        }
+      },
+      "PatchUsersMeApiTokensByApiTokenTimestamp400Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchUsersMeApiTokensByApiTokenTimestamp403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchUsersMeApiTokensByApiTokenTimestamp404Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteUsersMeApiTokensByApiTokenTimestamp200Response": {
         "type": "object",
         "properties": {
           "apiToken": {
@@ -125342,6 +126606,10 @@
       "PatchAdminSdkAppsByAppByVersionPublisher400ResponseSchema": {
         "type": "object"
       },
+      "GetAdminSdkAppsByAppByVersionPublisherLogo200PngResponseSchema": {
+        "type": "string",
+        "format": "binary"
+      },
       "PutAdminSdkAppsByAppByVersionPublisherLogoPngRequestRequestBody": {
         "type": "string",
         "format": "binary"
@@ -126892,6 +128160,96 @@
             "$ref": "#/components/schemas/PostModulesV1Execute503ResponseModuleExecutionStartedOneOf2"
           }
         ]
+      },
+      "GetFunctionEndpointCatalog400ResponseDetail": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "type": "array",
+            "items": {}
+          }
+        ],
+        "description": "Human-readable or structured error details."
+      },
+      "GetFunctionEndpointCatalog401ResponseDetail": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "type": "array",
+            "items": {}
+          }
+        ],
+        "description": "Human-readable or structured error details."
+      },
+      "GetFunctionEndpointCatalog403ResponseDetail": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "type": "array",
+            "items": {}
+          }
+        ],
+        "description": "Human-readable or structured error details."
+      },
+      "GetFunctionEndpointTypes400ResponseDetail": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "type": "array",
+            "items": {}
+          }
+        ],
+        "description": "Human-readable or structured error details."
+      },
+      "GetFunctionEndpointTypes401ResponseDetail": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "type": "array",
+            "items": {}
+          }
+        ],
+        "description": "Human-readable or structured error details."
+      },
+      "GetFunctionEndpointTypes403ResponseDetail": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object"
+          },
+          {
+            "type": "array",
+            "items": {}
+          }
+        ],
+        "description": "Human-readable or structured error details."
       },
       "ListFunctionsV2400ResponseDetail": {
         "oneOf": [
@@ -141730,6 +143088,119 @@
           }
         }
       },
+      "GetFunctionEndpointCatalog200ResponseEndpointsItem": {
+        "required": [
+          "appName",
+          "appVersion",
+          "endpointName",
+          "appLabel",
+          "endpointLabel",
+          "annotations",
+          "credentialsRequired",
+          "credentialsAvailable",
+          "typeStatus"
+        ],
+        "type": "object",
+        "properties": {
+          "appName": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "appVersion": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "endpointName": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "appLabel": {
+            "type": "string"
+          },
+          "endpointLabel": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "annotations": {
+            "$ref": "#/components/schemas/GetFunctionEndpointCatalog200ResponseEndpointsItemAnnotations"
+          },
+          "credentialsRequired": {
+            "type": "boolean"
+          },
+          "credentialsAvailable": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetFunctionEndpointCatalog200ResponseEndpointsItemCredentialsAvailableItem"
+            }
+          },
+          "typeStatus": {
+            "$ref": "#/components/schemas/GetFunctionEndpointCatalog200ResponseEndpointsItemTypeStatus"
+          }
+        }
+      },
+      "GetFunctionEndpointTypesRequestEndpointsItem": {
+        "required": [
+          "appName",
+          "appVersion",
+          "endpointName"
+        ],
+        "type": "object",
+        "properties": {
+          "appName": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "appVersion": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "endpointName": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      },
+      "GetFunctionEndpointTypes200ResponseEndpointsItem": {
+        "required": [
+          "appName",
+          "appVersion",
+          "endpointName",
+          "available",
+          "typeStatus"
+        ],
+        "type": "object",
+        "properties": {
+          "appName": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "appVersion": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "endpointName": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "typeStatus": {
+            "$ref": "#/components/schemas/GetFunctionEndpointTypes200ResponseEndpointsItemTypeStatus"
+          },
+          "definition": {
+            "$ref": "#/components/schemas/GetFunctionEndpointTypes200ResponseEndpointsItemDefinition"
+          }
+        }
+      },
       "ListFunctionsV2200ResponseFunctionsItem": {
         "required": [
           "id",
@@ -144455,6 +145926,15 @@
           }
         }
       },
+      "GetKeyCreateForm200ResponseConfigItem": {
+        "type": "object"
+      },
+      "GetKeyCreateForm200ResponseValues": {
+        "type": "object"
+      },
+      "GetKeyCreateForm200ResponseButtonsItem": {
+        "type": "object"
+      },
       "GetNotifications200ResponseNotificationsItem": {
         "type": "object",
         "properties": {
@@ -145525,6 +147005,9 @@
             "type": "integer"
           }
         }
+      },
+      "GetOrganizations401ResponseSuberrorsItem": {
+        "type": "object"
       },
       "PostOrganizations200ResponseOrganization": {
         "type": "object",
@@ -153781,6 +155264,9 @@
           }
         }
       },
+      "GetTeams401ResponseSuberrorsItem": {
+        "type": "object"
+      },
       "PostTeams200ResponseTeam": {
         "type": "object",
         "properties": {
@@ -153861,6 +155347,9 @@
           }
         }
       },
+      "GetTeamsByTeamId401ResponseSuberrorsItem": {
+        "type": "object"
+      },
       "PatchTeamsByTeamId200ResponseTeam": {
         "type": "object",
         "properties": {
@@ -153912,6 +155401,9 @@
           }
         }
       },
+      "GetTeamsByTeamIdUserTeamRoles401ResponseSuberrorsItem": {
+        "type": "object"
+      },
       "GetTeamsByTeamIdUserTeamRolesByUserId200ResponseUserTeamRole": {
         "type": "object",
         "properties": {
@@ -153933,6 +155425,9 @@
             "type": "boolean"
           }
         }
+      },
+      "GetTeamsByTeamIdUserTeamRolesByUserId401ResponseSuberrorsItem": {
+        "type": "object"
       },
       "GetTeamsByTeamIdVariables200ResponseTeamVariables": {
         "type": "object",
@@ -154000,6 +155495,9 @@
           },
           "centicredits": {}
         }
+      },
+      "GetTeamsByTeamIdUsage401ResponseSuberrorsItem": {
+        "type": "object"
       },
       "GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem": {
         "type": "object",
@@ -155362,6 +156860,35 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "PatchUsersMeApiTokensByApiTokenTimestamp200ResponseApiToken": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "The API token. Only the response of the create call contains the full value; the list masks everything after the first 8 characters."
+          },
+          "scope": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "label": {
+            "type": "string"
+          },
+          "organizationId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "ID of the organization the API token is scoped to. A scoped token works only within that organization: requests that target another organization, or that have no organization context (for example \u0060GET /users/me/api-tokens\u0060 or \u0060/admin\u0060 routes), are rejected. \u0060null\u0060 means the token works in every organization the user belongs to.",
+            "nullable": true
           }
         }
       },
@@ -159908,6 +161435,47 @@
           }
         },
         "additionalProperties": false
+      },
+      "GetFunctionEndpointCatalog200ResponseEndpointsItemAnnotations": {
+        "type": "object"
+      },
+      "GetFunctionEndpointCatalog200ResponseEndpointsItemCredentialsAvailableItem": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetFunctionEndpointTypes200ResponseEndpointsItemDefinition": {
+        "required": [
+          "declarations",
+          "inputType",
+          "outputType"
+        ],
+        "type": "object",
+        "properties": {
+          "declarations": {
+            "maxLength": 2097152,
+            "type": "string"
+          },
+          "inputType": {
+            "pattern": "^[A-Za-z_$][A-Za-z0-9_$]*$",
+            "type": "string"
+          },
+          "outputType": {
+            "pattern": "^[A-Za-z_$][A-Za-z0-9_$]*$",
+            "type": "string"
+          }
+        }
       },
       "ListFunctionsV2200ResponseFunctionsItemLatestVersion": {
         "required": [
@@ -165968,7 +167536,7 @@
           },
           "reason": {
             "type": "string",
-            "description": "Why the subscription is \u0060failing\u0060, and \u0060null\u0060 for other states. New reasons may be added, so accept unknown values.",
+            "description": "Why the subscription is \u0060suspended\u0060, and \u0060null\u0060 for other states. New reasons may be added, so accept unknown values.",
             "nullable": true,
             "example": "repeated_failures"
           }
@@ -166026,7 +167594,7 @@
           },
           "reason": {
             "type": "string",
-            "description": "Why the subscription is \u0060failing\u0060, and \u0060null\u0060 for other states. New reasons may be added, so accept unknown values.",
+            "description": "Why the subscription is \u0060suspended\u0060, and \u0060null\u0060 for other states. New reasons may be added, so accept unknown values.",
             "nullable": true,
             "example": "repeated_failures"
           }
@@ -166084,7 +167652,7 @@
           },
           "reason": {
             "type": "string",
-            "description": "Why the subscription is \u0060failing\u0060, and \u0060null\u0060 for other states. New reasons may be added, so accept unknown values.",
+            "description": "Why the subscription is \u0060suspended\u0060, and \u0060null\u0060 for other states. New reasons may be added, so accept unknown values.",
             "nullable": true,
             "example": "repeated_failures"
           }
@@ -166142,7 +167710,7 @@
           },
           "reason": {
             "type": "string",
-            "description": "Why the subscription is \u0060failing\u0060, and \u0060null\u0060 for other states. New reasons may be added, so accept unknown values.",
+            "description": "Why the subscription is \u0060suspended\u0060, and \u0060null\u0060 for other states. New reasons may be added, so accept unknown values.",
             "nullable": true,
             "example": "repeated_failures"
           }
@@ -166200,7 +167768,7 @@
           },
           "reason": {
             "type": "string",
-            "description": "Why the subscription is \u0060failing\u0060, and \u0060null\u0060 for other states. New reasons may be added, so accept unknown values.",
+            "description": "Why the subscription is \u0060suspended\u0060, and \u0060null\u0060 for other states. New reasons may be added, so accept unknown values.",
             "nullable": true,
             "example": "repeated_failures"
           }
@@ -166258,7 +167826,7 @@
           },
           "reason": {
             "type": "string",
-            "description": "Why the subscription is \u0060failing\u0060, and \u0060null\u0060 for other states. New reasons may be added, so accept unknown values.",
+            "description": "Why the subscription is \u0060suspended\u0060, and \u0060null\u0060 for other states. New reasons may be added, so accept unknown values.",
             "nullable": true,
             "example": "repeated_failures"
           }
@@ -196790,6 +198358,48 @@
           ]
         }
       },
+      "GetFunctionEndpointCatalog200ResponseCatalogStatus": {
+        "enum": [
+          "ready",
+          "unavailable"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetFunctionEndpointCatalog200ResponseCatalogStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "ready",
+              "name": "Ready"
+            },
+            {
+              "value": "unavailable",
+              "name": "Unavailable"
+            }
+          ]
+        }
+      },
+      "GetFunctionEndpointTypes200ResponseCatalogStatus": {
+        "enum": [
+          "ready",
+          "unavailable"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetFunctionEndpointTypes200ResponseCatalogStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "ready",
+              "name": "Ready"
+            },
+            {
+              "value": "unavailable",
+              "name": "Unavailable"
+            }
+          ]
+        }
+      },
       "Sc400Code": {
         "enum": [
           "SC400"
@@ -202219,6 +203829,68 @@
             {
               "value": "known",
               "name": "Known"
+            }
+          ]
+        }
+      },
+      "GetFunctionEndpointCatalog200ResponseEndpointsItemTypeStatus": {
+        "enum": [
+          "available",
+          "definition_missing",
+          "catalog_unavailable",
+          "not_authorized"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetFunctionEndpointCatalog200ResponseEndpointsItemTypeStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "available",
+              "name": "Available"
+            },
+            {
+              "value": "definition_missing",
+              "name": "DefinitionMissing"
+            },
+            {
+              "value": "catalog_unavailable",
+              "name": "CatalogUnavailable"
+            },
+            {
+              "value": "not_authorized",
+              "name": "NotAuthorized"
+            }
+          ]
+        }
+      },
+      "GetFunctionEndpointTypes200ResponseEndpointsItemTypeStatus": {
+        "enum": [
+          "available",
+          "definition_missing",
+          "catalog_unavailable",
+          "not_authorized"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetFunctionEndpointTypes200ResponseEndpointsItemTypeStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "available",
+              "name": "Available"
+            },
+            {
+              "value": "definition_missing",
+              "name": "DefinitionMissing"
+            },
+            {
+              "value": "catalog_unavailable",
+              "name": "CatalogUnavailable"
+            },
+            {
+              "value": "not_authorized",
+              "name": "NotAuthorized"
             }
           ]
         }
@@ -209582,10 +211254,10 @@
         "enum": [
           "active",
           "inactive",
-          "failing"
+          "suspended"
         ],
         "type": "string",
-        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060failing\u0060 stopped receiving events after repeated failed deliveries.",
+        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060suspended\u0060 stopped sending after repeated failed deliveries until it is enabled again.",
         "x-ms-enum": {
           "name": "ListEventSubscriptions200ResponseSubscriptionsItemStatusState",
           "modelAsString": false,
@@ -209599,8 +211271,8 @@
               "name": "Inactive"
             },
             {
-              "value": "failing",
-              "name": "Failing"
+              "value": "suspended",
+              "name": "Suspended"
             }
           ]
         }
@@ -209651,10 +211323,10 @@
         "enum": [
           "active",
           "inactive",
-          "failing"
+          "suspended"
         ],
         "type": "string",
-        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060failing\u0060 stopped receiving events after repeated failed deliveries.",
+        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060suspended\u0060 stopped sending after repeated failed deliveries until it is enabled again.",
         "x-ms-enum": {
           "name": "CreateEventSubscription200ResponseSubscriptionStatusState",
           "modelAsString": false,
@@ -209668,8 +211340,8 @@
               "name": "Inactive"
             },
             {
-              "value": "failing",
-              "name": "Failing"
+              "value": "suspended",
+              "name": "Suspended"
             }
           ]
         }
@@ -209720,10 +211392,10 @@
         "enum": [
           "active",
           "inactive",
-          "failing"
+          "suspended"
         ],
         "type": "string",
-        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060failing\u0060 stopped receiving events after repeated failed deliveries.",
+        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060suspended\u0060 stopped sending after repeated failed deliveries until it is enabled again.",
         "x-ms-enum": {
           "name": "GetEventSubscription200ResponseSubscriptionStatusState",
           "modelAsString": false,
@@ -209737,8 +211409,8 @@
               "name": "Inactive"
             },
             {
-              "value": "failing",
-              "name": "Failing"
+              "value": "suspended",
+              "name": "Suspended"
             }
           ]
         }
@@ -209789,10 +211461,10 @@
         "enum": [
           "active",
           "inactive",
-          "failing"
+          "suspended"
         ],
         "type": "string",
-        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060failing\u0060 stopped receiving events after repeated failed deliveries.",
+        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060suspended\u0060 stopped sending after repeated failed deliveries until it is enabled again.",
         "x-ms-enum": {
           "name": "UpdateEventSubscription200ResponseSubscriptionStatusState",
           "modelAsString": false,
@@ -209806,8 +211478,8 @@
               "name": "Inactive"
             },
             {
-              "value": "failing",
-              "name": "Failing"
+              "value": "suspended",
+              "name": "Suspended"
             }
           ]
         }
@@ -209858,10 +211530,10 @@
         "enum": [
           "active",
           "inactive",
-          "failing"
+          "suspended"
         ],
         "type": "string",
-        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060failing\u0060 stopped receiving events after repeated failed deliveries.",
+        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060suspended\u0060 stopped sending after repeated failed deliveries until it is enabled again.",
         "x-ms-enum": {
           "name": "EnableEventSubscription200ResponseSubscriptionStatusState",
           "modelAsString": false,
@@ -209875,8 +211547,8 @@
               "name": "Inactive"
             },
             {
-              "value": "failing",
-              "name": "Failing"
+              "value": "suspended",
+              "name": "Suspended"
             }
           ]
         }
@@ -209927,10 +211599,10 @@
         "enum": [
           "active",
           "inactive",
-          "failing"
+          "suspended"
         ],
         "type": "string",
-        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060failing\u0060 stopped receiving events after repeated failed deliveries.",
+        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060suspended\u0060 stopped sending after repeated failed deliveries until it is enabled again.",
         "x-ms-enum": {
           "name": "DisableEventSubscription200ResponseSubscriptionStatusState",
           "modelAsString": false,
@@ -209944,8 +211616,8 @@
               "name": "Inactive"
             },
             {
-              "value": "failing",
-              "name": "Failing"
+              "value": "suspended",
+              "name": "Suspended"
             }
           ]
         }
@@ -210022,7 +211694,7 @@
         "enum": [
           "endpoint_error",
           "endpoint_unreachable",
-          "subscription_failing",
+          "subscription_suspended",
           "platform_error"
         ],
         "type": "string",
@@ -210041,8 +211713,8 @@
               "name": "EndpointUnreachable"
             },
             {
-              "value": "subscription_failing",
-              "name": "SubscriptionFailing"
+              "value": "subscription_suspended",
+              "name": "SubscriptionSuspended"
             },
             {
               "value": "platform_error",
@@ -210081,7 +211753,7 @@
         "enum": [
           "endpoint_error",
           "endpoint_unreachable",
-          "subscription_failing",
+          "subscription_suspended",
           "platform_error"
         ],
         "type": "string",
@@ -210100,8 +211772,8 @@
               "name": "EndpointUnreachable"
             },
             {
-              "value": "subscription_failing",
-              "name": "SubscriptionFailing"
+              "value": "subscription_suspended",
+              "name": "SubscriptionSuspended"
             },
             {
               "value": "platform_error",
@@ -216563,10 +218235,10 @@
         "enum": [
           "active",
           "inactive",
-          "failing"
+          "suspended"
         ],
         "type": "string",
-        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060failing\u0060 stopped receiving events after repeated failed deliveries.",
+        "description": "\u0060active\u0060 receives events, \u0060inactive\u0060 was disabled, and \u0060suspended\u0060 stopped sending after repeated failed deliveries until it is enabled again.",
         "x-ms-enum": {
           "name": "ListEventSubscriptionsStatusParameter",
           "modelAsString": false,
@@ -216580,8 +218252,8 @@
               "name": "Inactive"
             },
             {
-              "value": "failing",
-              "name": "Failing"
+              "value": "suspended",
+              "name": "Suspended"
             }
           ]
         }

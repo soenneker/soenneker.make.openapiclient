@@ -52,6 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Teams
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeams200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetTeams401Response">When receiving a 401 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeams200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Teams.TeamsRequestBuilder.TeamsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -62,7 +63,11 @@ namespace Soenneker.Make.OpenApiClient.Teams
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeams200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeams200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "401", global::Soenneker.Make.OpenApiClient.Models.GetTeams401Response.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeams200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeams200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create a new team in the organization with the specified `organizationId`.

@@ -14,7 +14,7 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Why the subscription is `failing`, and `null` for other states. New reasons may be added, so accept unknown values.</summary>
+        /// <summary>Why the subscription is `suspended`, and `null` for other states. New reasons may be added, so accept unknown values.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Reason { get; set; }
@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string Reason { get; set; }
 #endif
-        /// <summary>`active` receives events, `inactive` was disabled, and `failing` stopped receiving events after repeated failed deliveries.</summary>
+        /// <summary>`active` receives events, `inactive` was disabled, and `suspended` stopped sending after repeated failed deliveries until it is enabled again.</summary>
         public global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscription200ResponseSubscriptionStatusState? State { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscription200ResponseSubscriptionStatus"/> and sets the default values.

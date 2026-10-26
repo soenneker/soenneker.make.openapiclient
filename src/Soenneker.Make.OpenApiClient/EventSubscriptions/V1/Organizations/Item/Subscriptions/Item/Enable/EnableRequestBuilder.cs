@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.EventSubscriptions.V1.Organizations.Item.
         {
         }
         /// <summary>
-        /// Starts sending events to the subscription again, including one that is `failing` after repeated failed deliveries. Enabling an active subscription has no effect.Requires the `event-subscriptions:write` scope.
+        /// Starts sending events to the subscription again, including one that is `suspended` after repeated failed deliveries. Enabling an active subscription has no effect.Requires the `event-subscriptions:write` scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.EnableEventSubscription200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.EventSubscriptions.V1.Organizations.Item.
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.EnableEventSubscription200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.EnableEventSubscription200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Starts sending events to the subscription again, including one that is `failing` after repeated failed deliveries. Enabling an active subscription has no effect.Requires the `event-subscriptions:write` scope.
+        /// Starts sending events to the subscription again, including one that is `suspended` after repeated failed deliveries. Enabling an active subscription has no effect.Requires the `event-subscriptions:write` scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

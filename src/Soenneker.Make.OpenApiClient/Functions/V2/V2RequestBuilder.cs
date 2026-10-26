@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Functions.V2.EndpointCatalog;
 using Soenneker.Make.OpenApiClient.Functions.V2.Item;
 using Soenneker.Make.OpenApiClient.Functions.V2.Runs;
 using Soenneker.Make.OpenApiClient.Models;
@@ -19,6 +20,11 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class V2RequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The endpointCatalog property</summary>
+        public global::Soenneker.Make.OpenApiClient.Functions.V2.EndpointCatalog.EndpointCatalogRequestBuilder EndpointCatalog
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Functions.V2.EndpointCatalog.EndpointCatalogRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The runs property</summary>
         public global::Soenneker.Make.OpenApiClient.Functions.V2.Runs.RunsRequestBuilder Runs
         {

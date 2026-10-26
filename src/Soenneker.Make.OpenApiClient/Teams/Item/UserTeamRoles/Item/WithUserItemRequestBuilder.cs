@@ -39,6 +39,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.UserTeamRoles.Item
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdUserTeamRolesByUserId200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdUserTeamRolesByUserId401Response">When receiving a 401 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdUserTeamRolesByUserId200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Teams.Item.UserTeamRoles.Item.WithUserItemRequestBuilder.WithUserItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -49,7 +50,11 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.UserTeamRoles.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdUserTeamRolesByUserId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdUserTeamRolesByUserId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "401", global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdUserTeamRolesByUserId401Response.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdUserTeamRolesByUserId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdUserTeamRolesByUserId200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves information about user role in a team with the specified `userId` and `teamId`. Get all user role IDs with the API call `GET users/roles`.
