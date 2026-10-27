@@ -42074,6 +42074,7 @@
                           "id": 3,
                           "module": "ai-local-agent:RunLocalAIAgent",
                           "userLabel": "Support Agent",
+                          "evaluationMode": "measured",
                           "tools": [
                             {
                               "moduleId": 4,
@@ -42097,6 +42098,7 @@
                           "id": 3,
                           "module": "ai-local-agent:RunLocalAIAgent",
                           "userLabel": "Support Agent",
+                          "evaluationMode": "measured",
                           "tools": []
                         }
                       ],
@@ -121496,14 +121498,20 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200Response": {
         "anyOf": [
           {
-            "anyOf": [
+            "x-client-original-anyOf": [
               {
                 "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1AnyOf1"
               },
               {
                 "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1AnyOf2"
               }
-            ]
+            ],
+            "type": "object",
+            "properties": {
+              "changed": {
+                "type": "boolean"
+              }
+            }
           },
           {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2"
@@ -121807,7 +121815,7 @@
         "type": "string"
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSectionRequest": {
-        "oneOf": [
+        "anyOf": [
           {
             "type": "object"
           },
@@ -121828,14 +121836,20 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200Response": {
         "anyOf": [
           {
-            "anyOf": [
+            "x-client-original-anyOf": [
               {
                 "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseAnyOf1AnyOf1"
               },
               {
                 "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseAnyOf1AnyOf2"
               }
-            ]
+            ],
+            "type": "object",
+            "properties": {
+              "changed": {
+                "type": "boolean"
+              }
+            }
           },
           {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseAnyOf2"
@@ -122753,7 +122767,8 @@
         }
       },
       "PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSectionRequest": {
-        "oneOf": [
+        "description": "The structure of the request body varies depending on the section being updated. It can be a JSON object or array.",
+        "anyOf": [
           {
             "type": "object"
           },
@@ -122763,8 +122778,7 @@
               "type": "object"
             }
           }
-        ],
-        "description": "The structure of the request body varies depending on the section being updated. It can be a JSON object or array."
+        ]
       },
       "PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200Response": {
         "type": "object",
@@ -135276,70 +135290,70 @@
         "additionalProperties": false
       },
       "PostAiAgentsV1AgentsRequestOutputParserFormatOneOf2SchemaItemSpec": {
-        "oneOf": [
+        "description": "Optional nested specification for complex fields",
+        "anyOf": [
           {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1"
           },
           {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2"
           }
-        ],
-        "description": "Optional nested specification for complex fields"
+        ]
       },
       "GetAiAgentsV1Agents200ResponseOutputParserOneOf2ItemsSpec": {
-        "oneOf": [
+        "description": "Optional nested specification for complex fields",
+        "anyOf": [
           {
             "$ref": "#/components/schemas/GetAiAgentsV1Agents200ResponseOutputParserOneOf2ItemsSpecOneOf1"
           },
           {
             "$ref": "#/components/schemas/GetAiAgentsV1Agents200ResponseOutputParserOneOf2ItemsSpecOneOf2"
           }
-        ],
-        "description": "Optional nested specification for complex fields"
+        ]
       },
       "GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpec": {
-        "oneOf": [
+        "description": "Optional nested specification for complex fields",
+        "anyOf": [
           {
             "$ref": "#/components/schemas/GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1"
           },
           {
             "$ref": "#/components/schemas/GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2"
           }
-        ],
-        "description": "Optional nested specification for complex fields"
+        ]
       },
       "PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpec": {
-        "oneOf": [
+        "description": "Optional nested specification for complex fields",
+        "anyOf": [
           {
             "$ref": "#/components/schemas/PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1"
           },
           {
             "$ref": "#/components/schemas/PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2"
           }
-        ],
-        "description": "Optional nested specification for complex fields"
+        ]
       },
       "PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserOneOf2SchemaItemSpec": {
-        "oneOf": [
+        "description": "Optional nested specification for complex fields",
+        "anyOf": [
           {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserOneOf2SchemaItemSpecOneOf1"
           },
           {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserOneOf2SchemaItemSpecOneOf2"
           }
-        ],
-        "description": "Optional nested specification for complex fields"
+        ]
       },
       "PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserOneOf2SchemaItemSpec": {
-        "oneOf": [
+        "description": "Optional nested specification for complex fields",
+        "anyOf": [
           {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserOneOf2SchemaItemSpecOneOf1"
           },
           {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserOneOf2SchemaItemSpecOneOf2"
           }
-        ],
-        "description": "Optional nested specification for complex fields"
+        ]
       },
       "PostAiAgentsV1AgentsRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1": {
         "type": "object",
@@ -150557,6 +150571,9 @@
             "description": "The user-defined label of the agent module, if set.",
             "nullable": true,
             "example": "Support Agent"
+          },
+          "evaluationMode": {
+            "$ref": "#/components/schemas/PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode"
           },
           "tools": {
             "type": "array",
@@ -204916,6 +204933,34 @@
             {
               "value": "error",
               "name": "Error"
+            }
+          ]
+        }
+      },
+      "PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode": {
+        "enum": [
+          "disabled",
+          "measured",
+          "measuredAndInferred"
+        ],
+        "type": "string",
+        "description": "The evaluation mode set in the agent module\u0027s \u0060metrics\u0060 setting - \u0060disabled\u0060, \u0060measured\u0060 (measured tags only) or \u0060measuredAndInferred\u0060 (measured tags plus LLM-inferred tags). A missing value, or one mapped from another module, falls back to the legacy \u0060inferredTagsEnabled\u0060 flag, at the top level of the module or inside its old \u0060evaluations\u0060 collection (\u0060true\u0060 meant \u0060measuredAndInferred\u0060), and otherwise reads as \u0060measured\u0060.",
+        "example": "measured",
+        "x-ms-enum": {
+          "name": "PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "disabled",
+              "name": "Disabled"
+            },
+            {
+              "value": "measured",
+              "name": "Measured"
+            },
+            {
+              "value": "measuredAndInferred",
+              "name": "MeasuredAndInferred"
             }
           ]
         }

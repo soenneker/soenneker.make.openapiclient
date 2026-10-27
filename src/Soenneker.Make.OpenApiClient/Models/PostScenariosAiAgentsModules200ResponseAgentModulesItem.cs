@@ -14,6 +14,8 @@ namespace Soenneker.Make.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The evaluation mode set in the agent module&apos;s `metrics` setting - `disabled`, `measured` (measured tags only) or `measuredAndInferred` (measured tags plus LLM-inferred tags). A missing value, or one mapped from another module, falls back to the legacy `inferredTagsEnabled` flag, at the top level of the module or inside its old `evaluations` collection (`true` meant `measuredAndInferred`), and otherwise reads as `measured`.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode? EvaluationMode { get; set; }
         /// <summary>The unique ID of the agent module within the scenario&apos;s blueprint.</summary>
         public int? Id { get; set; }
         /// <summary>The app:module identifier of the agent module.</summary>
@@ -67,6 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "evaluationMode", n => { EvaluationMode = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode>(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "module", n => { Module = n.GetStringValue(); } },
                 { "scenarioId", n => { ScenarioId = n.GetIntValue(); } },
@@ -81,6 +84,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode>("evaluationMode", EvaluationMode);
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("module", Module);
             writer.WriteIntValue("scenarioId", ScenarioId);

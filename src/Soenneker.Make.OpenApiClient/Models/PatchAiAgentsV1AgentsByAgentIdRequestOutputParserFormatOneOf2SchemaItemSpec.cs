@@ -37,15 +37,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpec CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpec();
-            if("PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1();
-            }
-            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2Item>(global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2Item> patchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2ItemValue)
+            if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedArray && parseNode.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2Item>(global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2Item> patchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2ItemValue)
             {
                 result.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2Item = patchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2ItemValue;
+            }
+            else {
+                result.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1();
             }
             return result;
         }
@@ -57,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1 != null)
             {
-                return PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1.GetFieldDeserializers();
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1);
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -68,13 +66,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1>(null, PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1);
-            }
-            else if(PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2Item != null)
+            if(PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2Item != null)
             {
                 writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2Item>(null, PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf2Item);
+            }
+            else {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1>(null, PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2SchemaItemSpecOneOf1);
             }
         }
     }

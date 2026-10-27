@@ -37,15 +37,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpec CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpec();
-            if("GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1();
-            }
-            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2Item>(global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2Item> getAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2ItemValue)
+            if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedArray && parseNode.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2Item>(global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2Item> getAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2ItemValue)
             {
                 result.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2Item = getAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2ItemValue;
+            }
+            else {
+                result.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1();
             }
             return result;
         }
@@ -57,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1 != null)
             {
-                return GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1.GetFieldDeserializers();
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1);
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -68,13 +66,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1 != null)
-            {
-                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1>(null, GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1);
-            }
-            else if(GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2Item != null)
+            if(GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2Item != null)
             {
                 writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2Item>(null, GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf2Item);
+            }
+            else {
+                writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1>(null, GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2SchemaItemSpecOneOf1);
             }
         }
     }

@@ -43,7 +43,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 result.String = stringValue;
             }
-            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelDestinations500ResponseDetailMember1>(global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelDestinations500ResponseDetailMember1.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelDestinations500ResponseDetailMember1> getOrganizationsByOrganizationIdOtelDestinations500ResponseDetailMember1Value)
+            else if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedArray && parseNode.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelDestinations500ResponseDetailMember1>(global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelDestinations500ResponseDetailMember1.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelDestinations500ResponseDetailMember1> getOrganizationsByOrganizationIdOtelDestinations500ResponseDetailMember1Value)
             {
                 result.GetOrganizationsByOrganizationIdOtelDestinations500ResponseDetailMember1 = getOrganizationsByOrganizationIdOtelDestinations500ResponseDetailMember1Value;
             }

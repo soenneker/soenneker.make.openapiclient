@@ -38,7 +38,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequest();
-            if(parseNode.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item> postSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemValue)
+            if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedArray && parseNode.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item> postSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemValue)
             {
                 result.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2Item = postSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemValue;
             }
