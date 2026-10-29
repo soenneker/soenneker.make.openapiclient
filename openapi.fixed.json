@@ -31133,37 +31133,6 @@
         "x-internal": true
       }
     },
-    "/oauth/convert/saml-xml-to-json": {
-      "post": {
-        "tags": [
-          "Oauth"
-        ],
-        "summary": "Parses saml xml to json with info about user",
-        "operationId": "PostOAuthConvertSamlXmlToJson",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "description": "Fallback media schema"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "description": "Fallback media schema"
-                }
-              }
-            }
-          }
-        },
-        "x-internal": true
-      }
-    },
     "/organizations/{organizationId}/otel/destinations": {
       "get": {
         "tags": [
@@ -45118,7 +45087,7 @@
           "SDK Apps"
         ],
         "summary": "Set App Base",
-        "description": "Set app base configuration.\n",
+        "description": "Set app base configuration.\n\nSend the section with \u0060Content-Type: application/jsonc\u0060 (recommended) to keep comments and formatting.\n\u0060Content-Type: application/json\u0060 is accepted too and its text is kept exactly as sent, but it must be plain JSON:\ncomments and trailing commas are not allowed, and a body with them fails with \u0060400\u0060.\n",
         "operationId": "PostSdkAppsBySdkAppNameBySdkAppVersionBase",
         "parameters": [
           {
@@ -45173,6 +45142,57 @@
                     "summary": "Set App Base",
                     "value": {
                       "change": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request body cannot be parsed for its content type. A body with comments or trailing commas is JSONC and has to be sent with \u0060Content-Type: application/jsonc\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBase400Response"
+                },
+                "examples": {
+                  "jsoncSentAsJson": {
+                    "summary": "A body with a comment sent as application/json",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSON. Expected property name or \u0027}\u0027 in JSON at position 4 (line 2 column 3) If the body is JSONC (contains comments or trailing commas), send it with Content-Type: application/jsonc.",
+                      "suberrors": []
+                    }
+                  },
+                  "invalidJsonc": {
+                    "summary": "An application/jsonc body that is not valid JSONC",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSONC. Value expected in JSONC at position 14.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "An \u0060application/json\u0060 body declares another charset than UTF-8. The section source is kept as UTF-8 text, so send the body encoded in UTF-8 (a \u0060Content-Type\u0060 without a charset means UTF-8).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBase415Response"
+                },
+                "examples": {
+                  "utf16Body": {
+                    "summary": "A body sent with charset=utf-16",
+                    "value": {
+                      "code": "SC415",
+                      "message": "Unsupported Media Type",
+                      "detail": "An SDK app section must be sent in utf-8, not \u0022utf-16\u0022. Send it with charset=utf-8.",
+                      "suberrors": []
                     }
                   }
                 }
@@ -45339,7 +45359,7 @@
           "SDK Apps"
         ],
         "summary": "Set App Section",
-        "description": "Available sections: base, groups, install, installSpec\u003Cbr /\u003E\n",
+        "description": "Available sections: base, groups, install, installSpec\u003Cbr /\u003E\n\nSend the section with \u0060Content-Type: application/jsonc\u0060 (recommended) to keep comments and formatting.\n\u0060Content-Type: application/json\u0060 is accepted too and its text is kept exactly as sent, but it must be plain JSON:\ncomments and trailing commas are not allowed, and a body with them fails with \u0060400\u0060.\n",
         "operationId": "PutSdkAppsBySdkAppNameBySdkAppVersionInstall",
         "parameters": [
           {
@@ -45386,6 +45406,57 @@
                     "summary": "Set App Section",
                     "value": {
                       "change": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request body cannot be parsed for its content type. A body with comments or trailing commas is JSONC and has to be sent with \u0060Content-Type: application/jsonc\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionInstall400Response"
+                },
+                "examples": {
+                  "jsoncSentAsJson": {
+                    "summary": "A body with a comment sent as application/json",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSON. Expected property name or \u0027}\u0027 in JSON at position 4 (line 2 column 3) If the body is JSONC (contains comments or trailing commas), send it with Content-Type: application/jsonc.",
+                      "suberrors": []
+                    }
+                  },
+                  "invalidJsonc": {
+                    "summary": "An application/jsonc body that is not valid JSONC",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSONC. Value expected in JSONC at position 14.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "An \u0060application/json\u0060 body declares another charset than UTF-8. The section source is kept as UTF-8 text, so send the body encoded in UTF-8 (a \u0060Content-Type\u0060 without a charset means UTF-8).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionInstall415Response"
+                },
+                "examples": {
+                  "utf16Body": {
+                    "summary": "A body sent with charset=utf-16",
+                    "value": {
+                      "code": "SC415",
+                      "message": "Unsupported Media Type",
+                      "detail": "An SDK app section must be sent in utf-8, not \u0022utf-16\u0022. Send it with charset=utf-8.",
+                      "suberrors": []
                     }
                   }
                 }
@@ -46715,7 +46786,7 @@
           "SDK Apps / Modules"
         ],
         "summary": "Set Module Section",
-        "description": "Available sections: api, epoch, parameters, expect, interface, samples, scope\u003Cbr /\u003E\n",
+        "description": "Available sections: api, epoch, parameters, expect, interface, samples, scope\u003Cbr /\u003E\nSend the section with \u0060Content-Type: application/jsonc\u0060 (recommended) to keep comments and formatting. \u0060Content-Type: application/json\u0060 is accepted too and its text is kept exactly as sent, but it must be plain JSON: comments and trailing commas are not allowed, and a body with them fails with \u0060400\u0060.\n",
         "operationId": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApi",
         "parameters": [
           {
@@ -46791,6 +46862,57 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "The request body cannot be parsed for its content type. A body with comments or trailing commas is JSONC and has to be sent with \u0060Content-Type: application/jsonc\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApi400Response"
+                },
+                "examples": {
+                  "jsoncSentAsJson": {
+                    "summary": "A body with a comment sent as application/json",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSON. Expected property name or \u0027}\u0027 in JSON at position 4 (line 2 column 3) If the body is JSONC (contains comments or trailing commas), send it with Content-Type: application/jsonc.",
+                      "suberrors": []
+                    }
+                  },
+                  "invalidJsonc": {
+                    "summary": "An application/jsonc body that is not valid JSONC",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSONC. Value expected in JSONC at position 14.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "An \u0060application/json\u0060 body declares another charset than UTF-8. The section source is kept as UTF-8 text, so send the body encoded in UTF-8 (a \u0060Content-Type\u0060 without a charset means UTF-8).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApi415Response"
+                },
+                "examples": {
+                  "utf16Body": {
+                    "summary": "A body sent with charset=utf-16",
+                    "value": {
+                      "code": "SC415",
+                      "message": "Unsupported Media Type",
+                      "detail": "An SDK app section must be sent in utf-8, not \u0022utf-16\u0022. Send it with charset=utf-8.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -46808,7 +46930,7 @@
           "SDK Apps / Modules"
         ],
         "summary": "Set Module Section",
-        "description": "Available sections: api, epoch, parameters, expect, interface, samples, scope\u003Cbr /\u003E\n",
+        "description": "Available sections: api, epoch, parameters, expect, interface, samples, scope\u003Cbr /\u003E\nSend the section with \u0060Content-Type: application/jsonc\u0060 (recommended) to keep comments and formatting. \u0060Content-Type: application/json\u0060 is accepted too and its text is kept exactly as sent, but it must be plain JSON: comments and trailing commas are not allowed, and a body with them fails with \u0060400\u0060.\n",
         "operationId": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpoch",
         "parameters": [
           {
@@ -46884,6 +47006,57 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "The request body cannot be parsed for its content type. A body with comments or trailing commas is JSONC and has to be sent with \u0060Content-Type: application/jsonc\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpoch400Response"
+                },
+                "examples": {
+                  "jsoncSentAsJson": {
+                    "summary": "A body with a comment sent as application/json",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSON. Expected property name or \u0027}\u0027 in JSON at position 4 (line 2 column 3) If the body is JSONC (contains comments or trailing commas), send it with Content-Type: application/jsonc.",
+                      "suberrors": []
+                    }
+                  },
+                  "invalidJsonc": {
+                    "summary": "An application/jsonc body that is not valid JSONC",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSONC. Value expected in JSONC at position 14.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "An \u0060application/json\u0060 body declares another charset than UTF-8. The section source is kept as UTF-8 text, so send the body encoded in UTF-8 (a \u0060Content-Type\u0060 without a charset means UTF-8).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpoch415Response"
+                },
+                "examples": {
+                  "utf16Body": {
+                    "summary": "A body sent with charset=utf-16",
+                    "value": {
+                      "code": "SC415",
+                      "message": "Unsupported Media Type",
+                      "detail": "An SDK app section must be sent in utf-8, not \u0022utf-16\u0022. Send it with charset=utf-8.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -46901,7 +47074,7 @@
           "SDK Apps / Modules"
         ],
         "summary": "Set Module Section",
-        "description": "Available sections: api, epoch, parameters, expect, interface, samples, scope\u003Cbr /\u003E\n",
+        "description": "Available sections: api, epoch, parameters, expect, interface, samples, scope\u003Cbr /\u003E\nSend the section with \u0060Content-Type: application/jsonc\u0060 (recommended) to keep comments and formatting. \u0060Content-Type: application/json\u0060 is accepted too and its text is kept exactly as sent, but it must be plain JSON: comments and trailing commas are not allowed, and a body with them fails with \u0060400\u0060.\n",
         "operationId": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface",
         "parameters": [
           {
@@ -46977,6 +47150,57 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "The request body cannot be parsed for its content type. A body with comments or trailing commas is JSONC and has to be sent with \u0060Content-Type: application/jsonc\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface400Response"
+                },
+                "examples": {
+                  "jsoncSentAsJson": {
+                    "summary": "A body with a comment sent as application/json",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSON. Expected property name or \u0027}\u0027 in JSON at position 4 (line 2 column 3) If the body is JSONC (contains comments or trailing commas), send it with Content-Type: application/jsonc.",
+                      "suberrors": []
+                    }
+                  },
+                  "invalidJsonc": {
+                    "summary": "An application/jsonc body that is not valid JSONC",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSONC. Value expected in JSONC at position 14.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "An \u0060application/json\u0060 body declares another charset than UTF-8. The section source is kept as UTF-8 text, so send the body encoded in UTF-8 (a \u0060Content-Type\u0060 without a charset means UTF-8).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface415Response"
+                },
+                "examples": {
+                  "utf16Body": {
+                    "summary": "A body sent with charset=utf-16",
+                    "value": {
+                      "code": "SC415",
+                      "message": "Unsupported Media Type",
+                      "detail": "An SDK app section must be sent in utf-8, not \u0022utf-16\u0022. Send it with charset=utf-8.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -46994,7 +47218,7 @@
           "SDK Apps / Modules"
         ],
         "summary": "Set Module Section",
-        "description": "Available sections: api, epoch, parameters, expect, interface, samples, scope\u003Cbr /\u003E\n",
+        "description": "Available sections: api, epoch, parameters, expect, interface, samples, scope\u003Cbr /\u003E\nSend the section with \u0060Content-Type: application/jsonc\u0060 (recommended) to keep comments and formatting. \u0060Content-Type: application/json\u0060 is accepted too and its text is kept exactly as sent, but it must be plain JSON: comments and trailing commas are not allowed, and a body with them fails with \u0060400\u0060.\n",
         "operationId": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters",
         "parameters": [
           {
@@ -47070,6 +47294,57 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "The request body cannot be parsed for its content type. A body with comments or trailing commas is JSONC and has to be sent with \u0060Content-Type: application/jsonc\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters400Response"
+                },
+                "examples": {
+                  "jsoncSentAsJson": {
+                    "summary": "A body with a comment sent as application/json",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSON. Expected property name or \u0027}\u0027 in JSON at position 4 (line 2 column 3) If the body is JSONC (contains comments or trailing commas), send it with Content-Type: application/jsonc.",
+                      "suberrors": []
+                    }
+                  },
+                  "invalidJsonc": {
+                    "summary": "An application/jsonc body that is not valid JSONC",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSONC. Value expected in JSONC at position 14.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "An \u0060application/json\u0060 body declares another charset than UTF-8. The section source is kept as UTF-8 text, so send the body encoded in UTF-8 (a \u0060Content-Type\u0060 without a charset means UTF-8).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters415Response"
+                },
+                "examples": {
+                  "utf16Body": {
+                    "summary": "A body sent with charset=utf-16",
+                    "value": {
+                      "code": "SC415",
+                      "message": "Unsupported Media Type",
+                      "detail": "An SDK app section must be sent in utf-8, not \u0022utf-16\u0022. Send it with charset=utf-8.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -47087,7 +47362,7 @@
           "SDK Apps / Modules"
         ],
         "summary": "Set Module Section",
-        "description": "Available sections: api, epoch, parameters, expect, interface, samples, scope\u003Cbr /\u003E\n",
+        "description": "Available sections: api, epoch, parameters, expect, interface, samples, scope\u003Cbr /\u003E\nSend the section with \u0060Content-Type: application/jsonc\u0060 (recommended) to keep comments and formatting. \u0060Content-Type: application/json\u0060 is accepted too and its text is kept exactly as sent, but it must be plain JSON: comments and trailing commas are not allowed, and a body with them fails with \u0060400\u0060.\n",
         "operationId": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameSamples",
         "parameters": [
           {
@@ -47163,6 +47438,57 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "The request body cannot be parsed for its content type. A body with comments or trailing commas is JSONC and has to be sent with \u0060Content-Type: application/jsonc\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameSamples400Response"
+                },
+                "examples": {
+                  "jsoncSentAsJson": {
+                    "summary": "A body with a comment sent as application/json",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSON. Expected property name or \u0027}\u0027 in JSON at position 4 (line 2 column 3) If the body is JSONC (contains comments or trailing commas), send it with Content-Type: application/jsonc.",
+                      "suberrors": []
+                    }
+                  },
+                  "invalidJsonc": {
+                    "summary": "An application/jsonc body that is not valid JSONC",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSONC. Value expected in JSONC at position 14.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "An \u0060application/json\u0060 body declares another charset than UTF-8. The section source is kept as UTF-8 text, so send the body encoded in UTF-8 (a \u0060Content-Type\u0060 without a charset means UTF-8).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameSamples415Response"
+                },
+                "examples": {
+                  "utf16Body": {
+                    "summary": "A body sent with charset=utf-16",
+                    "value": {
+                      "code": "SC415",
+                      "message": "Unsupported Media Type",
+                      "detail": "An SDK app section must be sent in utf-8, not \u0022utf-16\u0022. Send it with charset=utf-8.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -47180,7 +47506,7 @@
           "SDK Apps / Modules"
         ],
         "summary": "Set Module Section",
-        "description": "Available sections: api, epoch, parameters, expect, interface, samples, scope\u003Cbr /\u003E\n",
+        "description": "Available sections: api, epoch, parameters, expect, interface, samples, scope\u003Cbr /\u003E\nSend the section with \u0060Content-Type: application/jsonc\u0060 (recommended) to keep comments and formatting. \u0060Content-Type: application/json\u0060 is accepted too and its text is kept exactly as sent, but it must be plain JSON: comments and trailing commas are not allowed, and a body with them fails with \u0060400\u0060.\n",
         "operationId": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameScope",
         "parameters": [
           {
@@ -47251,6 +47577,57 @@
                         "output": "{{item}}",
                         "limit": "{{parameters.limit}}"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request body cannot be parsed for its content type. A body with comments or trailing commas is JSONC and has to be sent with \u0060Content-Type: application/jsonc\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameScope400Response"
+                },
+                "examples": {
+                  "jsoncSentAsJson": {
+                    "summary": "A body with a comment sent as application/json",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSON. Expected property name or \u0027}\u0027 in JSON at position 4 (line 2 column 3) If the body is JSONC (contains comments or trailing commas), send it with Content-Type: application/jsonc.",
+                      "suberrors": []
+                    }
+                  },
+                  "invalidJsonc": {
+                    "summary": "An application/jsonc body that is not valid JSONC",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSONC. Value expected in JSONC at position 14.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "An \u0060application/json\u0060 body declares another charset than UTF-8. The section source is kept as UTF-8 text, so send the body encoded in UTF-8 (a \u0060Content-Type\u0060 without a charset means UTF-8).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameScope415Response"
+                },
+                "examples": {
+                  "utf16Body": {
+                    "summary": "A body sent with charset=utf-16",
+                    "value": {
+                      "code": "SC415",
+                      "message": "Unsupported Media Type",
+                      "detail": "An SDK app section must be sent in utf-8, not \u0022utf-16\u0022. Send it with charset=utf-8.",
+                      "suberrors": []
                     }
                   }
                 }
@@ -48293,7 +48670,7 @@
           "SDK Apps / RPCs"
         ],
         "summary": "Set RPC Section",
-        "description": "Available sections: api, parameters\u003Cbr /\u003E\n",
+        "description": "Available sections: api, parameters\u003Cbr /\u003E\n\nSend the section with \u0060Content-Type: application/jsonc\u0060 (recommended) to keep comments and formatting.\n\u0060Content-Type: application/json\u0060 is accepted too and its text is kept exactly as sent, but it must be plain JSON:\ncomments and trailing commas are not allowed, and a body with them fails with \u0060400\u0060.\n",
         "operationId": "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection",
         "parameters": [
           {
@@ -48333,7 +48710,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionRequest"
+                "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequest"
               },
               "example": {
                 "url": "/api/users",
@@ -48349,6 +48726,12 @@
                   }
                 }
               }
+            },
+            "application/jsonc": {
+              "schema": {
+                "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsoncRequestRequestBody"
+              },
+              "example": "{\n  // Options for the user select box\n  \u0022url\u0022: \u0022/api/users\u0022,\n  \u0022method\u0022: \u0022GET\u0022,\n  \u0022response\u0022: {\n    \u0022iterate\u0022: \u0022{{body.users}}\u0022,\n    \u0022output\u0022: {\n      \u0022label\u0022: \u0022{{item.name}}\u0022,\n      \u0022value\u0022: \u0022{{item.id}}\u0022\n    }\n  }\n}\n"
             }
           }
         },
@@ -48375,6 +48758,57 @@
                           "url": "/api/v2/users"
                         }
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request body cannot be parsed for its content type. A body with comments or trailing commas is JSONC and has to be sent with \u0060Content-Type: application/jsonc\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection400Response"
+                },
+                "examples": {
+                  "jsoncSentAsJson": {
+                    "summary": "A body with a comment sent as application/json",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSON. Expected property name or \u0027}\u0027 in JSON at position 4 (line 2 column 3) If the body is JSONC (contains comments or trailing commas), send it with Content-Type: application/jsonc.",
+                      "suberrors": []
+                    }
+                  },
+                  "invalidJsonc": {
+                    "summary": "An application/jsonc body that is not valid JSONC",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSONC. Value expected in JSONC at position 14.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "An \u0060application/json\u0060 body declares another charset than UTF-8. The section source is kept as UTF-8 text, so send the body encoded in UTF-8 (a \u0060Content-Type\u0060 without a charset means UTF-8).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection415Response"
+                },
+                "examples": {
+                  "utf16Body": {
+                    "summary": "A body sent with charset=utf-16",
+                    "value": {
+                      "code": "SC415",
+                      "message": "Unsupported Media Type",
+                      "detail": "An SDK app section must be sent in utf-8, not \u0022utf-16\u0022. Send it with charset=utf-8.",
+                      "suberrors": []
                     }
                   }
                 }
@@ -49066,7 +49500,7 @@
           "SDK Apps / Endpoints"
         ],
         "summary": "Set Endpoint Section",
-        "description": "Writes one endpoint section. The \u0060api\u0060 section accepts an object or an array of objects; \u0060scope\u0060, \u0060inputParameters\u0060 and \u0060outputParameters\u0060 accept an array. On an approved app the write is recorded as a pending change (returned as \u0060change\u0060) instead of being applied immediately.",
+        "description": "Writes one endpoint section. The \u0060api\u0060 section accepts an object or an array of objects; \u0060scope\u0060, \u0060inputParameters\u0060 and \u0060outputParameters\u0060 accept an array. On an approved app the write is recorded as a pending change (returned as \u0060change\u0060) instead of being applied immediately.\nSend the section with \u0060Content-Type: application/jsonc\u0060 (recommended) to keep comments and formatting. \u0060Content-Type: application/json\u0060 is accepted too and its text is kept exactly as sent, but it must be plain JSON: comments and trailing commas are not allowed, and a body with them fails with \u0060400\u0060.",
         "operationId": "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection",
         "parameters": [
           {
@@ -49106,12 +49540,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSectionRequest"
+                "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSectionJsonRequest"
               },
               "example": {
                 "url": "/entities/{{parameters.id}}",
                 "method": "GET"
               }
+            },
+            "application/jsonc": {
+              "schema": {
+                "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSectionJsoncRequestRequestBody"
+              },
+              "example": "{\n  // Load one entity\n  \u0022url\u0022: \u0022/entities/{{parameters.id}}\u0022,\n  \u0022method\u0022: \u0022GET\u0022\n}\n"
             }
           }
         },
@@ -49128,6 +49568,57 @@
                     "summary": "Set Endpoint Section (in-development app)",
                     "value": {
                       "change": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request body cannot be parsed for its content type. A body with comments or trailing commas is JSONC and has to be sent with \u0060Content-Type: application/jsonc\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection400Response"
+                },
+                "examples": {
+                  "jsoncSentAsJson": {
+                    "summary": "A body with a comment sent as application/json",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSON. Expected property name or \u0027}\u0027 in JSON at position 4 (line 2 column 3) If the body is JSONC (contains comments or trailing commas), send it with Content-Type: application/jsonc.",
+                      "suberrors": []
+                    }
+                  },
+                  "invalidJsonc": {
+                    "summary": "An application/jsonc body that is not valid JSONC",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSONC. Value expected in JSONC at position 14.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "An \u0060application/json\u0060 body declares another charset than UTF-8. The section source is kept as UTF-8 text, so send the body encoded in UTF-8 (a \u0060Content-Type\u0060 without a charset means UTF-8).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection415Response"
+                },
+                "examples": {
+                  "utf16Body": {
+                    "summary": "A body sent with charset=utf-16",
+                    "value": {
+                      "code": "SC415",
+                      "message": "Unsupported Media Type",
+                      "detail": "An SDK app section must be sent in utf-8, not \u0022utf-16\u0022. Send it with charset=utf-8.",
+                      "suberrors": []
                     }
                   }
                 }
@@ -54176,7 +54667,7 @@
           "SDK Apps / Connections"
         ],
         "summary": "Set Connection Section",
-        "description": "Available sections: api, parameters, scopes, scope, installSpec, install\u003Cbr /\u003E\n",
+        "description": "Available sections: api, parameters, scopes, scope, installSpec, install\u003Cbr /\u003E\nSend the section with \u0060Content-Type: application/jsonc\u0060 (recommended) to keep comments and formatting. \u0060Content-Type: application/json\u0060 is accepted too and its text is kept exactly as sent, but it must be plain JSON: comments and trailing commas are not allowed, and a body with them fails with \u0060400\u0060.\n",
         "operationId": "PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection",
         "parameters": [
           {
@@ -54200,7 +54691,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSectionRequest"
+                "$ref": "#/components/schemas/PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSectionJsonRequest"
               },
               "example": [
                 {
@@ -54210,6 +54701,12 @@
                   "required": true
                 }
               ]
+            },
+            "application/jsonc": {
+              "schema": {
+                "$ref": "#/components/schemas/PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSectionJsoncRequestRequestBody"
+              },
+              "example": "[\n  // The key from the service\u0027s developer settings\n  {\n    \u0022name\u0022: \u0022apiKey\u0022,\n    \u0022type\u0022: \u0022text\u0022,\n    \u0022label\u0022: \u0022API Key\u0022,\n    \u0022required\u0022: true\n  }\n]\n"
             }
           }
         },
@@ -54231,6 +54728,57 @@
                         "item": "my-connection-name",
                         "code": "parameters"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request body cannot be parsed for its content type. A body with comments or trailing commas is JSONC and has to be sent with \u0060Content-Type: application/jsonc\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection400Response"
+                },
+                "examples": {
+                  "jsoncSentAsJson": {
+                    "summary": "A body with a comment sent as application/json",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSON. Expected property name or \u0027}\u0027 in JSON at position 4 (line 2 column 3) If the body is JSONC (contains comments or trailing commas), send it with Content-Type: application/jsonc.",
+                      "suberrors": []
+                    }
+                  },
+                  "invalidJsonc": {
+                    "summary": "An application/jsonc body that is not valid JSONC",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSONC. Value expected in JSONC at position 14.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "An \u0060application/json\u0060 body declares another charset than UTF-8. The section source is kept as UTF-8 text, so send the body encoded in UTF-8 (a \u0060Content-Type\u0060 without a charset means UTF-8).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection415Response"
+                },
+                "examples": {
+                  "utf16Body": {
+                    "summary": "A body sent with charset=utf-16",
+                    "value": {
+                      "code": "SC415",
+                      "message": "Unsupported Media Type",
+                      "detail": "An SDK app section must be sent in utf-8, not \u0022utf-16\u0022. Send it with charset=utf-8.",
+                      "suberrors": []
                     }
                   }
                 }
@@ -54734,6 +55282,7 @@
           "SDK Apps / Webhooks"
         ],
         "summary": "Set Webhook Section",
+        "description": "Send the section with \u0060Content-Type: application/jsonc\u0060 (recommended) to keep comments and formatting.\n\u0060Content-Type: application/json\u0060 is accepted too and its text is kept exactly as sent, but it must be plain JSON:\ncomments and trailing commas are not allowed, and a body with them fails with \u0060400\u0060.\n",
         "operationId": "PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection",
         "parameters": [
           {
@@ -54765,12 +55314,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionRequest"
+                "$ref": "#/components/schemas/PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionJsonRequest"
               },
               "example": {
                 "output": "{{body}}",
                 "test": true
               }
+            },
+            "application/jsonc": {
+              "schema": {
+                "$ref": "#/components/schemas/PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionJsoncRequestRequestBody"
+              },
+              "example": "{\n  // Pass the whole payload through\n  \u0022output\u0022: \u0022{{body}}\u0022,\n  \u0022test\u0022: true\n}\n"
             }
           }
         },
@@ -54787,6 +55342,57 @@
                     "summary": "Set Webhook Section",
                     "value": {
                       "change": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request body cannot be parsed for its content type. A body with comments or trailing commas is JSONC and has to be sent with \u0060Content-Type: application/jsonc\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection400Response"
+                },
+                "examples": {
+                  "jsoncSentAsJson": {
+                    "summary": "A body with a comment sent as application/json",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSON. Expected property name or \u0027}\u0027 in JSON at position 4 (line 2 column 3) If the body is JSONC (contains comments or trailing commas), send it with Content-Type: application/jsonc.",
+                      "suberrors": []
+                    }
+                  },
+                  "invalidJsonc": {
+                    "summary": "An application/jsonc body that is not valid JSONC",
+                    "value": {
+                      "code": "SC400",
+                      "message": "Bad Request",
+                      "detail": "Not valid JSONC. Value expected in JSONC at position 14.",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "An \u0060application/json\u0060 body declares another charset than UTF-8. The section source is kept as UTF-8 text, so send the body encoded in UTF-8 (a \u0060Content-Type\u0060 without a charset means UTF-8).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection415Response"
+                },
+                "examples": {
+                  "utf16Body": {
+                    "summary": "A body sent with charset=utf-16",
+                    "value": {
+                      "code": "SC415",
+                      "message": "Unsupported Media Type",
+                      "detail": "An SDK app section must be sent in utf-8, not \u0022utf-16\u0022. Send it with charset=utf-8.",
+                      "suberrors": []
                     }
                   }
                 }
@@ -69786,6 +70392,81 @@
           "minLength": 1,
           "type": "string"
         }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequest": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "qs": {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestQsProperty"
+          },
+          "body": {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestBodyProperty"
+          },
+          "headers": {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestHeadersProperty"
+          },
+          "response": {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestResponse"
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsoncRequest": {
+        "type": "string",
+        "description": "The section as JSONC text: the same structure as the \u0060application/json\u0060 body, with comments and trailing commas allowed. It is stored verbatim as the section source."
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSectionJsonRequest": {
+        "anyOf": [
+          {
+            "type": "object"
+          },
+          {
+            "type": "array",
+            "items": {}
+          }
+        ]
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSectionJsoncRequest": {
+        "type": "string",
+        "description": "The section as JSONC text: the same structure as the \u0060application/json\u0060 body, with comments and trailing commas allowed. It is stored verbatim as the section source."
+      },
+      "PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSectionJsonRequest": {
+        "description": "The structure of the request body varies depending on the section being updated. It can be a JSON object or array.",
+        "anyOf": [
+          {
+            "type": "object"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        ]
+      },
+      "PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSectionJsoncRequest": {
+        "type": "string",
+        "description": "The section as JSONC text: the same structure as the \u0060application/json\u0060 body, with comments and trailing commas allowed. It is stored verbatim as the section source."
+      },
+      "PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionJsonRequest": {
+        "type": "object",
+        "properties": {
+          "output": {
+            "type": "string"
+          },
+          "test": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionJsoncRequest": {
+        "type": "string",
+        "description": "The section as JSONC text: the same structure as the \u0060application/json\u0060 body, with comments and trailing commas allowed. It is stored verbatim as the section source."
       },
       "CustomAppGroupsItem": {
         "required": [
@@ -95663,6 +96344,26 @@
         },
         "additionalProperties": false
       },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestQs": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestBody": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestHeaders": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestResponse": {
+        "type": "object",
+        "properties": {
+          "iterate": {
+            "type": "string"
+          },
+          "output": {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestResponseOutput"
+          }
+        }
+      },
       "DataStructureSpecOneOf6SpecItem": {
         "type": "object"
       },
@@ -101306,6 +102007,17 @@
         },
         "additionalProperties": false,
         "description": "Helper directive, that will simplify generating an OAuth1 Authorization headers."
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestResponseOutput": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
       },
       "CustomAppBaseAnyOf1PaginationHeaders": {
         "type": "object",
@@ -121068,6 +121780,60 @@
           }
         }
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionBase400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBase400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionBase415Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBase415ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBase200Response": {
         "type": "object",
         "properties": {
@@ -121089,6 +121855,60 @@
         "properties": {
           "change": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionInstall200ResponseChange"
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionInstall400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionInstall400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionInstall415Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionInstall415ResponseSuberrorsItem"
+            }
           }
         }
       },
@@ -121357,6 +122177,60 @@
           }
         }
       },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApi400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApi400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApi415Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApi415ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpoch200Response": {
         "type": "object",
         "properties": {
@@ -121377,6 +122251,60 @@
           },
           "response": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpoch200ResponseResponse"
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpoch400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpoch400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpoch415Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpoch415ResponseSuberrorsItem"
+            }
           }
         }
       },
@@ -121403,6 +122331,60 @@
           }
         }
       },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface415Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface415ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters200Response": {
         "type": "object",
         "properties": {
@@ -121423,6 +122405,60 @@
           },
           "response": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters200ResponseResponse"
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters415Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters415ResponseSuberrorsItem"
+            }
           }
         }
       },
@@ -121449,6 +122485,60 @@
           }
         }
       },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameSamples400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameSamples400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameSamples415Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameSamples415ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameScope200Response": {
         "type": "object",
         "properties": {
@@ -121469,6 +122559,60 @@
           },
           "response": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameScope200ResponseResponse"
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameScope400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameScope400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameScope415Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameScope415ResponseSuberrorsItem"
+            }
           }
         }
       },
@@ -121671,34 +122815,65 @@
           }
         }
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionRequest": {
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string"
-          },
-          "method": {
-            "type": "string"
-          },
-          "qs": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionRequestQs"
-          },
-          "body": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionRequestBody"
-          },
-          "headers": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionRequestHeaders"
-          },
-          "response": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionRequestResponse"
-          }
-        }
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection200Response": {
         "type": "object",
         "properties": {
           "change": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection200ResponseChange"
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection415Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection415ResponseSuberrorsItem"
+            }
           }
         }
       },
@@ -121814,22 +122989,65 @@
       "GetSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200JsoncResponse": {
         "type": "string"
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSectionRequest": {
-        "anyOf": [
-          {
-            "type": "object"
-          },
-          {
-            "type": "array",
-            "items": {}
-          }
-        ]
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200Response": {
         "type": "object",
         "properties": {
           "change": {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseChange"
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection415Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection415ResponseSuberrorsItem"
+            }
           }
         }
       },
@@ -122766,25 +123984,65 @@
           }
         }
       },
-      "PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSectionRequest": {
-        "description": "The structure of the request body varies depending on the section being updated. It can be a JSON object or array.",
-        "anyOf": [
-          {
-            "type": "object"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "object"
-            }
-          }
-        ]
-      },
       "PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200Response": {
         "type": "object",
         "properties": {
           "change": {
             "$ref": "#/components/schemas/PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseChange"
+          }
+        }
+      },
+      "PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection415Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection415ResponseSuberrorsItem"
+            }
           }
         }
       },
@@ -122885,22 +124143,65 @@
           }
         }
       },
-      "PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionRequest": {
-        "type": "object",
-        "properties": {
-          "output": {
-            "type": "string"
-          },
-          "test": {
-            "type": "boolean"
-          }
-        }
-      },
       "PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection200Response": {
         "type": "object",
         "properties": {
           "change": {
             "$ref": "#/components/schemas/PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection200ResponseChange"
+          }
+        }
+      },
+      "PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection400ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
+      "PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection415Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "The error code, for example \u0060SC400\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "A short summary of the error."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What went wrong and, where possible, how to fix it."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection415ResponseSuberrorsItem"
+            }
           }
         }
       },
@@ -126831,6 +128132,10 @@
           "type": "string"
         }
       },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsoncRequestRequestBody": {
+        "type": "string",
+        "description": "The section as JSONC text: the same structure as the \u0060application/json\u0060 body, with comments and trailing commas allowed. It is stored verbatim as the section source."
+      },
       "PostSdkAppsBySdkAppNameBySdkAppVersionEndpoints400ResponseSchema": {
         "type": "object"
       },
@@ -126842,6 +128147,10 @@
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200JsoncResponseSchema": {
         "type": "string"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSectionJsoncRequestRequestBody": {
+        "type": "string",
+        "description": "The section as JSONC text: the same structure as the \u0060application/json\u0060 body, with comments and trailing commas allowed. It is stored verbatim as the section source."
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection400ResponseSchema": {
         "type": "object"
@@ -126991,6 +128300,10 @@
       "DeleteSdkAppsConnectionsBySdkConnectionName400ResponseSchema": {
         "type": "object"
       },
+      "PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSectionJsoncRequestRequestBody": {
+        "type": "string",
+        "description": "The section as JSONC text: the same structure as the \u0060application/json\u0060 body, with comments and trailing commas allowed. It is stored verbatim as the section source."
+      },
       "GetSdkAppsConnectionsBySdkConnectionNameCommon200ResponseSchema": {
         "type": "object",
         "description": "The common data for the connection. The structure of this object is not fixed and depends on the connection\u0027s configuration."
@@ -126998,6 +128311,10 @@
       "PutSdkAppsConnectionsBySdkConnectionNameCommonRequestRequestBody": {
         "type": "object",
         "description": "The common data for the connection. The structure of this object is not fixed and depends on the connection\u0027s configuration."
+      },
+      "PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionJsoncRequestRequestBody": {
+        "type": "string",
+        "description": "The section as JSONC text: the same structure as the \u0060application/json\u0060 body, with comments and trailing commas allowed. It is stored verbatim as the section source."
       },
       "PostSdkAppsConnectionsBySdkConnectionNameRecreate200ResponseSchema": {
         "type": "object",
@@ -135598,6 +136915,15 @@
         "type": "object",
         "additionalProperties": {},
         "description": "Temporary variables accessible during execution"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestQsProperty": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestBodyProperty": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionJsonRequestHeadersProperty": {
+        "type": "object"
       },
       "DataStructureSpecOneOf6SpecItemProperty": {
         "type": "object"
@@ -151763,6 +153089,12 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionBase200ResponseChange": {
         "type": "object"
       },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionBase400ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionBase415ResponseSuberrorsItem": {
+        "type": "object"
+      },
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBase200ResponseChange": {
         "type": "object"
       },
@@ -151770,6 +153102,12 @@
         "type": "object"
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionInstall200ResponseChange": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionInstall400ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionInstall415ResponseSuberrorsItem": {
         "type": "object"
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionChangesBySdkChangeId200ResponseChange": {
@@ -152056,6 +153394,12 @@
           }
         }
       },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApi400ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApi415ResponseSuberrorsItem": {
+        "type": "object"
+      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpoch200ResponseQs": {
         "type": "object"
       },
@@ -152081,6 +153425,12 @@
             "type": "string"
           }
         }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpoch400ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpoch415ResponseSuberrorsItem": {
+        "type": "object"
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface200ResponseQs": {
         "type": "object"
@@ -152108,6 +153458,12 @@
           }
         }
       },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface400ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameInterface415ResponseSuberrorsItem": {
+        "type": "object"
+      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters200ResponseQs": {
         "type": "object"
       },
@@ -152133,6 +153489,12 @@
             "type": "string"
           }
         }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters400ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameParameters415ResponseSuberrorsItem": {
+        "type": "object"
       },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameSamples200ResponseQs": {
         "type": "object"
@@ -152160,6 +153522,12 @@
           }
         }
       },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameSamples400ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameSamples415ResponseSuberrorsItem": {
+        "type": "object"
+      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameScope200ResponseQs": {
         "type": "object"
       },
@@ -152185,6 +153553,12 @@
             "type": "string"
           }
         }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameScope400ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameScope415ResponseSuberrorsItem": {
+        "type": "object"
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseQs": {
         "type": "object",
@@ -152332,26 +153706,6 @@
           }
         }
       },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionRequestQs": {
-        "type": "object"
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionRequestBody": {
-        "type": "object"
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionRequestHeaders": {
-        "type": "object"
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionRequestResponse": {
-        "type": "object",
-        "properties": {
-          "iterate": {
-            "type": "string"
-          },
-          "output": {
-            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionRequestResponseOutput"
-          }
-        }
-      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection200ResponseChange": {
         "type": "object",
         "properties": {
@@ -152371,6 +153725,12 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection200ResponseChangeNewValue"
           }
         }
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection400ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection415ResponseSuberrorsItem": {
+        "type": "object"
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionEndpoints200ResponseAppEndpointsItem": {
         "type": "object",
@@ -152703,6 +154063,12 @@
       "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseChange": {
         "type": "object",
         "nullable": true
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection400ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection415ResponseSuberrorsItem": {
+        "type": "object"
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameClone200ResponseAppEndpoint": {
         "type": "object",
@@ -154758,6 +156124,12 @@
           }
         }
       },
+      "PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection400ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection415ResponseSuberrorsItem": {
+        "type": "object"
+      },
       "PostSdkAppsBySdkAppNameWebhooks200ResponseAppWebhook": {
         "type": "object",
         "properties": {
@@ -154874,6 +156246,12 @@
         }
       },
       "PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection200ResponseChange": {
+        "type": "object"
+      },
+      "PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection400ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection415ResponseSuberrorsItem": {
         "type": "object"
       },
       "GetPrivateSpaces200ResponsePrivateSpacesItem": {
@@ -165299,17 +166677,6 @@
         }
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSection200ResponseResponseOutput": {
-        "type": "object",
-        "properties": {
-          "label": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
-        }
-      },
-      "PutSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcNameBySdkRpcSectionRequestResponseOutput": {
         "type": "object",
         "properties": {
           "label": {

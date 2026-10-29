@@ -9,37 +9,27 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionRequest : IAdditionalDataHolder, IParsable
+    public partial class PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection400ResponseSuberrorsItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The output property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Output { get; set; }
-#nullable restore
-#else
-        public string Output { get; set; }
-#endif
-        /// <summary>The test property</summary>
-        public bool? Test { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection400ResponseSuberrorsItem"/> and sets the default values.
         /// </summary>
-        public PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionRequest()
+        public PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection400ResponseSuberrorsItem()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionRequest"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection400ResponseSuberrorsItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection400ResponseSuberrorsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSectionRequest();
+            return new global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection400ResponseSuberrorsItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,8 +39,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "output", n => { Output = n.GetStringValue(); } },
-                { "test", n => { Test = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -60,8 +48,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("output", Output);
-            writer.WriteBoolValue("test", Test);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

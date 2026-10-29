@@ -4,7 +4,6 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Oauth.Auth;
 using Soenneker.Make.OpenApiClient.Oauth.Cb;
-using Soenneker.Make.OpenApiClient.Oauth.ConvertNamespace;
 using Soenneker.Make.OpenApiClient.Oauth.Extend;
 using Soenneker.Make.OpenApiClient.Oauth.Reauth;
 using System.Collections.Generic;
@@ -28,11 +27,6 @@ namespace Soenneker.Make.OpenApiClient.Oauth
         public global::Soenneker.Make.OpenApiClient.Oauth.Cb.CbRequestBuilder Cb
         {
             get => new global::Soenneker.Make.OpenApiClient.Oauth.Cb.CbRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The convert property</summary>
-        public global::Soenneker.Make.OpenApiClient.Oauth.ConvertNamespace.ConvertRequestBuilder Convert
-        {
-            get => new global::Soenneker.Make.OpenApiClient.Oauth.ConvertNamespace.ConvertRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The extend property</summary>
         public global::Soenneker.Make.OpenApiClient.Oauth.Extend.ExtendRequestBuilder Extend
