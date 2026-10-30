@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("execution") is { } nullNodeExecution && nullNodeExecution.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Execution = null;
-            if (parseNode.GetChildNode("output") is { } nullNodeOutput && nullNodeOutput.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Output = null;
+            if (parseNode.GetChildNode("execution") is null) { _explicitNullValueExecution = default!; _explicitNullProperties?.Remove("execution"); }
+            else if (parseNode.GetChildNode("execution") is { } nullNodeExecution && nullNodeExecution.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Execution = null;
+            if (parseNode.GetChildNode("output") is null) { _explicitNullValueOutput = default!; _explicitNullProperties?.Remove("output"); }
+            else if (parseNode.GetChildNode("output") is { } nullNodeOutput && nullNodeOutput.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Output = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Identifies the execution that produced `output`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution? Execution { get => _explicitNullValueExecution; set { _explicitNullValueExecution = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("execution"); else _explicitNullProperties?.Remove("execution"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution? Execution { get => _explicitNullValueExecution; set { _explicitNullValueExecution = value; AdditionalData?.Remove("execution"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("execution"); else _explicitNullProperties?.Remove("execution"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution? _explicitNullValueExecution = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution Execution { get => _explicitNullValueExecution; set { _explicitNullValueExecution = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("execution"); else _explicitNullProperties?.Remove("execution"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution Execution { get => _explicitNullValueExecution; set { _explicitNullValueExecution = value; AdditionalData?.Remove("execution"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("execution"); else _explicitNullProperties?.Remove("execution"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostEndpointsV1Execute200ResponseExecution _explicitNullValueExecution = default!;
 #endif
         /// <summary>Raw result of the Endpoint execution. The shape is defined by the executed Endpoint itself and is not constrained by this route.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Output { get => _explicitNullValueOutput; set { _explicitNullValueOutput = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("output"); else _explicitNullProperties?.Remove("output"); } }
+        public UntypedNode? Output { get => _explicitNullValueOutput; set { _explicitNullValueOutput = value; AdditionalData?.Remove("output"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("output"); else _explicitNullProperties?.Remove("output"); } }
         private UntypedNode? _explicitNullValueOutput = default!;
 #nullable restore
 #else
-        public UntypedNode Output { get => _explicitNullValueOutput; set { _explicitNullValueOutput = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("output"); else _explicitNullProperties?.Remove("output"); } }
+        public UntypedNode Output { get => _explicitNullValueOutput; set { _explicitNullValueOutput = value; AdditionalData?.Remove("output"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("output"); else _explicitNullProperties?.Remove("output"); } }
         private UntypedNode _explicitNullValueOutput = default!;
 #endif
         /// <summary>

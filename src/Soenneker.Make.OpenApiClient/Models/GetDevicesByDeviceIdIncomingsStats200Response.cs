@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("incomingStat") is { } nullNodeIncomingStat && nullNodeIncomingStat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IncomingStat = null;
+            if (parseNode.GetChildNode("incomingStat") is null) { _explicitNullValueIncomingStat = default!; _explicitNullProperties?.Remove("incomingStat"); }
+            else if (parseNode.GetChildNode("incomingStat") is { } nullNodeIncomingStat && nullNodeIncomingStat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IncomingStat = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The incomingStat property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomingsStats200ResponseIncomingStat? IncomingStat { get => _explicitNullValueIncomingStat; set { _explicitNullValueIncomingStat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incomingStat"); else _explicitNullProperties?.Remove("incomingStat"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomingsStats200ResponseIncomingStat? IncomingStat { get => _explicitNullValueIncomingStat; set { _explicitNullValueIncomingStat = value; AdditionalData?.Remove("incomingStat"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incomingStat"); else _explicitNullProperties?.Remove("incomingStat"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomingsStats200ResponseIncomingStat? _explicitNullValueIncomingStat = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomingsStats200ResponseIncomingStat IncomingStat { get => _explicitNullValueIncomingStat; set { _explicitNullValueIncomingStat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incomingStat"); else _explicitNullProperties?.Remove("incomingStat"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomingsStats200ResponseIncomingStat IncomingStat { get => _explicitNullValueIncomingStat; set { _explicitNullValueIncomingStat = value; AdditionalData?.Remove("incomingStat"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incomingStat"); else _explicitNullProperties?.Remove("incomingStat"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomingsStats200ResponseIncomingStat _explicitNullValueIncomingStat = default!;
 #endif
         /// <summary>

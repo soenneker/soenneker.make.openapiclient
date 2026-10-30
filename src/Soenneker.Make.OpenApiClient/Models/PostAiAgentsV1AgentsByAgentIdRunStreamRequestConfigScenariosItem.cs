@@ -17,17 +17,19 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("approvalMode") is { } nullNodeApprovalMode && nullNodeApprovalMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApprovalMode = null;
-            if (parseNode.GetChildNode("makeScenarioId") is { } nullNodeMakeScenarioId && nullNodeMakeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MakeScenarioId = null;
+            if (parseNode.GetChildNode("approvalMode") is null) { _explicitNullValueApprovalMode = default!; _explicitNullProperties?.Remove("approvalMode"); }
+            else if (parseNode.GetChildNode("approvalMode") is { } nullNodeApprovalMode && nullNodeApprovalMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApprovalMode = null;
+            if (parseNode.GetChildNode("makeScenarioId") is null) { _explicitNullValueMakeScenarioId = default!; _explicitNullProperties?.Remove("makeScenarioId"); }
+            else if (parseNode.GetChildNode("makeScenarioId") is { } nullNodeMakeScenarioId && nullNodeMakeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MakeScenarioId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The approvalMode property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigScenariosItemApprovalMode? ApprovalMode { get => _explicitNullValueApprovalMode; set { _explicitNullValueApprovalMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("approvalMode"); else _explicitNullProperties?.Remove("approvalMode"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigScenariosItemApprovalMode? ApprovalMode { get => _explicitNullValueApprovalMode; set { _explicitNullValueApprovalMode = value; AdditionalData?.Remove("approvalMode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("approvalMode"); else _explicitNullProperties?.Remove("approvalMode"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigScenariosItemApprovalMode? _explicitNullValueApprovalMode = default!;
         /// <summary>The makeScenarioId property</summary>
-        public double? MakeScenarioId { get => _explicitNullValueMakeScenarioId; set { _explicitNullValueMakeScenarioId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("makeScenarioId"); else _explicitNullProperties?.Remove("makeScenarioId"); } }
+        public double? MakeScenarioId { get => _explicitNullValueMakeScenarioId; set { _explicitNullValueMakeScenarioId = value; AdditionalData?.Remove("makeScenarioId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("makeScenarioId"); else _explicitNullProperties?.Remove("makeScenarioId"); } }
         private double? _explicitNullValueMakeScenarioId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigScenariosItem"/> and sets the default values.
@@ -54,7 +56,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "approvalMode", n => { ApprovalMode = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigScenariosItemApprovalMode>(); } },
+                { "approvalMode", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigScenariosItemApprovalMode>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueApprovalMode = default; _explicitNullProperties?.Remove("approvalMode"); AdditionalData["approvalMode"] = unknown; } else { ApprovalMode = parsed; AdditionalData.Remove("approvalMode"); } } },
                 { "makeScenarioId", n => { MakeScenarioId = n.GetDoubleValue(); } },
             };
         }

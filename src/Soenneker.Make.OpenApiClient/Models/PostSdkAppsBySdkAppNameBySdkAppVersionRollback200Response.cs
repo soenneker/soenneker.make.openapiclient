@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("rolledBack") is { } nullNodeRolledBack && nullNodeRolledBack.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RolledBack = null;
+            if (parseNode.GetChildNode("rolledBack") is null) { _explicitNullValueRolledBack = default!; _explicitNullProperties?.Remove("rolledBack"); }
+            else if (parseNode.GetChildNode("rolledBack") is { } nullNodeRolledBack && nullNodeRolledBack.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RolledBack = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The rolledBack property</summary>
-        public bool? RolledBack { get => _explicitNullValueRolledBack; set { _explicitNullValueRolledBack = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rolledBack"); else _explicitNullProperties?.Remove("rolledBack"); } }
+        public bool? RolledBack { get => _explicitNullValueRolledBack; set { _explicitNullValueRolledBack = value; AdditionalData?.Remove("rolledBack"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rolledBack"); else _explicitNullProperties?.Remove("rolledBack"); } }
         private bool? _explicitNullValueRolledBack = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionRollback200Response"/> and sets the default values.

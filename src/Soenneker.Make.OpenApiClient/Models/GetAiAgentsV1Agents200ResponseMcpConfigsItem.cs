@@ -17,34 +17,37 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("mcpConnectionId") is { } nullNodeMcpConnectionId && nullNodeMcpConnectionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) McpConnectionId = null;
-            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
-            if (parseNode.GetChildNode("toolIds") is { } nullNodeToolIds && nullNodeToolIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ToolIds = null;
+            if (parseNode.GetChildNode("mcpConnectionId") is null) { _explicitNullValueMcpConnectionId = default!; _explicitNullProperties?.Remove("mcpConnectionId"); }
+            else if (parseNode.GetChildNode("mcpConnectionId") is { } nullNodeMcpConnectionId && nullNodeMcpConnectionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) McpConnectionId = null;
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("toolIds") is null) { _explicitNullValueToolIds = default!; _explicitNullProperties?.Remove("toolIds"); }
+            else if (parseNode.GetChildNode("toolIds") is { } nullNodeToolIds && nullNodeToolIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ToolIds = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The mcpConnectionId property</summary>
-        public int? McpConnectionId { get => _explicitNullValueMcpConnectionId; set { _explicitNullValueMcpConnectionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mcpConnectionId"); else _explicitNullProperties?.Remove("mcpConnectionId"); } }
+        public int? McpConnectionId { get => _explicitNullValueMcpConnectionId; set { _explicitNullValueMcpConnectionId = value; AdditionalData?.Remove("mcpConnectionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mcpConnectionId"); else _explicitNullProperties?.Remove("mcpConnectionId"); } }
         private int? _explicitNullValueMcpConnectionId = default!;
         /// <summary>Name of the MCP connection. If the underlying MCP connection was deleted, or is otherwise corrupted, returns &apos;Invalid MCP Connection&apos;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
         /// <summary>The toolIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ToolIds { get => _explicitNullValueToolIds; set { _explicitNullValueToolIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("toolIds"); else _explicitNullProperties?.Remove("toolIds"); } }
+        public List<string>? ToolIds { get => _explicitNullValueToolIds; set { _explicitNullValueToolIds = value; AdditionalData?.Remove("toolIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("toolIds"); else _explicitNullProperties?.Remove("toolIds"); } }
         private List<string>? _explicitNullValueToolIds = default!;
 #nullable restore
 #else
-        public List<string> ToolIds { get => _explicitNullValueToolIds; set { _explicitNullValueToolIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("toolIds"); else _explicitNullProperties?.Remove("toolIds"); } }
+        public List<string> ToolIds { get => _explicitNullValueToolIds; set { _explicitNullValueToolIds = value; AdditionalData?.Remove("toolIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("toolIds"); else _explicitNullProperties?.Remove("toolIds"); } }
         private List<string> _explicitNullValueToolIds = default!;
 #endif
         /// <summary>

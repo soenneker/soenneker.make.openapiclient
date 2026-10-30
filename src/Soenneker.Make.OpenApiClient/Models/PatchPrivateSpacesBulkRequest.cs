@@ -17,27 +17,30 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("operationsLimit") is { } nullNodeOperationsLimit && nullNodeOperationsLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperationsLimit = null;
-            if (parseNode.GetChildNode("organizationId") is { } nullNodeOrganizationId && nullNodeOrganizationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationId = null;
-            if (parseNode.GetChildNode("privateSpaceIds") is { } nullNodePrivateSpaceIds && nullNodePrivateSpaceIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrivateSpaceIds = null;
+            if (parseNode.GetChildNode("operationsLimit") is null) { _explicitNullValueOperationsLimit = default!; _explicitNullProperties?.Remove("operationsLimit"); }
+            else if (parseNode.GetChildNode("operationsLimit") is { } nullNodeOperationsLimit && nullNodeOperationsLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperationsLimit = null;
+            if (parseNode.GetChildNode("organizationId") is null) { _explicitNullValueOrganizationId = default!; _explicitNullProperties?.Remove("organizationId"); }
+            else if (parseNode.GetChildNode("organizationId") is { } nullNodeOrganizationId && nullNodeOrganizationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationId = null;
+            if (parseNode.GetChildNode("privateSpaceIds") is null) { _explicitNullValuePrivateSpaceIds = default!; _explicitNullProperties?.Remove("privateSpaceIds"); }
+            else if (parseNode.GetChildNode("privateSpaceIds") is { } nullNodePrivateSpaceIds && nullNodePrivateSpaceIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrivateSpaceIds = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The new operations (credit) limit applied to every listed space, or `null` to remove their limits. Changing a space&apos;s limit to `0` pauses it and requires `confirmed=true`; a space already at `0` is unchanged and does not require confirmation.</summary>
-        public int? OperationsLimit { get => _explicitNullValueOperationsLimit; set { _explicitNullValueOperationsLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operationsLimit"); else _explicitNullProperties?.Remove("operationsLimit"); } }
+        public int? OperationsLimit { get => _explicitNullValueOperationsLimit; set { _explicitNullValueOperationsLimit = value; AdditionalData?.Remove("operationsLimit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operationsLimit"); else _explicitNullProperties?.Remove("operationsLimit"); } }
         private int? _explicitNullValueOperationsLimit = default!;
         /// <summary>The ID of the organization that owns every listed private space.</summary>
-        public int? OrganizationId { get => _explicitNullValueOrganizationId; set { _explicitNullValueOrganizationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationId"); else _explicitNullProperties?.Remove("organizationId"); } }
+        public int? OrganizationId { get => _explicitNullValueOrganizationId; set { _explicitNullValueOrganizationId = value; AdditionalData?.Remove("organizationId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationId"); else _explicitNullProperties?.Remove("organizationId"); } }
         private int? _explicitNullValueOrganizationId = default!;
         /// <summary>The IDs of the private spaces to update. Between 1 and 100 ids; duplicates are ignored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? PrivateSpaceIds { get => _explicitNullValuePrivateSpaceIds; set { _explicitNullValuePrivateSpaceIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceIds"); else _explicitNullProperties?.Remove("privateSpaceIds"); } }
+        public List<int?>? PrivateSpaceIds { get => _explicitNullValuePrivateSpaceIds; set { _explicitNullValuePrivateSpaceIds = value; AdditionalData?.Remove("privateSpaceIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceIds"); else _explicitNullProperties?.Remove("privateSpaceIds"); } }
         private List<int?>? _explicitNullValuePrivateSpaceIds = default!;
 #nullable restore
 #else
-        public List<int?> PrivateSpaceIds { get => _explicitNullValuePrivateSpaceIds; set { _explicitNullValuePrivateSpaceIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceIds"); else _explicitNullProperties?.Remove("privateSpaceIds"); } }
+        public List<int?> PrivateSpaceIds { get => _explicitNullValuePrivateSpaceIds; set { _explicitNullValuePrivateSpaceIds = value; AdditionalData?.Remove("privateSpaceIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceIds"); else _explicitNullProperties?.Remove("privateSpaceIds"); } }
         private List<int?> _explicitNullValuePrivateSpaceIds = default!;
 #endif
         /// <summary>

@@ -17,17 +17,18 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("accessList") is { } nullNodeAccessList && nullNodeAccessList.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccessList = null;
+            if (parseNode.GetChildNode("accessList") is null) { _explicitNullValueAccessList = default!; _explicitNullProperties?.Remove("accessList"); }
+            else if (parseNode.GetChildNode("accessList") is { } nullNodeAccessList && nullNodeAccessList.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccessList = null;
         }
 
         /// <summary>The access-list members visible to the caller.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItem>? AccessList { get => _explicitNullValueAccessList; set { _explicitNullValueAccessList = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accessList"); else _explicitNullProperties?.Remove("accessList"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItem>? AccessList { get => _explicitNullValueAccessList; set { _explicitNullValueAccessList = value; AdditionalData?.Remove("accessList"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accessList"); else _explicitNullProperties?.Remove("accessList"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItem>? _explicitNullValueAccessList = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItem> AccessList { get => _explicitNullValueAccessList; set { _explicitNullValueAccessList = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accessList"); else _explicitNullProperties?.Remove("accessList"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItem> AccessList { get => _explicitNullValueAccessList; set { _explicitNullValueAccessList = value; AdditionalData?.Remove("accessList"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accessList"); else _explicitNullProperties?.Remove("accessList"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdConnectionsByConnectionIdAccessList200ResponseAccessListItem> _explicitNullValueAccessList = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>

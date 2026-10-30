@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("usersRoleId") is { } nullNodeUsersRoleId && nullNodeUsersRoleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsersRoleId = null;
+            if (parseNode.GetChildNode("usersRoleId") is null) { _explicitNullValueUsersRoleId = default!; _explicitNullProperties?.Remove("usersRoleId"); }
+            else if (parseNode.GetChildNode("usersRoleId") is { } nullNodeUsersRoleId && nullNodeUsersRoleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsersRoleId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The ID of the user role. Check the `GET /users/roles` API call for the available `usersRoleId` values.</summary>
-        public int? UsersRoleId { get => _explicitNullValueUsersRoleId; set { _explicitNullValueUsersRoleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRoleId"); else _explicitNullProperties?.Remove("usersRoleId"); } }
+        public int? UsersRoleId { get => _explicitNullValueUsersRoleId; set { _explicitNullValueUsersRoleId = value; AdditionalData?.Remove("usersRoleId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRoleId"); else _explicitNullProperties?.Remove("usersRoleId"); } }
         private int? _explicitNullValueUsersRoleId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserOrganizationRolesByOrganizationIdRequest"/> and sets the default values.

@@ -17,23 +17,25 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("userUnreadNotifications") is { } nullNodeUserUnreadNotifications && nullNodeUserUnreadNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserUnreadNotifications = null;
-            if (parseNode.GetChildNode("userZoneUnreadNotifications") is { } nullNodeUserZoneUnreadNotifications && nullNodeUserZoneUnreadNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserZoneUnreadNotifications = null;
+            if (parseNode.GetChildNode("userUnreadNotifications") is null) { _explicitNullValueUserUnreadNotifications = default!; _explicitNullProperties?.Remove("userUnreadNotifications"); }
+            else if (parseNode.GetChildNode("userUnreadNotifications") is { } nullNodeUserUnreadNotifications && nullNodeUserUnreadNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserUnreadNotifications = null;
+            if (parseNode.GetChildNode("userZoneUnreadNotifications") is null) { _explicitNullValueUserZoneUnreadNotifications = default!; _explicitNullProperties?.Remove("userZoneUnreadNotifications"); }
+            else if (parseNode.GetChildNode("userZoneUnreadNotifications") is { } nullNodeUserZoneUnreadNotifications && nullNodeUserZoneUnreadNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserZoneUnreadNotifications = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The userUnreadNotifications property</summary>
-        public int? UserUnreadNotifications { get => _explicitNullValueUserUnreadNotifications; set { _explicitNullValueUserUnreadNotifications = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userUnreadNotifications"); else _explicitNullProperties?.Remove("userUnreadNotifications"); } }
+        public int? UserUnreadNotifications { get => _explicitNullValueUserUnreadNotifications; set { _explicitNullValueUserUnreadNotifications = value; AdditionalData?.Remove("userUnreadNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userUnreadNotifications"); else _explicitNullProperties?.Remove("userUnreadNotifications"); } }
         private int? _explicitNullValueUserUnreadNotifications = default!;
         /// <summary>The userZoneUnreadNotifications property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem>? UserZoneUnreadNotifications { get => _explicitNullValueUserZoneUnreadNotifications; set { _explicitNullValueUserZoneUnreadNotifications = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userZoneUnreadNotifications"); else _explicitNullProperties?.Remove("userZoneUnreadNotifications"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem>? UserZoneUnreadNotifications { get => _explicitNullValueUserZoneUnreadNotifications; set { _explicitNullValueUserZoneUnreadNotifications = value; AdditionalData?.Remove("userZoneUnreadNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userZoneUnreadNotifications"); else _explicitNullProperties?.Remove("userZoneUnreadNotifications"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem>? _explicitNullValueUserZoneUnreadNotifications = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem> UserZoneUnreadNotifications { get => _explicitNullValueUserZoneUnreadNotifications; set { _explicitNullValueUserZoneUnreadNotifications = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userZoneUnreadNotifications"); else _explicitNullProperties?.Remove("userZoneUnreadNotifications"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem> UserZoneUnreadNotifications { get => _explicitNullValueUserZoneUnreadNotifications; set { _explicitNullValueUserZoneUnreadNotifications = value; AdditionalData?.Remove("userZoneUnreadNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userZoneUnreadNotifications"); else _explicitNullProperties?.Remove("userZoneUnreadNotifications"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem> _explicitNullValueUserZoneUnreadNotifications = default!;
 #endif
         /// <summary>

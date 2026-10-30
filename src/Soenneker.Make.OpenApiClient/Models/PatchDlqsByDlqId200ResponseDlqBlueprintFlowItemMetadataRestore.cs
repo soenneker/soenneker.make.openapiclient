@@ -17,10 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("bodyType") is { } nullNodeBodyType && nullNodeBodyType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BodyType = null;
-            if (parseNode.GetChildNode("headers") is { } nullNodeHeaders && nullNodeHeaders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Headers = null;
-            if (parseNode.GetChildNode("method") is { } nullNodeMethod && nullNodeMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Method = null;
-            if (parseNode.GetChildNode("qs") is { } nullNodeQs && nullNodeQs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Qs = null;
+            if (parseNode.GetChildNode("bodyType") is null) { _explicitNullValueBodyType = default!; _explicitNullProperties?.Remove("bodyType"); }
+            else if (parseNode.GetChildNode("bodyType") is { } nullNodeBodyType && nullNodeBodyType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BodyType = null;
+            if (parseNode.GetChildNode("headers") is null) { _explicitNullValueHeaders = default!; _explicitNullProperties?.Remove("headers"); }
+            else if (parseNode.GetChildNode("headers") is { } nullNodeHeaders && nullNodeHeaders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Headers = null;
+            if (parseNode.GetChildNode("method") is null) { _explicitNullValueMethod = default!; _explicitNullProperties?.Remove("method"); }
+            else if (parseNode.GetChildNode("method") is { } nullNodeMethod && nullNodeMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Method = null;
+            if (parseNode.GetChildNode("qs") is null) { _explicitNullValueQs = default!; _explicitNullProperties?.Remove("qs"); }
+            else if (parseNode.GetChildNode("qs") is { } nullNodeQs && nullNodeQs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Qs = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,41 +32,41 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The bodyType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreBodyType? BodyType { get => _explicitNullValueBodyType; set { _explicitNullValueBodyType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bodyType"); else _explicitNullProperties?.Remove("bodyType"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreBodyType? BodyType { get => _explicitNullValueBodyType; set { _explicitNullValueBodyType = value; AdditionalData?.Remove("bodyType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bodyType"); else _explicitNullProperties?.Remove("bodyType"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreBodyType? _explicitNullValueBodyType = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreBodyType BodyType { get => _explicitNullValueBodyType; set { _explicitNullValueBodyType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bodyType"); else _explicitNullProperties?.Remove("bodyType"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreBodyType BodyType { get => _explicitNullValueBodyType; set { _explicitNullValueBodyType = value; AdditionalData?.Remove("bodyType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bodyType"); else _explicitNullProperties?.Remove("bodyType"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreBodyType _explicitNullValueBodyType = default!;
 #endif
         /// <summary>The headers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreHeaders? Headers { get => _explicitNullValueHeaders; set { _explicitNullValueHeaders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("headers"); else _explicitNullProperties?.Remove("headers"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreHeaders? Headers { get => _explicitNullValueHeaders; set { _explicitNullValueHeaders = value; AdditionalData?.Remove("headers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("headers"); else _explicitNullProperties?.Remove("headers"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreHeaders? _explicitNullValueHeaders = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreHeaders Headers { get => _explicitNullValueHeaders; set { _explicitNullValueHeaders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("headers"); else _explicitNullProperties?.Remove("headers"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreHeaders Headers { get => _explicitNullValueHeaders; set { _explicitNullValueHeaders = value; AdditionalData?.Remove("headers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("headers"); else _explicitNullProperties?.Remove("headers"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreHeaders _explicitNullValueHeaders = default!;
 #endif
         /// <summary>The method property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreMethod? Method { get => _explicitNullValueMethod; set { _explicitNullValueMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("method"); else _explicitNullProperties?.Remove("method"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreMethod? Method { get => _explicitNullValueMethod; set { _explicitNullValueMethod = value; AdditionalData?.Remove("method"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("method"); else _explicitNullProperties?.Remove("method"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreMethod? _explicitNullValueMethod = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreMethod Method { get => _explicitNullValueMethod; set { _explicitNullValueMethod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("method"); else _explicitNullProperties?.Remove("method"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreMethod Method { get => _explicitNullValueMethod; set { _explicitNullValueMethod = value; AdditionalData?.Remove("method"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("method"); else _explicitNullProperties?.Remove("method"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreMethod _explicitNullValueMethod = default!;
 #endif
         /// <summary>The qs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreQs? Qs { get => _explicitNullValueQs; set { _explicitNullValueQs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("qs"); else _explicitNullProperties?.Remove("qs"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreQs? Qs { get => _explicitNullValueQs; set { _explicitNullValueQs = value; AdditionalData?.Remove("qs"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("qs"); else _explicitNullProperties?.Remove("qs"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreQs? _explicitNullValueQs = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreQs Qs { get => _explicitNullValueQs; set { _explicitNullValueQs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("qs"); else _explicitNullProperties?.Remove("qs"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreQs Qs { get => _explicitNullValueQs; set { _explicitNullValueQs = value; AdditionalData?.Remove("qs"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("qs"); else _explicitNullProperties?.Remove("qs"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemMetadataRestoreQs _explicitNullValueQs = default!;
 #endif
         /// <summary>

@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("scenarioIds") is { } nullNodeScenarioIds && nullNodeScenarioIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioIds = null;
-            if (parseNode.GetChildNode("targetFolderId") is { } nullNodeTargetFolderId && nullNodeTargetFolderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TargetFolderId = null;
-            if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
+            if (parseNode.GetChildNode("scenarioIds") is null) { _explicitNullValueScenarioIds = default!; _explicitNullProperties?.Remove("scenarioIds"); }
+            else if (parseNode.GetChildNode("scenarioIds") is { } nullNodeScenarioIds && nullNodeScenarioIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioIds = null;
+            if (parseNode.GetChildNode("targetFolderId") is null) { _explicitNullValueTargetFolderId = default!; _explicitNullProperties?.Remove("targetFolderId"); }
+            else if (parseNode.GetChildNode("targetFolderId") is { } nullNodeTargetFolderId && nullNodeTargetFolderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TargetFolderId = null;
+            if (parseNode.GetChildNode("teamId") is null) { _explicitNullValueTeamId = default!; _explicitNullProperties?.Remove("teamId"); }
+            else if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,18 +30,18 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The scenario IDs to move.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? ScenarioIds { get => _explicitNullValueScenarioIds; set { _explicitNullValueScenarioIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioIds"); else _explicitNullProperties?.Remove("scenarioIds"); } }
+        public List<int?>? ScenarioIds { get => _explicitNullValueScenarioIds; set { _explicitNullValueScenarioIds = value; AdditionalData?.Remove("scenarioIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioIds"); else _explicitNullProperties?.Remove("scenarioIds"); } }
         private List<int?>? _explicitNullValueScenarioIds = default!;
 #nullable restore
 #else
-        public List<int?> ScenarioIds { get => _explicitNullValueScenarioIds; set { _explicitNullValueScenarioIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioIds"); else _explicitNullProperties?.Remove("scenarioIds"); } }
+        public List<int?> ScenarioIds { get => _explicitNullValueScenarioIds; set { _explicitNullValueScenarioIds = value; AdditionalData?.Remove("scenarioIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioIds"); else _explicitNullProperties?.Remove("scenarioIds"); } }
         private List<int?> _explicitNullValueScenarioIds = default!;
 #endif
         /// <summary>The target folder ID. Use null to uncategorize the scenarios.</summary>
-        public int? TargetFolderId { get => _explicitNullValueTargetFolderId; set { _explicitNullValueTargetFolderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetFolderId"); else _explicitNullProperties?.Remove("targetFolderId"); } }
+        public int? TargetFolderId { get => _explicitNullValueTargetFolderId; set { _explicitNullValueTargetFolderId = value; AdditionalData?.Remove("targetFolderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetFolderId"); else _explicitNullProperties?.Remove("targetFolderId"); } }
         private int? _explicitNullValueTargetFolderId = default!;
         /// <summary>The team that owns all scenarios and the target folder.</summary>
-        public int? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
+        public int? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; AdditionalData?.Remove("teamId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
         private int? _explicitNullValueTeamId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosFoldersMoveScenariosRequest"/> and sets the default values.

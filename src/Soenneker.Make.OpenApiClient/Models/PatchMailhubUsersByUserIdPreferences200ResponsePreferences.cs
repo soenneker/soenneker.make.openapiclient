@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("global") is { } nullNodeGlobal && nullNodeGlobal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Global = null;
+            if (parseNode.GetChildNode("global") is null) { _explicitNullValueGlobal = default!; _explicitNullProperties?.Remove("global"); }
+            else if (parseNode.GetChildNode("global") is { } nullNodeGlobal && nullNodeGlobal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Global = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The global property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdPreferences200ResponsePreferencesGlobal? Global { get => _explicitNullValueGlobal; set { _explicitNullValueGlobal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("global"); else _explicitNullProperties?.Remove("global"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdPreferences200ResponsePreferencesGlobal? Global { get => _explicitNullValueGlobal; set { _explicitNullValueGlobal = value; AdditionalData?.Remove("global"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("global"); else _explicitNullProperties?.Remove("global"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdPreferences200ResponsePreferencesGlobal? _explicitNullValueGlobal = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdPreferences200ResponsePreferencesGlobal Global { get => _explicitNullValueGlobal; set { _explicitNullValueGlobal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("global"); else _explicitNullProperties?.Remove("global"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdPreferences200ResponsePreferencesGlobal Global { get => _explicitNullValueGlobal; set { _explicitNullValueGlobal = value; AdditionalData?.Remove("global"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("global"); else _explicitNullProperties?.Remove("global"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdPreferences200ResponsePreferencesGlobal _explicitNullValueGlobal = default!;
 #endif
         /// <summary>

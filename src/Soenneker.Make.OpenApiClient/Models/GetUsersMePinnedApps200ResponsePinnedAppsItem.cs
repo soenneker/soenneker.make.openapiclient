@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("appName") is { } nullNodeAppName && nullNodeAppName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppName = null;
-            if (parseNode.GetChildNode("isAppPinned") is { } nullNodeIsAppPinned && nullNodeIsAppPinned.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsAppPinned = null;
-            if (parseNode.GetChildNode("pinnedModules") is { } nullNodePinnedModules && nullNodePinnedModules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PinnedModules = null;
+            if (parseNode.GetChildNode("appName") is null) { _explicitNullValueAppName = default!; _explicitNullProperties?.Remove("appName"); }
+            else if (parseNode.GetChildNode("appName") is { } nullNodeAppName && nullNodeAppName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppName = null;
+            if (parseNode.GetChildNode("isAppPinned") is null) { _explicitNullValueIsAppPinned = default!; _explicitNullProperties?.Remove("isAppPinned"); }
+            else if (parseNode.GetChildNode("isAppPinned") is { } nullNodeIsAppPinned && nullNodeIsAppPinned.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsAppPinned = null;
+            if (parseNode.GetChildNode("pinnedModules") is null) { _explicitNullValuePinnedModules = default!; _explicitNullProperties?.Remove("pinnedModules"); }
+            else if (parseNode.GetChildNode("pinnedModules") is { } nullNodePinnedModules && nullNodePinnedModules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PinnedModules = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,24 +30,24 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Name of the pinned app. SDK apps are prefixed with `app#`; native apps are bare package names.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AppName { get => _explicitNullValueAppName; set { _explicitNullValueAppName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appName"); else _explicitNullProperties?.Remove("appName"); } }
+        public string? AppName { get => _explicitNullValueAppName; set { _explicitNullValueAppName = value; AdditionalData?.Remove("appName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appName"); else _explicitNullProperties?.Remove("appName"); } }
         private string? _explicitNullValueAppName = default!;
 #nullable restore
 #else
-        public string AppName { get => _explicitNullValueAppName; set { _explicitNullValueAppName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appName"); else _explicitNullProperties?.Remove("appName"); } }
+        public string AppName { get => _explicitNullValueAppName; set { _explicitNullValueAppName = value; AdditionalData?.Remove("appName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appName"); else _explicitNullProperties?.Remove("appName"); } }
         private string _explicitNullValueAppName = default!;
 #endif
         /// <summary>`true` when the app itself is pinned (it appears in the &quot;My apps&quot; tab). `false` when only modules under this app are pinned — the entry is still returned so the UI can render the pinned modules in the app-detail panel.</summary>
-        public bool? IsAppPinned { get => _explicitNullValueIsAppPinned; set { _explicitNullValueIsAppPinned = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isAppPinned"); else _explicitNullProperties?.Remove("isAppPinned"); } }
+        public bool? IsAppPinned { get => _explicitNullValueIsAppPinned; set { _explicitNullValueIsAppPinned = value; AdditionalData?.Remove("isAppPinned"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isAppPinned"); else _explicitNullProperties?.Remove("isAppPinned"); } }
         private bool? _explicitNullValueIsAppPinned = default!;
         /// <summary>Pinned modules under this app, ordered oldest-pinned-first.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem>? PinnedModules { get => _explicitNullValuePinnedModules; set { _explicitNullValuePinnedModules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedModules"); else _explicitNullProperties?.Remove("pinnedModules"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem>? PinnedModules { get => _explicitNullValuePinnedModules; set { _explicitNullValuePinnedModules = value; AdditionalData?.Remove("pinnedModules"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedModules"); else _explicitNullProperties?.Remove("pinnedModules"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem>? _explicitNullValuePinnedModules = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem> PinnedModules { get => _explicitNullValuePinnedModules; set { _explicitNullValuePinnedModules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedModules"); else _explicitNullProperties?.Remove("pinnedModules"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem> PinnedModules { get => _explicitNullValuePinnedModules; set { _explicitNullValuePinnedModules = value; AdditionalData?.Remove("pinnedModules"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedModules"); else _explicitNullProperties?.Remove("pinnedModules"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem> _explicitNullValuePinnedModules = default!;
 #endif
         /// <summary>

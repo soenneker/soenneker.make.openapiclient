@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("blueprint") is { } nullNodeBlueprint && nullNodeBlueprint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blueprint = null;
-            if (parseNode.GetChildNode("failer") is { } nullNodeFailer && nullNodeFailer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Failer = null;
+            if (parseNode.GetChildNode("blueprint") is null) { _explicitNullValueBlueprint = default!; _explicitNullProperties?.Remove("blueprint"); }
+            else if (parseNode.GetChildNode("blueprint") is { } nullNodeBlueprint && nullNodeBlueprint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blueprint = null;
+            if (parseNode.GetChildNode("failer") is null) { _explicitNullValueFailer = default!; _explicitNullProperties?.Remove("failer"); }
+            else if (parseNode.GetChildNode("failer") is { } nullNodeFailer && nullNodeFailer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Failer = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The blueprint property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprint? Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprint? Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; AdditionalData?.Remove("blueprint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprint? _explicitNullValueBlueprint = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprint Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprint Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; AdditionalData?.Remove("blueprint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprint _explicitNullValueBlueprint = default!;
 #endif
         /// <summary>The failer property</summary>
-        public int? Failer { get => _explicitNullValueFailer; set { _explicitNullValueFailer = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failer"); else _explicitNullProperties?.Remove("failer"); } }
+        public int? Failer { get => _explicitNullValueFailer; set { _explicitNullValueFailer = value; AdditionalData?.Remove("failer"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failer"); else _explicitNullProperties?.Remove("failer"); } }
         private int? _explicitNullValueFailer = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlq"/> and sets the default values.

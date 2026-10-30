@@ -17,50 +17,55 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("count") is { } nullNodeCount && nullNodeCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Count = null;
-            if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
-            if (parseNode.GetChildNode("records") is { } nullNodeRecords && nullNodeRecords.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Records = null;
-            if (parseNode.GetChildNode("spec") is { } nullNodeSpec && nullNodeSpec.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Spec = null;
-            if (parseNode.GetChildNode("strict") is { } nullNodeStrict && nullNodeStrict.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Strict = null;
+            if (parseNode.GetChildNode("count") is null) { _explicitNullValueCount = default!; _explicitNullProperties?.Remove("count"); }
+            else if (parseNode.GetChildNode("count") is { } nullNodeCount && nullNodeCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Count = null;
+            if (parseNode.GetChildNode("pg") is null) { _explicitNullValuePg = default!; _explicitNullProperties?.Remove("pg"); }
+            else if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
+            if (parseNode.GetChildNode("records") is null) { _explicitNullValueRecords = default!; _explicitNullProperties?.Remove("records"); }
+            else if (parseNode.GetChildNode("records") is { } nullNodeRecords && nullNodeRecords.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Records = null;
+            if (parseNode.GetChildNode("spec") is null) { _explicitNullValueSpec = default!; _explicitNullProperties?.Remove("spec"); }
+            else if (parseNode.GetChildNode("spec") is { } nullNodeSpec && nullNodeSpec.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Spec = null;
+            if (parseNode.GetChildNode("strict") is null) { _explicitNullValueStrict = default!; _explicitNullProperties?.Remove("strict"); }
+            else if (parseNode.GetChildNode("strict") is { } nullNodeStrict && nullNodeStrict.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Strict = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The count property</summary>
-        public int? Count { get => _explicitNullValueCount; set { _explicitNullValueCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("count"); else _explicitNullProperties?.Remove("count"); } }
+        public int? Count { get => _explicitNullValueCount; set { _explicitNullValueCount = value; AdditionalData?.Remove("count"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("count"); else _explicitNullProperties?.Remove("count"); } }
         private int? _explicitNullValueCount = default!;
         /// <summary>The pg property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponsePg? Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponsePg? Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; AdditionalData?.Remove("pg"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponsePg? _explicitNullValuePg = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; AdditionalData?.Remove("pg"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponsePg _explicitNullValuePg = default!;
 #endif
         /// <summary>The records property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponseRecordsItem>? Records { get => _explicitNullValueRecords; set { _explicitNullValueRecords = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("records"); else _explicitNullProperties?.Remove("records"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponseRecordsItem>? Records { get => _explicitNullValueRecords; set { _explicitNullValueRecords = value; AdditionalData?.Remove("records"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("records"); else _explicitNullProperties?.Remove("records"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponseRecordsItem>? _explicitNullValueRecords = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponseRecordsItem> Records { get => _explicitNullValueRecords; set { _explicitNullValueRecords = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("records"); else _explicitNullProperties?.Remove("records"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponseRecordsItem> Records { get => _explicitNullValueRecords; set { _explicitNullValueRecords = value; AdditionalData?.Remove("records"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("records"); else _explicitNullProperties?.Remove("records"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponseRecordsItem> _explicitNullValueRecords = default!;
 #endif
         /// <summary>The spec property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponseSpecItem>? Spec { get => _explicitNullValueSpec; set { _explicitNullValueSpec = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spec"); else _explicitNullProperties?.Remove("spec"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponseSpecItem>? Spec { get => _explicitNullValueSpec; set { _explicitNullValueSpec = value; AdditionalData?.Remove("spec"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spec"); else _explicitNullProperties?.Remove("spec"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponseSpecItem>? _explicitNullValueSpec = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponseSpecItem> Spec { get => _explicitNullValueSpec; set { _explicitNullValueSpec = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spec"); else _explicitNullProperties?.Remove("spec"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponseSpecItem> Spec { get => _explicitNullValueSpec; set { _explicitNullValueSpec = value; AdditionalData?.Remove("spec"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spec"); else _explicitNullProperties?.Remove("spec"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200ResponseSpecItem> _explicitNullValueSpec = default!;
 #endif
         /// <summary>The strict property</summary>
-        public bool? Strict { get => _explicitNullValueStrict; set { _explicitNullValueStrict = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("strict"); else _explicitNullProperties?.Remove("strict"); } }
+        public bool? Strict { get => _explicitNullValueStrict; set { _explicitNullValueStrict = value; AdditionalData?.Remove("strict"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("strict"); else _explicitNullProperties?.Remove("strict"); } }
         private bool? _explicitNullValueStrict = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200Response"/> and sets the default values.

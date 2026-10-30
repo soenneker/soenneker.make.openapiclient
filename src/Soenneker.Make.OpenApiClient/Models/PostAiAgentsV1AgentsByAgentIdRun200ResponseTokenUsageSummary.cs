@@ -17,21 +17,24 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("completionTokens") is { } nullNodeCompletionTokens && nullNodeCompletionTokens.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CompletionTokens = null;
-            if (parseNode.GetChildNode("promptTokens") is { } nullNodePromptTokens && nullNodePromptTokens.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PromptTokens = null;
-            if (parseNode.GetChildNode("totalTokens") is { } nullNodeTotalTokens && nullNodeTotalTokens.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalTokens = null;
+            if (parseNode.GetChildNode("completionTokens") is null) { _explicitNullValueCompletionTokens = default!; _explicitNullProperties?.Remove("completionTokens"); }
+            else if (parseNode.GetChildNode("completionTokens") is { } nullNodeCompletionTokens && nullNodeCompletionTokens.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CompletionTokens = null;
+            if (parseNode.GetChildNode("promptTokens") is null) { _explicitNullValuePromptTokens = default!; _explicitNullProperties?.Remove("promptTokens"); }
+            else if (parseNode.GetChildNode("promptTokens") is { } nullNodePromptTokens && nullNodePromptTokens.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PromptTokens = null;
+            if (parseNode.GetChildNode("totalTokens") is null) { _explicitNullValueTotalTokens = default!; _explicitNullProperties?.Remove("totalTokens"); }
+            else if (parseNode.GetChildNode("totalTokens") is { } nullNodeTotalTokens && nullNodeTotalTokens.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalTokens = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The completionTokens property</summary>
-        public int? CompletionTokens { get => _explicitNullValueCompletionTokens; set { _explicitNullValueCompletionTokens = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("completionTokens"); else _explicitNullProperties?.Remove("completionTokens"); } }
+        public int? CompletionTokens { get => _explicitNullValueCompletionTokens; set { _explicitNullValueCompletionTokens = value; AdditionalData?.Remove("completionTokens"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("completionTokens"); else _explicitNullProperties?.Remove("completionTokens"); } }
         private int? _explicitNullValueCompletionTokens = default!;
         /// <summary>The promptTokens property</summary>
-        public int? PromptTokens { get => _explicitNullValuePromptTokens; set { _explicitNullValuePromptTokens = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("promptTokens"); else _explicitNullProperties?.Remove("promptTokens"); } }
+        public int? PromptTokens { get => _explicitNullValuePromptTokens; set { _explicitNullValuePromptTokens = value; AdditionalData?.Remove("promptTokens"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("promptTokens"); else _explicitNullProperties?.Remove("promptTokens"); } }
         private int? _explicitNullValuePromptTokens = default!;
         /// <summary>The totalTokens property</summary>
-        public int? TotalTokens { get => _explicitNullValueTotalTokens; set { _explicitNullValueTotalTokens = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalTokens"); else _explicitNullProperties?.Remove("totalTokens"); } }
+        public int? TotalTokens { get => _explicitNullValueTotalTokens; set { _explicitNullValueTotalTokens = value; AdditionalData?.Remove("totalTokens"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalTokens"); else _explicitNullProperties?.Remove("totalTokens"); } }
         private int? _explicitNullValueTotalTokens = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseTokenUsageSummary"/> and sets the default values.

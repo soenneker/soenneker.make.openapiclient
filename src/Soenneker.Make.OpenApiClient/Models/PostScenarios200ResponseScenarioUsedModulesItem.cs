@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("moduleName") is { } nullNodeModuleName && nullNodeModuleName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModuleName = null;
-            if (parseNode.GetChildNode("packageName") is { } nullNodePackageName && nullNodePackageName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PackageName = null;
+            if (parseNode.GetChildNode("moduleName") is null) { _explicitNullValueModuleName = default!; _explicitNullProperties?.Remove("moduleName"); }
+            else if (parseNode.GetChildNode("moduleName") is { } nullNodeModuleName && nullNodeModuleName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModuleName = null;
+            if (parseNode.GetChildNode("packageName") is null) { _explicitNullValuePackageName = default!; _explicitNullProperties?.Remove("packageName"); }
+            else if (parseNode.GetChildNode("packageName") is { } nullNodePackageName && nullNodePackageName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PackageName = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The moduleName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ModuleName { get => _explicitNullValueModuleName; set { _explicitNullValueModuleName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleName"); else _explicitNullProperties?.Remove("moduleName"); } }
+        public string? ModuleName { get => _explicitNullValueModuleName; set { _explicitNullValueModuleName = value; AdditionalData?.Remove("moduleName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleName"); else _explicitNullProperties?.Remove("moduleName"); } }
         private string? _explicitNullValueModuleName = default!;
 #nullable restore
 #else
-        public string ModuleName { get => _explicitNullValueModuleName; set { _explicitNullValueModuleName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleName"); else _explicitNullProperties?.Remove("moduleName"); } }
+        public string ModuleName { get => _explicitNullValueModuleName; set { _explicitNullValueModuleName = value; AdditionalData?.Remove("moduleName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleName"); else _explicitNullProperties?.Remove("moduleName"); } }
         private string _explicitNullValueModuleName = default!;
 #endif
         /// <summary>The packageName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PackageName { get => _explicitNullValuePackageName; set { _explicitNullValuePackageName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packageName"); else _explicitNullProperties?.Remove("packageName"); } }
+        public string? PackageName { get => _explicitNullValuePackageName; set { _explicitNullValuePackageName = value; AdditionalData?.Remove("packageName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packageName"); else _explicitNullProperties?.Remove("packageName"); } }
         private string? _explicitNullValuePackageName = default!;
 #nullable restore
 #else
-        public string PackageName { get => _explicitNullValuePackageName; set { _explicitNullValuePackageName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packageName"); else _explicitNullProperties?.Remove("packageName"); } }
+        public string PackageName { get => _explicitNullValuePackageName; set { _explicitNullValuePackageName = value; AdditionalData?.Remove("packageName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packageName"); else _explicitNullProperties?.Remove("packageName"); } }
         private string _explicitNullValuePackageName = default!;
 #endif
         /// <summary>

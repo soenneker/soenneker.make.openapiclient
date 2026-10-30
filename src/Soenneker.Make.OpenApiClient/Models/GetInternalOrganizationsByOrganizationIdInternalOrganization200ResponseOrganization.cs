@@ -17,10 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("customApps") is { } nullNodeCustomApps && nullNodeCustomApps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomApps = null;
-            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
-            if (parseNode.GetChildNode("license") is { } nullNodeLicense && nullNodeLicense.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) License = null;
-            if (parseNode.GetChildNode("productFlags") is { } nullNodeProductFlags && nullNodeProductFlags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProductFlags = null;
+            if (parseNode.GetChildNode("customApps") is null) { _explicitNullValueCustomApps = default!; _explicitNullProperties?.Remove("customApps"); }
+            else if (parseNode.GetChildNode("customApps") is { } nullNodeCustomApps && nullNodeCustomApps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomApps = null;
+            if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
+            else if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("license") is null) { _explicitNullValueLicense = default!; _explicitNullProperties?.Remove("license"); }
+            else if (parseNode.GetChildNode("license") is { } nullNodeLicense && nullNodeLicense.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) License = null;
+            if (parseNode.GetChildNode("productFlags") is null) { _explicitNullValueProductFlags = default!; _explicitNullProperties?.Remove("productFlags"); }
+            else if (parseNode.GetChildNode("productFlags") is { } nullNodeProductFlags && nullNodeProductFlags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProductFlags = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,34 +32,34 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The customApps property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationCustomApps? CustomApps { get => _explicitNullValueCustomApps; set { _explicitNullValueCustomApps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customApps"); else _explicitNullProperties?.Remove("customApps"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationCustomApps? CustomApps { get => _explicitNullValueCustomApps; set { _explicitNullValueCustomApps = value; AdditionalData?.Remove("customApps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customApps"); else _explicitNullProperties?.Remove("customApps"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationCustomApps? _explicitNullValueCustomApps = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationCustomApps CustomApps { get => _explicitNullValueCustomApps; set { _explicitNullValueCustomApps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customApps"); else _explicitNullProperties?.Remove("customApps"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationCustomApps CustomApps { get => _explicitNullValueCustomApps; set { _explicitNullValueCustomApps = value; AdditionalData?.Remove("customApps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customApps"); else _explicitNullProperties?.Remove("customApps"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationCustomApps _explicitNullValueCustomApps = default!;
 #endif
         /// <summary>The id property</summary>
-        public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private int? _explicitNullValueId = default!;
         /// <summary>The license property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationLicense? License { get => _explicitNullValueLicense; set { _explicitNullValueLicense = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("license"); else _explicitNullProperties?.Remove("license"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationLicense? License { get => _explicitNullValueLicense; set { _explicitNullValueLicense = value; AdditionalData?.Remove("license"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("license"); else _explicitNullProperties?.Remove("license"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationLicense? _explicitNullValueLicense = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationLicense License { get => _explicitNullValueLicense; set { _explicitNullValueLicense = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("license"); else _explicitNullProperties?.Remove("license"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationLicense License { get => _explicitNullValueLicense; set { _explicitNullValueLicense = value; AdditionalData?.Remove("license"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("license"); else _explicitNullProperties?.Remove("license"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationLicense _explicitNullValueLicense = default!;
 #endif
         /// <summary>The productFlags property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags? ProductFlags { get => _explicitNullValueProductFlags; set { _explicitNullValueProductFlags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("productFlags"); else _explicitNullProperties?.Remove("productFlags"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags? ProductFlags { get => _explicitNullValueProductFlags; set { _explicitNullValueProductFlags = value; AdditionalData?.Remove("productFlags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("productFlags"); else _explicitNullProperties?.Remove("productFlags"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags? _explicitNullValueProductFlags = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags ProductFlags { get => _explicitNullValueProductFlags; set { _explicitNullValueProductFlags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("productFlags"); else _explicitNullProperties?.Remove("productFlags"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags ProductFlags { get => _explicitNullValueProductFlags; set { _explicitNullValueProductFlags = value; AdditionalData?.Remove("productFlags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("productFlags"); else _explicitNullProperties?.Remove("productFlags"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags _explicitNullValueProductFlags = default!;
 #endif
         /// <summary>

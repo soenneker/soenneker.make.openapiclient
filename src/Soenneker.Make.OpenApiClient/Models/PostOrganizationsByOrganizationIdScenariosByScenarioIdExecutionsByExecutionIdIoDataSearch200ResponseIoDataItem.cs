@@ -17,12 +17,18 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("executionId") is { } nullNodeExecutionId && nullNodeExecutionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionId = null;
-            if (parseNode.GetChildNode("highlight") is { } nullNodeHighlight && nullNodeHighlight.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Highlight = null;
-            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
-            if (parseNode.GetChildNode("kindId") is { } nullNodeKindId && nullNodeKindId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) KindId = null;
-            if (parseNode.GetChildNode("matchedFields") is { } nullNodeMatchedFields && nullNodeMatchedFields.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MatchedFields = null;
-            if (parseNode.GetChildNode("metadata") is { } nullNodeMetadata && nullNodeMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Metadata = null;
+            if (parseNode.GetChildNode("executionId") is null) { _explicitNullValueExecutionId = default!; _explicitNullProperties?.Remove("executionId"); }
+            else if (parseNode.GetChildNode("executionId") is { } nullNodeExecutionId && nullNodeExecutionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionId = null;
+            if (parseNode.GetChildNode("highlight") is null) { _explicitNullValueHighlight = default!; _explicitNullProperties?.Remove("highlight"); }
+            else if (parseNode.GetChildNode("highlight") is { } nullNodeHighlight && nullNodeHighlight.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Highlight = null;
+            if (parseNode.GetChildNode("kind") is null) { _explicitNullValueKind = default!; _explicitNullProperties?.Remove("kind"); }
+            else if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("kindId") is null) { _explicitNullValueKindId = default!; _explicitNullProperties?.Remove("kindId"); }
+            else if (parseNode.GetChildNode("kindId") is { } nullNodeKindId && nullNodeKindId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) KindId = null;
+            if (parseNode.GetChildNode("matchedFields") is null) { _explicitNullValueMatchedFields = default!; _explicitNullProperties?.Remove("matchedFields"); }
+            else if (parseNode.GetChildNode("matchedFields") is { } nullNodeMatchedFields && nullNodeMatchedFields.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MatchedFields = null;
+            if (parseNode.GetChildNode("metadata") is null) { _explicitNullValueMetadata = default!; _explicitNullProperties?.Remove("metadata"); }
+            else if (parseNode.GetChildNode("metadata") is { } nullNodeMetadata && nullNodeMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Metadata = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -30,54 +36,54 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The ID of the execution the record belongs to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
+        public string? ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; AdditionalData?.Remove("executionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
         private string? _explicitNullValueExecutionId = default!;
 #nullable restore
 #else
-        public string ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
+        public string ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; AdditionalData?.Remove("executionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
         private string _explicitNullValueExecutionId = default!;
 #endif
         /// <summary>Snippets from the matched field (`data`, `warning.message`, or `err.message`) that matched `query`, with the matched substring wrapped in `&lt;em&gt;` markers. Empty when nothing matched. Snippets are not remapped to per-bundle paths.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Highlight { get => _explicitNullValueHighlight; set { _explicitNullValueHighlight = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("highlight"); else _explicitNullProperties?.Remove("highlight"); } }
+        public List<string>? Highlight { get => _explicitNullValueHighlight; set { _explicitNullValueHighlight = value; AdditionalData?.Remove("highlight"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("highlight"); else _explicitNullProperties?.Remove("highlight"); } }
         private List<string>? _explicitNullValueHighlight = default!;
 #nullable restore
 #else
-        public List<string> Highlight { get => _explicitNullValueHighlight; set { _explicitNullValueHighlight = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("highlight"); else _explicitNullProperties?.Remove("highlight"); } }
+        public List<string> Highlight { get => _explicitNullValueHighlight; set { _explicitNullValueHighlight = value; AdditionalData?.Remove("highlight"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("highlight"); else _explicitNullProperties?.Remove("highlight"); } }
         private List<string> _explicitNullValueHighlight = default!;
 #endif
         /// <summary>The kind of the IO record (for example `input`, `output`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        public string? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; AdditionalData?.Remove("kind"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
         private string? _explicitNullValueKind = default!;
 #nullable restore
 #else
-        public string Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        public string Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; AdditionalData?.Remove("kind"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
         private string _explicitNullValueKind = default!;
 #endif
         /// <summary>The ID of the scenario the record belongs to.</summary>
-        public int? KindId { get => _explicitNullValueKindId; set { _explicitNullValueKindId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kindId"); else _explicitNullProperties?.Remove("kindId"); } }
+        public int? KindId { get => _explicitNullValueKindId; set { _explicitNullValueKindId = value; AdditionalData?.Remove("kindId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kindId"); else _explicitNullProperties?.Remove("kindId"); } }
         private int? _explicitNullValueKindId = default!;
         /// <summary>Which field(s) of the record actually matched `query` — `IO_DATA` for the module&apos;s data, `ERROR_MESSAGE` for an error message, `WARNING_MESSAGE` for a warning message. This endpoint is already scoped to one execution, so `matchedFields` never includes an execution-id match.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMatchedFieldsItem?>? MatchedFields { get => _explicitNullValueMatchedFields; set { _explicitNullValueMatchedFields = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matchedFields"); else _explicitNullProperties?.Remove("matchedFields"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMatchedFieldsItem?>? MatchedFields { get => _explicitNullValueMatchedFields; set { _explicitNullValueMatchedFields = value; AdditionalData?.Remove("matchedFields"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matchedFields"); else _explicitNullProperties?.Remove("matchedFields"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMatchedFieldsItem?>? _explicitNullValueMatchedFields = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMatchedFieldsItem?> MatchedFields { get => _explicitNullValueMatchedFields; set { _explicitNullValueMatchedFields = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matchedFields"); else _explicitNullProperties?.Remove("matchedFields"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMatchedFieldsItem?> MatchedFields { get => _explicitNullValueMatchedFields; set { _explicitNullValueMatchedFields = value; AdditionalData?.Remove("matchedFields"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matchedFields"); else _explicitNullProperties?.Remove("matchedFields"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMatchedFieldsItem?> _explicitNullValueMatchedFields = default!;
 #endif
         /// <summary>Free-form metadata captured alongside the IO record.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMetadata? Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMetadata? Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; AdditionalData?.Remove("metadata"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMetadata? _explicitNullValueMetadata = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMetadata Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMetadata Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; AdditionalData?.Remove("metadata"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItemMetadata _explicitNullValueMetadata = default!;
 #endif
         /// <summary>

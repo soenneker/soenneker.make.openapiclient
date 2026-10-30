@@ -78,7 +78,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Modules.Item.Parameter
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PUT, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://eu1.make.com/api/v2", "/sdk/apps/{sdkAppName}/{sdkAppVersion}/modules/{sdkModuleName}/parameters", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("preferences") is { } nullNodePreferences && nullNodePreferences.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Preferences = null;
-            if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
-            if (parseNode.GetChildNode("teamName") is { } nullNodeTeamName && nullNodeTeamName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamName = null;
+            if (parseNode.GetChildNode("preferences") is null) { _explicitNullValuePreferences = default!; _explicitNullProperties?.Remove("preferences"); }
+            else if (parseNode.GetChildNode("preferences") is { } nullNodePreferences && nullNodePreferences.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Preferences = null;
+            if (parseNode.GetChildNode("teamId") is null) { _explicitNullValueTeamId = default!; _explicitNullProperties?.Remove("teamId"); }
+            else if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
+            if (parseNode.GetChildNode("teamName") is null) { _explicitNullValueTeamName = default!; _explicitNullProperties?.Remove("teamName"); }
+            else if (parseNode.GetChildNode("teamName") is { } nullNodeTeamName && nullNodeTeamName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamName = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,24 +30,24 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The preferences property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferences? Preferences { get => _explicitNullValuePreferences; set { _explicitNullValuePreferences = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferences"); else _explicitNullProperties?.Remove("preferences"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferences? Preferences { get => _explicitNullValuePreferences; set { _explicitNullValuePreferences = value; AdditionalData?.Remove("preferences"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferences"); else _explicitNullProperties?.Remove("preferences"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferences? _explicitNullValuePreferences = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferences Preferences { get => _explicitNullValuePreferences; set { _explicitNullValuePreferences = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferences"); else _explicitNullProperties?.Remove("preferences"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferences Preferences { get => _explicitNullValuePreferences; set { _explicitNullValuePreferences = value; AdditionalData?.Remove("preferences"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferences"); else _explicitNullProperties?.Remove("preferences"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferences _explicitNullValuePreferences = default!;
 #endif
         /// <summary>The teamId property</summary>
-        public int? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
+        public int? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; AdditionalData?.Remove("teamId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
         private int? _explicitNullValueTeamId = default!;
         /// <summary>The teamName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TeamName { get => _explicitNullValueTeamName; set { _explicitNullValueTeamName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamName"); else _explicitNullProperties?.Remove("teamName"); } }
+        public string? TeamName { get => _explicitNullValueTeamName; set { _explicitNullValueTeamName = value; AdditionalData?.Remove("teamName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamName"); else _explicitNullProperties?.Remove("teamName"); } }
         private string? _explicitNullValueTeamName = default!;
 #nullable restore
 #else
-        public string TeamName { get => _explicitNullValueTeamName; set { _explicitNullValueTeamName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamName"); else _explicitNullProperties?.Remove("teamName"); } }
+        public string TeamName { get => _explicitNullValueTeamName; set { _explicitNullValueTeamName = value; AdditionalData?.Remove("teamName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamName"); else _explicitNullProperties?.Remove("teamName"); } }
         private string _explicitNullValueTeamName = default!;
 #endif
         /// <summary>

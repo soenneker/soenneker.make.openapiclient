@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("apiTokens") is { } nullNodeApiTokens && nullNodeApiTokens.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApiTokens = null;
+            if (parseNode.GetChildNode("apiTokens") is null) { _explicitNullValueApiTokens = default!; _explicitNullProperties?.Remove("apiTokens"); }
+            else if (parseNode.GetChildNode("apiTokens") is { } nullNodeApiTokens && nullNodeApiTokens.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApiTokens = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The apiTokens property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens200ResponseApiTokensItem>? ApiTokens { get => _explicitNullValueApiTokens; set { _explicitNullValueApiTokens = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apiTokens"); else _explicitNullProperties?.Remove("apiTokens"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens200ResponseApiTokensItem>? ApiTokens { get => _explicitNullValueApiTokens; set { _explicitNullValueApiTokens = value; AdditionalData?.Remove("apiTokens"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apiTokens"); else _explicitNullProperties?.Remove("apiTokens"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens200ResponseApiTokensItem>? _explicitNullValueApiTokens = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens200ResponseApiTokensItem> ApiTokens { get => _explicitNullValueApiTokens; set { _explicitNullValueApiTokens = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apiTokens"); else _explicitNullProperties?.Remove("apiTokens"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens200ResponseApiTokensItem> ApiTokens { get => _explicitNullValueApiTokens; set { _explicitNullValueApiTokens = value; AdditionalData?.Remove("apiTokens"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apiTokens"); else _explicitNullProperties?.Remove("apiTokens"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens200ResponseApiTokensItem> _explicitNullValueApiTokens = default!;
 #endif
         /// <summary>

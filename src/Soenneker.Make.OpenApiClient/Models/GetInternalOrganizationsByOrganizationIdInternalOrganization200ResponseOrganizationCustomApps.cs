@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("enableExpensiveModels") is { } nullNodeEnableExpensiveModels && nullNodeEnableExpensiveModels.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EnableExpensiveModels = null;
+            if (parseNode.GetChildNode("enableExpensiveModels") is null) { _explicitNullValueEnableExpensiveModels = default!; _explicitNullProperties?.Remove("enableExpensiveModels"); }
+            else if (parseNode.GetChildNode("enableExpensiveModels") is { } nullNodeEnableExpensiveModels && nullNodeEnableExpensiveModels.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EnableExpensiveModels = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The enableExpensiveModels property</summary>
-        public bool? EnableExpensiveModels { get => _explicitNullValueEnableExpensiveModels; set { _explicitNullValueEnableExpensiveModels = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enableExpensiveModels"); else _explicitNullProperties?.Remove("enableExpensiveModels"); } }
+        public bool? EnableExpensiveModels { get => _explicitNullValueEnableExpensiveModels; set { _explicitNullValueEnableExpensiveModels = value; AdditionalData?.Remove("enableExpensiveModels"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enableExpensiveModels"); else _explicitNullProperties?.Remove("enableExpensiveModels"); } }
         private bool? _explicitNullValueEnableExpensiveModels = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationCustomApps"/> and sets the default values.

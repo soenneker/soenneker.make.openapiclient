@@ -18,9 +18,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("input_spec") is { } nullNodeInputSpec && nullNodeInputSpec.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InputSpec = null;
-            if (parseNode.GetChildNode("output_spec") is { } nullNodeOutputSpec && nullNodeOutputSpec.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutputSpec = null;
-            if (parseNode.GetChildNode("template_metadata") is { } nullNodeTemplateMetadata && nullNodeTemplateMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TemplateMetadata = null;
+            if (parseNode.GetChildNode("input_spec") is null) { _explicitNullValueInputSpec = default!; _explicitNullProperties?.Remove("input_spec"); }
+            else if (parseNode.GetChildNode("input_spec") is { } nullNodeInputSpec && nullNodeInputSpec.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InputSpec = null;
+            if (parseNode.GetChildNode("output_spec") is null) { _explicitNullValueOutputSpec = default!; _explicitNullProperties?.Remove("output_spec"); }
+            else if (parseNode.GetChildNode("output_spec") is { } nullNodeOutputSpec && nullNodeOutputSpec.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutputSpec = null;
+            if (parseNode.GetChildNode("template_metadata") is null) { _explicitNullValueTemplateMetadata = default!; _explicitNullProperties?.Remove("template_metadata"); }
+            else if (parseNode.GetChildNode("template_metadata") is { } nullNodeTemplateMetadata && nullNodeTemplateMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TemplateMetadata = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,31 +31,31 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The scenario&apos;s input interface definition. Each item declares one input field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataInputSpecItem>? InputSpec { get => _explicitNullValueInputSpec; set { _explicitNullValueInputSpec = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("input_spec"); else _explicitNullProperties?.Remove("input_spec"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataInputSpecItem>? InputSpec { get => _explicitNullValueInputSpec; set { _explicitNullValueInputSpec = value; AdditionalData?.Remove("input_spec"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("input_spec"); else _explicitNullProperties?.Remove("input_spec"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataInputSpecItem>? _explicitNullValueInputSpec = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataInputSpecItem> InputSpec { get => _explicitNullValueInputSpec; set { _explicitNullValueInputSpec = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("input_spec"); else _explicitNullProperties?.Remove("input_spec"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataInputSpecItem> InputSpec { get => _explicitNullValueInputSpec; set { _explicitNullValueInputSpec = value; AdditionalData?.Remove("input_spec"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("input_spec"); else _explicitNullProperties?.Remove("input_spec"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataInputSpecItem> _explicitNullValueInputSpec = default!;
 #endif
         /// <summary>The scenario&apos;s output interface definition. Each item declares one output field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataOutputSpecItem>? OutputSpec { get => _explicitNullValueOutputSpec; set { _explicitNullValueOutputSpec = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("output_spec"); else _explicitNullProperties?.Remove("output_spec"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataOutputSpecItem>? OutputSpec { get => _explicitNullValueOutputSpec; set { _explicitNullValueOutputSpec = value; AdditionalData?.Remove("output_spec"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("output_spec"); else _explicitNullProperties?.Remove("output_spec"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataOutputSpecItem>? _explicitNullValueOutputSpec = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataOutputSpecItem> OutputSpec { get => _explicitNullValueOutputSpec; set { _explicitNullValueOutputSpec = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("output_spec"); else _explicitNullProperties?.Remove("output_spec"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataOutputSpecItem> OutputSpec { get => _explicitNullValueOutputSpec; set { _explicitNullValueOutputSpec = value; AdditionalData?.Remove("output_spec"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("output_spec"); else _explicitNullProperties?.Remove("output_spec"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataOutputSpecItem> _explicitNullValueOutputSpec = default!;
 #endif
         /// <summary>Metadata linking the created scenario to the template it is instantiated from.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataTemplateMetadata? TemplateMetadata { get => _explicitNullValueTemplateMetadata; set { _explicitNullValueTemplateMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("template_metadata"); else _explicitNullProperties?.Remove("template_metadata"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataTemplateMetadata? TemplateMetadata { get => _explicitNullValueTemplateMetadata; set { _explicitNullValueTemplateMetadata = value; AdditionalData?.Remove("template_metadata"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("template_metadata"); else _explicitNullProperties?.Remove("template_metadata"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataTemplateMetadata? _explicitNullValueTemplateMetadata = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataTemplateMetadata TemplateMetadata { get => _explicitNullValueTemplateMetadata; set { _explicitNullValueTemplateMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("template_metadata"); else _explicitNullProperties?.Remove("template_metadata"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataTemplateMetadata TemplateMetadata { get => _explicitNullValueTemplateMetadata; set { _explicitNullValueTemplateMetadata = value; AdditionalData?.Remove("template_metadata"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("template_metadata"); else _explicitNullProperties?.Remove("template_metadata"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosRequestMetadataTemplateMetadata _explicitNullValueTemplateMetadata = default!;
 #endif
         /// <summary>

@@ -17,10 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("buttons") is { } nullNodeButtons && nullNodeButtons.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Buttons = null;
-            if (parseNode.GetChildNode("config") is { } nullNodeConfig && nullNodeConfig.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Config = null;
-            if (parseNode.GetChildNode("multipart") is { } nullNodeMultipart && nullNodeMultipart.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Multipart = null;
-            if (parseNode.GetChildNode("values") is { } nullNodeValues && nullNodeValues.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Values = null;
+            if (parseNode.GetChildNode("buttons") is null) { _explicitNullValueButtons = default!; _explicitNullProperties?.Remove("buttons"); }
+            else if (parseNode.GetChildNode("buttons") is { } nullNodeButtons && nullNodeButtons.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Buttons = null;
+            if (parseNode.GetChildNode("config") is null) { _explicitNullValueConfig = default!; _explicitNullProperties?.Remove("config"); }
+            else if (parseNode.GetChildNode("config") is { } nullNodeConfig && nullNodeConfig.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Config = null;
+            if (parseNode.GetChildNode("multipart") is null) { _explicitNullValueMultipart = default!; _explicitNullProperties?.Remove("multipart"); }
+            else if (parseNode.GetChildNode("multipart") is { } nullNodeMultipart && nullNodeMultipart.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Multipart = null;
+            if (parseNode.GetChildNode("values") is null) { _explicitNullValueValues = default!; _explicitNullProperties?.Remove("values"); }
+            else if (parseNode.GetChildNode("values") is { } nullNodeValues && nullNodeValues.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Values = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,34 +32,34 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The buttons property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseButtonsItem>? Buttons { get => _explicitNullValueButtons; set { _explicitNullValueButtons = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("buttons"); else _explicitNullProperties?.Remove("buttons"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseButtonsItem>? Buttons { get => _explicitNullValueButtons; set { _explicitNullValueButtons = value; AdditionalData?.Remove("buttons"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("buttons"); else _explicitNullProperties?.Remove("buttons"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseButtonsItem>? _explicitNullValueButtons = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseButtonsItem> Buttons { get => _explicitNullValueButtons; set { _explicitNullValueButtons = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("buttons"); else _explicitNullProperties?.Remove("buttons"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseButtonsItem> Buttons { get => _explicitNullValueButtons; set { _explicitNullValueButtons = value; AdditionalData?.Remove("buttons"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("buttons"); else _explicitNullProperties?.Remove("buttons"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseButtonsItem> _explicitNullValueButtons = default!;
 #endif
         /// <summary>The config property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseConfigItem>? Config { get => _explicitNullValueConfig; set { _explicitNullValueConfig = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("config"); else _explicitNullProperties?.Remove("config"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseConfigItem>? Config { get => _explicitNullValueConfig; set { _explicitNullValueConfig = value; AdditionalData?.Remove("config"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("config"); else _explicitNullProperties?.Remove("config"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseConfigItem>? _explicitNullValueConfig = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseConfigItem> Config { get => _explicitNullValueConfig; set { _explicitNullValueConfig = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("config"); else _explicitNullProperties?.Remove("config"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseConfigItem> Config { get => _explicitNullValueConfig; set { _explicitNullValueConfig = value; AdditionalData?.Remove("config"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("config"); else _explicitNullProperties?.Remove("config"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseConfigItem> _explicitNullValueConfig = default!;
 #endif
         /// <summary>The multipart property</summary>
-        public bool? Multipart { get => _explicitNullValueMultipart; set { _explicitNullValueMultipart = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("multipart"); else _explicitNullProperties?.Remove("multipart"); } }
+        public bool? Multipart { get => _explicitNullValueMultipart; set { _explicitNullValueMultipart = value; AdditionalData?.Remove("multipart"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("multipart"); else _explicitNullProperties?.Remove("multipart"); } }
         private bool? _explicitNullValueMultipart = default!;
         /// <summary>The values property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseValues? Values { get => _explicitNullValueValues; set { _explicitNullValueValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("values"); else _explicitNullProperties?.Remove("values"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseValues? Values { get => _explicitNullValueValues; set { _explicitNullValueValues = value; AdditionalData?.Remove("values"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("values"); else _explicitNullProperties?.Remove("values"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseValues? _explicitNullValueValues = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseValues Values { get => _explicitNullValueValues; set { _explicitNullValueValues = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("values"); else _explicitNullProperties?.Remove("values"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseValues Values { get => _explicitNullValueValues; set { _explicitNullValueValues = value; AdditionalData?.Remove("values"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("values"); else _explicitNullProperties?.Remove("values"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseValues _explicitNullValueValues = default!;
 #endif
         /// <summary>

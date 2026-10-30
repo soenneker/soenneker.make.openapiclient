@@ -17,12 +17,18 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("appName") is { } nullNodeAppName && nullNodeAppName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppName = null;
-            if (parseNode.GetChildNode("appVersion") is { } nullNodeAppVersion && nullNodeAppVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppVersion = null;
-            if (parseNode.GetChildNode("available") is { } nullNodeAvailable && nullNodeAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Available = null;
-            if (parseNode.GetChildNode("definition") is { } nullNodeDefinition && nullNodeDefinition.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Definition = null;
-            if (parseNode.GetChildNode("endpointName") is { } nullNodeEndpointName && nullNodeEndpointName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EndpointName = null;
-            if (parseNode.GetChildNode("typeStatus") is { } nullNodeTypeStatus && nullNodeTypeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TypeStatus = null;
+            if (parseNode.GetChildNode("appName") is null) { _explicitNullValueAppName = default!; _explicitNullProperties?.Remove("appName"); }
+            else if (parseNode.GetChildNode("appName") is { } nullNodeAppName && nullNodeAppName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppName = null;
+            if (parseNode.GetChildNode("appVersion") is null) { _explicitNullValueAppVersion = default!; _explicitNullProperties?.Remove("appVersion"); }
+            else if (parseNode.GetChildNode("appVersion") is { } nullNodeAppVersion && nullNodeAppVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppVersion = null;
+            if (parseNode.GetChildNode("available") is null) { _explicitNullValueAvailable = default!; _explicitNullProperties?.Remove("available"); }
+            else if (parseNode.GetChildNode("available") is { } nullNodeAvailable && nullNodeAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Available = null;
+            if (parseNode.GetChildNode("definition") is null) { _explicitNullValueDefinition = default!; _explicitNullProperties?.Remove("definition"); }
+            else if (parseNode.GetChildNode("definition") is { } nullNodeDefinition && nullNodeDefinition.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Definition = null;
+            if (parseNode.GetChildNode("endpointName") is null) { _explicitNullValueEndpointName = default!; _explicitNullProperties?.Remove("endpointName"); }
+            else if (parseNode.GetChildNode("endpointName") is { } nullNodeEndpointName && nullNodeEndpointName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EndpointName = null;
+            if (parseNode.GetChildNode("typeStatus") is null) { _explicitNullValueTypeStatus = default!; _explicitNullProperties?.Remove("typeStatus"); }
+            else if (parseNode.GetChildNode("typeStatus") is { } nullNodeTypeStatus && nullNodeTypeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TypeStatus = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -30,41 +36,41 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The appName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AppName { get => _explicitNullValueAppName; set { _explicitNullValueAppName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appName"); else _explicitNullProperties?.Remove("appName"); } }
+        public string? AppName { get => _explicitNullValueAppName; set { _explicitNullValueAppName = value; AdditionalData?.Remove("appName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appName"); else _explicitNullProperties?.Remove("appName"); } }
         private string? _explicitNullValueAppName = default!;
 #nullable restore
 #else
-        public string AppName { get => _explicitNullValueAppName; set { _explicitNullValueAppName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appName"); else _explicitNullProperties?.Remove("appName"); } }
+        public string AppName { get => _explicitNullValueAppName; set { _explicitNullValueAppName = value; AdditionalData?.Remove("appName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appName"); else _explicitNullProperties?.Remove("appName"); } }
         private string _explicitNullValueAppName = default!;
 #endif
         /// <summary>The appVersion property</summary>
-        public int? AppVersion { get => _explicitNullValueAppVersion; set { _explicitNullValueAppVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appVersion"); else _explicitNullProperties?.Remove("appVersion"); } }
+        public int? AppVersion { get => _explicitNullValueAppVersion; set { _explicitNullValueAppVersion = value; AdditionalData?.Remove("appVersion"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appVersion"); else _explicitNullProperties?.Remove("appVersion"); } }
         private int? _explicitNullValueAppVersion = default!;
         /// <summary>The available property</summary>
-        public bool? Available { get => _explicitNullValueAvailable; set { _explicitNullValueAvailable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("available"); else _explicitNullProperties?.Remove("available"); } }
+        public bool? Available { get => _explicitNullValueAvailable; set { _explicitNullValueAvailable = value; AdditionalData?.Remove("available"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("available"); else _explicitNullProperties?.Remove("available"); } }
         private bool? _explicitNullValueAvailable = default!;
         /// <summary>The definition property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemDefinition? Definition { get => _explicitNullValueDefinition; set { _explicitNullValueDefinition = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("definition"); else _explicitNullProperties?.Remove("definition"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemDefinition? Definition { get => _explicitNullValueDefinition; set { _explicitNullValueDefinition = value; AdditionalData?.Remove("definition"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("definition"); else _explicitNullProperties?.Remove("definition"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemDefinition? _explicitNullValueDefinition = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemDefinition Definition { get => _explicitNullValueDefinition; set { _explicitNullValueDefinition = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("definition"); else _explicitNullProperties?.Remove("definition"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemDefinition Definition { get => _explicitNullValueDefinition; set { _explicitNullValueDefinition = value; AdditionalData?.Remove("definition"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("definition"); else _explicitNullProperties?.Remove("definition"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemDefinition _explicitNullValueDefinition = default!;
 #endif
         /// <summary>The endpointName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? EndpointName { get => _explicitNullValueEndpointName; set { _explicitNullValueEndpointName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpointName"); else _explicitNullProperties?.Remove("endpointName"); } }
+        public string? EndpointName { get => _explicitNullValueEndpointName; set { _explicitNullValueEndpointName = value; AdditionalData?.Remove("endpointName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpointName"); else _explicitNullProperties?.Remove("endpointName"); } }
         private string? _explicitNullValueEndpointName = default!;
 #nullable restore
 #else
-        public string EndpointName { get => _explicitNullValueEndpointName; set { _explicitNullValueEndpointName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpointName"); else _explicitNullProperties?.Remove("endpointName"); } }
+        public string EndpointName { get => _explicitNullValueEndpointName; set { _explicitNullValueEndpointName = value; AdditionalData?.Remove("endpointName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpointName"); else _explicitNullProperties?.Remove("endpointName"); } }
         private string _explicitNullValueEndpointName = default!;
 #endif
         /// <summary>The typeStatus property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemTypeStatus? TypeStatus { get => _explicitNullValueTypeStatus; set { _explicitNullValueTypeStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("typeStatus"); else _explicitNullProperties?.Remove("typeStatus"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemTypeStatus? TypeStatus { get => _explicitNullValueTypeStatus; set { _explicitNullValueTypeStatus = value; AdditionalData?.Remove("typeStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("typeStatus"); else _explicitNullProperties?.Remove("typeStatus"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemTypeStatus? _explicitNullValueTypeStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItem"/> and sets the default values.
@@ -96,7 +102,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "available", n => { Available = n.GetBoolValue(); } },
                 { "definition", n => { Definition = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemDefinition>(global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemDefinition.CreateFromDiscriminatorValue); } },
                 { "endpointName", n => { EndpointName = n.GetStringValue(); } },
-                { "typeStatus", n => { TypeStatus = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemTypeStatus>(); } },
+                { "typeStatus", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItemTypeStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueTypeStatus = default; _explicitNullProperties?.Remove("typeStatus"); AdditionalData["typeStatus"] = unknown; } else { TypeStatus = parsed; AdditionalData.Remove("typeStatus"); } } },
             };
         }
         /// <summary>

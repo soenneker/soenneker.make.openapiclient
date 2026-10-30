@@ -17,25 +17,29 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("last") is { } nullNodeLast && nullNodeLast.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Last = null;
-            if (parseNode.GetChildNode("limit") is { } nullNodeLimit && nullNodeLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Limit = null;
-            if (parseNode.GetChildNode("showLast") is { } nullNodeShowLast && nullNodeShowLast.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ShowLast = null;
-            if (parseNode.GetChildNode("sortDir") is { } nullNodeSortDir && nullNodeSortDir.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SortDir = null;
+            if (parseNode.GetChildNode("last") is null) { _explicitNullValueLast = default!; _explicitNullProperties?.Remove("last"); }
+            else if (parseNode.GetChildNode("last") is { } nullNodeLast && nullNodeLast.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Last = null;
+            if (parseNode.GetChildNode("limit") is null) { _explicitNullValueLimit = default!; _explicitNullProperties?.Remove("limit"); }
+            else if (parseNode.GetChildNode("limit") is { } nullNodeLimit && nullNodeLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Limit = null;
+            if (parseNode.GetChildNode("showLast") is null) { _explicitNullValueShowLast = default!; _explicitNullProperties?.Remove("showLast"); }
+            else if (parseNode.GetChildNode("showLast") is { } nullNodeShowLast && nullNodeShowLast.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ShowLast = null;
+            if (parseNode.GetChildNode("sortDir") is null) { _explicitNullValueSortDir = default!; _explicitNullProperties?.Remove("sortDir"); }
+            else if (parseNode.GetChildNode("sortDir") is { } nullNodeSortDir && nullNodeSortDir.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SortDir = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The last property</summary>
-        public Guid? Last { get => _explicitNullValueLast; set { _explicitNullValueLast = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("last"); else _explicitNullProperties?.Remove("last"); } }
+        public Guid? Last { get => _explicitNullValueLast; set { _explicitNullValueLast = value; AdditionalData?.Remove("last"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("last"); else _explicitNullProperties?.Remove("last"); } }
         private Guid? _explicitNullValueLast = default!;
         /// <summary>The limit property</summary>
-        public int? Limit { get => _explicitNullValueLimit; set { _explicitNullValueLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("limit"); else _explicitNullProperties?.Remove("limit"); } }
+        public int? Limit { get => _explicitNullValueLimit; set { _explicitNullValueLimit = value; AdditionalData?.Remove("limit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("limit"); else _explicitNullProperties?.Remove("limit"); } }
         private int? _explicitNullValueLimit = default!;
         /// <summary>The showLast property</summary>
-        public bool? ShowLast { get => _explicitNullValueShowLast; set { _explicitNullValueShowLast = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("showLast"); else _explicitNullProperties?.Remove("showLast"); } }
+        public bool? ShowLast { get => _explicitNullValueShowLast; set { _explicitNullValueShowLast = value; AdditionalData?.Remove("showLast"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("showLast"); else _explicitNullProperties?.Remove("showLast"); } }
         private bool? _explicitNullValueShowLast = default!;
         /// <summary>The sortDir property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponsePgSortDir? SortDir { get => _explicitNullValueSortDir; set { _explicitNullValueSortDir = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sortDir"); else _explicitNullProperties?.Remove("sortDir"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponsePgSortDir? SortDir { get => _explicitNullValueSortDir; set { _explicitNullValueSortDir = value; AdditionalData?.Remove("sortDir"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sortDir"); else _explicitNullProperties?.Remove("sortDir"); } }
         private global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponsePgSortDir? _explicitNullValueSortDir = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponsePg"/> and sets the default values.
@@ -65,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "last", n => { Last = n.GetGuidValue(); } },
                 { "limit", n => { Limit = n.GetIntValue(); } },
                 { "showLast", n => { ShowLast = n.GetBoolValue(); } },
-                { "sortDir", n => { SortDir = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponsePgSortDir>(); } },
+                { "sortDir", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponsePgSortDir>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueSortDir = default; _explicitNullProperties?.Remove("sortDir"); AdditionalData["sortDir"] = unknown; } else { SortDir = parsed; AdditionalData.Remove("sortDir"); } } },
             };
         }
         /// <summary>

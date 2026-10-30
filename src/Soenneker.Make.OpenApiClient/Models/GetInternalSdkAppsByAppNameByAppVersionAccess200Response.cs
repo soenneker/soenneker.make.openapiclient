@@ -17,17 +17,18 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("access") is { } nullNodeAccess && nullNodeAccess.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Access = null;
+            if (parseNode.GetChildNode("access") is null) { _explicitNullValueAccess = default!; _explicitNullProperties?.Remove("access"); }
+            else if (parseNode.GetChildNode("access") is { } nullNodeAccess && nullNodeAccess.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Access = null;
         }
 
         /// <summary>The access property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionAccess200ResponseAccess? Access { get => _explicitNullValueAccess; set { _explicitNullValueAccess = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("access"); else _explicitNullProperties?.Remove("access"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionAccess200ResponseAccess? Access { get => _explicitNullValueAccess; set { _explicitNullValueAccess = value; AdditionalData?.Remove("access"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("access"); else _explicitNullProperties?.Remove("access"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionAccess200ResponseAccess? _explicitNullValueAccess = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionAccess200ResponseAccess Access { get => _explicitNullValueAccess; set { _explicitNullValueAccess = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("access"); else _explicitNullProperties?.Remove("access"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionAccess200ResponseAccess Access { get => _explicitNullValueAccess; set { _explicitNullValueAccess = value; AdditionalData?.Remove("access"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("access"); else _explicitNullProperties?.Remove("access"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionAccess200ResponseAccess _explicitNullValueAccess = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>

@@ -18,9 +18,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("whatHappened") is { } nullNodeWhatHappened && nullNodeWhatHappened.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WhatHappened = null;
-            if (parseNode.GetChildNode("whatToDoNext") is { } nullNodeWhatToDoNext && nullNodeWhatToDoNext.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WhatToDoNext = null;
-            if (parseNode.GetChildNode("whyItHappened") is { } nullNodeWhyItHappened && nullNodeWhyItHappened.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WhyItHappened = null;
+            if (parseNode.GetChildNode("whatHappened") is null) { _explicitNullValueWhatHappened = default!; _explicitNullProperties?.Remove("whatHappened"); }
+            else if (parseNode.GetChildNode("whatHappened") is { } nullNodeWhatHappened && nullNodeWhatHappened.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WhatHappened = null;
+            if (parseNode.GetChildNode("whatToDoNext") is null) { _explicitNullValueWhatToDoNext = default!; _explicitNullProperties?.Remove("whatToDoNext"); }
+            else if (parseNode.GetChildNode("whatToDoNext") is { } nullNodeWhatToDoNext && nullNodeWhatToDoNext.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WhatToDoNext = null;
+            if (parseNode.GetChildNode("whyItHappened") is null) { _explicitNullValueWhyItHappened = default!; _explicitNullProperties?.Remove("whyItHappened"); }
+            else if (parseNode.GetChildNode("whyItHappened") is { } nullNodeWhyItHappened && nullNodeWhyItHappened.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WhyItHappened = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,31 +31,31 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>A short explanation of what went wrong.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WhatHappened { get => _explicitNullValueWhatHappened; set { _explicitNullValueWhatHappened = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whatHappened"); else _explicitNullProperties?.Remove("whatHappened"); } }
+        public string? WhatHappened { get => _explicitNullValueWhatHappened; set { _explicitNullValueWhatHappened = value; AdditionalData?.Remove("whatHappened"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whatHappened"); else _explicitNullProperties?.Remove("whatHappened"); } }
         private string? _explicitNullValueWhatHappened = default!;
 #nullable restore
 #else
-        public string WhatHappened { get => _explicitNullValueWhatHappened; set { _explicitNullValueWhatHappened = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whatHappened"); else _explicitNullProperties?.Remove("whatHappened"); } }
+        public string WhatHappened { get => _explicitNullValueWhatHappened; set { _explicitNullValueWhatHappened = value; AdditionalData?.Remove("whatHappened"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whatHappened"); else _explicitNullProperties?.Remove("whatHappened"); } }
         private string _explicitNullValueWhatHappened = default!;
 #endif
         /// <summary>Actionable steps to resolve the error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WhatToDoNext { get => _explicitNullValueWhatToDoNext; set { _explicitNullValueWhatToDoNext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whatToDoNext"); else _explicitNullProperties?.Remove("whatToDoNext"); } }
+        public string? WhatToDoNext { get => _explicitNullValueWhatToDoNext; set { _explicitNullValueWhatToDoNext = value; AdditionalData?.Remove("whatToDoNext"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whatToDoNext"); else _explicitNullProperties?.Remove("whatToDoNext"); } }
         private string? _explicitNullValueWhatToDoNext = default!;
 #nullable restore
 #else
-        public string WhatToDoNext { get => _explicitNullValueWhatToDoNext; set { _explicitNullValueWhatToDoNext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whatToDoNext"); else _explicitNullProperties?.Remove("whatToDoNext"); } }
+        public string WhatToDoNext { get => _explicitNullValueWhatToDoNext; set { _explicitNullValueWhatToDoNext = value; AdditionalData?.Remove("whatToDoNext"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whatToDoNext"); else _explicitNullProperties?.Remove("whatToDoNext"); } }
         private string _explicitNullValueWhatToDoNext = default!;
 #endif
         /// <summary>The root cause of the error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WhyItHappened { get => _explicitNullValueWhyItHappened; set { _explicitNullValueWhyItHappened = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whyItHappened"); else _explicitNullProperties?.Remove("whyItHappened"); } }
+        public string? WhyItHappened { get => _explicitNullValueWhyItHappened; set { _explicitNullValueWhyItHappened = value; AdditionalData?.Remove("whyItHappened"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whyItHappened"); else _explicitNullProperties?.Remove("whyItHappened"); } }
         private string? _explicitNullValueWhyItHappened = default!;
 #nullable restore
 #else
-        public string WhyItHappened { get => _explicitNullValueWhyItHappened; set { _explicitNullValueWhyItHappened = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whyItHappened"); else _explicitNullProperties?.Remove("whyItHappened"); } }
+        public string WhyItHappened { get => _explicitNullValueWhyItHappened; set { _explicitNullValueWhyItHappened = value; AdditionalData?.Remove("whyItHappened"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whyItHappened"); else _explicitNullProperties?.Remove("whyItHappened"); } }
         private string _explicitNullValueWhyItHappened = default!;
 #endif
         /// <summary>

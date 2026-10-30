@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("userApiTokenScopes") is { } nullNodeUserApiTokenScopes && nullNodeUserApiTokenScopes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserApiTokenScopes = null;
+            if (parseNode.GetChildNode("userApiTokenScopes") is null) { _explicitNullValueUserApiTokenScopes = default!; _explicitNullProperties?.Remove("userApiTokenScopes"); }
+            else if (parseNode.GetChildNode("userApiTokenScopes") is { } nullNodeUserApiTokenScopes && nullNodeUserApiTokenScopes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserApiTokenScopes = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The userApiTokenScopes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserApiTokenScopes200ResponseUserApiTokenScopesItem>? UserApiTokenScopes { get => _explicitNullValueUserApiTokenScopes; set { _explicitNullValueUserApiTokenScopes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userApiTokenScopes"); else _explicitNullProperties?.Remove("userApiTokenScopes"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserApiTokenScopes200ResponseUserApiTokenScopesItem>? UserApiTokenScopes { get => _explicitNullValueUserApiTokenScopes; set { _explicitNullValueUserApiTokenScopes = value; AdditionalData?.Remove("userApiTokenScopes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userApiTokenScopes"); else _explicitNullProperties?.Remove("userApiTokenScopes"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserApiTokenScopes200ResponseUserApiTokenScopesItem>? _explicitNullValueUserApiTokenScopes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserApiTokenScopes200ResponseUserApiTokenScopesItem> UserApiTokenScopes { get => _explicitNullValueUserApiTokenScopes; set { _explicitNullValueUserApiTokenScopes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userApiTokenScopes"); else _explicitNullProperties?.Remove("userApiTokenScopes"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserApiTokenScopes200ResponseUserApiTokenScopesItem> UserApiTokenScopes { get => _explicitNullValueUserApiTokenScopes; set { _explicitNullValueUserApiTokenScopes = value; AdditionalData?.Remove("userApiTokenScopes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userApiTokenScopes"); else _explicitNullProperties?.Remove("userApiTokenScopes"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserApiTokenScopes200ResponseUserApiTokenScopesItem> _explicitNullValueUserApiTokenScopes = default!;
 #endif
         /// <summary>

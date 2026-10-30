@@ -17,10 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("correlationId") is { } nullNodeCorrelationId && nullNodeCorrelationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CorrelationId = null;
-            if (parseNode.GetChildNode("dateSince") is { } nullNodeDateSince && nullNodeDateSince.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DateSince = null;
-            if (parseNode.GetChildNode("error") is { } nullNodeError && nullNodeError.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Error = null;
-            if (parseNode.GetChildNode("logs") is { } nullNodeLogs && nullNodeLogs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Logs = null;
+            if (parseNode.GetChildNode("correlationId") is null) { _explicitNullValueCorrelationId = default!; _explicitNullProperties?.Remove("correlationId"); }
+            else if (parseNode.GetChildNode("correlationId") is { } nullNodeCorrelationId && nullNodeCorrelationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CorrelationId = null;
+            if (parseNode.GetChildNode("dateSince") is null) { _explicitNullValueDateSince = default!; _explicitNullProperties?.Remove("dateSince"); }
+            else if (parseNode.GetChildNode("dateSince") is { } nullNodeDateSince && nullNodeDateSince.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DateSince = null;
+            if (parseNode.GetChildNode("error") is null) { _explicitNullValueError = default!; _explicitNullProperties?.Remove("error"); }
+            else if (parseNode.GetChildNode("error") is { } nullNodeError && nullNodeError.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Error = null;
+            if (parseNode.GetChildNode("logs") is null) { _explicitNullValueLogs = default!; _explicitNullProperties?.Remove("logs"); }
+            else if (parseNode.GetChildNode("logs") is { } nullNodeLogs && nullNodeLogs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Logs = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,41 +32,41 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The correlationId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CorrelationId { get => _explicitNullValueCorrelationId; set { _explicitNullValueCorrelationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("correlationId"); else _explicitNullProperties?.Remove("correlationId"); } }
+        public string? CorrelationId { get => _explicitNullValueCorrelationId; set { _explicitNullValueCorrelationId = value; AdditionalData?.Remove("correlationId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("correlationId"); else _explicitNullProperties?.Remove("correlationId"); } }
         private string? _explicitNullValueCorrelationId = default!;
 #nullable restore
 #else
-        public string CorrelationId { get => _explicitNullValueCorrelationId; set { _explicitNullValueCorrelationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("correlationId"); else _explicitNullProperties?.Remove("correlationId"); } }
+        public string CorrelationId { get => _explicitNullValueCorrelationId; set { _explicitNullValueCorrelationId = value; AdditionalData?.Remove("correlationId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("correlationId"); else _explicitNullProperties?.Remove("correlationId"); } }
         private string _explicitNullValueCorrelationId = default!;
 #endif
         /// <summary>The dateSince property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DateSince { get => _explicitNullValueDateSince; set { _explicitNullValueDateSince = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dateSince"); else _explicitNullProperties?.Remove("dateSince"); } }
+        public string? DateSince { get => _explicitNullValueDateSince; set { _explicitNullValueDateSince = value; AdditionalData?.Remove("dateSince"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dateSince"); else _explicitNullProperties?.Remove("dateSince"); } }
         private string? _explicitNullValueDateSince = default!;
 #nullable restore
 #else
-        public string DateSince { get => _explicitNullValueDateSince; set { _explicitNullValueDateSince = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dateSince"); else _explicitNullProperties?.Remove("dateSince"); } }
+        public string DateSince { get => _explicitNullValueDateSince; set { _explicitNullValueDateSince = value; AdditionalData?.Remove("dateSince"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dateSince"); else _explicitNullProperties?.Remove("dateSince"); } }
         private string _explicitNullValueDateSince = default!;
 #endif
         /// <summary>The error property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        public string? Error { get => _explicitNullValueError; set { _explicitNullValueError = value; AdditionalData?.Remove("error"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
         private string? _explicitNullValueError = default!;
 #nullable restore
 #else
-        public string Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        public string Error { get => _explicitNullValueError; set { _explicitNullValueError = value; AdditionalData?.Remove("error"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
         private string _explicitNullValueError = default!;
 #endif
         /// <summary>The logs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminInstallAppsByAppLogs200ResponseLogsItem>? Logs { get => _explicitNullValueLogs; set { _explicitNullValueLogs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("logs"); else _explicitNullProperties?.Remove("logs"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminInstallAppsByAppLogs200ResponseLogsItem>? Logs { get => _explicitNullValueLogs; set { _explicitNullValueLogs = value; AdditionalData?.Remove("logs"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("logs"); else _explicitNullProperties?.Remove("logs"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetAdminInstallAppsByAppLogs200ResponseLogsItem>? _explicitNullValueLogs = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminInstallAppsByAppLogs200ResponseLogsItem> Logs { get => _explicitNullValueLogs; set { _explicitNullValueLogs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("logs"); else _explicitNullProperties?.Remove("logs"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminInstallAppsByAppLogs200ResponseLogsItem> Logs { get => _explicitNullValueLogs; set { _explicitNullValueLogs = value; AdditionalData?.Remove("logs"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("logs"); else _explicitNullProperties?.Remove("logs"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetAdminInstallAppsByAppLogs200ResponseLogsItem> _explicitNullValueLogs = default!;
 #endif
         /// <summary>

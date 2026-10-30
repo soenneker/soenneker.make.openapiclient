@@ -84,7 +84,7 @@ namespace Soenneker.Make.OpenApiClient.EventSubscriptions.V1.Organizations.Item.
         public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://eu1.make.com/api/v2", "/event-subscriptions/v1/organizations/{organizationId}/subscriptions/{subscriptionId}/deliveries/{deliveryId}/resend", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

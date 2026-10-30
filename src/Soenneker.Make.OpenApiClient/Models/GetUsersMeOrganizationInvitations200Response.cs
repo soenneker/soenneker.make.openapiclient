@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("userOrganizationInvitations") is { } nullNodeUserOrganizationInvitations && nullNodeUserOrganizationInvitations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserOrganizationInvitations = null;
+            if (parseNode.GetChildNode("userOrganizationInvitations") is null) { _explicitNullValueUserOrganizationInvitations = default!; _explicitNullProperties?.Remove("userOrganizationInvitations"); }
+            else if (parseNode.GetChildNode("userOrganizationInvitations") is { } nullNodeUserOrganizationInvitations && nullNodeUserOrganizationInvitations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserOrganizationInvitations = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The userOrganizationInvitations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOrganizationInvitations200ResponseUserOrganizationInvitationsItem>? UserOrganizationInvitations { get => _explicitNullValueUserOrganizationInvitations; set { _explicitNullValueUserOrganizationInvitations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userOrganizationInvitations"); else _explicitNullProperties?.Remove("userOrganizationInvitations"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOrganizationInvitations200ResponseUserOrganizationInvitationsItem>? UserOrganizationInvitations { get => _explicitNullValueUserOrganizationInvitations; set { _explicitNullValueUserOrganizationInvitations = value; AdditionalData?.Remove("userOrganizationInvitations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userOrganizationInvitations"); else _explicitNullProperties?.Remove("userOrganizationInvitations"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOrganizationInvitations200ResponseUserOrganizationInvitationsItem>? _explicitNullValueUserOrganizationInvitations = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOrganizationInvitations200ResponseUserOrganizationInvitationsItem> UserOrganizationInvitations { get => _explicitNullValueUserOrganizationInvitations; set { _explicitNullValueUserOrganizationInvitations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userOrganizationInvitations"); else _explicitNullProperties?.Remove("userOrganizationInvitations"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOrganizationInvitations200ResponseUserOrganizationInvitationsItem> UserOrganizationInvitations { get => _explicitNullValueUserOrganizationInvitations; set { _explicitNullValueUserOrganizationInvitations = value; AdditionalData?.Remove("userOrganizationInvitations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userOrganizationInvitations"); else _explicitNullProperties?.Remove("userOrganizationInvitations"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOrganizationInvitations200ResponseUserOrganizationInvitationsItem> _explicitNullValueUserOrganizationInvitations = default!;
 #endif
         /// <summary>

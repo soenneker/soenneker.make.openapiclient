@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("declarations") is { } nullNodeDeclarations && nullNodeDeclarations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Declarations = null;
-            if (parseNode.GetChildNode("inputType") is { } nullNodeInputType && nullNodeInputType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InputType = null;
-            if (parseNode.GetChildNode("outputType") is { } nullNodeOutputType && nullNodeOutputType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutputType = null;
+            if (parseNode.GetChildNode("declarations") is null) { _explicitNullValueDeclarations = default!; _explicitNullProperties?.Remove("declarations"); }
+            else if (parseNode.GetChildNode("declarations") is { } nullNodeDeclarations && nullNodeDeclarations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Declarations = null;
+            if (parseNode.GetChildNode("inputType") is null) { _explicitNullValueInputType = default!; _explicitNullProperties?.Remove("inputType"); }
+            else if (parseNode.GetChildNode("inputType") is { } nullNodeInputType && nullNodeInputType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InputType = null;
+            if (parseNode.GetChildNode("outputType") is null) { _explicitNullValueOutputType = default!; _explicitNullProperties?.Remove("outputType"); }
+            else if (parseNode.GetChildNode("outputType") is { } nullNodeOutputType && nullNodeOutputType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutputType = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,31 +30,31 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The declarations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Declarations { get => _explicitNullValueDeclarations; set { _explicitNullValueDeclarations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("declarations"); else _explicitNullProperties?.Remove("declarations"); } }
+        public string? Declarations { get => _explicitNullValueDeclarations; set { _explicitNullValueDeclarations = value; AdditionalData?.Remove("declarations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("declarations"); else _explicitNullProperties?.Remove("declarations"); } }
         private string? _explicitNullValueDeclarations = default!;
 #nullable restore
 #else
-        public string Declarations { get => _explicitNullValueDeclarations; set { _explicitNullValueDeclarations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("declarations"); else _explicitNullProperties?.Remove("declarations"); } }
+        public string Declarations { get => _explicitNullValueDeclarations; set { _explicitNullValueDeclarations = value; AdditionalData?.Remove("declarations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("declarations"); else _explicitNullProperties?.Remove("declarations"); } }
         private string _explicitNullValueDeclarations = default!;
 #endif
         /// <summary>The inputType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? InputType { get => _explicitNullValueInputType; set { _explicitNullValueInputType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inputType"); else _explicitNullProperties?.Remove("inputType"); } }
+        public string? InputType { get => _explicitNullValueInputType; set { _explicitNullValueInputType = value; AdditionalData?.Remove("inputType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inputType"); else _explicitNullProperties?.Remove("inputType"); } }
         private string? _explicitNullValueInputType = default!;
 #nullable restore
 #else
-        public string InputType { get => _explicitNullValueInputType; set { _explicitNullValueInputType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inputType"); else _explicitNullProperties?.Remove("inputType"); } }
+        public string InputType { get => _explicitNullValueInputType; set { _explicitNullValueInputType = value; AdditionalData?.Remove("inputType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inputType"); else _explicitNullProperties?.Remove("inputType"); } }
         private string _explicitNullValueInputType = default!;
 #endif
         /// <summary>The outputType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OutputType { get => _explicitNullValueOutputType; set { _explicitNullValueOutputType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outputType"); else _explicitNullProperties?.Remove("outputType"); } }
+        public string? OutputType { get => _explicitNullValueOutputType; set { _explicitNullValueOutputType = value; AdditionalData?.Remove("outputType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outputType"); else _explicitNullProperties?.Remove("outputType"); } }
         private string? _explicitNullValueOutputType = default!;
 #nullable restore
 #else
-        public string OutputType { get => _explicitNullValueOutputType; set { _explicitNullValueOutputType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outputType"); else _explicitNullProperties?.Remove("outputType"); } }
+        public string OutputType { get => _explicitNullValueOutputType; set { _explicitNullValueOutputType = value; AdditionalData?.Remove("outputType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outputType"); else _explicitNullProperties?.Remove("outputType"); } }
         private string _explicitNullValueOutputType = default!;
 #endif
         /// <summary>

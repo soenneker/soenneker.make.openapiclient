@@ -17,23 +17,25 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("inspector") is { } nullNodeInspector && nullNodeInspector.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Inspector = null;
-            if (parseNode.GetChildNode("udid") is { } nullNodeUdid && nullNodeUdid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Udid = null;
+            if (parseNode.GetChildNode("inspector") is null) { _explicitNullValueInspector = default!; _explicitNullProperties?.Remove("inspector"); }
+            else if (parseNode.GetChildNode("inspector") is { } nullNodeInspector && nullNodeInspector.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Inspector = null;
+            if (parseNode.GetChildNode("udid") is null) { _explicitNullValueUdid = default!; _explicitNullProperties?.Remove("udid"); }
+            else if (parseNode.GetChildNode("udid") is { } nullNodeUdid && nullNodeUdid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Udid = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The inspector property</summary>
-        public bool? Inspector { get => _explicitNullValueInspector; set { _explicitNullValueInspector = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inspector"); else _explicitNullProperties?.Remove("inspector"); } }
+        public bool? Inspector { get => _explicitNullValueInspector; set { _explicitNullValueInspector = value; AdditionalData?.Remove("inspector"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inspector"); else _explicitNullProperties?.Remove("inspector"); } }
         private bool? _explicitNullValueInspector = default!;
         /// <summary>The udid property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Udid { get => _explicitNullValueUdid; set { _explicitNullValueUdid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("udid"); else _explicitNullProperties?.Remove("udid"); } }
+        public string? Udid { get => _explicitNullValueUdid; set { _explicitNullValueUdid = value; AdditionalData?.Remove("udid"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("udid"); else _explicitNullProperties?.Remove("udid"); } }
         private string? _explicitNullValueUdid = default!;
 #nullable restore
 #else
-        public string Udid { get => _explicitNullValueUdid; set { _explicitNullValueUdid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("udid"); else _explicitNullProperties?.Remove("udid"); } }
+        public string Udid { get => _explicitNullValueUdid; set { _explicitNullValueUdid = value; AdditionalData?.Remove("udid"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("udid"); else _explicitNullProperties?.Remove("udid"); } }
         private string _explicitNullValueUdid = default!;
 #endif
         /// <summary>

@@ -17,7 +17,87 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
+            if (parseNode.GetChildNode("url") is null) { _explicitNullValueUrl = default!; _explicitNullProperties?.Remove("url"); }
+            else if (parseNode.GetChildNode("url") is { } nullNodeUrl && nullNodeUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Url = null;
+            if (parseNode.GetChildNode("baseUrl") is null) { _explicitNullValueBaseUrl = default!; _explicitNullProperties?.Remove("baseUrl"); }
+            else if (parseNode.GetChildNode("baseUrl") is { } nullNodeBaseUrl && nullNodeBaseUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BaseUrl = null;
+            if (parseNode.GetChildNode("encodeUrl") is null) { _explicitNullValueEncodeUrl = default!; _explicitNullProperties?.Remove("encodeUrl"); }
+            else if (parseNode.GetChildNode("encodeUrl") is { } nullNodeEncodeUrl && nullNodeEncodeUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EncodeUrl = null;
+            if (parseNode.GetChildNode("method") is null) { _explicitNullValueMethod = default!; _explicitNullProperties?.Remove("method"); }
+            else if (parseNode.GetChildNode("method") is { } nullNodeMethod && nullNodeMethod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Method = null;
+            if (parseNode.GetChildNode("headers") is null) { _explicitNullValueHeaders = default!; _explicitNullProperties?.Remove("headers"); }
+            else if (parseNode.GetChildNode("headers") is { } nullNodeHeaders && nullNodeHeaders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Headers = null;
+            if (parseNode.GetChildNode("qs") is null) { _explicitNullValueQs = default!; _explicitNullProperties?.Remove("qs"); }
+            else if (parseNode.GetChildNode("qs") is { } nullNodeQs && nullNodeQs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Qs = null;
+            if (parseNode.GetChildNode("ca") is null) { _explicitNullValueCa = default!; _explicitNullProperties?.Remove("ca"); }
+            else if (parseNode.GetChildNode("ca") is { } nullNodeCa && nullNodeCa.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Ca = null;
+            if (parseNode.GetChildNode("body") is null) { _explicitNullValueBody = default!; _explicitNullProperties?.Remove("body"); }
+            else if (parseNode.GetChildNode("body") is { } nullNodeBody && nullNodeBody.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Body = null;
+            if (parseNode.GetChildNode("type") is null) { _explicitNullValueType = default!; _explicitNullProperties?.Remove("type"); }
+            else if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("temp") is null) { _explicitNullValueTemp = default!; _explicitNullProperties?.Remove("temp"); }
+            else if (parseNode.GetChildNode("temp") is { } nullNodeTemp && nullNodeTemp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Temp = null;
+            if (parseNode.GetChildNode("condition") is null) { _explicitNullValueCondition = default!; _explicitNullProperties?.Remove("condition"); }
+            else if (parseNode.GetChildNode("condition") is { } nullNodeCondition && nullNodeCondition.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Condition = null;
+            if (parseNode.GetChildNode("aws") is null) { _explicitNullValueAws = default!; _explicitNullProperties?.Remove("aws"); }
+            else if (parseNode.GetChildNode("aws") is { } nullNodeAws && nullNodeAws.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Aws = null;
+            if (parseNode.GetChildNode("gzip") is null) { _explicitNullValueGzip = default!; _explicitNullProperties?.Remove("gzip"); }
+            else if (parseNode.GetChildNode("gzip") is { } nullNodeGzip && nullNodeGzip.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Gzip = null;
+            if (parseNode.GetChildNode("followRedirects") is null) { _explicitNullValueFollowRedirects = default!; _explicitNullProperties?.Remove("followRedirects"); }
+            else if (parseNode.GetChildNode("followRedirects") is { } nullNodeFollowRedirects && nullNodeFollowRedirects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FollowRedirects = null;
+            if (parseNode.GetChildNode("followAllRedirects") is null) { _explicitNullValueFollowAllRedirects = default!; _explicitNullProperties?.Remove("followAllRedirects"); }
+            else if (parseNode.GetChildNode("followAllRedirects") is { } nullNodeFollowAllRedirects && nullNodeFollowAllRedirects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FollowAllRedirects = null;
+            if (parseNode.GetChildNode("log") is null) { _explicitNullValueLog = default!; _explicitNullProperties?.Remove("log"); }
+            else if (parseNode.GetChildNode("log") is { } nullNodeLog && nullNodeLog.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Log = null;
+            if (parseNode.GetChildNode("oauth") is null) { _explicitNullValueOAuth = default!; _explicitNullProperties?.Remove("oauth"); }
+            else if (parseNode.GetChildNode("oauth") is { } nullNodeOAuth && nullNodeOAuth.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OAuth = null;
+            if (parseNode.GetChildNode("pagination") is null) { _explicitNullValuePagination = default!; _explicitNullProperties?.Remove("pagination"); }
+            else if (parseNode.GetChildNode("pagination") is { } nullNodePagination && nullNodePagination.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pagination = null;
+            if (parseNode.GetChildNode("response") is null) { _explicitNullValueResponse = default!; _explicitNullProperties?.Remove("response"); }
+            else if (parseNode.GetChildNode("response") is { } nullNodeResponse && nullNodeResponse.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Response = null;
         }
+
+        // Restore fields omitted by the generator's model-depth limit.
+#nullable enable
+        public string? Url { get => _explicitNullValueUrl; set { _explicitNullValueUrl = value; AdditionalData?.Remove("url"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("url"); else _explicitNullProperties?.Remove("url"); } }
+        private string? _explicitNullValueUrl = default!;
+        public string? BaseUrl { get => _explicitNullValueBaseUrl; set { _explicitNullValueBaseUrl = value; AdditionalData?.Remove("baseUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("baseUrl"); else _explicitNullProperties?.Remove("baseUrl"); } }
+        private string? _explicitNullValueBaseUrl = default!;
+        public bool? EncodeUrl { get => _explicitNullValueEncodeUrl; set { _explicitNullValueEncodeUrl = value; AdditionalData?.Remove("encodeUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("encodeUrl"); else _explicitNullProperties?.Remove("encodeUrl"); } }
+        private bool? _explicitNullValueEncodeUrl = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Method { get => _explicitNullValueMethod; set { _explicitNullValueMethod = value; AdditionalData?.Remove("method"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("method"); else _explicitNullProperties?.Remove("method"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueMethod = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Headers { get => _explicitNullValueHeaders; set { _explicitNullValueHeaders = value; AdditionalData?.Remove("headers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("headers"); else _explicitNullProperties?.Remove("headers"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueHeaders = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Qs { get => _explicitNullValueQs; set { _explicitNullValueQs = value; AdditionalData?.Remove("qs"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("qs"); else _explicitNullProperties?.Remove("qs"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueQs = default!;
+        public string? Ca { get => _explicitNullValueCa; set { _explicitNullValueCa = value; AdditionalData?.Remove("ca"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ca"); else _explicitNullProperties?.Remove("ca"); } }
+        private string? _explicitNullValueCa = default!;
+        public global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1Body? Body { get => _explicitNullValueBody; set { _explicitNullValueBody = value; AdditionalData?.Remove("body"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("body"); else _explicitNullProperties?.Remove("body"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1Body? _explicitNullValueBody = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueType = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Temp { get => _explicitNullValueTemp; set { _explicitNullValueTemp = value; AdditionalData?.Remove("temp"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("temp"); else _explicitNullProperties?.Remove("temp"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueTemp = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Condition { get => _explicitNullValueCondition; set { _explicitNullValueCondition = value; AdditionalData?.Remove("condition"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("condition"); else _explicitNullProperties?.Remove("condition"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueCondition = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Aws { get => _explicitNullValueAws; set { _explicitNullValueAws = value; AdditionalData?.Remove("aws"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("aws"); else _explicitNullProperties?.Remove("aws"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueAws = default!;
+        public bool? Gzip { get => _explicitNullValueGzip; set { _explicitNullValueGzip = value; AdditionalData?.Remove("gzip"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("gzip"); else _explicitNullProperties?.Remove("gzip"); } }
+        private bool? _explicitNullValueGzip = default!;
+        public bool? FollowRedirects { get => _explicitNullValueFollowRedirects; set { _explicitNullValueFollowRedirects = value; AdditionalData?.Remove("followRedirects"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("followRedirects"); else _explicitNullProperties?.Remove("followRedirects"); } }
+        private bool? _explicitNullValueFollowRedirects = default!;
+        public bool? FollowAllRedirects { get => _explicitNullValueFollowAllRedirects; set { _explicitNullValueFollowAllRedirects = value; AdditionalData?.Remove("followAllRedirects"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("followAllRedirects"); else _explicitNullProperties?.Remove("followAllRedirects"); } }
+        private bool? _explicitNullValueFollowAllRedirects = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Log { get => _explicitNullValueLog; set { _explicitNullValueLog = value; AdditionalData?.Remove("log"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("log"); else _explicitNullProperties?.Remove("log"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueLog = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? OAuth { get => _explicitNullValueOAuth; set { _explicitNullValueOAuth = value; AdditionalData?.Remove("oauth"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("oauth"); else _explicitNullProperties?.Remove("oauth"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueOAuth = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Pagination { get => _explicitNullValuePagination; set { _explicitNullValuePagination = value; AdditionalData?.Remove("pagination"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pagination"); else _explicitNullProperties?.Remove("pagination"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValuePagination = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Response { get => _explicitNullValueResponse; set { _explicitNullValueResponse = value; AdditionalData?.Remove("response"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("response"); else _explicitNullProperties?.Remove("response"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueResponse = default!;
+#nullable restore
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -46,6 +126,25 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "url", n => { Url = n.GetStringValue(); } },
+                { "baseUrl", n => { BaseUrl = n.GetStringValue(); } },
+                { "encodeUrl", n => { EncodeUrl = n.GetBoolValue(); } },
+                { "method", n => { Method = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "headers", n => { Headers = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "qs", n => { Qs = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "ca", n => { Ca = n.GetStringValue(); } },
+                { "body", n => { Body = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1Body>(global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1Body.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "temp", n => { Temp = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "condition", n => { Condition = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "aws", n => { Aws = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "gzip", n => { Gzip = n.GetBoolValue(); } },
+                { "followRedirects", n => { FollowRedirects = n.GetBoolValue(); } },
+                { "followAllRedirects", n => { FollowAllRedirects = n.GetBoolValue(); } },
+                { "log", n => { Log = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "oauth", n => { OAuth = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "pagination", n => { Pagination = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "response", n => { Response = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -55,6 +154,25 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("url", Url);
+            writer.WriteStringValue("baseUrl", BaseUrl);
+            writer.WriteBoolValue("encodeUrl", EncodeUrl);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("method", Method);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("headers", Headers);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("qs", Qs);
+            writer.WriteStringValue("ca", Ca);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1Body>("body", Body);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("type", Type);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("temp", Temp);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("condition", Condition);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("aws", Aws);
+            writer.WriteBoolValue("gzip", Gzip);
+            writer.WriteBoolValue("followRedirects", FollowRedirects);
+            writer.WriteBoolValue("followAllRedirects", FollowAllRedirects);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("log", Log);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("oauth", OAuth);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("pagination", Pagination);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("response", Response);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

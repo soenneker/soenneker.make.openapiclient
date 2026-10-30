@@ -17,23 +17,25 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("llmModel") is { } nullNodeLlmModel && nullNodeLlmModel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LlmModel = null;
-            if (parseNode.GetChildNode("settings") is { } nullNodeSettings && nullNodeSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Settings = null;
+            if (parseNode.GetChildNode("llmModel") is null) { _explicitNullValueLlmModel = default!; _explicitNullProperties?.Remove("llmModel"); }
+            else if (parseNode.GetChildNode("llmModel") is { } nullNodeLlmModel && nullNodeLlmModel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LlmModel = null;
+            if (parseNode.GetChildNode("settings") is null) { _explicitNullValueSettings = default!; _explicitNullProperties?.Remove("settings"); }
+            else if (parseNode.GetChildNode("settings") is { } nullNodeSettings && nullNodeSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Settings = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The llmModel property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigLlmModel? LlmModel { get => _explicitNullValueLlmModel; set { _explicitNullValueLlmModel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("llmModel"); else _explicitNullProperties?.Remove("llmModel"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigLlmModel? LlmModel { get => _explicitNullValueLlmModel; set { _explicitNullValueLlmModel = value; AdditionalData?.Remove("llmModel"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("llmModel"); else _explicitNullProperties?.Remove("llmModel"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigLlmModel? _explicitNullValueLlmModel = default!;
         /// <summary>The settings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigSettings? Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigSettings? Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; AdditionalData?.Remove("settings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigSettings? _explicitNullValueSettings = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigSettings Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigSettings Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; AdditionalData?.Remove("settings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigSettings _explicitNullValueSettings = default!;
 #endif
         /// <summary>
@@ -61,7 +63,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "llmModel", n => { LlmModel = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigLlmModel>(); } },
+                { "llmModel", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigLlmModel>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueLlmModel = default; _explicitNullProperties?.Remove("llmModel"); AdditionalData["llmModel"] = unknown; } else { LlmModel = parsed; AdditionalData.Remove("llmModel"); } } },
                 { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigSettings>(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigSettings.CreateFromDiscriminatorValue); } },
             };
         }

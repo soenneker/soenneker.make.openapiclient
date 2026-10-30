@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("priceGroupId") is { } nullNodePriceGroupId && nullNodePriceGroupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PriceGroupId = null;
+            if (parseNode.GetChildNode("priceGroupId") is null) { _explicitNullValuePriceGroupId = default!; _explicitNullProperties?.Remove("priceGroupId"); }
+            else if (parseNode.GetChildNode("priceGroupId") is { } nullNodePriceGroupId && nullNodePriceGroupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PriceGroupId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>ID of the target price group; it must be reported as `isAssignable` by `GET /admin/price-groups`</summary>
-        public int? PriceGroupId { get => _explicitNullValuePriceGroupId; set { _explicitNullValuePriceGroupId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("priceGroupId"); else _explicitNullProperties?.Remove("priceGroupId"); } }
+        public int? PriceGroupId { get => _explicitNullValuePriceGroupId; set { _explicitNullValuePriceGroupId = value; AdditionalData?.Remove("priceGroupId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("priceGroupId"); else _explicitNullProperties?.Remove("priceGroupId"); } }
         private int? _explicitNullValuePriceGroupId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchAdminOrganizationsByOrganizationIdSubscriptionCustomerPriceGroupRequest"/> and sets the default values.

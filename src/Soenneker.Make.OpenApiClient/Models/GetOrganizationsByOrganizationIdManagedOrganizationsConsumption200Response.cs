@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("managedOrganizationsConsumption") is { } nullNodeManagedOrganizationsConsumption && nullNodeManagedOrganizationsConsumption.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ManagedOrganizationsConsumption = null;
+            if (parseNode.GetChildNode("managedOrganizationsConsumption") is null) { _explicitNullValueManagedOrganizationsConsumption = default!; _explicitNullProperties?.Remove("managedOrganizationsConsumption"); }
+            else if (parseNode.GetChildNode("managedOrganizationsConsumption") is { } nullNodeManagedOrganizationsConsumption && nullNodeManagedOrganizationsConsumption.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ManagedOrganizationsConsumption = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The managedOrganizationsConsumption property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdManagedOrganizationsConsumption200ResponseManagedOrganizationsConsumptionItem>? ManagedOrganizationsConsumption { get => _explicitNullValueManagedOrganizationsConsumption; set { _explicitNullValueManagedOrganizationsConsumption = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("managedOrganizationsConsumption"); else _explicitNullProperties?.Remove("managedOrganizationsConsumption"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdManagedOrganizationsConsumption200ResponseManagedOrganizationsConsumptionItem>? ManagedOrganizationsConsumption { get => _explicitNullValueManagedOrganizationsConsumption; set { _explicitNullValueManagedOrganizationsConsumption = value; AdditionalData?.Remove("managedOrganizationsConsumption"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("managedOrganizationsConsumption"); else _explicitNullProperties?.Remove("managedOrganizationsConsumption"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdManagedOrganizationsConsumption200ResponseManagedOrganizationsConsumptionItem>? _explicitNullValueManagedOrganizationsConsumption = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdManagedOrganizationsConsumption200ResponseManagedOrganizationsConsumptionItem> ManagedOrganizationsConsumption { get => _explicitNullValueManagedOrganizationsConsumption; set { _explicitNullValueManagedOrganizationsConsumption = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("managedOrganizationsConsumption"); else _explicitNullProperties?.Remove("managedOrganizationsConsumption"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdManagedOrganizationsConsumption200ResponseManagedOrganizationsConsumptionItem> ManagedOrganizationsConsumption { get => _explicitNullValueManagedOrganizationsConsumption; set { _explicitNullValueManagedOrganizationsConsumption = value; AdditionalData?.Remove("managedOrganizationsConsumption"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("managedOrganizationsConsumption"); else _explicitNullProperties?.Remove("managedOrganizationsConsumption"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdManagedOrganizationsConsumption200ResponseManagedOrganizationsConsumptionItem> _explicitNullValueManagedOrganizationsConsumption = default!;
 #endif
         /// <summary>

@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("bundles") is { } nullNodeBundles && nullNodeBundles.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Bundles = null;
+            if (parseNode.GetChildNode("bundles") is null) { _explicitNullValueBundles = default!; _explicitNullProperties?.Remove("bundles"); }
+            else if (parseNode.GetChildNode("bundles") is { } nullNodeBundles && nullNodeBundles.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Bundles = null;
         }
 
         /// <summary>The bundles property</summary>

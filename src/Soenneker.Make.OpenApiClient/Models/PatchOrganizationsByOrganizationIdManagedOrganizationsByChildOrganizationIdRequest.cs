@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("operations") is { } nullNodeOperations && nullNodeOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operations = null;
+            if (parseNode.GetChildNode("operations") is null) { _explicitNullValueOperations = default!; _explicitNullProperties?.Remove("operations"); }
+            else if (parseNode.GetChildNode("operations") is { } nullNodeOperations && nullNodeOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operations = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The operations property</summary>
-        public int? Operations { get => _explicitNullValueOperations; set { _explicitNullValueOperations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operations"); else _explicitNullProperties?.Remove("operations"); } }
+        public int? Operations { get => _explicitNullValueOperations; set { _explicitNullValueOperations = value; AdditionalData?.Remove("operations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operations"); else _explicitNullProperties?.Remove("operations"); } }
         private int? _explicitNullValueOperations = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdManagedOrganizationsByChildOrganizationIdRequest"/> and sets the default values.

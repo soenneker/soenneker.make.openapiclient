@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("durationMs") is { } nullNodeDurationMs && nullNodeDurationMs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DurationMs = null;
-            if (parseNode.GetChildNode("operations") is { } nullNodeOperations && nullNodeOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operations = null;
-            if (parseNode.GetChildNode("transfer") is { } nullNodeTransfer && nullNodeTransfer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transfer = null;
+            if (parseNode.GetChildNode("durationMs") is null) { _explicitNullValueDurationMs = default!; _explicitNullProperties?.Remove("durationMs"); }
+            else if (parseNode.GetChildNode("durationMs") is { } nullNodeDurationMs && nullNodeDurationMs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DurationMs = null;
+            if (parseNode.GetChildNode("operations") is null) { _explicitNullValueOperations = default!; _explicitNullProperties?.Remove("operations"); }
+            else if (parseNode.GetChildNode("operations") is { } nullNodeOperations && nullNodeOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operations = null;
+            if (parseNode.GetChildNode("transfer") is null) { _explicitNullValueTransfer = default!; _explicitNullProperties?.Remove("transfer"); }
+            else if (parseNode.GetChildNode("transfer") is { } nullNodeTransfer && nullNodeTransfer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transfer = null;
         }
 
         /// <summary>The durationMs property</summary>

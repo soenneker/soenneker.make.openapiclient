@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("customPropertyStructureItem") is { } nullNodeCustomPropertyStructureItem && nullNodeCustomPropertyStructureItem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomPropertyStructureItem = null;
+            if (parseNode.GetChildNode("customPropertyStructureItem") is null) { _explicitNullValueCustomPropertyStructureItem = default!; _explicitNullProperties?.Remove("customPropertyStructureItem"); }
+            else if (parseNode.GetChildNode("customPropertyStructureItem") is { } nullNodeCustomPropertyStructureItem && nullNodeCustomPropertyStructureItem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomPropertyStructureItem = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The customPropertyStructureItem property</summary>
-        public double? CustomPropertyStructureItem { get => _explicitNullValueCustomPropertyStructureItem; set { _explicitNullValueCustomPropertyStructureItem = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customPropertyStructureItem"); else _explicitNullProperties?.Remove("customPropertyStructureItem"); } }
+        public double? CustomPropertyStructureItem { get => _explicitNullValueCustomPropertyStructureItem; set { _explicitNullValueCustomPropertyStructureItem = value; AdditionalData?.Remove("customPropertyStructureItem"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customPropertyStructureItem"); else _explicitNullProperties?.Remove("customPropertyStructureItem"); } }
         private double? _explicitNullValueCustomPropertyStructureItem = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteCustomPropertyStructuresCustomPropertyStructureItemsByCustomPropertyStructureItemId200Response"/> and sets the default values.

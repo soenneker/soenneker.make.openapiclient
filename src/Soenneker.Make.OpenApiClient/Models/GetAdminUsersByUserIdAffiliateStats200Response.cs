@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("stats") is { } nullNodeStats && nullNodeStats.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Stats = null;
+            if (parseNode.GetChildNode("stats") is null) { _explicitNullValueStats = default!; _explicitNullProperties?.Remove("stats"); }
+            else if (parseNode.GetChildNode("stats") is { } nullNodeStats && nullNodeStats.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Stats = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The stats property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateStats200ResponseStatsItem>? Stats { get => _explicitNullValueStats; set { _explicitNullValueStats = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stats"); else _explicitNullProperties?.Remove("stats"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateStats200ResponseStatsItem>? Stats { get => _explicitNullValueStats; set { _explicitNullValueStats = value; AdditionalData?.Remove("stats"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stats"); else _explicitNullProperties?.Remove("stats"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateStats200ResponseStatsItem>? _explicitNullValueStats = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateStats200ResponseStatsItem> Stats { get => _explicitNullValueStats; set { _explicitNullValueStats = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stats"); else _explicitNullProperties?.Remove("stats"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateStats200ResponseStatsItem> Stats { get => _explicitNullValueStats; set { _explicitNullValueStats = value; AdditionalData?.Remove("stats"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stats"); else _explicitNullProperties?.Remove("stats"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateStats200ResponseStatsItem> _explicitNullValueStats = default!;
 #endif
         /// <summary>

@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("customPropertyStructure") is { } nullNodeCustomPropertyStructure && nullNodeCustomPropertyStructure.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomPropertyStructure = null;
+            if (parseNode.GetChildNode("customPropertyStructure") is null) { _explicitNullValueCustomPropertyStructure = default!; _explicitNullProperties?.Remove("customPropertyStructure"); }
+            else if (parseNode.GetChildNode("customPropertyStructure") is { } nullNodeCustomPropertyStructure && nullNodeCustomPropertyStructure.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomPropertyStructure = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The customPropertyStructure property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseCustomPropertyStructure? CustomPropertyStructure { get => _explicitNullValueCustomPropertyStructure; set { _explicitNullValueCustomPropertyStructure = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customPropertyStructure"); else _explicitNullProperties?.Remove("customPropertyStructure"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseCustomPropertyStructure? CustomPropertyStructure { get => _explicitNullValueCustomPropertyStructure; set { _explicitNullValueCustomPropertyStructure = value; AdditionalData?.Remove("customPropertyStructure"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customPropertyStructure"); else _explicitNullProperties?.Remove("customPropertyStructure"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseCustomPropertyStructure? _explicitNullValueCustomPropertyStructure = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseCustomPropertyStructure CustomPropertyStructure { get => _explicitNullValueCustomPropertyStructure; set { _explicitNullValueCustomPropertyStructure = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customPropertyStructure"); else _explicitNullProperties?.Remove("customPropertyStructure"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseCustomPropertyStructure CustomPropertyStructure { get => _explicitNullValueCustomPropertyStructure; set { _explicitNullValueCustomPropertyStructure = value; AdditionalData?.Remove("customPropertyStructure"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customPropertyStructure"); else _explicitNullProperties?.Remove("customPropertyStructure"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200ResponseCustomPropertyStructure _explicitNullValueCustomPropertyStructure = default!;
 #endif
         /// <summary>

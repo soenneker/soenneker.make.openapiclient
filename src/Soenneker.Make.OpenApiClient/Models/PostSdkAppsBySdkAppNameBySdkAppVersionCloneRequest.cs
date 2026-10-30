@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("newName") is { } nullNodeNewName && nullNodeNewName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewName = null;
-            if (parseNode.GetChildNode("newVersion") is { } nullNodeNewVersion && nullNodeNewVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewVersion = null;
+            if (parseNode.GetChildNode("newName") is null) { _explicitNullValueNewName = default!; _explicitNullProperties?.Remove("newName"); }
+            else if (parseNode.GetChildNode("newName") is { } nullNodeNewName && nullNodeNewName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewName = null;
+            if (parseNode.GetChildNode("newVersion") is null) { _explicitNullValueNewVersion = default!; _explicitNullProperties?.Remove("newVersion"); }
+            else if (parseNode.GetChildNode("newVersion") is { } nullNodeNewVersion && nullNodeNewVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewVersion = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The newName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NewName { get => _explicitNullValueNewName; set { _explicitNullValueNewName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newName"); else _explicitNullProperties?.Remove("newName"); } }
+        public string? NewName { get => _explicitNullValueNewName; set { _explicitNullValueNewName = value; AdditionalData?.Remove("newName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newName"); else _explicitNullProperties?.Remove("newName"); } }
         private string? _explicitNullValueNewName = default!;
 #nullable restore
 #else
-        public string NewName { get => _explicitNullValueNewName; set { _explicitNullValueNewName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newName"); else _explicitNullProperties?.Remove("newName"); } }
+        public string NewName { get => _explicitNullValueNewName; set { _explicitNullValueNewName = value; AdditionalData?.Remove("newName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newName"); else _explicitNullProperties?.Remove("newName"); } }
         private string _explicitNullValueNewName = default!;
 #endif
         /// <summary>The newVersion property</summary>
-        public int? NewVersion { get => _explicitNullValueNewVersion; set { _explicitNullValueNewVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newVersion"); else _explicitNullProperties?.Remove("newVersion"); } }
+        public int? NewVersion { get => _explicitNullValueNewVersion; set { _explicitNullValueNewVersion = value; AdditionalData?.Remove("newVersion"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newVersion"); else _explicitNullProperties?.Remove("newVersion"); } }
         private int? _explicitNullValueNewVersion = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionCloneRequest"/> and sets the default values.

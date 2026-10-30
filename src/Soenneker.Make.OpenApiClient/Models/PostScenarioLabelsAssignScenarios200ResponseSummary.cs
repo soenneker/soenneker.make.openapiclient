@@ -17,34 +17,37 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("changed") is { } nullNodeChanged && nullNodeChanged.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Changed = null;
-            if (parseNode.GetChildNode("labels") is { } nullNodeLabels && nullNodeLabels.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Labels = null;
-            if (parseNode.GetChildNode("scenarios") is { } nullNodeScenarios && nullNodeScenarios.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scenarios = null;
+            if (parseNode.GetChildNode("changed") is null) { _explicitNullValueChanged = default!; _explicitNullProperties?.Remove("changed"); }
+            else if (parseNode.GetChildNode("changed") is { } nullNodeChanged && nullNodeChanged.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Changed = null;
+            if (parseNode.GetChildNode("labels") is null) { _explicitNullValueLabels = default!; _explicitNullProperties?.Remove("labels"); }
+            else if (parseNode.GetChildNode("labels") is { } nullNodeLabels && nullNodeLabels.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Labels = null;
+            if (parseNode.GetChildNode("scenarios") is null) { _explicitNullValueScenarios = default!; _explicitNullProperties?.Remove("scenarios"); }
+            else if (parseNode.GetChildNode("scenarios") is { } nullNodeScenarios && nullNodeScenarios.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scenarios = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Number of label-scenario relationships actually inserted or deleted.</summary>
-        public int? Changed { get => _explicitNullValueChanged; set { _explicitNullValueChanged = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("changed"); else _explicitNullProperties?.Remove("changed"); } }
+        public int? Changed { get => _explicitNullValueChanged; set { _explicitNullValueChanged = value; AdditionalData?.Remove("changed"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("changed"); else _explicitNullProperties?.Remove("changed"); } }
         private int? _explicitNullValueChanged = default!;
         /// <summary>The labels property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummaryLabels? Labels { get => _explicitNullValueLabels; set { _explicitNullValueLabels = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("labels"); else _explicitNullProperties?.Remove("labels"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummaryLabels? Labels { get => _explicitNullValueLabels; set { _explicitNullValueLabels = value; AdditionalData?.Remove("labels"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("labels"); else _explicitNullProperties?.Remove("labels"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummaryLabels? _explicitNullValueLabels = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummaryLabels Labels { get => _explicitNullValueLabels; set { _explicitNullValueLabels = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("labels"); else _explicitNullProperties?.Remove("labels"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummaryLabels Labels { get => _explicitNullValueLabels; set { _explicitNullValueLabels = value; AdditionalData?.Remove("labels"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("labels"); else _explicitNullProperties?.Remove("labels"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummaryLabels _explicitNullValueLabels = default!;
 #endif
         /// <summary>The scenarios property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummaryScenarios? Scenarios { get => _explicitNullValueScenarios; set { _explicitNullValueScenarios = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarios"); else _explicitNullProperties?.Remove("scenarios"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummaryScenarios? Scenarios { get => _explicitNullValueScenarios; set { _explicitNullValueScenarios = value; AdditionalData?.Remove("scenarios"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarios"); else _explicitNullProperties?.Remove("scenarios"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummaryScenarios? _explicitNullValueScenarios = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummaryScenarios Scenarios { get => _explicitNullValueScenarios; set { _explicitNullValueScenarios = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarios"); else _explicitNullProperties?.Remove("scenarios"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummaryScenarios Scenarios { get => _explicitNullValueScenarios; set { _explicitNullValueScenarios = value; AdditionalData?.Remove("scenarios"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarios"); else _explicitNullProperties?.Remove("scenarios"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummaryScenarios _explicitNullValueScenarios = default!;
 #endif
         /// <summary>

@@ -120,7 +120,7 @@ namespace Soenneker.Make.OpenApiClient.DataStores
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/data-stores?teamId={teamId}{&confirmed*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve("{+baseurl}/data-stores?teamId={teamId}{&confirmed*}", RequestAdapter.BaseUrl, "https://eu1.make.com/api/v2", "/data-stores", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
@@ -140,7 +140,7 @@ namespace Soenneker.Make.OpenApiClient.DataStores
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.DataStoresRequestBuilder.DataStoresRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/data-stores?teamId={teamId}{&cols%5B%5D*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve("{+baseurl}/data-stores?teamId={teamId}{&cols%5B%5D*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*}", RequestAdapter.BaseUrl, "https://eu1.make.com/api/v2", "/data-stores", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -161,7 +161,7 @@ namespace Soenneker.Make.OpenApiClient.DataStores
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://eu1.make.com/api/v2", "/data-stores", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

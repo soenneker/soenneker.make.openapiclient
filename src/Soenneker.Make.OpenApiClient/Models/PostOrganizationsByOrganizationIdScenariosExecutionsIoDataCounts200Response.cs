@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("scenarios") is { } nullNodeScenarios && nullNodeScenarios.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scenarios = null;
-            if (parseNode.GetChildNode("totalExecutions") is { } nullNodeTotalExecutions && nullNodeTotalExecutions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalExecutions = null;
-            if (parseNode.GetChildNode("totalScenarios") is { } nullNodeTotalScenarios && nullNodeTotalScenarios.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalScenarios = null;
+            if (parseNode.GetChildNode("scenarios") is null) { _explicitNullValueScenarios = default!; _explicitNullProperties?.Remove("scenarios"); }
+            else if (parseNode.GetChildNode("scenarios") is { } nullNodeScenarios && nullNodeScenarios.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scenarios = null;
+            if (parseNode.GetChildNode("totalExecutions") is null) { _explicitNullValueTotalExecutions = default!; _explicitNullProperties?.Remove("totalExecutions"); }
+            else if (parseNode.GetChildNode("totalExecutions") is { } nullNodeTotalExecutions && nullNodeTotalExecutions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalExecutions = null;
+            if (parseNode.GetChildNode("totalScenarios") is null) { _explicitNullValueTotalScenarios = default!; _explicitNullProperties?.Remove("totalScenarios"); }
+            else if (parseNode.GetChildNode("totalScenarios") is { } nullNodeTotalScenarios && nullNodeTotalScenarios.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalScenarios = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,18 +30,18 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Per-scenario breakdown of matching executions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataCounts200ResponseScenariosItem>? Scenarios { get => _explicitNullValueScenarios; set { _explicitNullValueScenarios = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarios"); else _explicitNullProperties?.Remove("scenarios"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataCounts200ResponseScenariosItem>? Scenarios { get => _explicitNullValueScenarios; set { _explicitNullValueScenarios = value; AdditionalData?.Remove("scenarios"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarios"); else _explicitNullProperties?.Remove("scenarios"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataCounts200ResponseScenariosItem>? _explicitNullValueScenarios = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataCounts200ResponseScenariosItem> Scenarios { get => _explicitNullValueScenarios; set { _explicitNullValueScenarios = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarios"); else _explicitNullProperties?.Remove("scenarios"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataCounts200ResponseScenariosItem> Scenarios { get => _explicitNullValueScenarios; set { _explicitNullValueScenarios = value; AdditionalData?.Remove("scenarios"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarios"); else _explicitNullProperties?.Remove("scenarios"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataCounts200ResponseScenariosItem> _explicitNullValueScenarios = default!;
 #endif
         /// <summary>The total number of distinct executions that produced IO data matching the query.</summary>
-        public int? TotalExecutions { get => _explicitNullValueTotalExecutions; set { _explicitNullValueTotalExecutions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalExecutions"); else _explicitNullProperties?.Remove("totalExecutions"); } }
+        public int? TotalExecutions { get => _explicitNullValueTotalExecutions; set { _explicitNullValueTotalExecutions = value; AdditionalData?.Remove("totalExecutions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalExecutions"); else _explicitNullProperties?.Remove("totalExecutions"); } }
         private int? _explicitNullValueTotalExecutions = default!;
         /// <summary>The total number of distinct scenarios that produced IO data matching the query.</summary>
-        public int? TotalScenarios { get => _explicitNullValueTotalScenarios; set { _explicitNullValueTotalScenarios = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalScenarios"); else _explicitNullProperties?.Remove("totalScenarios"); } }
+        public int? TotalScenarios { get => _explicitNullValueTotalScenarios; set { _explicitNullValueTotalScenarios = value; AdditionalData?.Remove("totalScenarios"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalScenarios"); else _explicitNullProperties?.Remove("totalScenarios"); } }
         private int? _explicitNullValueTotalScenarios = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsIoDataCounts200Response"/> and sets the default values.

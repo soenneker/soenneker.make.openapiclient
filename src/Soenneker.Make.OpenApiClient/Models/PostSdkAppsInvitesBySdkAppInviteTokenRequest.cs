@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("organizationIds") is { } nullNodeOrganizationIds && nullNodeOrganizationIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationIds = null;
+            if (parseNode.GetChildNode("organizationIds") is null) { _explicitNullValueOrganizationIds = default!; _explicitNullProperties?.Remove("organizationIds"); }
+            else if (parseNode.GetChildNode("organizationIds") is { } nullNodeOrganizationIds && nullNodeOrganizationIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationIds = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The organizationIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? OrganizationIds { get => _explicitNullValueOrganizationIds; set { _explicitNullValueOrganizationIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationIds"); else _explicitNullProperties?.Remove("organizationIds"); } }
+        public List<int?>? OrganizationIds { get => _explicitNullValueOrganizationIds; set { _explicitNullValueOrganizationIds = value; AdditionalData?.Remove("organizationIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationIds"); else _explicitNullProperties?.Remove("organizationIds"); } }
         private List<int?>? _explicitNullValueOrganizationIds = default!;
 #nullable restore
 #else
-        public List<int?> OrganizationIds { get => _explicitNullValueOrganizationIds; set { _explicitNullValueOrganizationIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationIds"); else _explicitNullProperties?.Remove("organizationIds"); } }
+        public List<int?> OrganizationIds { get => _explicitNullValueOrganizationIds; set { _explicitNullValueOrganizationIds = value; AdditionalData?.Remove("organizationIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationIds"); else _explicitNullProperties?.Remove("organizationIds"); } }
         private List<int?> _explicitNullValueOrganizationIds = default!;
 #endif
         /// <summary>

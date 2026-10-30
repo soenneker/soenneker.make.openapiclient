@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("authorization") is { } nullNodeAuthorization && nullNodeAuthorization.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Authorization = null;
+            if (parseNode.GetChildNode("authorization") is null) { _explicitNullValueAuthorization = default!; _explicitNullProperties?.Remove("authorization"); }
+            else if (parseNode.GetChildNode("authorization") is { } nullNodeAuthorization && nullNodeAuthorization.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Authorization = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The authorization property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Authorization { get => _explicitNullValueAuthorization; set { _explicitNullValueAuthorization = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorization"); else _explicitNullProperties?.Remove("authorization"); } }
+        public string? Authorization { get => _explicitNullValueAuthorization; set { _explicitNullValueAuthorization = value; AdditionalData?.Remove("authorization"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorization"); else _explicitNullProperties?.Remove("authorization"); } }
         private string? _explicitNullValueAuthorization = default!;
 #nullable restore
 #else
-        public string Authorization { get => _explicitNullValueAuthorization; set { _explicitNullValueAuthorization = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorization"); else _explicitNullProperties?.Remove("authorization"); } }
+        public string Authorization { get => _explicitNullValueAuthorization; set { _explicitNullValueAuthorization = value; AdditionalData?.Remove("authorization"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorization"); else _explicitNullProperties?.Remove("authorization"); } }
         private string _explicitNullValueAuthorization = default!;
 #endif
         /// <summary>

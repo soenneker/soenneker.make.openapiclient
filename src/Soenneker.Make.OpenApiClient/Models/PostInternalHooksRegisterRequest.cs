@@ -17,14 +17,22 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("data") is { } nullNodeData && nullNodeData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Data = null;
-            if (parseNode.GetChildNode("detachAccountId") is { } nullNodeDetachAccountId && nullNodeDetachAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DetachAccountId = null;
-            if (parseNode.GetChildNode("externalAccountId") is { } nullNodeExternalAccountId && nullNodeExternalAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExternalAccountId = null;
-            if (parseNode.GetChildNode("hookName") is { } nullNodeHookName && nullNodeHookName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HookName = null;
-            if (parseNode.GetChildNode("keyIds") is { } nullNodeKeyIds && nullNodeKeyIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) KeyIds = null;
-            if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
-            if (parseNode.GetChildNode("typeName") is { } nullNodeTypeName && nullNodeTypeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TypeName = null;
-            if (parseNode.GetChildNode("userId") is { } nullNodeUserId && nullNodeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserId = null;
+            if (parseNode.GetChildNode("data") is null) { _explicitNullValueData = default!; _explicitNullProperties?.Remove("data"); }
+            else if (parseNode.GetChildNode("data") is { } nullNodeData && nullNodeData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Data = null;
+            if (parseNode.GetChildNode("detachAccountId") is null) { _explicitNullValueDetachAccountId = default!; _explicitNullProperties?.Remove("detachAccountId"); }
+            else if (parseNode.GetChildNode("detachAccountId") is { } nullNodeDetachAccountId && nullNodeDetachAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DetachAccountId = null;
+            if (parseNode.GetChildNode("externalAccountId") is null) { _explicitNullValueExternalAccountId = default!; _explicitNullProperties?.Remove("externalAccountId"); }
+            else if (parseNode.GetChildNode("externalAccountId") is { } nullNodeExternalAccountId && nullNodeExternalAccountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExternalAccountId = null;
+            if (parseNode.GetChildNode("hookName") is null) { _explicitNullValueHookName = default!; _explicitNullProperties?.Remove("hookName"); }
+            else if (parseNode.GetChildNode("hookName") is { } nullNodeHookName && nullNodeHookName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HookName = null;
+            if (parseNode.GetChildNode("keyIds") is null) { _explicitNullValueKeyIds = default!; _explicitNullProperties?.Remove("keyIds"); }
+            else if (parseNode.GetChildNode("keyIds") is { } nullNodeKeyIds && nullNodeKeyIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) KeyIds = null;
+            if (parseNode.GetChildNode("teamId") is null) { _explicitNullValueTeamId = default!; _explicitNullProperties?.Remove("teamId"); }
+            else if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
+            if (parseNode.GetChildNode("typeName") is null) { _explicitNullValueTypeName = default!; _explicitNullProperties?.Remove("typeName"); }
+            else if (parseNode.GetChildNode("typeName") is { } nullNodeTypeName && nullNodeTypeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TypeName = null;
+            if (parseNode.GetChildNode("userId") is null) { _explicitNullValueUserId = default!; _explicitNullProperties?.Remove("userId"); }
+            else if (parseNode.GetChildNode("userId") is { } nullNodeUserId && nullNodeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -32,61 +40,61 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Arbitrary hook data, stored encrypted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostInternalHooksRegisterRequestData? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostInternalHooksRegisterRequestData? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; AdditionalData?.Remove("data"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostInternalHooksRegisterRequestData? _explicitNullValueData = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostInternalHooksRegisterRequestData Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostInternalHooksRegisterRequestData Data { get => _explicitNullValueData; set { _explicitNullValueData = value; AdditionalData?.Remove("data"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostInternalHooksRegisterRequestData _explicitNullValueData = default!;
 #endif
         /// <summary>Connection ID to be used when performing the hook&apos;s detach RPC.</summary>
-        public int? DetachAccountId { get => _explicitNullValueDetachAccountId; set { _explicitNullValueDetachAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detachAccountId"); else _explicitNullProperties?.Remove("detachAccountId"); } }
+        public int? DetachAccountId { get => _explicitNullValueDetachAccountId; set { _explicitNullValueDetachAccountId = value; AdditionalData?.Remove("detachAccountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detachAccountId"); else _explicitNullProperties?.Remove("detachAccountId"); } }
         private int? _explicitNullValueDetachAccountId = default!;
         /// <summary>External account identifier to associate with the hook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExternalAccountId { get => _explicitNullValueExternalAccountId; set { _explicitNullValueExternalAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("externalAccountId"); else _explicitNullProperties?.Remove("externalAccountId"); } }
+        public string? ExternalAccountId { get => _explicitNullValueExternalAccountId; set { _explicitNullValueExternalAccountId = value; AdditionalData?.Remove("externalAccountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("externalAccountId"); else _explicitNullProperties?.Remove("externalAccountId"); } }
         private string? _explicitNullValueExternalAccountId = default!;
 #nullable restore
 #else
-        public string ExternalAccountId { get => _explicitNullValueExternalAccountId; set { _explicitNullValueExternalAccountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("externalAccountId"); else _explicitNullProperties?.Remove("externalAccountId"); } }
+        public string ExternalAccountId { get => _explicitNullValueExternalAccountId; set { _explicitNullValueExternalAccountId = value; AdditionalData?.Remove("externalAccountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("externalAccountId"); else _explicitNullProperties?.Remove("externalAccountId"); } }
         private string _explicitNullValueExternalAccountId = default!;
 #endif
         /// <summary>The name to give the new hook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HookName { get => _explicitNullValueHookName; set { _explicitNullValueHookName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hookName"); else _explicitNullProperties?.Remove("hookName"); } }
+        public string? HookName { get => _explicitNullValueHookName; set { _explicitNullValueHookName = value; AdditionalData?.Remove("hookName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hookName"); else _explicitNullProperties?.Remove("hookName"); } }
         private string? _explicitNullValueHookName = default!;
 #nullable restore
 #else
-        public string HookName { get => _explicitNullValueHookName; set { _explicitNullValueHookName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hookName"); else _explicitNullProperties?.Remove("hookName"); } }
+        public string HookName { get => _explicitNullValueHookName; set { _explicitNullValueHookName = value; AdditionalData?.Remove("hookName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hookName"); else _explicitNullProperties?.Remove("hookName"); } }
         private string _explicitNullValueHookName = default!;
 #endif
         /// <summary>Ids of keys to associate with the hook for the Authenticated Webhooks feature.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? KeyIds { get => _explicitNullValueKeyIds; set { _explicitNullValueKeyIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keyIds"); else _explicitNullProperties?.Remove("keyIds"); } }
+        public List<int?>? KeyIds { get => _explicitNullValueKeyIds; set { _explicitNullValueKeyIds = value; AdditionalData?.Remove("keyIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keyIds"); else _explicitNullProperties?.Remove("keyIds"); } }
         private List<int?>? _explicitNullValueKeyIds = default!;
 #nullable restore
 #else
-        public List<int?> KeyIds { get => _explicitNullValueKeyIds; set { _explicitNullValueKeyIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keyIds"); else _explicitNullProperties?.Remove("keyIds"); } }
+        public List<int?> KeyIds { get => _explicitNullValueKeyIds; set { _explicitNullValueKeyIds = value; AdditionalData?.Remove("keyIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keyIds"); else _explicitNullProperties?.Remove("keyIds"); } }
         private List<int?> _explicitNullValueKeyIds = default!;
 #endif
         /// <summary>The team the hook belongs to.</summary>
-        public int? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
+        public int? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; AdditionalData?.Remove("teamId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
         private int? _explicitNullValueTeamId = default!;
         /// <summary>The hook type name, as registered by the app that owns it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TypeName { get => _explicitNullValueTypeName; set { _explicitNullValueTypeName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("typeName"); else _explicitNullProperties?.Remove("typeName"); } }
+        public string? TypeName { get => _explicitNullValueTypeName; set { _explicitNullValueTypeName = value; AdditionalData?.Remove("typeName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("typeName"); else _explicitNullProperties?.Remove("typeName"); } }
         private string? _explicitNullValueTypeName = default!;
 #nullable restore
 #else
-        public string TypeName { get => _explicitNullValueTypeName; set { _explicitNullValueTypeName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("typeName"); else _explicitNullProperties?.Remove("typeName"); } }
+        public string TypeName { get => _explicitNullValueTypeName; set { _explicitNullValueTypeName = value; AdditionalData?.Remove("typeName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("typeName"); else _explicitNullProperties?.Remove("typeName"); } }
         private string _explicitNullValueTypeName = default!;
 #endif
         /// <summary>The user performing the registration.</summary>
-        public int? UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
+        public int? UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; AdditionalData?.Remove("userId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
         private int? _explicitNullValueUserId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalHooksRegisterRequest"/> and sets the default values.

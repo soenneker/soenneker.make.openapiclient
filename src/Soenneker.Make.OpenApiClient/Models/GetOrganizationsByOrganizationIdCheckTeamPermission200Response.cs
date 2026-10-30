@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("hasPermission") is { } nullNodeHasPermission && nullNodeHasPermission.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasPermission = null;
+            if (parseNode.GetChildNode("hasPermission") is null) { _explicitNullValueHasPermission = default!; _explicitNullProperties?.Remove("hasPermission"); }
+            else if (parseNode.GetChildNode("hasPermission") is { } nullNodeHasPermission && nullNodeHasPermission.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasPermission = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Indicates whether the user has the specified permission on at least one teamwithin the organization.</summary>
-        public bool? HasPermission { get => _explicitNullValueHasPermission; set { _explicitNullValueHasPermission = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasPermission"); else _explicitNullProperties?.Remove("hasPermission"); } }
+        public bool? HasPermission { get => _explicitNullValueHasPermission; set { _explicitNullValueHasPermission = value; AdditionalData?.Remove("hasPermission"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasPermission"); else _explicitNullProperties?.Remove("hasPermission"); } }
         private bool? _explicitNullValueHasPermission = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdCheckTeamPermission200Response"/> and sets the default values.

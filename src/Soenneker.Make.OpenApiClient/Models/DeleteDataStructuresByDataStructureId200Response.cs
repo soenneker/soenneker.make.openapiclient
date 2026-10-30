@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("dataStructure") is { } nullNodeDataStructure && nullNodeDataStructure.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataStructure = null;
+            if (parseNode.GetChildNode("dataStructure") is null) { _explicitNullValueDataStructure = default!; _explicitNullProperties?.Remove("dataStructure"); }
+            else if (parseNode.GetChildNode("dataStructure") is { } nullNodeDataStructure && nullNodeDataStructure.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataStructure = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The dataStructure property</summary>
-        public int? DataStructure { get => _explicitNullValueDataStructure; set { _explicitNullValueDataStructure = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStructure"); else _explicitNullProperties?.Remove("dataStructure"); } }
+        public int? DataStructure { get => _explicitNullValueDataStructure; set { _explicitNullValueDataStructure = value; AdditionalData?.Remove("dataStructure"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStructure"); else _explicitNullProperties?.Remove("dataStructure"); } }
         private int? _explicitNullValueDataStructure = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresByDataStructureId200Response"/> and sets the default values.

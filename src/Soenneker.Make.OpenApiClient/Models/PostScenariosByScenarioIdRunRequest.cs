@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("callbackUrl") is { } nullNodeCallbackUrl && nullNodeCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackUrl = null;
-            if (parseNode.GetChildNode("data") is { } nullNodeData && nullNodeData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Data = null;
-            if (parseNode.GetChildNode("responsive") is { } nullNodeResponsive && nullNodeResponsive.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Responsive = null;
+            if (parseNode.GetChildNode("callbackUrl") is null) { _explicitNullValueCallbackUrl = default!; _explicitNullProperties?.Remove("callbackUrl"); }
+            else if (parseNode.GetChildNode("callbackUrl") is { } nullNodeCallbackUrl && nullNodeCallbackUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CallbackUrl = null;
+            if (parseNode.GetChildNode("data") is null) { _explicitNullValueData = default!; _explicitNullProperties?.Remove("data"); }
+            else if (parseNode.GetChildNode("data") is { } nullNodeData && nullNodeData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Data = null;
+            if (parseNode.GetChildNode("responsive") is null) { _explicitNullValueResponsive = default!; _explicitNullProperties?.Remove("responsive"); }
+            else if (parseNode.GetChildNode("responsive") is { } nullNodeResponsive && nullNodeResponsive.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Responsive = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,25 +30,25 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Url that will be called once the scenario execution finishes. If the run is responsive and finishes within 40 seconds, the url is not called since the result is present in the response. The `callbackUrl` will be called using a `POST` request with the following body:{ &quot;executionId&quot;: `executionId`, &quot;statusUrl&quot;: &quot;url to retrieve execution status and outputs via GET&quot; } </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
+        public string? CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; AdditionalData?.Remove("callbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
         private string? _explicitNullValueCallbackUrl = default!;
 #nullable restore
 #else
-        public string CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
+        public string CallbackUrl { get => _explicitNullValueCallbackUrl; set { _explicitNullValueCallbackUrl = value; AdditionalData?.Remove("callbackUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("callbackUrl"); else _explicitNullProperties?.Remove("callbackUrl"); } }
         private string _explicitNullValueCallbackUrl = default!;
 #endif
         /// <summary>If your scenario has inputs specify the input parameters and values in the `data` object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRunRequestData? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRunRequestData? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; AdditionalData?.Remove("data"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRunRequestData? _explicitNullValueData = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRunRequestData Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRunRequestData Data { get => _explicitNullValueData; set { _explicitNullValueData = value; AdditionalData?.Remove("data"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRunRequestData _explicitNullValueData = default!;
 #endif
         /// <summary>If set to `true` the Make API waits until the scenario finishes. The response contains the scenario `status` and `executionId`. If the scenario execution takes longer than 40 seconds, the API call returns the time out error, but the scenario is still executed.If set to `false` the API call returns immediately without waiting. The response contains only the `executionId`.</summary>
-        public bool? Responsive { get => _explicitNullValueResponsive; set { _explicitNullValueResponsive = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responsive"); else _explicitNullProperties?.Remove("responsive"); } }
+        public bool? Responsive { get => _explicitNullValueResponsive; set { _explicitNullValueResponsive = value; AdditionalData?.Remove("responsive"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responsive"); else _explicitNullProperties?.Remove("responsive"); } }
         private bool? _explicitNullValueResponsive = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRunRequest"/> and sets the default values.

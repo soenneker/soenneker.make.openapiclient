@@ -17,16 +17,26 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("blueprint") is { } nullNodeBlueprint && nullNodeBlueprint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blueprint = null;
-            if (parseNode.GetChildNode("bundles") is { } nullNodeBundles && nullNodeBundles.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Bundles = null;
-            if (parseNode.GetChildNode("centicredits") is { } nullNodeCenticredits && nullNodeCenticredits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Centicredits = null;
-            if (parseNode.GetChildNode("duration") is { } nullNodeDuration && nullNodeDuration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Duration = null;
-            if (parseNode.GetChildNode("events") is { } nullNodeEvents && nullNodeEvents.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Events = null;
-            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
-            if (parseNode.GetChildNode("operations") is { } nullNodeOperations && nullNodeOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operations = null;
-            if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
-            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
-            if (parseNode.GetChildNode("timestamp") is { } nullNodeTimestamp && nullNodeTimestamp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Timestamp = null;
+            if (parseNode.GetChildNode("blueprint") is null) { _explicitNullValueBlueprint = default!; _explicitNullProperties?.Remove("blueprint"); }
+            else if (parseNode.GetChildNode("blueprint") is { } nullNodeBlueprint && nullNodeBlueprint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blueprint = null;
+            if (parseNode.GetChildNode("bundles") is null) { _explicitNullValueBundles = default!; _explicitNullProperties?.Remove("bundles"); }
+            else if (parseNode.GetChildNode("bundles") is { } nullNodeBundles && nullNodeBundles.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Bundles = null;
+            if (parseNode.GetChildNode("centicredits") is null) { _explicitNullValueCenticredits = default!; _explicitNullProperties?.Remove("centicredits"); }
+            else if (parseNode.GetChildNode("centicredits") is { } nullNodeCenticredits && nullNodeCenticredits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Centicredits = null;
+            if (parseNode.GetChildNode("duration") is null) { _explicitNullValueDuration = default!; _explicitNullProperties?.Remove("duration"); }
+            else if (parseNode.GetChildNode("duration") is { } nullNodeDuration && nullNodeDuration.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Duration = null;
+            if (parseNode.GetChildNode("events") is null) { _explicitNullValueEvents = default!; _explicitNullProperties?.Remove("events"); }
+            else if (parseNode.GetChildNode("events") is { } nullNodeEvents && nullNodeEvents.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Events = null;
+            if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
+            else if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("operations") is null) { _explicitNullValueOperations = default!; _explicitNullProperties?.Remove("operations"); }
+            else if (parseNode.GetChildNode("operations") is { } nullNodeOperations && nullNodeOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operations = null;
+            if (parseNode.GetChildNode("scenarioId") is null) { _explicitNullValueScenarioId = default!; _explicitNullProperties?.Remove("scenarioId"); }
+            else if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
+            if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
+            else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("timestamp") is null) { _explicitNullValueTimestamp = default!; _explicitNullProperties?.Remove("timestamp"); }
+            else if (parseNode.GetChildNode("timestamp") is { } nullNodeTimestamp && nullNodeTimestamp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Timestamp = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -34,60 +44,60 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Present when `include=blueprint`</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBlueprint? Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBlueprint? Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; AdditionalData?.Remove("blueprint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBlueprint? _explicitNullValueBlueprint = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBlueprint Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBlueprint Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; AdditionalData?.Remove("blueprint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBlueprint _explicitNullValueBlueprint = default!;
 #endif
         /// <summary>Present when `include=bundles`. Input/output bundles keyed by module id;each value is an array of records. Non-agent modules emit one record perstored bundle; AI-agent modules collapse a cycle&apos;s input + output into onerecord with an `agent` object (structural-only — message bodies omitted).Each `data[]` element is a stringified bundle capped at 256 KB; oversizedelements are sliced and suffixed with ` ... `, so the snippet may not bevalid JSON.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBundles? Bundles { get => _explicitNullValueBundles; set { _explicitNullValueBundles = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bundles"); else _explicitNullProperties?.Remove("bundles"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBundles? Bundles { get => _explicitNullValueBundles; set { _explicitNullValueBundles = value; AdditionalData?.Remove("bundles"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bundles"); else _explicitNullProperties?.Remove("bundles"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBundles? _explicitNullValueBundles = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBundles Bundles { get => _explicitNullValueBundles; set { _explicitNullValueBundles = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bundles"); else _explicitNullProperties?.Remove("bundles"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBundles Bundles { get => _explicitNullValueBundles; set { _explicitNullValueBundles = value; AdditionalData?.Remove("bundles"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bundles"); else _explicitNullProperties?.Remove("bundles"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseBundles _explicitNullValueBundles = default!;
 #endif
         /// <summary>The centicredits property</summary>
-        public int? Centicredits { get => _explicitNullValueCenticredits; set { _explicitNullValueCenticredits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicredits"); else _explicitNullProperties?.Remove("centicredits"); } }
+        public int? Centicredits { get => _explicitNullValueCenticredits; set { _explicitNullValueCenticredits = value; AdditionalData?.Remove("centicredits"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicredits"); else _explicitNullProperties?.Remove("centicredits"); } }
         private int? _explicitNullValueCenticredits = default!;
         /// <summary>Execution duration in milliseconds</summary>
-        public int? Duration { get => _explicitNullValueDuration; set { _explicitNullValueDuration = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("duration"); else _explicitNullProperties?.Remove("duration"); } }
+        public int? Duration { get => _explicitNullValueDuration; set { _explicitNullValueDuration = value; AdditionalData?.Remove("duration"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("duration"); else _explicitNullProperties?.Remove("duration"); } }
         private int? _explicitNullValueDuration = default!;
         /// <summary>Present when `include=events`</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseEventsItem>? Events { get => _explicitNullValueEvents; set { _explicitNullValueEvents = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("events"); else _explicitNullProperties?.Remove("events"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseEventsItem>? Events { get => _explicitNullValueEvents; set { _explicitNullValueEvents = value; AdditionalData?.Remove("events"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("events"); else _explicitNullProperties?.Remove("events"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseEventsItem>? _explicitNullValueEvents = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseEventsItem> Events { get => _explicitNullValueEvents; set { _explicitNullValueEvents = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("events"); else _explicitNullProperties?.Remove("events"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseEventsItem> Events { get => _explicitNullValueEvents; set { _explicitNullValueEvents = value; AdditionalData?.Remove("events"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("events"); else _explicitNullProperties?.Remove("events"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200ResponseEventsItem> _explicitNullValueEvents = default!;
 #endif
         /// <summary>Execution ID</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        public string? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private string? _explicitNullValueId = default!;
 #nullable restore
 #else
-        public string Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        public string Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private string _explicitNullValueId = default!;
 #endif
         /// <summary>The operations property</summary>
-        public int? Operations { get => _explicitNullValueOperations; set { _explicitNullValueOperations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operations"); else _explicitNullProperties?.Remove("operations"); } }
+        public int? Operations { get => _explicitNullValueOperations; set { _explicitNullValueOperations = value; AdditionalData?.Remove("operations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operations"); else _explicitNullProperties?.Remove("operations"); } }
         private int? _explicitNullValueOperations = default!;
         /// <summary>The scenarioId property</summary>
-        public int? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
+        public int? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; AdditionalData?.Remove("scenarioId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
         private int? _explicitNullValueScenarioId = default!;
         /// <summary>The status property</summary>
-        public int? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public int? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private int? _explicitNullValueStatus = default!;
         /// <summary>The timestamp property</summary>
-        public DateTimeOffset? Timestamp { get => _explicitNullValueTimestamp; set { _explicitNullValueTimestamp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timestamp"); else _explicitNullProperties?.Remove("timestamp"); } }
+        public DateTimeOffset? Timestamp { get => _explicitNullValueTimestamp; set { _explicitNullValueTimestamp = value; AdditionalData?.Remove("timestamp"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timestamp"); else _explicitNullProperties?.Remove("timestamp"); } }
         private DateTimeOffset? _explicitNullValueTimestamp = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionIdP200Response"/> and sets the default values.

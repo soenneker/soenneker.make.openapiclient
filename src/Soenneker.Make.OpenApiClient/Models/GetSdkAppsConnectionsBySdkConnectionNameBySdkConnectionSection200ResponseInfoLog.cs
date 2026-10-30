@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("sanitize") is { } nullNodeSanitize && nullNodeSanitize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sanitize = null;
+            if (parseNode.GetChildNode("sanitize") is null) { _explicitNullValueSanitize = default!; _explicitNullProperties?.Remove("sanitize"); }
+            else if (parseNode.GetChildNode("sanitize") is { } nullNodeSanitize && nullNodeSanitize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sanitize = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The sanitize property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Sanitize { get => _explicitNullValueSanitize; set { _explicitNullValueSanitize = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sanitize"); else _explicitNullProperties?.Remove("sanitize"); } }
+        public List<string>? Sanitize { get => _explicitNullValueSanitize; set { _explicitNullValueSanitize = value; AdditionalData?.Remove("sanitize"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sanitize"); else _explicitNullProperties?.Remove("sanitize"); } }
         private List<string>? _explicitNullValueSanitize = default!;
 #nullable restore
 #else
-        public List<string> Sanitize { get => _explicitNullValueSanitize; set { _explicitNullValueSanitize = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sanitize"); else _explicitNullProperties?.Remove("sanitize"); } }
+        public List<string> Sanitize { get => _explicitNullValueSanitize; set { _explicitNullValueSanitize = value; AdditionalData?.Remove("sanitize"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sanitize"); else _explicitNullProperties?.Remove("sanitize"); } }
         private List<string> _explicitNullValueSanitize = default!;
 #endif
         /// <summary>

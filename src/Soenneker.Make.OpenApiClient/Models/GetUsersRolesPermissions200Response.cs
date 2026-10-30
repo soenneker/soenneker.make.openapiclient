@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("usersRolesPermissions") is { } nullNodeUsersRolesPermissions && nullNodeUsersRolesPermissions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsersRolesPermissions = null;
+            if (parseNode.GetChildNode("usersRolesPermissions") is null) { _explicitNullValueUsersRolesPermissions = default!; _explicitNullProperties?.Remove("usersRolesPermissions"); }
+            else if (parseNode.GetChildNode("usersRolesPermissions") is { } nullNodeUsersRolesPermissions && nullNodeUsersRolesPermissions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsersRolesPermissions = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The usersRolesPermissions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200ResponseUsersRolesPermissionsItem>? UsersRolesPermissions { get => _explicitNullValueUsersRolesPermissions; set { _explicitNullValueUsersRolesPermissions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRolesPermissions"); else _explicitNullProperties?.Remove("usersRolesPermissions"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200ResponseUsersRolesPermissionsItem>? UsersRolesPermissions { get => _explicitNullValueUsersRolesPermissions; set { _explicitNullValueUsersRolesPermissions = value; AdditionalData?.Remove("usersRolesPermissions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRolesPermissions"); else _explicitNullProperties?.Remove("usersRolesPermissions"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200ResponseUsersRolesPermissionsItem>? _explicitNullValueUsersRolesPermissions = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200ResponseUsersRolesPermissionsItem> UsersRolesPermissions { get => _explicitNullValueUsersRolesPermissions; set { _explicitNullValueUsersRolesPermissions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRolesPermissions"); else _explicitNullProperties?.Remove("usersRolesPermissions"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200ResponseUsersRolesPermissionsItem> UsersRolesPermissions { get => _explicitNullValueUsersRolesPermissions; set { _explicitNullValueUsersRolesPermissions = value; AdditionalData?.Remove("usersRolesPermissions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRolesPermissions"); else _explicitNullProperties?.Remove("usersRolesPermissions"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200ResponseUsersRolesPermissionsItem> _explicitNullValueUsersRolesPermissions = default!;
 #endif
         /// <summary>

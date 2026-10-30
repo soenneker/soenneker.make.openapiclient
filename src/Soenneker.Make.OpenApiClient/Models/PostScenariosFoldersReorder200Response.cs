@@ -17,23 +17,25 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("parentId") is { } nullNodeParentId && nullNodeParentId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ParentId = null;
-            if (parseNode.GetChildNode("reorderedFolderIds") is { } nullNodeReorderedFolderIds && nullNodeReorderedFolderIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReorderedFolderIds = null;
+            if (parseNode.GetChildNode("parentId") is null) { _explicitNullValueParentId = default!; _explicitNullProperties?.Remove("parentId"); }
+            else if (parseNode.GetChildNode("parentId") is { } nullNodeParentId && nullNodeParentId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ParentId = null;
+            if (parseNode.GetChildNode("reorderedFolderIds") is null) { _explicitNullValueReorderedFolderIds = default!; _explicitNullProperties?.Remove("reorderedFolderIds"); }
+            else if (parseNode.GetChildNode("reorderedFolderIds") is { } nullNodeReorderedFolderIds && nullNodeReorderedFolderIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReorderedFolderIds = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The parentId property</summary>
-        public int? ParentId { get => _explicitNullValueParentId; set { _explicitNullValueParentId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parentId"); else _explicitNullProperties?.Remove("parentId"); } }
+        public int? ParentId { get => _explicitNullValueParentId; set { _explicitNullValueParentId = value; AdditionalData?.Remove("parentId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parentId"); else _explicitNullProperties?.Remove("parentId"); } }
         private int? _explicitNullValueParentId = default!;
         /// <summary>The reorderedFolderIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? ReorderedFolderIds { get => _explicitNullValueReorderedFolderIds; set { _explicitNullValueReorderedFolderIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reorderedFolderIds"); else _explicitNullProperties?.Remove("reorderedFolderIds"); } }
+        public List<int?>? ReorderedFolderIds { get => _explicitNullValueReorderedFolderIds; set { _explicitNullValueReorderedFolderIds = value; AdditionalData?.Remove("reorderedFolderIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reorderedFolderIds"); else _explicitNullProperties?.Remove("reorderedFolderIds"); } }
         private List<int?>? _explicitNullValueReorderedFolderIds = default!;
 #nullable restore
 #else
-        public List<int?> ReorderedFolderIds { get => _explicitNullValueReorderedFolderIds; set { _explicitNullValueReorderedFolderIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reorderedFolderIds"); else _explicitNullProperties?.Remove("reorderedFolderIds"); } }
+        public List<int?> ReorderedFolderIds { get => _explicitNullValueReorderedFolderIds; set { _explicitNullValueReorderedFolderIds = value; AdditionalData?.Remove("reorderedFolderIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reorderedFolderIds"); else _explicitNullProperties?.Remove("reorderedFolderIds"); } }
         private List<int?> _explicitNullValueReorderedFolderIds = default!;
 #endif
         /// <summary>

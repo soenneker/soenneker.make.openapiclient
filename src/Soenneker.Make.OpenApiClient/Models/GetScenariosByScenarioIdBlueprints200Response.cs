@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("scenariosBlueprints") is { } nullNodeScenariosBlueprints && nullNodeScenariosBlueprints.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenariosBlueprints = null;
+            if (parseNode.GetChildNode("scenariosBlueprints") is null) { _explicitNullValueScenariosBlueprints = default!; _explicitNullProperties?.Remove("scenariosBlueprints"); }
+            else if (parseNode.GetChildNode("scenariosBlueprints") is { } nullNodeScenariosBlueprints && nullNodeScenariosBlueprints.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenariosBlueprints = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The scenariosBlueprints property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200ResponseScenariosBlueprintsItem>? ScenariosBlueprints { get => _explicitNullValueScenariosBlueprints; set { _explicitNullValueScenariosBlueprints = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenariosBlueprints"); else _explicitNullProperties?.Remove("scenariosBlueprints"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200ResponseScenariosBlueprintsItem>? ScenariosBlueprints { get => _explicitNullValueScenariosBlueprints; set { _explicitNullValueScenariosBlueprints = value; AdditionalData?.Remove("scenariosBlueprints"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenariosBlueprints"); else _explicitNullProperties?.Remove("scenariosBlueprints"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200ResponseScenariosBlueprintsItem>? _explicitNullValueScenariosBlueprints = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200ResponseScenariosBlueprintsItem> ScenariosBlueprints { get => _explicitNullValueScenariosBlueprints; set { _explicitNullValueScenariosBlueprints = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenariosBlueprints"); else _explicitNullProperties?.Remove("scenariosBlueprints"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200ResponseScenariosBlueprintsItem> ScenariosBlueprints { get => _explicitNullValueScenariosBlueprints; set { _explicitNullValueScenariosBlueprints = value; AdditionalData?.Remove("scenariosBlueprints"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenariosBlueprints"); else _explicitNullProperties?.Remove("scenariosBlueprints"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBlueprints200ResponseScenariosBlueprintsItem> _explicitNullValueScenariosBlueprints = default!;
 #endif
         /// <summary>

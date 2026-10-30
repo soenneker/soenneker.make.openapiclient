@@ -17,10 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("blueprint") is { } nullNodeBlueprint && nullNodeBlueprint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blueprint = null;
-            if (parseNode.GetChildNode("fromAdmin") is { } nullNodeFromAdmin && nullNodeFromAdmin.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FromAdmin = null;
-            if (parseNode.GetChildNode("templateId") is { } nullNodeTemplateId && nullNodeTemplateId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TemplateId = null;
-            if (parseNode.GetChildNode("userId") is { } nullNodeUserId && nullNodeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserId = null;
+            if (parseNode.GetChildNode("blueprint") is null) { _explicitNullValueBlueprint = default!; _explicitNullProperties?.Remove("blueprint"); }
+            else if (parseNode.GetChildNode("blueprint") is { } nullNodeBlueprint && nullNodeBlueprint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blueprint = null;
+            if (parseNode.GetChildNode("fromAdmin") is null) { _explicitNullValueFromAdmin = default!; _explicitNullProperties?.Remove("fromAdmin"); }
+            else if (parseNode.GetChildNode("fromAdmin") is { } nullNodeFromAdmin && nullNodeFromAdmin.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FromAdmin = null;
+            if (parseNode.GetChildNode("templateId") is null) { _explicitNullValueTemplateId = default!; _explicitNullProperties?.Remove("templateId"); }
+            else if (parseNode.GetChildNode("templateId") is { } nullNodeTemplateId && nullNodeTemplateId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TemplateId = null;
+            if (parseNode.GetChildNode("userId") is null) { _explicitNullValueUserId = default!; _explicitNullProperties?.Remove("userId"); }
+            else if (parseNode.GetChildNode("userId") is { } nullNodeUserId && nullNodeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,21 +32,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The blueprint about to be executed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3Blueprint? Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3Blueprint? Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; AdditionalData?.Remove("blueprint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3Blueprint? _explicitNullValueBlueprint = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3Blueprint Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3Blueprint Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; AdditionalData?.Remove("blueprint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3Blueprint _explicitNullValueBlueprint = default!;
 #endif
         /// <summary>Untrusted hint that the execution comes from the admin UI. The check verifies the user&apos;s `scenario verify` HQ-admin permission itself before applying the same bypass the admin save endpoints do; a spoofed flag falls through to the normal verdict.</summary>
-        public bool? FromAdmin { get => _explicitNullValueFromAdmin; set { _explicitNullValueFromAdmin = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fromAdmin"); else _explicitNullProperties?.Remove("fromAdmin"); } }
+        public bool? FromAdmin { get => _explicitNullValueFromAdmin; set { _explicitNullValueFromAdmin = value; AdditionalData?.Remove("fromAdmin"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("fromAdmin"); else _explicitNullProperties?.Remove("fromAdmin"); } }
         private bool? _explicitNullValueFromAdmin = default!;
         /// <summary>The template being run. The team is taken from the template record itself — a caller cannot influence which team is checked, even by also sending `teamId`. The template&apos;s own stored blueprint is the OLD side, the same grandfathering `scenarioId` and `dlqId` get: it is already guarded at save, so a module left untouched since then still runs after its connection is locked, while an edit or a new placement blocks. A template with no team (some templates have none) is unaffected — there is nothing team-scoped to check.</summary>
-        public int? TemplateId { get => _explicitNullValueTemplateId; set { _explicitNullValueTemplateId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templateId"); else _explicitNullProperties?.Remove("templateId"); } }
+        public int? TemplateId { get => _explicitNullValueTemplateId; set { _explicitNullValueTemplateId = value; AdditionalData?.Remove("templateId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templateId"); else _explicitNullProperties?.Remove("templateId"); } }
         private int? _explicitNullValueTemplateId = default!;
         /// <summary>The user the execution runs as.</summary>
-        public int? UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
+        public int? UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; AdditionalData?.Remove("userId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
         private int? _explicitNullValueUserId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3"/> and sets the default values.

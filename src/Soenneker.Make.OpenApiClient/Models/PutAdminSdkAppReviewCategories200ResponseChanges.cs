@@ -18,8 +18,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("categories") is { } nullNodeCategories && nullNodeCategories.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Categories = null;
-            if (parseNode.GetChildNode("subcategories") is { } nullNodeSubcategories && nullNodeSubcategories.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subcategories = null;
+            if (parseNode.GetChildNode("categories") is null) { _explicitNullValueCategories = default!; _explicitNullProperties?.Remove("categories"); }
+            else if (parseNode.GetChildNode("categories") is { } nullNodeCategories && nullNodeCategories.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Categories = null;
+            if (parseNode.GetChildNode("subcategories") is null) { _explicitNullValueSubcategories = default!; _explicitNullProperties?.Remove("subcategories"); }
+            else if (parseNode.GetChildNode("subcategories") is { } nullNodeSubcategories && nullNodeSubcategories.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subcategories = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,21 +29,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>What one catalog sync did to one taxonomy level. Values are slugs, so a syncing script can log them verbatim; subcategories are keyed `&lt;categorySlug&gt;/&lt;subcategorySlug&gt;`, since a subcategory slug is only unique within its category. All four buckets are empty when the posted list matched what was already stored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategories200ResponseChangesCategories? Categories { get => _explicitNullValueCategories; set { _explicitNullValueCategories = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categories"); else _explicitNullProperties?.Remove("categories"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategories200ResponseChangesCategories? Categories { get => _explicitNullValueCategories; set { _explicitNullValueCategories = value; AdditionalData?.Remove("categories"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categories"); else _explicitNullProperties?.Remove("categories"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategories200ResponseChangesCategories? _explicitNullValueCategories = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategories200ResponseChangesCategories Categories { get => _explicitNullValueCategories; set { _explicitNullValueCategories = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categories"); else _explicitNullProperties?.Remove("categories"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategories200ResponseChangesCategories Categories { get => _explicitNullValueCategories; set { _explicitNullValueCategories = value; AdditionalData?.Remove("categories"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categories"); else _explicitNullProperties?.Remove("categories"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategories200ResponseChangesCategories _explicitNullValueCategories = default!;
 #endif
         /// <summary>What one catalog sync did to one taxonomy level. Values are slugs, so a syncing script can log them verbatim; subcategories are keyed `&lt;categorySlug&gt;/&lt;subcategorySlug&gt;`, since a subcategory slug is only unique within its category. All four buckets are empty when the posted list matched what was already stored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategories200ResponseChangesSubcategories? Subcategories { get => _explicitNullValueSubcategories; set { _explicitNullValueSubcategories = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subcategories"); else _explicitNullProperties?.Remove("subcategories"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategories200ResponseChangesSubcategories? Subcategories { get => _explicitNullValueSubcategories; set { _explicitNullValueSubcategories = value; AdditionalData?.Remove("subcategories"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subcategories"); else _explicitNullProperties?.Remove("subcategories"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategories200ResponseChangesSubcategories? _explicitNullValueSubcategories = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategories200ResponseChangesSubcategories Subcategories { get => _explicitNullValueSubcategories; set { _explicitNullValueSubcategories = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subcategories"); else _explicitNullProperties?.Remove("subcategories"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategories200ResponseChangesSubcategories Subcategories { get => _explicitNullValueSubcategories; set { _explicitNullValueSubcategories = value; AdditionalData?.Remove("subcategories"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subcategories"); else _explicitNullProperties?.Remove("subcategories"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppReviewCategories200ResponseChangesSubcategories _explicitNullValueSubcategories = default!;
 #endif
         /// <summary>

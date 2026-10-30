@@ -17,50 +17,57 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("disabledAt") is { } nullNodeDisabledAt && nullNodeDisabledAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DisabledAt = null;
-            if (parseNode.GetChildNode("featureFlag") is { } nullNodeFeatureFlag && nullNodeFeatureFlag.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FeatureFlag = null;
-            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
-            if (parseNode.GetChildNode("isAssignable") is { } nullNodeIsAssignable && nullNodeIsAssignable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsAssignable = null;
-            if (parseNode.GetChildNode("isDefault") is { } nullNodeIsDefault && nullNodeIsDefault.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsDefault = null;
-            if (parseNode.GetChildNode("isExperiment") is { } nullNodeIsExperiment && nullNodeIsExperiment.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsExperiment = null;
-            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("disabledAt") is null) { _explicitNullValueDisabledAt = default!; _explicitNullProperties?.Remove("disabledAt"); }
+            else if (parseNode.GetChildNode("disabledAt") is { } nullNodeDisabledAt && nullNodeDisabledAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DisabledAt = null;
+            if (parseNode.GetChildNode("featureFlag") is null) { _explicitNullValueFeatureFlag = default!; _explicitNullProperties?.Remove("featureFlag"); }
+            else if (parseNode.GetChildNode("featureFlag") is { } nullNodeFeatureFlag && nullNodeFeatureFlag.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FeatureFlag = null;
+            if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
+            else if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("isAssignable") is null) { _explicitNullValueIsAssignable = default!; _explicitNullProperties?.Remove("isAssignable"); }
+            else if (parseNode.GetChildNode("isAssignable") is { } nullNodeIsAssignable && nullNodeIsAssignable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsAssignable = null;
+            if (parseNode.GetChildNode("isDefault") is null) { _explicitNullValueIsDefault = default!; _explicitNullProperties?.Remove("isDefault"); }
+            else if (parseNode.GetChildNode("isDefault") is { } nullNodeIsDefault && nullNodeIsDefault.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsDefault = null;
+            if (parseNode.GetChildNode("isExperiment") is null) { _explicitNullValueIsExperiment = default!; _explicitNullProperties?.Remove("isExperiment"); }
+            else if (parseNode.GetChildNode("isExperiment") is { } nullNodeIsExperiment && nullNodeIsExperiment.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsExperiment = null;
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>When the group was retired; a retired group cannot be assigned</summary>
-        public DateTimeOffset? DisabledAt { get => _explicitNullValueDisabledAt; set { _explicitNullValueDisabledAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("disabledAt"); else _explicitNullProperties?.Remove("disabledAt"); } }
+        public DateTimeOffset? DisabledAt { get => _explicitNullValueDisabledAt; set { _explicitNullValueDisabledAt = value; AdditionalData?.Remove("disabledAt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("disabledAt"); else _explicitNullProperties?.Remove("disabledAt"); } }
         private DateTimeOffset? _explicitNullValueDisabledAt = default!;
         /// <summary>GrowthBook flag gating automatic assignment to this group, or null when ungated</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FeatureFlag { get => _explicitNullValueFeatureFlag; set { _explicitNullValueFeatureFlag = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureFlag"); else _explicitNullProperties?.Remove("featureFlag"); } }
+        public string? FeatureFlag { get => _explicitNullValueFeatureFlag; set { _explicitNullValueFeatureFlag = value; AdditionalData?.Remove("featureFlag"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureFlag"); else _explicitNullProperties?.Remove("featureFlag"); } }
         private string? _explicitNullValueFeatureFlag = default!;
 #nullable restore
 #else
-        public string FeatureFlag { get => _explicitNullValueFeatureFlag; set { _explicitNullValueFeatureFlag = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureFlag"); else _explicitNullProperties?.Remove("featureFlag"); } }
+        public string FeatureFlag { get => _explicitNullValueFeatureFlag; set { _explicitNullValueFeatureFlag = value; AdditionalData?.Remove("featureFlag"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureFlag"); else _explicitNullProperties?.Remove("featureFlag"); } }
         private string _explicitNullValueFeatureFlag = default!;
 #endif
         /// <summary>Price group ID</summary>
-        public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private int? _explicitNullValueId = default!;
         /// <summary>Whether the group can be assigned right now; false when the group is retired or its feature flag is off</summary>
-        public bool? IsAssignable { get => _explicitNullValueIsAssignable; set { _explicitNullValueIsAssignable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isAssignable"); else _explicitNullProperties?.Remove("isAssignable"); } }
+        public bool? IsAssignable { get => _explicitNullValueIsAssignable; set { _explicitNullValueIsAssignable = value; AdditionalData?.Remove("isAssignable"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isAssignable"); else _explicitNullProperties?.Remove("isAssignable"); } }
         private bool? _explicitNullValueIsAssignable = default!;
         /// <summary>Whether this is the default group assigned when no geo rule matches</summary>
-        public bool? IsDefault { get => _explicitNullValueIsDefault; set { _explicitNullValueIsDefault = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isDefault"); else _explicitNullProperties?.Remove("isDefault"); } }
+        public bool? IsDefault { get => _explicitNullValueIsDefault; set { _explicitNullValueIsDefault = value; AdditionalData?.Remove("isDefault"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isDefault"); else _explicitNullProperties?.Remove("isDefault"); } }
         private bool? _explicitNullValueIsDefault = default!;
         /// <summary>Whether the group belongs to a pricing experiment</summary>
-        public bool? IsExperiment { get => _explicitNullValueIsExperiment; set { _explicitNullValueIsExperiment = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isExperiment"); else _explicitNullProperties?.Remove("isExperiment"); } }
+        public bool? IsExperiment { get => _explicitNullValueIsExperiment; set { _explicitNullValueIsExperiment = value; AdditionalData?.Remove("isExperiment"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isExperiment"); else _explicitNullProperties?.Remove("isExperiment"); } }
         private bool? _explicitNullValueIsExperiment = default!;
         /// <summary>Internal name of the price group</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
         /// <summary>

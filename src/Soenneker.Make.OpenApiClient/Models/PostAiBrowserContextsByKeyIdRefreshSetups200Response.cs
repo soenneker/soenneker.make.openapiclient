@@ -17,10 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("liveViewUrl") is { } nullNodeLiveViewUrl && nullNodeLiveViewUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LiveViewUrl = null;
-            if (parseNode.GetChildNode("pages") is { } nullNodePages && nullNodePages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pages = null;
-            if (parseNode.GetChildNode("pagesVersion") is { } nullNodePagesVersion && nullNodePagesVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PagesVersion = null;
-            if (parseNode.GetChildNode("setupId") is { } nullNodeSetupId && nullNodeSetupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SetupId = null;
+            if (parseNode.GetChildNode("liveViewUrl") is null) { _explicitNullValueLiveViewUrl = default!; _explicitNullProperties?.Remove("liveViewUrl"); }
+            else if (parseNode.GetChildNode("liveViewUrl") is { } nullNodeLiveViewUrl && nullNodeLiveViewUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LiveViewUrl = null;
+            if (parseNode.GetChildNode("pages") is null) { _explicitNullValuePages = default!; _explicitNullProperties?.Remove("pages"); }
+            else if (parseNode.GetChildNode("pages") is { } nullNodePages && nullNodePages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pages = null;
+            if (parseNode.GetChildNode("pagesVersion") is null) { _explicitNullValuePagesVersion = default!; _explicitNullProperties?.Remove("pagesVersion"); }
+            else if (parseNode.GetChildNode("pagesVersion") is { } nullNodePagesVersion && nullNodePagesVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PagesVersion = null;
+            if (parseNode.GetChildNode("setupId") is null) { _explicitNullValueSetupId = default!; _explicitNullProperties?.Remove("setupId"); }
+            else if (parseNode.GetChildNode("setupId") is { } nullNodeSetupId && nullNodeSetupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SetupId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,41 +32,41 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>URL of the live view of the session&apos;s first page; kept as a fallback for `pages`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LiveViewUrl { get => _explicitNullValueLiveViewUrl; set { _explicitNullValueLiveViewUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("liveViewUrl"); else _explicitNullProperties?.Remove("liveViewUrl"); } }
+        public string? LiveViewUrl { get => _explicitNullValueLiveViewUrl; set { _explicitNullValueLiveViewUrl = value; AdditionalData?.Remove("liveViewUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("liveViewUrl"); else _explicitNullProperties?.Remove("liveViewUrl"); } }
         private string? _explicitNullValueLiveViewUrl = default!;
 #nullable restore
 #else
-        public string LiveViewUrl { get => _explicitNullValueLiveViewUrl; set { _explicitNullValueLiveViewUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("liveViewUrl"); else _explicitNullProperties?.Remove("liveViewUrl"); } }
+        public string LiveViewUrl { get => _explicitNullValueLiveViewUrl; set { _explicitNullValueLiveViewUrl = value; AdditionalData?.Remove("liveViewUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("liveViewUrl"); else _explicitNullProperties?.Remove("liveViewUrl"); } }
         private string _explicitNullValueLiveViewUrl = default!;
 #endif
         /// <summary>Every open page (tab or popup) of the remote browser, each with its own live view. Match pages by `id`: a page keeps its `id` for its lifetime, while its title, URL and live-view URL change. The list is empty when no page is open.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextsByKeyIdRefreshSetups200ResponsePagesItem>? Pages { get => _explicitNullValuePages; set { _explicitNullValuePages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pages"); else _explicitNullProperties?.Remove("pages"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextsByKeyIdRefreshSetups200ResponsePagesItem>? Pages { get => _explicitNullValuePages; set { _explicitNullValuePages = value; AdditionalData?.Remove("pages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pages"); else _explicitNullProperties?.Remove("pages"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextsByKeyIdRefreshSetups200ResponsePagesItem>? _explicitNullValuePages = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextsByKeyIdRefreshSetups200ResponsePagesItem> Pages { get => _explicitNullValuePages; set { _explicitNullValuePages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pages"); else _explicitNullProperties?.Remove("pages"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextsByKeyIdRefreshSetups200ResponsePagesItem> Pages { get => _explicitNullValuePages; set { _explicitNullValuePages = value; AdditionalData?.Remove("pages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pages"); else _explicitNullProperties?.Remove("pages"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextsByKeyIdRefreshSetups200ResponsePagesItem> _explicitNullValuePages = default!;
 #endif
         /// <summary>Identifies the current set of open pages: it changes whenever a page opens, closes, navigates or changes its title or favicon. Live-view URLs are left out because they are re-signed on every response. Send it back as the `pagesVersion` query parameter to wait for the next change.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PagesVersion { get => _explicitNullValuePagesVersion; set { _explicitNullValuePagesVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pagesVersion"); else _explicitNullProperties?.Remove("pagesVersion"); } }
+        public string? PagesVersion { get => _explicitNullValuePagesVersion; set { _explicitNullValuePagesVersion = value; AdditionalData?.Remove("pagesVersion"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pagesVersion"); else _explicitNullProperties?.Remove("pagesVersion"); } }
         private string? _explicitNullValuePagesVersion = default!;
 #nullable restore
 #else
-        public string PagesVersion { get => _explicitNullValuePagesVersion; set { _explicitNullValuePagesVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pagesVersion"); else _explicitNullProperties?.Remove("pagesVersion"); } }
+        public string PagesVersion { get => _explicitNullValuePagesVersion; set { _explicitNullValuePagesVersion = value; AdditionalData?.Remove("pagesVersion"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pagesVersion"); else _explicitNullProperties?.Remove("pagesVersion"); } }
         private string _explicitNullValuePagesVersion = default!;
 #endif
         /// <summary>Identifier of the setup flow. Only the user who started the flow can use it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SetupId { get => _explicitNullValueSetupId; set { _explicitNullValueSetupId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("setupId"); else _explicitNullProperties?.Remove("setupId"); } }
+        public string? SetupId { get => _explicitNullValueSetupId; set { _explicitNullValueSetupId = value; AdditionalData?.Remove("setupId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("setupId"); else _explicitNullProperties?.Remove("setupId"); } }
         private string? _explicitNullValueSetupId = default!;
 #nullable restore
 #else
-        public string SetupId { get => _explicitNullValueSetupId; set { _explicitNullValueSetupId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("setupId"); else _explicitNullProperties?.Remove("setupId"); } }
+        public string SetupId { get => _explicitNullValueSetupId; set { _explicitNullValueSetupId = value; AdditionalData?.Remove("setupId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("setupId"); else _explicitNullProperties?.Remove("setupId"); } }
         private string _explicitNullValueSetupId = default!;
 #endif
         /// <summary>

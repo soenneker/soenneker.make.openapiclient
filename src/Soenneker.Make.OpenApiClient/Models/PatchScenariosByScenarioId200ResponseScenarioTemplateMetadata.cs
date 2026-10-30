@@ -18,25 +18,29 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("instantiableId") is { } nullNodeInstantiableId && nullNodeInstantiableId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InstantiableId = null;
-            if (parseNode.GetChildNode("isOem") is { } nullNodeIsOem && nullNodeIsOem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsOem = null;
-            if (parseNode.GetChildNode("metadataId") is { } nullNodeMetadataId && nullNodeMetadataId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MetadataId = null;
-            if (parseNode.GetChildNode("versionId") is { } nullNodeVersionId && nullNodeVersionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VersionId = null;
+            if (parseNode.GetChildNode("instantiableId") is null) { _explicitNullValueInstantiableId = default!; _explicitNullProperties?.Remove("instantiableId"); }
+            else if (parseNode.GetChildNode("instantiableId") is { } nullNodeInstantiableId && nullNodeInstantiableId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InstantiableId = null;
+            if (parseNode.GetChildNode("isOem") is null) { _explicitNullValueIsOem = default!; _explicitNullProperties?.Remove("isOem"); }
+            else if (parseNode.GetChildNode("isOem") is { } nullNodeIsOem && nullNodeIsOem.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsOem = null;
+            if (parseNode.GetChildNode("metadataId") is null) { _explicitNullValueMetadataId = default!; _explicitNullProperties?.Remove("metadataId"); }
+            else if (parseNode.GetChildNode("metadataId") is { } nullNodeMetadataId && nullNodeMetadataId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MetadataId = null;
+            if (parseNode.GetChildNode("versionId") is null) { _explicitNullValueVersionId = default!; _explicitNullProperties?.Remove("versionId"); }
+            else if (parseNode.GetChildNode("versionId") is { } nullNodeVersionId && nullNodeVersionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VersionId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The instantiableId property</summary>
-        public int? InstantiableId { get => _explicitNullValueInstantiableId; set { _explicitNullValueInstantiableId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("instantiableId"); else _explicitNullProperties?.Remove("instantiableId"); } }
+        public int? InstantiableId { get => _explicitNullValueInstantiableId; set { _explicitNullValueInstantiableId = value; AdditionalData?.Remove("instantiableId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("instantiableId"); else _explicitNullProperties?.Remove("instantiableId"); } }
         private int? _explicitNullValueInstantiableId = default!;
         /// <summary>The isOem property</summary>
-        public bool? IsOem { get => _explicitNullValueIsOem; set { _explicitNullValueIsOem = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isOem"); else _explicitNullProperties?.Remove("isOem"); } }
+        public bool? IsOem { get => _explicitNullValueIsOem; set { _explicitNullValueIsOem = value; AdditionalData?.Remove("isOem"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isOem"); else _explicitNullProperties?.Remove("isOem"); } }
         private bool? _explicitNullValueIsOem = default!;
         /// <summary>The metadataId property</summary>
-        public int? MetadataId { get => _explicitNullValueMetadataId; set { _explicitNullValueMetadataId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadataId"); else _explicitNullProperties?.Remove("metadataId"); } }
+        public int? MetadataId { get => _explicitNullValueMetadataId; set { _explicitNullValueMetadataId = value; AdditionalData?.Remove("metadataId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadataId"); else _explicitNullProperties?.Remove("metadataId"); } }
         private int? _explicitNullValueMetadataId = default!;
         /// <summary>The versionId property</summary>
-        public int? VersionId { get => _explicitNullValueVersionId; set { _explicitNullValueVersionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("versionId"); else _explicitNullProperties?.Remove("versionId"); } }
+        public int? VersionId { get => _explicitNullValueVersionId; set { _explicitNullValueVersionId = value; AdditionalData?.Remove("versionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("versionId"); else _explicitNullProperties?.Remove("versionId"); } }
         private int? _explicitNullValueVersionId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200ResponseScenarioTemplateMetadata"/> and sets the default values.

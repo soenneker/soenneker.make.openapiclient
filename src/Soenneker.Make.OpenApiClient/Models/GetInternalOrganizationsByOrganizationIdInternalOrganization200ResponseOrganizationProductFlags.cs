@@ -17,25 +17,29 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("isEnterprise") is { } nullNodeIsEnterprise && nullNodeIsEnterprise.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsEnterprise = null;
-            if (parseNode.GetChildNode("isFreePlan") is { } nullNodeIsFreePlan && nullNodeIsFreePlan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsFreePlan = null;
-            if (parseNode.GetChildNode("isPromo") is { } nullNodeIsPromo && nullNodeIsPromo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsPromo = null;
-            if (parseNode.GetChildNode("isTrial") is { } nullNodeIsTrial && nullNodeIsTrial.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsTrial = null;
+            if (parseNode.GetChildNode("isEnterprise") is null) { _explicitNullValueIsEnterprise = default!; _explicitNullProperties?.Remove("isEnterprise"); }
+            else if (parseNode.GetChildNode("isEnterprise") is { } nullNodeIsEnterprise && nullNodeIsEnterprise.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsEnterprise = null;
+            if (parseNode.GetChildNode("isFreePlan") is null) { _explicitNullValueIsFreePlan = default!; _explicitNullProperties?.Remove("isFreePlan"); }
+            else if (parseNode.GetChildNode("isFreePlan") is { } nullNodeIsFreePlan && nullNodeIsFreePlan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsFreePlan = null;
+            if (parseNode.GetChildNode("isPromo") is null) { _explicitNullValueIsPromo = default!; _explicitNullProperties?.Remove("isPromo"); }
+            else if (parseNode.GetChildNode("isPromo") is { } nullNodeIsPromo && nullNodeIsPromo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsPromo = null;
+            if (parseNode.GetChildNode("isTrial") is null) { _explicitNullValueIsTrial = default!; _explicitNullProperties?.Remove("isTrial"); }
+            else if (parseNode.GetChildNode("isTrial") is { } nullNodeIsTrial && nullNodeIsTrial.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsTrial = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The isEnterprise property</summary>
-        public bool? IsEnterprise { get => _explicitNullValueIsEnterprise; set { _explicitNullValueIsEnterprise = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isEnterprise"); else _explicitNullProperties?.Remove("isEnterprise"); } }
+        public bool? IsEnterprise { get => _explicitNullValueIsEnterprise; set { _explicitNullValueIsEnterprise = value; AdditionalData?.Remove("isEnterprise"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isEnterprise"); else _explicitNullProperties?.Remove("isEnterprise"); } }
         private bool? _explicitNullValueIsEnterprise = default!;
         /// <summary>The isFreePlan property</summary>
-        public bool? IsFreePlan { get => _explicitNullValueIsFreePlan; set { _explicitNullValueIsFreePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isFreePlan"); else _explicitNullProperties?.Remove("isFreePlan"); } }
+        public bool? IsFreePlan { get => _explicitNullValueIsFreePlan; set { _explicitNullValueIsFreePlan = value; AdditionalData?.Remove("isFreePlan"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isFreePlan"); else _explicitNullProperties?.Remove("isFreePlan"); } }
         private bool? _explicitNullValueIsFreePlan = default!;
         /// <summary>The isPromo property</summary>
-        public bool? IsPromo { get => _explicitNullValueIsPromo; set { _explicitNullValueIsPromo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isPromo"); else _explicitNullProperties?.Remove("isPromo"); } }
+        public bool? IsPromo { get => _explicitNullValueIsPromo; set { _explicitNullValueIsPromo = value; AdditionalData?.Remove("isPromo"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isPromo"); else _explicitNullProperties?.Remove("isPromo"); } }
         private bool? _explicitNullValueIsPromo = default!;
         /// <summary>The isTrial property</summary>
-        public bool? IsTrial { get => _explicitNullValueIsTrial; set { _explicitNullValueIsTrial = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isTrial"); else _explicitNullProperties?.Remove("isTrial"); } }
+        public bool? IsTrial { get => _explicitNullValueIsTrial; set { _explicitNullValueIsTrial = value; AdditionalData?.Remove("isTrial"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isTrial"); else _explicitNullProperties?.Remove("isTrial"); } }
         private bool? _explicitNullValueIsTrial = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags"/> and sets the default values.

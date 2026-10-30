@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("userOrganizationRole") is { } nullNodeUserOrganizationRole && nullNodeUserOrganizationRole.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserOrganizationRole = null;
+            if (parseNode.GetChildNode("userOrganizationRole") is null) { _explicitNullValueUserOrganizationRole = default!; _explicitNullProperties?.Remove("userOrganizationRole"); }
+            else if (parseNode.GetChildNode("userOrganizationRole") is { } nullNodeUserOrganizationRole && nullNodeUserOrganizationRole.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserOrganizationRole = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The userOrganizationRole property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserOrganizationRolesByOrganizationId200ResponseUserOrganizationRole? UserOrganizationRole { get => _explicitNullValueUserOrganizationRole; set { _explicitNullValueUserOrganizationRole = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userOrganizationRole"); else _explicitNullProperties?.Remove("userOrganizationRole"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserOrganizationRolesByOrganizationId200ResponseUserOrganizationRole? UserOrganizationRole { get => _explicitNullValueUserOrganizationRole; set { _explicitNullValueUserOrganizationRole = value; AdditionalData?.Remove("userOrganizationRole"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userOrganizationRole"); else _explicitNullProperties?.Remove("userOrganizationRole"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserOrganizationRolesByOrganizationId200ResponseUserOrganizationRole? _explicitNullValueUserOrganizationRole = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserOrganizationRolesByOrganizationId200ResponseUserOrganizationRole UserOrganizationRole { get => _explicitNullValueUserOrganizationRole; set { _explicitNullValueUserOrganizationRole = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userOrganizationRole"); else _explicitNullProperties?.Remove("userOrganizationRole"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserOrganizationRolesByOrganizationId200ResponseUserOrganizationRole UserOrganizationRole { get => _explicitNullValueUserOrganizationRole; set { _explicitNullValueUserOrganizationRole = value; AdditionalData?.Remove("userOrganizationRole"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userOrganizationRole"); else _explicitNullProperties?.Remove("userOrganizationRole"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserOrganizationRolesByOrganizationId200ResponseUserOrganizationRole _explicitNullValueUserOrganizationRole = default!;
 #endif
         /// <summary>

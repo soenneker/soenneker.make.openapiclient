@@ -17,7 +17,163 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("label") is null) { _explicitNullValueLabel = default!; _explicitNullProperties?.Remove("label"); }
+            else if (parseNode.GetChildNode("label") is { } nullNodeLabel && nullNodeLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Label = null;
+            if (parseNode.GetChildNode("help") is null) { _explicitNullValueHelp = default!; _explicitNullProperties?.Remove("help"); }
+            else if (parseNode.GetChildNode("help") is { } nullNodeHelp && nullNodeHelp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Help = null;
+            if (parseNode.GetChildNode("type") is null) { _explicitNullValueType = default!; _explicitNullProperties?.Remove("type"); }
+            else if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("semantic") is null) { _explicitNullValueSemantic = default!; _explicitNullProperties?.Remove("semantic"); }
+            else if (parseNode.GetChildNode("semantic") is { } nullNodeSemantic && nullNodeSemantic.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Semantic = null;
+            if (parseNode.GetChildNode("default") is null) { _explicitNullValueDefaultValue = default!; _explicitNullProperties?.Remove("default"); }
+            else if (parseNode.GetChildNode("default") is { } nullNodeDefaultValue && nullNodeDefaultValue.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DefaultValue = null;
+            if (parseNode.GetChildNode("advanced") is null) { _explicitNullValueAdvanced = default!; _explicitNullProperties?.Remove("advanced"); }
+            else if (parseNode.GetChildNode("advanced") is { } nullNodeAdvanced && nullNodeAdvanced.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Advanced = null;
+            if (parseNode.GetChildNode("required") is null) { _explicitNullValueRequired = default!; _explicitNullProperties?.Remove("required"); }
+            else if (parseNode.GetChildNode("required") is { } nullNodeRequired && nullNodeRequired.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Required = null;
+            if (parseNode.GetChildNode("grouped") is null) { _explicitNullValueGrouped = default!; _explicitNullProperties?.Remove("grouped"); }
+            else if (parseNode.GetChildNode("grouped") is { } nullNodeGrouped && nullNodeGrouped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Grouped = null;
+            if (parseNode.GetChildNode("dynamic") is null) { _explicitNullValueDynamic = default!; _explicitNullProperties?.Remove("dynamic"); }
+            else if (parseNode.GetChildNode("dynamic") is { } nullNodeDynamic && nullNodeDynamic.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dynamic = null;
+            if (parseNode.GetChildNode("multiline") is null) { _explicitNullValueMultiline = default!; _explicitNullProperties?.Remove("multiline"); }
+            else if (parseNode.GetChildNode("multiline") is { } nullNodeMultiline && nullNodeMultiline.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Multiline = null;
+            if (parseNode.GetChildNode("sort") is null) { _explicitNullValueSort = default!; _explicitNullProperties?.Remove("sort"); }
+            else if (parseNode.GetChildNode("sort") is { } nullNodeSort && nullNodeSort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sort = null;
+            if (parseNode.GetChildNode("sequence") is null) { _explicitNullValueSequence = default!; _explicitNullProperties?.Remove("sequence"); }
+            else if (parseNode.GetChildNode("sequence") is { } nullNodeSequence && nullNodeSequence.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sequence = null;
+            if (parseNode.GetChildNode("schema") is null) { _explicitNullValueSchema = default!; _explicitNullProperties?.Remove("schema"); }
+            else if (parseNode.GetChildNode("schema") is { } nullNodeSchema && nullNodeSchema.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Schema = null;
+            if (parseNode.GetChildNode("tags") is null) { _explicitNullValueTags = default!; _explicitNullProperties?.Remove("tags"); }
+            else if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
+            if (parseNode.GetChildNode("coder") is null) { _explicitNullValueCoder = default!; _explicitNullProperties?.Remove("coder"); }
+            else if (parseNode.GetChildNode("coder") is { } nullNodeCoder && nullNodeCoder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Coder = null;
+            if (parseNode.GetChildNode("multiple") is null) { _explicitNullValueMultiple = default!; _explicitNullProperties?.Remove("multiple"); }
+            else if (parseNode.GetChildNode("multiple") is { } nullNodeMultiple && nullNodeMultiple.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Multiple = null;
+            if (parseNode.GetChildNode("visible") is null) { _explicitNullValueVisible = default!; _explicitNullProperties?.Remove("visible"); }
+            else if (parseNode.GetChildNode("visible") is { } nullNodeVisible && nullNodeVisible.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Visible = null;
+            if (parseNode.GetChildNode("convert") is null) { _explicitNullValueConvert = default!; _explicitNullProperties?.Remove("convert"); }
+            else if (parseNode.GetChildNode("convert") is { } nullNodeConvert && nullNodeConvert.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Convert = null;
+            if (parseNode.GetChildNode("editable") is null) { _explicitNullValueEditable = default!; _explicitNullProperties?.Remove("editable"); }
+            else if (parseNode.GetChildNode("editable") is { } nullNodeEditable && nullNodeEditable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Editable = null;
+            if (parseNode.GetChildNode("mappable") is null) { _explicitNullValueMappable = default!; _explicitNullProperties?.Remove("mappable"); }
+            else if (parseNode.GetChildNode("mappable") is { } nullNodeMappable && nullNodeMappable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mappable = null;
+            if (parseNode.GetChildNode("time") is null) { _explicitNullValueTime = default!; _explicitNullProperties?.Remove("time"); }
+            else if (parseNode.GetChildNode("time") is { } nullNodeTime && nullNodeTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Time = null;
+            if (parseNode.GetChildNode("rpc") is null) { _explicitNullValueRpc = default!; _explicitNullProperties?.Remove("rpc"); }
+            else if (parseNode.GetChildNode("rpc") is { } nullNodeRpc && nullNodeRpc.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Rpc = null;
+            if (parseNode.GetChildNode("mode") is null) { _explicitNullValueMode = default!; _explicitNullProperties?.Remove("mode"); }
+            else if (parseNode.GetChildNode("mode") is { } nullNodeMode && nullNodeMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mode = null;
+            if (parseNode.GetChildNode("labels") is null) { _explicitNullValueLabels = default!; _explicitNullProperties?.Remove("labels"); }
+            else if (parseNode.GetChildNode("labels") is { } nullNodeLabels && nullNodeLabels.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Labels = null;
+            if (parseNode.GetChildNode("metadata") is null) { _explicitNullValueMetadata = default!; _explicitNullProperties?.Remove("metadata"); }
+            else if (parseNode.GetChildNode("metadata") is { } nullNodeMetadata && nullNodeMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Metadata = null;
+            if (parseNode.GetChildNode("spec") is null) { _explicitNullValueSpec = default!; _explicitNullProperties?.Remove("spec"); }
+            else if (parseNode.GetChildNode("spec") is { } nullNodeSpec && nullNodeSpec.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Spec = null;
+            if (parseNode.GetChildNode("codepage") is null) { _explicitNullValueCodepage = default!; _explicitNullProperties?.Remove("codepage"); }
+            else if (parseNode.GetChildNode("codepage") is { } nullNodeCodepage && nullNodeCodepage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Codepage = null;
+            if (parseNode.GetChildNode("pattern") is null) { _explicitNullValuePattern = default!; _explicitNullProperties?.Remove("pattern"); }
+            else if (parseNode.GetChildNode("pattern") is { } nullNodePattern && nullNodePattern.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pattern = null;
+            if (parseNode.GetChildNode("nested") is null) { _explicitNullValueNested = default!; _explicitNullProperties?.Remove("nested"); }
+            else if (parseNode.GetChildNode("nested") is { } nullNodeNested && nullNodeNested.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Nested = null;
+            if (parseNode.GetChildNode("options") is null) { _explicitNullValueOptions = default!; _explicitNullProperties?.Remove("options"); }
+            else if (parseNode.GetChildNode("options") is { } nullNodeOptions && nullNodeOptions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Options = null;
+            if (parseNode.GetChildNode("extension") is null) { _explicitNullValueExtension = default!; _explicitNullProperties?.Remove("extension"); }
+            else if (parseNode.GetChildNode("extension") is { } nullNodeExtension && nullNodeExtension.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Extension = null;
+            if (parseNode.GetChildNode("validate") is null) { _explicitNullValueValidate = default!; _explicitNullProperties?.Remove("validate"); }
+            else if (parseNode.GetChildNode("validate") is { } nullNodeValidate && nullNodeValidate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Validate = null;
+            if (parseNode.GetChildNode("title") is null) { _explicitNullValueTitle = default!; _explicitNullProperties?.Remove("title"); }
+            else if (parseNode.GetChildNode("title") is { } nullNodeTitle && nullNodeTitle.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Title = null;
+            if (parseNode.GetChildNode("text") is null) { _explicitNullValueText = default!; _explicitNullProperties?.Remove("text"); }
+            else if (parseNode.GetChildNode("text") is { } nullNodeText && nullNodeText.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Text = null;
+            if (parseNode.GetChildNode("closable") is null) { _explicitNullValueClosable = default!; _explicitNullProperties?.Remove("closable"); }
+            else if (parseNode.GetChildNode("closable") is { } nullNodeClosable && nullNodeClosable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Closable = null;
+            if (parseNode.GetChildNode("theme") is null) { _explicitNullValueTheme = default!; _explicitNullProperties?.Remove("theme"); }
+            else if (parseNode.GetChildNode("theme") is { } nullNodeTheme && nullNodeTheme.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Theme = null;
+            if (parseNode.GetChildNode("badge") is null) { _explicitNullValueBadge = default!; _explicitNullProperties?.Remove("badge"); }
+            else if (parseNode.GetChildNode("badge") is { } nullNodeBadge && nullNodeBadge.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Badge = null;
         }
+
+        // Restore fields omitted by the generator's model-depth limit.
+#nullable enable
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
+        public string? Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; AdditionalData?.Remove("label"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
+        private string? _explicitNullValueLabel = default!;
+        public string? Help { get => _explicitNullValueHelp; set { _explicitNullValueHelp = value; AdditionalData?.Remove("help"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("help"); else _explicitNullProperties?.Remove("help"); } }
+        private string? _explicitNullValueHelp = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueType = default!;
+        public string? Semantic { get => _explicitNullValueSemantic; set { _explicitNullValueSemantic = value; AdditionalData?.Remove("semantic"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("semantic"); else _explicitNullProperties?.Remove("semantic"); } }
+        private string? _explicitNullValueSemantic = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? DefaultValue { get => _explicitNullValueDefaultValue; set { _explicitNullValueDefaultValue = value; AdditionalData?.Remove("default"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("default"); else _explicitNullProperties?.Remove("default"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueDefaultValue = default!;
+        public bool? Advanced { get => _explicitNullValueAdvanced; set { _explicitNullValueAdvanced = value; AdditionalData?.Remove("advanced"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("advanced"); else _explicitNullProperties?.Remove("advanced"); } }
+        private bool? _explicitNullValueAdvanced = default!;
+        public bool? Required { get => _explicitNullValueRequired; set { _explicitNullValueRequired = value; AdditionalData?.Remove("required"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("required"); else _explicitNullProperties?.Remove("required"); } }
+        private bool? _explicitNullValueRequired = default!;
+        public bool? Grouped { get => _explicitNullValueGrouped; set { _explicitNullValueGrouped = value; AdditionalData?.Remove("grouped"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("grouped"); else _explicitNullProperties?.Remove("grouped"); } }
+        private bool? _explicitNullValueGrouped = default!;
+        public bool? Dynamic { get => _explicitNullValueDynamic; set { _explicitNullValueDynamic = value; AdditionalData?.Remove("dynamic"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dynamic"); else _explicitNullProperties?.Remove("dynamic"); } }
+        private bool? _explicitNullValueDynamic = default!;
+        public bool? Multiline { get => _explicitNullValueMultiline; set { _explicitNullValueMultiline = value; AdditionalData?.Remove("multiline"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("multiline"); else _explicitNullProperties?.Remove("multiline"); } }
+        private bool? _explicitNullValueMultiline = default!;
+        public string? Sort { get => _explicitNullValueSort; set { _explicitNullValueSort = value; AdditionalData?.Remove("sort"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sort"); else _explicitNullProperties?.Remove("sort"); } }
+        private string? _explicitNullValueSort = default!;
+        public bool? Sequence { get => _explicitNullValueSequence; set { _explicitNullValueSequence = value; AdditionalData?.Remove("sequence"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sequence"); else _explicitNullProperties?.Remove("sequence"); } }
+        private bool? _explicitNullValueSequence = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Schema { get => _explicitNullValueSchema; set { _explicitNullValueSchema = value; AdditionalData?.Remove("schema"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("schema"); else _explicitNullProperties?.Remove("schema"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueSchema = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueTags = default!;
+        public bool? Coder { get => _explicitNullValueCoder; set { _explicitNullValueCoder = value; AdditionalData?.Remove("coder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("coder"); else _explicitNullProperties?.Remove("coder"); } }
+        private bool? _explicitNullValueCoder = default!;
+        public bool? Multiple { get => _explicitNullValueMultiple; set { _explicitNullValueMultiple = value; AdditionalData?.Remove("multiple"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("multiple"); else _explicitNullProperties?.Remove("multiple"); } }
+        private bool? _explicitNullValueMultiple = default!;
+        public string? Visible { get => _explicitNullValueVisible; set { _explicitNullValueVisible = value; AdditionalData?.Remove("visible"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("visible"); else _explicitNullProperties?.Remove("visible"); } }
+        private string? _explicitNullValueVisible = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Convert { get => _explicitNullValueConvert; set { _explicitNullValueConvert = value; AdditionalData?.Remove("convert"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("convert"); else _explicitNullProperties?.Remove("convert"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueConvert = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Editable { get => _explicitNullValueEditable; set { _explicitNullValueEditable = value; AdditionalData?.Remove("editable"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("editable"); else _explicitNullProperties?.Remove("editable"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueEditable = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Mappable { get => _explicitNullValueMappable; set { _explicitNullValueMappable = value; AdditionalData?.Remove("mappable"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mappable"); else _explicitNullProperties?.Remove("mappable"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueMappable = default!;
+        public bool? Time { get => _explicitNullValueTime; set { _explicitNullValueTime = value; AdditionalData?.Remove("time"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("time"); else _explicitNullProperties?.Remove("time"); } }
+        private bool? _explicitNullValueTime = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Rpc { get => _explicitNullValueRpc; set { _explicitNullValueRpc = value; AdditionalData?.Remove("rpc"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rpc"); else _explicitNullProperties?.Remove("rpc"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueRpc = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Mode { get => _explicitNullValueMode; set { _explicitNullValueMode = value; AdditionalData?.Remove("mode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mode"); else _explicitNullProperties?.Remove("mode"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueMode = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Labels { get => _explicitNullValueLabels; set { _explicitNullValueLabels = value; AdditionalData?.Remove("labels"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("labels"); else _explicitNullProperties?.Remove("labels"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueLabels = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; AdditionalData?.Remove("metadata"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueMetadata = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Spec { get => _explicitNullValueSpec; set { _explicitNullValueSpec = value; AdditionalData?.Remove("spec"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("spec"); else _explicitNullProperties?.Remove("spec"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueSpec = default!;
+        public string? Codepage { get => _explicitNullValueCodepage; set { _explicitNullValueCodepage = value; AdditionalData?.Remove("codepage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("codepage"); else _explicitNullProperties?.Remove("codepage"); } }
+        private string? _explicitNullValueCodepage = default!;
+        public string? Pattern { get => _explicitNullValuePattern; set { _explicitNullValuePattern = value; AdditionalData?.Remove("pattern"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pattern"); else _explicitNullProperties?.Remove("pattern"); } }
+        private string? _explicitNullValuePattern = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Nested { get => _explicitNullValueNested; set { _explicitNullValueNested = value; AdditionalData?.Remove("nested"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nested"); else _explicitNullProperties?.Remove("nested"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueNested = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Options { get => _explicitNullValueOptions; set { _explicitNullValueOptions = value; AdditionalData?.Remove("options"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("options"); else _explicitNullProperties?.Remove("options"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueOptions = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Extension { get => _explicitNullValueExtension; set { _explicitNullValueExtension = value; AdditionalData?.Remove("extension"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("extension"); else _explicitNullProperties?.Remove("extension"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueExtension = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? Validate { get => _explicitNullValueValidate; set { _explicitNullValueValidate = value; AdditionalData?.Remove("validate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("validate"); else _explicitNullProperties?.Remove("validate"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueValidate = default!;
+        public string? Title { get => _explicitNullValueTitle; set { _explicitNullValueTitle = value; AdditionalData?.Remove("title"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("title"); else _explicitNullProperties?.Remove("title"); } }
+        private string? _explicitNullValueTitle = default!;
+        public string? Text { get => _explicitNullValueText; set { _explicitNullValueText = value; AdditionalData?.Remove("text"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("text"); else _explicitNullProperties?.Remove("text"); } }
+        private string? _explicitNullValueText = default!;
+        public bool? Closable { get => _explicitNullValueClosable; set { _explicitNullValueClosable = value; AdditionalData?.Remove("closable"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("closable"); else _explicitNullProperties?.Remove("closable"); } }
+        private bool? _explicitNullValueClosable = default!;
+        public string? Theme { get => _explicitNullValueTheme; set { _explicitNullValueTheme = value; AdditionalData?.Remove("theme"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("theme"); else _explicitNullProperties?.Remove("theme"); } }
+        private string? _explicitNullValueTheme = default!;
+        public string? Badge { get => _explicitNullValueBadge; set { _explicitNullValueBadge = value; AdditionalData?.Remove("badge"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("badge"); else _explicitNullProperties?.Remove("badge"); } }
+        private string? _explicitNullValueBadge = default!;
+#nullable restore
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -46,6 +202,44 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "label", n => { Label = n.GetStringValue(); } },
+                { "help", n => { Help = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "semantic", n => { Semantic = n.GetStringValue(); } },
+                { "default", n => { DefaultValue = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "advanced", n => { Advanced = n.GetBoolValue(); } },
+                { "required", n => { Required = n.GetBoolValue(); } },
+                { "grouped", n => { Grouped = n.GetBoolValue(); } },
+                { "dynamic", n => { Dynamic = n.GetBoolValue(); } },
+                { "multiline", n => { Multiline = n.GetBoolValue(); } },
+                { "sort", n => { Sort = n.GetStringValue(); } },
+                { "sequence", n => { Sequence = n.GetBoolValue(); } },
+                { "schema", n => { Schema = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "tags", n => { Tags = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "coder", n => { Coder = n.GetBoolValue(); } },
+                { "multiple", n => { Multiple = n.GetBoolValue(); } },
+                { "visible", n => { Visible = n.GetStringValue(); } },
+                { "convert", n => { Convert = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "editable", n => { Editable = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "mappable", n => { Mappable = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "time", n => { Time = n.GetBoolValue(); } },
+                { "rpc", n => { Rpc = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "mode", n => { Mode = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "labels", n => { Labels = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "spec", n => { Spec = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "codepage", n => { Codepage = n.GetStringValue(); } },
+                { "pattern", n => { Pattern = n.GetStringValue(); } },
+                { "nested", n => { Nested = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "options", n => { Options = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "extension", n => { Extension = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "validate", n => { Validate = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
+                { "title", n => { Title = n.GetStringValue(); } },
+                { "text", n => { Text = n.GetStringValue(); } },
+                { "closable", n => { Closable = n.GetBoolValue(); } },
+                { "theme", n => { Theme = n.GetStringValue(); } },
+                { "badge", n => { Badge = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -55,6 +249,44 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("label", Label);
+            writer.WriteStringValue("help", Help);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("type", Type);
+            writer.WriteStringValue("semantic", Semantic);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("default", DefaultValue);
+            writer.WriteBoolValue("advanced", Advanced);
+            writer.WriteBoolValue("required", Required);
+            writer.WriteBoolValue("grouped", Grouped);
+            writer.WriteBoolValue("dynamic", Dynamic);
+            writer.WriteBoolValue("multiline", Multiline);
+            writer.WriteStringValue("sort", Sort);
+            writer.WriteBoolValue("sequence", Sequence);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("schema", Schema);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("tags", Tags);
+            writer.WriteBoolValue("coder", Coder);
+            writer.WriteBoolValue("multiple", Multiple);
+            writer.WriteStringValue("visible", Visible);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("convert", Convert);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("editable", Editable);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("mappable", Mappable);
+            writer.WriteBoolValue("time", Time);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("rpc", Rpc);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("mode", Mode);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("labels", Labels);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("metadata", Metadata);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("spec", Spec);
+            writer.WriteStringValue("codepage", Codepage);
+            writer.WriteStringValue("pattern", Pattern);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("nested", Nested);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("options", Options);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("extension", Extension);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("validate", Validate);
+            writer.WriteStringValue("title", Title);
+            writer.WriteStringValue("text", Text);
+            writer.WriteBoolValue("closable", Closable);
+            writer.WriteStringValue("theme", Theme);
+            writer.WriteStringValue("badge", Badge);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

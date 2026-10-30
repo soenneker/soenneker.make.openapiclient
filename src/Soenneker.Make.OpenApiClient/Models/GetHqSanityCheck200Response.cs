@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("authUser") is { } nullNodeAuthUser && nullNodeAuthUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AuthUser = null;
-            if (parseNode.GetChildNode("userSessionExpiresAt") is { } nullNodeUserSessionExpiresAt && nullNodeUserSessionExpiresAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserSessionExpiresAt = null;
+            if (parseNode.GetChildNode("authUser") is null) { _explicitNullValueAuthUser = default!; _explicitNullProperties?.Remove("authUser"); }
+            else if (parseNode.GetChildNode("authUser") is { } nullNodeAuthUser && nullNodeAuthUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AuthUser = null;
+            if (parseNode.GetChildNode("userSessionExpiresAt") is null) { _explicitNullValueUserSessionExpiresAt = default!; _explicitNullProperties?.Remove("userSessionExpiresAt"); }
+            else if (parseNode.GetChildNode("userSessionExpiresAt") is { } nullNodeUserSessionExpiresAt && nullNodeUserSessionExpiresAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserSessionExpiresAt = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The authUser property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetHqSanityCheck200ResponseAuthUser? AuthUser { get => _explicitNullValueAuthUser; set { _explicitNullValueAuthUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authUser"); else _explicitNullProperties?.Remove("authUser"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetHqSanityCheck200ResponseAuthUser? AuthUser { get => _explicitNullValueAuthUser; set { _explicitNullValueAuthUser = value; AdditionalData?.Remove("authUser"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authUser"); else _explicitNullProperties?.Remove("authUser"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetHqSanityCheck200ResponseAuthUser? _explicitNullValueAuthUser = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetHqSanityCheck200ResponseAuthUser AuthUser { get => _explicitNullValueAuthUser; set { _explicitNullValueAuthUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authUser"); else _explicitNullProperties?.Remove("authUser"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetHqSanityCheck200ResponseAuthUser AuthUser { get => _explicitNullValueAuthUser; set { _explicitNullValueAuthUser = value; AdditionalData?.Remove("authUser"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authUser"); else _explicitNullProperties?.Remove("authUser"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetHqSanityCheck200ResponseAuthUser _explicitNullValueAuthUser = default!;
 #endif
         /// <summary>When user session will expire at</summary>
-        public DateTimeOffset? UserSessionExpiresAt { get => _explicitNullValueUserSessionExpiresAt; set { _explicitNullValueUserSessionExpiresAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userSessionExpiresAt"); else _explicitNullProperties?.Remove("userSessionExpiresAt"); } }
+        public DateTimeOffset? UserSessionExpiresAt { get => _explicitNullValueUserSessionExpiresAt; set { _explicitNullValueUserSessionExpiresAt = value; AdditionalData?.Remove("userSessionExpiresAt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userSessionExpiresAt"); else _explicitNullProperties?.Remove("userSessionExpiresAt"); } }
         private DateTimeOffset? _explicitNullValueUserSessionExpiresAt = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHqSanityCheck200Response"/> and sets the default values.

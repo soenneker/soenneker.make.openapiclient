@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("installedApps") is { } nullNodeInstalledApps && nullNodeInstalledApps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InstalledApps = null;
+            if (parseNode.GetChildNode("installedApps") is null) { _explicitNullValueInstalledApps = default!; _explicitNullProperties?.Remove("installedApps"); }
+            else if (parseNode.GetChildNode("installedApps") is { } nullNodeInstalledApps && nullNodeInstalledApps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InstalledApps = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The installedApps property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdApps200ResponseInstalledAppsItem>? InstalledApps { get => _explicitNullValueInstalledApps; set { _explicitNullValueInstalledApps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("installedApps"); else _explicitNullProperties?.Remove("installedApps"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdApps200ResponseInstalledAppsItem>? InstalledApps { get => _explicitNullValueInstalledApps; set { _explicitNullValueInstalledApps = value; AdditionalData?.Remove("installedApps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("installedApps"); else _explicitNullProperties?.Remove("installedApps"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdApps200ResponseInstalledAppsItem>? _explicitNullValueInstalledApps = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdApps200ResponseInstalledAppsItem> InstalledApps { get => _explicitNullValueInstalledApps; set { _explicitNullValueInstalledApps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("installedApps"); else _explicitNullProperties?.Remove("installedApps"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdApps200ResponseInstalledAppsItem> InstalledApps { get => _explicitNullValueInstalledApps; set { _explicitNullValueInstalledApps = value; AdditionalData?.Remove("installedApps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("installedApps"); else _explicitNullProperties?.Remove("installedApps"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdApps200ResponseInstalledAppsItem> _explicitNullValueInstalledApps = default!;
 #endif
         /// <summary>

@@ -17,13 +17,20 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("blueprint") is { } nullNodeBlueprint && nullNodeBlueprint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blueprint = null;
-            if (parseNode.GetChildNode("errorMessage") is { } nullNodeErrorMessage && nullNodeErrorMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorMessage = null;
-            if (parseNode.GetChildNode("errorModuleId") is { } nullNodeErrorModuleId && nullNodeErrorModuleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorModuleId = null;
-            if (parseNode.GetChildNode("errorType") is { } nullNodeErrorType && nullNodeErrorType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorType = null;
-            if (parseNode.GetChildNode("executionId") is { } nullNodeExecutionId && nullNodeExecutionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionId = null;
-            if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
-            if (parseNode.GetChildNode("suberrors") is { } nullNodeSuberrors && nullNodeSuberrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Suberrors = null;
+            if (parseNode.GetChildNode("blueprint") is null) { _explicitNullValueBlueprint = default!; _explicitNullProperties?.Remove("blueprint"); }
+            else if (parseNode.GetChildNode("blueprint") is { } nullNodeBlueprint && nullNodeBlueprint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blueprint = null;
+            if (parseNode.GetChildNode("errorMessage") is null) { _explicitNullValueErrorMessage = default!; _explicitNullProperties?.Remove("errorMessage"); }
+            else if (parseNode.GetChildNode("errorMessage") is { } nullNodeErrorMessage && nullNodeErrorMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorMessage = null;
+            if (parseNode.GetChildNode("errorModuleId") is null) { _explicitNullValueErrorModuleId = default!; _explicitNullProperties?.Remove("errorModuleId"); }
+            else if (parseNode.GetChildNode("errorModuleId") is { } nullNodeErrorModuleId && nullNodeErrorModuleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorModuleId = null;
+            if (parseNode.GetChildNode("errorType") is null) { _explicitNullValueErrorType = default!; _explicitNullProperties?.Remove("errorType"); }
+            else if (parseNode.GetChildNode("errorType") is { } nullNodeErrorType && nullNodeErrorType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorType = null;
+            if (parseNode.GetChildNode("executionId") is null) { _explicitNullValueExecutionId = default!; _explicitNullProperties?.Remove("executionId"); }
+            else if (parseNode.GetChildNode("executionId") is { } nullNodeExecutionId && nullNodeExecutionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionId = null;
+            if (parseNode.GetChildNode("scenarioId") is null) { _explicitNullValueScenarioId = default!; _explicitNullProperties?.Remove("scenarioId"); }
+            else if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
+            if (parseNode.GetChildNode("suberrors") is null) { _explicitNullValueSuberrors = default!; _explicitNullProperties?.Remove("suberrors"); }
+            else if (parseNode.GetChildNode("suberrors") is { } nullNodeSuberrors && nullNodeSuberrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Suberrors = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -31,57 +38,57 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The scenario blueprint JSON. Optional but recommended for more accurate analysis. The API trims designer-only metadata before forwarding it to the AI webhook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostAiErrorAnalysisRequestBlueprint? Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiErrorAnalysisRequestBlueprint? Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; AdditionalData?.Remove("blueprint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostAiErrorAnalysisRequestBlueprint? _explicitNullValueBlueprint = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostAiErrorAnalysisRequestBlueprint Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiErrorAnalysisRequestBlueprint Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; AdditionalData?.Remove("blueprint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostAiErrorAnalysisRequestBlueprint _explicitNullValueBlueprint = default!;
 #endif
         /// <summary>The error message from the failed module execution.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ErrorMessage { get => _explicitNullValueErrorMessage; set { _explicitNullValueErrorMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorMessage"); else _explicitNullProperties?.Remove("errorMessage"); } }
+        public string? ErrorMessage { get => _explicitNullValueErrorMessage; set { _explicitNullValueErrorMessage = value; AdditionalData?.Remove("errorMessage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorMessage"); else _explicitNullProperties?.Remove("errorMessage"); } }
         private string? _explicitNullValueErrorMessage = default!;
 #nullable restore
 #else
-        public string ErrorMessage { get => _explicitNullValueErrorMessage; set { _explicitNullValueErrorMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorMessage"); else _explicitNullProperties?.Remove("errorMessage"); } }
+        public string ErrorMessage { get => _explicitNullValueErrorMessage; set { _explicitNullValueErrorMessage = value; AdditionalData?.Remove("errorMessage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorMessage"); else _explicitNullProperties?.Remove("errorMessage"); } }
         private string _explicitNullValueErrorMessage = default!;
 #endif
         /// <summary>Module identifier where the error occurred. When provided, only modules up to and including this module are forwarded in the minified blueprint.</summary>
-        public int? ErrorModuleId { get => _explicitNullValueErrorModuleId; set { _explicitNullValueErrorModuleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorModuleId"); else _explicitNullProperties?.Remove("errorModuleId"); } }
+        public int? ErrorModuleId { get => _explicitNullValueErrorModuleId; set { _explicitNullValueErrorModuleId = value; AdditionalData?.Remove("errorModuleId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorModuleId"); else _explicitNullProperties?.Remove("errorModuleId"); } }
         private int? _explicitNullValueErrorModuleId = default!;
         /// <summary>Exception or error type name (e.g. the error class name).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ErrorType { get => _explicitNullValueErrorType; set { _explicitNullValueErrorType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorType"); else _explicitNullProperties?.Remove("errorType"); } }
+        public string? ErrorType { get => _explicitNullValueErrorType; set { _explicitNullValueErrorType = value; AdditionalData?.Remove("errorType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorType"); else _explicitNullProperties?.Remove("errorType"); } }
         private string? _explicitNullValueErrorType = default!;
 #nullable restore
 #else
-        public string ErrorType { get => _explicitNullValueErrorType; set { _explicitNullValueErrorType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorType"); else _explicitNullProperties?.Remove("errorType"); } }
+        public string ErrorType { get => _explicitNullValueErrorType; set { _explicitNullValueErrorType = value; AdditionalData?.Remove("errorType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorType"); else _explicitNullProperties?.Remove("errorType"); } }
         private string _explicitNullValueErrorType = default!;
 #endif
         /// <summary>Execution identifier when available. The API accepts both string and number values and normalizes to string before forwarding to the AI webhook.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; AdditionalData?.Remove("executionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
         private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueExecutionId = default!;
 #nullable restore
 #else
-        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; AdditionalData?.Remove("executionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
         private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode _explicitNullValueExecutionId = default!;
 #endif
         /// <summary>Scenario identifier when available (e.g. from the inspector).</summary>
-        public double? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
+        public double? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; AdditionalData?.Remove("scenarioId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
         private double? _explicitNullValueScenarioId = default!;
         /// <summary>Sub-error lines shown under the main exception name in the UI.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Suberrors { get => _explicitNullValueSuberrors; set { _explicitNullValueSuberrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("suberrors"); else _explicitNullProperties?.Remove("suberrors"); } }
+        public List<string>? Suberrors { get => _explicitNullValueSuberrors; set { _explicitNullValueSuberrors = value; AdditionalData?.Remove("suberrors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("suberrors"); else _explicitNullProperties?.Remove("suberrors"); } }
         private List<string>? _explicitNullValueSuberrors = default!;
 #nullable restore
 #else
-        public List<string> Suberrors { get => _explicitNullValueSuberrors; set { _explicitNullValueSuberrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("suberrors"); else _explicitNullProperties?.Remove("suberrors"); } }
+        public List<string> Suberrors { get => _explicitNullValueSuberrors; set { _explicitNullValueSuberrors = value; AdditionalData?.Remove("suberrors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("suberrors"); else _explicitNullProperties?.Remove("suberrors"); } }
         private List<string> _explicitNullValueSuberrors = default!;
 #endif
         /// <summary>

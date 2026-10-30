@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("scenario") is { } nullNodeScenario && nullNodeScenario.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scenario = null;
-            if (parseNode.GetChildNode("scenarioVersion") is { } nullNodeScenarioVersion && nullNodeScenarioVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioVersion = null;
+            if (parseNode.GetChildNode("scenario") is null) { _explicitNullValueScenario = default!; _explicitNullProperties?.Remove("scenario"); }
+            else if (parseNode.GetChildNode("scenario") is { } nullNodeScenario && nullNodeScenario.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scenario = null;
+            if (parseNode.GetChildNode("scenarioVersion") is null) { _explicitNullValueScenarioVersion = default!; _explicitNullProperties?.Remove("scenarioVersion"); }
+            else if (parseNode.GetChildNode("scenarioVersion") is { } nullNodeScenarioVersion && nullNodeScenarioVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioVersion = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The scenario property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200ResponseScenario? Scenario { get => _explicitNullValueScenario; set { _explicitNullValueScenario = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenario"); else _explicitNullProperties?.Remove("scenario"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200ResponseScenario? Scenario { get => _explicitNullValueScenario; set { _explicitNullValueScenario = value; AdditionalData?.Remove("scenario"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenario"); else _explicitNullProperties?.Remove("scenario"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200ResponseScenario? _explicitNullValueScenario = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200ResponseScenario Scenario { get => _explicitNullValueScenario; set { _explicitNullValueScenario = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenario"); else _explicitNullProperties?.Remove("scenario"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200ResponseScenario Scenario { get => _explicitNullValueScenario; set { _explicitNullValueScenario = value; AdditionalData?.Remove("scenario"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenario"); else _explicitNullProperties?.Remove("scenario"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200ResponseScenario _explicitNullValueScenario = default!;
 #endif
         /// <summary>The scenarioVersion property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200ResponseScenarioVersion? ScenarioVersion { get => _explicitNullValueScenarioVersion; set { _explicitNullValueScenarioVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioVersion"); else _explicitNullProperties?.Remove("scenarioVersion"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200ResponseScenarioVersion? ScenarioVersion { get => _explicitNullValueScenarioVersion; set { _explicitNullValueScenarioVersion = value; AdditionalData?.Remove("scenarioVersion"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioVersion"); else _explicitNullProperties?.Remove("scenarioVersion"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200ResponseScenarioVersion? _explicitNullValueScenarioVersion = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200ResponseScenarioVersion ScenarioVersion { get => _explicitNullValueScenarioVersion; set { _explicitNullValueScenarioVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioVersion"); else _explicitNullProperties?.Remove("scenarioVersion"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200ResponseScenarioVersion ScenarioVersion { get => _explicitNullValueScenarioVersion; set { _explicitNullValueScenarioVersion = value; AdditionalData?.Remove("scenarioVersion"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioVersion"); else _explicitNullProperties?.Remove("scenarioVersion"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdPublish200ResponseScenarioVersion _explicitNullValueScenarioVersion = default!;
 #endif
         /// <summary>

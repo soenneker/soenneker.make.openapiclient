@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("timestampInSeconds") is { } nullNodeTimestampInSeconds && nullNodeTimestampInSeconds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TimestampInSeconds = null;
+            if (parseNode.GetChildNode("timestampInSeconds") is null) { _explicitNullValueTimestampInSeconds = default!; _explicitNullProperties?.Remove("timestampInSeconds"); }
+            else if (parseNode.GetChildNode("timestampInSeconds") is { } nullNodeTimestampInSeconds && nullNodeTimestampInSeconds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TimestampInSeconds = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The timestampInSeconds property</summary>
-        public double? TimestampInSeconds { get => _explicitNullValueTimestampInSeconds; set { _explicitNullValueTimestampInSeconds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timestampInSeconds"); else _explicitNullProperties?.Remove("timestampInSeconds"); } }
+        public double? TimestampInSeconds { get => _explicitNullValueTimestampInSeconds; set { _explicitNullValueTimestampInSeconds = value; AdditionalData?.Remove("timestampInSeconds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timestampInSeconds"); else _explicitNullProperties?.Remove("timestampInSeconds"); } }
         private double? _explicitNullValueTimestampInSeconds = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdTestClockAdvanceRequest"/> and sets the default values.

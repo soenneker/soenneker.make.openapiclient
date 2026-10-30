@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("rpcs") is { } nullNodeRpcs && nullNodeRpcs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Rpcs = null;
+            if (parseNode.GetChildNode("rpcs") is null) { _explicitNullValueRpcs = default!; _explicitNullProperties?.Remove("rpcs"); }
+            else if (parseNode.GetChildNode("rpcs") is { } nullNodeRpcs && nullNodeRpcs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Rpcs = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The rpcs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Rpcs { get => _explicitNullValueRpcs; set { _explicitNullValueRpcs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rpcs"); else _explicitNullProperties?.Remove("rpcs"); } }
+        public UntypedNode? Rpcs { get => _explicitNullValueRpcs; set { _explicitNullValueRpcs = value; AdditionalData?.Remove("rpcs"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rpcs"); else _explicitNullProperties?.Remove("rpcs"); } }
         private UntypedNode? _explicitNullValueRpcs = default!;
 #nullable restore
 #else
-        public UntypedNode Rpcs { get => _explicitNullValueRpcs; set { _explicitNullValueRpcs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rpcs"); else _explicitNullProperties?.Remove("rpcs"); } }
+        public UntypedNode Rpcs { get => _explicitNullValueRpcs; set { _explicitNullValueRpcs = value; AdditionalData?.Remove("rpcs"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rpcs"); else _explicitNullProperties?.Remove("rpcs"); } }
         private UntypedNode _explicitNullValueRpcs = default!;
 #endif
         /// <summary>

@@ -17,38 +17,42 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("isDefaultForExtras") is { } nullNodeIsDefaultForExtras && nullNodeIsDefaultForExtras.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsDefaultForExtras = null;
-            if (parseNode.GetChildNode("isDefaultForSubscription") is { } nullNodeIsDefaultForSubscription && nullNodeIsDefaultForSubscription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsDefaultForSubscription = null;
-            if (parseNode.GetChildNode("paymentMethodId") is { } nullNodePaymentMethodId && nullNodePaymentMethodId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PaymentMethodId = null;
-            if (parseNode.GetChildNode("paymentMethodType") is { } nullNodePaymentMethodType && nullNodePaymentMethodType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PaymentMethodType = null;
+            if (parseNode.GetChildNode("isDefaultForExtras") is null) { _explicitNullValueIsDefaultForExtras = default!; _explicitNullProperties?.Remove("isDefaultForExtras"); }
+            else if (parseNode.GetChildNode("isDefaultForExtras") is { } nullNodeIsDefaultForExtras && nullNodeIsDefaultForExtras.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsDefaultForExtras = null;
+            if (parseNode.GetChildNode("isDefaultForSubscription") is null) { _explicitNullValueIsDefaultForSubscription = default!; _explicitNullProperties?.Remove("isDefaultForSubscription"); }
+            else if (parseNode.GetChildNode("isDefaultForSubscription") is { } nullNodeIsDefaultForSubscription && nullNodeIsDefaultForSubscription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsDefaultForSubscription = null;
+            if (parseNode.GetChildNode("paymentMethodId") is null) { _explicitNullValuePaymentMethodId = default!; _explicitNullProperties?.Remove("paymentMethodId"); }
+            else if (parseNode.GetChildNode("paymentMethodId") is { } nullNodePaymentMethodId && nullNodePaymentMethodId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PaymentMethodId = null;
+            if (parseNode.GetChildNode("paymentMethodType") is null) { _explicitNullValuePaymentMethodType = default!; _explicitNullProperties?.Remove("paymentMethodType"); }
+            else if (parseNode.GetChildNode("paymentMethodType") is { } nullNodePaymentMethodType && nullNodePaymentMethodType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PaymentMethodType = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The isDefaultForExtras property</summary>
-        public bool? IsDefaultForExtras { get => _explicitNullValueIsDefaultForExtras; set { _explicitNullValueIsDefaultForExtras = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isDefaultForExtras"); else _explicitNullProperties?.Remove("isDefaultForExtras"); } }
+        public bool? IsDefaultForExtras { get => _explicitNullValueIsDefaultForExtras; set { _explicitNullValueIsDefaultForExtras = value; AdditionalData?.Remove("isDefaultForExtras"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isDefaultForExtras"); else _explicitNullProperties?.Remove("isDefaultForExtras"); } }
         private bool? _explicitNullValueIsDefaultForExtras = default!;
         /// <summary>The isDefaultForSubscription property</summary>
-        public bool? IsDefaultForSubscription { get => _explicitNullValueIsDefaultForSubscription; set { _explicitNullValueIsDefaultForSubscription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isDefaultForSubscription"); else _explicitNullProperties?.Remove("isDefaultForSubscription"); } }
+        public bool? IsDefaultForSubscription { get => _explicitNullValueIsDefaultForSubscription; set { _explicitNullValueIsDefaultForSubscription = value; AdditionalData?.Remove("isDefaultForSubscription"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isDefaultForSubscription"); else _explicitNullProperties?.Remove("isDefaultForSubscription"); } }
         private bool? _explicitNullValueIsDefaultForSubscription = default!;
         /// <summary>The paymentMethodId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PaymentMethodId { get => _explicitNullValuePaymentMethodId; set { _explicitNullValuePaymentMethodId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paymentMethodId"); else _explicitNullProperties?.Remove("paymentMethodId"); } }
+        public string? PaymentMethodId { get => _explicitNullValuePaymentMethodId; set { _explicitNullValuePaymentMethodId = value; AdditionalData?.Remove("paymentMethodId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paymentMethodId"); else _explicitNullProperties?.Remove("paymentMethodId"); } }
         private string? _explicitNullValuePaymentMethodId = default!;
 #nullable restore
 #else
-        public string PaymentMethodId { get => _explicitNullValuePaymentMethodId; set { _explicitNullValuePaymentMethodId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paymentMethodId"); else _explicitNullProperties?.Remove("paymentMethodId"); } }
+        public string PaymentMethodId { get => _explicitNullValuePaymentMethodId; set { _explicitNullValuePaymentMethodId = value; AdditionalData?.Remove("paymentMethodId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paymentMethodId"); else _explicitNullProperties?.Remove("paymentMethodId"); } }
         private string _explicitNullValuePaymentMethodId = default!;
 #endif
         /// <summary>The paymentMethodType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PaymentMethodType { get => _explicitNullValuePaymentMethodType; set { _explicitNullValuePaymentMethodType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paymentMethodType"); else _explicitNullProperties?.Remove("paymentMethodType"); } }
+        public string? PaymentMethodType { get => _explicitNullValuePaymentMethodType; set { _explicitNullValuePaymentMethodType = value; AdditionalData?.Remove("paymentMethodType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paymentMethodType"); else _explicitNullProperties?.Remove("paymentMethodType"); } }
         private string? _explicitNullValuePaymentMethodType = default!;
 #nullable restore
 #else
-        public string PaymentMethodType { get => _explicitNullValuePaymentMethodType; set { _explicitNullValuePaymentMethodType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paymentMethodType"); else _explicitNullProperties?.Remove("paymentMethodType"); } }
+        public string PaymentMethodType { get => _explicitNullValuePaymentMethodType; set { _explicitNullValuePaymentMethodType = value; AdditionalData?.Remove("paymentMethodType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paymentMethodType"); else _explicitNullProperties?.Remove("paymentMethodType"); } }
         private string _explicitNullValuePaymentMethodType = default!;
 #endif
         /// <summary>

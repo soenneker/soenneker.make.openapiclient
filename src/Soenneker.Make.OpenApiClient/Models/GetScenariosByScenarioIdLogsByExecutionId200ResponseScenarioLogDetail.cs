@@ -18,9 +18,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("author") is { } nullNodeAuthor && nullNodeAuthor.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Author = null;
-            if (parseNode.GetChildNode("change") is { } nullNodeChange && nullNodeChange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Change = null;
-            if (parseNode.GetChildNode("provenance") is { } nullNodeProvenance && nullNodeProvenance.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Provenance = null;
+            if (parseNode.GetChildNode("author") is null) { _explicitNullValueAuthor = default!; _explicitNullProperties?.Remove("author"); }
+            else if (parseNode.GetChildNode("author") is { } nullNodeAuthor && nullNodeAuthor.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Author = null;
+            if (parseNode.GetChildNode("change") is null) { _explicitNullValueChange = default!; _explicitNullProperties?.Remove("change"); }
+            else if (parseNode.GetChildNode("change") is { } nullNodeChange && nullNodeChange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Change = null;
+            if (parseNode.GetChildNode("provenance") is null) { _explicitNullValueProvenance = default!; _explicitNullProperties?.Remove("provenance"); }
+            else if (parseNode.GetChildNode("provenance") is { } nullNodeProvenance && nullNodeProvenance.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Provenance = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,31 +31,31 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The author property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailAuthor? Author { get => _explicitNullValueAuthor; set { _explicitNullValueAuthor = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("author"); else _explicitNullProperties?.Remove("author"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailAuthor? Author { get => _explicitNullValueAuthor; set { _explicitNullValueAuthor = value; AdditionalData?.Remove("author"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("author"); else _explicitNullProperties?.Remove("author"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailAuthor? _explicitNullValueAuthor = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailAuthor Author { get => _explicitNullValueAuthor; set { _explicitNullValueAuthor = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("author"); else _explicitNullProperties?.Remove("author"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailAuthor Author { get => _explicitNullValueAuthor; set { _explicitNullValueAuthor = value; AdditionalData?.Remove("author"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("author"); else _explicitNullProperties?.Remove("author"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailAuthor _explicitNullValueAuthor = default!;
 #endif
-        /// <summary>The change property</summary>
+        /// <summary>A versioned Scenario History change not yet interpreted by this API specification.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange? Change { get => _explicitNullValueChange; set { _explicitNullValueChange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("change"); else _explicitNullProperties?.Remove("change"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange? Change { get => _explicitNullValueChange; set { _explicitNullValueChange = value; AdditionalData?.Remove("change"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("change"); else _explicitNullProperties?.Remove("change"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange? _explicitNullValueChange = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange Change { get => _explicitNullValueChange; set { _explicitNullValueChange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("change"); else _explicitNullProperties?.Remove("change"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange Change { get => _explicitNullValueChange; set { _explicitNullValueChange = value; AdditionalData?.Remove("change"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("change"); else _explicitNullProperties?.Remove("change"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange _explicitNullValueChange = default!;
 #endif
         /// <summary>How the change was made. Absent on rows written before it was recorded and on system actions (for example plan downgrades).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailProvenance? Provenance { get => _explicitNullValueProvenance; set { _explicitNullValueProvenance = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("provenance"); else _explicitNullProperties?.Remove("provenance"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailProvenance? Provenance { get => _explicitNullValueProvenance; set { _explicitNullValueProvenance = value; AdditionalData?.Remove("provenance"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("provenance"); else _explicitNullProperties?.Remove("provenance"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailProvenance? _explicitNullValueProvenance = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailProvenance Provenance { get => _explicitNullValueProvenance; set { _explicitNullValueProvenance = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("provenance"); else _explicitNullProperties?.Remove("provenance"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailProvenance Provenance { get => _explicitNullValueProvenance; set { _explicitNullValueProvenance = value; AdditionalData?.Remove("provenance"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("provenance"); else _explicitNullProperties?.Remove("provenance"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailProvenance _explicitNullValueProvenance = default!;
 #endif
         /// <summary>

@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("recursionLimit") is { } nullNodeRecursionLimit && nullNodeRecursionLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RecursionLimit = null;
+            if (parseNode.GetChildNode("recursionLimit") is null) { _explicitNullValueRecursionLimit = default!; _explicitNullProperties?.Remove("recursionLimit"); }
+            else if (parseNode.GetChildNode("recursionLimit") is { } nullNodeRecursionLimit && nullNodeRecursionLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RecursionLimit = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The recursionLimit property</summary>
-        public int? RecursionLimit { get => _explicitNullValueRecursionLimit; set { _explicitNullValueRecursionLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("recursionLimit"); else _explicitNullProperties?.Remove("recursionLimit"); } }
+        public int? RecursionLimit { get => _explicitNullValueRecursionLimit; set { _explicitNullValueRecursionLimit = value; AdditionalData?.Remove("recursionLimit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("recursionLimit"); else _explicitNullProperties?.Remove("recursionLimit"); } }
         private int? _explicitNullValueRecursionLimit = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1AgentsByAgentId200ResponseInvocationConfig"/> and sets the default values.

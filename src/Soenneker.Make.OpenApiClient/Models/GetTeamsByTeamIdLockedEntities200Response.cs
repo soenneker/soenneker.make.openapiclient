@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("lockedEntities") is { } nullNodeLockedEntities && nullNodeLockedEntities.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LockedEntities = null;
+            if (parseNode.GetChildNode("lockedEntities") is null) { _explicitNullValueLockedEntities = default!; _explicitNullProperties?.Remove("lockedEntities"); }
+            else if (parseNode.GetChildNode("lockedEntities") is { } nullNodeLockedEntities && nullNodeLockedEntities.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LockedEntities = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Every locked connection and key of the team.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItem>? LockedEntities { get => _explicitNullValueLockedEntities; set { _explicitNullValueLockedEntities = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lockedEntities"); else _explicitNullProperties?.Remove("lockedEntities"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItem>? LockedEntities { get => _explicitNullValueLockedEntities; set { _explicitNullValueLockedEntities = value; AdditionalData?.Remove("lockedEntities"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lockedEntities"); else _explicitNullProperties?.Remove("lockedEntities"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItem>? _explicitNullValueLockedEntities = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItem> LockedEntities { get => _explicitNullValueLockedEntities; set { _explicitNullValueLockedEntities = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lockedEntities"); else _explicitNullProperties?.Remove("lockedEntities"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItem> LockedEntities { get => _explicitNullValueLockedEntities; set { _explicitNullValueLockedEntities = value; AdditionalData?.Remove("lockedEntities"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lockedEntities"); else _explicitNullProperties?.Remove("lockedEntities"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdLockedEntities200ResponseLockedEntitiesItem> _explicitNullValueLockedEntities = default!;
 #endif
         /// <summary>

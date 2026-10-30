@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("editableParameters") is { } nullNodeEditableParameters && nullNodeEditableParameters.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EditableParameters = null;
+            if (parseNode.GetChildNode("editableParameters") is null) { _explicitNullValueEditableParameters = default!; _explicitNullProperties?.Remove("editableParameters"); }
+            else if (parseNode.GetChildNode("editableParameters") is { } nullNodeEditableParameters && nullNodeEditableParameters.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EditableParameters = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The editableParameters property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? EditableParameters { get => _explicitNullValueEditableParameters; set { _explicitNullValueEditableParameters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("editableParameters"); else _explicitNullProperties?.Remove("editableParameters"); } }
+        public List<string>? EditableParameters { get => _explicitNullValueEditableParameters; set { _explicitNullValueEditableParameters = value; AdditionalData?.Remove("editableParameters"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("editableParameters"); else _explicitNullProperties?.Remove("editableParameters"); } }
         private List<string>? _explicitNullValueEditableParameters = default!;
 #nullable restore
 #else
-        public List<string> EditableParameters { get => _explicitNullValueEditableParameters; set { _explicitNullValueEditableParameters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("editableParameters"); else _explicitNullProperties?.Remove("editableParameters"); } }
+        public List<string> EditableParameters { get => _explicitNullValueEditableParameters; set { _explicitNullValueEditableParameters = value; AdditionalData?.Remove("editableParameters"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("editableParameters"); else _explicitNullProperties?.Remove("editableParameters"); } }
         private List<string> _explicitNullValueEditableParameters = default!;
 #endif
         /// <summary>

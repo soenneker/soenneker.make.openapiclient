@@ -17,13 +17,20 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("brand") is { } nullNodeBrand && nullNodeBrand.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Brand = null;
-            if (parseNode.GetChildNode("host") is { } nullNodeHost && nullNodeHost.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Host = null;
-            if (parseNode.GetChildNode("locale") is { } nullNodeLocale && nullNodeLocale.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Locale = null;
-            if (parseNode.GetChildNode("oauthRedirectBase") is { } nullNodeOauthRedirectBase && nullNodeOauthRedirectBase.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OauthRedirectBase = null;
-            if (parseNode.GetChildNode("redirects") is { } nullNodeRedirects && nullNodeRedirects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Redirects = null;
-            if (parseNode.GetChildNode("static") is { } nullNodeStatic && nullNodeStatic.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Static = null;
-            if (parseNode.GetChildNode("support") is { } nullNodeSupport && nullNodeSupport.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Support = null;
+            if (parseNode.GetChildNode("brand") is null) { _explicitNullValueBrand = default!; _explicitNullProperties?.Remove("brand"); }
+            else if (parseNode.GetChildNode("brand") is { } nullNodeBrand && nullNodeBrand.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Brand = null;
+            if (parseNode.GetChildNode("host") is null) { _explicitNullValueHost = default!; _explicitNullProperties?.Remove("host"); }
+            else if (parseNode.GetChildNode("host") is { } nullNodeHost && nullNodeHost.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Host = null;
+            if (parseNode.GetChildNode("locale") is null) { _explicitNullValueLocale = default!; _explicitNullProperties?.Remove("locale"); }
+            else if (parseNode.GetChildNode("locale") is { } nullNodeLocale && nullNodeLocale.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Locale = null;
+            if (parseNode.GetChildNode("oauthRedirectBase") is null) { _explicitNullValueOauthRedirectBase = default!; _explicitNullProperties?.Remove("oauthRedirectBase"); }
+            else if (parseNode.GetChildNode("oauthRedirectBase") is { } nullNodeOauthRedirectBase && nullNodeOauthRedirectBase.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OauthRedirectBase = null;
+            if (parseNode.GetChildNode("redirects") is null) { _explicitNullValueRedirects = default!; _explicitNullProperties?.Remove("redirects"); }
+            else if (parseNode.GetChildNode("redirects") is { } nullNodeRedirects && nullNodeRedirects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Redirects = null;
+            if (parseNode.GetChildNode("static") is null) { _explicitNullValueStatic = default!; _explicitNullProperties?.Remove("static"); }
+            else if (parseNode.GetChildNode("static") is { } nullNodeStatic && nullNodeStatic.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Static = null;
+            if (parseNode.GetChildNode("support") is null) { _explicitNullValueSupport = default!; _explicitNullProperties?.Remove("support"); }
+            else if (parseNode.GetChildNode("support") is { } nullNodeSupport && nullNodeSupport.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Support = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -31,71 +38,71 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The brand property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200ResponseConfigBrand? Brand { get => _explicitNullValueBrand; set { _explicitNullValueBrand = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brand"); else _explicitNullProperties?.Remove("brand"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200ResponseConfigBrand? Brand { get => _explicitNullValueBrand; set { _explicitNullValueBrand = value; AdditionalData?.Remove("brand"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brand"); else _explicitNullProperties?.Remove("brand"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200ResponseConfigBrand? _explicitNullValueBrand = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200ResponseConfigBrand Brand { get => _explicitNullValueBrand; set { _explicitNullValueBrand = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brand"); else _explicitNullProperties?.Remove("brand"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200ResponseConfigBrand Brand { get => _explicitNullValueBrand; set { _explicitNullValueBrand = value; AdditionalData?.Remove("brand"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("brand"); else _explicitNullProperties?.Remove("brand"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200ResponseConfigBrand _explicitNullValueBrand = default!;
 #endif
         /// <summary>The host to use for links (HQ domain in slave mode, redirector or web domain otherwise).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Host { get => _explicitNullValueHost; set { _explicitNullValueHost = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("host"); else _explicitNullProperties?.Remove("host"); } }
+        public string? Host { get => _explicitNullValueHost; set { _explicitNullValueHost = value; AdditionalData?.Remove("host"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("host"); else _explicitNullProperties?.Remove("host"); } }
         private string? _explicitNullValueHost = default!;
 #nullable restore
 #else
-        public string Host { get => _explicitNullValueHost; set { _explicitNullValueHost = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("host"); else _explicitNullProperties?.Remove("host"); } }
+        public string Host { get => _explicitNullValueHost; set { _explicitNullValueHost = value; AdditionalData?.Remove("host"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("host"); else _explicitNullProperties?.Remove("host"); } }
         private string _explicitNullValueHost = default!;
 #endif
         /// <summary>Default language configured for the zone.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Locale { get => _explicitNullValueLocale; set { _explicitNullValueLocale = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("locale"); else _explicitNullProperties?.Remove("locale"); } }
+        public string? Locale { get => _explicitNullValueLocale; set { _explicitNullValueLocale = value; AdditionalData?.Remove("locale"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("locale"); else _explicitNullProperties?.Remove("locale"); } }
         private string? _explicitNullValueLocale = default!;
 #nullable restore
 #else
-        public string Locale { get => _explicitNullValueLocale; set { _explicitNullValueLocale = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("locale"); else _explicitNullProperties?.Remove("locale"); } }
+        public string Locale { get => _explicitNullValueLocale; set { _explicitNullValueLocale = value; AdditionalData?.Remove("locale"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("locale"); else _explicitNullProperties?.Remove("locale"); } }
         private string _explicitNullValueLocale = default!;
 #endif
         /// <summary>Base URL OAuth providers should redirect back to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OauthRedirectBase { get => _explicitNullValueOauthRedirectBase; set { _explicitNullValueOauthRedirectBase = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("oauthRedirectBase"); else _explicitNullProperties?.Remove("oauthRedirectBase"); } }
+        public string? OauthRedirectBase { get => _explicitNullValueOauthRedirectBase; set { _explicitNullValueOauthRedirectBase = value; AdditionalData?.Remove("oauthRedirectBase"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("oauthRedirectBase"); else _explicitNullProperties?.Remove("oauthRedirectBase"); } }
         private string? _explicitNullValueOauthRedirectBase = default!;
 #nullable restore
 #else
-        public string OauthRedirectBase { get => _explicitNullValueOauthRedirectBase; set { _explicitNullValueOauthRedirectBase = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("oauthRedirectBase"); else _explicitNullProperties?.Remove("oauthRedirectBase"); } }
+        public string OauthRedirectBase { get => _explicitNullValueOauthRedirectBase; set { _explicitNullValueOauthRedirectBase = value; AdditionalData?.Remove("oauthRedirectBase"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("oauthRedirectBase"); else _explicitNullProperties?.Remove("oauthRedirectBase"); } }
         private string _explicitNullValueOauthRedirectBase = default!;
 #endif
         /// <summary>The redirects property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200ResponseConfigRedirects? Redirects { get => _explicitNullValueRedirects; set { _explicitNullValueRedirects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redirects"); else _explicitNullProperties?.Remove("redirects"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200ResponseConfigRedirects? Redirects { get => _explicitNullValueRedirects; set { _explicitNullValueRedirects = value; AdditionalData?.Remove("redirects"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redirects"); else _explicitNullProperties?.Remove("redirects"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200ResponseConfigRedirects? _explicitNullValueRedirects = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200ResponseConfigRedirects Redirects { get => _explicitNullValueRedirects; set { _explicitNullValueRedirects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redirects"); else _explicitNullProperties?.Remove("redirects"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200ResponseConfigRedirects Redirects { get => _explicitNullValueRedirects; set { _explicitNullValueRedirects = value; AdditionalData?.Remove("redirects"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redirects"); else _explicitNullProperties?.Remove("redirects"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200ResponseConfigRedirects _explicitNullValueRedirects = default!;
 #endif
         /// <summary>Static assets domain.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Static { get => _explicitNullValueStatic; set { _explicitNullValueStatic = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("static"); else _explicitNullProperties?.Remove("static"); } }
+        public string? Static { get => _explicitNullValueStatic; set { _explicitNullValueStatic = value; AdditionalData?.Remove("static"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("static"); else _explicitNullProperties?.Remove("static"); } }
         private string? _explicitNullValueStatic = default!;
 #nullable restore
 #else
-        public string Static { get => _explicitNullValueStatic; set { _explicitNullValueStatic = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("static"); else _explicitNullProperties?.Remove("static"); } }
+        public string Static { get => _explicitNullValueStatic; set { _explicitNullValueStatic = value; AdditionalData?.Remove("static"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("static"); else _explicitNullProperties?.Remove("static"); } }
         private string _explicitNullValueStatic = default!;
 #endif
         /// <summary>Support contact email.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Support { get => _explicitNullValueSupport; set { _explicitNullValueSupport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("support"); else _explicitNullProperties?.Remove("support"); } }
+        public string? Support { get => _explicitNullValueSupport; set { _explicitNullValueSupport = value; AdditionalData?.Remove("support"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("support"); else _explicitNullProperties?.Remove("support"); } }
         private string? _explicitNullValueSupport = default!;
 #nullable restore
 #else
-        public string Support { get => _explicitNullValueSupport; set { _explicitNullValueSupport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("support"); else _explicitNullProperties?.Remove("support"); } }
+        public string Support { get => _explicitNullValueSupport; set { _explicitNullValueSupport = value; AdditionalData?.Remove("support"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("support"); else _explicitNullProperties?.Remove("support"); } }
         private string _explicitNullValueSupport = default!;
 #endif
         /// <summary>

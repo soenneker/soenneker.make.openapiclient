@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("packages") is { } nullNodePackages && nullNodePackages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Packages = null;
+            if (parseNode.GetChildNode("packages") is null) { _explicitNullValuePackages = default!; _explicitNullProperties?.Remove("packages"); }
+            else if (parseNode.GetChildNode("packages") is { } nullNodePackages && nullNodePackages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Packages = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Native packages and SDK apps, each with its usable endpoints grouped by version.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItem>? Packages { get => _explicitNullValuePackages; set { _explicitNullValuePackages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packages"); else _explicitNullProperties?.Remove("packages"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItem>? Packages { get => _explicitNullValuePackages; set { _explicitNullValuePackages = value; AdditionalData?.Remove("packages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packages"); else _explicitNullProperties?.Remove("packages"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItem>? _explicitNullValuePackages = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItem> Packages { get => _explicitNullValuePackages; set { _explicitNullValuePackages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packages"); else _explicitNullProperties?.Remove("packages"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItem> Packages { get => _explicitNullValuePackages; set { _explicitNullValuePackages = value; AdditionalData?.Remove("packages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packages"); else _explicitNullProperties?.Remove("packages"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItem> _explicitNullValuePackages = default!;
 #endif
         /// <summary>

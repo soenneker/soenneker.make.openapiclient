@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("usStates") is { } nullNodeUsStates && nullNodeUsStates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsStates = null;
+            if (parseNode.GetChildNode("usStates") is null) { _explicitNullValueUsStates = default!; _explicitNullProperties?.Remove("usStates"); }
+            else if (parseNode.GetChildNode("usStates") is { } nullNodeUsStates && nullNodeUsStates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsStates = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The usStates property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUsStates200ResponseUsStatesItem>? UsStates { get => _explicitNullValueUsStates; set { _explicitNullValueUsStates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usStates"); else _explicitNullProperties?.Remove("usStates"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUsStates200ResponseUsStatesItem>? UsStates { get => _explicitNullValueUsStates; set { _explicitNullValueUsStates = value; AdditionalData?.Remove("usStates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usStates"); else _explicitNullProperties?.Remove("usStates"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUsStates200ResponseUsStatesItem>? _explicitNullValueUsStates = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUsStates200ResponseUsStatesItem> UsStates { get => _explicitNullValueUsStates; set { _explicitNullValueUsStates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usStates"); else _explicitNullProperties?.Remove("usStates"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUsStates200ResponseUsStatesItem> UsStates { get => _explicitNullValueUsStates; set { _explicitNullValueUsStates = value; AdditionalData?.Remove("usStates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usStates"); else _explicitNullProperties?.Remove("usStates"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUsStates200ResponseUsStatesItem> _explicitNullValueUsStates = default!;
 #endif
         /// <summary>

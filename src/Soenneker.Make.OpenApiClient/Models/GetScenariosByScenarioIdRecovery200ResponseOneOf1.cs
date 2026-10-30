@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("blueprint") is { } nullNodeBlueprint && nullNodeBlueprint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blueprint = null;
-            if (parseNode.GetChildNode("createdAt") is { } nullNodeCreatedAt && nullNodeCreatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedAt = null;
+            if (parseNode.GetChildNode("blueprint") is null) { _explicitNullValueBlueprint = default!; _explicitNullProperties?.Remove("blueprint"); }
+            else if (parseNode.GetChildNode("blueprint") is { } nullNodeBlueprint && nullNodeBlueprint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blueprint = null;
+            if (parseNode.GetChildNode("createdAt") is null) { _explicitNullValueCreatedAt = default!; _explicitNullProperties?.Remove("createdAt"); }
+            else if (parseNode.GetChildNode("createdAt") is { } nullNodeCreatedAt && nullNodeCreatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedAt = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The blueprint of the scenario recovery snapshot</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1Blueprint? Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1Blueprint? Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; AdditionalData?.Remove("blueprint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1Blueprint? _explicitNullValueBlueprint = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1Blueprint Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1Blueprint Blueprint { get => _explicitNullValueBlueprint; set { _explicitNullValueBlueprint = value; AdditionalData?.Remove("blueprint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blueprint"); else _explicitNullProperties?.Remove("blueprint"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1Blueprint _explicitNullValueBlueprint = default!;
 #endif
         /// <summary>Timestamp when the scenario recovery snapshot was created</summary>
-        public DateTimeOffset? CreatedAt { get => _explicitNullValueCreatedAt; set { _explicitNullValueCreatedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdAt"); else _explicitNullProperties?.Remove("createdAt"); } }
+        public DateTimeOffset? CreatedAt { get => _explicitNullValueCreatedAt; set { _explicitNullValueCreatedAt = value; AdditionalData?.Remove("createdAt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdAt"); else _explicitNullProperties?.Remove("createdAt"); } }
         private DateTimeOffset? _explicitNullValueCreatedAt = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200ResponseOneOf1"/> and sets the default values.

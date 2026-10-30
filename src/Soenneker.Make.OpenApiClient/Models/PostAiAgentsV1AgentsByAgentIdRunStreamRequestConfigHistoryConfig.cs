@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("iterationsFromHistoryCount") is { } nullNodeIterationsFromHistoryCount && nullNodeIterationsFromHistoryCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IterationsFromHistoryCount = null;
+            if (parseNode.GetChildNode("iterationsFromHistoryCount") is null) { _explicitNullValueIterationsFromHistoryCount = default!; _explicitNullProperties?.Remove("iterationsFromHistoryCount"); }
+            else if (parseNode.GetChildNode("iterationsFromHistoryCount") is { } nullNodeIterationsFromHistoryCount && nullNodeIterationsFromHistoryCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IterationsFromHistoryCount = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The iterationsFromHistoryCount property</summary>
-        public int? IterationsFromHistoryCount { get => _explicitNullValueIterationsFromHistoryCount; set { _explicitNullValueIterationsFromHistoryCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("iterationsFromHistoryCount"); else _explicitNullProperties?.Remove("iterationsFromHistoryCount"); } }
+        public int? IterationsFromHistoryCount { get => _explicitNullValueIterationsFromHistoryCount; set { _explicitNullValueIterationsFromHistoryCount = value; AdditionalData?.Remove("iterationsFromHistoryCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("iterationsFromHistoryCount"); else _explicitNullProperties?.Remove("iterationsFromHistoryCount"); } }
         private int? _explicitNullValueIterationsFromHistoryCount = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigHistoryConfig"/> and sets the default values.

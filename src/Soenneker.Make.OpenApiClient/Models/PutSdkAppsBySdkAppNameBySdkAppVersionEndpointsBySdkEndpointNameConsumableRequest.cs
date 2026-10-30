@@ -17,10 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("centicreditsFormula") is { } nullNodeCenticreditsFormula && nullNodeCenticreditsFormula.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsFormula = null;
-            if (parseNode.GetChildNode("centicreditsFormulaDescription") is { } nullNodeCenticreditsFormulaDescription && nullNodeCenticreditsFormulaDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsFormulaDescription = null;
-            if (parseNode.GetChildNode("centicreditsFormulaDocumentationUrl") is { } nullNodeCenticreditsFormulaDocumentationUrl && nullNodeCenticreditsFormulaDocumentationUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsFormulaDocumentationUrl = null;
-            if (parseNode.GetChildNode("centicreditsFormulaMeta") is { } nullNodeCenticreditsFormulaMeta && nullNodeCenticreditsFormulaMeta.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsFormulaMeta = null;
+            if (parseNode.GetChildNode("centicreditsFormula") is null) { _explicitNullValueCenticreditsFormula = default!; _explicitNullProperties?.Remove("centicreditsFormula"); }
+            else if (parseNode.GetChildNode("centicreditsFormula") is { } nullNodeCenticreditsFormula && nullNodeCenticreditsFormula.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsFormula = null;
+            if (parseNode.GetChildNode("centicreditsFormulaDescription") is null) { _explicitNullValueCenticreditsFormulaDescription = default!; _explicitNullProperties?.Remove("centicreditsFormulaDescription"); }
+            else if (parseNode.GetChildNode("centicreditsFormulaDescription") is { } nullNodeCenticreditsFormulaDescription && nullNodeCenticreditsFormulaDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsFormulaDescription = null;
+            if (parseNode.GetChildNode("centicreditsFormulaDocumentationUrl") is null) { _explicitNullValueCenticreditsFormulaDocumentationUrl = default!; _explicitNullProperties?.Remove("centicreditsFormulaDocumentationUrl"); }
+            else if (parseNode.GetChildNode("centicreditsFormulaDocumentationUrl") is { } nullNodeCenticreditsFormulaDocumentationUrl && nullNodeCenticreditsFormulaDocumentationUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsFormulaDocumentationUrl = null;
+            if (parseNode.GetChildNode("centicreditsFormulaMeta") is null) { _explicitNullValueCenticreditsFormulaMeta = default!; _explicitNullProperties?.Remove("centicreditsFormulaMeta"); }
+            else if (parseNode.GetChildNode("centicreditsFormulaMeta") is { } nullNodeCenticreditsFormulaMeta && nullNodeCenticreditsFormulaMeta.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsFormulaMeta = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,41 +32,41 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The centicreditsFormula property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CenticreditsFormula { get => _explicitNullValueCenticreditsFormula; set { _explicitNullValueCenticreditsFormula = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormula"); else _explicitNullProperties?.Remove("centicreditsFormula"); } }
+        public string? CenticreditsFormula { get => _explicitNullValueCenticreditsFormula; set { _explicitNullValueCenticreditsFormula = value; AdditionalData?.Remove("centicreditsFormula"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormula"); else _explicitNullProperties?.Remove("centicreditsFormula"); } }
         private string? _explicitNullValueCenticreditsFormula = default!;
 #nullable restore
 #else
-        public string CenticreditsFormula { get => _explicitNullValueCenticreditsFormula; set { _explicitNullValueCenticreditsFormula = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormula"); else _explicitNullProperties?.Remove("centicreditsFormula"); } }
+        public string CenticreditsFormula { get => _explicitNullValueCenticreditsFormula; set { _explicitNullValueCenticreditsFormula = value; AdditionalData?.Remove("centicreditsFormula"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormula"); else _explicitNullProperties?.Remove("centicreditsFormula"); } }
         private string _explicitNullValueCenticreditsFormula = default!;
 #endif
         /// <summary>The centicreditsFormulaDescription property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CenticreditsFormulaDescription { get => _explicitNullValueCenticreditsFormulaDescription; set { _explicitNullValueCenticreditsFormulaDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaDescription"); else _explicitNullProperties?.Remove("centicreditsFormulaDescription"); } }
+        public string? CenticreditsFormulaDescription { get => _explicitNullValueCenticreditsFormulaDescription; set { _explicitNullValueCenticreditsFormulaDescription = value; AdditionalData?.Remove("centicreditsFormulaDescription"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaDescription"); else _explicitNullProperties?.Remove("centicreditsFormulaDescription"); } }
         private string? _explicitNullValueCenticreditsFormulaDescription = default!;
 #nullable restore
 #else
-        public string CenticreditsFormulaDescription { get => _explicitNullValueCenticreditsFormulaDescription; set { _explicitNullValueCenticreditsFormulaDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaDescription"); else _explicitNullProperties?.Remove("centicreditsFormulaDescription"); } }
+        public string CenticreditsFormulaDescription { get => _explicitNullValueCenticreditsFormulaDescription; set { _explicitNullValueCenticreditsFormulaDescription = value; AdditionalData?.Remove("centicreditsFormulaDescription"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaDescription"); else _explicitNullProperties?.Remove("centicreditsFormulaDescription"); } }
         private string _explicitNullValueCenticreditsFormulaDescription = default!;
 #endif
         /// <summary>The centicreditsFormulaDocumentationUrl property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CenticreditsFormulaDocumentationUrl { get => _explicitNullValueCenticreditsFormulaDocumentationUrl; set { _explicitNullValueCenticreditsFormulaDocumentationUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaDocumentationUrl"); else _explicitNullProperties?.Remove("centicreditsFormulaDocumentationUrl"); } }
+        public string? CenticreditsFormulaDocumentationUrl { get => _explicitNullValueCenticreditsFormulaDocumentationUrl; set { _explicitNullValueCenticreditsFormulaDocumentationUrl = value; AdditionalData?.Remove("centicreditsFormulaDocumentationUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaDocumentationUrl"); else _explicitNullProperties?.Remove("centicreditsFormulaDocumentationUrl"); } }
         private string? _explicitNullValueCenticreditsFormulaDocumentationUrl = default!;
 #nullable restore
 #else
-        public string CenticreditsFormulaDocumentationUrl { get => _explicitNullValueCenticreditsFormulaDocumentationUrl; set { _explicitNullValueCenticreditsFormulaDocumentationUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaDocumentationUrl"); else _explicitNullProperties?.Remove("centicreditsFormulaDocumentationUrl"); } }
+        public string CenticreditsFormulaDocumentationUrl { get => _explicitNullValueCenticreditsFormulaDocumentationUrl; set { _explicitNullValueCenticreditsFormulaDocumentationUrl = value; AdditionalData?.Remove("centicreditsFormulaDocumentationUrl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaDocumentationUrl"); else _explicitNullProperties?.Remove("centicreditsFormulaDocumentationUrl"); } }
         private string _explicitNullValueCenticreditsFormulaDocumentationUrl = default!;
 #endif
         /// <summary>The centicreditsFormulaMeta property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CenticreditsFormulaMeta { get => _explicitNullValueCenticreditsFormulaMeta; set { _explicitNullValueCenticreditsFormulaMeta = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaMeta"); else _explicitNullProperties?.Remove("centicreditsFormulaMeta"); } }
+        public string? CenticreditsFormulaMeta { get => _explicitNullValueCenticreditsFormulaMeta; set { _explicitNullValueCenticreditsFormulaMeta = value; AdditionalData?.Remove("centicreditsFormulaMeta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaMeta"); else _explicitNullProperties?.Remove("centicreditsFormulaMeta"); } }
         private string? _explicitNullValueCenticreditsFormulaMeta = default!;
 #nullable restore
 #else
-        public string CenticreditsFormulaMeta { get => _explicitNullValueCenticreditsFormulaMeta; set { _explicitNullValueCenticreditsFormulaMeta = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaMeta"); else _explicitNullProperties?.Remove("centicreditsFormulaMeta"); } }
+        public string CenticreditsFormulaMeta { get => _explicitNullValueCenticreditsFormulaMeta; set { _explicitNullValueCenticreditsFormulaMeta = value; AdditionalData?.Remove("centicreditsFormulaMeta"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaMeta"); else _explicitNullProperties?.Remove("centicreditsFormulaMeta"); } }
         private string _explicitNullValueCenticreditsFormulaMeta = default!;
 #endif
         /// <summary>

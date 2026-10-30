@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("connections") is { } nullNodeConnections && nullNodeConnections.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Connections = null;
+            if (parseNode.GetChildNode("connections") is null) { _explicitNullValueConnections = default!; _explicitNullProperties?.Remove("connections"); }
+            else if (parseNode.GetChildNode("connections") is { } nullNodeConnections && nullNodeConnections.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Connections = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The connections property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOAuthConnections200ResponseConnectionsItem>? Connections { get => _explicitNullValueConnections; set { _explicitNullValueConnections = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connections"); else _explicitNullProperties?.Remove("connections"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOAuthConnections200ResponseConnectionsItem>? Connections { get => _explicitNullValueConnections; set { _explicitNullValueConnections = value; AdditionalData?.Remove("connections"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connections"); else _explicitNullProperties?.Remove("connections"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOAuthConnections200ResponseConnectionsItem>? _explicitNullValueConnections = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOAuthConnections200ResponseConnectionsItem> Connections { get => _explicitNullValueConnections; set { _explicitNullValueConnections = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connections"); else _explicitNullProperties?.Remove("connections"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOAuthConnections200ResponseConnectionsItem> Connections { get => _explicitNullValueConnections; set { _explicitNullValueConnections = value; AdditionalData?.Remove("connections"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connections"); else _explicitNullProperties?.Remove("connections"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOAuthConnections200ResponseConnectionsItem> _explicitNullValueConnections = default!;
 #endif
         /// <summary>

@@ -18,58 +18,65 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("activateImmediately") is { } nullNodeActivateImmediately && nullNodeActivateImmediately.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActivateImmediately = null;
-            if (parseNode.GetChildNode("bannerText") is { } nullNodeBannerText && nullNodeBannerText.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BannerText = null;
-            if (parseNode.GetChildNode("discountType") is { } nullNodeDiscountType && nullNodeDiscountType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DiscountType = null;
-            if (parseNode.GetChildNode("durationInMonths") is { } nullNodeDurationInMonths && nullNodeDurationInMonths.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DurationInMonths = null;
-            if (parseNode.GetChildNode("percentOff") is { } nullNodePercentOff && nullNodePercentOff.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PercentOff = null;
-            if (parseNode.GetChildNode("postClaimText") is { } nullNodePostClaimText && nullNodePostClaimText.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PostClaimText = null;
-            if (parseNode.GetChildNode("redeemUntil") is { } nullNodeRedeemUntil && nullNodeRedeemUntil.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RedeemUntil = null;
+            if (parseNode.GetChildNode("activateImmediately") is null) { _explicitNullValueActivateImmediately = default!; _explicitNullProperties?.Remove("activateImmediately"); }
+            else if (parseNode.GetChildNode("activateImmediately") is { } nullNodeActivateImmediately && nullNodeActivateImmediately.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActivateImmediately = null;
+            if (parseNode.GetChildNode("bannerText") is null) { _explicitNullValueBannerText = default!; _explicitNullProperties?.Remove("bannerText"); }
+            else if (parseNode.GetChildNode("bannerText") is { } nullNodeBannerText && nullNodeBannerText.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BannerText = null;
+            if (parseNode.GetChildNode("discountType") is null) { _explicitNullValueDiscountType = default!; _explicitNullProperties?.Remove("discountType"); }
+            else if (parseNode.GetChildNode("discountType") is { } nullNodeDiscountType && nullNodeDiscountType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DiscountType = null;
+            if (parseNode.GetChildNode("durationInMonths") is null) { _explicitNullValueDurationInMonths = default!; _explicitNullProperties?.Remove("durationInMonths"); }
+            else if (parseNode.GetChildNode("durationInMonths") is { } nullNodeDurationInMonths && nullNodeDurationInMonths.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DurationInMonths = null;
+            if (parseNode.GetChildNode("percentOff") is null) { _explicitNullValuePercentOff = default!; _explicitNullProperties?.Remove("percentOff"); }
+            else if (parseNode.GetChildNode("percentOff") is { } nullNodePercentOff && nullNodePercentOff.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PercentOff = null;
+            if (parseNode.GetChildNode("postClaimText") is null) { _explicitNullValuePostClaimText = default!; _explicitNullProperties?.Remove("postClaimText"); }
+            else if (parseNode.GetChildNode("postClaimText") is { } nullNodePostClaimText && nullNodePostClaimText.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PostClaimText = null;
+            if (parseNode.GetChildNode("redeemUntil") is null) { _explicitNullValueRedeemUntil = default!; _explicitNullProperties?.Remove("redeemUntil"); }
+            else if (parseNode.GetChildNode("redeemUntil") is { } nullNodeRedeemUntil && nullNodeRedeemUntil.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RedeemUntil = null;
         }
 
         /// <summary>Whether to activate the discount immediately.</summary>
-        public bool? ActivateImmediately { get => _explicitNullValueActivateImmediately; set { _explicitNullValueActivateImmediately = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activateImmediately"); else _explicitNullProperties?.Remove("activateImmediately"); } }
+        public bool? ActivateImmediately { get => _explicitNullValueActivateImmediately; set { _explicitNullValueActivateImmediately = value; AdditionalData?.Remove("activateImmediately"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activateImmediately"); else _explicitNullProperties?.Remove("activateImmediately"); } }
         private bool? _explicitNullValueActivateImmediately = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Custom banner text for the discount (overrides the type default)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BannerText { get => _explicitNullValueBannerText; set { _explicitNullValueBannerText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bannerText"); else _explicitNullProperties?.Remove("bannerText"); } }
+        public string? BannerText { get => _explicitNullValueBannerText; set { _explicitNullValueBannerText = value; AdditionalData?.Remove("bannerText"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bannerText"); else _explicitNullProperties?.Remove("bannerText"); } }
         private string? _explicitNullValueBannerText = default!;
 #nullable restore
 #else
-        public string BannerText { get => _explicitNullValueBannerText; set { _explicitNullValueBannerText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bannerText"); else _explicitNullProperties?.Remove("bannerText"); } }
+        public string BannerText { get => _explicitNullValueBannerText; set { _explicitNullValueBannerText = value; AdditionalData?.Remove("bannerText"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bannerText"); else _explicitNullProperties?.Remove("bannerText"); } }
         private string _explicitNullValueBannerText = default!;
 #endif
         /// <summary>The type of discount to assign</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DiscountType { get => _explicitNullValueDiscountType; set { _explicitNullValueDiscountType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("discountType"); else _explicitNullProperties?.Remove("discountType"); } }
+        public string? DiscountType { get => _explicitNullValueDiscountType; set { _explicitNullValueDiscountType = value; AdditionalData?.Remove("discountType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("discountType"); else _explicitNullProperties?.Remove("discountType"); } }
         private string? _explicitNullValueDiscountType = default!;
 #nullable restore
 #else
-        public string DiscountType { get => _explicitNullValueDiscountType; set { _explicitNullValueDiscountType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("discountType"); else _explicitNullProperties?.Remove("discountType"); } }
+        public string DiscountType { get => _explicitNullValueDiscountType; set { _explicitNullValueDiscountType = value; AdditionalData?.Remove("discountType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("discountType"); else _explicitNullProperties?.Remove("discountType"); } }
         private string _explicitNullValueDiscountType = default!;
 #endif
         /// <summary>The duration of the discount in months</summary>
-        public int? DurationInMonths { get => _explicitNullValueDurationInMonths; set { _explicitNullValueDurationInMonths = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("durationInMonths"); else _explicitNullProperties?.Remove("durationInMonths"); } }
+        public int? DurationInMonths { get => _explicitNullValueDurationInMonths; set { _explicitNullValueDurationInMonths = value; AdditionalData?.Remove("durationInMonths"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("durationInMonths"); else _explicitNullProperties?.Remove("durationInMonths"); } }
         private int? _explicitNullValueDurationInMonths = default!;
         /// <summary>The percentage off for the discount (1-100)</summary>
-        public double? PercentOff { get => _explicitNullValuePercentOff; set { _explicitNullValuePercentOff = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("percentOff"); else _explicitNullProperties?.Remove("percentOff"); } }
+        public double? PercentOff { get => _explicitNullValuePercentOff; set { _explicitNullValuePercentOff = value; AdditionalData?.Remove("percentOff"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("percentOff"); else _explicitNullProperties?.Remove("percentOff"); } }
         private double? _explicitNullValuePercentOff = default!;
         /// <summary>Custom text shown after the discount has been claimed (overrides the type default)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PostClaimText { get => _explicitNullValuePostClaimText; set { _explicitNullValuePostClaimText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("postClaimText"); else _explicitNullProperties?.Remove("postClaimText"); } }
+        public string? PostClaimText { get => _explicitNullValuePostClaimText; set { _explicitNullValuePostClaimText = value; AdditionalData?.Remove("postClaimText"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("postClaimText"); else _explicitNullProperties?.Remove("postClaimText"); } }
         private string? _explicitNullValuePostClaimText = default!;
 #nullable restore
 #else
-        public string PostClaimText { get => _explicitNullValuePostClaimText; set { _explicitNullValuePostClaimText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("postClaimText"); else _explicitNullProperties?.Remove("postClaimText"); } }
+        public string PostClaimText { get => _explicitNullValuePostClaimText; set { _explicitNullValuePostClaimText = value; AdditionalData?.Remove("postClaimText"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("postClaimText"); else _explicitNullProperties?.Remove("postClaimText"); } }
         private string _explicitNullValuePostClaimText = default!;
 #endif
         /// <summary>The date until which the discount can be redeemed. Must not be in the past. Send null for no expiry.</summary>
-        public Date? RedeemUntil { get => _explicitNullValueRedeemUntil; set { _explicitNullValueRedeemUntil = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redeemUntil"); else _explicitNullProperties?.Remove("redeemUntil"); } }
+        public Date? RedeemUntil { get => _explicitNullValueRedeemUntil; set { _explicitNullValueRedeemUntil = value; AdditionalData?.Remove("redeemUntil"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redeemUntil"); else _explicitNullProperties?.Remove("redeemUntil"); } }
         private Date? _explicitNullValueRedeemUntil = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminOrganizationsByOrganizationIdAssignUniversalDiscountRequest"/> and sets the default values.

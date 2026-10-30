@@ -18,7 +18,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("sanitize") is { } nullNodeSanitize && nullNodeSanitize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sanitize = null;
+            if (parseNode.GetChildNode("sanitize") is null) { _explicitNullValueSanitize = default!; _explicitNullProperties?.Remove("sanitize"); }
+            else if (parseNode.GetChildNode("sanitize") is { } nullNodeSanitize && nullNodeSanitize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Sanitize = null;
         }
 
         /// <summary>An array of paths to sanitize when logging request or response.</summary>

@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("movedScenarioIds") is { } nullNodeMovedScenarioIds && nullNodeMovedScenarioIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MovedScenarioIds = null;
-            if (parseNode.GetChildNode("targetFolderId") is { } nullNodeTargetFolderId && nullNodeTargetFolderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TargetFolderId = null;
+            if (parseNode.GetChildNode("movedScenarioIds") is null) { _explicitNullValueMovedScenarioIds = default!; _explicitNullProperties?.Remove("movedScenarioIds"); }
+            else if (parseNode.GetChildNode("movedScenarioIds") is { } nullNodeMovedScenarioIds && nullNodeMovedScenarioIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MovedScenarioIds = null;
+            if (parseNode.GetChildNode("targetFolderId") is null) { _explicitNullValueTargetFolderId = default!; _explicitNullProperties?.Remove("targetFolderId"); }
+            else if (parseNode.GetChildNode("targetFolderId") is { } nullNodeTargetFolderId && nullNodeTargetFolderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TargetFolderId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The movedScenarioIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? MovedScenarioIds { get => _explicitNullValueMovedScenarioIds; set { _explicitNullValueMovedScenarioIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("movedScenarioIds"); else _explicitNullProperties?.Remove("movedScenarioIds"); } }
+        public List<int?>? MovedScenarioIds { get => _explicitNullValueMovedScenarioIds; set { _explicitNullValueMovedScenarioIds = value; AdditionalData?.Remove("movedScenarioIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("movedScenarioIds"); else _explicitNullProperties?.Remove("movedScenarioIds"); } }
         private List<int?>? _explicitNullValueMovedScenarioIds = default!;
 #nullable restore
 #else
-        public List<int?> MovedScenarioIds { get => _explicitNullValueMovedScenarioIds; set { _explicitNullValueMovedScenarioIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("movedScenarioIds"); else _explicitNullProperties?.Remove("movedScenarioIds"); } }
+        public List<int?> MovedScenarioIds { get => _explicitNullValueMovedScenarioIds; set { _explicitNullValueMovedScenarioIds = value; AdditionalData?.Remove("movedScenarioIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("movedScenarioIds"); else _explicitNullProperties?.Remove("movedScenarioIds"); } }
         private List<int?> _explicitNullValueMovedScenarioIds = default!;
 #endif
         /// <summary>The targetFolderId property</summary>
-        public int? TargetFolderId { get => _explicitNullValueTargetFolderId; set { _explicitNullValueTargetFolderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetFolderId"); else _explicitNullProperties?.Remove("targetFolderId"); } }
+        public int? TargetFolderId { get => _explicitNullValueTargetFolderId; set { _explicitNullValueTargetFolderId = value; AdditionalData?.Remove("targetFolderId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetFolderId"); else _explicitNullProperties?.Remove("targetFolderId"); } }
         private int? _explicitNullValueTargetFolderId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosFoldersMoveScenarios200Response"/> and sets the default values.

@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("paymentMethodTypes") is { } nullNodePaymentMethodTypes && nullNodePaymentMethodTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PaymentMethodTypes = null;
+            if (parseNode.GetChildNode("paymentMethodTypes") is null) { _explicitNullValuePaymentMethodTypes = default!; _explicitNullProperties?.Remove("paymentMethodTypes"); }
+            else if (parseNode.GetChildNode("paymentMethodTypes") is { } nullNodePaymentMethodTypes && nullNodePaymentMethodTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PaymentMethodTypes = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The paymentMethodTypes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscriptionPaymentMethodTypes200ResponsePaymentMethodTypesItem>? PaymentMethodTypes { get => _explicitNullValuePaymentMethodTypes; set { _explicitNullValuePaymentMethodTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paymentMethodTypes"); else _explicitNullProperties?.Remove("paymentMethodTypes"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscriptionPaymentMethodTypes200ResponsePaymentMethodTypesItem>? PaymentMethodTypes { get => _explicitNullValuePaymentMethodTypes; set { _explicitNullValuePaymentMethodTypes = value; AdditionalData?.Remove("paymentMethodTypes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paymentMethodTypes"); else _explicitNullProperties?.Remove("paymentMethodTypes"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscriptionPaymentMethodTypes200ResponsePaymentMethodTypesItem>? _explicitNullValuePaymentMethodTypes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscriptionPaymentMethodTypes200ResponsePaymentMethodTypesItem> PaymentMethodTypes { get => _explicitNullValuePaymentMethodTypes; set { _explicitNullValuePaymentMethodTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paymentMethodTypes"); else _explicitNullProperties?.Remove("paymentMethodTypes"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscriptionPaymentMethodTypes200ResponsePaymentMethodTypesItem> PaymentMethodTypes { get => _explicitNullValuePaymentMethodTypes; set { _explicitNullValuePaymentMethodTypes = value; AdditionalData?.Remove("paymentMethodTypes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paymentMethodTypes"); else _explicitNullProperties?.Remove("paymentMethodTypes"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscriptionPaymentMethodTypes200ResponsePaymentMethodTypesItem> _explicitNullValuePaymentMethodTypes = default!;
 #endif
         /// <summary>

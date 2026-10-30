@@ -17,23 +17,40 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("centicredits") is { } nullNodeCenticredits && nullNodeCenticredits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Centicredits = null;
-            if (parseNode.GetChildNode("consumedCenticredits") is { } nullNodeConsumedCenticredits && nullNodeConsumedCenticredits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConsumedCenticredits = null;
-            if (parseNode.GetChildNode("consumedOperations") is { } nullNodeConsumedOperations && nullNodeConsumedOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConsumedOperations = null;
-            if (parseNode.GetChildNode("consumedTransfer") is { } nullNodeConsumedTransfer && nullNodeConsumedTransfer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConsumedTransfer = null;
-            if (parseNode.GetChildNode("globalAgentsEnabled") is { } nullNodeGlobalAgentsEnabled && nullNodeGlobalAgentsEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GlobalAgentsEnabled = null;
-            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
-            if (parseNode.GetChildNode("isPaused") is { } nullNodeIsPaused && nullNodeIsPaused.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsPaused = null;
-            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
-            if (parseNode.GetChildNode("operations") is { } nullNodeOperations && nullNodeOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operations = null;
-            if (parseNode.GetChildNode("operationsLimit") is { } nullNodeOperationsLimit && nullNodeOperationsLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperationsLimit = null;
-            if (parseNode.GetChildNode("organizationId") is { } nullNodeOrganizationId && nullNodeOrganizationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationId = null;
-            if (parseNode.GetChildNode("privateSpaceOwnerEmail") is { } nullNodePrivateSpaceOwnerEmail && nullNodePrivateSpaceOwnerEmail.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrivateSpaceOwnerEmail = null;
-            if (parseNode.GetChildNode("privateSpaceOwnerId") is { } nullNodePrivateSpaceOwnerId && nullNodePrivateSpaceOwnerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrivateSpaceOwnerId = null;
-            if (parseNode.GetChildNode("privateSpaceOwnerName") is { } nullNodePrivateSpaceOwnerName && nullNodePrivateSpaceOwnerName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrivateSpaceOwnerName = null;
-            if (parseNode.GetChildNode("transfer") is { } nullNodeTransfer && nullNodeTransfer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transfer = null;
-            if (parseNode.GetChildNode("transferLimit") is { } nullNodeTransferLimit && nullNodeTransferLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TransferLimit = null;
-            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("centicredits") is null) { _explicitNullValueCenticredits = default!; _explicitNullProperties?.Remove("centicredits"); }
+            else if (parseNode.GetChildNode("centicredits") is { } nullNodeCenticredits && nullNodeCenticredits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Centicredits = null;
+            if (parseNode.GetChildNode("consumedCenticredits") is null) { _explicitNullValueConsumedCenticredits = default!; _explicitNullProperties?.Remove("consumedCenticredits"); }
+            else if (parseNode.GetChildNode("consumedCenticredits") is { } nullNodeConsumedCenticredits && nullNodeConsumedCenticredits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConsumedCenticredits = null;
+            if (parseNode.GetChildNode("consumedOperations") is null) { _explicitNullValueConsumedOperations = default!; _explicitNullProperties?.Remove("consumedOperations"); }
+            else if (parseNode.GetChildNode("consumedOperations") is { } nullNodeConsumedOperations && nullNodeConsumedOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConsumedOperations = null;
+            if (parseNode.GetChildNode("consumedTransfer") is null) { _explicitNullValueConsumedTransfer = default!; _explicitNullProperties?.Remove("consumedTransfer"); }
+            else if (parseNode.GetChildNode("consumedTransfer") is { } nullNodeConsumedTransfer && nullNodeConsumedTransfer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConsumedTransfer = null;
+            if (parseNode.GetChildNode("globalAgentsEnabled") is null) { _explicitNullValueGlobalAgentsEnabled = default!; _explicitNullProperties?.Remove("globalAgentsEnabled"); }
+            else if (parseNode.GetChildNode("globalAgentsEnabled") is { } nullNodeGlobalAgentsEnabled && nullNodeGlobalAgentsEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) GlobalAgentsEnabled = null;
+            if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
+            else if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("isPaused") is null) { _explicitNullValueIsPaused = default!; _explicitNullProperties?.Remove("isPaused"); }
+            else if (parseNode.GetChildNode("isPaused") is { } nullNodeIsPaused && nullNodeIsPaused.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsPaused = null;
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("operations") is null) { _explicitNullValueOperations = default!; _explicitNullProperties?.Remove("operations"); }
+            else if (parseNode.GetChildNode("operations") is { } nullNodeOperations && nullNodeOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operations = null;
+            if (parseNode.GetChildNode("operationsLimit") is null) { _explicitNullValueOperationsLimit = default!; _explicitNullProperties?.Remove("operationsLimit"); }
+            else if (parseNode.GetChildNode("operationsLimit") is { } nullNodeOperationsLimit && nullNodeOperationsLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperationsLimit = null;
+            if (parseNode.GetChildNode("organizationId") is null) { _explicitNullValueOrganizationId = default!; _explicitNullProperties?.Remove("organizationId"); }
+            else if (parseNode.GetChildNode("organizationId") is { } nullNodeOrganizationId && nullNodeOrganizationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationId = null;
+            if (parseNode.GetChildNode("privateSpaceOwnerEmail") is null) { _explicitNullValuePrivateSpaceOwnerEmail = default!; _explicitNullProperties?.Remove("privateSpaceOwnerEmail"); }
+            else if (parseNode.GetChildNode("privateSpaceOwnerEmail") is { } nullNodePrivateSpaceOwnerEmail && nullNodePrivateSpaceOwnerEmail.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrivateSpaceOwnerEmail = null;
+            if (parseNode.GetChildNode("privateSpaceOwnerId") is null) { _explicitNullValuePrivateSpaceOwnerId = default!; _explicitNullProperties?.Remove("privateSpaceOwnerId"); }
+            else if (parseNode.GetChildNode("privateSpaceOwnerId") is { } nullNodePrivateSpaceOwnerId && nullNodePrivateSpaceOwnerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrivateSpaceOwnerId = null;
+            if (parseNode.GetChildNode("privateSpaceOwnerName") is null) { _explicitNullValuePrivateSpaceOwnerName = default!; _explicitNullProperties?.Remove("privateSpaceOwnerName"); }
+            else if (parseNode.GetChildNode("privateSpaceOwnerName") is { } nullNodePrivateSpaceOwnerName && nullNodePrivateSpaceOwnerName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrivateSpaceOwnerName = null;
+            if (parseNode.GetChildNode("transfer") is null) { _explicitNullValueTransfer = default!; _explicitNullProperties?.Remove("transfer"); }
+            else if (parseNode.GetChildNode("transfer") is { } nullNodeTransfer && nullNodeTransfer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transfer = null;
+            if (parseNode.GetChildNode("transferLimit") is null) { _explicitNullValueTransferLimit = default!; _explicitNullProperties?.Remove("transferLimit"); }
+            else if (parseNode.GetChildNode("transferLimit") is { } nullNodeTransferLimit && nullNodeTransferLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TransferLimit = null;
+            if (parseNode.GetChildNode("type") is null) { _explicitNullValueType = default!; _explicitNullProperties?.Remove("type"); }
+            else if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -41,109 +58,109 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Total centicredits consumed since last reset (from Elasticsearch).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Centicredits { get => _explicitNullValueCenticredits; set { _explicitNullValueCenticredits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicredits"); else _explicitNullProperties?.Remove("centicredits"); } }
+        public string? Centicredits { get => _explicitNullValueCenticredits; set { _explicitNullValueCenticredits = value; AdditionalData?.Remove("centicredits"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicredits"); else _explicitNullProperties?.Remove("centicredits"); } }
         private string? _explicitNullValueCenticredits = default!;
 #nullable restore
 #else
-        public string Centicredits { get => _explicitNullValueCenticredits; set { _explicitNullValueCenticredits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicredits"); else _explicitNullProperties?.Remove("centicredits"); } }
+        public string Centicredits { get => _explicitNullValueCenticredits; set { _explicitNullValueCenticredits = value; AdditionalData?.Remove("centicredits"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicredits"); else _explicitNullProperties?.Remove("centicredits"); } }
         private string _explicitNullValueCenticredits = default!;
 #endif
         /// <summary>The number of centicredits consumed in the current period.</summary>
-        public int? ConsumedCenticredits { get => _explicitNullValueConsumedCenticredits; set { _explicitNullValueConsumedCenticredits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("consumedCenticredits"); else _explicitNullProperties?.Remove("consumedCenticredits"); } }
+        public int? ConsumedCenticredits { get => _explicitNullValueConsumedCenticredits; set { _explicitNullValueConsumedCenticredits = value; AdditionalData?.Remove("consumedCenticredits"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("consumedCenticredits"); else _explicitNullProperties?.Remove("consumedCenticredits"); } }
         private int? _explicitNullValueConsumedCenticredits = default!;
         /// <summary>The number of operations consumed in the current period.</summary>
-        public int? ConsumedOperations { get => _explicitNullValueConsumedOperations; set { _explicitNullValueConsumedOperations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("consumedOperations"); else _explicitNullProperties?.Remove("consumedOperations"); } }
+        public int? ConsumedOperations { get => _explicitNullValueConsumedOperations; set { _explicitNullValueConsumedOperations = value; AdditionalData?.Remove("consumedOperations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("consumedOperations"); else _explicitNullProperties?.Remove("consumedOperations"); } }
         private int? _explicitNullValueConsumedOperations = default!;
         /// <summary>The amount of data transfer consumed in bytes in the current period.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ConsumedTransfer { get => _explicitNullValueConsumedTransfer; set { _explicitNullValueConsumedTransfer = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("consumedTransfer"); else _explicitNullProperties?.Remove("consumedTransfer"); } }
+        public string? ConsumedTransfer { get => _explicitNullValueConsumedTransfer; set { _explicitNullValueConsumedTransfer = value; AdditionalData?.Remove("consumedTransfer"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("consumedTransfer"); else _explicitNullProperties?.Remove("consumedTransfer"); } }
         private string? _explicitNullValueConsumedTransfer = default!;
 #nullable restore
 #else
-        public string ConsumedTransfer { get => _explicitNullValueConsumedTransfer; set { _explicitNullValueConsumedTransfer = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("consumedTransfer"); else _explicitNullProperties?.Remove("consumedTransfer"); } }
+        public string ConsumedTransfer { get => _explicitNullValueConsumedTransfer; set { _explicitNullValueConsumedTransfer = value; AdditionalData?.Remove("consumedTransfer"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("consumedTransfer"); else _explicitNullProperties?.Remove("consumedTransfer"); } }
         private string _explicitNullValueConsumedTransfer = default!;
 #endif
         /// <summary>Whether global agents are enabled for this private space.</summary>
-        public bool? GlobalAgentsEnabled { get => _explicitNullValueGlobalAgentsEnabled; set { _explicitNullValueGlobalAgentsEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("globalAgentsEnabled"); else _explicitNullProperties?.Remove("globalAgentsEnabled"); } }
+        public bool? GlobalAgentsEnabled { get => _explicitNullValueGlobalAgentsEnabled; set { _explicitNullValueGlobalAgentsEnabled = value; AdditionalData?.Remove("globalAgentsEnabled"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("globalAgentsEnabled"); else _explicitNullProperties?.Remove("globalAgentsEnabled"); } }
         private bool? _explicitNullValueGlobalAgentsEnabled = default!;
         /// <summary>The ID of the private space.</summary>
-        public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private int? _explicitNullValueId = default!;
         /// <summary>Whether the private space is paused due to exceeding limits.</summary>
-        public bool? IsPaused { get => _explicitNullValueIsPaused; set { _explicitNullValueIsPaused = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isPaused"); else _explicitNullProperties?.Remove("isPaused"); } }
+        public bool? IsPaused { get => _explicitNullValueIsPaused; set { _explicitNullValueIsPaused = value; AdditionalData?.Remove("isPaused"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isPaused"); else _explicitNullProperties?.Remove("isPaused"); } }
         private bool? _explicitNullValueIsPaused = default!;
         /// <summary>The name of the private space.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
         /// <summary>Total operations consumed since last reset (from Elasticsearch).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Operations { get => _explicitNullValueOperations; set { _explicitNullValueOperations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operations"); else _explicitNullProperties?.Remove("operations"); } }
+        public string? Operations { get => _explicitNullValueOperations; set { _explicitNullValueOperations = value; AdditionalData?.Remove("operations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operations"); else _explicitNullProperties?.Remove("operations"); } }
         private string? _explicitNullValueOperations = default!;
 #nullable restore
 #else
-        public string Operations { get => _explicitNullValueOperations; set { _explicitNullValueOperations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operations"); else _explicitNullProperties?.Remove("operations"); } }
+        public string Operations { get => _explicitNullValueOperations; set { _explicitNullValueOperations = value; AdditionalData?.Remove("operations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operations"); else _explicitNullProperties?.Remove("operations"); } }
         private string _explicitNullValueOperations = default!;
 #endif
         /// <summary>The maximum number of operations allowed. `null` if no limit is set.</summary>
-        public int? OperationsLimit { get => _explicitNullValueOperationsLimit; set { _explicitNullValueOperationsLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operationsLimit"); else _explicitNullProperties?.Remove("operationsLimit"); } }
+        public int? OperationsLimit { get => _explicitNullValueOperationsLimit; set { _explicitNullValueOperationsLimit = value; AdditionalData?.Remove("operationsLimit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operationsLimit"); else _explicitNullProperties?.Remove("operationsLimit"); } }
         private int? _explicitNullValueOperationsLimit = default!;
         /// <summary>The ID of the organization the private space belongs to.</summary>
-        public int? OrganizationId { get => _explicitNullValueOrganizationId; set { _explicitNullValueOrganizationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationId"); else _explicitNullProperties?.Remove("organizationId"); } }
+        public int? OrganizationId { get => _explicitNullValueOrganizationId; set { _explicitNullValueOrganizationId = value; AdditionalData?.Remove("organizationId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationId"); else _explicitNullProperties?.Remove("organizationId"); } }
         private int? _explicitNullValueOrganizationId = default!;
         /// <summary>The email address of the private space owner.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PrivateSpaceOwnerEmail { get => _explicitNullValuePrivateSpaceOwnerEmail; set { _explicitNullValuePrivateSpaceOwnerEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceOwnerEmail"); else _explicitNullProperties?.Remove("privateSpaceOwnerEmail"); } }
+        public string? PrivateSpaceOwnerEmail { get => _explicitNullValuePrivateSpaceOwnerEmail; set { _explicitNullValuePrivateSpaceOwnerEmail = value; AdditionalData?.Remove("privateSpaceOwnerEmail"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceOwnerEmail"); else _explicitNullProperties?.Remove("privateSpaceOwnerEmail"); } }
         private string? _explicitNullValuePrivateSpaceOwnerEmail = default!;
 #nullable restore
 #else
-        public string PrivateSpaceOwnerEmail { get => _explicitNullValuePrivateSpaceOwnerEmail; set { _explicitNullValuePrivateSpaceOwnerEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceOwnerEmail"); else _explicitNullProperties?.Remove("privateSpaceOwnerEmail"); } }
+        public string PrivateSpaceOwnerEmail { get => _explicitNullValuePrivateSpaceOwnerEmail; set { _explicitNullValuePrivateSpaceOwnerEmail = value; AdditionalData?.Remove("privateSpaceOwnerEmail"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceOwnerEmail"); else _explicitNullProperties?.Remove("privateSpaceOwnerEmail"); } }
         private string _explicitNullValuePrivateSpaceOwnerEmail = default!;
 #endif
         /// <summary>The ID of the private space owner.</summary>
-        public int? PrivateSpaceOwnerId { get => _explicitNullValuePrivateSpaceOwnerId; set { _explicitNullValuePrivateSpaceOwnerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceOwnerId"); else _explicitNullProperties?.Remove("privateSpaceOwnerId"); } }
+        public int? PrivateSpaceOwnerId { get => _explicitNullValuePrivateSpaceOwnerId; set { _explicitNullValuePrivateSpaceOwnerId = value; AdditionalData?.Remove("privateSpaceOwnerId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceOwnerId"); else _explicitNullProperties?.Remove("privateSpaceOwnerId"); } }
         private int? _explicitNullValuePrivateSpaceOwnerId = default!;
         /// <summary>The name of the private space owner.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PrivateSpaceOwnerName { get => _explicitNullValuePrivateSpaceOwnerName; set { _explicitNullValuePrivateSpaceOwnerName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceOwnerName"); else _explicitNullProperties?.Remove("privateSpaceOwnerName"); } }
+        public string? PrivateSpaceOwnerName { get => _explicitNullValuePrivateSpaceOwnerName; set { _explicitNullValuePrivateSpaceOwnerName = value; AdditionalData?.Remove("privateSpaceOwnerName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceOwnerName"); else _explicitNullProperties?.Remove("privateSpaceOwnerName"); } }
         private string? _explicitNullValuePrivateSpaceOwnerName = default!;
 #nullable restore
 #else
-        public string PrivateSpaceOwnerName { get => _explicitNullValuePrivateSpaceOwnerName; set { _explicitNullValuePrivateSpaceOwnerName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceOwnerName"); else _explicitNullProperties?.Remove("privateSpaceOwnerName"); } }
+        public string PrivateSpaceOwnerName { get => _explicitNullValuePrivateSpaceOwnerName; set { _explicitNullValuePrivateSpaceOwnerName = value; AdditionalData?.Remove("privateSpaceOwnerName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaceOwnerName"); else _explicitNullProperties?.Remove("privateSpaceOwnerName"); } }
         private string _explicitNullValuePrivateSpaceOwnerName = default!;
 #endif
         /// <summary>Total data transfer consumed since last reset in bytes (from Elasticsearch).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Transfer { get => _explicitNullValueTransfer; set { _explicitNullValueTransfer = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transfer"); else _explicitNullProperties?.Remove("transfer"); } }
+        public string? Transfer { get => _explicitNullValueTransfer; set { _explicitNullValueTransfer = value; AdditionalData?.Remove("transfer"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transfer"); else _explicitNullProperties?.Remove("transfer"); } }
         private string? _explicitNullValueTransfer = default!;
 #nullable restore
 #else
-        public string Transfer { get => _explicitNullValueTransfer; set { _explicitNullValueTransfer = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transfer"); else _explicitNullProperties?.Remove("transfer"); } }
+        public string Transfer { get => _explicitNullValueTransfer; set { _explicitNullValueTransfer = value; AdditionalData?.Remove("transfer"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transfer"); else _explicitNullProperties?.Remove("transfer"); } }
         private string _explicitNullValueTransfer = default!;
 #endif
         /// <summary>The maximum data transfer allowed in bytes. `null` if no limit is set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TransferLimit { get => _explicitNullValueTransferLimit; set { _explicitNullValueTransferLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transferLimit"); else _explicitNullProperties?.Remove("transferLimit"); } }
+        public string? TransferLimit { get => _explicitNullValueTransferLimit; set { _explicitNullValueTransferLimit = value; AdditionalData?.Remove("transferLimit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transferLimit"); else _explicitNullProperties?.Remove("transferLimit"); } }
         private string? _explicitNullValueTransferLimit = default!;
 #nullable restore
 #else
-        public string TransferLimit { get => _explicitNullValueTransferLimit; set { _explicitNullValueTransferLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transferLimit"); else _explicitNullProperties?.Remove("transferLimit"); } }
+        public string TransferLimit { get => _explicitNullValueTransferLimit; set { _explicitNullValueTransferLimit = value; AdditionalData?.Remove("transferLimit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transferLimit"); else _explicitNullProperties?.Remove("transferLimit"); } }
         private string _explicitNullValueTransferLimit = default!;
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PersonalType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PersonalType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PersonalType? _explicitNullValueType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200ResponsePrivateSpace"/> and sets the default values.
@@ -186,7 +203,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "privateSpaceOwnerName", n => { PrivateSpaceOwnerName = n.GetStringValue(); } },
                 { "transfer", n => { Transfer = n.GetStringValue(); } },
                 { "transferLimit", n => { TransferLimit = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PersonalType>(); } },
+                { "type", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PersonalType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueType = default; _explicitNullProperties?.Remove("type"); AdditionalData["type"] = unknown; } else { Type = parsed; AdditionalData.Remove("type"); } } },
             };
         }
         /// <summary>

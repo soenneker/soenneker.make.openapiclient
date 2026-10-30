@@ -74,7 +74,11 @@ namespace Soenneker.Make.OpenApiClient.Models
             }
             
             var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
-            if (result.Boolean == null && result.Double == null && result.PostOrganizationsByOrganizationIdVariablesRequestValueMember1 == null && result.PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4 == null && result.String == null && unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject) result.PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4(), parseNode);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => ((unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject))))();
+            int matchingUnionBranches = 0;
+            if (matchesUnionBranch0) matchingUnionBranches++;
+            bool noSelectedUnionBranch = result.Boolean == null && result.Double == null && result.PostOrganizationsByOrganizationIdVariablesRequestValueMember1 == null && result.PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4 == null && result.String == null;
+            if (noSelectedUnionBranch && matchesUnionBranch0 && matchingUnionBranches == 1) result.PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4(), parseNode);
             if (result.Boolean == null && result.Double == null && result.PostOrganizationsByOrganizationIdVariablesRequestValueMember1 == null && result.PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4 == null && result.String == null) result.UnrecognizedValue = unionPayload;
 return result;
         }
@@ -84,6 +88,8 @@ return result;
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
+            if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawFields) { var fields = new global::System.Collections.Generic.Dictionary<string, global::System.Action<IParseNode>>(); foreach (var entry in rawFields.GetValue()) fields[entry.Key] = _ => { }; return fields; }
+
             if(PostOrganizationsByOrganizationIdVariablesRequestValueMember1 != null)
             {
                 return PostOrganizationsByOrganizationIdVariablesRequestValueMember1.GetFieldDeserializers();
@@ -102,7 +108,13 @@ return result;
         {
             if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
             if (Boolean == null && Double == null && PostOrganizationsByOrganizationIdVariablesRequestValueMember1 == null && PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4 == null && String == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
-            if (PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4 != null && Boolean == null && Double == null && PostOrganizationsByOrganizationIdVariablesRequestValueMember1 == null && String == null) { if (PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4); return; }
+            int selectedUnionBranches = 0;
+            if (Boolean != null) selectedUnionBranches++;
+            if (Double != null) selectedUnionBranches++;
+            if (PostOrganizationsByOrganizationIdVariablesRequestValueMember1 != null) selectedUnionBranches++;
+            if (PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4 != null) selectedUnionBranches++;
+            if (String != null) selectedUnionBranches++;
+            if (PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4 != null && selectedUnionBranches == 1) { if (PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostOrganizationsByOrganizationIdVariablesRequestValueOneOf4); return; }
 
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(PostOrganizationsByOrganizationIdVariablesRequestValueMember1 != null)

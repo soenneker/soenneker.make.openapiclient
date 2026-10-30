@@ -17,17 +17,19 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("unreadNotifications") is { } nullNodeUnreadNotifications && nullNodeUnreadNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UnreadNotifications = null;
-            if (parseNode.GetChildNode("zoneId") is { } nullNodeZoneId && nullNodeZoneId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ZoneId = null;
+            if (parseNode.GetChildNode("unreadNotifications") is null) { _explicitNullValueUnreadNotifications = default!; _explicitNullProperties?.Remove("unreadNotifications"); }
+            else if (parseNode.GetChildNode("unreadNotifications") is { } nullNodeUnreadNotifications && nullNodeUnreadNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UnreadNotifications = null;
+            if (parseNode.GetChildNode("zoneId") is null) { _explicitNullValueZoneId = default!; _explicitNullProperties?.Remove("zoneId"); }
+            else if (parseNode.GetChildNode("zoneId") is { } nullNodeZoneId && nullNodeZoneId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ZoneId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The unreadNotifications property</summary>
-        public int? UnreadNotifications { get => _explicitNullValueUnreadNotifications; set { _explicitNullValueUnreadNotifications = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unreadNotifications"); else _explicitNullProperties?.Remove("unreadNotifications"); } }
+        public int? UnreadNotifications { get => _explicitNullValueUnreadNotifications; set { _explicitNullValueUnreadNotifications = value; AdditionalData?.Remove("unreadNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unreadNotifications"); else _explicitNullProperties?.Remove("unreadNotifications"); } }
         private int? _explicitNullValueUnreadNotifications = default!;
         /// <summary>The zoneId property</summary>
-        public int? ZoneId { get => _explicitNullValueZoneId; set { _explicitNullValueZoneId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("zoneId"); else _explicitNullProperties?.Remove("zoneId"); } }
+        public int? ZoneId { get => _explicitNullValueZoneId; set { _explicitNullValueZoneId = value; AdditionalData?.Remove("zoneId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("zoneId"); else _explicitNullProperties?.Remove("zoneId"); } }
         private int? _explicitNullValueZoneId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem"/> and sets the default values.

@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("catalogId") is { } nullNodeCatalogId && nullNodeCatalogId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CatalogId = null;
-            if (parseNode.GetChildNode("catalogStatus") is { } nullNodeCatalogStatus && nullNodeCatalogStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CatalogStatus = null;
-            if (parseNode.GetChildNode("endpoints") is { } nullNodeEndpoints && nullNodeEndpoints.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Endpoints = null;
+            if (parseNode.GetChildNode("catalogId") is null) { _explicitNullValueCatalogId = default!; _explicitNullProperties?.Remove("catalogId"); }
+            else if (parseNode.GetChildNode("catalogId") is { } nullNodeCatalogId && nullNodeCatalogId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CatalogId = null;
+            if (parseNode.GetChildNode("catalogStatus") is null) { _explicitNullValueCatalogStatus = default!; _explicitNullProperties?.Remove("catalogStatus"); }
+            else if (parseNode.GetChildNode("catalogStatus") is { } nullNodeCatalogStatus && nullNodeCatalogStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CatalogStatus = null;
+            if (parseNode.GetChildNode("endpoints") is null) { _explicitNullValueEndpoints = default!; _explicitNullProperties?.Remove("endpoints"); }
+            else if (parseNode.GetChildNode("endpoints") is { } nullNodeEndpoints && nullNodeEndpoints.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Endpoints = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,24 +30,24 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Immutable SDK-version and SHA-256 identifier selected for this editor session.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CatalogId { get => _explicitNullValueCatalogId; set { _explicitNullValueCatalogId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("catalogId"); else _explicitNullProperties?.Remove("catalogId"); } }
+        public string? CatalogId { get => _explicitNullValueCatalogId; set { _explicitNullValueCatalogId = value; AdditionalData?.Remove("catalogId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("catalogId"); else _explicitNullProperties?.Remove("catalogId"); } }
         private string? _explicitNullValueCatalogId = default!;
 #nullable restore
 #else
-        public string CatalogId { get => _explicitNullValueCatalogId; set { _explicitNullValueCatalogId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("catalogId"); else _explicitNullProperties?.Remove("catalogId"); } }
+        public string CatalogId { get => _explicitNullValueCatalogId; set { _explicitNullValueCatalogId = value; AdditionalData?.Remove("catalogId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("catalogId"); else _explicitNullProperties?.Remove("catalogId"); } }
         private string _explicitNullValueCatalogId = default!;
 #endif
         /// <summary>The catalogStatus property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseCatalogStatus? CatalogStatus { get => _explicitNullValueCatalogStatus; set { _explicitNullValueCatalogStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("catalogStatus"); else _explicitNullProperties?.Remove("catalogStatus"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseCatalogStatus? CatalogStatus { get => _explicitNullValueCatalogStatus; set { _explicitNullValueCatalogStatus = value; AdditionalData?.Remove("catalogStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("catalogStatus"); else _explicitNullProperties?.Remove("catalogStatus"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseCatalogStatus? _explicitNullValueCatalogStatus = default!;
         /// <summary>The endpoints property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItem>? Endpoints { get => _explicitNullValueEndpoints; set { _explicitNullValueEndpoints = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpoints"); else _explicitNullProperties?.Remove("endpoints"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItem>? Endpoints { get => _explicitNullValueEndpoints; set { _explicitNullValueEndpoints = value; AdditionalData?.Remove("endpoints"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpoints"); else _explicitNullProperties?.Remove("endpoints"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItem>? _explicitNullValueEndpoints = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItem> Endpoints { get => _explicitNullValueEndpoints; set { _explicitNullValueEndpoints = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpoints"); else _explicitNullProperties?.Remove("endpoints"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItem> Endpoints { get => _explicitNullValueEndpoints; set { _explicitNullValueEndpoints = value; AdditionalData?.Remove("endpoints"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpoints"); else _explicitNullProperties?.Remove("endpoints"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItem> _explicitNullValueEndpoints = default!;
 #endif
         /// <summary>
@@ -73,7 +76,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "catalogId", n => { CatalogId = n.GetStringValue(); } },
-                { "catalogStatus", n => { CatalogStatus = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseCatalogStatus>(); } },
+                { "catalogStatus", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseCatalogStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueCatalogStatus = default; _explicitNullProperties?.Remove("catalogStatus"); AdditionalData["catalogStatus"] = unknown; } else { CatalogStatus = parsed; AdditionalData.Remove("catalogStatus"); } } },
                 { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItem>(global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointTypes200ResponseEndpointsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }

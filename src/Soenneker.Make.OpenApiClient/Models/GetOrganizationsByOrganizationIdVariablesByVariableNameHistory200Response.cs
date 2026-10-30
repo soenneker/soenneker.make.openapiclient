@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("organizationVariableHistory") is { } nullNodeOrganizationVariableHistory && nullNodeOrganizationVariableHistory.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationVariableHistory = null;
+            if (parseNode.GetChildNode("organizationVariableHistory") is null) { _explicitNullValueOrganizationVariableHistory = default!; _explicitNullProperties?.Remove("organizationVariableHistory"); }
+            else if (parseNode.GetChildNode("organizationVariableHistory") is { } nullNodeOrganizationVariableHistory && nullNodeOrganizationVariableHistory.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationVariableHistory = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The organizationVariableHistory property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariablesByVariableNameHistory200ResponseOrganizationVariableHistoryItem>? OrganizationVariableHistory { get => _explicitNullValueOrganizationVariableHistory; set { _explicitNullValueOrganizationVariableHistory = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationVariableHistory"); else _explicitNullProperties?.Remove("organizationVariableHistory"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariablesByVariableNameHistory200ResponseOrganizationVariableHistoryItem>? OrganizationVariableHistory { get => _explicitNullValueOrganizationVariableHistory; set { _explicitNullValueOrganizationVariableHistory = value; AdditionalData?.Remove("organizationVariableHistory"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationVariableHistory"); else _explicitNullProperties?.Remove("organizationVariableHistory"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariablesByVariableNameHistory200ResponseOrganizationVariableHistoryItem>? _explicitNullValueOrganizationVariableHistory = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariablesByVariableNameHistory200ResponseOrganizationVariableHistoryItem> OrganizationVariableHistory { get => _explicitNullValueOrganizationVariableHistory; set { _explicitNullValueOrganizationVariableHistory = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationVariableHistory"); else _explicitNullProperties?.Remove("organizationVariableHistory"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariablesByVariableNameHistory200ResponseOrganizationVariableHistoryItem> OrganizationVariableHistory { get => _explicitNullValueOrganizationVariableHistory; set { _explicitNullValueOrganizationVariableHistory = value; AdditionalData?.Remove("organizationVariableHistory"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationVariableHistory"); else _explicitNullProperties?.Remove("organizationVariableHistory"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdVariablesByVariableNameHistory200ResponseOrganizationVariableHistoryItem> _explicitNullValueOrganizationVariableHistory = default!;
 #endif
         /// <summary>

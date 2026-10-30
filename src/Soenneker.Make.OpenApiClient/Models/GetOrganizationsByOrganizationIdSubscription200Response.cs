@@ -17,31 +17,35 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("isSubscriptionPaused") is { } nullNodeIsSubscriptionPaused && nullNodeIsSubscriptionPaused.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsSubscriptionPaused = null;
-            if (parseNode.GetChildNode("pauseEndsAt") is { } nullNodePauseEndsAt && nullNodePauseEndsAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PauseEndsAt = null;
-            if (parseNode.GetChildNode("pauseStartsAt") is { } nullNodePauseStartsAt && nullNodePauseStartsAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PauseStartsAt = null;
-            if (parseNode.GetChildNode("product") is { } nullNodeProduct && nullNodeProduct.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Product = null;
+            if (parseNode.GetChildNode("isSubscriptionPaused") is null) { _explicitNullValueIsSubscriptionPaused = default!; _explicitNullProperties?.Remove("isSubscriptionPaused"); }
+            else if (parseNode.GetChildNode("isSubscriptionPaused") is { } nullNodeIsSubscriptionPaused && nullNodeIsSubscriptionPaused.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsSubscriptionPaused = null;
+            if (parseNode.GetChildNode("pauseEndsAt") is null) { _explicitNullValuePauseEndsAt = default!; _explicitNullProperties?.Remove("pauseEndsAt"); }
+            else if (parseNode.GetChildNode("pauseEndsAt") is { } nullNodePauseEndsAt && nullNodePauseEndsAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PauseEndsAt = null;
+            if (parseNode.GetChildNode("pauseStartsAt") is null) { _explicitNullValuePauseStartsAt = default!; _explicitNullProperties?.Remove("pauseStartsAt"); }
+            else if (parseNode.GetChildNode("pauseStartsAt") is { } nullNodePauseStartsAt && nullNodePauseStartsAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PauseStartsAt = null;
+            if (parseNode.GetChildNode("product") is null) { _explicitNullValueProduct = default!; _explicitNullProperties?.Remove("product"); }
+            else if (parseNode.GetChildNode("product") is { } nullNodeProduct && nullNodeProduct.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Product = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>True while the pause is in effect (subscription.pause_applied is true).</summary>
-        public bool? IsSubscriptionPaused { get => _explicitNullValueIsSubscriptionPaused; set { _explicitNullValueIsSubscriptionPaused = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isSubscriptionPaused"); else _explicitNullProperties?.Remove("isSubscriptionPaused"); } }
+        public bool? IsSubscriptionPaused { get => _explicitNullValueIsSubscriptionPaused; set { _explicitNullValueIsSubscriptionPaused = value; AdditionalData?.Remove("isSubscriptionPaused"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isSubscriptionPaused"); else _explicitNullProperties?.Remove("isSubscriptionPaused"); } }
         private bool? _explicitNullValueIsSubscriptionPaused = default!;
         /// <summary>Scheduled auto-resume date. Null when not paused.</summary>
-        public DateTimeOffset? PauseEndsAt { get => _explicitNullValuePauseEndsAt; set { _explicitNullValuePauseEndsAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pauseEndsAt"); else _explicitNullProperties?.Remove("pauseEndsAt"); } }
+        public DateTimeOffset? PauseEndsAt { get => _explicitNullValuePauseEndsAt; set { _explicitNullValuePauseEndsAt = value; AdditionalData?.Remove("pauseEndsAt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pauseEndsAt"); else _explicitNullProperties?.Remove("pauseEndsAt"); } }
         private DateTimeOffset? _explicitNullValuePauseEndsAt = default!;
         /// <summary>When the pause becomes effective (end of the current paid period). Null when not paused.</summary>
-        public DateTimeOffset? PauseStartsAt { get => _explicitNullValuePauseStartsAt; set { _explicitNullValuePauseStartsAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pauseStartsAt"); else _explicitNullProperties?.Remove("pauseStartsAt"); } }
+        public DateTimeOffset? PauseStartsAt { get => _explicitNullValuePauseStartsAt; set { _explicitNullValuePauseStartsAt = value; AdditionalData?.Remove("pauseStartsAt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pauseStartsAt"); else _explicitNullProperties?.Remove("pauseStartsAt"); } }
         private DateTimeOffset? _explicitNullValuePauseStartsAt = default!;
         /// <summary>The product property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscription200ResponseProduct? Product { get => _explicitNullValueProduct; set { _explicitNullValueProduct = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("product"); else _explicitNullProperties?.Remove("product"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscription200ResponseProduct? Product { get => _explicitNullValueProduct; set { _explicitNullValueProduct = value; AdditionalData?.Remove("product"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("product"); else _explicitNullProperties?.Remove("product"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscription200ResponseProduct? _explicitNullValueProduct = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscription200ResponseProduct Product { get => _explicitNullValueProduct; set { _explicitNullValueProduct = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("product"); else _explicitNullProperties?.Remove("product"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscription200ResponseProduct Product { get => _explicitNullValueProduct; set { _explicitNullValueProduct = value; AdditionalData?.Remove("product"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("product"); else _explicitNullProperties?.Remove("product"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdSubscription200ResponseProduct _explicitNullValueProduct = default!;
 #endif
         /// <summary>

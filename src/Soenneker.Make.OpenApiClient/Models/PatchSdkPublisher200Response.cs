@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("publisher") is { } nullNodePublisher && nullNodePublisher.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Publisher = null;
+            if (parseNode.GetChildNode("publisher") is null) { _explicitNullValuePublisher = default!; _explicitNullProperties?.Remove("publisher"); }
+            else if (parseNode.GetChildNode("publisher") is { } nullNodePublisher && nullNodePublisher.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Publisher = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Account-level publisher profile of an SDK app developer (&quot;App developer contact&quot;). One profile per user; its values appear on the landing pages of all apps the user publishes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisher? Publisher { get => _explicitNullValuePublisher; set { _explicitNullValuePublisher = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publisher"); else _explicitNullProperties?.Remove("publisher"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisher? Publisher { get => _explicitNullValuePublisher; set { _explicitNullValuePublisher = value; AdditionalData?.Remove("publisher"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publisher"); else _explicitNullProperties?.Remove("publisher"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisher? _explicitNullValuePublisher = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisher Publisher { get => _explicitNullValuePublisher; set { _explicitNullValuePublisher = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publisher"); else _explicitNullProperties?.Remove("publisher"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisher Publisher { get => _explicitNullValuePublisher; set { _explicitNullValuePublisher = value; AdditionalData?.Remove("publisher"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publisher"); else _explicitNullProperties?.Remove("publisher"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200ResponsePublisher _explicitNullValuePublisher = default!;
 #endif
         /// <summary>

@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("form") is { } nullNodeForm && nullNodeForm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Form = null;
+            if (parseNode.GetChildNode("form") is null) { _explicitNullValueForm = default!; _explicitNullProperties?.Remove("form"); }
+            else if (parseNode.GetChildNode("form") is { } nullNodeForm && nullNodeForm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Form = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The form property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionReviewForm200ResponseForm? Form { get => _explicitNullValueForm; set { _explicitNullValueForm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("form"); else _explicitNullProperties?.Remove("form"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionReviewForm200ResponseForm? Form { get => _explicitNullValueForm; set { _explicitNullValueForm = value; AdditionalData?.Remove("form"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("form"); else _explicitNullProperties?.Remove("form"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionReviewForm200ResponseForm? _explicitNullValueForm = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionReviewForm200ResponseForm Form { get => _explicitNullValueForm; set { _explicitNullValueForm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("form"); else _explicitNullProperties?.Remove("form"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionReviewForm200ResponseForm Form { get => _explicitNullValueForm; set { _explicitNullValueForm = value; AdditionalData?.Remove("form"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("form"); else _explicitNullProperties?.Remove("form"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionReviewForm200ResponseForm _explicitNullValueForm = default!;
 #endif
         /// <summary>

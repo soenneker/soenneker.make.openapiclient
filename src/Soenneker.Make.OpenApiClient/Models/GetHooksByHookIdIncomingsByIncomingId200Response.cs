@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("incoming") is { } nullNodeIncoming && nullNodeIncoming.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Incoming = null;
+            if (parseNode.GetChildNode("incoming") is null) { _explicitNullValueIncoming = default!; _explicitNullProperties?.Remove("incoming"); }
+            else if (parseNode.GetChildNode("incoming") is { } nullNodeIncoming && nullNodeIncoming.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Incoming = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The incoming property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomingsByIncomingId200ResponseIncoming? Incoming { get => _explicitNullValueIncoming; set { _explicitNullValueIncoming = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incoming"); else _explicitNullProperties?.Remove("incoming"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomingsByIncomingId200ResponseIncoming? Incoming { get => _explicitNullValueIncoming; set { _explicitNullValueIncoming = value; AdditionalData?.Remove("incoming"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incoming"); else _explicitNullProperties?.Remove("incoming"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomingsByIncomingId200ResponseIncoming? _explicitNullValueIncoming = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomingsByIncomingId200ResponseIncoming Incoming { get => _explicitNullValueIncoming; set { _explicitNullValueIncoming = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incoming"); else _explicitNullProperties?.Remove("incoming"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomingsByIncomingId200ResponseIncoming Incoming { get => _explicitNullValueIncoming; set { _explicitNullValueIncoming = value; AdditionalData?.Remove("incoming"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incoming"); else _explicitNullProperties?.Remove("incoming"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomingsByIncomingId200ResponseIncoming _explicitNullValueIncoming = default!;
 #endif
         /// <summary>

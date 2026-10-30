@@ -17,11 +17,16 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("executionLink") is { } nullNodeExecutionLink && nullNodeExecutionLink.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionLink = null;
-            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
-            if (parseNode.GetChildNode("result") is { } nullNodeResult && nullNodeResult.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Result = null;
-            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
-            if (parseNode.GetChildNode("toolType") is { } nullNodeToolType && nullNodeToolType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ToolType = null;
+            if (parseNode.GetChildNode("executionLink") is null) { _explicitNullValueExecutionLink = default!; _explicitNullProperties?.Remove("executionLink"); }
+            else if (parseNode.GetChildNode("executionLink") is { } nullNodeExecutionLink && nullNodeExecutionLink.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionLink = null;
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("result") is null) { _explicitNullValueResult = default!; _explicitNullProperties?.Remove("result"); }
+            else if (parseNode.GetChildNode("result") is { } nullNodeResult && nullNodeResult.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Result = null;
+            if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
+            else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("toolType") is null) { _explicitNullValueToolType = default!; _explicitNullProperties?.Remove("toolType"); }
+            else if (parseNode.GetChildNode("toolType") is { } nullNodeToolType && nullNodeToolType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ToolType = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -29,38 +34,38 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The executionLink property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExecutionLink { get => _explicitNullValueExecutionLink; set { _explicitNullValueExecutionLink = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionLink"); else _explicitNullProperties?.Remove("executionLink"); } }
+        public string? ExecutionLink { get => _explicitNullValueExecutionLink; set { _explicitNullValueExecutionLink = value; AdditionalData?.Remove("executionLink"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionLink"); else _explicitNullProperties?.Remove("executionLink"); } }
         private string? _explicitNullValueExecutionLink = default!;
 #nullable restore
 #else
-        public string ExecutionLink { get => _explicitNullValueExecutionLink; set { _explicitNullValueExecutionLink = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionLink"); else _explicitNullProperties?.Remove("executionLink"); } }
+        public string ExecutionLink { get => _explicitNullValueExecutionLink; set { _explicitNullValueExecutionLink = value; AdditionalData?.Remove("executionLink"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionLink"); else _explicitNullProperties?.Remove("executionLink"); } }
         private string _explicitNullValueExecutionLink = default!;
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
         /// <summary>The result property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Result { get => _explicitNullValueResult; set { _explicitNullValueResult = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("result"); else _explicitNullProperties?.Remove("result"); } }
+        public UntypedNode? Result { get => _explicitNullValueResult; set { _explicitNullValueResult = value; AdditionalData?.Remove("result"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("result"); else _explicitNullProperties?.Remove("result"); } }
         private UntypedNode? _explicitNullValueResult = default!;
 #nullable restore
 #else
-        public UntypedNode Result { get => _explicitNullValueResult; set { _explicitNullValueResult = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("result"); else _explicitNullProperties?.Remove("result"); } }
+        public UntypedNode Result { get => _explicitNullValueResult; set { _explicitNullValueResult = value; AdditionalData?.Remove("result"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("result"); else _explicitNullProperties?.Remove("result"); } }
         private UntypedNode _explicitNullValueResult = default!;
 #endif
         /// <summary>The status property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseStatus? _explicitNullValueStatus = default!;
         /// <summary>The toolType property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseToolType? ToolType { get => _explicitNullValueToolType; set { _explicitNullValueToolType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("toolType"); else _explicitNullProperties?.Remove("toolType"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseToolType? ToolType { get => _explicitNullValueToolType; set { _explicitNullValueToolType = value; AdditionalData?.Remove("toolType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("toolType"); else _explicitNullProperties?.Remove("toolType"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseToolType? _explicitNullValueToolType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponse"/> and sets the default values.
@@ -90,8 +95,8 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "executionLink", n => { ExecutionLink = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "result", n => { Result = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseStatus>(); } },
-                { "toolType", n => { ToolType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseToolType>(); } },
+                { "status", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueStatus = default; _explicitNullProperties?.Remove("status"); AdditionalData["status"] = unknown; } else { Status = parsed; AdditionalData.Remove("status"); } } },
+                { "toolType", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseToolType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueToolType = default; _explicitNullProperties?.Remove("toolType"); AdditionalData["toolType"] = unknown; } else { ToolType = parsed; AdditionalData.Remove("toolType"); } } },
             };
         }
         /// <summary>

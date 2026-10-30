@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("userTeamNotification") is { } nullNodeUserTeamNotification && nullNodeUserTeamNotification.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserTeamNotification = null;
+            if (parseNode.GetChildNode("userTeamNotification") is null) { _explicitNullValueUserTeamNotification = default!; _explicitNullProperties?.Remove("userTeamNotification"); }
+            else if (parseNode.GetChildNode("userTeamNotification") is { } nullNodeUserTeamNotification && nullNodeUserTeamNotification.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserTeamNotification = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The userTeamNotification property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PutUsersUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification? UserTeamNotification { get => _explicitNullValueUserTeamNotification; set { _explicitNullValueUserTeamNotification = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userTeamNotification"); else _explicitNullProperties?.Remove("userTeamNotification"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PutUsersUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification? UserTeamNotification { get => _explicitNullValueUserTeamNotification; set { _explicitNullValueUserTeamNotification = value; AdditionalData?.Remove("userTeamNotification"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userTeamNotification"); else _explicitNullProperties?.Remove("userTeamNotification"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PutUsersUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification? _explicitNullValueUserTeamNotification = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PutUsersUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification UserTeamNotification { get => _explicitNullValueUserTeamNotification; set { _explicitNullValueUserTeamNotification = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userTeamNotification"); else _explicitNullProperties?.Remove("userTeamNotification"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PutUsersUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification UserTeamNotification { get => _explicitNullValueUserTeamNotification; set { _explicitNullValueUserTeamNotification = value; AdditionalData?.Remove("userTeamNotification"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userTeamNotification"); else _explicitNullProperties?.Remove("userTeamNotification"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PutUsersUserTeamNotificationsByTeamIdByNotificationId200ResponseUserTeamNotification _explicitNullValueUserTeamNotification = default!;
 #endif
         /// <summary>

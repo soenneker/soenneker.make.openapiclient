@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("teamVariables") is { } nullNodeTeamVariables && nullNodeTeamVariables.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamVariables = null;
+            if (parseNode.GetChildNode("teamVariables") is null) { _explicitNullValueTeamVariables = default!; _explicitNullProperties?.Remove("teamVariables"); }
+            else if (parseNode.GetChildNode("teamVariables") is { } nullNodeTeamVariables && nullNodeTeamVariables.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamVariables = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The teamVariables property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200ResponseTeamVariables? TeamVariables { get => _explicitNullValueTeamVariables; set { _explicitNullValueTeamVariables = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamVariables"); else _explicitNullProperties?.Remove("teamVariables"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200ResponseTeamVariables? TeamVariables { get => _explicitNullValueTeamVariables; set { _explicitNullValueTeamVariables = value; AdditionalData?.Remove("teamVariables"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamVariables"); else _explicitNullProperties?.Remove("teamVariables"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200ResponseTeamVariables? _explicitNullValueTeamVariables = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200ResponseTeamVariables TeamVariables { get => _explicitNullValueTeamVariables; set { _explicitNullValueTeamVariables = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamVariables"); else _explicitNullProperties?.Remove("teamVariables"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200ResponseTeamVariables TeamVariables { get => _explicitNullValueTeamVariables; set { _explicitNullValueTeamVariables = value; AdditionalData?.Remove("teamVariables"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamVariables"); else _explicitNullProperties?.Remove("teamVariables"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariables200ResponseTeamVariables _explicitNullValueTeamVariables = default!;
 #endif
         /// <summary>

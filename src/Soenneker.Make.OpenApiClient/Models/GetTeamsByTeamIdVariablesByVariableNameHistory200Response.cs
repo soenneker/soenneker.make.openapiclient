@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("teamVariableHistory") is { } nullNodeTeamVariableHistory && nullNodeTeamVariableHistory.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamVariableHistory = null;
+            if (parseNode.GetChildNode("teamVariableHistory") is null) { _explicitNullValueTeamVariableHistory = default!; _explicitNullProperties?.Remove("teamVariableHistory"); }
+            else if (parseNode.GetChildNode("teamVariableHistory") is { } nullNodeTeamVariableHistory && nullNodeTeamVariableHistory.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamVariableHistory = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The teamVariableHistory property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem>? TeamVariableHistory { get => _explicitNullValueTeamVariableHistory; set { _explicitNullValueTeamVariableHistory = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamVariableHistory"); else _explicitNullProperties?.Remove("teamVariableHistory"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem>? TeamVariableHistory { get => _explicitNullValueTeamVariableHistory; set { _explicitNullValueTeamVariableHistory = value; AdditionalData?.Remove("teamVariableHistory"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamVariableHistory"); else _explicitNullProperties?.Remove("teamVariableHistory"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem>? _explicitNullValueTeamVariableHistory = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem> TeamVariableHistory { get => _explicitNullValueTeamVariableHistory; set { _explicitNullValueTeamVariableHistory = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamVariableHistory"); else _explicitNullProperties?.Remove("teamVariableHistory"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem> TeamVariableHistory { get => _explicitNullValueTeamVariableHistory; set { _explicitNullValueTeamVariableHistory = value; AdditionalData?.Remove("teamVariableHistory"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamVariableHistory"); else _explicitNullProperties?.Remove("teamVariableHistory"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdVariablesByVariableNameHistory200ResponseTeamVariableHistoryItem> _explicitNullValueTeamVariableHistory = default!;
 #endif
         /// <summary>

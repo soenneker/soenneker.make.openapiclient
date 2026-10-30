@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("apiToken") is { } nullNodeApiToken && nullNodeApiToken.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApiToken = null;
+            if (parseNode.GetChildNode("apiToken") is null) { _explicitNullValueApiToken = default!; _explicitNullProperties?.Remove("apiToken"); }
+            else if (parseNode.GetChildNode("apiToken") is { } nullNodeApiToken && nullNodeApiToken.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApiToken = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The apiToken property</summary>
-        public DateTimeOffset? ApiToken { get => _explicitNullValueApiToken; set { _explicitNullValueApiToken = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apiToken"); else _explicitNullProperties?.Remove("apiToken"); } }
+        public DateTimeOffset? ApiToken { get => _explicitNullValueApiToken; set { _explicitNullValueApiToken = value; AdditionalData?.Remove("apiToken"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apiToken"); else _explicitNullProperties?.Remove("apiToken"); } }
         private DateTimeOffset? _explicitNullValueApiToken = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp200Response"/> and sets the default values.

@@ -17,50 +17,57 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("attemptedAt") is { } nullNodeAttemptedAt && nullNodeAttemptedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AttemptedAt = null;
-            if (parseNode.GetChildNode("attemptNumber") is { } nullNodeAttemptNumber && nullNodeAttemptNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AttemptNumber = null;
-            if (parseNode.GetChildNode("durationMs") is { } nullNodeDurationMs && nullNodeDurationMs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DurationMs = null;
-            if (parseNode.GetChildNode("manual") is { } nullNodeManual && nullNodeManual.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Manual = null;
-            if (parseNode.GetChildNode("responseBody") is { } nullNodeResponseBody && nullNodeResponseBody.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResponseBody = null;
-            if (parseNode.GetChildNode("responseBodyTruncated") is { } nullNodeResponseBodyTruncated && nullNodeResponseBodyTruncated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResponseBodyTruncated = null;
-            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("attemptedAt") is null) { _explicitNullValueAttemptedAt = default!; _explicitNullProperties?.Remove("attemptedAt"); }
+            else if (parseNode.GetChildNode("attemptedAt") is { } nullNodeAttemptedAt && nullNodeAttemptedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AttemptedAt = null;
+            if (parseNode.GetChildNode("attemptNumber") is null) { _explicitNullValueAttemptNumber = default!; _explicitNullProperties?.Remove("attemptNumber"); }
+            else if (parseNode.GetChildNode("attemptNumber") is { } nullNodeAttemptNumber && nullNodeAttemptNumber.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AttemptNumber = null;
+            if (parseNode.GetChildNode("durationMs") is null) { _explicitNullValueDurationMs = default!; _explicitNullProperties?.Remove("durationMs"); }
+            else if (parseNode.GetChildNode("durationMs") is { } nullNodeDurationMs && nullNodeDurationMs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DurationMs = null;
+            if (parseNode.GetChildNode("manual") is null) { _explicitNullValueManual = default!; _explicitNullProperties?.Remove("manual"); }
+            else if (parseNode.GetChildNode("manual") is { } nullNodeManual && nullNodeManual.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Manual = null;
+            if (parseNode.GetChildNode("responseBody") is null) { _explicitNullValueResponseBody = default!; _explicitNullProperties?.Remove("responseBody"); }
+            else if (parseNode.GetChildNode("responseBody") is { } nullNodeResponseBody && nullNodeResponseBody.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResponseBody = null;
+            if (parseNode.GetChildNode("responseBodyTruncated") is null) { _explicitNullValueResponseBodyTruncated = default!; _explicitNullProperties?.Remove("responseBodyTruncated"); }
+            else if (parseNode.GetChildNode("responseBodyTruncated") is { } nullNodeResponseBodyTruncated && nullNodeResponseBodyTruncated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResponseBodyTruncated = null;
+            if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
+            else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The attemptedAt property</summary>
-        public DateTimeOffset? AttemptedAt { get => _explicitNullValueAttemptedAt; set { _explicitNullValueAttemptedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("attemptedAt"); else _explicitNullProperties?.Remove("attemptedAt"); } }
+        public DateTimeOffset? AttemptedAt { get => _explicitNullValueAttemptedAt; set { _explicitNullValueAttemptedAt = value; AdditionalData?.Remove("attemptedAt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("attemptedAt"); else _explicitNullProperties?.Remove("attemptedAt"); } }
         private DateTimeOffset? _explicitNullValueAttemptedAt = default!;
         /// <summary>The attemptNumber property</summary>
-        public int? AttemptNumber { get => _explicitNullValueAttemptNumber; set { _explicitNullValueAttemptNumber = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("attemptNumber"); else _explicitNullProperties?.Remove("attemptNumber"); } }
+        public int? AttemptNumber { get => _explicitNullValueAttemptNumber; set { _explicitNullValueAttemptNumber = value; AdditionalData?.Remove("attemptNumber"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("attemptNumber"); else _explicitNullProperties?.Remove("attemptNumber"); } }
         private int? _explicitNullValueAttemptNumber = default!;
         /// <summary>The durationMs property</summary>
-        public int? DurationMs { get => _explicitNullValueDurationMs; set { _explicitNullValueDurationMs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("durationMs"); else _explicitNullProperties?.Remove("durationMs"); } }
+        public int? DurationMs { get => _explicitNullValueDurationMs; set { _explicitNullValueDurationMs = value; AdditionalData?.Remove("durationMs"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("durationMs"); else _explicitNullProperties?.Remove("durationMs"); } }
         private int? _explicitNullValueDurationMs = default!;
         /// <summary>`true` for an attempt started by Resend a delivery.</summary>
-        public bool? Manual { get => _explicitNullValueManual; set { _explicitNullValueManual = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("manual"); else _explicitNullProperties?.Remove("manual"); } }
+        public bool? Manual { get => _explicitNullValueManual; set { _explicitNullValueManual = value; AdditionalData?.Remove("manual"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("manual"); else _explicitNullProperties?.Remove("manual"); } }
         private bool? _explicitNullValueManual = default!;
         /// <summary>The endpoint&apos;s response, cut off at 4 KiB. It comes from the endpoint, so treat it as untrusted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ResponseBody { get => _explicitNullValueResponseBody; set { _explicitNullValueResponseBody = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responseBody"); else _explicitNullProperties?.Remove("responseBody"); } }
+        public string? ResponseBody { get => _explicitNullValueResponseBody; set { _explicitNullValueResponseBody = value; AdditionalData?.Remove("responseBody"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responseBody"); else _explicitNullProperties?.Remove("responseBody"); } }
         private string? _explicitNullValueResponseBody = default!;
 #nullable restore
 #else
-        public string ResponseBody { get => _explicitNullValueResponseBody; set { _explicitNullValueResponseBody = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responseBody"); else _explicitNullProperties?.Remove("responseBody"); } }
+        public string ResponseBody { get => _explicitNullValueResponseBody; set { _explicitNullValueResponseBody = value; AdditionalData?.Remove("responseBody"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responseBody"); else _explicitNullProperties?.Remove("responseBody"); } }
         private string _explicitNullValueResponseBody = default!;
 #endif
         /// <summary>The responseBodyTruncated property</summary>
-        public bool? ResponseBodyTruncated { get => _explicitNullValueResponseBodyTruncated; set { _explicitNullValueResponseBodyTruncated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responseBodyTruncated"); else _explicitNullProperties?.Remove("responseBodyTruncated"); } }
+        public bool? ResponseBodyTruncated { get => _explicitNullValueResponseBodyTruncated; set { _explicitNullValueResponseBodyTruncated = value; AdditionalData?.Remove("responseBodyTruncated"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responseBodyTruncated"); else _explicitNullProperties?.Remove("responseBodyTruncated"); } }
         private bool? _explicitNullValueResponseBodyTruncated = default!;
         /// <summary>The status property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryAttemptsItemStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryAttemptsItemStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryAttemptsItemStatus? _explicitNullValueStatus = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryAttemptsItemStatus Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryAttemptsItemStatus Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryAttemptsItemStatus _explicitNullValueStatus = default!;
 #endif
         /// <summary>

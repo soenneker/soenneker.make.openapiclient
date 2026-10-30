@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("error") is { } nullNodeError && nullNodeError.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Error = null;
-            if (parseNode.GetChildNode("outgoings") is { } nullNodeOutgoings && nullNodeOutgoings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Outgoings = null;
+            if (parseNode.GetChildNode("error") is null) { _explicitNullValueError = default!; _explicitNullProperties?.Remove("error"); }
+            else if (parseNode.GetChildNode("error") is { } nullNodeError && nullNodeError.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Error = null;
+            if (parseNode.GetChildNode("outgoings") is null) { _explicitNullValueOutgoings = default!; _explicitNullProperties?.Remove("outgoings"); }
+            else if (parseNode.GetChildNode("outgoings") is { } nullNodeOutgoings && nullNodeOutgoings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Outgoings = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The error property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.DeleteDevicesByDeviceIdOutgoings200ResponseError? Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.DeleteDevicesByDeviceIdOutgoings200ResponseError? Error { get => _explicitNullValueError; set { _explicitNullValueError = value; AdditionalData?.Remove("error"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
         private global::Soenneker.Make.OpenApiClient.Models.DeleteDevicesByDeviceIdOutgoings200ResponseError? _explicitNullValueError = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.DeleteDevicesByDeviceIdOutgoings200ResponseError Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.DeleteDevicesByDeviceIdOutgoings200ResponseError Error { get => _explicitNullValueError; set { _explicitNullValueError = value; AdditionalData?.Remove("error"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
         private global::Soenneker.Make.OpenApiClient.Models.DeleteDevicesByDeviceIdOutgoings200ResponseError _explicitNullValueError = default!;
 #endif
         /// <summary>The outgoings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Outgoings { get => _explicitNullValueOutgoings; set { _explicitNullValueOutgoings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outgoings"); else _explicitNullProperties?.Remove("outgoings"); } }
+        public List<string>? Outgoings { get => _explicitNullValueOutgoings; set { _explicitNullValueOutgoings = value; AdditionalData?.Remove("outgoings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outgoings"); else _explicitNullProperties?.Remove("outgoings"); } }
         private List<string>? _explicitNullValueOutgoings = default!;
 #nullable restore
 #else
-        public List<string> Outgoings { get => _explicitNullValueOutgoings; set { _explicitNullValueOutgoings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outgoings"); else _explicitNullProperties?.Remove("outgoings"); } }
+        public List<string> Outgoings { get => _explicitNullValueOutgoings; set { _explicitNullValueOutgoings = value; AdditionalData?.Remove("outgoings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outgoings"); else _explicitNullProperties?.Remove("outgoings"); } }
         private List<string> _explicitNullValueOutgoings = default!;
 #endif
         /// <summary>

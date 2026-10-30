@@ -18,15 +18,24 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("authorName") is { } nullNodeAuthorName && nullNodeAuthorName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AuthorName = null;
-            if (parseNode.GetChildNode("companyName") is { } nullNodeCompanyName && nullNodeCompanyName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CompanyName = null;
-            if (parseNode.GetChildNode("contactEmail") is { } nullNodeContactEmail && nullNodeContactEmail.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ContactEmail = null;
-            if (parseNode.GetChildNode("createdAt") is { } nullNodeCreatedAt && nullNodeCreatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedAt = null;
-            if (parseNode.GetChildNode("hasLogo") is { } nullNodeHasLogo && nullNodeHasLogo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasLogo = null;
-            if (parseNode.GetChildNode("logoFilename") is { } nullNodeLogoFilename && nullNodeLogoFilename.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LogoFilename = null;
-            if (parseNode.GetChildNode("partnerType") is { } nullNodePartnerType && nullNodePartnerType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PartnerType = null;
-            if (parseNode.GetChildNode("updatedAt") is { } nullNodeUpdatedAt && nullNodeUpdatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedAt = null;
-            if (parseNode.GetChildNode("userId") is { } nullNodeUserId && nullNodeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserId = null;
+            if (parseNode.GetChildNode("authorName") is null) { _explicitNullValueAuthorName = default!; _explicitNullProperties?.Remove("authorName"); }
+            else if (parseNode.GetChildNode("authorName") is { } nullNodeAuthorName && nullNodeAuthorName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AuthorName = null;
+            if (parseNode.GetChildNode("companyName") is null) { _explicitNullValueCompanyName = default!; _explicitNullProperties?.Remove("companyName"); }
+            else if (parseNode.GetChildNode("companyName") is { } nullNodeCompanyName && nullNodeCompanyName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CompanyName = null;
+            if (parseNode.GetChildNode("contactEmail") is null) { _explicitNullValueContactEmail = default!; _explicitNullProperties?.Remove("contactEmail"); }
+            else if (parseNode.GetChildNode("contactEmail") is { } nullNodeContactEmail && nullNodeContactEmail.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ContactEmail = null;
+            if (parseNode.GetChildNode("createdAt") is null) { _explicitNullValueCreatedAt = default!; _explicitNullProperties?.Remove("createdAt"); }
+            else if (parseNode.GetChildNode("createdAt") is { } nullNodeCreatedAt && nullNodeCreatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedAt = null;
+            if (parseNode.GetChildNode("hasLogo") is null) { _explicitNullValueHasLogo = default!; _explicitNullProperties?.Remove("hasLogo"); }
+            else if (parseNode.GetChildNode("hasLogo") is { } nullNodeHasLogo && nullNodeHasLogo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasLogo = null;
+            if (parseNode.GetChildNode("logoFilename") is null) { _explicitNullValueLogoFilename = default!; _explicitNullProperties?.Remove("logoFilename"); }
+            else if (parseNode.GetChildNode("logoFilename") is { } nullNodeLogoFilename && nullNodeLogoFilename.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LogoFilename = null;
+            if (parseNode.GetChildNode("partnerType") is null) { _explicitNullValuePartnerType = default!; _explicitNullProperties?.Remove("partnerType"); }
+            else if (parseNode.GetChildNode("partnerType") is { } nullNodePartnerType && nullNodePartnerType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PartnerType = null;
+            if (parseNode.GetChildNode("updatedAt") is null) { _explicitNullValueUpdatedAt = default!; _explicitNullProperties?.Remove("updatedAt"); }
+            else if (parseNode.GetChildNode("updatedAt") is { } nullNodeUpdatedAt && nullNodeUpdatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedAt = null;
+            if (parseNode.GetChildNode("userId") is null) { _explicitNullValueUserId = default!; _explicitNullProperties?.Remove("userId"); }
+            else if (parseNode.GetChildNode("userId") is { } nullNodeUserId && nullNodeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -34,57 +43,57 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Author name shown as the publisher (non-partner variant).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AuthorName { get => _explicitNullValueAuthorName; set { _explicitNullValueAuthorName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorName"); else _explicitNullProperties?.Remove("authorName"); } }
+        public string? AuthorName { get => _explicitNullValueAuthorName; set { _explicitNullValueAuthorName = value; AdditionalData?.Remove("authorName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorName"); else _explicitNullProperties?.Remove("authorName"); } }
         private string? _explicitNullValueAuthorName = default!;
 #nullable restore
 #else
-        public string AuthorName { get => _explicitNullValueAuthorName; set { _explicitNullValueAuthorName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorName"); else _explicitNullProperties?.Remove("authorName"); } }
+        public string AuthorName { get => _explicitNullValueAuthorName; set { _explicitNullValueAuthorName = value; AdditionalData?.Remove("authorName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorName"); else _explicitNullProperties?.Remove("authorName"); } }
         private string _explicitNullValueAuthorName = default!;
 #endif
         /// <summary>Company (ISV) name shown as the publisher. For a Make partner it is the name their apps are published under, which the partner cannot change themselves — Make administrators set it through `PATCH /admin/sdk/apps/{app}/{version}/publisher`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CompanyName { get => _explicitNullValueCompanyName; set { _explicitNullValueCompanyName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("companyName"); else _explicitNullProperties?.Remove("companyName"); } }
+        public string? CompanyName { get => _explicitNullValueCompanyName; set { _explicitNullValueCompanyName = value; AdditionalData?.Remove("companyName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("companyName"); else _explicitNullProperties?.Remove("companyName"); } }
         private string? _explicitNullValueCompanyName = default!;
 #nullable restore
 #else
-        public string CompanyName { get => _explicitNullValueCompanyName; set { _explicitNullValueCompanyName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("companyName"); else _explicitNullProperties?.Remove("companyName"); } }
+        public string CompanyName { get => _explicitNullValueCompanyName; set { _explicitNullValueCompanyName = value; AdditionalData?.Remove("companyName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("companyName"); else _explicitNullProperties?.Remove("companyName"); } }
         private string _explicitNullValueCompanyName = default!;
 #endif
         /// <summary>Developer contact email. `null` means the account email is used.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ContactEmail { get => _explicitNullValueContactEmail; set { _explicitNullValueContactEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("contactEmail"); else _explicitNullProperties?.Remove("contactEmail"); } }
+        public string? ContactEmail { get => _explicitNullValueContactEmail; set { _explicitNullValueContactEmail = value; AdditionalData?.Remove("contactEmail"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("contactEmail"); else _explicitNullProperties?.Remove("contactEmail"); } }
         private string? _explicitNullValueContactEmail = default!;
 #nullable restore
 #else
-        public string ContactEmail { get => _explicitNullValueContactEmail; set { _explicitNullValueContactEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("contactEmail"); else _explicitNullProperties?.Remove("contactEmail"); } }
+        public string ContactEmail { get => _explicitNullValueContactEmail; set { _explicitNullValueContactEmail = value; AdditionalData?.Remove("contactEmail"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("contactEmail"); else _explicitNullProperties?.Remove("contactEmail"); } }
         private string _explicitNullValueContactEmail = default!;
 #endif
         /// <summary>When the profile was created.</summary>
-        public DateTimeOffset? CreatedAt { get => _explicitNullValueCreatedAt; set { _explicitNullValueCreatedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdAt"); else _explicitNullProperties?.Remove("createdAt"); } }
+        public DateTimeOffset? CreatedAt { get => _explicitNullValueCreatedAt; set { _explicitNullValueCreatedAt = value; AdditionalData?.Remove("createdAt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdAt"); else _explicitNullProperties?.Remove("createdAt"); } }
         private DateTimeOffset? _explicitNullValueCreatedAt = default!;
         /// <summary>Whether a company logo is stored (served by `GET /sdk/publisher/logo`). Make administrators set a partner&apos;s logo through `PUT /admin/sdk/apps/{app}/{version}/publisher/logo`.</summary>
-        public bool? HasLogo { get => _explicitNullValueHasLogo; set { _explicitNullValueHasLogo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasLogo"); else _explicitNullProperties?.Remove("hasLogo"); } }
+        public bool? HasLogo { get => _explicitNullValueHasLogo; set { _explicitNullValueHasLogo = value; AdditionalData?.Remove("hasLogo"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasLogo"); else _explicitNullProperties?.Remove("hasLogo"); } }
         private bool? _explicitNullValueHasLogo = default!;
         /// <summary>Original filename of the uploaded logo.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LogoFilename { get => _explicitNullValueLogoFilename; set { _explicitNullValueLogoFilename = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("logoFilename"); else _explicitNullProperties?.Remove("logoFilename"); } }
+        public string? LogoFilename { get => _explicitNullValueLogoFilename; set { _explicitNullValueLogoFilename = value; AdditionalData?.Remove("logoFilename"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("logoFilename"); else _explicitNullProperties?.Remove("logoFilename"); } }
         private string? _explicitNullValueLogoFilename = default!;
 #nullable restore
 #else
-        public string LogoFilename { get => _explicitNullValueLogoFilename; set { _explicitNullValueLogoFilename = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("logoFilename"); else _explicitNullProperties?.Remove("logoFilename"); } }
+        public string LogoFilename { get => _explicitNullValueLogoFilename; set { _explicitNullValueLogoFilename = value; AdditionalData?.Remove("logoFilename"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("logoFilename"); else _explicitNullProperties?.Remove("logoFilename"); } }
         private string _explicitNullValueLogoFilename = default!;
 #endif
         /// <summary>Make partner program of the publisher; `null` means not a partner (the default). Assigned by Make administrators only, through `PATCH /admin/sdk/apps/{app}/{version}/publisher` — the developer&apos;s own `PATCH /sdk/publisher` cannot change it.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisherPartnerType? PartnerType { get => _explicitNullValuePartnerType; set { _explicitNullValuePartnerType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partnerType"); else _explicitNullProperties?.Remove("partnerType"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisherPartnerType? PartnerType { get => _explicitNullValuePartnerType; set { _explicitNullValuePartnerType = value; AdditionalData?.Remove("partnerType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partnerType"); else _explicitNullProperties?.Remove("partnerType"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisherPartnerType? _explicitNullValuePartnerType = default!;
         /// <summary>When the profile was last updated.</summary>
-        public DateTimeOffset? UpdatedAt { get => _explicitNullValueUpdatedAt; set { _explicitNullValueUpdatedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedAt"); else _explicitNullProperties?.Remove("updatedAt"); } }
+        public DateTimeOffset? UpdatedAt { get => _explicitNullValueUpdatedAt; set { _explicitNullValueUpdatedAt = value; AdditionalData?.Remove("updatedAt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedAt"); else _explicitNullProperties?.Remove("updatedAt"); } }
         private DateTimeOffset? _explicitNullValueUpdatedAt = default!;
         /// <summary>Owning user.</summary>
-        public int? UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
+        public int? UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; AdditionalData?.Remove("userId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
         private int? _explicitNullValueUserId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisher"/> and sets the default values.
@@ -117,7 +126,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "hasLogo", n => { HasLogo = n.GetBoolValue(); } },
                 { "logoFilename", n => { LogoFilename = n.GetStringValue(); } },
-                { "partnerType", n => { PartnerType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisherPartnerType>(); } },
+                { "partnerType", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisherPartnerType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValuePartnerType = default; _explicitNullProperties?.Remove("partnerType"); AdditionalData["partnerType"] = unknown; } else { PartnerType = parsed; AdditionalData.Remove("partnerType"); } } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "userId", n => { UserId = n.GetIntValue(); } },
             };

@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("pinnedApps") is { } nullNodePinnedApps && nullNodePinnedApps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PinnedApps = null;
-            if (parseNode.GetChildNode("result") is { } nullNodeResult && nullNodeResult.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Result = null;
-            if (parseNode.GetChildNode("success") is { } nullNodeSuccess && nullNodeSuccess.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Success = null;
+            if (parseNode.GetChildNode("pinnedApps") is null) { _explicitNullValuePinnedApps = default!; _explicitNullProperties?.Remove("pinnedApps"); }
+            else if (parseNode.GetChildNode("pinnedApps") is { } nullNodePinnedApps && nullNodePinnedApps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PinnedApps = null;
+            if (parseNode.GetChildNode("result") is null) { _explicitNullValueResult = default!; _explicitNullProperties?.Remove("result"); }
+            else if (parseNode.GetChildNode("result") is { } nullNodeResult && nullNodeResult.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Result = null;
+            if (parseNode.GetChildNode("success") is null) { _explicitNullValueSuccess = default!; _explicitNullProperties?.Remove("success"); }
+            else if (parseNode.GetChildNode("success") is { } nullNodeSuccess && nullNodeSuccess.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Success = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,25 +30,25 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Result of each app pin attempt. Empty array if no `preferred_apps` were provided.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem>? PinnedApps { get => _explicitNullValuePinnedApps; set { _explicitNullValuePinnedApps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedApps"); else _explicitNullProperties?.Remove("pinnedApps"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem>? PinnedApps { get => _explicitNullValuePinnedApps; set { _explicitNullValuePinnedApps = value; AdditionalData?.Remove("pinnedApps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedApps"); else _explicitNullProperties?.Remove("pinnedApps"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem>? _explicitNullValuePinnedApps = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem> PinnedApps { get => _explicitNullValuePinnedApps; set { _explicitNullValuePinnedApps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedApps"); else _explicitNullProperties?.Remove("pinnedApps"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem> PinnedApps { get => _explicitNullValuePinnedApps; set { _explicitNullValuePinnedApps = value; AdditionalData?.Remove("pinnedApps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedApps"); else _explicitNullProperties?.Remove("pinnedApps"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponsePinnedAppsItem> _explicitNullValuePinnedApps = default!;
 #endif
         /// <summary>The SWARM response from HQ confirming the submission.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult? Result { get => _explicitNullValueResult; set { _explicitNullValueResult = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("result"); else _explicitNullProperties?.Remove("result"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult? Result { get => _explicitNullValueResult; set { _explicitNullValueResult = value; AdditionalData?.Remove("result"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("result"); else _explicitNullProperties?.Remove("result"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult? _explicitNullValueResult = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult Result { get => _explicitNullValueResult; set { _explicitNullValueResult = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("result"); else _explicitNullProperties?.Remove("result"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult Result { get => _explicitNullValueResult; set { _explicitNullValueResult = value; AdditionalData?.Remove("result"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("result"); else _explicitNullProperties?.Remove("result"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200ResponseResult _explicitNullValueResult = default!;
 #endif
         /// <summary>Whether the core survey submission succeeded.</summary>
-        public bool? Success { get => _explicitNullValueSuccess; set { _explicitNullValueSuccess = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("success"); else _explicitNullProperties?.Remove("success"); } }
+        public bool? Success { get => _explicitNullValueSuccess; set { _explicitNullValueSuccess = value; AdditionalData?.Remove("success"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("success"); else _explicitNullProperties?.Remove("success"); } }
         private bool? _explicitNullValueSuccess = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurvey200Response"/> and sets the default values.

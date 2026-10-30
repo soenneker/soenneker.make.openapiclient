@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("roleId") is { } nullNodeRoleId && nullNodeRoleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RoleId = null;
+            if (parseNode.GetChildNode("roleId") is null) { _explicitNullValueRoleId = default!; _explicitNullProperties?.Remove("roleId"); }
+            else if (parseNode.GetChildNode("roleId") is { } nullNodeRoleId && nullNodeRoleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RoleId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The ID of the deleted custom role.</summary>
-        public int? RoleId { get => _explicitNullValueRoleId; set { _explicitNullValueRoleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("roleId"); else _explicitNullProperties?.Remove("roleId"); } }
+        public int? RoleId { get => _explicitNullValueRoleId; set { _explicitNullValueRoleId = value; AdditionalData?.Remove("roleId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("roleId"); else _explicitNullProperties?.Remove("roleId"); } }
         private int? _explicitNullValueRoleId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRolesByRoleId200Response"/> and sets the default values.

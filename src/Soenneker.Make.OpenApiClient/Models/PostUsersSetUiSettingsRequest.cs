@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("uiSettings") is { } nullNodeUiSettings && nullNodeUiSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UiSettings = null;
+            if (parseNode.GetChildNode("uiSettings") is null) { _explicitNullValueUiSettings = default!; _explicitNullProperties?.Remove("uiSettings"); }
+            else if (parseNode.GetChildNode("uiSettings") is { } nullNodeUiSettings && nullNodeUiSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UiSettings = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The diff of the new UI settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostUsersSetUiSettingsRequestUiSettings? UiSettings { get => _explicitNullValueUiSettings; set { _explicitNullValueUiSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uiSettings"); else _explicitNullProperties?.Remove("uiSettings"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostUsersSetUiSettingsRequestUiSettings? UiSettings { get => _explicitNullValueUiSettings; set { _explicitNullValueUiSettings = value; AdditionalData?.Remove("uiSettings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uiSettings"); else _explicitNullProperties?.Remove("uiSettings"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostUsersSetUiSettingsRequestUiSettings? _explicitNullValueUiSettings = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostUsersSetUiSettingsRequestUiSettings UiSettings { get => _explicitNullValueUiSettings; set { _explicitNullValueUiSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uiSettings"); else _explicitNullProperties?.Remove("uiSettings"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostUsersSetUiSettingsRequestUiSettings UiSettings { get => _explicitNullValueUiSettings; set { _explicitNullValueUiSettings = value; AdditionalData?.Remove("uiSettings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("uiSettings"); else _explicitNullProperties?.Remove("uiSettings"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostUsersSetUiSettingsRequestUiSettings _explicitNullValueUiSettings = default!;
 #endif
         /// <summary>

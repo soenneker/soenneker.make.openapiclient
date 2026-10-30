@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("enable") is { } nullNodeEnable && nullNodeEnable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Enable = null;
+            if (parseNode.GetChildNode("enable") is null) { _explicitNullValueEnable = default!; _explicitNullProperties?.Remove("enable"); }
+            else if (parseNode.GetChildNode("enable") is { } nullNodeEnable && nullNodeEnable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Enable = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Set to `true` to enable TFA enforcement for the organization, or `false` to disable it.</summary>
-        public bool? Enable { get => _explicitNullValueEnable; set { _explicitNullValueEnable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enable"); else _explicitNullProperties?.Remove("enable"); } }
+        public bool? Enable { get => _explicitNullValueEnable; set { _explicitNullValueEnable = value; AdditionalData?.Remove("enable"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enable"); else _explicitNullProperties?.Remove("enable"); } }
         private bool? _explicitNullValueEnable = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcementRequest"/> and sets the default values.

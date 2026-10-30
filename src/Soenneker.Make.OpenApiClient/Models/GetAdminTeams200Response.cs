@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
-            if (parseNode.GetChildNode("teams") is { } nullNodeTeams && nullNodeTeams.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Teams = null;
+            if (parseNode.GetChildNode("pg") is null) { _explicitNullValuePg = default!; _explicitNullProperties?.Remove("pg"); }
+            else if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
+            if (parseNode.GetChildNode("teams") is null) { _explicitNullValueTeams = default!; _explicitNullProperties?.Remove("teams"); }
+            else if (parseNode.GetChildNode("teams") is { } nullNodeTeams && nullNodeTeams.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Teams = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The pg property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200ResponsePg? Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200ResponsePg? Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; AdditionalData?.Remove("pg"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200ResponsePg? _explicitNullValuePg = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; AdditionalData?.Remove("pg"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200ResponsePg _explicitNullValuePg = default!;
 #endif
         /// <summary>The teams property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200ResponseTeamsItem>? Teams { get => _explicitNullValueTeams; set { _explicitNullValueTeams = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teams"); else _explicitNullProperties?.Remove("teams"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200ResponseTeamsItem>? Teams { get => _explicitNullValueTeams; set { _explicitNullValueTeams = value; AdditionalData?.Remove("teams"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teams"); else _explicitNullProperties?.Remove("teams"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200ResponseTeamsItem>? _explicitNullValueTeams = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200ResponseTeamsItem> Teams { get => _explicitNullValueTeams; set { _explicitNullValueTeams = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teams"); else _explicitNullProperties?.Remove("teams"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200ResponseTeamsItem> Teams { get => _explicitNullValueTeams; set { _explicitNullValueTeams = value; AdditionalData?.Remove("teams"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teams"); else _explicitNullProperties?.Remove("teams"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200ResponseTeamsItem> _explicitNullValueTeams = default!;
 #endif
         /// <summary>

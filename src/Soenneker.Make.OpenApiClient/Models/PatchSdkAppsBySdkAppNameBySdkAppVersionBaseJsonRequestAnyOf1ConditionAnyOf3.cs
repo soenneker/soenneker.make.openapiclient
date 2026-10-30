@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("condition") is { } nullNodeCondition && nullNodeCondition.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Condition = null;
-            if (parseNode.GetChildNode("default") is { } nullNodeDefault && nullNodeDefault.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Default = null;
+            if (parseNode.GetChildNode("condition") is null) { _explicitNullValueCondition = default!; _explicitNullProperties?.Remove("condition"); }
+            else if (parseNode.GetChildNode("condition") is { } nullNodeCondition && nullNodeCondition.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Condition = null;
+            if (parseNode.GetChildNode("default") is null) { _explicitNullValueDefault = default!; _explicitNullProperties?.Remove("default"); }
+            else if (parseNode.GetChildNode("default") is { } nullNodeDefault && nullNodeDefault.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Default = null;
         }
 
         /// <summary>Specifies if to execute the request or not.</summary>
@@ -34,12 +36,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Specifies the module output when the condition is false.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Default? Default { get => _explicitNullValueDefault; set { _explicitNullValueDefault = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("default"); else _explicitNullProperties?.Remove("default"); } }
-        private global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Default? _explicitNullValueDefault = default!;
+        public global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ConditionAnyOf3Default? Default { get => _explicitNullValueDefault; set { _explicitNullValueDefault = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("default"); else _explicitNullProperties?.Remove("default"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ConditionAnyOf3Default? _explicitNullValueDefault = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Default Default { get => _explicitNullValueDefault; set { _explicitNullValueDefault = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("default"); else _explicitNullProperties?.Remove("default"); } }
-        private global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Default _explicitNullValueDefault = default!;
+        public global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ConditionAnyOf3Default Default { get => _explicitNullValueDefault; set { _explicitNullValueDefault = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("default"); else _explicitNullProperties?.Remove("default"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ConditionAnyOf3Default _explicitNullValueDefault = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -60,7 +62,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "condition", n => { Condition = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
-                { "default", n => { Default = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Default>(global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Default.CreateFromDiscriminatorValue); } },
+                { "default", n => { Default = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ConditionAnyOf3Default>(global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ConditionAnyOf3Default.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -71,7 +73,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("condition", Condition);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ConditionAnyOf3Default>("default", Default);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ConditionAnyOf3Default>("default", Default);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             
         }
         /// <summary>

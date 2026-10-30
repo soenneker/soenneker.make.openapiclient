@@ -17,34 +17,37 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("all") is { } nullNodeAll && nullNodeAll.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) All = null;
-            if (parseNode.GetChildNode("exceptKeys") is { } nullNodeExceptKeys && nullNodeExceptKeys.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExceptKeys = null;
-            if (parseNode.GetChildNode("keys") is { } nullNodeKeys && nullNodeKeys.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Keys = null;
+            if (parseNode.GetChildNode("all") is null) { _explicitNullValueAll = default!; _explicitNullProperties?.Remove("all"); }
+            else if (parseNode.GetChildNode("all") is { } nullNodeAll && nullNodeAll.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) All = null;
+            if (parseNode.GetChildNode("exceptKeys") is null) { _explicitNullValueExceptKeys = default!; _explicitNullProperties?.Remove("exceptKeys"); }
+            else if (parseNode.GetChildNode("exceptKeys") is { } nullNodeExceptKeys && nullNodeExceptKeys.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExceptKeys = null;
+            if (parseNode.GetChildNode("keys") is null) { _explicitNullValueKeys = default!; _explicitNullProperties?.Remove("keys"); }
+            else if (parseNode.GetChildNode("keys") is { } nullNodeKeys && nullNodeKeys.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Keys = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Set to `true` to delete all records in the data store. Use the `confirmed` parameter to confirm the deletion. You can also use the `exceptKeys` parameter to specify keys of the records that you want to keep in the data store.</summary>
-        public bool? All { get => _explicitNullValueAll; set { _explicitNullValueAll = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("all"); else _explicitNullProperties?.Remove("all"); } }
+        public bool? All { get => _explicitNullValueAll; set { _explicitNullValueAll = value; AdditionalData?.Remove("all"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("all"); else _explicitNullProperties?.Remove("all"); } }
         private bool? _explicitNullValueAll = default!;
         /// <summary>Specify the keys of the data store records you want to keep when deleting all records from the data store.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ExceptKeys { get => _explicitNullValueExceptKeys; set { _explicitNullValueExceptKeys = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exceptKeys"); else _explicitNullProperties?.Remove("exceptKeys"); } }
+        public List<string>? ExceptKeys { get => _explicitNullValueExceptKeys; set { _explicitNullValueExceptKeys = value; AdditionalData?.Remove("exceptKeys"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exceptKeys"); else _explicitNullProperties?.Remove("exceptKeys"); } }
         private List<string>? _explicitNullValueExceptKeys = default!;
 #nullable restore
 #else
-        public List<string> ExceptKeys { get => _explicitNullValueExceptKeys; set { _explicitNullValueExceptKeys = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exceptKeys"); else _explicitNullProperties?.Remove("exceptKeys"); } }
+        public List<string> ExceptKeys { get => _explicitNullValueExceptKeys; set { _explicitNullValueExceptKeys = value; AdditionalData?.Remove("exceptKeys"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exceptKeys"); else _explicitNullProperties?.Remove("exceptKeys"); } }
         private List<string> _explicitNullValueExceptKeys = default!;
 #endif
         /// <summary>The keys of data store records you want to delete. Use the `all` and `confirmed` parameters if you want to delete all records in the data store.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Keys { get => _explicitNullValueKeys; set { _explicitNullValueKeys = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keys"); else _explicitNullProperties?.Remove("keys"); } }
+        public List<string>? Keys { get => _explicitNullValueKeys; set { _explicitNullValueKeys = value; AdditionalData?.Remove("keys"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keys"); else _explicitNullProperties?.Remove("keys"); } }
         private List<string>? _explicitNullValueKeys = default!;
 #nullable restore
 #else
-        public List<string> Keys { get => _explicitNullValueKeys; set { _explicitNullValueKeys = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keys"); else _explicitNullProperties?.Remove("keys"); } }
+        public List<string> Keys { get => _explicitNullValueKeys; set { _explicitNullValueKeys = value; AdditionalData?.Remove("keys"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keys"); else _explicitNullProperties?.Remove("keys"); } }
         private List<string> _explicitNullValueKeys = default!;
 #endif
         /// <summary>

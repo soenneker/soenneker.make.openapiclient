@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("execution") is { } nullNodeExecution && nullNodeExecution.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Execution = null;
-            if (parseNode.GetChildNode("ioData") is { } nullNodeIoData && nullNodeIoData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IoData = null;
+            if (parseNode.GetChildNode("execution") is null) { _explicitNullValueExecution = default!; _explicitNullProperties?.Remove("execution"); }
+            else if (parseNode.GetChildNode("execution") is { } nullNodeExecution && nullNodeExecution.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Execution = null;
+            if (parseNode.GetChildNode("ioData") is null) { _explicitNullValueIoData = default!; _explicitNullProperties?.Remove("ioData"); }
+            else if (parseNode.GetChildNode("ioData") is { } nullNodeIoData && nullNodeIoData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IoData = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Metadata of the execution, or `null` when no execution document was found in the searched time window.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution? Execution { get => _explicitNullValueExecution; set { _explicitNullValueExecution = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("execution"); else _explicitNullProperties?.Remove("execution"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution? Execution { get => _explicitNullValueExecution; set { _explicitNullValueExecution = value; AdditionalData?.Remove("execution"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("execution"); else _explicitNullProperties?.Remove("execution"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution? _explicitNullValueExecution = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution Execution { get => _explicitNullValueExecution; set { _explicitNullValueExecution = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("execution"); else _explicitNullProperties?.Remove("execution"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution Execution { get => _explicitNullValueExecution; set { _explicitNullValueExecution = value; AdditionalData?.Remove("execution"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("execution"); else _explicitNullProperties?.Remove("execution"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution _explicitNullValueExecution = default!;
 #endif
         /// <summary>Every IO-data record from the execution that matched the query. Each record contains the bundle fields produced or consumed by a module, plus the metadata listed below.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItem>? IoData { get => _explicitNullValueIoData; set { _explicitNullValueIoData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ioData"); else _explicitNullProperties?.Remove("ioData"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItem>? IoData { get => _explicitNullValueIoData; set { _explicitNullValueIoData = value; AdditionalData?.Remove("ioData"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ioData"); else _explicitNullProperties?.Remove("ioData"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItem>? _explicitNullValueIoData = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItem> IoData { get => _explicitNullValueIoData; set { _explicitNullValueIoData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ioData"); else _explicitNullProperties?.Remove("ioData"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItem> IoData { get => _explicitNullValueIoData; set { _explicitNullValueIoData = value; AdditionalData?.Remove("ioData"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ioData"); else _explicitNullProperties?.Remove("ioData"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseIoDataItem> _explicitNullValueIoData = default!;
 #endif
         /// <summary>

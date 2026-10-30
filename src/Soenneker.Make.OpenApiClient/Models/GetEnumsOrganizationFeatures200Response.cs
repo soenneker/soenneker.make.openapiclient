@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("organizationFeatures") is { } nullNodeOrganizationFeatures && nullNodeOrganizationFeatures.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationFeatures = null;
+            if (parseNode.GetChildNode("organizationFeatures") is null) { _explicitNullValueOrganizationFeatures = default!; _explicitNullProperties?.Remove("organizationFeatures"); }
+            else if (parseNode.GetChildNode("organizationFeatures") is { } nullNodeOrganizationFeatures && nullNodeOrganizationFeatures.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationFeatures = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The organizationFeatures property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsOrganizationFeatures200ResponseOrganizationFeaturesItem>? OrganizationFeatures { get => _explicitNullValueOrganizationFeatures; set { _explicitNullValueOrganizationFeatures = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationFeatures"); else _explicitNullProperties?.Remove("organizationFeatures"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsOrganizationFeatures200ResponseOrganizationFeaturesItem>? OrganizationFeatures { get => _explicitNullValueOrganizationFeatures; set { _explicitNullValueOrganizationFeatures = value; AdditionalData?.Remove("organizationFeatures"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationFeatures"); else _explicitNullProperties?.Remove("organizationFeatures"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsOrganizationFeatures200ResponseOrganizationFeaturesItem>? _explicitNullValueOrganizationFeatures = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsOrganizationFeatures200ResponseOrganizationFeaturesItem> OrganizationFeatures { get => _explicitNullValueOrganizationFeatures; set { _explicitNullValueOrganizationFeatures = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationFeatures"); else _explicitNullProperties?.Remove("organizationFeatures"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsOrganizationFeatures200ResponseOrganizationFeaturesItem> OrganizationFeatures { get => _explicitNullValueOrganizationFeatures; set { _explicitNullValueOrganizationFeatures = value; AdditionalData?.Remove("organizationFeatures"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationFeatures"); else _explicitNullProperties?.Remove("organizationFeatures"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsOrganizationFeatures200ResponseOrganizationFeaturesItem> _explicitNullValueOrganizationFeatures = default!;
 #endif
         /// <summary>

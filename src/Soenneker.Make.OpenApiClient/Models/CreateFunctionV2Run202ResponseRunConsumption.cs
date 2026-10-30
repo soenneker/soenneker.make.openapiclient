@@ -18,13 +18,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("centicredits") is { } nullNodeCenticredits && nullNodeCenticredits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Centicredits = null;
+            if (parseNode.GetChildNode("centicredits") is null) { _explicitNullValueCenticredits = default!; _explicitNullProperties?.Remove("centicredits"); }
+            else if (parseNode.GetChildNode("centicredits") is { } nullNodeCenticredits && nullNodeCenticredits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Centicredits = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>One credit equals 100 centicredits.</summary>
-        public int? Centicredits { get => _explicitNullValueCenticredits; set { _explicitNullValueCenticredits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicredits"); else _explicitNullProperties?.Remove("centicredits"); } }
+        public int? Centicredits { get => _explicitNullValueCenticredits; set { _explicitNullValueCenticredits = value; AdditionalData?.Remove("centicredits"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicredits"); else _explicitNullProperties?.Remove("centicredits"); } }
         private int? _explicitNullValueCenticredits = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run202ResponseRunConsumption"/> and sets the default values.

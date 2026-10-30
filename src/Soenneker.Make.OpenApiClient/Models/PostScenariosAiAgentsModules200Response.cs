@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("agentModules") is { } nullNodeAgentModules && nullNodeAgentModules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AgentModules = null;
-            if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
+            if (parseNode.GetChildNode("agentModules") is null) { _explicitNullValueAgentModules = default!; _explicitNullProperties?.Remove("agentModules"); }
+            else if (parseNode.GetChildNode("agentModules") is { } nullNodeAgentModules && nullNodeAgentModules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AgentModules = null;
+            if (parseNode.GetChildNode("pg") is null) { _explicitNullValuePg = default!; _explicitNullProperties?.Remove("pg"); }
+            else if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The agentModules property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItem>? AgentModules { get => _explicitNullValueAgentModules; set { _explicitNullValueAgentModules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("agentModules"); else _explicitNullProperties?.Remove("agentModules"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItem>? AgentModules { get => _explicitNullValueAgentModules; set { _explicitNullValueAgentModules = value; AdditionalData?.Remove("agentModules"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("agentModules"); else _explicitNullProperties?.Remove("agentModules"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItem>? _explicitNullValueAgentModules = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItem> AgentModules { get => _explicitNullValueAgentModules; set { _explicitNullValueAgentModules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("agentModules"); else _explicitNullProperties?.Remove("agentModules"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItem> AgentModules { get => _explicitNullValueAgentModules; set { _explicitNullValueAgentModules = value; AdditionalData?.Remove("agentModules"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("agentModules"); else _explicitNullProperties?.Remove("agentModules"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItem> _explicitNullValueAgentModules = default!;
 #endif
         /// <summary>Present only when `scenarioIds` is omitted from the request body.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponsePg? Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponsePg? Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; AdditionalData?.Remove("pg"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponsePg? _explicitNullValuePg = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; AdditionalData?.Remove("pg"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponsePg _explicitNullValuePg = default!;
 #endif
         /// <summary>

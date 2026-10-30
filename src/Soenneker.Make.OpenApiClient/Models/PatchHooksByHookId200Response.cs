@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("hook") is { } nullNodeHook && nullNodeHook.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hook = null;
+            if (parseNode.GetChildNode("hook") is null) { _explicitNullValueHook = default!; _explicitNullProperties?.Remove("hook"); }
+            else if (parseNode.GetChildNode("hook") is { } nullNodeHook && nullNodeHook.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hook = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The hook property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHook? Hook { get => _explicitNullValueHook; set { _explicitNullValueHook = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hook"); else _explicitNullProperties?.Remove("hook"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHook? Hook { get => _explicitNullValueHook; set { _explicitNullValueHook = value; AdditionalData?.Remove("hook"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hook"); else _explicitNullProperties?.Remove("hook"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHook? _explicitNullValueHook = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHook Hook { get => _explicitNullValueHook; set { _explicitNullValueHook = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hook"); else _explicitNullProperties?.Remove("hook"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHook Hook { get => _explicitNullValueHook; set { _explicitNullValueHook = value; AdditionalData?.Remove("hook"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hook"); else _explicitNullProperties?.Remove("hook"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHook _explicitNullValueHook = default!;
 #endif
         /// <summary>

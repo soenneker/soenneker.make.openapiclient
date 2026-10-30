@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("modules") is { } nullNodeModules && nullNodeModules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Modules = null;
-            if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
+            if (parseNode.GetChildNode("modules") is null) { _explicitNullValueModules = default!; _explicitNullProperties?.Remove("modules"); }
+            else if (parseNode.GetChildNode("modules") is { } nullNodeModules && nullNodeModules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Modules = null;
+            if (parseNode.GetChildNode("scenarioId") is null) { _explicitNullValueScenarioId = default!; _explicitNullProperties?.Remove("scenarioId"); }
+            else if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The modules property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosModulesConsumptions200ResponseScenariosItemModulesItem>? Modules { get => _explicitNullValueModules; set { _explicitNullValueModules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modules"); else _explicitNullProperties?.Remove("modules"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosModulesConsumptions200ResponseScenariosItemModulesItem>? Modules { get => _explicitNullValueModules; set { _explicitNullValueModules = value; AdditionalData?.Remove("modules"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modules"); else _explicitNullProperties?.Remove("modules"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosModulesConsumptions200ResponseScenariosItemModulesItem>? _explicitNullValueModules = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosModulesConsumptions200ResponseScenariosItemModulesItem> Modules { get => _explicitNullValueModules; set { _explicitNullValueModules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modules"); else _explicitNullProperties?.Remove("modules"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosModulesConsumptions200ResponseScenariosItemModulesItem> Modules { get => _explicitNullValueModules; set { _explicitNullValueModules = value; AdditionalData?.Remove("modules"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("modules"); else _explicitNullProperties?.Remove("modules"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosModulesConsumptions200ResponseScenariosItemModulesItem> _explicitNullValueModules = default!;
 #endif
         /// <summary>The ID of the scenario.</summary>
-        public int? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
+        public int? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; AdditionalData?.Remove("scenarioId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
         private int? _explicitNullValueScenarioId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosModulesConsumptions200ResponseScenariosItem"/> and sets the default values.

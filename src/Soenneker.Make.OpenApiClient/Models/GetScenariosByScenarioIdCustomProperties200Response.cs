@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("customProperties") is { } nullNodeCustomProperties && nullNodeCustomProperties.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomProperties = null;
-            if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
+            if (parseNode.GetChildNode("customProperties") is null) { _explicitNullValueCustomProperties = default!; _explicitNullProperties?.Remove("customProperties"); }
+            else if (parseNode.GetChildNode("customProperties") is { } nullNodeCustomProperties && nullNodeCustomProperties.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomProperties = null;
+            if (parseNode.GetChildNode("scenarioId") is null) { _explicitNullValueScenarioId = default!; _explicitNullProperties?.Remove("scenarioId"); }
+            else if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The customProperties property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdCustomProperties200ResponseCustomProperties? CustomProperties { get => _explicitNullValueCustomProperties; set { _explicitNullValueCustomProperties = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customProperties"); else _explicitNullProperties?.Remove("customProperties"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdCustomProperties200ResponseCustomProperties? CustomProperties { get => _explicitNullValueCustomProperties; set { _explicitNullValueCustomProperties = value; AdditionalData?.Remove("customProperties"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customProperties"); else _explicitNullProperties?.Remove("customProperties"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdCustomProperties200ResponseCustomProperties? _explicitNullValueCustomProperties = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdCustomProperties200ResponseCustomProperties CustomProperties { get => _explicitNullValueCustomProperties; set { _explicitNullValueCustomProperties = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customProperties"); else _explicitNullProperties?.Remove("customProperties"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdCustomProperties200ResponseCustomProperties CustomProperties { get => _explicitNullValueCustomProperties; set { _explicitNullValueCustomProperties = value; AdditionalData?.Remove("customProperties"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customProperties"); else _explicitNullProperties?.Remove("customProperties"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdCustomProperties200ResponseCustomProperties _explicitNullValueCustomProperties = default!;
 #endif
         /// <summary>The scenarioId property</summary>
-        public double? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
+        public double? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; AdditionalData?.Remove("scenarioId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
         private double? _explicitNullValueScenarioId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdCustomProperties200Response"/> and sets the default values.

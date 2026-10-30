@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("variableTypes") is { } nullNodeVariableTypes && nullNodeVariableTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VariableTypes = null;
+            if (parseNode.GetChildNode("variableTypes") is null) { _explicitNullValueVariableTypes = default!; _explicitNullProperties?.Remove("variableTypes"); }
+            else if (parseNode.GetChildNode("variableTypes") is { } nullNodeVariableTypes && nullNodeVariableTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VariableTypes = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The variableTypes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsVariableTypes200ResponseVariableTypesItem>? VariableTypes { get => _explicitNullValueVariableTypes; set { _explicitNullValueVariableTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("variableTypes"); else _explicitNullProperties?.Remove("variableTypes"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsVariableTypes200ResponseVariableTypesItem>? VariableTypes { get => _explicitNullValueVariableTypes; set { _explicitNullValueVariableTypes = value; AdditionalData?.Remove("variableTypes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("variableTypes"); else _explicitNullProperties?.Remove("variableTypes"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsVariableTypes200ResponseVariableTypesItem>? _explicitNullValueVariableTypes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsVariableTypes200ResponseVariableTypesItem> VariableTypes { get => _explicitNullValueVariableTypes; set { _explicitNullValueVariableTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("variableTypes"); else _explicitNullProperties?.Remove("variableTypes"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsVariableTypes200ResponseVariableTypesItem> VariableTypes { get => _explicitNullValueVariableTypes; set { _explicitNullValueVariableTypes = value; AdditionalData?.Remove("variableTypes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("variableTypes"); else _explicitNullProperties?.Remove("variableTypes"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsVariableTypes200ResponseVariableTypesItem> _explicitNullValueVariableTypes = default!;
 #endif
         /// <summary>

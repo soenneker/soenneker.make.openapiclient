@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("dataStructure") is { } nullNodeDataStructure && nullNodeDataStructure.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataStructure = null;
+            if (parseNode.GetChildNode("dataStructure") is null) { _explicitNullValueDataStructure = default!; _explicitNullProperties?.Remove("dataStructure"); }
+            else if (parseNode.GetChildNode("dataStructure") is { } nullNodeDataStructure && nullNodeDataStructure.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataStructure = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The dataStructure property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructure? DataStructure { get => _explicitNullValueDataStructure; set { _explicitNullValueDataStructure = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStructure"); else _explicitNullProperties?.Remove("dataStructure"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructure? DataStructure { get => _explicitNullValueDataStructure; set { _explicitNullValueDataStructure = value; AdditionalData?.Remove("dataStructure"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStructure"); else _explicitNullProperties?.Remove("dataStructure"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructure? _explicitNullValueDataStructure = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructure DataStructure { get => _explicitNullValueDataStructure; set { _explicitNullValueDataStructure = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStructure"); else _explicitNullProperties?.Remove("dataStructure"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructure DataStructure { get => _explicitNullValueDataStructure; set { _explicitNullValueDataStructure = value; AdditionalData?.Remove("dataStructure"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStructure"); else _explicitNullProperties?.Remove("dataStructure"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructure _explicitNullValueDataStructure = default!;
 #endif
         /// <summary>

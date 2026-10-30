@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("executionIds") is { } nullNodeExecutionIds && nullNodeExecutionIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionIds = null;
+            if (parseNode.GetChildNode("executionIds") is null) { _explicitNullValueExecutionIds = default!; _explicitNullProperties?.Remove("executionIds"); }
+            else if (parseNode.GetChildNode("executionIds") is { } nullNodeExecutionIds && nullNodeExecutionIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionIds = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>IDs of the executions to replay; unique IDs of executions of the same scenario, at most 100 per call. Get the IDs with the API call `GET /scenarios/{scenarioId}/logs`; only executions marked as replayable can be replayed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ExecutionIds { get => _explicitNullValueExecutionIds; set { _explicitNullValueExecutionIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionIds"); else _explicitNullProperties?.Remove("executionIds"); } }
+        public List<string>? ExecutionIds { get => _explicitNullValueExecutionIds; set { _explicitNullValueExecutionIds = value; AdditionalData?.Remove("executionIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionIds"); else _explicitNullProperties?.Remove("executionIds"); } }
         private List<string>? _explicitNullValueExecutionIds = default!;
 #nullable restore
 #else
-        public List<string> ExecutionIds { get => _explicitNullValueExecutionIds; set { _explicitNullValueExecutionIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionIds"); else _explicitNullProperties?.Remove("executionIds"); } }
+        public List<string> ExecutionIds { get => _explicitNullValueExecutionIds; set { _explicitNullValueExecutionIds = value; AdditionalData?.Remove("executionIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionIds"); else _explicitNullProperties?.Remove("executionIds"); } }
         private List<string> _explicitNullValueExecutionIds = default!;
 #endif
         /// <summary>

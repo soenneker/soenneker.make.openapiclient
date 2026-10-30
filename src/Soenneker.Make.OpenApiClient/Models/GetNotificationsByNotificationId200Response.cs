@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("notification") is { } nullNodeNotification && nullNodeNotification.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Notification = null;
+            if (parseNode.GetChildNode("notification") is null) { _explicitNullValueNotification = default!; _explicitNullProperties?.Remove("notification"); }
+            else if (parseNode.GetChildNode("notification") is { } nullNodeNotification && nullNodeNotification.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Notification = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The notification property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetNotificationsByNotificationId200ResponseNotification? Notification { get => _explicitNullValueNotification; set { _explicitNullValueNotification = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notification"); else _explicitNullProperties?.Remove("notification"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetNotificationsByNotificationId200ResponseNotification? Notification { get => _explicitNullValueNotification; set { _explicitNullValueNotification = value; AdditionalData?.Remove("notification"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notification"); else _explicitNullProperties?.Remove("notification"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetNotificationsByNotificationId200ResponseNotification? _explicitNullValueNotification = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetNotificationsByNotificationId200ResponseNotification Notification { get => _explicitNullValueNotification; set { _explicitNullValueNotification = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notification"); else _explicitNullProperties?.Remove("notification"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetNotificationsByNotificationId200ResponseNotification Notification { get => _explicitNullValueNotification; set { _explicitNullValueNotification = value; AdditionalData?.Remove("notification"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("notification"); else _explicitNullProperties?.Remove("notification"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetNotificationsByNotificationId200ResponseNotification _explicitNullValueNotification = default!;
 #endif
         /// <summary>

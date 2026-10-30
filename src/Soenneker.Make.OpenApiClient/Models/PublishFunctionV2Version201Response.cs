@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("functionVersion") is { } nullNodeFunctionVersion && nullNodeFunctionVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FunctionVersion = null;
+            if (parseNode.GetChildNode("functionVersion") is null) { _explicitNullValueFunctionVersion = default!; _explicitNullProperties?.Remove("functionVersion"); }
+            else if (parseNode.GetChildNode("functionVersion") is { } nullNodeFunctionVersion && nullNodeFunctionVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FunctionVersion = null;
         }
 
         /// <summary>The functionVersion property</summary>

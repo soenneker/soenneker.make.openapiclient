@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("scoped") is { } nullNodeScoped && nullNodeScoped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scoped = null;
+            if (parseNode.GetChildNode("scoped") is null) { _explicitNullValueScoped = default!; _explicitNullProperties?.Remove("scoped"); }
+            else if (parseNode.GetChildNode("scoped") is { } nullNodeScoped && nullNodeScoped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scoped = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The scoped property</summary>
-        public bool? Scoped { get => _explicitNullValueScoped; set { _explicitNullValueScoped = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scoped"); else _explicitNullProperties?.Remove("scoped"); } }
+        public bool? Scoped { get => _explicitNullValueScoped; set { _explicitNullValueScoped = value; AdditionalData?.Remove("scoped"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scoped"); else _explicitNullProperties?.Remove("scoped"); } }
         private bool? _explicitNullValueScoped = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdScoped200ResponseConnection"/> and sets the default values.

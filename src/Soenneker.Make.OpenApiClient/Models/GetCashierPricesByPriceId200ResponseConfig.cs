@@ -17,44 +17,51 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("dlqStorage") is { } nullNodeDlqStorage && nullNodeDlqStorage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DlqStorage = null;
-            if (parseNode.GetChildNode("dslimit") is { } nullNodeDslimit && nullNodeDslimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dslimit = null;
-            if (parseNode.GetChildNode("dsslimit") is { } nullNodeDsslimit && nullNodeDsslimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dsslimit = null;
-            if (parseNode.GetChildNode("iolimit") is { } nullNodeIolimit && nullNodeIolimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Iolimit = null;
-            if (parseNode.GetChildNode("operations") is { } nullNodeOperations && nullNodeOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operations = null;
-            if (parseNode.GetChildNode("restartPeriod") is { } nullNodeRestartPeriod && nullNodeRestartPeriod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RestartPeriod = null;
-            if (parseNode.GetChildNode("transfer") is { } nullNodeTransfer && nullNodeTransfer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transfer = null;
+            if (parseNode.GetChildNode("dlqStorage") is null) { _explicitNullValueDlqStorage = default!; _explicitNullProperties?.Remove("dlqStorage"); }
+            else if (parseNode.GetChildNode("dlqStorage") is { } nullNodeDlqStorage && nullNodeDlqStorage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DlqStorage = null;
+            if (parseNode.GetChildNode("dslimit") is null) { _explicitNullValueDslimit = default!; _explicitNullProperties?.Remove("dslimit"); }
+            else if (parseNode.GetChildNode("dslimit") is { } nullNodeDslimit && nullNodeDslimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dslimit = null;
+            if (parseNode.GetChildNode("dsslimit") is null) { _explicitNullValueDsslimit = default!; _explicitNullProperties?.Remove("dsslimit"); }
+            else if (parseNode.GetChildNode("dsslimit") is { } nullNodeDsslimit && nullNodeDsslimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dsslimit = null;
+            if (parseNode.GetChildNode("iolimit") is null) { _explicitNullValueIolimit = default!; _explicitNullProperties?.Remove("iolimit"); }
+            else if (parseNode.GetChildNode("iolimit") is { } nullNodeIolimit && nullNodeIolimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Iolimit = null;
+            if (parseNode.GetChildNode("operations") is null) { _explicitNullValueOperations = default!; _explicitNullProperties?.Remove("operations"); }
+            else if (parseNode.GetChildNode("operations") is { } nullNodeOperations && nullNodeOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operations = null;
+            if (parseNode.GetChildNode("restartPeriod") is null) { _explicitNullValueRestartPeriod = default!; _explicitNullProperties?.Remove("restartPeriod"); }
+            else if (parseNode.GetChildNode("restartPeriod") is { } nullNodeRestartPeriod && nullNodeRestartPeriod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RestartPeriod = null;
+            if (parseNode.GetChildNode("transfer") is null) { _explicitNullValueTransfer = default!; _explicitNullProperties?.Remove("transfer"); }
+            else if (parseNode.GetChildNode("transfer") is { } nullNodeTransfer && nullNodeTransfer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transfer = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The dlqStorage property</summary>
-        public double? DlqStorage { get => _explicitNullValueDlqStorage; set { _explicitNullValueDlqStorage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlqStorage"); else _explicitNullProperties?.Remove("dlqStorage"); } }
+        public double? DlqStorage { get => _explicitNullValueDlqStorage; set { _explicitNullValueDlqStorage = value; AdditionalData?.Remove("dlqStorage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlqStorage"); else _explicitNullProperties?.Remove("dlqStorage"); } }
         private double? _explicitNullValueDlqStorage = default!;
         /// <summary>The dslimit property</summary>
-        public double? Dslimit { get => _explicitNullValueDslimit; set { _explicitNullValueDslimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dslimit"); else _explicitNullProperties?.Remove("dslimit"); } }
+        public double? Dslimit { get => _explicitNullValueDslimit; set { _explicitNullValueDslimit = value; AdditionalData?.Remove("dslimit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dslimit"); else _explicitNullProperties?.Remove("dslimit"); } }
         private double? _explicitNullValueDslimit = default!;
         /// <summary>The dsslimit property</summary>
-        public double? Dsslimit { get => _explicitNullValueDsslimit; set { _explicitNullValueDsslimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dsslimit"); else _explicitNullProperties?.Remove("dsslimit"); } }
+        public double? Dsslimit { get => _explicitNullValueDsslimit; set { _explicitNullValueDsslimit = value; AdditionalData?.Remove("dsslimit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dsslimit"); else _explicitNullProperties?.Remove("dsslimit"); } }
         private double? _explicitNullValueDsslimit = default!;
         /// <summary>The iolimit property</summary>
-        public double? Iolimit { get => _explicitNullValueIolimit; set { _explicitNullValueIolimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("iolimit"); else _explicitNullProperties?.Remove("iolimit"); } }
+        public double? Iolimit { get => _explicitNullValueIolimit; set { _explicitNullValueIolimit = value; AdditionalData?.Remove("iolimit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("iolimit"); else _explicitNullProperties?.Remove("iolimit"); } }
         private double? _explicitNullValueIolimit = default!;
         /// <summary>The operations property</summary>
-        public double? Operations { get => _explicitNullValueOperations; set { _explicitNullValueOperations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operations"); else _explicitNullProperties?.Remove("operations"); } }
+        public double? Operations { get => _explicitNullValueOperations; set { _explicitNullValueOperations = value; AdditionalData?.Remove("operations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operations"); else _explicitNullProperties?.Remove("operations"); } }
         private double? _explicitNullValueOperations = default!;
         /// <summary>The restartPeriod property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RestartPeriod { get => _explicitNullValueRestartPeriod; set { _explicitNullValueRestartPeriod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restartPeriod"); else _explicitNullProperties?.Remove("restartPeriod"); } }
+        public string? RestartPeriod { get => _explicitNullValueRestartPeriod; set { _explicitNullValueRestartPeriod = value; AdditionalData?.Remove("restartPeriod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restartPeriod"); else _explicitNullProperties?.Remove("restartPeriod"); } }
         private string? _explicitNullValueRestartPeriod = default!;
 #nullable restore
 #else
-        public string RestartPeriod { get => _explicitNullValueRestartPeriod; set { _explicitNullValueRestartPeriod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restartPeriod"); else _explicitNullProperties?.Remove("restartPeriod"); } }
+        public string RestartPeriod { get => _explicitNullValueRestartPeriod; set { _explicitNullValueRestartPeriod = value; AdditionalData?.Remove("restartPeriod"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restartPeriod"); else _explicitNullProperties?.Remove("restartPeriod"); } }
         private string _explicitNullValueRestartPeriod = default!;
 #endif
         /// <summary>The transfer property</summary>
-        public double? Transfer { get => _explicitNullValueTransfer; set { _explicitNullValueTransfer = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transfer"); else _explicitNullProperties?.Remove("transfer"); } }
+        public double? Transfer { get => _explicitNullValueTransfer; set { _explicitNullValueTransfer = value; AdditionalData?.Remove("transfer"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transfer"); else _explicitNullProperties?.Remove("transfer"); } }
         private double? _explicitNullValueTransfer = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCashierPricesByPriceId200ResponseConfig"/> and sets the default values.

@@ -17,17 +17,19 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("entityId") is { } nullNodeEntityId && nullNodeEntityId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EntityId = null;
-            if (parseNode.GetChildNode("entityType") is { } nullNodeEntityType && nullNodeEntityType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EntityType = null;
+            if (parseNode.GetChildNode("entityId") is null) { _explicitNullValueEntityId = default!; _explicitNullProperties?.Remove("entityId"); }
+            else if (parseNode.GetChildNode("entityId") is { } nullNodeEntityId && nullNodeEntityId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EntityId = null;
+            if (parseNode.GetChildNode("entityType") is null) { _explicitNullValueEntityType = default!; _explicitNullProperties?.Remove("entityType"); }
+            else if (parseNode.GetChildNode("entityType") is { } nullNodeEntityType && nullNodeEntityType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EntityType = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The entityId property</summary>
-        public int? EntityId { get => _explicitNullValueEntityId; set { _explicitNullValueEntityId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entityId"); else _explicitNullProperties?.Remove("entityId"); } }
+        public int? EntityId { get => _explicitNullValueEntityId; set { _explicitNullValueEntityId = value; AdditionalData?.Remove("entityId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entityId"); else _explicitNullProperties?.Remove("entityId"); } }
         private int? _explicitNullValueEntityId = default!;
         /// <summary>The entityType property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItemEntitiesItemEntityType? EntityType { get => _explicitNullValueEntityType; set { _explicitNullValueEntityType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entityType"); else _explicitNullProperties?.Remove("entityType"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItemEntitiesItemEntityType? EntityType { get => _explicitNullValueEntityType; set { _explicitNullValueEntityType = value; AdditionalData?.Remove("entityType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entityType"); else _explicitNullProperties?.Remove("entityType"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItemEntitiesItemEntityType? _explicitNullValueEntityType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItemEntitiesItem"/> and sets the default values.
@@ -55,7 +57,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "entityId", n => { EntityId = n.GetIntValue(); } },
-                { "entityType", n => { EntityType = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItemEntitiesItemEntityType>(); } },
+                { "entityType", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItemEntitiesItemEntityType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueEntityType = default; _explicitNullProperties?.Remove("entityType"); AdditionalData["entityType"] = unknown; } else { EntityType = parsed; AdditionalData.Remove("entityType"); } } },
             };
         }
         /// <summary>

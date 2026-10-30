@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("dataStore") is { } nullNodeDataStore && nullNodeDataStore.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataStore = null;
+            if (parseNode.GetChildNode("dataStore") is null) { _explicitNullValueDataStore = default!; _explicitNullProperties?.Remove("dataStore"); }
+            else if (parseNode.GetChildNode("dataStore") is { } nullNodeDataStore && nullNodeDataStore.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataStore = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The dataStore property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostDataStores200ResponseDataStore? DataStore { get => _explicitNullValueDataStore; set { _explicitNullValueDataStore = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStore"); else _explicitNullProperties?.Remove("dataStore"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStores200ResponseDataStore? DataStore { get => _explicitNullValueDataStore; set { _explicitNullValueDataStore = value; AdditionalData?.Remove("dataStore"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStore"); else _explicitNullProperties?.Remove("dataStore"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostDataStores200ResponseDataStore? _explicitNullValueDataStore = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostDataStores200ResponseDataStore DataStore { get => _explicitNullValueDataStore; set { _explicitNullValueDataStore = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStore"); else _explicitNullProperties?.Remove("dataStore"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStores200ResponseDataStore DataStore { get => _explicitNullValueDataStore; set { _explicitNullValueDataStore = value; AdditionalData?.Remove("dataStore"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStore"); else _explicitNullProperties?.Remove("dataStore"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostDataStores200ResponseDataStore _explicitNullValueDataStore = default!;
 #endif
         /// <summary>

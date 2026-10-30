@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("scenarioShared") is { } nullNodeScenarioShared && nullNodeScenarioShared.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioShared = null;
+            if (parseNode.GetChildNode("scenarioShared") is null) { _explicitNullValueScenarioShared = default!; _explicitNullProperties?.Remove("scenarioShared"); }
+            else if (parseNode.GetChildNode("scenarioShared") is { } nullNodeScenarioShared && nullNodeScenarioShared.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioShared = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The scenarioShared property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosSharedByScenarioIdBySharedScenarioId200ResponseScenarioShared? ScenarioShared { get => _explicitNullValueScenarioShared; set { _explicitNullValueScenarioShared = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioShared"); else _explicitNullProperties?.Remove("scenarioShared"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosSharedByScenarioIdBySharedScenarioId200ResponseScenarioShared? ScenarioShared { get => _explicitNullValueScenarioShared; set { _explicitNullValueScenarioShared = value; AdditionalData?.Remove("scenarioShared"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioShared"); else _explicitNullProperties?.Remove("scenarioShared"); } }
         private global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosSharedByScenarioIdBySharedScenarioId200ResponseScenarioShared? _explicitNullValueScenarioShared = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosSharedByScenarioIdBySharedScenarioId200ResponseScenarioShared ScenarioShared { get => _explicitNullValueScenarioShared; set { _explicitNullValueScenarioShared = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioShared"); else _explicitNullProperties?.Remove("scenarioShared"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosSharedByScenarioIdBySharedScenarioId200ResponseScenarioShared ScenarioShared { get => _explicitNullValueScenarioShared; set { _explicitNullValueScenarioShared = value; AdditionalData?.Remove("scenarioShared"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioShared"); else _explicitNullProperties?.Remove("scenarioShared"); } }
         private global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosSharedByScenarioIdBySharedScenarioId200ResponseScenarioShared _explicitNullValueScenarioShared = default!;
 #endif
         /// <summary>

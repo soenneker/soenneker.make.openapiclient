@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("hook") is { } nullNodeHook && nullNodeHook.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hook = null;
+            if (parseNode.GetChildNode("hook") is null) { _explicitNullValueHook = default!; _explicitNullProperties?.Remove("hook"); }
+            else if (parseNode.GetChildNode("hook") is { } nullNodeHook && nullNodeHook.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hook = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The hook property</summary>
-        public int? Hook { get => _explicitNullValueHook; set { _explicitNullValueHook = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hook"); else _explicitNullProperties?.Remove("hook"); } }
+        public int? Hook { get => _explicitNullValueHook; set { _explicitNullValueHook = value; AdditionalData?.Remove("hook"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hook"); else _explicitNullProperties?.Remove("hook"); } }
         private int? _explicitNullValueHook = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookId200Response"/> and sets the default values.

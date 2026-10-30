@@ -18,7 +18,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("newUser") is { } nullNodeNewUser && nullNodeNewUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewUser = null;
+            if (parseNode.GetChildNode("newUser") is null) { _explicitNullValueNewUser = default!; _explicitNullProperties?.Remove("newUser"); }
+            else if (parseNode.GetChildNode("newUser") is { } nullNodeNewUser && nullNodeNewUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewUser = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>New user to invite to the organization and add to the team.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf2NewUser? NewUser { get => _explicitNullValueNewUser; set { _explicitNullValueNewUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newUser"); else _explicitNullProperties?.Remove("newUser"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf2NewUser? NewUser { get => _explicitNullValueNewUser; set { _explicitNullValueNewUser = value; AdditionalData?.Remove("newUser"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newUser"); else _explicitNullProperties?.Remove("newUser"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf2NewUser? _explicitNullValueNewUser = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf2NewUser NewUser { get => _explicitNullValueNewUser; set { _explicitNullValueNewUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newUser"); else _explicitNullProperties?.Remove("newUser"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf2NewUser NewUser { get => _explicitNullValueNewUser; set { _explicitNullValueNewUser = value; AdditionalData?.Remove("newUser"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newUser"); else _explicitNullProperties?.Remove("newUser"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2RequestProviderOneOf2NewUser _explicitNullValueNewUser = default!;
 #endif
         /// <summary>

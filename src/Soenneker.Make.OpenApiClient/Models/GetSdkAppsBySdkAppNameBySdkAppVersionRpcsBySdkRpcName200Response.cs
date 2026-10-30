@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("appRpc") is { } nullNodeAppRpc && nullNodeAppRpc.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppRpc = null;
+            if (parseNode.GetChildNode("appRpc") is null) { _explicitNullValueAppRpc = default!; _explicitNullProperties?.Remove("appRpc"); }
+            else if (parseNode.GetChildNode("appRpc") is { } nullNodeAppRpc && nullNodeAppRpc.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppRpc = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The appRpc property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcName200ResponseAppRpc? AppRpc { get => _explicitNullValueAppRpc; set { _explicitNullValueAppRpc = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appRpc"); else _explicitNullProperties?.Remove("appRpc"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcName200ResponseAppRpc? AppRpc { get => _explicitNullValueAppRpc; set { _explicitNullValueAppRpc = value; AdditionalData?.Remove("appRpc"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appRpc"); else _explicitNullProperties?.Remove("appRpc"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcName200ResponseAppRpc? _explicitNullValueAppRpc = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcName200ResponseAppRpc AppRpc { get => _explicitNullValueAppRpc; set { _explicitNullValueAppRpc = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appRpc"); else _explicitNullProperties?.Remove("appRpc"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcName200ResponseAppRpc AppRpc { get => _explicitNullValueAppRpc; set { _explicitNullValueAppRpc = value; AdditionalData?.Remove("appRpc"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appRpc"); else _explicitNullProperties?.Remove("appRpc"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionRpcsBySdkRpcName200ResponseAppRpc _explicitNullValueAppRpc = default!;
 #endif
         /// <summary>

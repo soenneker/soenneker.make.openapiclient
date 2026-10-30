@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("privateSpaces") is { } nullNodePrivateSpaces && nullNodePrivateSpaces.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrivateSpaces = null;
+            if (parseNode.GetChildNode("privateSpaces") is null) { _explicitNullValuePrivateSpaces = default!; _explicitNullProperties?.Remove("privateSpaces"); }
+            else if (parseNode.GetChildNode("privateSpaces") is { } nullNodePrivateSpaces && nullNodePrivateSpaces.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrivateSpaces = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The privateSpaces property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk200ResponsePrivateSpacesItem>? PrivateSpaces { get => _explicitNullValuePrivateSpaces; set { _explicitNullValuePrivateSpaces = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaces"); else _explicitNullProperties?.Remove("privateSpaces"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk200ResponsePrivateSpacesItem>? PrivateSpaces { get => _explicitNullValuePrivateSpaces; set { _explicitNullValuePrivateSpaces = value; AdditionalData?.Remove("privateSpaces"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaces"); else _explicitNullProperties?.Remove("privateSpaces"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk200ResponsePrivateSpacesItem>? _explicitNullValuePrivateSpaces = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk200ResponsePrivateSpacesItem> PrivateSpaces { get => _explicitNullValuePrivateSpaces; set { _explicitNullValuePrivateSpaces = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaces"); else _explicitNullProperties?.Remove("privateSpaces"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk200ResponsePrivateSpacesItem> PrivateSpaces { get => _explicitNullValuePrivateSpaces; set { _explicitNullValuePrivateSpaces = value; AdditionalData?.Remove("privateSpaces"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpaces"); else _explicitNullProperties?.Remove("privateSpaces"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk200ResponsePrivateSpacesItem> _explicitNullValuePrivateSpaces = default!;
 #endif
         /// <summary>

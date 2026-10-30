@@ -17,23 +17,25 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("reanalyze") is { } nullNodeReanalyze && nullNodeReanalyze.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reanalyze = null;
-            if (parseNode.GetChildNode("scenarioIds") is { } nullNodeScenarioIds && nullNodeScenarioIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioIds = null;
+            if (parseNode.GetChildNode("reanalyze") is null) { _explicitNullValueReanalyze = default!; _explicitNullProperties?.Remove("reanalyze"); }
+            else if (parseNode.GetChildNode("reanalyze") is { } nullNodeReanalyze && nullNodeReanalyze.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reanalyze = null;
+            if (parseNode.GetChildNode("scenarioIds") is null) { _explicitNullValueScenarioIds = default!; _explicitNullProperties?.Remove("scenarioIds"); }
+            else if (parseNode.GetChildNode("scenarioIds") is { } nullNodeScenarioIds && nullNodeScenarioIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioIds = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The reanalyze property</summary>
-        public bool? Reanalyze { get => _explicitNullValueReanalyze; set { _explicitNullValueReanalyze = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reanalyze"); else _explicitNullProperties?.Remove("reanalyze"); } }
+        public bool? Reanalyze { get => _explicitNullValueReanalyze; set { _explicitNullValueReanalyze = value; AdditionalData?.Remove("reanalyze"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reanalyze"); else _explicitNullProperties?.Remove("reanalyze"); } }
         private bool? _explicitNullValueReanalyze = default!;
         /// <summary>The scenarioIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? ScenarioIds { get => _explicitNullValueScenarioIds; set { _explicitNullValueScenarioIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioIds"); else _explicitNullProperties?.Remove("scenarioIds"); } }
+        public UntypedNode? ScenarioIds { get => _explicitNullValueScenarioIds; set { _explicitNullValueScenarioIds = value; AdditionalData?.Remove("scenarioIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioIds"); else _explicitNullProperties?.Remove("scenarioIds"); } }
         private UntypedNode? _explicitNullValueScenarioIds = default!;
 #nullable restore
 #else
-        public UntypedNode ScenarioIds { get => _explicitNullValueScenarioIds; set { _explicitNullValueScenarioIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioIds"); else _explicitNullProperties?.Remove("scenarioIds"); } }
+        public UntypedNode ScenarioIds { get => _explicitNullValueScenarioIds; set { _explicitNullValueScenarioIds = value; AdditionalData?.Remove("scenarioIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioIds"); else _explicitNullProperties?.Remove("scenarioIds"); } }
         private UntypedNode _explicitNullValueScenarioIds = default!;
 #endif
         /// <summary>

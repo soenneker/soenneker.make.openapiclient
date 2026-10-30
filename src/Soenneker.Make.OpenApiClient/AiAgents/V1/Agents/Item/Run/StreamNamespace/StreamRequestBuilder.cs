@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Agents.Item.Run.StreamNamespa
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://eu1.make.com/api/v2", "/ai-agents/v1/agents/{agentId}/run/stream", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "text/event-stream");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);

@@ -17,29 +17,34 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("changeable") is { } nullNodeChangeable && nullNodeChangeable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Changeable = null;
-            if (parseNode.GetChildNode("ssoPending") is { } nullNodeSsoPending && nullNodeSsoPending.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SsoPending = null;
-            if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
-            if (parseNode.GetChildNode("userId") is { } nullNodeUserId && nullNodeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserId = null;
-            if (parseNode.GetChildNode("usersRoleId") is { } nullNodeUsersRoleId && nullNodeUsersRoleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsersRoleId = null;
+            if (parseNode.GetChildNode("changeable") is null) { _explicitNullValueChangeable = default!; _explicitNullProperties?.Remove("changeable"); }
+            else if (parseNode.GetChildNode("changeable") is { } nullNodeChangeable && nullNodeChangeable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Changeable = null;
+            if (parseNode.GetChildNode("ssoPending") is null) { _explicitNullValueSsoPending = default!; _explicitNullProperties?.Remove("ssoPending"); }
+            else if (parseNode.GetChildNode("ssoPending") is { } nullNodeSsoPending && nullNodeSsoPending.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SsoPending = null;
+            if (parseNode.GetChildNode("teamId") is null) { _explicitNullValueTeamId = default!; _explicitNullProperties?.Remove("teamId"); }
+            else if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
+            if (parseNode.GetChildNode("userId") is null) { _explicitNullValueUserId = default!; _explicitNullProperties?.Remove("userId"); }
+            else if (parseNode.GetChildNode("userId") is { } nullNodeUserId && nullNodeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserId = null;
+            if (parseNode.GetChildNode("usersRoleId") is null) { _explicitNullValueUsersRoleId = default!; _explicitNullProperties?.Remove("usersRoleId"); }
+            else if (parseNode.GetChildNode("usersRoleId") is { } nullNodeUsersRoleId && nullNodeUsersRoleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsersRoleId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The changeable property</summary>
-        public bool? Changeable { get => _explicitNullValueChangeable; set { _explicitNullValueChangeable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("changeable"); else _explicitNullProperties?.Remove("changeable"); } }
+        public bool? Changeable { get => _explicitNullValueChangeable; set { _explicitNullValueChangeable = value; AdditionalData?.Remove("changeable"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("changeable"); else _explicitNullProperties?.Remove("changeable"); } }
         private bool? _explicitNullValueChangeable = default!;
         /// <summary>The ssoPending property</summary>
-        public bool? SsoPending { get => _explicitNullValueSsoPending; set { _explicitNullValueSsoPending = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ssoPending"); else _explicitNullProperties?.Remove("ssoPending"); } }
+        public bool? SsoPending { get => _explicitNullValueSsoPending; set { _explicitNullValueSsoPending = value; AdditionalData?.Remove("ssoPending"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ssoPending"); else _explicitNullProperties?.Remove("ssoPending"); } }
         private bool? _explicitNullValueSsoPending = default!;
         /// <summary>The teamId property</summary>
-        public int? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
+        public int? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; AdditionalData?.Remove("teamId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
         private int? _explicitNullValueTeamId = default!;
         /// <summary>The userId property</summary>
-        public int? UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
+        public int? UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; AdditionalData?.Remove("userId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
         private int? _explicitNullValueUserId = default!;
         /// <summary>The user&apos;s role in the team, or `null` when the user has no role (e.g. after removal).</summary>
-        public int? UsersRoleId { get => _explicitNullValueUsersRoleId; set { _explicitNullValueUsersRoleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRoleId"); else _explicitNullProperties?.Remove("usersRoleId"); } }
+        public int? UsersRoleId { get => _explicitNullValueUsersRoleId; set { _explicitNullValueUsersRoleId = value; AdditionalData?.Remove("usersRoleId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRoleId"); else _explicitNullProperties?.Remove("usersRoleId"); } }
         private int? _explicitNullValueUsersRoleId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminUsersByUserIdUserTeamRolesByTeamId200ResponseUserTeamRole"/> and sets the default values.

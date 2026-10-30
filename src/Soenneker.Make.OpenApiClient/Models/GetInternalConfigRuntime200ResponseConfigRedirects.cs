@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("integromat") is { } nullNodeIntegromat && nullNodeIntegromat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Integromat = null;
-            if (parseNode.GetChildNode("make") is { } nullNodeMake && nullNodeMake.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Make = null;
+            if (parseNode.GetChildNode("integromat") is null) { _explicitNullValueIntegromat = default!; _explicitNullProperties?.Remove("integromat"); }
+            else if (parseNode.GetChildNode("integromat") is { } nullNodeIntegromat && nullNodeIntegromat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Integromat = null;
+            if (parseNode.GetChildNode("make") is null) { _explicitNullValueMake = default!; _explicitNullProperties?.Remove("make"); }
+            else if (parseNode.GetChildNode("make") is { } nullNodeMake && nullNodeMake.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Make = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The integromat property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Integromat { get => _explicitNullValueIntegromat; set { _explicitNullValueIntegromat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("integromat"); else _explicitNullProperties?.Remove("integromat"); } }
+        public string? Integromat { get => _explicitNullValueIntegromat; set { _explicitNullValueIntegromat = value; AdditionalData?.Remove("integromat"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("integromat"); else _explicitNullProperties?.Remove("integromat"); } }
         private string? _explicitNullValueIntegromat = default!;
 #nullable restore
 #else
-        public string Integromat { get => _explicitNullValueIntegromat; set { _explicitNullValueIntegromat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("integromat"); else _explicitNullProperties?.Remove("integromat"); } }
+        public string Integromat { get => _explicitNullValueIntegromat; set { _explicitNullValueIntegromat = value; AdditionalData?.Remove("integromat"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("integromat"); else _explicitNullProperties?.Remove("integromat"); } }
         private string _explicitNullValueIntegromat = default!;
 #endif
         /// <summary>The make property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Make { get => _explicitNullValueMake; set { _explicitNullValueMake = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("make"); else _explicitNullProperties?.Remove("make"); } }
+        public string? Make { get => _explicitNullValueMake; set { _explicitNullValueMake = value; AdditionalData?.Remove("make"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("make"); else _explicitNullProperties?.Remove("make"); } }
         private string? _explicitNullValueMake = default!;
 #nullable restore
 #else
-        public string Make { get => _explicitNullValueMake; set { _explicitNullValueMake = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("make"); else _explicitNullProperties?.Remove("make"); } }
+        public string Make { get => _explicitNullValueMake; set { _explicitNullValueMake = value; AdditionalData?.Remove("make"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("make"); else _explicitNullProperties?.Remove("make"); } }
         private string _explicitNullValueMake = default!;
 #endif
         /// <summary>

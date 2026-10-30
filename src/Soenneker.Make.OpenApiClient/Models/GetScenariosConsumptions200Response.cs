@@ -17,23 +17,25 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("lastReset") is { } nullNodeLastReset && nullNodeLastReset.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastReset = null;
-            if (parseNode.GetChildNode("scenarioConsumptions") is { } nullNodeScenarioConsumptions && nullNodeScenarioConsumptions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioConsumptions = null;
+            if (parseNode.GetChildNode("lastReset") is null) { _explicitNullValueLastReset = default!; _explicitNullProperties?.Remove("lastReset"); }
+            else if (parseNode.GetChildNode("lastReset") is { } nullNodeLastReset && nullNodeLastReset.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastReset = null;
+            if (parseNode.GetChildNode("scenarioConsumptions") is null) { _explicitNullValueScenarioConsumptions = default!; _explicitNullProperties?.Remove("scenarioConsumptions"); }
+            else if (parseNode.GetChildNode("scenarioConsumptions") is { } nullNodeScenarioConsumptions && nullNodeScenarioConsumptions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioConsumptions = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The lastReset property</summary>
-        public DateTimeOffset? LastReset { get => _explicitNullValueLastReset; set { _explicitNullValueLastReset = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastReset"); else _explicitNullProperties?.Remove("lastReset"); } }
+        public DateTimeOffset? LastReset { get => _explicitNullValueLastReset; set { _explicitNullValueLastReset = value; AdditionalData?.Remove("lastReset"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastReset"); else _explicitNullProperties?.Remove("lastReset"); } }
         private DateTimeOffset? _explicitNullValueLastReset = default!;
         /// <summary>The scenarioConsumptions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosConsumptions200ResponseScenarioConsumptionsItem>? ScenarioConsumptions { get => _explicitNullValueScenarioConsumptions; set { _explicitNullValueScenarioConsumptions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioConsumptions"); else _explicitNullProperties?.Remove("scenarioConsumptions"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosConsumptions200ResponseScenarioConsumptionsItem>? ScenarioConsumptions { get => _explicitNullValueScenarioConsumptions; set { _explicitNullValueScenarioConsumptions = value; AdditionalData?.Remove("scenarioConsumptions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioConsumptions"); else _explicitNullProperties?.Remove("scenarioConsumptions"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosConsumptions200ResponseScenarioConsumptionsItem>? _explicitNullValueScenarioConsumptions = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosConsumptions200ResponseScenarioConsumptionsItem> ScenarioConsumptions { get => _explicitNullValueScenarioConsumptions; set { _explicitNullValueScenarioConsumptions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioConsumptions"); else _explicitNullProperties?.Remove("scenarioConsumptions"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosConsumptions200ResponseScenarioConsumptionsItem> ScenarioConsumptions { get => _explicitNullValueScenarioConsumptions; set { _explicitNullValueScenarioConsumptions = value; AdditionalData?.Remove("scenarioConsumptions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioConsumptions"); else _explicitNullProperties?.Remove("scenarioConsumptions"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetScenariosConsumptions200ResponseScenarioConsumptionsItem> _explicitNullValueScenarioConsumptions = default!;
 #endif
         /// <summary>

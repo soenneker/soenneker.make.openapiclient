@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("owners") is { } nullNodeOwners && nullNodeOwners.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Owners = null;
+            if (parseNode.GetChildNode("owners") is null) { _explicitNullValueOwners = default!; _explicitNullProperties?.Remove("owners"); }
+            else if (parseNode.GetChildNode("owners") is { } nullNodeOwners && nullNodeOwners.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Owners = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The owners property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkGithubOwners200ResponseOwnersItem>? Owners { get => _explicitNullValueOwners; set { _explicitNullValueOwners = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("owners"); else _explicitNullProperties?.Remove("owners"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkGithubOwners200ResponseOwnersItem>? Owners { get => _explicitNullValueOwners; set { _explicitNullValueOwners = value; AdditionalData?.Remove("owners"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("owners"); else _explicitNullProperties?.Remove("owners"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetSdkGithubOwners200ResponseOwnersItem>? _explicitNullValueOwners = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkGithubOwners200ResponseOwnersItem> Owners { get => _explicitNullValueOwners; set { _explicitNullValueOwners = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("owners"); else _explicitNullProperties?.Remove("owners"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkGithubOwners200ResponseOwnersItem> Owners { get => _explicitNullValueOwners; set { _explicitNullValueOwners = value; AdditionalData?.Remove("owners"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("owners"); else _explicitNullProperties?.Remove("owners"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetSdkGithubOwners200ResponseOwnersItem> _explicitNullValueOwners = default!;
 #endif
         /// <summary>

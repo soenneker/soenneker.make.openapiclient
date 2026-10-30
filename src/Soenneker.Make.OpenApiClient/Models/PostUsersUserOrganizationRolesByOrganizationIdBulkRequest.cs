@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("userIds") is { } nullNodeUserIds && nullNodeUserIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserIds = null;
-            if (parseNode.GetChildNode("usersRoleId") is { } nullNodeUsersRoleId && nullNodeUsersRoleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsersRoleId = null;
+            if (parseNode.GetChildNode("userIds") is null) { _explicitNullValueUserIds = default!; _explicitNullProperties?.Remove("userIds"); }
+            else if (parseNode.GetChildNode("userIds") is { } nullNodeUserIds && nullNodeUserIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserIds = null;
+            if (parseNode.GetChildNode("usersRoleId") is null) { _explicitNullValueUsersRoleId = default!; _explicitNullProperties?.Remove("usersRoleId"); }
+            else if (parseNode.GetChildNode("usersRoleId") is { } nullNodeUsersRoleId && nullNodeUsersRoleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsersRoleId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The IDs of the users whose organization role is changed, or who are removed from the organization. Between 1 and 100 users; duplicates are ignored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? UserIds { get => _explicitNullValueUserIds; set { _explicitNullValueUserIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userIds"); else _explicitNullProperties?.Remove("userIds"); } }
+        public List<int?>? UserIds { get => _explicitNullValueUserIds; set { _explicitNullValueUserIds = value; AdditionalData?.Remove("userIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userIds"); else _explicitNullProperties?.Remove("userIds"); } }
         private List<int?>? _explicitNullValueUserIds = default!;
 #nullable restore
 #else
-        public List<int?> UserIds { get => _explicitNullValueUserIds; set { _explicitNullValueUserIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userIds"); else _explicitNullProperties?.Remove("userIds"); } }
+        public List<int?> UserIds { get => _explicitNullValueUserIds; set { _explicitNullValueUserIds = value; AdditionalData?.Remove("userIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userIds"); else _explicitNullProperties?.Remove("userIds"); } }
         private List<int?> _explicitNullValueUserIds = default!;
 #endif
         /// <summary>Removal-only for now, so this must be `null` or omitted — the listed users are removed from the organization. Bulk role assignment is not yet supported; a non-null value is rejected with HTTP 400.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? UsersRoleId { get => _explicitNullValueUsersRoleId; set { _explicitNullValueUsersRoleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRoleId"); else _explicitNullProperties?.Remove("usersRoleId"); } }
+        public UntypedNode? UsersRoleId { get => _explicitNullValueUsersRoleId; set { _explicitNullValueUsersRoleId = value; AdditionalData?.Remove("usersRoleId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRoleId"); else _explicitNullProperties?.Remove("usersRoleId"); } }
         private UntypedNode? _explicitNullValueUsersRoleId = default!;
 #nullable restore
 #else
-        public UntypedNode UsersRoleId { get => _explicitNullValueUsersRoleId; set { _explicitNullValueUsersRoleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRoleId"); else _explicitNullProperties?.Remove("usersRoleId"); } }
+        public UntypedNode UsersRoleId { get => _explicitNullValueUsersRoleId; set { _explicitNullValueUsersRoleId = value; AdditionalData?.Remove("usersRoleId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRoleId"); else _explicitNullProperties?.Remove("usersRoleId"); } }
         private UntypedNode _explicitNullValueUsersRoleId = default!;
 #endif
         /// <summary>

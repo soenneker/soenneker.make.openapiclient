@@ -17,32 +17,36 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("model") is { } nullNodeModel && nullNodeModel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Model = null;
-            if (parseNode.GetChildNode("provider") is { } nullNodeProvider && nullNodeProvider.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Provider = null;
-            if (parseNode.GetChildNode("settings") is { } nullNodeSettings && nullNodeSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Settings = null;
-            if (parseNode.GetChildNode("tokenLimit") is { } nullNodeTokenLimit && nullNodeTokenLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TokenLimit = null;
+            if (parseNode.GetChildNode("model") is null) { _explicitNullValueModel = default!; _explicitNullProperties?.Remove("model"); }
+            else if (parseNode.GetChildNode("model") is { } nullNodeModel && nullNodeModel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Model = null;
+            if (parseNode.GetChildNode("provider") is null) { _explicitNullValueProvider = default!; _explicitNullProperties?.Remove("provider"); }
+            else if (parseNode.GetChildNode("provider") is { } nullNodeProvider && nullNodeProvider.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Provider = null;
+            if (parseNode.GetChildNode("settings") is null) { _explicitNullValueSettings = default!; _explicitNullProperties?.Remove("settings"); }
+            else if (parseNode.GetChildNode("settings") is { } nullNodeSettings && nullNodeSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Settings = null;
+            if (parseNode.GetChildNode("tokenLimit") is null) { _explicitNullValueTokenLimit = default!; _explicitNullProperties?.Remove("tokenLimit"); }
+            else if (parseNode.GetChildNode("tokenLimit") is { } nullNodeTokenLimit && nullNodeTokenLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TokenLimit = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The model property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemModel? Model { get => _explicitNullValueModel; set { _explicitNullValueModel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("model"); else _explicitNullProperties?.Remove("model"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemModel? Model { get => _explicitNullValueModel; set { _explicitNullValueModel = value; AdditionalData?.Remove("model"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("model"); else _explicitNullProperties?.Remove("model"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemModel? _explicitNullValueModel = default!;
         /// <summary>The provider property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemProvider? Provider { get => _explicitNullValueProvider; set { _explicitNullValueProvider = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("provider"); else _explicitNullProperties?.Remove("provider"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemProvider? Provider { get => _explicitNullValueProvider; set { _explicitNullValueProvider = value; AdditionalData?.Remove("provider"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("provider"); else _explicitNullProperties?.Remove("provider"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemProvider? _explicitNullValueProvider = default!;
         /// <summary>The settings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings? Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings? Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; AdditionalData?.Remove("settings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings? _explicitNullValueSettings = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; AdditionalData?.Remove("settings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings _explicitNullValueSettings = default!;
 #endif
         /// <summary>The tokenLimit property</summary>
-        public int? TokenLimit { get => _explicitNullValueTokenLimit; set { _explicitNullValueTokenLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tokenLimit"); else _explicitNullProperties?.Remove("tokenLimit"); } }
+        public int? TokenLimit { get => _explicitNullValueTokenLimit; set { _explicitNullValueTokenLimit = value; AdditionalData?.Remove("tokenLimit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tokenLimit"); else _explicitNullProperties?.Remove("tokenLimit"); } }
         private int? _explicitNullValueTokenLimit = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItem"/> and sets the default values.
@@ -69,8 +73,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "model", n => { Model = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemModel>(); } },
-                { "provider", n => { Provider = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemProvider>(); } },
+                { "model", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemModel>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueModel = default; _explicitNullProperties?.Remove("model"); AdditionalData["model"] = unknown; } else { Model = parsed; AdditionalData.Remove("model"); } } },
+                { "provider", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemProvider>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueProvider = default; _explicitNullProperties?.Remove("provider"); AdditionalData["provider"] = unknown; } else { Provider = parsed; AdditionalData.Remove("provider"); } } },
                 { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings>(global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseSchemaItemSettings.CreateFromDiscriminatorValue); } },
                 { "tokenLimit", n => { TokenLimit = n.GetIntValue(); } },
             };

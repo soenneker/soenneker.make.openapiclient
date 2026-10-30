@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("universalDiscountId") is { } nullNodeUniversalDiscountId && nullNodeUniversalDiscountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UniversalDiscountId = null;
+            if (parseNode.GetChildNode("universalDiscountId") is null) { _explicitNullValueUniversalDiscountId = default!; _explicitNullProperties?.Remove("universalDiscountId"); }
+            else if (parseNode.GetChildNode("universalDiscountId") is { } nullNodeUniversalDiscountId && nullNodeUniversalDiscountId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UniversalDiscountId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The ID of the dormant universal discount to redeem</summary>
-        public int? UniversalDiscountId { get => _explicitNullValueUniversalDiscountId; set { _explicitNullValueUniversalDiscountId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("universalDiscountId"); else _explicitNullProperties?.Remove("universalDiscountId"); } }
+        public int? UniversalDiscountId { get => _explicitNullValueUniversalDiscountId; set { _explicitNullValueUniversalDiscountId = value; AdditionalData?.Remove("universalDiscountId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("universalDiscountId"); else _explicitNullProperties?.Remove("universalDiscountId"); } }
         private int? _explicitNullValueUniversalDiscountId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdUniversalDiscountRedeemRequest"/> and sets the default values.

@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("function") is { } nullNodeFunction && nullNodeFunction.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Function = null;
+            if (parseNode.GetChildNode("function") is null) { _explicitNullValueFunction = default!; _explicitNullProperties?.Remove("function"); }
+            else if (parseNode.GetChildNode("function") is { } nullNodeFunction && nullNodeFunction.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Function = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The function property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200ResponseFunction? Function { get => _explicitNullValueFunction; set { _explicitNullValueFunction = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("function"); else _explicitNullProperties?.Remove("function"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200ResponseFunction? Function { get => _explicitNullValueFunction; set { _explicitNullValueFunction = value; AdditionalData?.Remove("function"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("function"); else _explicitNullProperties?.Remove("function"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200ResponseFunction? _explicitNullValueFunction = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200ResponseFunction Function { get => _explicitNullValueFunction; set { _explicitNullValueFunction = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("function"); else _explicitNullProperties?.Remove("function"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200ResponseFunction Function { get => _explicitNullValueFunction; set { _explicitNullValueFunction = value; AdditionalData?.Remove("function"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("function"); else _explicitNullProperties?.Remove("function"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200ResponseFunction _explicitNullValueFunction = default!;
 #endif
         /// <summary>

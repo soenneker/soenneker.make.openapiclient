@@ -17,27 +17,30 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("datastructureId") is { } nullNodeDatastructureId && nullNodeDatastructureId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DatastructureId = null;
-            if (parseNode.GetChildNode("maxSizeMB") is { } nullNodeMaxSizeMB && nullNodeMaxSizeMB.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxSizeMB = null;
-            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("datastructureId") is null) { _explicitNullValueDatastructureId = default!; _explicitNullProperties?.Remove("datastructureId"); }
+            else if (parseNode.GetChildNode("datastructureId") is { } nullNodeDatastructureId && nullNodeDatastructureId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DatastructureId = null;
+            if (parseNode.GetChildNode("maxSizeMB") is null) { _explicitNullValueMaxSizeMB = default!; _explicitNullProperties?.Remove("maxSizeMB"); }
+            else if (parseNode.GetChildNode("maxSizeMB") is { } nullNodeMaxSizeMB && nullNodeMaxSizeMB.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxSizeMB = null;
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The unique ID of the data structure included in the data store. All data structures IDs for a given team can be retrieved from the [List data structures](/api-reference/data-structures/get--data-structures.md) endpoint.</summary>
-        public int? DatastructureId { get => _explicitNullValueDatastructureId; set { _explicitNullValueDatastructureId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("datastructureId"); else _explicitNullProperties?.Remove("datastructureId"); } }
+        public int? DatastructureId { get => _explicitNullValueDatastructureId; set { _explicitNullValueDatastructureId = value; AdditionalData?.Remove("datastructureId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("datastructureId"); else _explicitNullProperties?.Remove("datastructureId"); } }
         private int? _explicitNullValueDatastructureId = default!;
         /// <summary>The maximum size of the data store (defined in MB).</summary>
-        public int? MaxSizeMB { get => _explicitNullValueMaxSizeMB; set { _explicitNullValueMaxSizeMB = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxSizeMB"); else _explicitNullProperties?.Remove("maxSizeMB"); } }
+        public int? MaxSizeMB { get => _explicitNullValueMaxSizeMB; set { _explicitNullValueMaxSizeMB = value; AdditionalData?.Remove("maxSizeMB"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxSizeMB"); else _explicitNullProperties?.Remove("maxSizeMB"); } }
         private int? _explicitNullValueMaxSizeMB = default!;
         /// <summary>The data store name. The name must be at most 128 characters long and does not need to be unique.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
         /// <summary>

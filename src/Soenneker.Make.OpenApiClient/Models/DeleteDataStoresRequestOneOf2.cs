@@ -17,23 +17,25 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("all") is { } nullNodeAll && nullNodeAll.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) All = null;
-            if (parseNode.GetChildNode("exceptIds") is { } nullNodeExceptIds && nullNodeExceptIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExceptIds = null;
+            if (parseNode.GetChildNode("all") is null) { _explicitNullValueAll = default!; _explicitNullProperties?.Remove("all"); }
+            else if (parseNode.GetChildNode("all") is { } nullNodeAll && nullNodeAll.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) All = null;
+            if (parseNode.GetChildNode("exceptIds") is null) { _explicitNullValueExceptIds = default!; _explicitNullProperties?.Remove("exceptIds"); }
+            else if (parseNode.GetChildNode("exceptIds") is { } nullNodeExceptIds && nullNodeExceptIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExceptIds = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>If set to `true`, all data stores will be deleted. It can be used alone or together with the `exceptIds` parameter.</summary>
-        public bool? All { get => _explicitNullValueAll; set { _explicitNullValueAll = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("all"); else _explicitNullProperties?.Remove("all"); } }
+        public bool? All { get => _explicitNullValueAll; set { _explicitNullValueAll = value; AdditionalData?.Remove("all"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("all"); else _explicitNullProperties?.Remove("all"); } }
         private bool? _explicitNullValueAll = default!;
         /// <summary>The IDs of data stores to be excluded from deleting. It can be only used together with the `all` parameter set to `true`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? ExceptIds { get => _explicitNullValueExceptIds; set { _explicitNullValueExceptIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exceptIds"); else _explicitNullProperties?.Remove("exceptIds"); } }
+        public List<int?>? ExceptIds { get => _explicitNullValueExceptIds; set { _explicitNullValueExceptIds = value; AdditionalData?.Remove("exceptIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exceptIds"); else _explicitNullProperties?.Remove("exceptIds"); } }
         private List<int?>? _explicitNullValueExceptIds = default!;
 #nullable restore
 #else
-        public List<int?> ExceptIds { get => _explicitNullValueExceptIds; set { _explicitNullValueExceptIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exceptIds"); else _explicitNullProperties?.Remove("exceptIds"); } }
+        public List<int?> ExceptIds { get => _explicitNullValueExceptIds; set { _explicitNullValueExceptIds = value; AdditionalData?.Remove("exceptIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exceptIds"); else _explicitNullProperties?.Remove("exceptIds"); } }
         private List<int?> _explicitNullValueExceptIds = default!;
 #endif
         /// <summary>

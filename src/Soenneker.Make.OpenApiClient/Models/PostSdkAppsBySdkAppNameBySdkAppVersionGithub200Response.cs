@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("binding") is { } nullNodeBinding && nullNodeBinding.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Binding = null;
-            if (parseNode.GetChildNode("repoCreated") is { } nullNodeRepoCreated && nullNodeRepoCreated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RepoCreated = null;
+            if (parseNode.GetChildNode("binding") is null) { _explicitNullValueBinding = default!; _explicitNullProperties?.Remove("binding"); }
+            else if (parseNode.GetChildNode("binding") is { } nullNodeBinding && nullNodeBinding.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Binding = null;
+            if (parseNode.GetChildNode("repoCreated") is null) { _explicitNullValueRepoCreated = default!; _explicitNullProperties?.Remove("repoCreated"); }
+            else if (parseNode.GetChildNode("repoCreated") is { } nullNodeRepoCreated && nullNodeRepoCreated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RepoCreated = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>A binding between an SDK app version and a GitHub repository, established through a Make GitHub connection. Multiple bindings per app version are allowed (e.g. a public mirror and a private fork, or one binding per branch).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBinding? Binding { get => _explicitNullValueBinding; set { _explicitNullValueBinding = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("binding"); else _explicitNullProperties?.Remove("binding"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBinding? Binding { get => _explicitNullValueBinding; set { _explicitNullValueBinding = value; AdditionalData?.Remove("binding"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("binding"); else _explicitNullProperties?.Remove("binding"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBinding? _explicitNullValueBinding = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBinding Binding { get => _explicitNullValueBinding; set { _explicitNullValueBinding = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("binding"); else _explicitNullProperties?.Remove("binding"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBinding Binding { get => _explicitNullValueBinding; set { _explicitNullValueBinding = value; AdditionalData?.Remove("binding"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("binding"); else _explicitNullProperties?.Remove("binding"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBinding _explicitNullValueBinding = default!;
 #endif
         /// <summary>`true` when this call created the repository on GitHub; `false` when it already existed.</summary>
-        public bool? RepoCreated { get => _explicitNullValueRepoCreated; set { _explicitNullValueRepoCreated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("repoCreated"); else _explicitNullProperties?.Remove("repoCreated"); } }
+        public bool? RepoCreated { get => _explicitNullValueRepoCreated; set { _explicitNullValueRepoCreated = value; AdditionalData?.Remove("repoCreated"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("repoCreated"); else _explicitNullProperties?.Remove("repoCreated"); } }
         private bool? _explicitNullValueRepoCreated = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionGithub200Response"/> and sets the default values.

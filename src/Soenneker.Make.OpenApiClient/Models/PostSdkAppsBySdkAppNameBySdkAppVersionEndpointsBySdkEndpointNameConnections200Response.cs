@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("appEndpoint") is { } nullNodeAppEndpoint && nullNodeAppEndpoint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppEndpoint = null;
+            if (parseNode.GetChildNode("appEndpoint") is null) { _explicitNullValueAppEndpoint = default!; _explicitNullProperties?.Remove("appEndpoint"); }
+            else if (parseNode.GetChildNode("appEndpoint") is { } nullNodeAppEndpoint && nullNodeAppEndpoint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppEndpoint = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The appEndpoint property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200ResponseAppEndpoint? AppEndpoint { get => _explicitNullValueAppEndpoint; set { _explicitNullValueAppEndpoint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appEndpoint"); else _explicitNullProperties?.Remove("appEndpoint"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200ResponseAppEndpoint? AppEndpoint { get => _explicitNullValueAppEndpoint; set { _explicitNullValueAppEndpoint = value; AdditionalData?.Remove("appEndpoint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appEndpoint"); else _explicitNullProperties?.Remove("appEndpoint"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200ResponseAppEndpoint? _explicitNullValueAppEndpoint = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200ResponseAppEndpoint AppEndpoint { get => _explicitNullValueAppEndpoint; set { _explicitNullValueAppEndpoint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appEndpoint"); else _explicitNullProperties?.Remove("appEndpoint"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200ResponseAppEndpoint AppEndpoint { get => _explicitNullValueAppEndpoint; set { _explicitNullValueAppEndpoint = value; AdditionalData?.Remove("appEndpoint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appEndpoint"); else _explicitNullProperties?.Remove("appEndpoint"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameConnections200ResponseAppEndpoint _explicitNullValueAppEndpoint = default!;
 #endif
         /// <summary>

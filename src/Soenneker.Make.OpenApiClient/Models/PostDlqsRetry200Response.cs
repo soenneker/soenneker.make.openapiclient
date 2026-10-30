@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("dlqs") is { } nullNodeDlqs && nullNodeDlqs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dlqs = null;
+            if (parseNode.GetChildNode("dlqs") is null) { _explicitNullValueDlqs = default!; _explicitNullProperties?.Remove("dlqs"); }
+            else if (parseNode.GetChildNode("dlqs") is { } nullNodeDlqs && nullNodeDlqs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dlqs = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The dlqs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Dlqs { get => _explicitNullValueDlqs; set { _explicitNullValueDlqs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlqs"); else _explicitNullProperties?.Remove("dlqs"); } }
+        public List<string>? Dlqs { get => _explicitNullValueDlqs; set { _explicitNullValueDlqs = value; AdditionalData?.Remove("dlqs"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlqs"); else _explicitNullProperties?.Remove("dlqs"); } }
         private List<string>? _explicitNullValueDlqs = default!;
 #nullable restore
 #else
-        public List<string> Dlqs { get => _explicitNullValueDlqs; set { _explicitNullValueDlqs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlqs"); else _explicitNullProperties?.Remove("dlqs"); } }
+        public List<string> Dlqs { get => _explicitNullValueDlqs; set { _explicitNullValueDlqs = value; AdditionalData?.Remove("dlqs"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlqs"); else _explicitNullProperties?.Remove("dlqs"); } }
         private List<string> _explicitNullValueDlqs = default!;
 #endif
         /// <summary>

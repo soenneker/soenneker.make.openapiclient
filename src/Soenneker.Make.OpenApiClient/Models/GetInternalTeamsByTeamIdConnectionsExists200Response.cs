@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("hasConnection") is { } nullNodeHasConnection && nullNodeHasConnection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasConnection = null;
+            if (parseNode.GetChildNode("hasConnection") is null) { _explicitNullValueHasConnection = default!; _explicitNullProperties?.Remove("hasConnection"); }
+            else if (parseNode.GetChildNode("hasConnection") is { } nullNodeHasConnection && nullNodeHasConnection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasConnection = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The hasConnection property</summary>
-        public bool? HasConnection { get => _explicitNullValueHasConnection; set { _explicitNullValueHasConnection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasConnection"); else _explicitNullProperties?.Remove("hasConnection"); } }
+        public bool? HasConnection { get => _explicitNullValueHasConnection; set { _explicitNullValueHasConnection = value; AdditionalData?.Remove("hasConnection"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasConnection"); else _explicitNullProperties?.Remove("hasConnection"); } }
         private bool? _explicitNullValueHasConnection = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalTeamsByTeamIdConnectionsExists200Response"/> and sets the default values.

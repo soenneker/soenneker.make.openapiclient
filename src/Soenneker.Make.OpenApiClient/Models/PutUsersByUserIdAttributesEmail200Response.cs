@@ -17,17 +17,19 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("changed") is { } nullNodeChanged && nullNodeChanged.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Changed = null;
-            if (parseNode.GetChildNode("emailSent") is { } nullNodeEmailSent && nullNodeEmailSent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EmailSent = null;
+            if (parseNode.GetChildNode("changed") is null) { _explicitNullValueChanged = default!; _explicitNullProperties?.Remove("changed"); }
+            else if (parseNode.GetChildNode("changed") is { } nullNodeChanged && nullNodeChanged.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Changed = null;
+            if (parseNode.GetChildNode("emailSent") is null) { _explicitNullValueEmailSent = default!; _explicitNullProperties?.Remove("emailSent"); }
+            else if (parseNode.GetChildNode("emailSent") is { } nullNodeEmailSent && nullNodeEmailSent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EmailSent = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The changed property</summary>
-        public bool? Changed { get => _explicitNullValueChanged; set { _explicitNullValueChanged = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("changed"); else _explicitNullProperties?.Remove("changed"); } }
+        public bool? Changed { get => _explicitNullValueChanged; set { _explicitNullValueChanged = value; AdditionalData?.Remove("changed"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("changed"); else _explicitNullProperties?.Remove("changed"); } }
         private bool? _explicitNullValueChanged = default!;
         /// <summary>The emailSent property</summary>
-        public bool? EmailSent { get => _explicitNullValueEmailSent; set { _explicitNullValueEmailSent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("emailSent"); else _explicitNullProperties?.Remove("emailSent"); } }
+        public bool? EmailSent { get => _explicitNullValueEmailSent; set { _explicitNullValueEmailSent = value; AdditionalData?.Remove("emailSent"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("emailSent"); else _explicitNullProperties?.Remove("emailSent"); } }
         private bool? _explicitNullValueEmailSent = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmail200Response"/> and sets the default values.

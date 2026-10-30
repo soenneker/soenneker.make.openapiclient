@@ -8,40 +8,27 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1"/>
+    /// A versioned Scenario History change not yet interpreted by this API specification.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange : IComposedTypeWrapper, IParsable
-    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
-        // Preserve ambiguous union payloads without inventing a discriminator.
-        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
-        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
-        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+    public partial class GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange : IAdditionalDataHolder, IParsable
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
 
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1? GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2? GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1? GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 { get; set; }
-#endif
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+        }
+
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange"/> and sets the default values.
+        /// </summary>
+        public GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -50,18 +37,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var result = new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange();
-            
-            
-            
-            
-            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
-            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("version") != null && parseNode.GetChildNode("kind") != null && (parseNode.GetChildNode("kind")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("label-assigned".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "label-unassigned".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("origin") != null && (parseNode.GetChildNode("origin")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag4 && ("direct".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "cascade".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("label") != null))();
-            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("version") != null && parseNode.GetChildNode("kind") != null && (parseNode.GetChildNode("kind")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("folder-moved".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("origin") != null && (parseNode.GetChildNode("origin")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag4 && ("direct".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal) || "cascade".Equals(tag4.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("fromFolder") != null && parseNode.GetChildNode("toFolder") != null))();
-            if (result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 == null && result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 == null && result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 == null && matchesUnionBranch0 && !matchesUnionBranch1) result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1(), parseNode);
-            if (result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 == null && result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 == null && result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 == null && matchesUnionBranch1 && !matchesUnionBranch0) result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2(), parseNode);
-            if (result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 == null && result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 == null && result.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 == null) result.UnrecognizedValue = unionPayload;
-return result;
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChange(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,11 +45,9 @@ return result;
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 != null || GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 != null || GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 != null)
+            return new Dictionary<string, Action<IParseNode>>
             {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1);
-            }
-            return new Dictionary<string, Action<IParseNode>>();
+            };
         }
         /// <summary>
         /// Serializes information the current object
@@ -81,14 +55,9 @@ return result;
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
-            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
-            if (GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 == null && GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 == null && GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
-            if (GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 != null && GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 == null && GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 == null) { if (GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1); return; }
-            if (GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 != null && GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 == null && GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 == null) { if (GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2); return; }
-            if (GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 != null && GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1 == null && GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2 == null) { if (GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1); return; }
-
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1>(null, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf1, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeAnyOf2, GetScenariosByScenarioIdLogsByExecutionId200ResponseScenarioLogDetailChangeMember1);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

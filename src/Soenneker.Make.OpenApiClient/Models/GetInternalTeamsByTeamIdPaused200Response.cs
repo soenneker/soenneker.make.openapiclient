@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("isPaused") is { } nullNodeIsPaused && nullNodeIsPaused.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsPaused = null;
+            if (parseNode.GetChildNode("isPaused") is null) { _explicitNullValueIsPaused = default!; _explicitNullProperties?.Remove("isPaused"); }
+            else if (parseNode.GetChildNode("isPaused") is { } nullNodeIsPaused && nullNodeIsPaused.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsPaused = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether the team is currently paused=true or not=false.</summary>
-        public bool? IsPaused { get => _explicitNullValueIsPaused; set { _explicitNullValueIsPaused = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isPaused"); else _explicitNullProperties?.Remove("isPaused"); } }
+        public bool? IsPaused { get => _explicitNullValueIsPaused; set { _explicitNullValueIsPaused = value; AdditionalData?.Remove("isPaused"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isPaused"); else _explicitNullProperties?.Remove("isPaused"); } }
         private bool? _explicitNullValueIsPaused = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalTeamsByTeamIdPaused200Response"/> and sets the default values.

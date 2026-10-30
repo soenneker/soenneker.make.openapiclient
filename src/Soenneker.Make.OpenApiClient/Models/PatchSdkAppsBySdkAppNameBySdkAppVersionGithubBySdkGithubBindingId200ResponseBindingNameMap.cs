@@ -18,8 +18,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("connections") is { } nullNodeConnections && nullNodeConnections.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Connections = null;
-            if (parseNode.GetChildNode("webhooks") is { } nullNodeWebhooks && nullNodeWebhooks.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Webhooks = null;
+            if (parseNode.GetChildNode("connections") is null) { _explicitNullValueConnections = default!; _explicitNullProperties?.Remove("connections"); }
+            else if (parseNode.GetChildNode("connections") is { } nullNodeConnections && nullNodeConnections.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Connections = null;
+            if (parseNode.GetChildNode("webhooks") is null) { _explicitNullValueWebhooks = default!; _explicitNullProperties?.Remove("webhooks"); }
+            else if (parseNode.GetChildNode("webhooks") is { } nullNodeWebhooks && nullNodeWebhooks.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Webhooks = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,21 +29,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The connections property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnections? Connections { get => _explicitNullValueConnections; set { _explicitNullValueConnections = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connections"); else _explicitNullProperties?.Remove("connections"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnections? Connections { get => _explicitNullValueConnections; set { _explicitNullValueConnections = value; AdditionalData?.Remove("connections"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connections"); else _explicitNullProperties?.Remove("connections"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnections? _explicitNullValueConnections = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnections Connections { get => _explicitNullValueConnections; set { _explicitNullValueConnections = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connections"); else _explicitNullProperties?.Remove("connections"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnections Connections { get => _explicitNullValueConnections; set { _explicitNullValueConnections = value; AdditionalData?.Remove("connections"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connections"); else _explicitNullProperties?.Remove("connections"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapConnections _explicitNullValueConnections = default!;
 #endif
         /// <summary>The webhooks property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooks? Webhooks { get => _explicitNullValueWebhooks; set { _explicitNullValueWebhooks = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("webhooks"); else _explicitNullProperties?.Remove("webhooks"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooks? Webhooks { get => _explicitNullValueWebhooks; set { _explicitNullValueWebhooks = value; AdditionalData?.Remove("webhooks"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("webhooks"); else _explicitNullProperties?.Remove("webhooks"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooks? _explicitNullValueWebhooks = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooks Webhooks { get => _explicitNullValueWebhooks; set { _explicitNullValueWebhooks = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("webhooks"); else _explicitNullProperties?.Remove("webhooks"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooks Webhooks { get => _explicitNullValueWebhooks; set { _explicitNullValueWebhooks = value; AdditionalData?.Remove("webhooks"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("webhooks"); else _explicitNullProperties?.Remove("webhooks"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingId200ResponseBindingNameMapWebhooks _explicitNullValueWebhooks = default!;
 #endif
         /// <summary>

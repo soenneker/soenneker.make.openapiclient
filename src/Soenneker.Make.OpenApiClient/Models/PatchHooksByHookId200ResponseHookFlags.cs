@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("form") is { } nullNodeForm && nullNodeForm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Form = null;
+            if (parseNode.GetChildNode("form") is null) { _explicitNullValueForm = default!; _explicitNullProperties?.Remove("form"); }
+            else if (parseNode.GetChildNode("form") is { } nullNodeForm && nullNodeForm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Form = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The form property</summary>
-        public bool? Form { get => _explicitNullValueForm; set { _explicitNullValueForm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("form"); else _explicitNullProperties?.Remove("form"); } }
+        public bool? Form { get => _explicitNullValueForm; set { _explicitNullValueForm = value; AdditionalData?.Remove("form"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("form"); else _explicitNullProperties?.Remove("form"); } }
         private bool? _explicitNullValueForm = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHookFlags"/> and sets the default values.

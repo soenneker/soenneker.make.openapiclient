@@ -17,10 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("authorize") is { } nullNodeAuthorize && nullNodeAuthorize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Authorize = null;
-            if (parseNode.GetChildNode("info") is { } nullNodeInfo && nullNodeInfo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Info = null;
-            if (parseNode.GetChildNode("invalidate") is { } nullNodeInvalidate && nullNodeInvalidate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Invalidate = null;
-            if (parseNode.GetChildNode("token") is { } nullNodeToken && nullNodeToken.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Token = null;
+            if (parseNode.GetChildNode("authorize") is null) { _explicitNullValueAuthorize = default!; _explicitNullProperties?.Remove("authorize"); }
+            else if (parseNode.GetChildNode("authorize") is { } nullNodeAuthorize && nullNodeAuthorize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Authorize = null;
+            if (parseNode.GetChildNode("info") is null) { _explicitNullValueInfo = default!; _explicitNullProperties?.Remove("info"); }
+            else if (parseNode.GetChildNode("info") is { } nullNodeInfo && nullNodeInfo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Info = null;
+            if (parseNode.GetChildNode("invalidate") is null) { _explicitNullValueInvalidate = default!; _explicitNullProperties?.Remove("invalidate"); }
+            else if (parseNode.GetChildNode("invalidate") is { } nullNodeInvalidate && nullNodeInvalidate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Invalidate = null;
+            if (parseNode.GetChildNode("token") is null) { _explicitNullValueToken = default!; _explicitNullProperties?.Remove("token"); }
+            else if (parseNode.GetChildNode("token") is { } nullNodeToken && nullNodeToken.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Token = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,41 +32,41 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The authorize property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseAuthorize? Authorize { get => _explicitNullValueAuthorize; set { _explicitNullValueAuthorize = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorize"); else _explicitNullProperties?.Remove("authorize"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseAuthorize? Authorize { get => _explicitNullValueAuthorize; set { _explicitNullValueAuthorize = value; AdditionalData?.Remove("authorize"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorize"); else _explicitNullProperties?.Remove("authorize"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseAuthorize? _explicitNullValueAuthorize = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseAuthorize Authorize { get => _explicitNullValueAuthorize; set { _explicitNullValueAuthorize = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorize"); else _explicitNullProperties?.Remove("authorize"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseAuthorize Authorize { get => _explicitNullValueAuthorize; set { _explicitNullValueAuthorize = value; AdditionalData?.Remove("authorize"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorize"); else _explicitNullProperties?.Remove("authorize"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseAuthorize _explicitNullValueAuthorize = default!;
 #endif
         /// <summary>The info property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseInfo? Info { get => _explicitNullValueInfo; set { _explicitNullValueInfo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("info"); else _explicitNullProperties?.Remove("info"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseInfo? Info { get => _explicitNullValueInfo; set { _explicitNullValueInfo = value; AdditionalData?.Remove("info"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("info"); else _explicitNullProperties?.Remove("info"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseInfo? _explicitNullValueInfo = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseInfo Info { get => _explicitNullValueInfo; set { _explicitNullValueInfo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("info"); else _explicitNullProperties?.Remove("info"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseInfo Info { get => _explicitNullValueInfo; set { _explicitNullValueInfo = value; AdditionalData?.Remove("info"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("info"); else _explicitNullProperties?.Remove("info"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseInfo _explicitNullValueInfo = default!;
 #endif
         /// <summary>The invalidate property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseInvalidate? Invalidate { get => _explicitNullValueInvalidate; set { _explicitNullValueInvalidate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidate"); else _explicitNullProperties?.Remove("invalidate"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseInvalidate? Invalidate { get => _explicitNullValueInvalidate; set { _explicitNullValueInvalidate = value; AdditionalData?.Remove("invalidate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidate"); else _explicitNullProperties?.Remove("invalidate"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseInvalidate? _explicitNullValueInvalidate = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseInvalidate Invalidate { get => _explicitNullValueInvalidate; set { _explicitNullValueInvalidate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidate"); else _explicitNullProperties?.Remove("invalidate"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseInvalidate Invalidate { get => _explicitNullValueInvalidate; set { _explicitNullValueInvalidate = value; AdditionalData?.Remove("invalidate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("invalidate"); else _explicitNullProperties?.Remove("invalidate"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseInvalidate _explicitNullValueInvalidate = default!;
 #endif
         /// <summary>The token property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseToken? Token { get => _explicitNullValueToken; set { _explicitNullValueToken = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("token"); else _explicitNullProperties?.Remove("token"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseToken? Token { get => _explicitNullValueToken; set { _explicitNullValueToken = value; AdditionalData?.Remove("token"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("token"); else _explicitNullProperties?.Remove("token"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseToken? _explicitNullValueToken = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseToken Token { get => _explicitNullValueToken; set { _explicitNullValueToken = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("token"); else _explicitNullProperties?.Remove("token"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseToken Token { get => _explicitNullValueToken; set { _explicitNullValueToken = value; AdditionalData?.Remove("token"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("token"); else _explicitNullProperties?.Remove("token"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseToken _explicitNullValueToken = default!;
 #endif
         /// <summary>

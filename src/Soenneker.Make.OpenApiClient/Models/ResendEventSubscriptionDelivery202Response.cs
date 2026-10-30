@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("resend") is { } nullNodeResend && nullNodeResend.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Resend = null;
+            if (parseNode.GetChildNode("resend") is null) { _explicitNullValueResend = default!; _explicitNullProperties?.Remove("resend"); }
+            else if (parseNode.GetChildNode("resend") is { } nullNodeResend && nullNodeResend.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Resend = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The resend property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.ResendEventSubscriptionDelivery202ResponseResend? Resend { get => _explicitNullValueResend; set { _explicitNullValueResend = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resend"); else _explicitNullProperties?.Remove("resend"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.ResendEventSubscriptionDelivery202ResponseResend? Resend { get => _explicitNullValueResend; set { _explicitNullValueResend = value; AdditionalData?.Remove("resend"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resend"); else _explicitNullProperties?.Remove("resend"); } }
         private global::Soenneker.Make.OpenApiClient.Models.ResendEventSubscriptionDelivery202ResponseResend? _explicitNullValueResend = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.ResendEventSubscriptionDelivery202ResponseResend Resend { get => _explicitNullValueResend; set { _explicitNullValueResend = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resend"); else _explicitNullProperties?.Remove("resend"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.ResendEventSubscriptionDelivery202ResponseResend Resend { get => _explicitNullValueResend; set { _explicitNullValueResend = value; AdditionalData?.Remove("resend"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resend"); else _explicitNullProperties?.Remove("resend"); } }
         private global::Soenneker.Make.OpenApiClient.Models.ResendEventSubscriptionDelivery202ResponseResend _explicitNullValueResend = default!;
 #endif
         /// <summary>

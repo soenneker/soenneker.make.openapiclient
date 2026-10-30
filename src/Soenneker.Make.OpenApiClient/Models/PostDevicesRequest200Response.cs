@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("createDeviceRequest") is { } nullNodeCreateDeviceRequest && nullNodeCreateDeviceRequest.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreateDeviceRequest = null;
+            if (parseNode.GetChildNode("createDeviceRequest") is null) { _explicitNullValueCreateDeviceRequest = default!; _explicitNullProperties?.Remove("createDeviceRequest"); }
+            else if (parseNode.GetChildNode("createDeviceRequest") is { } nullNodeCreateDeviceRequest && nullNodeCreateDeviceRequest.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreateDeviceRequest = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The createDeviceRequest property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostDevicesRequest200ResponseCreateDeviceRequest? CreateDeviceRequest { get => _explicitNullValueCreateDeviceRequest; set { _explicitNullValueCreateDeviceRequest = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createDeviceRequest"); else _explicitNullProperties?.Remove("createDeviceRequest"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDevicesRequest200ResponseCreateDeviceRequest? CreateDeviceRequest { get => _explicitNullValueCreateDeviceRequest; set { _explicitNullValueCreateDeviceRequest = value; AdditionalData?.Remove("createDeviceRequest"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createDeviceRequest"); else _explicitNullProperties?.Remove("createDeviceRequest"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostDevicesRequest200ResponseCreateDeviceRequest? _explicitNullValueCreateDeviceRequest = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostDevicesRequest200ResponseCreateDeviceRequest CreateDeviceRequest { get => _explicitNullValueCreateDeviceRequest; set { _explicitNullValueCreateDeviceRequest = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createDeviceRequest"); else _explicitNullProperties?.Remove("createDeviceRequest"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDevicesRequest200ResponseCreateDeviceRequest CreateDeviceRequest { get => _explicitNullValueCreateDeviceRequest; set { _explicitNullValueCreateDeviceRequest = value; AdditionalData?.Remove("createDeviceRequest"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createDeviceRequest"); else _explicitNullProperties?.Remove("createDeviceRequest"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostDevicesRequest200ResponseCreateDeviceRequest _explicitNullValueCreateDeviceRequest = default!;
 #endif
         /// <summary>

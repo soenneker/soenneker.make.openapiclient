@@ -17,21 +17,24 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("httpStatus") is { } nullNodeHttpStatus && nullNodeHttpStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpStatus = null;
-            if (parseNode.GetChildNode("reason") is { } nullNodeReason && nullNodeReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reason = null;
-            if (parseNode.GetChildNode("state") is { } nullNodeState && nullNodeState.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) State = null;
+            if (parseNode.GetChildNode("httpStatus") is null) { _explicitNullValueHttpStatus = default!; _explicitNullProperties?.Remove("httpStatus"); }
+            else if (parseNode.GetChildNode("httpStatus") is { } nullNodeHttpStatus && nullNodeHttpStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HttpStatus = null;
+            if (parseNode.GetChildNode("reason") is null) { _explicitNullValueReason = default!; _explicitNullProperties?.Remove("reason"); }
+            else if (parseNode.GetChildNode("reason") is { } nullNodeReason && nullNodeReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reason = null;
+            if (parseNode.GetChildNode("state") is null) { _explicitNullValueState = default!; _explicitNullProperties?.Remove("state"); }
+            else if (parseNode.GetChildNode("state") is { } nullNodeState && nullNodeState.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) State = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The HTTP status of the latest attempt, if the endpoint answered.</summary>
-        public int? HttpStatus { get => _explicitNullValueHttpStatus; set { _explicitNullValueHttpStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpStatus"); else _explicitNullProperties?.Remove("httpStatus"); } }
+        public int? HttpStatus { get => _explicitNullValueHttpStatus; set { _explicitNullValueHttpStatus = value; AdditionalData?.Remove("httpStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("httpStatus"); else _explicitNullProperties?.Remove("httpStatus"); } }
         private int? _explicitNullValueHttpStatus = default!;
         /// <summary>Why the delivery `failed`, and `null` otherwise.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryStatusReason? Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryStatusReason? Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; AdditionalData?.Remove("reason"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryStatusReason? _explicitNullValueReason = default!;
         /// <summary>The state property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryStatusState? State { get => _explicitNullValueState; set { _explicitNullValueState = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("state"); else _explicitNullProperties?.Remove("state"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryStatusState? State { get => _explicitNullValueState; set { _explicitNullValueState = value; AdditionalData?.Remove("state"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("state"); else _explicitNullProperties?.Remove("state"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryStatusState? _explicitNullValueState = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryStatus"/> and sets the default values.
@@ -59,8 +62,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "httpStatus", n => { HttpStatus = n.GetIntValue(); } },
-                { "reason", n => { Reason = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryStatusReason>(); } },
-                { "state", n => { State = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryStatusState>(); } },
+                { "reason", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryStatusReason>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueReason = default; _explicitNullProperties?.Remove("reason"); AdditionalData["reason"] = unknown; } else { Reason = parsed; AdditionalData.Remove("reason"); } } },
+                { "state", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDeliveryStatusState>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueState = default; _explicitNullProperties?.Remove("state"); AdditionalData["state"] = unknown; } else { State = parsed; AdditionalData.Remove("state"); } } },
             };
         }
         /// <summary>

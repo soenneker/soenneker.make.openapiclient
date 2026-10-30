@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("dlq") is { } nullNodeDlq && nullNodeDlq.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dlq = null;
+            if (parseNode.GetChildNode("dlq") is null) { _explicitNullValueDlq = default!; _explicitNullProperties?.Remove("dlq"); }
+            else if (parseNode.GetChildNode("dlq") is { } nullNodeDlq && nullNodeDlq.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dlq = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The dlq property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Dlq { get => _explicitNullValueDlq; set { _explicitNullValueDlq = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlq"); else _explicitNullProperties?.Remove("dlq"); } }
+        public string? Dlq { get => _explicitNullValueDlq; set { _explicitNullValueDlq = value; AdditionalData?.Remove("dlq"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlq"); else _explicitNullProperties?.Remove("dlq"); } }
         private string? _explicitNullValueDlq = default!;
 #nullable restore
 #else
-        public string Dlq { get => _explicitNullValueDlq; set { _explicitNullValueDlq = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlq"); else _explicitNullProperties?.Remove("dlq"); } }
+        public string Dlq { get => _explicitNullValueDlq; set { _explicitNullValueDlq = value; AdditionalData?.Remove("dlq"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlq"); else _explicitNullProperties?.Remove("dlq"); } }
         private string _explicitNullValueDlq = default!;
 #endif
         /// <summary>

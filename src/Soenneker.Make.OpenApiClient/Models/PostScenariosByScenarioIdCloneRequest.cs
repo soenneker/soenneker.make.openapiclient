@@ -17,25 +17,34 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("account") is { } nullNodeAccount && nullNodeAccount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Account = null;
-            if (parseNode.GetChildNode("datastore") is { } nullNodeDatastore && nullNodeDatastore.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Datastore = null;
-            if (parseNode.GetChildNode("device") is { } nullNodeDevice && nullNodeDevice.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Device = null;
-            if (parseNode.GetChildNode("hook") is { } nullNodeHook && nullNodeHook.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hook = null;
-            if (parseNode.GetChildNode("key") is { } nullNodeKey && nullNodeKey.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Key = null;
-            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
-            if (parseNode.GetChildNode("states") is { } nullNodeStates && nullNodeStates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) States = null;
-            if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
-            if (parseNode.GetChildNode("udt") is { } nullNodeUdt && nullNodeUdt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Udt = null;
+            if (parseNode.GetChildNode("account") is null) { _explicitNullValueAccount = default!; _explicitNullProperties?.Remove("account"); }
+            else if (parseNode.GetChildNode("account") is { } nullNodeAccount && nullNodeAccount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Account = null;
+            if (parseNode.GetChildNode("datastore") is null) { _explicitNullValueDatastore = default!; _explicitNullProperties?.Remove("datastore"); }
+            else if (parseNode.GetChildNode("datastore") is { } nullNodeDatastore && nullNodeDatastore.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Datastore = null;
+            if (parseNode.GetChildNode("device") is null) { _explicitNullValueDevice = default!; _explicitNullProperties?.Remove("device"); }
+            else if (parseNode.GetChildNode("device") is { } nullNodeDevice && nullNodeDevice.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Device = null;
+            if (parseNode.GetChildNode("hook") is null) { _explicitNullValueHook = default!; _explicitNullProperties?.Remove("hook"); }
+            else if (parseNode.GetChildNode("hook") is { } nullNodeHook && nullNodeHook.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Hook = null;
+            if (parseNode.GetChildNode("key") is null) { _explicitNullValueKey = default!; _explicitNullProperties?.Remove("key"); }
+            else if (parseNode.GetChildNode("key") is { } nullNodeKey && nullNodeKey.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Key = null;
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("states") is null) { _explicitNullValueStates = default!; _explicitNullProperties?.Remove("states"); }
+            else if (parseNode.GetChildNode("states") is { } nullNodeStates && nullNodeStates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) States = null;
+            if (parseNode.GetChildNode("teamId") is null) { _explicitNullValueTeamId = default!; _explicitNullProperties?.Remove("teamId"); }
+            else if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
+            if (parseNode.GetChildNode("udt") is null) { _explicitNullValueUdt = default!; _explicitNullProperties?.Remove("udt"); }
+            else if (parseNode.GetChildNode("udt") is { } nullNodeUdt && nullNodeUdt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Udt = null;
         }
 
         /// <summary>Specify pairs of original and clone connection IDs to map connections to the cloned scenario.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestAccount? Account { get => _explicitNullValueAccount; set { _explicitNullValueAccount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("account"); else _explicitNullProperties?.Remove("account"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestAccount? Account { get => _explicitNullValueAccount; set { _explicitNullValueAccount = value; AdditionalData?.Remove("account"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("account"); else _explicitNullProperties?.Remove("account"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestAccount? _explicitNullValueAccount = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestAccount Account { get => _explicitNullValueAccount; set { _explicitNullValueAccount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("account"); else _explicitNullProperties?.Remove("account"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestAccount Account { get => _explicitNullValueAccount; set { _explicitNullValueAccount = value; AdditionalData?.Remove("account"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("account"); else _explicitNullProperties?.Remove("account"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestAccount _explicitNullValueAccount = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -43,67 +52,67 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Specify pairs of original and clone data store IDs to map data stores to the cloned scenario.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestDatastore? Datastore { get => _explicitNullValueDatastore; set { _explicitNullValueDatastore = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("datastore"); else _explicitNullProperties?.Remove("datastore"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestDatastore? Datastore { get => _explicitNullValueDatastore; set { _explicitNullValueDatastore = value; AdditionalData?.Remove("datastore"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("datastore"); else _explicitNullProperties?.Remove("datastore"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestDatastore? _explicitNullValueDatastore = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestDatastore Datastore { get => _explicitNullValueDatastore; set { _explicitNullValueDatastore = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("datastore"); else _explicitNullProperties?.Remove("datastore"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestDatastore Datastore { get => _explicitNullValueDatastore; set { _explicitNullValueDatastore = value; AdditionalData?.Remove("datastore"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("datastore"); else _explicitNullProperties?.Remove("datastore"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestDatastore _explicitNullValueDatastore = default!;
 #endif
         /// <summary>Specify pairs of original and clone device IDs to map devices to the cloned scenario.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestDevice? Device { get => _explicitNullValueDevice; set { _explicitNullValueDevice = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("device"); else _explicitNullProperties?.Remove("device"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestDevice? Device { get => _explicitNullValueDevice; set { _explicitNullValueDevice = value; AdditionalData?.Remove("device"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("device"); else _explicitNullProperties?.Remove("device"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestDevice? _explicitNullValueDevice = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestDevice Device { get => _explicitNullValueDevice; set { _explicitNullValueDevice = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("device"); else _explicitNullProperties?.Remove("device"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestDevice Device { get => _explicitNullValueDevice; set { _explicitNullValueDevice = value; AdditionalData?.Remove("device"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("device"); else _explicitNullProperties?.Remove("device"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestDevice _explicitNullValueDevice = default!;
 #endif
         /// <summary>Specify pairs of original and clone hook IDs to map webhooks to the cloned scenario.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestHook? Hook { get => _explicitNullValueHook; set { _explicitNullValueHook = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hook"); else _explicitNullProperties?.Remove("hook"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestHook? Hook { get => _explicitNullValueHook; set { _explicitNullValueHook = value; AdditionalData?.Remove("hook"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hook"); else _explicitNullProperties?.Remove("hook"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestHook? _explicitNullValueHook = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestHook Hook { get => _explicitNullValueHook; set { _explicitNullValueHook = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hook"); else _explicitNullProperties?.Remove("hook"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestHook Hook { get => _explicitNullValueHook; set { _explicitNullValueHook = value; AdditionalData?.Remove("hook"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hook"); else _explicitNullProperties?.Remove("hook"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestHook _explicitNullValueHook = default!;
 #endif
         /// <summary>Specify pairs of original and clone key IDs to map keys to the cloned scenario.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestKey? Key { get => _explicitNullValueKey; set { _explicitNullValueKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("key"); else _explicitNullProperties?.Remove("key"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestKey? Key { get => _explicitNullValueKey; set { _explicitNullValueKey = value; AdditionalData?.Remove("key"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("key"); else _explicitNullProperties?.Remove("key"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestKey? _explicitNullValueKey = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestKey Key { get => _explicitNullValueKey; set { _explicitNullValueKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("key"); else _explicitNullProperties?.Remove("key"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestKey Key { get => _explicitNullValueKey; set { _explicitNullValueKey = value; AdditionalData?.Remove("key"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("key"); else _explicitNullProperties?.Remove("key"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestKey _explicitNullValueKey = default!;
 #endif
         /// <summary>The name for the scenario clone. The maximum length of the name is 120 characters.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
         /// <summary>Set to `true` to clone also states of the scenario modules, for example last scenario trigger execution. Setting to `false` resets the state information of the scenario modules in the scenario clone.</summary>
-        public bool? States { get => _explicitNullValueStates; set { _explicitNullValueStates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("states"); else _explicitNullProperties?.Remove("states"); } }
+        public bool? States { get => _explicitNullValueStates; set { _explicitNullValueStates = value; AdditionalData?.Remove("states"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("states"); else _explicitNullProperties?.Remove("states"); } }
         private bool? _explicitNullValueStates = default!;
         /// <summary>The ID of the team to which you want to clone the scenario.</summary>
-        public int? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
+        public int? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; AdditionalData?.Remove("teamId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
         private int? _explicitNullValueTeamId = default!;
         /// <summary>Specify pairs of original and clone data structure IDs to map data structures to the cloned scenario.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestUdt? Udt { get => _explicitNullValueUdt; set { _explicitNullValueUdt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("udt"); else _explicitNullProperties?.Remove("udt"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestUdt? Udt { get => _explicitNullValueUdt; set { _explicitNullValueUdt = value; AdditionalData?.Remove("udt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("udt"); else _explicitNullProperties?.Remove("udt"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestUdt? _explicitNullValueUdt = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestUdt Udt { get => _explicitNullValueUdt; set { _explicitNullValueUdt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("udt"); else _explicitNullProperties?.Remove("udt"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestUdt Udt { get => _explicitNullValueUdt; set { _explicitNullValueUdt = value; AdditionalData?.Remove("udt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("udt"); else _explicitNullProperties?.Remove("udt"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdCloneRequestUdt _explicitNullValueUdt = default!;
 #endif
         /// <summary>

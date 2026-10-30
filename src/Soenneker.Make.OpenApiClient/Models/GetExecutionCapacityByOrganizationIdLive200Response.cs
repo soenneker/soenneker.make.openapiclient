@@ -17,43 +17,48 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("limit") is { } nullNodeLimit && nullNodeLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Limit = null;
-            if (parseNode.GetChildNode("scenarioIds") is { } nullNodeScenarioIds && nullNodeScenarioIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioIds = null;
-            if (parseNode.GetChildNode("slots") is { } nullNodeSlots && nullNodeSlots.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Slots = null;
-            if (parseNode.GetChildNode("snapshotAt") is { } nullNodeSnapshotAt && nullNodeSnapshotAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SnapshotAt = null;
-            if (parseNode.GetChildNode("totalSlots") is { } nullNodeTotalSlots && nullNodeTotalSlots.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalSlots = null;
+            if (parseNode.GetChildNode("limit") is null) { _explicitNullValueLimit = default!; _explicitNullProperties?.Remove("limit"); }
+            else if (parseNode.GetChildNode("limit") is { } nullNodeLimit && nullNodeLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Limit = null;
+            if (parseNode.GetChildNode("scenarioIds") is null) { _explicitNullValueScenarioIds = default!; _explicitNullProperties?.Remove("scenarioIds"); }
+            else if (parseNode.GetChildNode("scenarioIds") is { } nullNodeScenarioIds && nullNodeScenarioIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioIds = null;
+            if (parseNode.GetChildNode("slots") is null) { _explicitNullValueSlots = default!; _explicitNullProperties?.Remove("slots"); }
+            else if (parseNode.GetChildNode("slots") is { } nullNodeSlots && nullNodeSlots.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Slots = null;
+            if (parseNode.GetChildNode("snapshotAt") is null) { _explicitNullValueSnapshotAt = default!; _explicitNullProperties?.Remove("snapshotAt"); }
+            else if (parseNode.GetChildNode("snapshotAt") is { } nullNodeSnapshotAt && nullNodeSnapshotAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SnapshotAt = null;
+            if (parseNode.GetChildNode("totalSlots") is null) { _explicitNullValueTotalSlots = default!; _explicitNullProperties?.Remove("totalSlots"); }
+            else if (parseNode.GetChildNode("totalSlots") is { } nullNodeTotalSlots && nullNodeTotalSlots.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalSlots = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The Organization&apos;s parallel execution slot limit</summary>
-        public int? Limit { get => _explicitNullValueLimit; set { _explicitNullValueLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("limit"); else _explicitNullProperties?.Remove("limit"); } }
+        public int? Limit { get => _explicitNullValueLimit; set { _explicitNullValueLimit = value; AdditionalData?.Remove("limit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("limit"); else _explicitNullProperties?.Remove("limit"); } }
         private int? _explicitNullValueLimit = default!;
         /// <summary>IDs of the Scenarios that currently have slots used</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? ScenarioIds { get => _explicitNullValueScenarioIds; set { _explicitNullValueScenarioIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioIds"); else _explicitNullProperties?.Remove("scenarioIds"); } }
+        public List<int?>? ScenarioIds { get => _explicitNullValueScenarioIds; set { _explicitNullValueScenarioIds = value; AdditionalData?.Remove("scenarioIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioIds"); else _explicitNullProperties?.Remove("scenarioIds"); } }
         private List<int?>? _explicitNullValueScenarioIds = default!;
 #nullable restore
 #else
-        public List<int?> ScenarioIds { get => _explicitNullValueScenarioIds; set { _explicitNullValueScenarioIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioIds"); else _explicitNullProperties?.Remove("scenarioIds"); } }
+        public List<int?> ScenarioIds { get => _explicitNullValueScenarioIds; set { _explicitNullValueScenarioIds = value; AdditionalData?.Remove("scenarioIds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioIds"); else _explicitNullProperties?.Remove("scenarioIds"); } }
         private List<int?> _explicitNullValueScenarioIds = default!;
 #endif
         /// <summary>Number of slots currently used per Scenario, positionally aligned with scenarioIds</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? Slots { get => _explicitNullValueSlots; set { _explicitNullValueSlots = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("slots"); else _explicitNullProperties?.Remove("slots"); } }
+        public List<int?>? Slots { get => _explicitNullValueSlots; set { _explicitNullValueSlots = value; AdditionalData?.Remove("slots"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("slots"); else _explicitNullProperties?.Remove("slots"); } }
         private List<int?>? _explicitNullValueSlots = default!;
 #nullable restore
 #else
-        public List<int?> Slots { get => _explicitNullValueSlots; set { _explicitNullValueSlots = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("slots"); else _explicitNullProperties?.Remove("slots"); } }
+        public List<int?> Slots { get => _explicitNullValueSlots; set { _explicitNullValueSlots = value; AdditionalData?.Remove("slots"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("slots"); else _explicitNullProperties?.Remove("slots"); } }
         private List<int?> _explicitNullValueSlots = default!;
 #endif
         /// <summary>Timestamp at which the snapshot was taken</summary>
-        public DateTimeOffset? SnapshotAt { get => _explicitNullValueSnapshotAt; set { _explicitNullValueSnapshotAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("snapshotAt"); else _explicitNullProperties?.Remove("snapshotAt"); } }
+        public DateTimeOffset? SnapshotAt { get => _explicitNullValueSnapshotAt; set { _explicitNullValueSnapshotAt = value; AdditionalData?.Remove("snapshotAt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("snapshotAt"); else _explicitNullProperties?.Remove("snapshotAt"); } }
         private DateTimeOffset? _explicitNullValueSnapshotAt = default!;
         /// <summary>Total number of slots currently used across all Scenarios</summary>
-        public int? TotalSlots { get => _explicitNullValueTotalSlots; set { _explicitNullValueTotalSlots = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalSlots"); else _explicitNullProperties?.Remove("totalSlots"); } }
+        public int? TotalSlots { get => _explicitNullValueTotalSlots; set { _explicitNullValueTotalSlots = value; AdditionalData?.Remove("totalSlots"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalSlots"); else _explicitNullProperties?.Remove("totalSlots"); } }
         private int? _explicitNullValueTotalSlots = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationIdLive200Response"/> and sets the default values.

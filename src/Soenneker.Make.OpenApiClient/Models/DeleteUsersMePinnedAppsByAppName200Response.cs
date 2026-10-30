@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("pinnedApp") is { } nullNodePinnedApp && nullNodePinnedApp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PinnedApp = null;
+            if (parseNode.GetChildNode("pinnedApp") is null) { _explicitNullValuePinnedApp = default!; _explicitNullProperties?.Remove("pinnedApp"); }
+            else if (parseNode.GetChildNode("pinnedApp") is { } nullNodePinnedApp && nullNodePinnedApp.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PinnedApp = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The pinnedApp property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200ResponsePinnedApp? PinnedApp { get => _explicitNullValuePinnedApp; set { _explicitNullValuePinnedApp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedApp"); else _explicitNullProperties?.Remove("pinnedApp"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200ResponsePinnedApp? PinnedApp { get => _explicitNullValuePinnedApp; set { _explicitNullValuePinnedApp = value; AdditionalData?.Remove("pinnedApp"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedApp"); else _explicitNullProperties?.Remove("pinnedApp"); } }
         private global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200ResponsePinnedApp? _explicitNullValuePinnedApp = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200ResponsePinnedApp PinnedApp { get => _explicitNullValuePinnedApp; set { _explicitNullValuePinnedApp = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedApp"); else _explicitNullProperties?.Remove("pinnedApp"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200ResponsePinnedApp PinnedApp { get => _explicitNullValuePinnedApp; set { _explicitNullValuePinnedApp = value; AdditionalData?.Remove("pinnedApp"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedApp"); else _explicitNullProperties?.Remove("pinnedApp"); } }
         private global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200ResponsePinnedApp _explicitNullValuePinnedApp = default!;
 #endif
         /// <summary>

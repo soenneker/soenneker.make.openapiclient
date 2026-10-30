@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("appFunction") is { } nullNodeAppFunction && nullNodeAppFunction.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppFunction = null;
+            if (parseNode.GetChildNode("appFunction") is null) { _explicitNullValueAppFunction = default!; _explicitNullProperties?.Remove("appFunction"); }
+            else if (parseNode.GetChildNode("appFunction") is { } nullNodeAppFunction && nullNodeAppFunction.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppFunction = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The appFunction property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionFunctions200ResponseAppFunction? AppFunction { get => _explicitNullValueAppFunction; set { _explicitNullValueAppFunction = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appFunction"); else _explicitNullProperties?.Remove("appFunction"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionFunctions200ResponseAppFunction? AppFunction { get => _explicitNullValueAppFunction; set { _explicitNullValueAppFunction = value; AdditionalData?.Remove("appFunction"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appFunction"); else _explicitNullProperties?.Remove("appFunction"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionFunctions200ResponseAppFunction? _explicitNullValueAppFunction = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionFunctions200ResponseAppFunction AppFunction { get => _explicitNullValueAppFunction; set { _explicitNullValueAppFunction = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appFunction"); else _explicitNullProperties?.Remove("appFunction"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionFunctions200ResponseAppFunction AppFunction { get => _explicitNullValueAppFunction; set { _explicitNullValueAppFunction = value; AdditionalData?.Remove("appFunction"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appFunction"); else _explicitNullProperties?.Remove("appFunction"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionFunctions200ResponseAppFunction _explicitNullValueAppFunction = default!;
 #endif
         /// <summary>

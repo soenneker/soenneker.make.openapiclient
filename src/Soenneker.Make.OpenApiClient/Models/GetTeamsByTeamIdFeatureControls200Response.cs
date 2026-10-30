@@ -17,23 +17,25 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("enableAllControlFeatures") is { } nullNodeEnableAllControlFeatures && nullNodeEnableAllControlFeatures.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EnableAllControlFeatures = null;
-            if (parseNode.GetChildNode("featureControls") is { } nullNodeFeatureControls && nullNodeFeatureControls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FeatureControls = null;
+            if (parseNode.GetChildNode("enableAllControlFeatures") is null) { _explicitNullValueEnableAllControlFeatures = default!; _explicitNullProperties?.Remove("enableAllControlFeatures"); }
+            else if (parseNode.GetChildNode("enableAllControlFeatures") is { } nullNodeEnableAllControlFeatures && nullNodeEnableAllControlFeatures.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EnableAllControlFeatures = null;
+            if (parseNode.GetChildNode("featureControls") is null) { _explicitNullValueFeatureControls = default!; _explicitNullProperties?.Remove("featureControls"); }
+            else if (parseNode.GetChildNode("featureControls") is { } nullNodeFeatureControls && nullNodeFeatureControls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FeatureControls = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The enableAllControlFeatures property</summary>
-        public bool? EnableAllControlFeatures { get => _explicitNullValueEnableAllControlFeatures; set { _explicitNullValueEnableAllControlFeatures = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enableAllControlFeatures"); else _explicitNullProperties?.Remove("enableAllControlFeatures"); } }
+        public bool? EnableAllControlFeatures { get => _explicitNullValueEnableAllControlFeatures; set { _explicitNullValueEnableAllControlFeatures = value; AdditionalData?.Remove("enableAllControlFeatures"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enableAllControlFeatures"); else _explicitNullProperties?.Remove("enableAllControlFeatures"); } }
         private bool? _explicitNullValueEnableAllControlFeatures = default!;
         /// <summary>The featureControls property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem>? FeatureControls { get => _explicitNullValueFeatureControls; set { _explicitNullValueFeatureControls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureControls"); else _explicitNullProperties?.Remove("featureControls"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem>? FeatureControls { get => _explicitNullValueFeatureControls; set { _explicitNullValueFeatureControls = value; AdditionalData?.Remove("featureControls"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureControls"); else _explicitNullProperties?.Remove("featureControls"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem>? _explicitNullValueFeatureControls = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem> FeatureControls { get => _explicitNullValueFeatureControls; set { _explicitNullValueFeatureControls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureControls"); else _explicitNullProperties?.Remove("featureControls"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem> FeatureControls { get => _explicitNullValueFeatureControls; set { _explicitNullValueFeatureControls = value; AdditionalData?.Remove("featureControls"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureControls"); else _explicitNullProperties?.Remove("featureControls"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem> _explicitNullValueFeatureControls = default!;
 #endif
         /// <summary>

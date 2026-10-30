@@ -18,7 +18,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("providerMakeUserId") is { } nullNodeProviderMakeUserId && nullNodeProviderMakeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProviderMakeUserId = null;
+            if (parseNode.GetChildNode("providerMakeUserId") is null) { _explicitNullValueProviderMakeUserId = default!; _explicitNullProperties?.Remove("providerMakeUserId"); }
+            else if (parseNode.GetChildNode("providerMakeUserId") is { } nullNodeProviderMakeUserId && nullNodeProviderMakeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProviderMakeUserId = null;
         }
 
         /// <summary>ID of the Provider&apos;s Make User. The user will be added to the team that owns the credential request.</summary>

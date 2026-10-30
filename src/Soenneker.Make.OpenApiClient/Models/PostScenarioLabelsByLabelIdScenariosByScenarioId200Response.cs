@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("scenarioLabel") is { } nullNodeScenarioLabel && nullNodeScenarioLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioLabel = null;
+            if (parseNode.GetChildNode("scenarioLabel") is null) { _explicitNullValueScenarioLabel = default!; _explicitNullProperties?.Remove("scenarioLabel"); }
+            else if (parseNode.GetChildNode("scenarioLabel") is { } nullNodeScenarioLabel && nullNodeScenarioLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioLabel = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The scenarioLabel property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenariosByScenarioId200ResponseScenarioLabel? ScenarioLabel { get => _explicitNullValueScenarioLabel; set { _explicitNullValueScenarioLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioLabel"); else _explicitNullProperties?.Remove("scenarioLabel"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenariosByScenarioId200ResponseScenarioLabel? ScenarioLabel { get => _explicitNullValueScenarioLabel; set { _explicitNullValueScenarioLabel = value; AdditionalData?.Remove("scenarioLabel"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioLabel"); else _explicitNullProperties?.Remove("scenarioLabel"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenariosByScenarioId200ResponseScenarioLabel? _explicitNullValueScenarioLabel = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenariosByScenarioId200ResponseScenarioLabel ScenarioLabel { get => _explicitNullValueScenarioLabel; set { _explicitNullValueScenarioLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioLabel"); else _explicitNullProperties?.Remove("scenarioLabel"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenariosByScenarioId200ResponseScenarioLabel ScenarioLabel { get => _explicitNullValueScenarioLabel; set { _explicitNullValueScenarioLabel = value; AdditionalData?.Remove("scenarioLabel"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioLabel"); else _explicitNullProperties?.Remove("scenarioLabel"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenariosByScenarioId200ResponseScenarioLabel _explicitNullValueScenarioLabel = default!;
 #endif
         /// <summary>

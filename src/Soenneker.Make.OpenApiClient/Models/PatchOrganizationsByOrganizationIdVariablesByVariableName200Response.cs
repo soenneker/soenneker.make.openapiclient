@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("organizationVariable") is { } nullNodeOrganizationVariable && nullNodeOrganizationVariable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationVariable = null;
+            if (parseNode.GetChildNode("organizationVariable") is null) { _explicitNullValueOrganizationVariable = default!; _explicitNullProperties?.Remove("organizationVariable"); }
+            else if (parseNode.GetChildNode("organizationVariable") is { } nullNodeOrganizationVariable && nullNodeOrganizationVariable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationVariable = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The organizationVariable property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableName200ResponseOrganizationVariable? OrganizationVariable { get => _explicitNullValueOrganizationVariable; set { _explicitNullValueOrganizationVariable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationVariable"); else _explicitNullProperties?.Remove("organizationVariable"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableName200ResponseOrganizationVariable? OrganizationVariable { get => _explicitNullValueOrganizationVariable; set { _explicitNullValueOrganizationVariable = value; AdditionalData?.Remove("organizationVariable"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationVariable"); else _explicitNullProperties?.Remove("organizationVariable"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableName200ResponseOrganizationVariable? _explicitNullValueOrganizationVariable = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableName200ResponseOrganizationVariable OrganizationVariable { get => _explicitNullValueOrganizationVariable; set { _explicitNullValueOrganizationVariable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationVariable"); else _explicitNullProperties?.Remove("organizationVariable"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableName200ResponseOrganizationVariable OrganizationVariable { get => _explicitNullValueOrganizationVariable; set { _explicitNullValueOrganizationVariable = value; AdditionalData?.Remove("organizationVariable"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationVariable"); else _explicitNullProperties?.Remove("organizationVariable"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdVariablesByVariableName200ResponseOrganizationVariable _explicitNullValueOrganizationVariable = default!;
 #endif
         /// <summary>

@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("appConnection") is { } nullNodeAppConnection && nullNodeAppConnection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppConnection = null;
+            if (parseNode.GetChildNode("appConnection") is null) { _explicitNullValueAppConnection = default!; _explicitNullProperties?.Remove("appConnection"); }
+            else if (parseNode.GetChildNode("appConnection") is { } nullNodeAppConnection && nullNodeAppConnection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppConnection = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The appConnection property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionName200ResponseAppConnection? AppConnection { get => _explicitNullValueAppConnection; set { _explicitNullValueAppConnection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appConnection"); else _explicitNullProperties?.Remove("appConnection"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionName200ResponseAppConnection? AppConnection { get => _explicitNullValueAppConnection; set { _explicitNullValueAppConnection = value; AdditionalData?.Remove("appConnection"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appConnection"); else _explicitNullProperties?.Remove("appConnection"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionName200ResponseAppConnection? _explicitNullValueAppConnection = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionName200ResponseAppConnection AppConnection { get => _explicitNullValueAppConnection; set { _explicitNullValueAppConnection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appConnection"); else _explicitNullProperties?.Remove("appConnection"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionName200ResponseAppConnection AppConnection { get => _explicitNullValueAppConnection; set { _explicitNullValueAppConnection = value; AdditionalData?.Remove("appConnection"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appConnection"); else _explicitNullProperties?.Remove("appConnection"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionName200ResponseAppConnection _explicitNullValueAppConnection = default!;
 #endif
         /// <summary>

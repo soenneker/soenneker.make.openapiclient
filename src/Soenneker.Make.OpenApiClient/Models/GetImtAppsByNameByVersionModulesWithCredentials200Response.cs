@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("appModules") is { } nullNodeAppModules && nullNodeAppModules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppModules = null;
+            if (parseNode.GetChildNode("appModules") is null) { _explicitNullValueAppModules = default!; _explicitNullProperties?.Remove("appModules"); }
+            else if (parseNode.GetChildNode("appModules") is { } nullNodeAppModules && nullNodeAppModules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppModules = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>List of modules with their credential requirements.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsByNameByVersionModulesWithCredentials200ResponseAppModulesItem>? AppModules { get => _explicitNullValueAppModules; set { _explicitNullValueAppModules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appModules"); else _explicitNullProperties?.Remove("appModules"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsByNameByVersionModulesWithCredentials200ResponseAppModulesItem>? AppModules { get => _explicitNullValueAppModules; set { _explicitNullValueAppModules = value; AdditionalData?.Remove("appModules"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appModules"); else _explicitNullProperties?.Remove("appModules"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsByNameByVersionModulesWithCredentials200ResponseAppModulesItem>? _explicitNullValueAppModules = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsByNameByVersionModulesWithCredentials200ResponseAppModulesItem> AppModules { get => _explicitNullValueAppModules; set { _explicitNullValueAppModules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appModules"); else _explicitNullProperties?.Remove("appModules"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsByNameByVersionModulesWithCredentials200ResponseAppModulesItem> AppModules { get => _explicitNullValueAppModules; set { _explicitNullValueAppModules = value; AdditionalData?.Remove("appModules"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appModules"); else _explicitNullProperties?.Remove("appModules"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsByNameByVersionModulesWithCredentials200ResponseAppModulesItem> _explicitNullValueAppModules = default!;
 #endif
         /// <summary>

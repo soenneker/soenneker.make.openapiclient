@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("isMember") is { } nullNodeIsMember && nullNodeIsMember.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsMember = null;
+            if (parseNode.GetChildNode("isMember") is null) { _explicitNullValueIsMember = default!; _explicitNullProperties?.Remove("isMember"); }
+            else if (parseNode.GetChildNode("isMember") is { } nullNodeIsMember && nullNodeIsMember.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsMember = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The isMember property</summary>
-        public bool? IsMember { get => _explicitNullValueIsMember; set { _explicitNullValueIsMember = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isMember"); else _explicitNullProperties?.Remove("isMember"); } }
+        public bool? IsMember { get => _explicitNullValueIsMember; set { _explicitNullValueIsMember = value; AdditionalData?.Remove("isMember"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isMember"); else _explicitNullProperties?.Remove("isMember"); } }
         private bool? _explicitNullValueIsMember = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMember200Response"/> and sets the default values.

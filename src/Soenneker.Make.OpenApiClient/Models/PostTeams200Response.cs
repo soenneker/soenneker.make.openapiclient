@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("team") is { } nullNodeTeam && nullNodeTeam.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Team = null;
-            if (parseNode.GetChildNode("userTeamRole") is { } nullNodeUserTeamRole && nullNodeUserTeamRole.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserTeamRole = null;
+            if (parseNode.GetChildNode("team") is null) { _explicitNullValueTeam = default!; _explicitNullProperties?.Remove("team"); }
+            else if (parseNode.GetChildNode("team") is { } nullNodeTeam && nullNodeTeam.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Team = null;
+            if (parseNode.GetChildNode("userTeamRole") is null) { _explicitNullValueUserTeamRole = default!; _explicitNullProperties?.Remove("userTeamRole"); }
+            else if (parseNode.GetChildNode("userTeamRole") is { } nullNodeUserTeamRole && nullNodeUserTeamRole.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserTeamRole = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The team property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostTeams200ResponseTeam? Team { get => _explicitNullValueTeam; set { _explicitNullValueTeam = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("team"); else _explicitNullProperties?.Remove("team"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostTeams200ResponseTeam? Team { get => _explicitNullValueTeam; set { _explicitNullValueTeam = value; AdditionalData?.Remove("team"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("team"); else _explicitNullProperties?.Remove("team"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostTeams200ResponseTeam? _explicitNullValueTeam = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostTeams200ResponseTeam Team { get => _explicitNullValueTeam; set { _explicitNullValueTeam = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("team"); else _explicitNullProperties?.Remove("team"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostTeams200ResponseTeam Team { get => _explicitNullValueTeam; set { _explicitNullValueTeam = value; AdditionalData?.Remove("team"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("team"); else _explicitNullProperties?.Remove("team"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostTeams200ResponseTeam _explicitNullValueTeam = default!;
 #endif
         /// <summary>The userTeamRole property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostTeams200ResponseUserTeamRole? UserTeamRole { get => _explicitNullValueUserTeamRole; set { _explicitNullValueUserTeamRole = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userTeamRole"); else _explicitNullProperties?.Remove("userTeamRole"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostTeams200ResponseUserTeamRole? UserTeamRole { get => _explicitNullValueUserTeamRole; set { _explicitNullValueUserTeamRole = value; AdditionalData?.Remove("userTeamRole"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userTeamRole"); else _explicitNullProperties?.Remove("userTeamRole"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostTeams200ResponseUserTeamRole? _explicitNullValueUserTeamRole = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostTeams200ResponseUserTeamRole UserTeamRole { get => _explicitNullValueUserTeamRole; set { _explicitNullValueUserTeamRole = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userTeamRole"); else _explicitNullProperties?.Remove("userTeamRole"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostTeams200ResponseUserTeamRole UserTeamRole { get => _explicitNullValueUserTeamRole; set { _explicitNullValueUserTeamRole = value; AdditionalData?.Remove("userTeamRole"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userTeamRole"); else _explicitNullProperties?.Remove("userTeamRole"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostTeams200ResponseUserTeamRole _explicitNullValueUserTeamRole = default!;
 #endif
         /// <summary>

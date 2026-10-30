@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("apps") is { } nullNodeApps && nullNodeApps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Apps = null;
+            if (parseNode.GetChildNode("apps") is null) { _explicitNullValueApps = default!; _explicitNullProperties?.Remove("apps"); }
+            else if (parseNode.GetChildNode("apps") is { } nullNodeApps && nullNodeApps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Apps = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>When `scoredSearch=true`, items are `ScoredSearchApp` (native/SDK) or`AddonApp`. When `scoredSearch` is omitted/false, items are the non-scoredmanifest shapes (not documented here).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItemOneOf1>? Apps { get => _explicitNullValueApps; set { _explicitNullValueApps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apps"); else _explicitNullProperties?.Remove("apps"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItemOneOf1>? Apps { get => _explicitNullValueApps; set { _explicitNullValueApps = value; AdditionalData?.Remove("apps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apps"); else _explicitNullProperties?.Remove("apps"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItemOneOf1>? _explicitNullValueApps = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItemOneOf1> Apps { get => _explicitNullValueApps; set { _explicitNullValueApps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apps"); else _explicitNullProperties?.Remove("apps"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItemOneOf1> Apps { get => _explicitNullValueApps; set { _explicitNullValueApps = value; AdditionalData?.Remove("apps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apps"); else _explicitNullProperties?.Remove("apps"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetImtApps200ResponseAppsItemOneOf1> _explicitNullValueApps = default!;
 #endif
         /// <summary>

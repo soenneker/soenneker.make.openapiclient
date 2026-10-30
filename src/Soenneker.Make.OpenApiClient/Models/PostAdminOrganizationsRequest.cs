@@ -17,43 +17,48 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("countryId") is { } nullNodeCountryId && nullNodeCountryId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryId = null;
-            if (parseNode.GetChildNode("license") is { } nullNodeLicense && nullNodeLicense.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) License = null;
-            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
-            if (parseNode.GetChildNode("timezoneId") is { } nullNodeTimezoneId && nullNodeTimezoneId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TimezoneId = null;
-            if (parseNode.GetChildNode("userOrgAdmin") is { } nullNodeUserOrgAdmin && nullNodeUserOrgAdmin.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserOrgAdmin = null;
+            if (parseNode.GetChildNode("countryId") is null) { _explicitNullValueCountryId = default!; _explicitNullProperties?.Remove("countryId"); }
+            else if (parseNode.GetChildNode("countryId") is { } nullNodeCountryId && nullNodeCountryId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CountryId = null;
+            if (parseNode.GetChildNode("license") is null) { _explicitNullValueLicense = default!; _explicitNullProperties?.Remove("license"); }
+            else if (parseNode.GetChildNode("license") is { } nullNodeLicense && nullNodeLicense.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) License = null;
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("timezoneId") is null) { _explicitNullValueTimezoneId = default!; _explicitNullProperties?.Remove("timezoneId"); }
+            else if (parseNode.GetChildNode("timezoneId") is { } nullNodeTimezoneId && nullNodeTimezoneId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TimezoneId = null;
+            if (parseNode.GetChildNode("userOrgAdmin") is null) { _explicitNullValueUserOrgAdmin = default!; _explicitNullProperties?.Remove("userOrgAdmin"); }
+            else if (parseNode.GetChildNode("userOrgAdmin") is { } nullNodeUserOrgAdmin && nullNodeUserOrgAdmin.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserOrgAdmin = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The ID of the country associated with the organization. Get the list of the country IDs with the API call `GET /enums/countries`.</summary>
-        public int? CountryId { get => _explicitNullValueCountryId; set { _explicitNullValueCountryId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryId"); else _explicitNullProperties?.Remove("countryId"); } }
+        public int? CountryId { get => _explicitNullValueCountryId; set { _explicitNullValueCountryId = value; AdditionalData?.Remove("countryId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("countryId"); else _explicitNullProperties?.Remove("countryId"); } }
         private int? _explicitNullValueCountryId = default!;
         /// <summary>The resources and features available to the users in the organization.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminOrganizationsRequestLicense? License { get => _explicitNullValueLicense; set { _explicitNullValueLicense = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("license"); else _explicitNullProperties?.Remove("license"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminOrganizationsRequestLicense? License { get => _explicitNullValueLicense; set { _explicitNullValueLicense = value; AdditionalData?.Remove("license"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("license"); else _explicitNullProperties?.Remove("license"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostAdminOrganizationsRequestLicense? _explicitNullValueLicense = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminOrganizationsRequestLicense License { get => _explicitNullValueLicense; set { _explicitNullValueLicense = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("license"); else _explicitNullProperties?.Remove("license"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminOrganizationsRequestLicense License { get => _explicitNullValueLicense; set { _explicitNullValueLicense = value; AdditionalData?.Remove("license"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("license"); else _explicitNullProperties?.Remove("license"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostAdminOrganizationsRequestLicense _explicitNullValueLicense = default!;
 #endif
         /// <summary>The name of the organization.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
         /// <summary>The ID of the timezone associated with the organization. Get the list of the timezone IDs with the API call `GET /enums/timezones`.</summary>
-        public int? TimezoneId { get => _explicitNullValueTimezoneId; set { _explicitNullValueTimezoneId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timezoneId"); else _explicitNullProperties?.Remove("timezoneId"); } }
+        public int? TimezoneId { get => _explicitNullValueTimezoneId; set { _explicitNullValueTimezoneId = value; AdditionalData?.Remove("timezoneId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timezoneId"); else _explicitNullProperties?.Remove("timezoneId"); } }
         private int? _explicitNullValueTimezoneId = default!;
         /// <summary>The ID of the user who will be the admin of the organization. Get the list of the user IDs with the API call `GET /admin/users`.</summary>
-        public int? UserOrgAdmin { get => _explicitNullValueUserOrgAdmin; set { _explicitNullValueUserOrgAdmin = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userOrgAdmin"); else _explicitNullProperties?.Remove("userOrgAdmin"); } }
+        public int? UserOrgAdmin { get => _explicitNullValueUserOrgAdmin; set { _explicitNullValueUserOrgAdmin = value; AdditionalData?.Remove("userOrgAdmin"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userOrgAdmin"); else _explicitNullProperties?.Remove("userOrgAdmin"); } }
         private int? _explicitNullValueUserOrgAdmin = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminOrganizationsRequest"/> and sets the default values.

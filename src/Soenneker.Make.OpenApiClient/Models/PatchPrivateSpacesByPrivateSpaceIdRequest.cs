@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("operationsLimit") is { } nullNodeOperationsLimit && nullNodeOperationsLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperationsLimit = null;
+            if (parseNode.GetChildNode("operationsLimit") is null) { _explicitNullValueOperationsLimit = default!; _explicitNullProperties?.Remove("operationsLimit"); }
+            else if (parseNode.GetChildNode("operationsLimit") is { } nullNodeOperationsLimit && nullNodeOperationsLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperationsLimit = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Optional. The new operations limit for the private space. Transfer limit is auto-calculated. Set to `null` to remove limits, omit to leave unchanged. The maximum matches the highest number of credits an organization can be licensed for.</summary>
-        public int? OperationsLimit { get => _explicitNullValueOperationsLimit; set { _explicitNullValueOperationsLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operationsLimit"); else _explicitNullProperties?.Remove("operationsLimit"); } }
+        public int? OperationsLimit { get => _explicitNullValueOperationsLimit; set { _explicitNullValueOperationsLimit = value; AdditionalData?.Remove("operationsLimit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operationsLimit"); else _explicitNullProperties?.Remove("operationsLimit"); } }
         private int? _explicitNullValueOperationsLimit = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceIdRequest"/> and sets the default values.

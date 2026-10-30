@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("reanalyze") is { } nullNodeReanalyze && nullNodeReanalyze.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reanalyze = null;
+            if (parseNode.GetChildNode("reanalyze") is null) { _explicitNullValueReanalyze = default!; _explicitNullProperties?.Remove("reanalyze"); }
+            else if (parseNode.GetChildNode("reanalyze") is { } nullNodeReanalyze && nullNodeReanalyze.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reanalyze = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The reanalyze property</summary>
-        public bool? Reanalyze { get => _explicitNullValueReanalyze; set { _explicitNullValueReanalyze = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reanalyze"); else _explicitNullProperties?.Remove("reanalyze"); } }
+        public bool? Reanalyze { get => _explicitNullValueReanalyze; set { _explicitNullValueReanalyze = value; AdditionalData?.Remove("reanalyze"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reanalyze"); else _explicitNullProperties?.Remove("reanalyze"); } }
         private bool? _explicitNullValueReanalyze = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivateRequestOneOf1"/> and sets the default values.

@@ -65,7 +65,7 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.Delet
         public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.DeleteRemote.DeleteRemoteRequestBuilder.DeleteRemoteRequestBuilderPostQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://eu1.make.com/api/v2", "/credential-requests/credentials/{credentialId}/delete-remote", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

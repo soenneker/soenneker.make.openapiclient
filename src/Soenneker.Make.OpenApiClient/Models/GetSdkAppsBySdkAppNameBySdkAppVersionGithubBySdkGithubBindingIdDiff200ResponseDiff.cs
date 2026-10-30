@@ -17,32 +17,36 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("ahead") is { } nullNodeAhead && nullNodeAhead.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Ahead = null;
-            if (parseNode.GetChildNode("changedItems") is { } nullNodeChangedItems && nullNodeChangedItems.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ChangedItems = null;
-            if (parseNode.GetChildNode("inSync") is { } nullNodeInSync && nullNodeInSync.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InSync = null;
-            if (parseNode.GetChildNode("snapshotAvailable") is { } nullNodeSnapshotAvailable && nullNodeSnapshotAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SnapshotAvailable = null;
+            if (parseNode.GetChildNode("ahead") is null) { _explicitNullValueAhead = default!; _explicitNullProperties?.Remove("ahead"); }
+            else if (parseNode.GetChildNode("ahead") is { } nullNodeAhead && nullNodeAhead.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Ahead = null;
+            if (parseNode.GetChildNode("changedItems") is null) { _explicitNullValueChangedItems = default!; _explicitNullProperties?.Remove("changedItems"); }
+            else if (parseNode.GetChildNode("changedItems") is { } nullNodeChangedItems && nullNodeChangedItems.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ChangedItems = null;
+            if (parseNode.GetChildNode("inSync") is null) { _explicitNullValueInSync = default!; _explicitNullProperties?.Remove("inSync"); }
+            else if (parseNode.GetChildNode("inSync") is { } nullNodeInSync && nullNodeInSync.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InSync = null;
+            if (parseNode.GetChildNode("snapshotAvailable") is null) { _explicitNullValueSnapshotAvailable = default!; _explicitNullProperties?.Remove("snapshotAvailable"); }
+            else if (parseNode.GetChildNode("snapshotAvailable") is { } nullNodeSnapshotAvailable && nullNodeSnapshotAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SnapshotAvailable = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Number of components that changed locally since the last push.</summary>
-        public int? Ahead { get => _explicitNullValueAhead; set { _explicitNullValueAhead = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ahead"); else _explicitNullProperties?.Remove("ahead"); } }
+        public int? Ahead { get => _explicitNullValueAhead; set { _explicitNullValueAhead = value; AdditionalData?.Remove("ahead"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ahead"); else _explicitNullProperties?.Remove("ahead"); } }
         private int? _explicitNullValueAhead = default!;
         /// <summary>The drifted components.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItem>? ChangedItems { get => _explicitNullValueChangedItems; set { _explicitNullValueChangedItems = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("changedItems"); else _explicitNullProperties?.Remove("changedItems"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItem>? ChangedItems { get => _explicitNullValueChangedItems; set { _explicitNullValueChangedItems = value; AdditionalData?.Remove("changedItems"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("changedItems"); else _explicitNullProperties?.Remove("changedItems"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItem>? _explicitNullValueChangedItems = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItem> ChangedItems { get => _explicitNullValueChangedItems; set { _explicitNullValueChangedItems = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("changedItems"); else _explicitNullProperties?.Remove("changedItems"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItem> ChangedItems { get => _explicitNullValueChangedItems; set { _explicitNullValueChangedItems = value; AdditionalData?.Remove("changedItems"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("changedItems"); else _explicitNullProperties?.Remove("changedItems"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiffChangedItemsItem> _explicitNullValueChangedItems = default!;
 #endif
         /// <summary>`true` when no component drifted (`ahead` is 0).</summary>
-        public bool? InSync { get => _explicitNullValueInSync; set { _explicitNullValueInSync = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inSync"); else _explicitNullProperties?.Remove("inSync"); } }
+        public bool? InSync { get => _explicitNullValueInSync; set { _explicitNullValueInSync = value; AdditionalData?.Remove("inSync"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inSync"); else _explicitNullProperties?.Remove("inSync"); } }
         private bool? _explicitNullValueInSync = default!;
         /// <summary>`false` until the binding&apos;s first successful push captured a checksum snapshot.</summary>
-        public bool? SnapshotAvailable { get => _explicitNullValueSnapshotAvailable; set { _explicitNullValueSnapshotAvailable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("snapshotAvailable"); else _explicitNullProperties?.Remove("snapshotAvailable"); } }
+        public bool? SnapshotAvailable { get => _explicitNullValueSnapshotAvailable; set { _explicitNullValueSnapshotAvailable = value; AdditionalData?.Remove("snapshotAvailable"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("snapshotAvailable"); else _explicitNullProperties?.Remove("snapshotAvailable"); } }
         private bool? _explicitNullValueSnapshotAvailable = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiff200ResponseDiff"/> and sets the default values.

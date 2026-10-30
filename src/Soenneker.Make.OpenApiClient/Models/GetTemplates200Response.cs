@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
-            if (parseNode.GetChildNode("templates") is { } nullNodeTemplates && nullNodeTemplates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Templates = null;
+            if (parseNode.GetChildNode("pg") is null) { _explicitNullValuePg = default!; _explicitNullProperties?.Remove("pg"); }
+            else if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
+            if (parseNode.GetChildNode("templates") is null) { _explicitNullValueTemplates = default!; _explicitNullProperties?.Remove("templates"); }
+            else if (parseNode.GetChildNode("templates") is { } nullNodeTemplates && nullNodeTemplates.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Templates = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The pg property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetTemplates200ResponsePg? Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTemplates200ResponsePg? Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; AdditionalData?.Remove("pg"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetTemplates200ResponsePg? _explicitNullValuePg = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetTemplates200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTemplates200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; AdditionalData?.Remove("pg"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetTemplates200ResponsePg _explicitNullValuePg = default!;
 #endif
         /// <summary>The templates property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetTemplates200ResponseTemplatesItem>? Templates { get => _explicitNullValueTemplates; set { _explicitNullValueTemplates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templates"); else _explicitNullProperties?.Remove("templates"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetTemplates200ResponseTemplatesItem>? Templates { get => _explicitNullValueTemplates; set { _explicitNullValueTemplates = value; AdditionalData?.Remove("templates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templates"); else _explicitNullProperties?.Remove("templates"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetTemplates200ResponseTemplatesItem>? _explicitNullValueTemplates = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetTemplates200ResponseTemplatesItem> Templates { get => _explicitNullValueTemplates; set { _explicitNullValueTemplates = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templates"); else _explicitNullProperties?.Remove("templates"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetTemplates200ResponseTemplatesItem> Templates { get => _explicitNullValueTemplates; set { _explicitNullValueTemplates = value; AdditionalData?.Remove("templates"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templates"); else _explicitNullProperties?.Remove("templates"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetTemplates200ResponseTemplatesItem> _explicitNullValueTemplates = default!;
 #endif
         /// <summary>

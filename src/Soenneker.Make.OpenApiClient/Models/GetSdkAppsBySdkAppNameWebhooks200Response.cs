@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("appWebhooks") is { } nullNodeAppWebhooks && nullNodeAppWebhooks.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppWebhooks = null;
+            if (parseNode.GetChildNode("appWebhooks") is null) { _explicitNullValueAppWebhooks = default!; _explicitNullProperties?.Remove("appWebhooks"); }
+            else if (parseNode.GetChildNode("appWebhooks") is { } nullNodeAppWebhooks && nullNodeAppWebhooks.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppWebhooks = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The appWebhooks property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameWebhooks200ResponseAppWebhooksItem>? AppWebhooks { get => _explicitNullValueAppWebhooks; set { _explicitNullValueAppWebhooks = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appWebhooks"); else _explicitNullProperties?.Remove("appWebhooks"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameWebhooks200ResponseAppWebhooksItem>? AppWebhooks { get => _explicitNullValueAppWebhooks; set { _explicitNullValueAppWebhooks = value; AdditionalData?.Remove("appWebhooks"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appWebhooks"); else _explicitNullProperties?.Remove("appWebhooks"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameWebhooks200ResponseAppWebhooksItem>? _explicitNullValueAppWebhooks = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameWebhooks200ResponseAppWebhooksItem> AppWebhooks { get => _explicitNullValueAppWebhooks; set { _explicitNullValueAppWebhooks = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appWebhooks"); else _explicitNullProperties?.Remove("appWebhooks"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameWebhooks200ResponseAppWebhooksItem> AppWebhooks { get => _explicitNullValueAppWebhooks; set { _explicitNullValueAppWebhooks = value; AdditionalData?.Remove("appWebhooks"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appWebhooks"); else _explicitNullProperties?.Remove("appWebhooks"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameWebhooks200ResponseAppWebhooksItem> _explicitNullValueAppWebhooks = default!;
 #endif
         /// <summary>

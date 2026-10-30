@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("experiments") is { } nullNodeExperiments && nullNodeExperiments.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Experiments = null;
+            if (parseNode.GetChildNode("experiments") is null) { _explicitNullValueExperiments = default!; _explicitNullProperties?.Remove("experiments"); }
+            else if (parseNode.GetChildNode("experiments") is { } nullNodeExperiments && nullNodeExperiments.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Experiments = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Experiments configuration for the organization.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetAdminExperimentsOrganizationByOrganizationId200ResponseExperiments? Experiments { get => _explicitNullValueExperiments; set { _explicitNullValueExperiments = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("experiments"); else _explicitNullProperties?.Remove("experiments"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetAdminExperimentsOrganizationByOrganizationId200ResponseExperiments? Experiments { get => _explicitNullValueExperiments; set { _explicitNullValueExperiments = value; AdditionalData?.Remove("experiments"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("experiments"); else _explicitNullProperties?.Remove("experiments"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetAdminExperimentsOrganizationByOrganizationId200ResponseExperiments? _explicitNullValueExperiments = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetAdminExperimentsOrganizationByOrganizationId200ResponseExperiments Experiments { get => _explicitNullValueExperiments; set { _explicitNullValueExperiments = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("experiments"); else _explicitNullProperties?.Remove("experiments"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetAdminExperimentsOrganizationByOrganizationId200ResponseExperiments Experiments { get => _explicitNullValueExperiments; set { _explicitNullValueExperiments = value; AdditionalData?.Remove("experiments"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("experiments"); else _explicitNullProperties?.Remove("experiments"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetAdminExperimentsOrganizationByOrganizationId200ResponseExperiments _explicitNullValueExperiments = default!;
 #endif
         /// <summary>

@@ -17,10 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("descriptionLong") is { } nullNodeDescriptionLong && nullNodeDescriptionLong.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DescriptionLong = null;
-            if (parseNode.GetChildNode("descriptionShort") is { } nullNodeDescriptionShort && nullNodeDescriptionShort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DescriptionShort = null;
-            if (parseNode.GetChildNode("isEnabled") is { } nullNodeIsEnabled && nullNodeIsEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsEnabled = null;
-            if (parseNode.GetChildNode("title") is { } nullNodeTitle && nullNodeTitle.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Title = null;
+            if (parseNode.GetChildNode("descriptionLong") is null) { _explicitNullValueDescriptionLong = default!; _explicitNullProperties?.Remove("descriptionLong"); }
+            else if (parseNode.GetChildNode("descriptionLong") is { } nullNodeDescriptionLong && nullNodeDescriptionLong.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DescriptionLong = null;
+            if (parseNode.GetChildNode("descriptionShort") is null) { _explicitNullValueDescriptionShort = default!; _explicitNullProperties?.Remove("descriptionShort"); }
+            else if (parseNode.GetChildNode("descriptionShort") is { } nullNodeDescriptionShort && nullNodeDescriptionShort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DescriptionShort = null;
+            if (parseNode.GetChildNode("isEnabled") is null) { _explicitNullValueIsEnabled = default!; _explicitNullProperties?.Remove("isEnabled"); }
+            else if (parseNode.GetChildNode("isEnabled") is { } nullNodeIsEnabled && nullNodeIsEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsEnabled = null;
+            if (parseNode.GetChildNode("title") is null) { _explicitNullValueTitle = default!; _explicitNullProperties?.Remove("title"); }
+            else if (parseNode.GetChildNode("title") is { } nullNodeTitle && nullNodeTitle.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Title = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,34 +32,34 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The descriptionLong property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DescriptionLong { get => _explicitNullValueDescriptionLong; set { _explicitNullValueDescriptionLong = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("descriptionLong"); else _explicitNullProperties?.Remove("descriptionLong"); } }
+        public string? DescriptionLong { get => _explicitNullValueDescriptionLong; set { _explicitNullValueDescriptionLong = value; AdditionalData?.Remove("descriptionLong"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("descriptionLong"); else _explicitNullProperties?.Remove("descriptionLong"); } }
         private string? _explicitNullValueDescriptionLong = default!;
 #nullable restore
 #else
-        public string DescriptionLong { get => _explicitNullValueDescriptionLong; set { _explicitNullValueDescriptionLong = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("descriptionLong"); else _explicitNullProperties?.Remove("descriptionLong"); } }
+        public string DescriptionLong { get => _explicitNullValueDescriptionLong; set { _explicitNullValueDescriptionLong = value; AdditionalData?.Remove("descriptionLong"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("descriptionLong"); else _explicitNullProperties?.Remove("descriptionLong"); } }
         private string _explicitNullValueDescriptionLong = default!;
 #endif
         /// <summary>The descriptionShort property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DescriptionShort { get => _explicitNullValueDescriptionShort; set { _explicitNullValueDescriptionShort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("descriptionShort"); else _explicitNullProperties?.Remove("descriptionShort"); } }
+        public string? DescriptionShort { get => _explicitNullValueDescriptionShort; set { _explicitNullValueDescriptionShort = value; AdditionalData?.Remove("descriptionShort"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("descriptionShort"); else _explicitNullProperties?.Remove("descriptionShort"); } }
         private string? _explicitNullValueDescriptionShort = default!;
 #nullable restore
 #else
-        public string DescriptionShort { get => _explicitNullValueDescriptionShort; set { _explicitNullValueDescriptionShort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("descriptionShort"); else _explicitNullProperties?.Remove("descriptionShort"); } }
+        public string DescriptionShort { get => _explicitNullValueDescriptionShort; set { _explicitNullValueDescriptionShort = value; AdditionalData?.Remove("descriptionShort"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("descriptionShort"); else _explicitNullProperties?.Remove("descriptionShort"); } }
         private string _explicitNullValueDescriptionShort = default!;
 #endif
         /// <summary>The isEnabled property</summary>
-        public bool? IsEnabled { get => _explicitNullValueIsEnabled; set { _explicitNullValueIsEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isEnabled"); else _explicitNullProperties?.Remove("isEnabled"); } }
+        public bool? IsEnabled { get => _explicitNullValueIsEnabled; set { _explicitNullValueIsEnabled = value; AdditionalData?.Remove("isEnabled"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isEnabled"); else _explicitNullProperties?.Remove("isEnabled"); } }
         private bool? _explicitNullValueIsEnabled = default!;
         /// <summary>The title property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Title { get => _explicitNullValueTitle; set { _explicitNullValueTitle = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("title"); else _explicitNullProperties?.Remove("title"); } }
+        public string? Title { get => _explicitNullValueTitle; set { _explicitNullValueTitle = value; AdditionalData?.Remove("title"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("title"); else _explicitNullProperties?.Remove("title"); } }
         private string? _explicitNullValueTitle = default!;
 #nullable restore
 #else
-        public string Title { get => _explicitNullValueTitle; set { _explicitNullValueTitle = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("title"); else _explicitNullProperties?.Remove("title"); } }
+        public string Title { get => _explicitNullValueTitle; set { _explicitNullValueTitle = value; AdditionalData?.Remove("title"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("title"); else _explicitNullProperties?.Remove("title"); } }
         private string _explicitNullValueTitle = default!;
 #endif
         /// <summary>

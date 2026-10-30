@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("currentPassword") is { } nullNodeCurrentPassword && nullNodeCurrentPassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentPassword = null;
-            if (parseNode.GetChildNode("deleteConnections") is { } nullNodeDeleteConnections && nullNodeDeleteConnections.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeleteConnections = null;
-            if (parseNode.GetChildNode("tfaCode") is { } nullNodeTfaCode && nullNodeTfaCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TfaCode = null;
+            if (parseNode.GetChildNode("currentPassword") is null) { _explicitNullValueCurrentPassword = default!; _explicitNullProperties?.Remove("currentPassword"); }
+            else if (parseNode.GetChildNode("currentPassword") is { } nullNodeCurrentPassword && nullNodeCurrentPassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentPassword = null;
+            if (parseNode.GetChildNode("deleteConnections") is null) { _explicitNullValueDeleteConnections = default!; _explicitNullProperties?.Remove("deleteConnections"); }
+            else if (parseNode.GetChildNode("deleteConnections") is { } nullNodeDeleteConnections && nullNodeDeleteConnections.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeleteConnections = null;
+            if (parseNode.GetChildNode("tfaCode") is null) { _explicitNullValueTfaCode = default!; _explicitNullProperties?.Remove("tfaCode"); }
+            else if (parseNode.GetChildNode("tfaCode") is { } nullNodeTfaCode && nullNodeTfaCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TfaCode = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,24 +30,24 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>User&apos;s current password (required if user has a password set).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
+        public string? CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; AdditionalData?.Remove("currentPassword"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
         private string? _explicitNullValueCurrentPassword = default!;
 #nullable restore
 #else
-        public string CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
+        public string CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; AdditionalData?.Remove("currentPassword"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
         private string _explicitNullValueCurrentPassword = default!;
 #endif
         /// <summary>Whether to delete all user connections (accounts, webhooks, etc).</summary>
-        public bool? DeleteConnections { get => _explicitNullValueDeleteConnections; set { _explicitNullValueDeleteConnections = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deleteConnections"); else _explicitNullProperties?.Remove("deleteConnections"); } }
+        public bool? DeleteConnections { get => _explicitNullValueDeleteConnections; set { _explicitNullValueDeleteConnections = value; AdditionalData?.Remove("deleteConnections"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deleteConnections"); else _explicitNullProperties?.Remove("deleteConnections"); } }
         private bool? _explicitNullValueDeleteConnections = default!;
         /// <summary>Two-factor authentication code (required if 2FA is enabled).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TfaCode { get => _explicitNullValueTfaCode; set { _explicitNullValueTfaCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tfaCode"); else _explicitNullProperties?.Remove("tfaCode"); } }
+        public string? TfaCode { get => _explicitNullValueTfaCode; set { _explicitNullValueTfaCode = value; AdditionalData?.Remove("tfaCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tfaCode"); else _explicitNullProperties?.Remove("tfaCode"); } }
         private string? _explicitNullValueTfaCode = default!;
 #nullable restore
 #else
-        public string TfaCode { get => _explicitNullValueTfaCode; set { _explicitNullValueTfaCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tfaCode"); else _explicitNullProperties?.Remove("tfaCode"); } }
+        public string TfaCode { get => _explicitNullValueTfaCode; set { _explicitNullValueTfaCode = value; AdditionalData?.Remove("tfaCode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tfaCode"); else _explicitNullProperties?.Remove("tfaCode"); } }
         private string _explicitNullValueTfaCode = default!;
 #endif
         /// <summary>

@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("scenario") is { } nullNodeScenario && nullNodeScenario.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scenario = null;
+            if (parseNode.GetChildNode("scenario") is null) { _explicitNullValueScenario = default!; _explicitNullProperties?.Remove("scenario"); }
+            else if (parseNode.GetChildNode("scenario") is { } nullNodeScenario && nullNodeScenario.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scenario = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The scenario property</summary>
-        public int? Scenario { get => _explicitNullValueScenario; set { _explicitNullValueScenario = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenario"); else _explicitNullProperties?.Remove("scenario"); } }
+        public int? Scenario { get => _explicitNullValueScenario; set { _explicitNullValueScenario = value; AdditionalData?.Remove("scenario"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenario"); else _explicitNullProperties?.Remove("scenario"); } }
         private int? _explicitNullValueScenario = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioId200Response"/> and sets the default values.

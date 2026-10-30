@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("allow_apps") is { } nullNodeAllowApps && nullNodeAllowApps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowApps = null;
+            if (parseNode.GetChildNode("allow_apps") is null) { _explicitNullValueAllowApps = default!; _explicitNullProperties?.Remove("allow_apps"); }
+            else if (parseNode.GetChildNode("allow_apps") is { } nullNodeAllowApps && nullNodeAllowApps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowApps = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The allow_apps property</summary>
-        public bool? AllowApps { get => _explicitNullValueAllowApps; set { _explicitNullValueAllowApps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allow_apps"); else _explicitNullProperties?.Remove("allow_apps"); } }
+        public bool? AllowApps { get => _explicitNullValueAllowApps; set { _explicitNullValueAllowApps = value; AdditionalData?.Remove("allow_apps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allow_apps"); else _explicitNullProperties?.Remove("allow_apps"); } }
         private bool? _explicitNullValueAllowApps = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersMe200ResponseAuthUserFeatures"/> and sets the default values.

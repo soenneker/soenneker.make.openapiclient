@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("setupId") is { } nullNodeSetupId && nullNodeSetupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SetupId = null;
+            if (parseNode.GetChildNode("setupId") is null) { _explicitNullValueSetupId = default!; _explicitNullProperties?.Remove("setupId"); }
+            else if (parseNode.GetChildNode("setupId") is { } nullNodeSetupId && nullNodeSetupId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SetupId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Identifier of the cancelled setup flow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SetupId { get => _explicitNullValueSetupId; set { _explicitNullValueSetupId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("setupId"); else _explicitNullProperties?.Remove("setupId"); } }
+        public string? SetupId { get => _explicitNullValueSetupId; set { _explicitNullValueSetupId = value; AdditionalData?.Remove("setupId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("setupId"); else _explicitNullProperties?.Remove("setupId"); } }
         private string? _explicitNullValueSetupId = default!;
 #nullable restore
 #else
-        public string SetupId { get => _explicitNullValueSetupId; set { _explicitNullValueSetupId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("setupId"); else _explicitNullProperties?.Remove("setupId"); } }
+        public string SetupId { get => _explicitNullValueSetupId; set { _explicitNullValueSetupId = value; AdditionalData?.Remove("setupId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("setupId"); else _explicitNullProperties?.Remove("setupId"); } }
         private string _explicitNullValueSetupId = default!;
 #endif
         /// <summary>

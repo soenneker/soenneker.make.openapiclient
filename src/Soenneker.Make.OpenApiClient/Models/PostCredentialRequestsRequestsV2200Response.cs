@@ -18,8 +18,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("publicUri") is { } nullNodePublicUri && nullNodePublicUri.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PublicUri = null;
-            if (parseNode.GetChildNode("request") is { } nullNodeRequest && nullNodeRequest.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Request = null;
+            if (parseNode.GetChildNode("publicUri") is null) { _explicitNullValuePublicUri = default!; _explicitNullProperties?.Remove("publicUri"); }
+            else if (parseNode.GetChildNode("publicUri") is { } nullNodePublicUri && nullNodePublicUri.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PublicUri = null;
+            if (parseNode.GetChildNode("request") is null) { _explicitNullValueRequest = default!; _explicitNullProperties?.Remove("request"); }
+            else if (parseNode.GetChildNode("request") is { } nullNodeRequest && nullNodeRequest.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Request = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,21 +29,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Public URI for accessing the credential request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PublicUri { get => _explicitNullValuePublicUri; set { _explicitNullValuePublicUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publicUri"); else _explicitNullProperties?.Remove("publicUri"); } }
+        public string? PublicUri { get => _explicitNullValuePublicUri; set { _explicitNullValuePublicUri = value; AdditionalData?.Remove("publicUri"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publicUri"); else _explicitNullProperties?.Remove("publicUri"); } }
         private string? _explicitNullValuePublicUri = default!;
 #nullable restore
 #else
-        public string PublicUri { get => _explicitNullValuePublicUri; set { _explicitNullValuePublicUri = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publicUri"); else _explicitNullProperties?.Remove("publicUri"); } }
+        public string PublicUri { get => _explicitNullValuePublicUri; set { _explicitNullValuePublicUri = value; AdditionalData?.Remove("publicUri"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publicUri"); else _explicitNullProperties?.Remove("publicUri"); } }
         private string _explicitNullValuePublicUri = default!;
 #endif
         /// <summary>A credential request object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2200ResponseRequest? Request { get => _explicitNullValueRequest; set { _explicitNullValueRequest = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("request"); else _explicitNullProperties?.Remove("request"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2200ResponseRequest? Request { get => _explicitNullValueRequest; set { _explicitNullValueRequest = value; AdditionalData?.Remove("request"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("request"); else _explicitNullProperties?.Remove("request"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2200ResponseRequest? _explicitNullValueRequest = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2200ResponseRequest Request { get => _explicitNullValueRequest; set { _explicitNullValueRequest = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("request"); else _explicitNullProperties?.Remove("request"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2200ResponseRequest Request { get => _explicitNullValueRequest; set { _explicitNullValueRequest = value; AdditionalData?.Remove("request"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("request"); else _explicitNullProperties?.Remove("request"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2200ResponseRequest _explicitNullValueRequest = default!;
 #endif
         /// <summary>

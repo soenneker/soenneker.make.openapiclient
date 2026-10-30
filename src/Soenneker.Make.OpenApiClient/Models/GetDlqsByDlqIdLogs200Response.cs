@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("dlqLogs") is { } nullNodeDlqLogs && nullNodeDlqLogs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DlqLogs = null;
-            if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
+            if (parseNode.GetChildNode("dlqLogs") is null) { _explicitNullValueDlqLogs = default!; _explicitNullProperties?.Remove("dlqLogs"); }
+            else if (parseNode.GetChildNode("dlqLogs") is { } nullNodeDlqLogs && nullNodeDlqLogs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DlqLogs = null;
+            if (parseNode.GetChildNode("pg") is null) { _explicitNullValuePg = default!; _explicitNullProperties?.Remove("pg"); }
+            else if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The dlqLogs property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogs200ResponseDlqLogsItem>? DlqLogs { get => _explicitNullValueDlqLogs; set { _explicitNullValueDlqLogs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlqLogs"); else _explicitNullProperties?.Remove("dlqLogs"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogs200ResponseDlqLogsItem>? DlqLogs { get => _explicitNullValueDlqLogs; set { _explicitNullValueDlqLogs = value; AdditionalData?.Remove("dlqLogs"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlqLogs"); else _explicitNullProperties?.Remove("dlqLogs"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogs200ResponseDlqLogsItem>? _explicitNullValueDlqLogs = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogs200ResponseDlqLogsItem> DlqLogs { get => _explicitNullValueDlqLogs; set { _explicitNullValueDlqLogs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlqLogs"); else _explicitNullProperties?.Remove("dlqLogs"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogs200ResponseDlqLogsItem> DlqLogs { get => _explicitNullValueDlqLogs; set { _explicitNullValueDlqLogs = value; AdditionalData?.Remove("dlqLogs"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlqLogs"); else _explicitNullProperties?.Remove("dlqLogs"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogs200ResponseDlqLogsItem> _explicitNullValueDlqLogs = default!;
 #endif
         /// <summary>The pg property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogs200ResponsePg? Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogs200ResponsePg? Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; AdditionalData?.Remove("pg"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogs200ResponsePg? _explicitNullValuePg = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogs200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogs200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; AdditionalData?.Remove("pg"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdLogs200ResponsePg _explicitNullValuePg = default!;
 #endif
         /// <summary>

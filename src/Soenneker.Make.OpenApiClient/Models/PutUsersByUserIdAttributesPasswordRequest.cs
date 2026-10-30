@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("currentPassword") is { } nullNodeCurrentPassword && nullNodeCurrentPassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentPassword = null;
-            if (parseNode.GetChildNode("newPassword1") is { } nullNodeNewPassword1 && nullNodeNewPassword1.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewPassword1 = null;
-            if (parseNode.GetChildNode("newPassword2") is { } nullNodeNewPassword2 && nullNodeNewPassword2.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewPassword2 = null;
+            if (parseNode.GetChildNode("currentPassword") is null) { _explicitNullValueCurrentPassword = default!; _explicitNullProperties?.Remove("currentPassword"); }
+            else if (parseNode.GetChildNode("currentPassword") is { } nullNodeCurrentPassword && nullNodeCurrentPassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentPassword = null;
+            if (parseNode.GetChildNode("newPassword1") is null) { _explicitNullValueNewPassword1 = default!; _explicitNullProperties?.Remove("newPassword1"); }
+            else if (parseNode.GetChildNode("newPassword1") is { } nullNodeNewPassword1 && nullNodeNewPassword1.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewPassword1 = null;
+            if (parseNode.GetChildNode("newPassword2") is null) { _explicitNullValueNewPassword2 = default!; _explicitNullProperties?.Remove("newPassword2"); }
+            else if (parseNode.GetChildNode("newPassword2") is { } nullNodeNewPassword2 && nullNodeNewPassword2.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewPassword2 = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,31 +30,31 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The current user password.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
+        public string? CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; AdditionalData?.Remove("currentPassword"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
         private string? _explicitNullValueCurrentPassword = default!;
 #nullable restore
 #else
-        public string CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
+        public string CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; AdditionalData?.Remove("currentPassword"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
         private string _explicitNullValueCurrentPassword = default!;
 #endif
         /// <summary>The new user password. The password must be at least 9 characters long and must contain at least one uppercase letter, at least one number, and at least one special character.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NewPassword1 { get => _explicitNullValueNewPassword1; set { _explicitNullValueNewPassword1 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newPassword1"); else _explicitNullProperties?.Remove("newPassword1"); } }
+        public string? NewPassword1 { get => _explicitNullValueNewPassword1; set { _explicitNullValueNewPassword1 = value; AdditionalData?.Remove("newPassword1"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newPassword1"); else _explicitNullProperties?.Remove("newPassword1"); } }
         private string? _explicitNullValueNewPassword1 = default!;
 #nullable restore
 #else
-        public string NewPassword1 { get => _explicitNullValueNewPassword1; set { _explicitNullValueNewPassword1 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newPassword1"); else _explicitNullProperties?.Remove("newPassword1"); } }
+        public string NewPassword1 { get => _explicitNullValueNewPassword1; set { _explicitNullValueNewPassword1 = value; AdditionalData?.Remove("newPassword1"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newPassword1"); else _explicitNullProperties?.Remove("newPassword1"); } }
         private string _explicitNullValueNewPassword1 = default!;
 #endif
         /// <summary>The new user password for confirmation. This password must be the same as the password in the `newPassword1` property.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NewPassword2 { get => _explicitNullValueNewPassword2; set { _explicitNullValueNewPassword2 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newPassword2"); else _explicitNullProperties?.Remove("newPassword2"); } }
+        public string? NewPassword2 { get => _explicitNullValueNewPassword2; set { _explicitNullValueNewPassword2 = value; AdditionalData?.Remove("newPassword2"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newPassword2"); else _explicitNullProperties?.Remove("newPassword2"); } }
         private string? _explicitNullValueNewPassword2 = default!;
 #nullable restore
 #else
-        public string NewPassword2 { get => _explicitNullValueNewPassword2; set { _explicitNullValueNewPassword2 = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newPassword2"); else _explicitNullProperties?.Remove("newPassword2"); } }
+        public string NewPassword2 { get => _explicitNullValueNewPassword2; set { _explicitNullValueNewPassword2 = value; AdditionalData?.Remove("newPassword2"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newPassword2"); else _explicitNullProperties?.Remove("newPassword2"); } }
         private string _explicitNullValueNewPassword2 = default!;
 #endif
         /// <summary>

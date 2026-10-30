@@ -17,22 +17,25 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("autoCommit") is { } nullNodeAutoCommit && nullNodeAutoCommit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoCommit = null;
-            if (parseNode.GetChildNode("maxErrors") is { } nullNodeMaxErrors && nullNodeMaxErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxErrors = null;
-            if (parseNode.GetChildNode("roundtrips") is { } nullNodeRoundtrips && nullNodeRoundtrips.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Roundtrips = null;
+            if (parseNode.GetChildNode("autoCommit") is null) { _explicitNullValueAutoCommit = default!; _explicitNullProperties?.Remove("autoCommit"); }
+            else if (parseNode.GetChildNode("autoCommit") is { } nullNodeAutoCommit && nullNodeAutoCommit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoCommit = null;
+            if (parseNode.GetChildNode("maxErrors") is null) { _explicitNullValueMaxErrors = default!; _explicitNullProperties?.Remove("maxErrors"); }
+            else if (parseNode.GetChildNode("maxErrors") is { } nullNodeMaxErrors && nullNodeMaxErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxErrors = null;
+            if (parseNode.GetChildNode("roundtrips") is null) { _explicitNullValueRoundtrips = default!; _explicitNullProperties?.Remove("roundtrips"); }
+            else if (parseNode.GetChildNode("roundtrips") is { } nullNodeRoundtrips && nullNodeRoundtrips.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Roundtrips = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The autoCommit property</summary>
-        public bool? AutoCommit { get => _explicitNullValueAutoCommit; set { _explicitNullValueAutoCommit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("autoCommit"); else _explicitNullProperties?.Remove("autoCommit"); } }
+        public bool? AutoCommit { get => _explicitNullValueAutoCommit; set { _explicitNullValueAutoCommit = value; AdditionalData?.Remove("autoCommit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("autoCommit"); else _explicitNullProperties?.Remove("autoCommit"); } }
         private bool? _explicitNullValueAutoCommit = default!;
         /// <summary>The maxErrors property</summary>
-        public int? MaxErrors { get => _explicitNullValueMaxErrors; set { _explicitNullValueMaxErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxErrors"); else _explicitNullProperties?.Remove("maxErrors"); } }
+        public int? MaxErrors { get => _explicitNullValueMaxErrors; set { _explicitNullValueMaxErrors = value; AdditionalData?.Remove("maxErrors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxErrors"); else _explicitNullProperties?.Remove("maxErrors"); } }
         private int? _explicitNullValueMaxErrors = default!;
         /// <summary>This property is deprecated. Any value sent in a request is ignored: it is always stored and returned as `1`, and every execution runs a single cycle.</summary>
         [Obsolete("")]
-        public int? Roundtrips { get => _explicitNullValueRoundtrips; set { _explicitNullValueRoundtrips = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("roundtrips"); else _explicitNullProperties?.Remove("roundtrips"); } }
+        public int? Roundtrips { get => _explicitNullValueRoundtrips; set { _explicitNullValueRoundtrips = value; AdditionalData?.Remove("roundtrips"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("roundtrips"); else _explicitNullProperties?.Remove("roundtrips"); } }
         private int? _explicitNullValueRoundtrips = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostTemplatesRequestBlueprintMetadataScenario"/> and sets the default values.

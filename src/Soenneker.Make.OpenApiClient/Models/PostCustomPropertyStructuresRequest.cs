@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("associatedType") is { } nullNodeAssociatedType && nullNodeAssociatedType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssociatedType = null;
-            if (parseNode.GetChildNode("belongerId") is { } nullNodeBelongerId && nullNodeBelongerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BelongerId = null;
-            if (parseNode.GetChildNode("belongerType") is { } nullNodeBelongerType && nullNodeBelongerType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BelongerType = null;
+            if (parseNode.GetChildNode("associatedType") is null) { _explicitNullValueAssociatedType = default!; _explicitNullProperties?.Remove("associatedType"); }
+            else if (parseNode.GetChildNode("associatedType") is { } nullNodeAssociatedType && nullNodeAssociatedType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssociatedType = null;
+            if (parseNode.GetChildNode("belongerId") is null) { _explicitNullValueBelongerId = default!; _explicitNullProperties?.Remove("belongerId"); }
+            else if (parseNode.GetChildNode("belongerId") is { } nullNodeBelongerId && nullNodeBelongerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BelongerId = null;
+            if (parseNode.GetChildNode("belongerType") is null) { _explicitNullValueBelongerType = default!; _explicitNullProperties?.Remove("belongerType"); }
+            else if (parseNode.GetChildNode("belongerType") is { } nullNodeBelongerType && nullNodeBelongerType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BelongerType = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,24 +30,24 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The type of the entity which uses the custom properties structure. Fill in `scenario` to create custom scenario properties structure.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AssociatedType { get => _explicitNullValueAssociatedType; set { _explicitNullValueAssociatedType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedType"); else _explicitNullProperties?.Remove("associatedType"); } }
+        public string? AssociatedType { get => _explicitNullValueAssociatedType; set { _explicitNullValueAssociatedType = value; AdditionalData?.Remove("associatedType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedType"); else _explicitNullProperties?.Remove("associatedType"); } }
         private string? _explicitNullValueAssociatedType = default!;
 #nullable restore
 #else
-        public string AssociatedType { get => _explicitNullValueAssociatedType; set { _explicitNullValueAssociatedType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedType"); else _explicitNullProperties?.Remove("associatedType"); } }
+        public string AssociatedType { get => _explicitNullValueAssociatedType; set { _explicitNullValueAssociatedType = value; AdditionalData?.Remove("associatedType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedType"); else _explicitNullProperties?.Remove("associatedType"); } }
         private string _explicitNullValueAssociatedType = default!;
 #endif
         /// <summary>The ID of the entity that owns the custom properties structure.</summary>
-        public int? BelongerId { get => _explicitNullValueBelongerId; set { _explicitNullValueBelongerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("belongerId"); else _explicitNullProperties?.Remove("belongerId"); } }
+        public int? BelongerId { get => _explicitNullValueBelongerId; set { _explicitNullValueBelongerId = value; AdditionalData?.Remove("belongerId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("belongerId"); else _explicitNullProperties?.Remove("belongerId"); } }
         private int? _explicitNullValueBelongerId = default!;
         /// <summary>The type of the entity that owns the custom properties structure. Fill in `organization` to create custom scenario properties structure.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BelongerType { get => _explicitNullValueBelongerType; set { _explicitNullValueBelongerType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("belongerType"); else _explicitNullProperties?.Remove("belongerType"); } }
+        public string? BelongerType { get => _explicitNullValueBelongerType; set { _explicitNullValueBelongerType = value; AdditionalData?.Remove("belongerType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("belongerType"); else _explicitNullProperties?.Remove("belongerType"); } }
         private string? _explicitNullValueBelongerType = default!;
 #nullable restore
 #else
-        public string BelongerType { get => _explicitNullValueBelongerType; set { _explicitNullValueBelongerType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("belongerType"); else _explicitNullProperties?.Remove("belongerType"); } }
+        public string BelongerType { get => _explicitNullValueBelongerType; set { _explicitNullValueBelongerType = value; AdditionalData?.Remove("belongerType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("belongerType"); else _explicitNullProperties?.Remove("belongerType"); } }
         private string _explicitNullValueBelongerType = default!;
 #endif
         /// <summary>

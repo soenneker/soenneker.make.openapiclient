@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("moduleTypes") is { } nullNodeModuleTypes && nullNodeModuleTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModuleTypes = null;
+            if (parseNode.GetChildNode("moduleTypes") is null) { _explicitNullValueModuleTypes = default!; _explicitNullProperties?.Remove("moduleTypes"); }
+            else if (parseNode.GetChildNode("moduleTypes") is { } nullNodeModuleTypes && nullNodeModuleTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModuleTypes = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The moduleTypes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsModuleTypes200ResponseModuleTypesItem>? ModuleTypes { get => _explicitNullValueModuleTypes; set { _explicitNullValueModuleTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleTypes"); else _explicitNullProperties?.Remove("moduleTypes"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsModuleTypes200ResponseModuleTypesItem>? ModuleTypes { get => _explicitNullValueModuleTypes; set { _explicitNullValueModuleTypes = value; AdditionalData?.Remove("moduleTypes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleTypes"); else _explicitNullProperties?.Remove("moduleTypes"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsModuleTypes200ResponseModuleTypesItem>? _explicitNullValueModuleTypes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsModuleTypes200ResponseModuleTypesItem> ModuleTypes { get => _explicitNullValueModuleTypes; set { _explicitNullValueModuleTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleTypes"); else _explicitNullProperties?.Remove("moduleTypes"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsModuleTypes200ResponseModuleTypesItem> ModuleTypes { get => _explicitNullValueModuleTypes; set { _explicitNullValueModuleTypes = value; AdditionalData?.Remove("moduleTypes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleTypes"); else _explicitNullProperties?.Remove("moduleTypes"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsModuleTypes200ResponseModuleTypesItem> _explicitNullValueModuleTypes = default!;
 #endif
         /// <summary>

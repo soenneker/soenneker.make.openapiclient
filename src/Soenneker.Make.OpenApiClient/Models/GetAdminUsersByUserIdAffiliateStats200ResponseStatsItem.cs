@@ -18,25 +18,29 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("commission") is { } nullNodeCommission && nullNodeCommission.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Commission = null;
-            if (parseNode.GetChildNode("date") is { } nullNodeDate && nullNodeDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Date = null;
-            if (parseNode.GetChildNode("registrations") is { } nullNodeRegistrations && nullNodeRegistrations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Registrations = null;
-            if (parseNode.GetChildNode("visits") is { } nullNodeVisits && nullNodeVisits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Visits = null;
+            if (parseNode.GetChildNode("commission") is null) { _explicitNullValueCommission = default!; _explicitNullProperties?.Remove("commission"); }
+            else if (parseNode.GetChildNode("commission") is { } nullNodeCommission && nullNodeCommission.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Commission = null;
+            if (parseNode.GetChildNode("date") is null) { _explicitNullValueDate = default!; _explicitNullProperties?.Remove("date"); }
+            else if (parseNode.GetChildNode("date") is { } nullNodeDate && nullNodeDate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Date = null;
+            if (parseNode.GetChildNode("registrations") is null) { _explicitNullValueRegistrations = default!; _explicitNullProperties?.Remove("registrations"); }
+            else if (parseNode.GetChildNode("registrations") is { } nullNodeRegistrations && nullNodeRegistrations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Registrations = null;
+            if (parseNode.GetChildNode("visits") is null) { _explicitNullValueVisits = default!; _explicitNullProperties?.Remove("visits"); }
+            else if (parseNode.GetChildNode("visits") is { } nullNodeVisits && nullNodeVisits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Visits = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The commission property</summary>
-        public double? Commission { get => _explicitNullValueCommission; set { _explicitNullValueCommission = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("commission"); else _explicitNullProperties?.Remove("commission"); } }
+        public double? Commission { get => _explicitNullValueCommission; set { _explicitNullValueCommission = value; AdditionalData?.Remove("commission"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("commission"); else _explicitNullProperties?.Remove("commission"); } }
         private double? _explicitNullValueCommission = default!;
         /// <summary>The date property</summary>
-        public Date? Date { get => _explicitNullValueDate; set { _explicitNullValueDate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("date"); else _explicitNullProperties?.Remove("date"); } }
+        public Date? Date { get => _explicitNullValueDate; set { _explicitNullValueDate = value; AdditionalData?.Remove("date"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("date"); else _explicitNullProperties?.Remove("date"); } }
         private Date? _explicitNullValueDate = default!;
         /// <summary>The registrations property</summary>
-        public int? Registrations { get => _explicitNullValueRegistrations; set { _explicitNullValueRegistrations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("registrations"); else _explicitNullProperties?.Remove("registrations"); } }
+        public int? Registrations { get => _explicitNullValueRegistrations; set { _explicitNullValueRegistrations = value; AdditionalData?.Remove("registrations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("registrations"); else _explicitNullProperties?.Remove("registrations"); } }
         private int? _explicitNullValueRegistrations = default!;
         /// <summary>The visits property</summary>
-        public int? Visits { get => _explicitNullValueVisits; set { _explicitNullValueVisits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("visits"); else _explicitNullProperties?.Remove("visits"); } }
+        public int? Visits { get => _explicitNullValueVisits; set { _explicitNullValueVisits = value; AdditionalData?.Remove("visits"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("visits"); else _explicitNullProperties?.Remove("visits"); } }
         private int? _explicitNullValueVisits = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateStats200ResponseStatsItem"/> and sets the default values.

@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("entities") is { } nullNodeEntities && nullNodeEntities.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Entities = null;
-            if (parseNode.GetChildNode("moduleId") is { } nullNodeModuleId && nullNodeModuleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModuleId = null;
-            if (parseNode.GetChildNode("moduleName") is { } nullNodeModuleName && nullNodeModuleName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModuleName = null;
+            if (parseNode.GetChildNode("entities") is null) { _explicitNullValueEntities = default!; _explicitNullProperties?.Remove("entities"); }
+            else if (parseNode.GetChildNode("entities") is { } nullNodeEntities && nullNodeEntities.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Entities = null;
+            if (parseNode.GetChildNode("moduleId") is null) { _explicitNullValueModuleId = default!; _explicitNullProperties?.Remove("moduleId"); }
+            else if (parseNode.GetChildNode("moduleId") is { } nullNodeModuleId && nullNodeModuleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModuleId = null;
+            if (parseNode.GetChildNode("moduleName") is null) { _explicitNullValueModuleName = default!; _explicitNullProperties?.Remove("moduleName"); }
+            else if (parseNode.GetChildNode("moduleName") is { } nullNodeModuleName && nullNodeModuleName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModuleName = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,24 +30,24 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The entities property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem>? Entities { get => _explicitNullValueEntities; set { _explicitNullValueEntities = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entities"); else _explicitNullProperties?.Remove("entities"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem>? Entities { get => _explicitNullValueEntities; set { _explicitNullValueEntities = value; AdditionalData?.Remove("entities"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entities"); else _explicitNullProperties?.Remove("entities"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem>? _explicitNullValueEntities = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem> Entities { get => _explicitNullValueEntities; set { _explicitNullValueEntities = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entities"); else _explicitNullProperties?.Remove("entities"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem> Entities { get => _explicitNullValueEntities; set { _explicitNullValueEntities = value; AdditionalData?.Remove("entities"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entities"); else _explicitNullProperties?.Remove("entities"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem> _explicitNullValueEntities = default!;
 #endif
         /// <summary>The moduleId property</summary>
-        public int? ModuleId { get => _explicitNullValueModuleId; set { _explicitNullValueModuleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleId"); else _explicitNullProperties?.Remove("moduleId"); } }
+        public int? ModuleId { get => _explicitNullValueModuleId; set { _explicitNullValueModuleId = value; AdditionalData?.Remove("moduleId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleId"); else _explicitNullProperties?.Remove("moduleId"); } }
         private int? _explicitNullValueModuleId = default!;
         /// <summary>The moduleName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ModuleName { get => _explicitNullValueModuleName; set { _explicitNullValueModuleName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleName"); else _explicitNullProperties?.Remove("moduleName"); } }
+        public string? ModuleName { get => _explicitNullValueModuleName; set { _explicitNullValueModuleName = value; AdditionalData?.Remove("moduleName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleName"); else _explicitNullProperties?.Remove("moduleName"); } }
         private string? _explicitNullValueModuleName = default!;
 #nullable restore
 #else
-        public string ModuleName { get => _explicitNullValueModuleName; set { _explicitNullValueModuleName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleName"); else _explicitNullProperties?.Remove("moduleName"); } }
+        public string ModuleName { get => _explicitNullValueModuleName; set { _explicitNullValueModuleName = value; AdditionalData?.Remove("moduleName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleName"); else _explicitNullProperties?.Remove("moduleName"); } }
         private string _explicitNullValueModuleName = default!;
 #endif
         /// <summary>

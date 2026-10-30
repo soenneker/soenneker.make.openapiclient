@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("change") is { } nullNodeChange && nullNodeChange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Change = null;
+            if (parseNode.GetChildNode("change") is null) { _explicitNullValueChange = default!; _explicitNullProperties?.Remove("change"); }
+            else if (parseNode.GetChildNode("change") is { } nullNodeChange && nullNodeChange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Change = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The change property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseChange? Change { get => _explicitNullValueChange; set { _explicitNullValueChange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("change"); else _explicitNullProperties?.Remove("change"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseChange? Change { get => _explicitNullValueChange; set { _explicitNullValueChange = value; AdditionalData?.Remove("change"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("change"); else _explicitNullProperties?.Remove("change"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseChange? _explicitNullValueChange = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseChange Change { get => _explicitNullValueChange; set { _explicitNullValueChange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("change"); else _explicitNullProperties?.Remove("change"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseChange Change { get => _explicitNullValueChange; set { _explicitNullValueChange = value; AdditionalData?.Remove("change"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("change"); else _explicitNullProperties?.Remove("change"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseChange _explicitNullValueChange = default!;
 #endif
         /// <summary>

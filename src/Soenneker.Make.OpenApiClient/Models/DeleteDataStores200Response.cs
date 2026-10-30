@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("dataStores") is { } nullNodeDataStores && nullNodeDataStores.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataStores = null;
+            if (parseNode.GetChildNode("dataStores") is null) { _explicitNullValueDataStores = default!; _explicitNullProperties?.Remove("dataStores"); }
+            else if (parseNode.GetChildNode("dataStores") is { } nullNodeDataStores && nullNodeDataStores.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataStores = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The dataStores property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? DataStores { get => _explicitNullValueDataStores; set { _explicitNullValueDataStores = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStores"); else _explicitNullProperties?.Remove("dataStores"); } }
+        public List<int?>? DataStores { get => _explicitNullValueDataStores; set { _explicitNullValueDataStores = value; AdditionalData?.Remove("dataStores"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStores"); else _explicitNullProperties?.Remove("dataStores"); } }
         private List<int?>? _explicitNullValueDataStores = default!;
 #nullable restore
 #else
-        public List<int?> DataStores { get => _explicitNullValueDataStores; set { _explicitNullValueDataStores = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStores"); else _explicitNullProperties?.Remove("dataStores"); } }
+        public List<int?> DataStores { get => _explicitNullValueDataStores; set { _explicitNullValueDataStores = value; AdditionalData?.Remove("dataStores"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStores"); else _explicitNullProperties?.Remove("dataStores"); } }
         private List<int?> _explicitNullValueDataStores = default!;
 #endif
         /// <summary>

@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("exists") is { } nullNodeExists && nullNodeExists.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Exists = null;
+            if (parseNode.GetChildNode("exists") is null) { _explicitNullValueExists = default!; _explicitNullProperties?.Remove("exists"); }
+            else if (parseNode.GetChildNode("exists") is { } nullNodeExists && nullNodeExists.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Exists = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The exists property</summary>
-        public bool? Exists { get => _explicitNullValueExists; set { _explicitNullValueExists = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exists"); else _explicitNullProperties?.Remove("exists"); } }
+        public bool? Exists { get => _explicitNullValueExists; set { _explicitNullValueExists = value; AdditionalData?.Remove("exists"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exists"); else _explicitNullProperties?.Remove("exists"); } }
         private bool? _explicitNullValueExists = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdDataByModuleId200Response"/> and sets the default values.

@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("appEndpoint") is { } nullNodeAppEndpoint && nullNodeAppEndpoint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppEndpoint = null;
+            if (parseNode.GetChildNode("appEndpoint") is null) { _explicitNullValueAppEndpoint = default!; _explicitNullProperties?.Remove("appEndpoint"); }
+            else if (parseNode.GetChildNode("appEndpoint") is { } nullNodeAppEndpoint && nullNodeAppEndpoint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppEndpoint = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The appEndpoint property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AppEndpoint { get => _explicitNullValueAppEndpoint; set { _explicitNullValueAppEndpoint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appEndpoint"); else _explicitNullProperties?.Remove("appEndpoint"); } }
+        public string? AppEndpoint { get => _explicitNullValueAppEndpoint; set { _explicitNullValueAppEndpoint = value; AdditionalData?.Remove("appEndpoint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appEndpoint"); else _explicitNullProperties?.Remove("appEndpoint"); } }
         private string? _explicitNullValueAppEndpoint = default!;
 #nullable restore
 #else
-        public string AppEndpoint { get => _explicitNullValueAppEndpoint; set { _explicitNullValueAppEndpoint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appEndpoint"); else _explicitNullProperties?.Remove("appEndpoint"); } }
+        public string AppEndpoint { get => _explicitNullValueAppEndpoint; set { _explicitNullValueAppEndpoint = value; AdditionalData?.Remove("appEndpoint"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appEndpoint"); else _explicitNullProperties?.Remove("appEndpoint"); } }
         private string _explicitNullValueAppEndpoint = default!;
 #endif
         /// <summary>

@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("associatedTypes") is { } nullNodeAssociatedTypes && nullNodeAssociatedTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssociatedTypes = null;
-            if (parseNode.GetChildNode("belongerId") is { } nullNodeBelongerId && nullNodeBelongerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BelongerId = null;
-            if (parseNode.GetChildNode("belongerType") is { } nullNodeBelongerType && nullNodeBelongerType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BelongerType = null;
+            if (parseNode.GetChildNode("associatedTypes") is null) { _explicitNullValueAssociatedTypes = default!; _explicitNullProperties?.Remove("associatedTypes"); }
+            else if (parseNode.GetChildNode("associatedTypes") is { } nullNodeAssociatedTypes && nullNodeAssociatedTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AssociatedTypes = null;
+            if (parseNode.GetChildNode("belongerId") is null) { _explicitNullValueBelongerId = default!; _explicitNullProperties?.Remove("belongerId"); }
+            else if (parseNode.GetChildNode("belongerId") is { } nullNodeBelongerId && nullNodeBelongerId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BelongerId = null;
+            if (parseNode.GetChildNode("belongerType") is null) { _explicitNullValueBelongerType = default!; _explicitNullProperties?.Remove("belongerType"); }
+            else if (parseNode.GetChildNode("belongerType") is { } nullNodeBelongerType && nullNodeBelongerType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BelongerType = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,24 +30,24 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The associatedTypes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AssociatedTypes { get => _explicitNullValueAssociatedTypes; set { _explicitNullValueAssociatedTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedTypes"); else _explicitNullProperties?.Remove("associatedTypes"); } }
+        public List<string>? AssociatedTypes { get => _explicitNullValueAssociatedTypes; set { _explicitNullValueAssociatedTypes = value; AdditionalData?.Remove("associatedTypes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedTypes"); else _explicitNullProperties?.Remove("associatedTypes"); } }
         private List<string>? _explicitNullValueAssociatedTypes = default!;
 #nullable restore
 #else
-        public List<string> AssociatedTypes { get => _explicitNullValueAssociatedTypes; set { _explicitNullValueAssociatedTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedTypes"); else _explicitNullProperties?.Remove("associatedTypes"); } }
+        public List<string> AssociatedTypes { get => _explicitNullValueAssociatedTypes; set { _explicitNullValueAssociatedTypes = value; AdditionalData?.Remove("associatedTypes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("associatedTypes"); else _explicitNullProperties?.Remove("associatedTypes"); } }
         private List<string> _explicitNullValueAssociatedTypes = default!;
 #endif
         /// <summary>The belongerId property</summary>
-        public int? BelongerId { get => _explicitNullValueBelongerId; set { _explicitNullValueBelongerId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("belongerId"); else _explicitNullProperties?.Remove("belongerId"); } }
+        public int? BelongerId { get => _explicitNullValueBelongerId; set { _explicitNullValueBelongerId = value; AdditionalData?.Remove("belongerId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("belongerId"); else _explicitNullProperties?.Remove("belongerId"); } }
         private int? _explicitNullValueBelongerId = default!;
         /// <summary>The belongerType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BelongerType { get => _explicitNullValueBelongerType; set { _explicitNullValueBelongerType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("belongerType"); else _explicitNullProperties?.Remove("belongerType"); } }
+        public string? BelongerType { get => _explicitNullValueBelongerType; set { _explicitNullValueBelongerType = value; AdditionalData?.Remove("belongerType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("belongerType"); else _explicitNullProperties?.Remove("belongerType"); } }
         private string? _explicitNullValueBelongerType = default!;
 #nullable restore
 #else
-        public string BelongerType { get => _explicitNullValueBelongerType; set { _explicitNullValueBelongerType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("belongerType"); else _explicitNullProperties?.Remove("belongerType"); } }
+        public string BelongerType { get => _explicitNullValueBelongerType; set { _explicitNullValueBelongerType = value; AdditionalData?.Remove("belongerType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("belongerType"); else _explicitNullProperties?.Remove("belongerType"); } }
         private string _explicitNullValueBelongerType = default!;
 #endif
         /// <summary>

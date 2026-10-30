@@ -17,53 +17,59 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("evaluationMode") is { } nullNodeEvaluationMode && nullNodeEvaluationMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EvaluationMode = null;
-            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
-            if (parseNode.GetChildNode("module") is { } nullNodeModule && nullNodeModule.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Module = null;
-            if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
-            if (parseNode.GetChildNode("tools") is { } nullNodeTools && nullNodeTools.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tools = null;
-            if (parseNode.GetChildNode("userLabel") is { } nullNodeUserLabel && nullNodeUserLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserLabel = null;
+            if (parseNode.GetChildNode("evaluationMode") is null) { _explicitNullValueEvaluationMode = default!; _explicitNullProperties?.Remove("evaluationMode"); }
+            else if (parseNode.GetChildNode("evaluationMode") is { } nullNodeEvaluationMode && nullNodeEvaluationMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EvaluationMode = null;
+            if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
+            else if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("module") is null) { _explicitNullValueModule = default!; _explicitNullProperties?.Remove("module"); }
+            else if (parseNode.GetChildNode("module") is { } nullNodeModule && nullNodeModule.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Module = null;
+            if (parseNode.GetChildNode("scenarioId") is null) { _explicitNullValueScenarioId = default!; _explicitNullProperties?.Remove("scenarioId"); }
+            else if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
+            if (parseNode.GetChildNode("tools") is null) { _explicitNullValueTools = default!; _explicitNullProperties?.Remove("tools"); }
+            else if (parseNode.GetChildNode("tools") is { } nullNodeTools && nullNodeTools.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tools = null;
+            if (parseNode.GetChildNode("userLabel") is null) { _explicitNullValueUserLabel = default!; _explicitNullProperties?.Remove("userLabel"); }
+            else if (parseNode.GetChildNode("userLabel") is { } nullNodeUserLabel && nullNodeUserLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserLabel = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The evaluation mode set in the agent module&apos;s `metrics` setting - `disabled`, `measured` (measured tags only) or `measuredAndInferred` (measured tags plus LLM-inferred tags). A missing value, or one mapped from another module, falls back to the legacy `inferredTagsEnabled` flag, at the top level of the module or inside its old `evaluations` collection (`true` meant `measuredAndInferred`), and otherwise reads as `measured`.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode? EvaluationMode { get => _explicitNullValueEvaluationMode; set { _explicitNullValueEvaluationMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("evaluationMode"); else _explicitNullProperties?.Remove("evaluationMode"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode? EvaluationMode { get => _explicitNullValueEvaluationMode; set { _explicitNullValueEvaluationMode = value; AdditionalData?.Remove("evaluationMode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("evaluationMode"); else _explicitNullProperties?.Remove("evaluationMode"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode? _explicitNullValueEvaluationMode = default!;
         /// <summary>The unique ID of the agent module within the scenario&apos;s blueprint.</summary>
-        public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private int? _explicitNullValueId = default!;
         /// <summary>The app:module identifier of the agent module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Module { get => _explicitNullValueModule; set { _explicitNullValueModule = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("module"); else _explicitNullProperties?.Remove("module"); } }
+        public string? Module { get => _explicitNullValueModule; set { _explicitNullValueModule = value; AdditionalData?.Remove("module"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("module"); else _explicitNullProperties?.Remove("module"); } }
         private string? _explicitNullValueModule = default!;
 #nullable restore
 #else
-        public string Module { get => _explicitNullValueModule; set { _explicitNullValueModule = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("module"); else _explicitNullProperties?.Remove("module"); } }
+        public string Module { get => _explicitNullValueModule; set { _explicitNullValueModule = value; AdditionalData?.Remove("module"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("module"); else _explicitNullProperties?.Remove("module"); } }
         private string _explicitNullValueModule = default!;
 #endif
         /// <summary>The unique ID of the scenario the agent module belongs to.</summary>
-        public int? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
+        public int? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; AdditionalData?.Remove("scenarioId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
         private int? _explicitNullValueScenarioId = default!;
         /// <summary>The tools available to the agent module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem>? Tools { get => _explicitNullValueTools; set { _explicitNullValueTools = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tools"); else _explicitNullProperties?.Remove("tools"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem>? Tools { get => _explicitNullValueTools; set { _explicitNullValueTools = value; AdditionalData?.Remove("tools"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tools"); else _explicitNullProperties?.Remove("tools"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem>? _explicitNullValueTools = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem> Tools { get => _explicitNullValueTools; set { _explicitNullValueTools = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tools"); else _explicitNullProperties?.Remove("tools"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem> Tools { get => _explicitNullValueTools; set { _explicitNullValueTools = value; AdditionalData?.Remove("tools"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tools"); else _explicitNullProperties?.Remove("tools"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem> _explicitNullValueTools = default!;
 #endif
         /// <summary>The user-defined label of the agent module, if set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UserLabel { get => _explicitNullValueUserLabel; set { _explicitNullValueUserLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userLabel"); else _explicitNullProperties?.Remove("userLabel"); } }
+        public string? UserLabel { get => _explicitNullValueUserLabel; set { _explicitNullValueUserLabel = value; AdditionalData?.Remove("userLabel"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userLabel"); else _explicitNullProperties?.Remove("userLabel"); } }
         private string? _explicitNullValueUserLabel = default!;
 #nullable restore
 #else
-        public string UserLabel { get => _explicitNullValueUserLabel; set { _explicitNullValueUserLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userLabel"); else _explicitNullProperties?.Remove("userLabel"); } }
+        public string UserLabel { get => _explicitNullValueUserLabel; set { _explicitNullValueUserLabel = value; AdditionalData?.Remove("userLabel"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userLabel"); else _explicitNullProperties?.Remove("userLabel"); } }
         private string _explicitNullValueUserLabel = default!;
 #endif
         /// <summary>
@@ -91,7 +97,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "evaluationMode", n => { EvaluationMode = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode>(); } },
+                { "evaluationMode", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueEvaluationMode = default; _explicitNullProperties?.Remove("evaluationMode"); AdditionalData["evaluationMode"] = unknown; } else { EvaluationMode = parsed; AdditionalData.Remove("evaluationMode"); } } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "module", n => { Module = n.GetStringValue(); } },
                 { "scenarioId", n => { ScenarioId = n.GetIntValue(); } },

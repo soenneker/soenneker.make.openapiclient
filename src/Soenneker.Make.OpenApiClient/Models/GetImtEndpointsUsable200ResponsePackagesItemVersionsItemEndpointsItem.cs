@@ -17,14 +17,22 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("annotations") is { } nullNodeAnnotations && nullNodeAnnotations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Annotations = null;
-            if (parseNode.GetChildNode("credentialsAvailable") is { } nullNodeCredentialsAvailable && nullNodeCredentialsAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CredentialsAvailable = null;
-            if (parseNode.GetChildNode("credentialsRequired") is { } nullNodeCredentialsRequired && nullNodeCredentialsRequired.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CredentialsRequired = null;
-            if (parseNode.GetChildNode("deprecated") is { } nullNodeDeprecated && nullNodeDeprecated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Deprecated = null;
-            if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
-            if (parseNode.GetChildNode("label") is { } nullNodeLabel && nullNodeLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Label = null;
-            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
-            if (parseNode.GetChildNode("private") is { } nullNodePrivate && nullNodePrivate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Private = null;
+            if (parseNode.GetChildNode("annotations") is null) { _explicitNullValueAnnotations = default!; _explicitNullProperties?.Remove("annotations"); }
+            else if (parseNode.GetChildNode("annotations") is { } nullNodeAnnotations && nullNodeAnnotations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Annotations = null;
+            if (parseNode.GetChildNode("credentialsAvailable") is null) { _explicitNullValueCredentialsAvailable = default!; _explicitNullProperties?.Remove("credentialsAvailable"); }
+            else if (parseNode.GetChildNode("credentialsAvailable") is { } nullNodeCredentialsAvailable && nullNodeCredentialsAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CredentialsAvailable = null;
+            if (parseNode.GetChildNode("credentialsRequired") is null) { _explicitNullValueCredentialsRequired = default!; _explicitNullProperties?.Remove("credentialsRequired"); }
+            else if (parseNode.GetChildNode("credentialsRequired") is { } nullNodeCredentialsRequired && nullNodeCredentialsRequired.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CredentialsRequired = null;
+            if (parseNode.GetChildNode("deprecated") is null) { _explicitNullValueDeprecated = default!; _explicitNullProperties?.Remove("deprecated"); }
+            else if (parseNode.GetChildNode("deprecated") is { } nullNodeDeprecated && nullNodeDeprecated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Deprecated = null;
+            if (parseNode.GetChildNode("description") is null) { _explicitNullValueDescription = default!; _explicitNullProperties?.Remove("description"); }
+            else if (parseNode.GetChildNode("description") is { } nullNodeDescription && nullNodeDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Description = null;
+            if (parseNode.GetChildNode("label") is null) { _explicitNullValueLabel = default!; _explicitNullProperties?.Remove("label"); }
+            else if (parseNode.GetChildNode("label") is { } nullNodeLabel && nullNodeLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Label = null;
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("private") is null) { _explicitNullValuePrivate = default!; _explicitNullProperties?.Remove("private"); }
+            else if (parseNode.GetChildNode("private") is { } nullNodePrivate && nullNodePrivate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Private = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -32,61 +40,61 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>MCP-style behavior hints (e.g. `readOnlyHint`, `destructiveHint`). Forendpoints of an app the caller authors, this reflects the caller&apos;s pendingannotation changes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemAnnotations? Annotations { get => _explicitNullValueAnnotations; set { _explicitNullValueAnnotations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("annotations"); else _explicitNullProperties?.Remove("annotations"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemAnnotations? Annotations { get => _explicitNullValueAnnotations; set { _explicitNullValueAnnotations = value; AdditionalData?.Remove("annotations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("annotations"); else _explicitNullProperties?.Remove("annotations"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemAnnotations? _explicitNullValueAnnotations = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemAnnotations Annotations { get => _explicitNullValueAnnotations; set { _explicitNullValueAnnotations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("annotations"); else _explicitNullProperties?.Remove("annotations"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemAnnotations Annotations { get => _explicitNullValueAnnotations; set { _explicitNullValueAnnotations = value; AdditionalData?.Remove("annotations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("annotations"); else _explicitNullProperties?.Remove("annotations"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemAnnotations _explicitNullValueAnnotations = default!;
 #endif
         /// <summary>The connections in the team that can drive this endpoint. Empty for endpointsthat need no connection (usable without authentication).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemCredentialsAvailableItem>? CredentialsAvailable { get => _explicitNullValueCredentialsAvailable; set { _explicitNullValueCredentialsAvailable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("credentialsAvailable"); else _explicitNullProperties?.Remove("credentialsAvailable"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemCredentialsAvailableItem>? CredentialsAvailable { get => _explicitNullValueCredentialsAvailable; set { _explicitNullValueCredentialsAvailable = value; AdditionalData?.Remove("credentialsAvailable"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("credentialsAvailable"); else _explicitNullProperties?.Remove("credentialsAvailable"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemCredentialsAvailableItem>? _explicitNullValueCredentialsAvailable = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemCredentialsAvailableItem> CredentialsAvailable { get => _explicitNullValueCredentialsAvailable; set { _explicitNullValueCredentialsAvailable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("credentialsAvailable"); else _explicitNullProperties?.Remove("credentialsAvailable"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemCredentialsAvailableItem> CredentialsAvailable { get => _explicitNullValueCredentialsAvailable; set { _explicitNullValueCredentialsAvailable = value; AdditionalData?.Remove("credentialsAvailable"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("credentialsAvailable"); else _explicitNullProperties?.Remove("credentialsAvailable"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItemCredentialsAvailableItem> _explicitNullValueCredentialsAvailable = default!;
 #endif
         /// <summary>Whether the endpoint requires a connection (account) to be called. `false` forendpoints usable without authentication.</summary>
-        public bool? CredentialsRequired { get => _explicitNullValueCredentialsRequired; set { _explicitNullValueCredentialsRequired = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("credentialsRequired"); else _explicitNullProperties?.Remove("credentialsRequired"); } }
+        public bool? CredentialsRequired { get => _explicitNullValueCredentialsRequired; set { _explicitNullValueCredentialsRequired = value; AdditionalData?.Remove("credentialsRequired"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("credentialsRequired"); else _explicitNullProperties?.Remove("credentialsRequired"); } }
         private bool? _explicitNullValueCredentialsRequired = default!;
         /// <summary>Whether the endpoint is deprecated. Deprecated endpoints are normally omitted.</summary>
-        public bool? Deprecated { get => _explicitNullValueDeprecated; set { _explicitNullValueDeprecated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deprecated"); else _explicitNullProperties?.Remove("deprecated"); } }
+        public bool? Deprecated { get => _explicitNullValueDeprecated; set { _explicitNullValueDeprecated = value; AdditionalData?.Remove("deprecated"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deprecated"); else _explicitNullProperties?.Remove("deprecated"); } }
         private bool? _explicitNullValueDeprecated = default!;
         /// <summary>Human-friendly description of the endpoint, when set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        public string? Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private string? _explicitNullValueDescription = default!;
 #nullable restore
 #else
-        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
+        public string Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private string _explicitNullValueDescription = default!;
 #endif
         /// <summary>Endpoint display label.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
+        public string? Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; AdditionalData?.Remove("label"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
         private string? _explicitNullValueLabel = default!;
 #nullable restore
 #else
-        public string Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
+        public string Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; AdditionalData?.Remove("label"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
         private string _explicitNullValueLabel = default!;
 #endif
         /// <summary>Endpoint name, unique within the package version.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
         /// <summary>Whether the endpoint is non-public. Non-public endpoints are visible only tothe app author.</summary>
-        public bool? Private { get => _explicitNullValuePrivate; set { _explicitNullValuePrivate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("private"); else _explicitNullProperties?.Remove("private"); } }
+        public bool? Private { get => _explicitNullValuePrivate; set { _explicitNullValuePrivate = value; AdditionalData?.Remove("private"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("private"); else _explicitNullProperties?.Remove("private"); } }
         private bool? _explicitNullValuePrivate = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetImtEndpointsUsable200ResponsePackagesItemVersionsItemEndpointsItem"/> and sets the default values.

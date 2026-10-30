@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("reviewStatuses") is { } nullNodeReviewStatuses && nullNodeReviewStatuses.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReviewStatuses = null;
+            if (parseNode.GetChildNode("reviewStatuses") is null) { _explicitNullValueReviewStatuses = default!; _explicitNullProperties?.Remove("reviewStatuses"); }
+            else if (parseNode.GetChildNode("reviewStatuses") is { } nullNodeReviewStatuses && nullNodeReviewStatuses.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReviewStatuses = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The reviewStatuses property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem>? ReviewStatuses { get => _explicitNullValueReviewStatuses; set { _explicitNullValueReviewStatuses = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reviewStatuses"); else _explicitNullProperties?.Remove("reviewStatuses"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem>? ReviewStatuses { get => _explicitNullValueReviewStatuses; set { _explicitNullValueReviewStatuses = value; AdditionalData?.Remove("reviewStatuses"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reviewStatuses"); else _explicitNullProperties?.Remove("reviewStatuses"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem>? _explicitNullValueReviewStatuses = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem> ReviewStatuses { get => _explicitNullValueReviewStatuses; set { _explicitNullValueReviewStatuses = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reviewStatuses"); else _explicitNullProperties?.Remove("reviewStatuses"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem> ReviewStatuses { get => _explicitNullValueReviewStatuses; set { _explicitNullValueReviewStatuses = value; AdditionalData?.Remove("reviewStatuses"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reviewStatuses"); else _explicitNullProperties?.Remove("reviewStatuses"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem> _explicitNullValueReviewStatuses = default!;
 #endif
         /// <summary>

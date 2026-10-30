@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("interface") is { } nullNodeInterface && nullNodeInterface.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Interface = null;
+            if (parseNode.GetChildNode("interface") is null) { _explicitNullValueInterface = default!; _explicitNullProperties?.Remove("interface"); }
+            else if (parseNode.GetChildNode("interface") is { } nullNodeInterface && nullNodeInterface.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Interface = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The interface property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterface200ResponseInterface? Interface { get => _explicitNullValueInterface; set { _explicitNullValueInterface = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("interface"); else _explicitNullProperties?.Remove("interface"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterface200ResponseInterface? Interface { get => _explicitNullValueInterface; set { _explicitNullValueInterface = value; AdditionalData?.Remove("interface"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("interface"); else _explicitNullProperties?.Remove("interface"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterface200ResponseInterface? _explicitNullValueInterface = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterface200ResponseInterface Interface { get => _explicitNullValueInterface; set { _explicitNullValueInterface = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("interface"); else _explicitNullProperties?.Remove("interface"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterface200ResponseInterface Interface { get => _explicitNullValueInterface; set { _explicitNullValueInterface = value; AdditionalData?.Remove("interface"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("interface"); else _explicitNullProperties?.Remove("interface"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioIdInterface200ResponseInterface _explicitNullValueInterface = default!;
 #endif
         /// <summary>

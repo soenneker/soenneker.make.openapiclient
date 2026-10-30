@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("commisions") is { } nullNodeCommisions && nullNodeCommisions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Commisions = null;
+            if (parseNode.GetChildNode("commisions") is null) { _explicitNullValueCommisions = default!; _explicitNullProperties?.Remove("commisions"); }
+            else if (parseNode.GetChildNode("commisions") is { } nullNodeCommisions && nullNodeCommisions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Commisions = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The commisions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateCommissions200ResponseCommisionsItem>? Commisions { get => _explicitNullValueCommisions; set { _explicitNullValueCommisions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("commisions"); else _explicitNullProperties?.Remove("commisions"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateCommissions200ResponseCommisionsItem>? Commisions { get => _explicitNullValueCommisions; set { _explicitNullValueCommisions = value; AdditionalData?.Remove("commisions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("commisions"); else _explicitNullProperties?.Remove("commisions"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateCommissions200ResponseCommisionsItem>? _explicitNullValueCommisions = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateCommissions200ResponseCommisionsItem> Commisions { get => _explicitNullValueCommisions; set { _explicitNullValueCommisions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("commisions"); else _explicitNullProperties?.Remove("commisions"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateCommissions200ResponseCommisionsItem> Commisions { get => _explicitNullValueCommisions; set { _explicitNullValueCommisions = value; AdditionalData?.Remove("commisions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("commisions"); else _explicitNullProperties?.Remove("commisions"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateCommissions200ResponseCommisionsItem> _explicitNullValueCommisions = default!;
 #endif
         /// <summary>

@@ -17,23 +17,25 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("rollupSeconds") is { } nullNodeRollupSeconds && nullNodeRollupSeconds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RollupSeconds = null;
-            if (parseNode.GetChildNode("samples") is { } nullNodeSamples && nullNodeSamples.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Samples = null;
+            if (parseNode.GetChildNode("rollupSeconds") is null) { _explicitNullValueRollupSeconds = default!; _explicitNullProperties?.Remove("rollupSeconds"); }
+            else if (parseNode.GetChildNode("rollupSeconds") is { } nullNodeRollupSeconds && nullNodeRollupSeconds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RollupSeconds = null;
+            if (parseNode.GetChildNode("samples") is null) { _explicitNullValueSamples = default!; _explicitNullProperties?.Remove("samples"); }
+            else if (parseNode.GetChildNode("samples") is { } nullNodeSamples && nullNodeSamples.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Samples = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Time interval in seconds that was used for rolling up the samples</summary>
-        public int? RollupSeconds { get => _explicitNullValueRollupSeconds; set { _explicitNullValueRollupSeconds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rollupSeconds"); else _explicitNullProperties?.Remove("rollupSeconds"); } }
+        public int? RollupSeconds { get => _explicitNullValueRollupSeconds; set { _explicitNullValueRollupSeconds = value; AdditionalData?.Remove("rollupSeconds"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rollupSeconds"); else _explicitNullProperties?.Remove("rollupSeconds"); } }
         private int? _explicitNullValueRollupSeconds = default!;
         /// <summary>Slot usage samples, one per rollup interval in the requested range</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationId200ResponseSamplesItem>? Samples { get => _explicitNullValueSamples; set { _explicitNullValueSamples = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("samples"); else _explicitNullProperties?.Remove("samples"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationId200ResponseSamplesItem>? Samples { get => _explicitNullValueSamples; set { _explicitNullValueSamples = value; AdditionalData?.Remove("samples"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("samples"); else _explicitNullProperties?.Remove("samples"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationId200ResponseSamplesItem>? _explicitNullValueSamples = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationId200ResponseSamplesItem> Samples { get => _explicitNullValueSamples; set { _explicitNullValueSamples = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("samples"); else _explicitNullProperties?.Remove("samples"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationId200ResponseSamplesItem> Samples { get => _explicitNullValueSamples; set { _explicitNullValueSamples = value; AdditionalData?.Remove("samples"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("samples"); else _explicitNullProperties?.Remove("samples"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationId200ResponseSamplesItem> _explicitNullValueSamples = default!;
 #endif
         /// <summary>

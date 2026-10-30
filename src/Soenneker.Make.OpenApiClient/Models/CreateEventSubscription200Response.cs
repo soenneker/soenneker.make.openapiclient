@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("signingSecret") is { } nullNodeSigningSecret && nullNodeSigningSecret.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SigningSecret = null;
-            if (parseNode.GetChildNode("subscription") is { } nullNodeSubscription && nullNodeSubscription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subscription = null;
+            if (parseNode.GetChildNode("signingSecret") is null) { _explicitNullValueSigningSecret = default!; _explicitNullProperties?.Remove("signingSecret"); }
+            else if (parseNode.GetChildNode("signingSecret") is { } nullNodeSigningSecret && nullNodeSigningSecret.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SigningSecret = null;
+            if (parseNode.GetChildNode("subscription") is null) { _explicitNullValueSubscription = default!; _explicitNullProperties?.Remove("subscription"); }
+            else if (parseNode.GetChildNode("subscription") is { } nullNodeSubscription && nullNodeSubscription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subscription = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The secret used to sign every delivery to this subscription. Store it to verify the deliveries.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SigningSecret { get => _explicitNullValueSigningSecret; set { _explicitNullValueSigningSecret = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("signingSecret"); else _explicitNullProperties?.Remove("signingSecret"); } }
+        public string? SigningSecret { get => _explicitNullValueSigningSecret; set { _explicitNullValueSigningSecret = value; AdditionalData?.Remove("signingSecret"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("signingSecret"); else _explicitNullProperties?.Remove("signingSecret"); } }
         private string? _explicitNullValueSigningSecret = default!;
 #nullable restore
 #else
-        public string SigningSecret { get => _explicitNullValueSigningSecret; set { _explicitNullValueSigningSecret = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("signingSecret"); else _explicitNullProperties?.Remove("signingSecret"); } }
+        public string SigningSecret { get => _explicitNullValueSigningSecret; set { _explicitNullValueSigningSecret = value; AdditionalData?.Remove("signingSecret"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("signingSecret"); else _explicitNullProperties?.Remove("signingSecret"); } }
         private string _explicitNullValueSigningSecret = default!;
 #endif
         /// <summary>The subscription property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscription200ResponseSubscription? Subscription { get => _explicitNullValueSubscription; set { _explicitNullValueSubscription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscription"); else _explicitNullProperties?.Remove("subscription"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscription200ResponseSubscription? Subscription { get => _explicitNullValueSubscription; set { _explicitNullValueSubscription = value; AdditionalData?.Remove("subscription"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscription"); else _explicitNullProperties?.Remove("subscription"); } }
         private global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscription200ResponseSubscription? _explicitNullValueSubscription = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscription200ResponseSubscription Subscription { get => _explicitNullValueSubscription; set { _explicitNullValueSubscription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscription"); else _explicitNullProperties?.Remove("subscription"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscription200ResponseSubscription Subscription { get => _explicitNullValueSubscription; set { _explicitNullValueSubscription = value; AdditionalData?.Remove("subscription"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscription"); else _explicitNullProperties?.Remove("subscription"); } }
         private global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscription200ResponseSubscription _explicitNullValueSubscription = default!;
 #endif
         /// <summary>

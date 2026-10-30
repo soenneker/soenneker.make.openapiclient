@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("userEmailNotifications") is { } nullNodeUserEmailNotifications && nullNodeUserEmailNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserEmailNotifications = null;
+            if (parseNode.GetChildNode("userEmailNotifications") is null) { _explicitNullValueUserEmailNotifications = default!; _explicitNullProperties?.Remove("userEmailNotifications"); }
+            else if (parseNode.GetChildNode("userEmailNotifications") is { } nullNodeUserEmailNotifications && nullNodeUserEmailNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserEmailNotifications = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The userEmailNotifications property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserEmailNotifications200ResponseUserEmailNotificationsItem>? UserEmailNotifications { get => _explicitNullValueUserEmailNotifications; set { _explicitNullValueUserEmailNotifications = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userEmailNotifications"); else _explicitNullProperties?.Remove("userEmailNotifications"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserEmailNotifications200ResponseUserEmailNotificationsItem>? UserEmailNotifications { get => _explicitNullValueUserEmailNotifications; set { _explicitNullValueUserEmailNotifications = value; AdditionalData?.Remove("userEmailNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userEmailNotifications"); else _explicitNullProperties?.Remove("userEmailNotifications"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserEmailNotifications200ResponseUserEmailNotificationsItem>? _explicitNullValueUserEmailNotifications = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserEmailNotifications200ResponseUserEmailNotificationsItem> UserEmailNotifications { get => _explicitNullValueUserEmailNotifications; set { _explicitNullValueUserEmailNotifications = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userEmailNotifications"); else _explicitNullProperties?.Remove("userEmailNotifications"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserEmailNotifications200ResponseUserEmailNotificationsItem> UserEmailNotifications { get => _explicitNullValueUserEmailNotifications; set { _explicitNullValueUserEmailNotifications = value; AdditionalData?.Remove("userEmailNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userEmailNotifications"); else _explicitNullProperties?.Remove("userEmailNotifications"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserEmailNotifications200ResponseUserEmailNotificationsItem> _explicitNullValueUserEmailNotifications = default!;
 #endif
         /// <summary>

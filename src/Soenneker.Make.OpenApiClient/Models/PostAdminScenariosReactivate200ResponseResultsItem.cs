@@ -17,14 +17,22 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("message") is { } nullNodeMessage && nullNodeMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Message = null;
-            if (parseNode.GetChildNode("prevErrorOccurCount") is { } nullNodePrevErrorOccurCount && nullNodePrevErrorOccurCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrevErrorOccurCount = null;
-            if (parseNode.GetChildNode("prevInvalidationReason") is { } nullNodePrevInvalidationReason && nullNodePrevInvalidationReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrevInvalidationReason = null;
-            if (parseNode.GetChildNode("prevIsinvalid") is { } nullNodePrevIsinvalid && nullNodePrevIsinvalid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrevIsinvalid = null;
-            if (parseNode.GetChildNode("prevIslinked") is { } nullNodePrevIslinked && nullNodePrevIslinked.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrevIslinked = null;
-            if (parseNode.GetChildNode("reanalysis") is { } nullNodeReanalysis && nullNodeReanalysis.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reanalysis = null;
-            if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
-            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("message") is null) { _explicitNullValueMessage = default!; _explicitNullProperties?.Remove("message"); }
+            else if (parseNode.GetChildNode("message") is { } nullNodeMessage && nullNodeMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Message = null;
+            if (parseNode.GetChildNode("prevErrorOccurCount") is null) { _explicitNullValuePrevErrorOccurCount = default!; _explicitNullProperties?.Remove("prevErrorOccurCount"); }
+            else if (parseNode.GetChildNode("prevErrorOccurCount") is { } nullNodePrevErrorOccurCount && nullNodePrevErrorOccurCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrevErrorOccurCount = null;
+            if (parseNode.GetChildNode("prevInvalidationReason") is null) { _explicitNullValuePrevInvalidationReason = default!; _explicitNullProperties?.Remove("prevInvalidationReason"); }
+            else if (parseNode.GetChildNode("prevInvalidationReason") is { } nullNodePrevInvalidationReason && nullNodePrevInvalidationReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrevInvalidationReason = null;
+            if (parseNode.GetChildNode("prevIsinvalid") is null) { _explicitNullValuePrevIsinvalid = default!; _explicitNullProperties?.Remove("prevIsinvalid"); }
+            else if (parseNode.GetChildNode("prevIsinvalid") is { } nullNodePrevIsinvalid && nullNodePrevIsinvalid.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrevIsinvalid = null;
+            if (parseNode.GetChildNode("prevIslinked") is null) { _explicitNullValuePrevIslinked = default!; _explicitNullProperties?.Remove("prevIslinked"); }
+            else if (parseNode.GetChildNode("prevIslinked") is { } nullNodePrevIslinked && nullNodePrevIslinked.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrevIslinked = null;
+            if (parseNode.GetChildNode("reanalysis") is null) { _explicitNullValueReanalysis = default!; _explicitNullProperties?.Remove("reanalysis"); }
+            else if (parseNode.GetChildNode("reanalysis") is { } nullNodeReanalysis && nullNodeReanalysis.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reanalysis = null;
+            if (parseNode.GetChildNode("scenarioId") is null) { _explicitNullValueScenarioId = default!; _explicitNullProperties?.Remove("scenarioId"); }
+            else if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
+            if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
+            else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -32,40 +40,40 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Reason for the activation result or a safe description of a reanalysis error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Message { get => _explicitNullValueMessage; set { _explicitNullValueMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("message"); else _explicitNullProperties?.Remove("message"); } }
+        public string? Message { get => _explicitNullValueMessage; set { _explicitNullValueMessage = value; AdditionalData?.Remove("message"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("message"); else _explicitNullProperties?.Remove("message"); } }
         private string? _explicitNullValueMessage = default!;
 #nullable restore
 #else
-        public string Message { get => _explicitNullValueMessage; set { _explicitNullValueMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("message"); else _explicitNullProperties?.Remove("message"); } }
+        public string Message { get => _explicitNullValueMessage; set { _explicitNullValueMessage = value; AdditionalData?.Remove("message"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("message"); else _explicitNullProperties?.Remove("message"); } }
         private string _explicitNullValueMessage = default!;
 #endif
         /// <summary>The prevErrorOccurCount property</summary>
-        public int? PrevErrorOccurCount { get => _explicitNullValuePrevErrorOccurCount; set { _explicitNullValuePrevErrorOccurCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prevErrorOccurCount"); else _explicitNullProperties?.Remove("prevErrorOccurCount"); } }
+        public int? PrevErrorOccurCount { get => _explicitNullValuePrevErrorOccurCount; set { _explicitNullValuePrevErrorOccurCount = value; AdditionalData?.Remove("prevErrorOccurCount"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prevErrorOccurCount"); else _explicitNullProperties?.Remove("prevErrorOccurCount"); } }
         private int? _explicitNullValuePrevErrorOccurCount = default!;
         /// <summary>The prevInvalidationReason property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PrevInvalidationReason { get => _explicitNullValuePrevInvalidationReason; set { _explicitNullValuePrevInvalidationReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prevInvalidationReason"); else _explicitNullProperties?.Remove("prevInvalidationReason"); } }
+        public string? PrevInvalidationReason { get => _explicitNullValuePrevInvalidationReason; set { _explicitNullValuePrevInvalidationReason = value; AdditionalData?.Remove("prevInvalidationReason"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prevInvalidationReason"); else _explicitNullProperties?.Remove("prevInvalidationReason"); } }
         private string? _explicitNullValuePrevInvalidationReason = default!;
 #nullable restore
 #else
-        public string PrevInvalidationReason { get => _explicitNullValuePrevInvalidationReason; set { _explicitNullValuePrevInvalidationReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prevInvalidationReason"); else _explicitNullProperties?.Remove("prevInvalidationReason"); } }
+        public string PrevInvalidationReason { get => _explicitNullValuePrevInvalidationReason; set { _explicitNullValuePrevInvalidationReason = value; AdditionalData?.Remove("prevInvalidationReason"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prevInvalidationReason"); else _explicitNullProperties?.Remove("prevInvalidationReason"); } }
         private string _explicitNullValuePrevInvalidationReason = default!;
 #endif
         /// <summary>The prevIsinvalid property</summary>
-        public bool? PrevIsinvalid { get => _explicitNullValuePrevIsinvalid; set { _explicitNullValuePrevIsinvalid = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prevIsinvalid"); else _explicitNullProperties?.Remove("prevIsinvalid"); } }
+        public bool? PrevIsinvalid { get => _explicitNullValuePrevIsinvalid; set { _explicitNullValuePrevIsinvalid = value; AdditionalData?.Remove("prevIsinvalid"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prevIsinvalid"); else _explicitNullProperties?.Remove("prevIsinvalid"); } }
         private bool? _explicitNullValuePrevIsinvalid = default!;
         /// <summary>The prevIslinked property</summary>
-        public bool? PrevIslinked { get => _explicitNullValuePrevIslinked; set { _explicitNullValuePrevIslinked = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prevIslinked"); else _explicitNullProperties?.Remove("prevIslinked"); } }
+        public bool? PrevIslinked { get => _explicitNullValuePrevIslinked; set { _explicitNullValuePrevIslinked = value; AdditionalData?.Remove("prevIslinked"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prevIslinked"); else _explicitNullProperties?.Remove("prevIslinked"); } }
         private bool? _explicitNullValuePrevIslinked = default!;
         /// <summary>Present only when reanalyze is true. Failed analysis leaves the scenario unchanged.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivate200ResponseResultsItemReanalysis? Reanalysis { get => _explicitNullValueReanalysis; set { _explicitNullValueReanalysis = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reanalysis"); else _explicitNullProperties?.Remove("reanalysis"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivate200ResponseResultsItemReanalysis? Reanalysis { get => _explicitNullValueReanalysis; set { _explicitNullValueReanalysis = value; AdditionalData?.Remove("reanalysis"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reanalysis"); else _explicitNullProperties?.Remove("reanalysis"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivate200ResponseResultsItemReanalysis? _explicitNullValueReanalysis = default!;
         /// <summary>The scenarioId property</summary>
-        public int? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
+        public int? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; AdditionalData?.Remove("scenarioId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
         private int? _explicitNullValueScenarioId = default!;
         /// <summary>The status property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivate200ResponseResultsItemStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivate200ResponseResultsItemStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivate200ResponseResultsItemStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivate200ResponseResultsItem"/> and sets the default values.
@@ -97,9 +105,9 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "prevInvalidationReason", n => { PrevInvalidationReason = n.GetStringValue(); } },
                 { "prevIsinvalid", n => { PrevIsinvalid = n.GetBoolValue(); } },
                 { "prevIslinked", n => { PrevIslinked = n.GetBoolValue(); } },
-                { "reanalysis", n => { Reanalysis = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivate200ResponseResultsItemReanalysis>(); } },
+                { "reanalysis", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivate200ResponseResultsItemReanalysis>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueReanalysis = default; _explicitNullProperties?.Remove("reanalysis"); AdditionalData["reanalysis"] = unknown; } else { Reanalysis = parsed; AdditionalData.Remove("reanalysis"); } } },
                 { "scenarioId", n => { ScenarioId = n.GetIntValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivate200ResponseResultsItemStatus>(); } },
+                { "status", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivate200ResponseResultsItemStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueStatus = default; _explicitNullProperties?.Remove("status"); AdditionalData["status"] = unknown; } else { Status = parsed; AdditionalData.Remove("status"); } } },
             };
         }
         /// <summary>

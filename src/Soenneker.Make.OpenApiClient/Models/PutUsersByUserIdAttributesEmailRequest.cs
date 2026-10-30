@@ -17,9 +17,12 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("currentEmailAddress") is { } nullNodeCurrentEmailAddress && nullNodeCurrentEmailAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentEmailAddress = null;
-            if (parseNode.GetChildNode("currentPassword") is { } nullNodeCurrentPassword && nullNodeCurrentPassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentPassword = null;
-            if (parseNode.GetChildNode("newEmailAddress") is { } nullNodeNewEmailAddress && nullNodeNewEmailAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewEmailAddress = null;
+            if (parseNode.GetChildNode("currentEmailAddress") is null) { _explicitNullValueCurrentEmailAddress = default!; _explicitNullProperties?.Remove("currentEmailAddress"); }
+            else if (parseNode.GetChildNode("currentEmailAddress") is { } nullNodeCurrentEmailAddress && nullNodeCurrentEmailAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentEmailAddress = null;
+            if (parseNode.GetChildNode("currentPassword") is null) { _explicitNullValueCurrentPassword = default!; _explicitNullProperties?.Remove("currentPassword"); }
+            else if (parseNode.GetChildNode("currentPassword") is { } nullNodeCurrentPassword && nullNodeCurrentPassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentPassword = null;
+            if (parseNode.GetChildNode("newEmailAddress") is null) { _explicitNullValueNewEmailAddress = default!; _explicitNullProperties?.Remove("newEmailAddress"); }
+            else if (parseNode.GetChildNode("newEmailAddress") is { } nullNodeNewEmailAddress && nullNodeNewEmailAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewEmailAddress = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,31 +30,31 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>User&apos;s current email address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CurrentEmailAddress { get => _explicitNullValueCurrentEmailAddress; set { _explicitNullValueCurrentEmailAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentEmailAddress"); else _explicitNullProperties?.Remove("currentEmailAddress"); } }
+        public string? CurrentEmailAddress { get => _explicitNullValueCurrentEmailAddress; set { _explicitNullValueCurrentEmailAddress = value; AdditionalData?.Remove("currentEmailAddress"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentEmailAddress"); else _explicitNullProperties?.Remove("currentEmailAddress"); } }
         private string? _explicitNullValueCurrentEmailAddress = default!;
 #nullable restore
 #else
-        public string CurrentEmailAddress { get => _explicitNullValueCurrentEmailAddress; set { _explicitNullValueCurrentEmailAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentEmailAddress"); else _explicitNullProperties?.Remove("currentEmailAddress"); } }
+        public string CurrentEmailAddress { get => _explicitNullValueCurrentEmailAddress; set { _explicitNullValueCurrentEmailAddress = value; AdditionalData?.Remove("currentEmailAddress"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentEmailAddress"); else _explicitNullProperties?.Remove("currentEmailAddress"); } }
         private string _explicitNullValueCurrentEmailAddress = default!;
 #endif
         /// <summary>User&apos;s current password.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
+        public string? CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; AdditionalData?.Remove("currentPassword"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
         private string? _explicitNullValueCurrentPassword = default!;
 #nullable restore
 #else
-        public string CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
+        public string CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; AdditionalData?.Remove("currentPassword"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
         private string _explicitNullValueCurrentPassword = default!;
 #endif
         /// <summary>User&apos;s new email address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NewEmailAddress { get => _explicitNullValueNewEmailAddress; set { _explicitNullValueNewEmailAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newEmailAddress"); else _explicitNullProperties?.Remove("newEmailAddress"); } }
+        public string? NewEmailAddress { get => _explicitNullValueNewEmailAddress; set { _explicitNullValueNewEmailAddress = value; AdditionalData?.Remove("newEmailAddress"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newEmailAddress"); else _explicitNullProperties?.Remove("newEmailAddress"); } }
         private string? _explicitNullValueNewEmailAddress = default!;
 #nullable restore
 #else
-        public string NewEmailAddress { get => _explicitNullValueNewEmailAddress; set { _explicitNullValueNewEmailAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newEmailAddress"); else _explicitNullProperties?.Remove("newEmailAddress"); } }
+        public string NewEmailAddress { get => _explicitNullValueNewEmailAddress; set { _explicitNullValueNewEmailAddress = value; AdditionalData?.Remove("newEmailAddress"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newEmailAddress"); else _explicitNullProperties?.Remove("newEmailAddress"); } }
         private string _explicitNullValueNewEmailAddress = default!;
 #endif
         /// <summary>

@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("ids") is { } nullNodeIds && nullNodeIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Ids = null;
-            if (parseNode.GetChildNode("mode") is { } nullNodeMode && nullNodeMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mode = null;
+            if (parseNode.GetChildNode("ids") is null) { _explicitNullValueIds = default!; _explicitNullProperties?.Remove("ids"); }
+            else if (parseNode.GetChildNode("ids") is { } nullNodeIds && nullNodeIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Ids = null;
+            if (parseNode.GetChildNode("mode") is null) { _explicitNullValueMode = default!; _explicitNullProperties?.Remove("mode"); }
+            else if (parseNode.GetChildNode("mode") is { } nullNodeMode && nullNodeMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mode = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Present when `mode` is `selected`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? Ids { get => _explicitNullValueIds; set { _explicitNullValueIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ids"); else _explicitNullProperties?.Remove("ids"); } }
+        public List<int?>? Ids { get => _explicitNullValueIds; set { _explicitNullValueIds = value; AdditionalData?.Remove("ids"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ids"); else _explicitNullProperties?.Remove("ids"); } }
         private List<int?>? _explicitNullValueIds = default!;
 #nullable restore
 #else
-        public List<int?> Ids { get => _explicitNullValueIds; set { _explicitNullValueIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ids"); else _explicitNullProperties?.Remove("ids"); } }
+        public List<int?> Ids { get => _explicitNullValueIds; set { _explicitNullValueIds = value; AdditionalData?.Remove("ids"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ids"); else _explicitNullProperties?.Remove("ids"); } }
         private List<int?> _explicitNullValueIds = default!;
 #endif
         /// <summary>The mode property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscription200ResponseSubscriptionTeamsMode? Mode { get => _explicitNullValueMode; set { _explicitNullValueMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mode"); else _explicitNullProperties?.Remove("mode"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscription200ResponseSubscriptionTeamsMode? Mode { get => _explicitNullValueMode; set { _explicitNullValueMode = value; AdditionalData?.Remove("mode"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mode"); else _explicitNullProperties?.Remove("mode"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetEventSubscription200ResponseSubscriptionTeamsMode? _explicitNullValueMode = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetEventSubscription200ResponseSubscriptionTeams"/> and sets the default values.
@@ -62,7 +64,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "ids", n => { Ids = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
-                { "mode", n => { Mode = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetEventSubscription200ResponseSubscriptionTeamsMode>(); } },
+                { "mode", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetEventSubscription200ResponseSubscriptionTeamsMode>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueMode = default; _explicitNullProperties?.Remove("mode"); AdditionalData["mode"] = unknown; } else { Mode = parsed; AdditionalData.Remove("mode"); } } },
             };
         }
         /// <summary>

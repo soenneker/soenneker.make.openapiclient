@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("scenario") is { } nullNodeScenario && nullNodeScenario.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scenario = null;
-            if (parseNode.GetChildNode("version") is { } nullNodeVersion && nullNodeVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Version = null;
+            if (parseNode.GetChildNode("scenario") is null) { _explicitNullValueScenario = default!; _explicitNullProperties?.Remove("scenario"); }
+            else if (parseNode.GetChildNode("scenario") is { } nullNodeScenario && nullNodeScenario.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scenario = null;
+            if (parseNode.GetChildNode("version") is null) { _explicitNullValueVersion = default!; _explicitNullProperties?.Remove("version"); }
+            else if (parseNode.GetChildNode("version") is { } nullNodeVersion && nullNodeVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Version = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The scenario property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintMetadataScenario? Scenario { get => _explicitNullValueScenario; set { _explicitNullValueScenario = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenario"); else _explicitNullProperties?.Remove("scenario"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintMetadataScenario? Scenario { get => _explicitNullValueScenario; set { _explicitNullValueScenario = value; AdditionalData?.Remove("scenario"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenario"); else _explicitNullProperties?.Remove("scenario"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintMetadataScenario? _explicitNullValueScenario = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintMetadataScenario Scenario { get => _explicitNullValueScenario; set { _explicitNullValueScenario = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenario"); else _explicitNullProperties?.Remove("scenario"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintMetadataScenario Scenario { get => _explicitNullValueScenario; set { _explicitNullValueScenario = value; AdditionalData?.Remove("scenario"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenario"); else _explicitNullProperties?.Remove("scenario"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintMetadataScenario _explicitNullValueScenario = default!;
 #endif
         /// <summary>The version property</summary>
-        public int? Version { get => _explicitNullValueVersion; set { _explicitNullValueVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version"); else _explicitNullProperties?.Remove("version"); } }
+        public int? Version { get => _explicitNullValueVersion; set { _explicitNullValueVersion = value; AdditionalData?.Remove("version"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version"); else _explicitNullProperties?.Remove("version"); } }
         private int? _explicitNullValueVersion = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintMetadata"/> and sets the default values.

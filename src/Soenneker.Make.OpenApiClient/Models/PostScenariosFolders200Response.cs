@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("scenarioFolder") is { } nullNodeScenarioFolder && nullNodeScenarioFolder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioFolder = null;
+            if (parseNode.GetChildNode("scenarioFolder") is null) { _explicitNullValueScenarioFolder = default!; _explicitNullProperties?.Remove("scenarioFolder"); }
+            else if (parseNode.GetChildNode("scenarioFolder") is { } nullNodeScenarioFolder && nullNodeScenarioFolder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioFolder = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The scenarioFolder property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosFolders200ResponseScenarioFolder? ScenarioFolder { get => _explicitNullValueScenarioFolder; set { _explicitNullValueScenarioFolder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioFolder"); else _explicitNullProperties?.Remove("scenarioFolder"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosFolders200ResponseScenarioFolder? ScenarioFolder { get => _explicitNullValueScenarioFolder; set { _explicitNullValueScenarioFolder = value; AdditionalData?.Remove("scenarioFolder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioFolder"); else _explicitNullProperties?.Remove("scenarioFolder"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosFolders200ResponseScenarioFolder? _explicitNullValueScenarioFolder = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosFolders200ResponseScenarioFolder ScenarioFolder { get => _explicitNullValueScenarioFolder; set { _explicitNullValueScenarioFolder = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioFolder"); else _explicitNullProperties?.Remove("scenarioFolder"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosFolders200ResponseScenarioFolder ScenarioFolder { get => _explicitNullValueScenarioFolder; set { _explicitNullValueScenarioFolder = value; AdditionalData?.Remove("scenarioFolder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioFolder"); else _explicitNullProperties?.Remove("scenarioFolder"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostScenariosFolders200ResponseScenarioFolder _explicitNullValueScenarioFolder = default!;
 #endif
         /// <summary>

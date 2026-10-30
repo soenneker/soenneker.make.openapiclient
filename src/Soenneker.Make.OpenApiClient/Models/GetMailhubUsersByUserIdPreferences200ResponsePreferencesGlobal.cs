@@ -17,23 +17,25 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("isEmailVerified") is { } nullNodeIsEmailVerified && nullNodeIsEmailVerified.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsEmailVerified = null;
-            if (parseNode.GetChildNode("preferences") is { } nullNodePreferences && nullNodePreferences.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Preferences = null;
+            if (parseNode.GetChildNode("isEmailVerified") is null) { _explicitNullValueIsEmailVerified = default!; _explicitNullProperties?.Remove("isEmailVerified"); }
+            else if (parseNode.GetChildNode("isEmailVerified") is { } nullNodeIsEmailVerified && nullNodeIsEmailVerified.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsEmailVerified = null;
+            if (parseNode.GetChildNode("preferences") is null) { _explicitNullValuePreferences = default!; _explicitNullProperties?.Remove("preferences"); }
+            else if (parseNode.GetChildNode("preferences") is { } nullNodePreferences && nullNodePreferences.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Preferences = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The isEmailVerified property</summary>
-        public bool? IsEmailVerified { get => _explicitNullValueIsEmailVerified; set { _explicitNullValueIsEmailVerified = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isEmailVerified"); else _explicitNullProperties?.Remove("isEmailVerified"); } }
+        public bool? IsEmailVerified { get => _explicitNullValueIsEmailVerified; set { _explicitNullValueIsEmailVerified = value; AdditionalData?.Remove("isEmailVerified"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isEmailVerified"); else _explicitNullProperties?.Remove("isEmailVerified"); } }
         private bool? _explicitNullValueIsEmailVerified = default!;
         /// <summary>The preferences property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdPreferences200ResponsePreferencesGlobalPreferencesItem>? Preferences { get => _explicitNullValuePreferences; set { _explicitNullValuePreferences = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferences"); else _explicitNullProperties?.Remove("preferences"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdPreferences200ResponsePreferencesGlobalPreferencesItem>? Preferences { get => _explicitNullValuePreferences; set { _explicitNullValuePreferences = value; AdditionalData?.Remove("preferences"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferences"); else _explicitNullProperties?.Remove("preferences"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdPreferences200ResponsePreferencesGlobalPreferencesItem>? _explicitNullValuePreferences = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdPreferences200ResponsePreferencesGlobalPreferencesItem> Preferences { get => _explicitNullValuePreferences; set { _explicitNullValuePreferences = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferences"); else _explicitNullProperties?.Remove("preferences"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdPreferences200ResponsePreferencesGlobalPreferencesItem> Preferences { get => _explicitNullValuePreferences; set { _explicitNullValuePreferences = value; AdditionalData?.Remove("preferences"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferences"); else _explicitNullProperties?.Remove("preferences"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdPreferences200ResponsePreferencesGlobalPreferencesItem> _explicitNullValuePreferences = default!;
 #endif
         /// <summary>

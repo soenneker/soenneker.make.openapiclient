@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("priceGroups") is { } nullNodePriceGroups && nullNodePriceGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PriceGroups = null;
+            if (parseNode.GetChildNode("priceGroups") is null) { _explicitNullValuePriceGroups = default!; _explicitNullProperties?.Remove("priceGroups"); }
+            else if (parseNode.GetChildNode("priceGroups") is { } nullNodePriceGroups && nullNodePriceGroups.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PriceGroups = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The priceGroups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminPriceGroups200ResponsePriceGroupsItem>? PriceGroups { get => _explicitNullValuePriceGroups; set { _explicitNullValuePriceGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("priceGroups"); else _explicitNullProperties?.Remove("priceGroups"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminPriceGroups200ResponsePriceGroupsItem>? PriceGroups { get => _explicitNullValuePriceGroups; set { _explicitNullValuePriceGroups = value; AdditionalData?.Remove("priceGroups"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("priceGroups"); else _explicitNullProperties?.Remove("priceGroups"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetAdminPriceGroups200ResponsePriceGroupsItem>? _explicitNullValuePriceGroups = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminPriceGroups200ResponsePriceGroupsItem> PriceGroups { get => _explicitNullValuePriceGroups; set { _explicitNullValuePriceGroups = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("priceGroups"); else _explicitNullProperties?.Remove("priceGroups"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetAdminPriceGroups200ResponsePriceGroupsItem> PriceGroups { get => _explicitNullValuePriceGroups; set { _explicitNullValuePriceGroups = value; AdditionalData?.Remove("priceGroups"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("priceGroups"); else _explicitNullProperties?.Remove("priceGroups"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetAdminPriceGroups200ResponsePriceGroupsItem> _explicitNullValuePriceGroups = default!;
 #endif
         /// <summary>

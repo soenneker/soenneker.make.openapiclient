@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("imtZones") is { } nullNodeImtZones && nullNodeImtZones.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ImtZones = null;
+            if (parseNode.GetChildNode("imtZones") is null) { _explicitNullValueImtZones = default!; _explicitNullProperties?.Remove("imtZones"); }
+            else if (parseNode.GetChildNode("imtZones") is { } nullNodeImtZones && nullNodeImtZones.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ImtZones = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The imtZones property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsImtZones200ResponseImtZonesItem>? ImtZones { get => _explicitNullValueImtZones; set { _explicitNullValueImtZones = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("imtZones"); else _explicitNullProperties?.Remove("imtZones"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsImtZones200ResponseImtZonesItem>? ImtZones { get => _explicitNullValueImtZones; set { _explicitNullValueImtZones = value; AdditionalData?.Remove("imtZones"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("imtZones"); else _explicitNullProperties?.Remove("imtZones"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsImtZones200ResponseImtZonesItem>? _explicitNullValueImtZones = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsImtZones200ResponseImtZonesItem> ImtZones { get => _explicitNullValueImtZones; set { _explicitNullValueImtZones = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("imtZones"); else _explicitNullProperties?.Remove("imtZones"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsImtZones200ResponseImtZonesItem> ImtZones { get => _explicitNullValueImtZones; set { _explicitNullValueImtZones = value; AdditionalData?.Remove("imtZones"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("imtZones"); else _explicitNullProperties?.Remove("imtZones"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsImtZones200ResponseImtZonesItem> _explicitNullValueImtZones = default!;
 #endif
         /// <summary>

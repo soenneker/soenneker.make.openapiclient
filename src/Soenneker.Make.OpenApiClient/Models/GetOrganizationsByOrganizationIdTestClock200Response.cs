@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("testClock") is { } nullNodeTestClock && nullNodeTestClock.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TestClock = null;
+            if (parseNode.GetChildNode("testClock") is null) { _explicitNullValueTestClock = default!; _explicitNullProperties?.Remove("testClock"); }
+            else if (parseNode.GetChildNode("testClock") is { } nullNodeTestClock && nullNodeTestClock.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TestClock = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The testClock property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdTestClock200ResponseTestClock? TestClock { get => _explicitNullValueTestClock; set { _explicitNullValueTestClock = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("testClock"); else _explicitNullProperties?.Remove("testClock"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdTestClock200ResponseTestClock? TestClock { get => _explicitNullValueTestClock; set { _explicitNullValueTestClock = value; AdditionalData?.Remove("testClock"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("testClock"); else _explicitNullProperties?.Remove("testClock"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdTestClock200ResponseTestClock? _explicitNullValueTestClock = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdTestClock200ResponseTestClock TestClock { get => _explicitNullValueTestClock; set { _explicitNullValueTestClock = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("testClock"); else _explicitNullProperties?.Remove("testClock"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdTestClock200ResponseTestClock TestClock { get => _explicitNullValueTestClock; set { _explicitNullValueTestClock = value; AdditionalData?.Remove("testClock"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("testClock"); else _explicitNullProperties?.Remove("testClock"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdTestClock200ResponseTestClock _explicitNullValueTestClock = default!;
 #endif
         /// <summary>

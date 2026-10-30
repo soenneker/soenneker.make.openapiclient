@@ -17,8 +17,10 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("preferences") is { } nullNodePreferences && nullNodePreferences.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Preferences = null;
-            if (parseNode.GetChildNode("updated") is { } nullNodeUpdated && nullNodeUpdated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Updated = null;
+            if (parseNode.GetChildNode("preferences") is null) { _explicitNullValuePreferences = default!; _explicitNullProperties?.Remove("preferences"); }
+            else if (parseNode.GetChildNode("preferences") is { } nullNodePreferences && nullNodePreferences.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Preferences = null;
+            if (parseNode.GetChildNode("updated") is null) { _explicitNullValueUpdated = default!; _explicitNullProperties?.Remove("updated"); }
+            else if (parseNode.GetChildNode("updated") is { } nullNodeUpdated && nullNodeUpdated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Updated = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The preferences property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200ResponsePreferences? Preferences { get => _explicitNullValuePreferences; set { _explicitNullValuePreferences = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferences"); else _explicitNullProperties?.Remove("preferences"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200ResponsePreferences? Preferences { get => _explicitNullValuePreferences; set { _explicitNullValuePreferences = value; AdditionalData?.Remove("preferences"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferences"); else _explicitNullProperties?.Remove("preferences"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200ResponsePreferences? _explicitNullValuePreferences = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200ResponsePreferences Preferences { get => _explicitNullValuePreferences; set { _explicitNullValuePreferences = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferences"); else _explicitNullProperties?.Remove("preferences"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200ResponsePreferences Preferences { get => _explicitNullValuePreferences; set { _explicitNullValuePreferences = value; AdditionalData?.Remove("preferences"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferences"); else _explicitNullProperties?.Remove("preferences"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200ResponsePreferences _explicitNullValuePreferences = default!;
 #endif
         /// <summary>The updated property</summary>
-        public DateTimeOffset? Updated { get => _explicitNullValueUpdated; set { _explicitNullValueUpdated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updated"); else _explicitNullProperties?.Remove("updated"); } }
+        public DateTimeOffset? Updated { get => _explicitNullValueUpdated; set { _explicitNullValueUpdated = value; AdditionalData?.Remove("updated"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updated"); else _explicitNullProperties?.Remove("updated"); } }
         private DateTimeOffset? _explicitNullValueUpdated = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200Response"/> and sets the default values.

@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("templatePublic") is { } nullNodeTemplatePublic && nullNodeTemplatePublic.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TemplatePublic = null;
+            if (parseNode.GetChildNode("templatePublic") is null) { _explicitNullValueTemplatePublic = default!; _explicitNullProperties?.Remove("templatePublic"); }
+            else if (parseNode.GetChildNode("templatePublic") is { } nullNodeTemplatePublic && nullNodeTemplatePublic.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TemplatePublic = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The templatePublic property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrl200ResponseTemplatePublic? TemplatePublic { get => _explicitNullValueTemplatePublic; set { _explicitNullValueTemplatePublic = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templatePublic"); else _explicitNullProperties?.Remove("templatePublic"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrl200ResponseTemplatePublic? TemplatePublic { get => _explicitNullValueTemplatePublic; set { _explicitNullValueTemplatePublic = value; AdditionalData?.Remove("templatePublic"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templatePublic"); else _explicitNullProperties?.Remove("templatePublic"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrl200ResponseTemplatePublic? _explicitNullValueTemplatePublic = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrl200ResponseTemplatePublic TemplatePublic { get => _explicitNullValueTemplatePublic; set { _explicitNullValueTemplatePublic = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templatePublic"); else _explicitNullProperties?.Remove("templatePublic"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrl200ResponseTemplatePublic TemplatePublic { get => _explicitNullValueTemplatePublic; set { _explicitNullValueTemplatePublic = value; AdditionalData?.Remove("templatePublic"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templatePublic"); else _explicitNullProperties?.Remove("templatePublic"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrl200ResponseTemplatePublic _explicitNullValueTemplatePublic = default!;
 #endif
         /// <summary>

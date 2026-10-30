@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("functionHistory") is { } nullNodeFunctionHistory && nullNodeFunctionHistory.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FunctionHistory = null;
+            if (parseNode.GetChildNode("functionHistory") is null) { _explicitNullValueFunctionHistory = default!; _explicitNullProperties?.Remove("functionHistory"); }
+            else if (parseNode.GetChildNode("functionHistory") is { } nullNodeFunctionHistory && nullNodeFunctionHistory.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FunctionHistory = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The functionHistory property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionIdHistory200ResponseFunctionHistoryItem>? FunctionHistory { get => _explicitNullValueFunctionHistory; set { _explicitNullValueFunctionHistory = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("functionHistory"); else _explicitNullProperties?.Remove("functionHistory"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionIdHistory200ResponseFunctionHistoryItem>? FunctionHistory { get => _explicitNullValueFunctionHistory; set { _explicitNullValueFunctionHistory = value; AdditionalData?.Remove("functionHistory"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("functionHistory"); else _explicitNullProperties?.Remove("functionHistory"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionIdHistory200ResponseFunctionHistoryItem>? _explicitNullValueFunctionHistory = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionIdHistory200ResponseFunctionHistoryItem> FunctionHistory { get => _explicitNullValueFunctionHistory; set { _explicitNullValueFunctionHistory = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("functionHistory"); else _explicitNullProperties?.Remove("functionHistory"); } }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionIdHistory200ResponseFunctionHistoryItem> FunctionHistory { get => _explicitNullValueFunctionHistory; set { _explicitNullValueFunctionHistory = value; AdditionalData?.Remove("functionHistory"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("functionHistory"); else _explicitNullProperties?.Remove("functionHistory"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionIdHistory200ResponseFunctionHistoryItem> _explicitNullValueFunctionHistory = default!;
 #endif
         /// <summary>

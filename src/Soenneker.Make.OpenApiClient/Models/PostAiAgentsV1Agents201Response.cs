@@ -18,54 +18,60 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("agentId") is { } nullNodeAgentId && nullNodeAgentId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AgentId = null;
-            if (parseNode.GetChildNode("defaultModel") is { } nullNodeDefaultModel && nullNodeDefaultModel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DefaultModel = null;
-            if (parseNode.GetChildNode("makeConnectionId") is { } nullNodeMakeConnectionId && nullNodeMakeConnectionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MakeConnectionId = null;
-            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
-            if (parseNode.GetChildNode("systemPrompt") is { } nullNodeSystemPrompt && nullNodeSystemPrompt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SystemPrompt = null;
-            if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
+            if (parseNode.GetChildNode("agentId") is null) { _explicitNullValueAgentId = default!; _explicitNullProperties?.Remove("agentId"); }
+            else if (parseNode.GetChildNode("agentId") is { } nullNodeAgentId && nullNodeAgentId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AgentId = null;
+            if (parseNode.GetChildNode("defaultModel") is null) { _explicitNullValueDefaultModel = default!; _explicitNullProperties?.Remove("defaultModel"); }
+            else if (parseNode.GetChildNode("defaultModel") is { } nullNodeDefaultModel && nullNodeDefaultModel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DefaultModel = null;
+            if (parseNode.GetChildNode("makeConnectionId") is null) { _explicitNullValueMakeConnectionId = default!; _explicitNullProperties?.Remove("makeConnectionId"); }
+            else if (parseNode.GetChildNode("makeConnectionId") is { } nullNodeMakeConnectionId && nullNodeMakeConnectionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MakeConnectionId = null;
+            if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
+            else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("systemPrompt") is null) { _explicitNullValueSystemPrompt = default!; _explicitNullProperties?.Remove("systemPrompt"); }
+            else if (parseNode.GetChildNode("systemPrompt") is { } nullNodeSystemPrompt && nullNodeSystemPrompt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SystemPrompt = null;
+            if (parseNode.GetChildNode("teamId") is null) { _explicitNullValueTeamId = default!; _explicitNullProperties?.Remove("teamId"); }
+            else if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The agentId property</summary>
-        public Guid? AgentId { get => _explicitNullValueAgentId; set { _explicitNullValueAgentId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("agentId"); else _explicitNullProperties?.Remove("agentId"); } }
+        public Guid? AgentId { get => _explicitNullValueAgentId; set { _explicitNullValueAgentId = value; AdditionalData?.Remove("agentId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("agentId"); else _explicitNullProperties?.Remove("agentId"); } }
         private Guid? _explicitNullValueAgentId = default!;
         /// <summary>The defaultModel property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DefaultModel { get => _explicitNullValueDefaultModel; set { _explicitNullValueDefaultModel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("defaultModel"); else _explicitNullProperties?.Remove("defaultModel"); } }
+        public string? DefaultModel { get => _explicitNullValueDefaultModel; set { _explicitNullValueDefaultModel = value; AdditionalData?.Remove("defaultModel"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("defaultModel"); else _explicitNullProperties?.Remove("defaultModel"); } }
         private string? _explicitNullValueDefaultModel = default!;
 #nullable restore
 #else
-        public string DefaultModel { get => _explicitNullValueDefaultModel; set { _explicitNullValueDefaultModel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("defaultModel"); else _explicitNullProperties?.Remove("defaultModel"); } }
+        public string DefaultModel { get => _explicitNullValueDefaultModel; set { _explicitNullValueDefaultModel = value; AdditionalData?.Remove("defaultModel"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("defaultModel"); else _explicitNullProperties?.Remove("defaultModel"); } }
         private string _explicitNullValueDefaultModel = default!;
 #endif
         /// <summary>The makeConnectionId property</summary>
-        public double? MakeConnectionId { get => _explicitNullValueMakeConnectionId; set { _explicitNullValueMakeConnectionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("makeConnectionId"); else _explicitNullProperties?.Remove("makeConnectionId"); } }
+        public double? MakeConnectionId { get => _explicitNullValueMakeConnectionId; set { _explicitNullValueMakeConnectionId = value; AdditionalData?.Remove("makeConnectionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("makeConnectionId"); else _explicitNullProperties?.Remove("makeConnectionId"); } }
         private double? _explicitNullValueMakeConnectionId = default!;
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
         /// <summary>The systemPrompt property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SystemPrompt { get => _explicitNullValueSystemPrompt; set { _explicitNullValueSystemPrompt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("systemPrompt"); else _explicitNullProperties?.Remove("systemPrompt"); } }
+        public string? SystemPrompt { get => _explicitNullValueSystemPrompt; set { _explicitNullValueSystemPrompt = value; AdditionalData?.Remove("systemPrompt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("systemPrompt"); else _explicitNullProperties?.Remove("systemPrompt"); } }
         private string? _explicitNullValueSystemPrompt = default!;
 #nullable restore
 #else
-        public string SystemPrompt { get => _explicitNullValueSystemPrompt; set { _explicitNullValueSystemPrompt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("systemPrompt"); else _explicitNullProperties?.Remove("systemPrompt"); } }
+        public string SystemPrompt { get => _explicitNullValueSystemPrompt; set { _explicitNullValueSystemPrompt = value; AdditionalData?.Remove("systemPrompt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("systemPrompt"); else _explicitNullProperties?.Remove("systemPrompt"); } }
         private string _explicitNullValueSystemPrompt = default!;
 #endif
         /// <summary>The teamId property</summary>
-        public double? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
+        public double? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; AdditionalData?.Remove("teamId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
         private double? _explicitNullValueTeamId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1Agents201Response"/> and sets the default values.

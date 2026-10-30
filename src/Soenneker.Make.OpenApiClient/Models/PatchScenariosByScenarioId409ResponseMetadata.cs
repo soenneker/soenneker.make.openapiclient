@@ -17,49 +17,54 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("baseVersion") is { } nullNodeBaseVersion && nullNodeBaseVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BaseVersion = null;
-            if (parseNode.GetChildNode("currentVersion") is { } nullNodeCurrentVersion && nullNodeCurrentVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentVersion = null;
-            if (parseNode.GetChildNode("lastEdit") is { } nullNodeLastEdit && nullNodeLastEdit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastEdit = null;
-            if (parseNode.GetChildNode("lastEditedBy") is { } nullNodeLastEditedBy && nullNodeLastEditedBy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastEditedBy = null;
-            if (parseNode.GetChildNode("reason") is { } nullNodeReason && nullNodeReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reason = null;
+            if (parseNode.GetChildNode("baseVersion") is null) { _explicitNullValueBaseVersion = default!; _explicitNullProperties?.Remove("baseVersion"); }
+            else if (parseNode.GetChildNode("baseVersion") is { } nullNodeBaseVersion && nullNodeBaseVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BaseVersion = null;
+            if (parseNode.GetChildNode("currentVersion") is null) { _explicitNullValueCurrentVersion = default!; _explicitNullProperties?.Remove("currentVersion"); }
+            else if (parseNode.GetChildNode("currentVersion") is { } nullNodeCurrentVersion && nullNodeCurrentVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentVersion = null;
+            if (parseNode.GetChildNode("lastEdit") is null) { _explicitNullValueLastEdit = default!; _explicitNullProperties?.Remove("lastEdit"); }
+            else if (parseNode.GetChildNode("lastEdit") is { } nullNodeLastEdit && nullNodeLastEdit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastEdit = null;
+            if (parseNode.GetChildNode("lastEditedBy") is null) { _explicitNullValueLastEditedBy = default!; _explicitNullProperties?.Remove("lastEditedBy"); }
+            else if (parseNode.GetChildNode("lastEditedBy") is { } nullNodeLastEditedBy && nullNodeLastEditedBy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastEditedBy = null;
+            if (parseNode.GetChildNode("reason") is null) { _explicitNullValueReason = default!; _explicitNullProperties?.Remove("reason"); }
+            else if (parseNode.GetChildNode("reason") is { } nullNodeReason && nullNodeReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reason = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The baseVersion property</summary>
-        public long? BaseVersion { get => _explicitNullValueBaseVersion; set { _explicitNullValueBaseVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("baseVersion"); else _explicitNullProperties?.Remove("baseVersion"); } }
+        public long? BaseVersion { get => _explicitNullValueBaseVersion; set { _explicitNullValueBaseVersion = value; AdditionalData?.Remove("baseVersion"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("baseVersion"); else _explicitNullProperties?.Remove("baseVersion"); } }
         private long? _explicitNullValueBaseVersion = default!;
         /// <summary>The currentVersion property</summary>
-        public long? CurrentVersion { get => _explicitNullValueCurrentVersion; set { _explicitNullValueCurrentVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentVersion"); else _explicitNullProperties?.Remove("currentVersion"); } }
+        public long? CurrentVersion { get => _explicitNullValueCurrentVersion; set { _explicitNullValueCurrentVersion = value; AdditionalData?.Remove("currentVersion"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentVersion"); else _explicitNullProperties?.Remove("currentVersion"); } }
         private long? _explicitNullValueCurrentVersion = default!;
         /// <summary>The lastEdit property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LastEdit { get => _explicitNullValueLastEdit; set { _explicitNullValueLastEdit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastEdit"); else _explicitNullProperties?.Remove("lastEdit"); } }
+        public string? LastEdit { get => _explicitNullValueLastEdit; set { _explicitNullValueLastEdit = value; AdditionalData?.Remove("lastEdit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastEdit"); else _explicitNullProperties?.Remove("lastEdit"); } }
         private string? _explicitNullValueLastEdit = default!;
 #nullable restore
 #else
-        public string LastEdit { get => _explicitNullValueLastEdit; set { _explicitNullValueLastEdit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastEdit"); else _explicitNullProperties?.Remove("lastEdit"); } }
+        public string LastEdit { get => _explicitNullValueLastEdit; set { _explicitNullValueLastEdit = value; AdditionalData?.Remove("lastEdit"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastEdit"); else _explicitNullProperties?.Remove("lastEdit"); } }
         private string _explicitNullValueLastEdit = default!;
 #endif
         /// <summary>The lastEditedBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId409ResponseMetadataLastEditedBy? LastEditedBy { get => _explicitNullValueLastEditedBy; set { _explicitNullValueLastEditedBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastEditedBy"); else _explicitNullProperties?.Remove("lastEditedBy"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId409ResponseMetadataLastEditedBy? LastEditedBy { get => _explicitNullValueLastEditedBy; set { _explicitNullValueLastEditedBy = value; AdditionalData?.Remove("lastEditedBy"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastEditedBy"); else _explicitNullProperties?.Remove("lastEditedBy"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId409ResponseMetadataLastEditedBy? _explicitNullValueLastEditedBy = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId409ResponseMetadataLastEditedBy LastEditedBy { get => _explicitNullValueLastEditedBy; set { _explicitNullValueLastEditedBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastEditedBy"); else _explicitNullProperties?.Remove("lastEditedBy"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId409ResponseMetadataLastEditedBy LastEditedBy { get => _explicitNullValueLastEditedBy; set { _explicitNullValueLastEditedBy = value; AdditionalData?.Remove("lastEditedBy"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastEditedBy"); else _explicitNullProperties?.Remove("lastEditedBy"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId409ResponseMetadataLastEditedBy _explicitNullValueLastEditedBy = default!;
 #endif
         /// <summary>The reason property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
+        public string? Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; AdditionalData?.Remove("reason"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
         private string? _explicitNullValueReason = default!;
 #nullable restore
 #else
-        public string Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
+        public string Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; AdditionalData?.Remove("reason"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
         private string _explicitNullValueReason = default!;
 #endif
         /// <summary>

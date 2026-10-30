@@ -17,10 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("answers") is { } nullNodeAnswers && nullNodeAnswers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Answers = null;
-            if (parseNode.GetChildNode("preferred_apps") is { } nullNodePreferredApps && nullNodePreferredApps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PreferredApps = null;
-            if (parseNode.GetChildNode("schema_version") is { } nullNodeSchemaVersion && nullNodeSchemaVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SchemaVersion = null;
-            if (parseNode.GetChildNode("survey_type") is { } nullNodeSurveyType && nullNodeSurveyType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SurveyType = null;
+            if (parseNode.GetChildNode("answers") is null) { _explicitNullValueAnswers = default!; _explicitNullProperties?.Remove("answers"); }
+            else if (parseNode.GetChildNode("answers") is { } nullNodeAnswers && nullNodeAnswers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Answers = null;
+            if (parseNode.GetChildNode("preferred_apps") is null) { _explicitNullValuePreferredApps = default!; _explicitNullProperties?.Remove("preferred_apps"); }
+            else if (parseNode.GetChildNode("preferred_apps") is { } nullNodePreferredApps && nullNodePreferredApps.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PreferredApps = null;
+            if (parseNode.GetChildNode("schema_version") is null) { _explicitNullValueSchemaVersion = default!; _explicitNullProperties?.Remove("schema_version"); }
+            else if (parseNode.GetChildNode("schema_version") is { } nullNodeSchemaVersion && nullNodeSchemaVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SchemaVersion = null;
+            if (parseNode.GetChildNode("survey_type") is null) { _explicitNullValueSurveyType = default!; _explicitNullProperties?.Remove("survey_type"); }
+            else if (parseNode.GetChildNode("survey_type") is { } nullNodeSurveyType && nullNodeSurveyType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SurveyType = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -28,34 +32,34 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The user&apos;s answers to the survey questions, keyed by question name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers? Answers { get => _explicitNullValueAnswers; set { _explicitNullValueAnswers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("answers"); else _explicitNullProperties?.Remove("answers"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers? Answers { get => _explicitNullValueAnswers; set { _explicitNullValueAnswers = value; AdditionalData?.Remove("answers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("answers"); else _explicitNullProperties?.Remove("answers"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers? _explicitNullValueAnswers = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers Answers { get => _explicitNullValueAnswers; set { _explicitNullValueAnswers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("answers"); else _explicitNullProperties?.Remove("answers"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers Answers { get => _explicitNullValueAnswers; set { _explicitNullValueAnswers = value; AdditionalData?.Remove("answers"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("answers"); else _explicitNullProperties?.Remove("answers"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PostUsersMeOnboardingSurveyRequestAnswers _explicitNullValueAnswers = default!;
 #endif
         /// <summary>Optional list of native app package names to pin for the user. Apps that do not exist are reported as failed without blocking the submission.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? PreferredApps { get => _explicitNullValuePreferredApps; set { _explicitNullValuePreferredApps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferred_apps"); else _explicitNullProperties?.Remove("preferred_apps"); } }
+        public List<string>? PreferredApps { get => _explicitNullValuePreferredApps; set { _explicitNullValuePreferredApps = value; AdditionalData?.Remove("preferred_apps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferred_apps"); else _explicitNullProperties?.Remove("preferred_apps"); } }
         private List<string>? _explicitNullValuePreferredApps = default!;
 #nullable restore
 #else
-        public List<string> PreferredApps { get => _explicitNullValuePreferredApps; set { _explicitNullValuePreferredApps = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferred_apps"); else _explicitNullProperties?.Remove("preferred_apps"); } }
+        public List<string> PreferredApps { get => _explicitNullValuePreferredApps; set { _explicitNullValuePreferredApps = value; AdditionalData?.Remove("preferred_apps"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("preferred_apps"); else _explicitNullProperties?.Remove("preferred_apps"); } }
         private List<string> _explicitNullValuePreferredApps = default!;
 #endif
         /// <summary>Version of the survey schema. Allows consumers to interpret the answers.</summary>
-        public double? SchemaVersion { get => _explicitNullValueSchemaVersion; set { _explicitNullValueSchemaVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("schema_version"); else _explicitNullProperties?.Remove("schema_version"); } }
+        public double? SchemaVersion { get => _explicitNullValueSchemaVersion; set { _explicitNullValueSchemaVersion = value; AdditionalData?.Remove("schema_version"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("schema_version"); else _explicitNullProperties?.Remove("schema_version"); } }
         private double? _explicitNullValueSchemaVersion = default!;
         /// <summary>The type of survey being submitted (e.g., `self_serve`, `enterprise`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SurveyType { get => _explicitNullValueSurveyType; set { _explicitNullValueSurveyType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("survey_type"); else _explicitNullProperties?.Remove("survey_type"); } }
+        public string? SurveyType { get => _explicitNullValueSurveyType; set { _explicitNullValueSurveyType = value; AdditionalData?.Remove("survey_type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("survey_type"); else _explicitNullProperties?.Remove("survey_type"); } }
         private string? _explicitNullValueSurveyType = default!;
 #nullable restore
 #else
-        public string SurveyType { get => _explicitNullValueSurveyType; set { _explicitNullValueSurveyType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("survey_type"); else _explicitNullProperties?.Remove("survey_type"); } }
+        public string SurveyType { get => _explicitNullValueSurveyType; set { _explicitNullValueSurveyType = value; AdditionalData?.Remove("survey_type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("survey_type"); else _explicitNullProperties?.Remove("survey_type"); } }
         private string _explicitNullValueSurveyType = default!;
 #endif
         /// <summary>

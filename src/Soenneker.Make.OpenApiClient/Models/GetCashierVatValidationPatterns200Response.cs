@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("patterns") is { } nullNodePatterns && nullNodePatterns.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Patterns = null;
+            if (parseNode.GetChildNode("patterns") is null) { _explicitNullValuePatterns = default!; _explicitNullProperties?.Remove("patterns"); }
+            else if (parseNode.GetChildNode("patterns") is { } nullNodePatterns && nullNodePatterns.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Patterns = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The patterns property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetCashierVatValidationPatterns200ResponsePatterns? Patterns { get => _explicitNullValuePatterns; set { _explicitNullValuePatterns = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("patterns"); else _explicitNullProperties?.Remove("patterns"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetCashierVatValidationPatterns200ResponsePatterns? Patterns { get => _explicitNullValuePatterns; set { _explicitNullValuePatterns = value; AdditionalData?.Remove("patterns"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("patterns"); else _explicitNullProperties?.Remove("patterns"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetCashierVatValidationPatterns200ResponsePatterns? _explicitNullValuePatterns = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetCashierVatValidationPatterns200ResponsePatterns Patterns { get => _explicitNullValuePatterns; set { _explicitNullValuePatterns = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("patterns"); else _explicitNullProperties?.Remove("patterns"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetCashierVatValidationPatterns200ResponsePatterns Patterns { get => _explicitNullValuePatterns; set { _explicitNullValuePatterns = value; AdditionalData?.Remove("patterns"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("patterns"); else _explicitNullProperties?.Remove("patterns"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetCashierVatValidationPatterns200ResponsePatterns _explicitNullValuePatterns = default!;
 #endif
         /// <summary>

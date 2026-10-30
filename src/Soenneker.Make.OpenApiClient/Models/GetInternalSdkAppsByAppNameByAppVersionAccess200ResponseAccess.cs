@@ -17,13 +17,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("installed") is { } nullNodeInstalled && nullNodeInstalled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Installed = null;
+            if (parseNode.GetChildNode("installed") is null) { _explicitNullValueInstalled = default!; _explicitNullProperties?.Remove("installed"); }
+            else if (parseNode.GetChildNode("installed") is { } nullNodeInstalled && nullNodeInstalled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Installed = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>`true` only when an `apps.access` row exists for this app name, app version and organization.</summary>
-        public bool? Installed { get => _explicitNullValueInstalled; set { _explicitNullValueInstalled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("installed"); else _explicitNullProperties?.Remove("installed"); } }
+        public bool? Installed { get => _explicitNullValueInstalled; set { _explicitNullValueInstalled = value; AdditionalData?.Remove("installed"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("installed"); else _explicitNullProperties?.Remove("installed"); } }
         private bool? _explicitNullValueInstalled = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionAccess200ResponseAccess"/> and sets the default values.

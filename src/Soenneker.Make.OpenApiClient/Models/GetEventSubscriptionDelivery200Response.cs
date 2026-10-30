@@ -17,7 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("delivery") is { } nullNodeDelivery && nullNodeDelivery.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Delivery = null;
+            if (parseNode.GetChildNode("delivery") is null) { _explicitNullValueDelivery = default!; _explicitNullProperties?.Remove("delivery"); }
+            else if (parseNode.GetChildNode("delivery") is { } nullNodeDelivery && nullNodeDelivery.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Delivery = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The delivery property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDelivery? Delivery { get => _explicitNullValueDelivery; set { _explicitNullValueDelivery = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("delivery"); else _explicitNullProperties?.Remove("delivery"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDelivery? Delivery { get => _explicitNullValueDelivery; set { _explicitNullValueDelivery = value; AdditionalData?.Remove("delivery"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("delivery"); else _explicitNullProperties?.Remove("delivery"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDelivery? _explicitNullValueDelivery = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDelivery Delivery { get => _explicitNullValueDelivery; set { _explicitNullValueDelivery = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("delivery"); else _explicitNullProperties?.Remove("delivery"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDelivery Delivery { get => _explicitNullValueDelivery; set { _explicitNullValueDelivery = value; AdditionalData?.Remove("delivery"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("delivery"); else _explicitNullProperties?.Remove("delivery"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200ResponseDelivery _explicitNullValueDelivery = default!;
 #endif
         /// <summary>
