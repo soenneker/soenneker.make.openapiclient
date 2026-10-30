@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Keys.Item.MakeTeam
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeTeam200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeTeam200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeTeam200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeTeam200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Makes a locked key visible to the whole team again (`visibility: team`) and clears the key&apos;s entire accesslist. Only an admin of the locked key can perform the flip. The key&apos;s author is not changed.The operation is idempotent — flipping an already team-visible key succeeds, provided the caller has the`key edit` permission; any residual entries on the key&apos;s access list are still cleared.Requires the *Locked connections* feature to be enabled for the organization.

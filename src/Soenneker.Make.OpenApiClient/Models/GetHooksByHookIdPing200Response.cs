@@ -11,33 +11,54 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetHooksByHookIdPing200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("address") is { } nullNodeAddress && nullNodeAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Address = null;
+            if (parseNode.GetChildNode("attached") is { } nullNodeAttached && nullNodeAttached.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Attached = null;
+            if (parseNode.GetChildNode("dataStructure") is { } nullNodeDataStructure && nullNodeDataStructure.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataStructure = null;
+            if (parseNode.GetChildNode("gone") is { } nullNodeGone && nullNodeGone.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Gone = null;
+            if (parseNode.GetChildNode("learning") is { } nullNodeLearning && nullNodeLearning.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Learning = null;
+            if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The address property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Address { get; set; }
+        public string? Address { get => _explicitNullValueAddress; set { _explicitNullValueAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("address"); else _explicitNullProperties?.Remove("address"); } }
+        private string? _explicitNullValueAddress = default!;
 #nullable restore
 #else
-        public string Address { get; set; }
+        public string Address { get => _explicitNullValueAddress; set { _explicitNullValueAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("address"); else _explicitNullProperties?.Remove("address"); } }
+        private string _explicitNullValueAddress = default!;
 #endif
         /// <summary>The attached property</summary>
-        public bool? Attached { get; set; }
+        public bool? Attached { get => _explicitNullValueAttached; set { _explicitNullValueAttached = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("attached"); else _explicitNullProperties?.Remove("attached"); } }
+        private bool? _explicitNullValueAttached = default!;
         /// <summary>List of fields parsed from the last received sample. Null if the payload is not yet determined or if the hook is currently in learning mode.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200ResponseDataStructureItem>? DataStructure { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200ResponseDataStructureItem>? DataStructure { get => _explicitNullValueDataStructure; set { _explicitNullValueDataStructure = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStructure"); else _explicitNullProperties?.Remove("dataStructure"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200ResponseDataStructureItem>? _explicitNullValueDataStructure = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200ResponseDataStructureItem> DataStructure { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200ResponseDataStructureItem> DataStructure { get => _explicitNullValueDataStructure; set { _explicitNullValueDataStructure = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStructure"); else _explicitNullProperties?.Remove("dataStructure"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200ResponseDataStructureItem> _explicitNullValueDataStructure = default!;
 #endif
         /// <summary>The gone property</summary>
-        public bool? Gone { get; set; }
+        public bool? Gone { get => _explicitNullValueGone; set { _explicitNullValueGone = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("gone"); else _explicitNullProperties?.Remove("gone"); } }
+        private bool? _explicitNullValueGone = default!;
         /// <summary>The learning property</summary>
-        public bool? Learning { get; set; }
+        public bool? Learning { get => _explicitNullValueLearning; set { _explicitNullValueLearning = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("learning"); else _explicitNullProperties?.Remove("learning"); } }
+        private bool? _explicitNullValueLearning = default!;
         /// <summary>ID of the team that owns the hook.</summary>
-        public int? TeamId { get; set; }
+        public int? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
+        private int? _explicitNullValueTeamId = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200Response"/> and sets the default values.
         /// </summary>
@@ -53,7 +74,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,6 +105,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("gone", Gone);
             writer.WriteBoolValue("learning", Learning);
             writer.WriteIntValue("teamId", TeamId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

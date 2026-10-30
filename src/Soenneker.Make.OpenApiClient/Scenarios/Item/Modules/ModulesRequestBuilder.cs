@@ -17,6 +17,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Modules
     public partial class ModulesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The operations property</summary>
+        [Obsolete("")]
         public global::Soenneker.Make.OpenApiClient.Scenarios.Item.Modules.Operations.OperationsRequestBuilder Operations
         {
             get => new global::Soenneker.Make.OpenApiClient.Scenarios.Item.Modules.Operations.OperationsRequestBuilder(PathParameters, RequestAdapter);

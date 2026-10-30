@@ -57,6 +57,8 @@ namespace Soenneker.Make.OpenApiClient.Admin.Functions.V2.Trash
                 { "400", global::Soenneker.Make.OpenApiClient.Models.GetAdminFunctionsV2Trash400Response.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Make.OpenApiClient.Models.GetAdminFunctionsV2Trash401Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.GetAdminFunctionsV2Trash403Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminFunctionsV2Trash200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminFunctionsV2Trash200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

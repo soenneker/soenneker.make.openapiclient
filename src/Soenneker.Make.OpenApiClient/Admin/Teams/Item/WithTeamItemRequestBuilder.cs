@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Teams.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteAdminTeamsByTeamId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteAdminTeamsByTeamId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteAdminTeamsByTeamId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteAdminTeamsByTeamId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates team information. Make updates only the values in the request body.
@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Teams.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchAdminTeamsByTeamId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchAdminTeamsByTeamId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchAdminTeamsByTeamId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchAdminTeamsByTeamId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes the team with the specified `teamId`. Make removes all users from the deleted team and deletes all data associated with the team, such as data stores and scenarios.The team won&apos;t be visible for the users. However, if you run the API call `GET /admin/teams` the response will contain also the deleted team with the `deleted: true` pair. Similarly, the team will remain visible in the Administration UI.

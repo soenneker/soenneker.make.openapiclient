@@ -70,7 +70,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Incomings
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomings200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteHooksByHookIdIncomings200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a list of webhook queue items waiting for processing with the specified webhook. The request response contains:- the incoming payload hash - incoming data scope - the size of the data in bytes - timestamp of the moment when the data were placed in the processing queue
@@ -88,7 +88,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Incomings
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomings200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomings200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes items from the processing queue of the specified webhook. Specify the payload ID values that you want to delete in the request body in the `ids` array.You can set the `&quot;all&quot;: true` pair to delete all items from the webhook processing queue. If you use the `&quot;all&quot;: true` parameter, you have to specify the `confirmed=true` query parameter to confirm the deletion. Otherwise the API call returns the error IM004 (406).Add the `exceptIds` array to the request body to specify items you don&apos;t want to delete.The API call response will contain an error message if some of the specified queue items cannot be deleted. The rest of the specified items will be deleted. Deleting a webhook queue item is not allowed when the item is already being processed by the webhook.

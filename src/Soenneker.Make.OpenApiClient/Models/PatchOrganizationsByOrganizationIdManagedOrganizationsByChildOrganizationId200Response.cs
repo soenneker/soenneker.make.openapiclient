@@ -11,17 +11,32 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PatchOrganizationsByOrganizationIdManagedOrganizationsByChildOrganizationId200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("limitIncreased") is { } nullNodeLimitIncreased && nullNodeLimitIncreased.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LimitIncreased = null;
+            if (parseNode.GetChildNode("newChildOperations") is { } nullNodeNewChildOperations && nullNodeNewChildOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewChildOperations = null;
+            if (parseNode.GetChildNode("newParentOperations") is { } nullNodeNewParentOperations && nullNodeNewParentOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewParentOperations = null;
+            if (parseNode.GetChildNode("operationsDiff") is { } nullNodeOperationsDiff && nullNodeOperationsDiff.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperationsDiff = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The limitIncreased property</summary>
-        public bool? LimitIncreased { get; set; }
+        public bool? LimitIncreased { get => _explicitNullValueLimitIncreased; set { _explicitNullValueLimitIncreased = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("limitIncreased"); else _explicitNullProperties?.Remove("limitIncreased"); } }
+        private bool? _explicitNullValueLimitIncreased = default!;
         /// <summary>The newChildOperations property</summary>
-        public int? NewChildOperations { get; set; }
+        public int? NewChildOperations { get => _explicitNullValueNewChildOperations; set { _explicitNullValueNewChildOperations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newChildOperations"); else _explicitNullProperties?.Remove("newChildOperations"); } }
+        private int? _explicitNullValueNewChildOperations = default!;
         /// <summary>The newParentOperations property</summary>
-        public int? NewParentOperations { get; set; }
+        public int? NewParentOperations { get => _explicitNullValueNewParentOperations; set { _explicitNullValueNewParentOperations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newParentOperations"); else _explicitNullProperties?.Remove("newParentOperations"); } }
+        private int? _explicitNullValueNewParentOperations = default!;
         /// <summary>The operationsDiff property</summary>
-        public int? OperationsDiff { get; set; }
+        public int? OperationsDiff { get => _explicitNullValueOperationsDiff; set { _explicitNullValueOperationsDiff = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operationsDiff"); else _explicitNullProperties?.Remove("operationsDiff"); } }
+        private int? _explicitNullValueOperationsDiff = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdManagedOrganizationsByChildOrganizationId200Response"/> and sets the default values.
         /// </summary>
@@ -37,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdManagedOrganizationsByChildOrganizationId200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdManagedOrganizationsByChildOrganizationId200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdManagedOrganizationsByChildOrganizationId200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,6 +79,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("newChildOperations", NewChildOperations);
             writer.WriteIntValue("newParentOperations", NewParentOperations);
             writer.WriteIntValue("operationsDiff", OperationsDiff);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

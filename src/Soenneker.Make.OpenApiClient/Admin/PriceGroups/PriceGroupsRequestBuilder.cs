@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.PriceGroups
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminPriceGroups200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminPriceGroups200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminPriceGroups200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminPriceGroups200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Lists every cashier price group, including disabled and experiment groups. A customer belongs toexactly one group. A group can be assigned with`PATCH /admin/organizations/{organizationId}/subscription/customer/price-group`. Requires the admin permission&quot;organization subscription edit&quot;.

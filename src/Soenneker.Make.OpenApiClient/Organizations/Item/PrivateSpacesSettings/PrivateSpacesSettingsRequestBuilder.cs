@@ -55,6 +55,8 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings
             {
                 { "403", global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPrivateSpacesSettings403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPrivateSpacesSettings404Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPrivateSpacesSettings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPrivateSpacesSettings200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -86,6 +88,8 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings
                 { "402", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings402Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings403Response.CreateFromDiscriminatorValue },
                 { "406", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings406Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

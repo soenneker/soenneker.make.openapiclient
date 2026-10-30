@@ -11,31 +11,52 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class CreateInlineFunctionV2RunRequest : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("content") is { } nullNodeContent && nullNodeContent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Content = null;
+            if (parseNode.GetChildNode("data") is { } nullNodeData && nullNodeData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Data = null;
+            if (parseNode.GetChildNode("functionId") is { } nullNodeFunctionId && nullNodeFunctionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FunctionId = null;
+            if (parseNode.GetChildNode("maxWaitSeconds") is { } nullNodeMaxWaitSeconds && nullNodeMaxWaitSeconds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxWaitSeconds = null;
+            if (parseNode.GetChildNode("responsive") is { } nullNodeResponsive && nullNodeResponsive.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Responsive = null;
+            if (parseNode.GetChildNode("timeoutSeconds") is { } nullNodeTimeoutSeconds && nullNodeTimeoutSeconds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TimeoutSeconds = null;
+        }
+
         /// <summary>The content property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContent? Content { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContent? Content { get => _explicitNullValueContent; set { _explicitNullValueContent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("content"); else _explicitNullProperties?.Remove("content"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContent? _explicitNullValueContent = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContent Content { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContent Content { get => _explicitNullValueContent; set { _explicitNullValueContent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("content"); else _explicitNullProperties?.Remove("content"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContent _explicitNullValueContent = default!;
 #endif
         /// <summary>Optional argument passed to `main()`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Data { get; set; }
+        public UntypedNode? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private UntypedNode? _explicitNullValueData = default!;
 #nullable restore
 #else
-        public UntypedNode Data { get; set; }
+        public UntypedNode Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private UntypedNode _explicitNullValueData = default!;
 #endif
         /// <summary>Optional Function association. The Function must belong to the requested Team.</summary>
-        public int? FunctionId { get; set; }
+        public int? FunctionId { get => _explicitNullValueFunctionId; set { _explicitNullValueFunctionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("functionId"); else _explicitNullProperties?.Remove("functionId"); } }
+        private int? _explicitNullValueFunctionId = default!;
         /// <summary>Valid only when `responsive` is true.</summary>
-        public int? MaxWaitSeconds { get; set; }
+        public int? MaxWaitSeconds { get => _explicitNullValueMaxWaitSeconds; set { _explicitNullValueMaxWaitSeconds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxWaitSeconds"); else _explicitNullProperties?.Remove("maxWaitSeconds"); } }
+        private int? _explicitNullValueMaxWaitSeconds = default!;
         /// <summary>The responsive property</summary>
-        public bool? Responsive { get; set; }
+        public bool? Responsive { get => _explicitNullValueResponsive; set { _explicitNullValueResponsive = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("responsive"); else _explicitNullProperties?.Remove("responsive"); } }
+        private bool? _explicitNullValueResponsive = default!;
         /// <summary>The timeoutSeconds property</summary>
-        public int? TimeoutSeconds { get; set; }
+        public int? TimeoutSeconds { get => _explicitNullValueTimeoutSeconds; set { _explicitNullValueTimeoutSeconds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timeoutSeconds"); else _explicitNullProperties?.Remove("timeoutSeconds"); } }
+        private int? _explicitNullValueTimeoutSeconds = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequest"/> and sets the default values.
         /// </summary>
@@ -53,7 +74,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -83,7 +104,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("functionId", FunctionId);
             writer.WriteIntValue("maxWaitSeconds", MaxWaitSeconds);
             writer.WriteBoolValue("responsive", Responsive);
-            writer.WriteIntValue("timeoutSeconds", TimeoutSeconds);
+            writer.WriteIntValue("timeoutSeconds", TimeoutSeconds);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

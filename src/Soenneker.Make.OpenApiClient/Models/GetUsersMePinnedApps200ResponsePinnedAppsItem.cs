@@ -11,26 +11,41 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetUsersMePinnedApps200ResponsePinnedAppsItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("appName") is { } nullNodeAppName && nullNodeAppName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppName = null;
+            if (parseNode.GetChildNode("isAppPinned") is { } nullNodeIsAppPinned && nullNodeIsAppPinned.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsAppPinned = null;
+            if (parseNode.GetChildNode("pinnedModules") is { } nullNodePinnedModules && nullNodePinnedModules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PinnedModules = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Name of the pinned app. SDK apps are prefixed with `app#`; native apps are bare package names.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AppName { get; set; }
+        public string? AppName { get => _explicitNullValueAppName; set { _explicitNullValueAppName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appName"); else _explicitNullProperties?.Remove("appName"); } }
+        private string? _explicitNullValueAppName = default!;
 #nullable restore
 #else
-        public string AppName { get; set; }
+        public string AppName { get => _explicitNullValueAppName; set { _explicitNullValueAppName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appName"); else _explicitNullProperties?.Remove("appName"); } }
+        private string _explicitNullValueAppName = default!;
 #endif
         /// <summary>`true` when the app itself is pinned (it appears in the &quot;My apps&quot; tab). `false` when only modules under this app are pinned — the entry is still returned so the UI can render the pinned modules in the app-detail panel.</summary>
-        public bool? IsAppPinned { get; set; }
+        public bool? IsAppPinned { get => _explicitNullValueIsAppPinned; set { _explicitNullValueIsAppPinned = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isAppPinned"); else _explicitNullProperties?.Remove("isAppPinned"); } }
+        private bool? _explicitNullValueIsAppPinned = default!;
         /// <summary>Pinned modules under this app, ordered oldest-pinned-first.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem>? PinnedModules { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem>? PinnedModules { get => _explicitNullValuePinnedModules; set { _explicitNullValuePinnedModules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedModules"); else _explicitNullProperties?.Remove("pinnedModules"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem>? _explicitNullValuePinnedModules = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem> PinnedModules { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem> PinnedModules { get => _explicitNullValuePinnedModules; set { _explicitNullValuePinnedModules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pinnedModules"); else _explicitNullProperties?.Remove("pinnedModules"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem> _explicitNullValuePinnedModules = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItem"/> and sets the default values.
@@ -47,7 +62,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,6 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("appName", AppName);
             writer.WriteBoolValue("isAppPinned", IsAppPinned);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePinnedApps200ResponsePinnedAppsItemPinnedModulesItem>("pinnedModules", PinnedModules);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

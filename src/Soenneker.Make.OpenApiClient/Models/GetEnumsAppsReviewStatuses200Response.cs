@@ -11,16 +11,26 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetEnumsAppsReviewStatuses200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("reviewStatuses") is { } nullNodeReviewStatuses && nullNodeReviewStatuses.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReviewStatuses = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The reviewStatuses property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem>? ReviewStatuses { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem>? ReviewStatuses { get => _explicitNullValueReviewStatuses; set { _explicitNullValueReviewStatuses = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reviewStatuses"); else _explicitNullProperties?.Remove("reviewStatuses"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem>? _explicitNullValueReviewStatuses = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem> ReviewStatuses { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem> ReviewStatuses { get => _explicitNullValueReviewStatuses; set { _explicitNullValueReviewStatuses = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reviewStatuses"); else _explicitNullProperties?.Remove("reviewStatuses"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem> _explicitNullValueReviewStatuses = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200Response"/> and sets the default values.
@@ -37,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -58,6 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200ResponseReviewStatusesItem>("reviewStatuses", ReviewStatuses);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

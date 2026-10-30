@@ -51,7 +51,7 @@ namespace Soenneker.Make.OpenApiClient.Users.CustomRoles.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRolesByRoleId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRolesByRoleId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRolesByRoleId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersCustomRolesByRoleId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates the name, description, or permissions of an existing custom role. Only custom-managed roles can be updated.
@@ -71,7 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Users.CustomRoles.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchUsersCustomRolesByRoleId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes an existing custom role. Only custom-managed roles can be deleted. The role must not be currently assigned to any users.

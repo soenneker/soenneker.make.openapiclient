@@ -62,7 +62,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Teams
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminTeams200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new team in the specified organization.You can set the team admin with the parameter `userTeamAdmin` in the request body. If you don&apos;t use the `userTeamAdmin` parameter and you are part of the organization, then Make sets you as the team admin.
@@ -82,7 +82,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Teams
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAdminTeams200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the list of teams in the organization with the specified `organizationId`.

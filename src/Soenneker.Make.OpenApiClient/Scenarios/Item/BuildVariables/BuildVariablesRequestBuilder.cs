@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves buildtime variables of a scenario with the given ID. Buildtime variables could be team or user defined, team defined ones are prefixed with a `TAC_` and user defined variables are prefixed with a `PAC_`. `TAC_`s can be used within the scenario as per its input spec by the entire team, whereas `PAC_`s can only be used within the scenario by the user who added them.
@@ -67,7 +67,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Adds new buildtime team or user defined variable/s. Buildtime variables should be prefixed either with a `TAC_` (for team defined variables) or with a `PAC_` (for personal user defined variables), followed by the connection value. If a variable already exists, an error will be thrown. If a variable&apos;s name is not within scenario input specification, an error will be thrown. If the adding of new variables was successful the reponse would be `OK`.
@@ -91,6 +91,8 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "422", global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables422Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -116,6 +118,8 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.BuildVariables
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "422", global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables422Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdBuildVariables200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

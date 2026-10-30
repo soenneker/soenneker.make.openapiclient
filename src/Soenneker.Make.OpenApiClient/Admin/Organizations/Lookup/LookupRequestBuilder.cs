@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Organizations.Lookup
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminOrganizationsLookup200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminOrganizationsLookup200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminOrganizationsLookup200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminOrganizationsLookup200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Looks up organizations by exact numeric ID or partial, case-insensitive name. Exactly one of `id` or `name` is required. Because organization names are not unique and are matched partially, this returns a capped list of minimal projections (`id`, `name`, `deleted`) used to navigate to the organization detail. Soft-deleted organizations are included. An empty list is returned when nothing matches.

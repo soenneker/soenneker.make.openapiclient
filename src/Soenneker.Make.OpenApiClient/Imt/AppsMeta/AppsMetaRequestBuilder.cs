@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Imt.AppsMeta
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetImtAppsMeta200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// All verified and custom apps, that are available to current user or selected organisation.

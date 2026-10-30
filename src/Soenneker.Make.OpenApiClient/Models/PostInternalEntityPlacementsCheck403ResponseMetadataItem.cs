@@ -11,26 +11,41 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PostInternalEntityPlacementsCheck403ResponseMetadataItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("entities") is { } nullNodeEntities && nullNodeEntities.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Entities = null;
+            if (parseNode.GetChildNode("moduleId") is { } nullNodeModuleId && nullNodeModuleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModuleId = null;
+            if (parseNode.GetChildNode("moduleName") is { } nullNodeModuleName && nullNodeModuleName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ModuleName = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The entities property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem>? Entities { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem>? Entities { get => _explicitNullValueEntities; set { _explicitNullValueEntities = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entities"); else _explicitNullProperties?.Remove("entities"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem>? _explicitNullValueEntities = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem> Entities { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem> Entities { get => _explicitNullValueEntities; set { _explicitNullValueEntities = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("entities"); else _explicitNullProperties?.Remove("entities"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem> _explicitNullValueEntities = default!;
 #endif
         /// <summary>The moduleId property</summary>
-        public int? ModuleId { get; set; }
+        public int? ModuleId { get => _explicitNullValueModuleId; set { _explicitNullValueModuleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleId"); else _explicitNullProperties?.Remove("moduleId"); } }
+        private int? _explicitNullValueModuleId = default!;
         /// <summary>The moduleName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ModuleName { get; set; }
+        public string? ModuleName { get => _explicitNullValueModuleName; set { _explicitNullValueModuleName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleName"); else _explicitNullProperties?.Remove("moduleName"); } }
+        private string? _explicitNullValueModuleName = default!;
 #nullable restore
 #else
-        public string ModuleName { get; set; }
+        public string ModuleName { get => _explicitNullValueModuleName; set { _explicitNullValueModuleName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("moduleName"); else _explicitNullProperties?.Remove("moduleName"); } }
+        private string _explicitNullValueModuleName = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItem"/> and sets the default values.
@@ -47,7 +62,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,6 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403ResponseMetadataItemEntitiesItem>("entities", Entities);
             writer.WriteIntValue("moduleId", ModuleId);
             writer.WriteStringValue("moduleName", ModuleName);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

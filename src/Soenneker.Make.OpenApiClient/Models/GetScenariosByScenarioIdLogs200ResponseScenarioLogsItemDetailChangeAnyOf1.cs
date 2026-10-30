@@ -11,23 +11,39 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1 : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("label") is { } nullNodeLabel && nullNodeLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Label = null;
+            if (parseNode.GetChildNode("origin") is { } nullNodeOrigin && nullNodeOrigin.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Origin = null;
+            if (parseNode.GetChildNode("version") is { } nullNodeVersion && nullNodeVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Version = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The kind property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Kind? Kind { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Kind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Kind? _explicitNullValueKind = default!;
         /// <summary>The label property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label? Label { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label? Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label? _explicitNullValueLabel = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label Label { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label _explicitNullValueLabel = default!;
 #endif
         /// <summary>The origin property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Origin? Origin { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Origin? Origin { get => _explicitNullValueOrigin; set { _explicitNullValueOrigin = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("origin"); else _explicitNullProperties?.Remove("origin"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Origin? _explicitNullValueOrigin = default!;
         /// <summary>The version property</summary>
-        public int? Version { get; set; }
+        public int? Version { get => _explicitNullValueVersion; set { _explicitNullValueVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version"); else _explicitNullProperties?.Remove("version"); } }
+        private int? _explicitNullValueVersion = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1"/> and sets the default values.
         /// </summary>
@@ -43,7 +59,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -70,6 +86,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Label>("label", Label);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailChangeAnyOf1Origin>("origin", Origin);
             writer.WriteIntValue("version", Version);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

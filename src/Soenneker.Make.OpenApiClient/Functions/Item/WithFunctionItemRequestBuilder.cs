@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Functions.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsByFunctionId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsByFunctionId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsByFunctionId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteFunctionsByFunctionId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets detailed information about a custom function. The response contains function `name`, `code`,  a list of scenarios which use the custom function and the custom function&apos;s history of updates.
@@ -73,7 +73,7 @@ namespace Soenneker.Make.OpenApiClient.Functions.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetFunctionsByFunctionId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates custom functions `description` or `code`. You cannot change the `name` of the custom function.Make sure to use the same function name in the function&apos;s `code`. Otherwise, you get an IM005 error.Make validates the custom function&apos;s code first. You get an IM005 error if the code validation fails. The validation might fail because of a syntax error in the function&apos;s code or when the code uses a JavaScript feature that Make doesn&apos;t support. Check the [custom functions limitations](https://www.make.com/en/help/functions/custom-functions#limitations-of-custom-functions) in the Make Help center.
@@ -93,7 +93,7 @@ namespace Soenneker.Make.OpenApiClient.Functions.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchFunctionsByFunctionId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes the custom function. The response contains information whether the custom function is deleted or not.If you or any of your team members use the custom function in a scenario you have to use the `confirmed` parameter to confirm the custom function deletion. Otherwise, you get an error with a list of scenarios that use the custom function.

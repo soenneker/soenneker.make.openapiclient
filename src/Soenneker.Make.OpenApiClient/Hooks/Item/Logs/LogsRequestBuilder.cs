@@ -62,7 +62,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Logs
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdLogs200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a list of the specified webhook execution logs. Use the `to` and `from` parameters to filter the returned logs. The response contains:- `statusId`: the status of the webhook execution; `1` means successful execution, `3` means failed execution - `loggedAt`: the moment when Make created the log - `id`: the ID of the webhook execution log

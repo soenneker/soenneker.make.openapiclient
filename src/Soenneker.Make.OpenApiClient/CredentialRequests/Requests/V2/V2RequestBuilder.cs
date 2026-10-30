@@ -51,7 +51,7 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Requests.V2
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsV2200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new request for Credentials using app and module selections.Credentials (connections/keys) are automatically derived from the selected modules using the modules-with-credentials API.Supports two provider flows:1. **Existing Make user** - Reference an existing Make user by their ID. The user will be added to the team if not already a member.2. **New user invitation** - Invite a new user by providing their name and email.

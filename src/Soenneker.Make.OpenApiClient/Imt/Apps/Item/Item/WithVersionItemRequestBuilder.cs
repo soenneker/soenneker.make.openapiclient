@@ -16,6 +16,7 @@ namespace Soenneker.Make.OpenApiClient.Imt.Apps.Item.Item
     public partial class WithVersionItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The modulesWithCredentials property</summary>
+        [Obsolete("")]
         public global::Soenneker.Make.OpenApiClient.Imt.Apps.Item.Item.ModulesWithCredentials.ModulesWithCredentialsRequestBuilder ModulesWithCredentials
         {
             get => new global::Soenneker.Make.OpenApiClient.Imt.Apps.Item.Item.ModulesWithCredentials.ModulesWithCredentialsRequestBuilder(PathParameters, RequestAdapter);

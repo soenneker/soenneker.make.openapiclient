@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.AdminsRoles
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersAdminsRoles200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the list of available admin roles. Admin roles define the permissions that users have at the instance level in the Make White Label product.Refer to the [user admin roles documentation](https://www.make.com/en/help/white-label/manage-organizations#instance-level-roles-1628394) for the full breakdown of the user admin roles permissions.

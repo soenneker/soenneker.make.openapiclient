@@ -61,6 +61,8 @@ namespace Soenneker.Make.OpenApiClient.Internal.Hooks.Item.Unregister
                 { "401", global::Soenneker.Make.OpenApiClient.Models.PostInternalHooksByHookIdUnregister401Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PostInternalHooksByHookIdUnregister403Response.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Make.OpenApiClient.Models.PostInternalHooksByHookIdUnregister500Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostInternalHooksByHookIdUnregister200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostInternalHooksByHookIdUnregister200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

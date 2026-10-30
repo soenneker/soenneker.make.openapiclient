@@ -59,6 +59,8 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.Pages.Item
                 { "401", global::Soenneker.Make.OpenApiClient.Models.DeleteAiBrowserContextSetupsBySetupIdPagesByPageId401Response.CreateFromDiscriminatorValue },
                 { "409", global::Soenneker.Make.OpenApiClient.Models.DeleteAiBrowserContextSetupsBySetupIdPagesByPageId409Response.CreateFromDiscriminatorValue },
                 { "410", global::Soenneker.Make.OpenApiClient.Models.DeleteAiBrowserContextSetupsBySetupIdPagesByPageId410Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteAiBrowserContextSetupsBySetupIdPagesByPageId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteAiBrowserContextSetupsBySetupIdPagesByPageId200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

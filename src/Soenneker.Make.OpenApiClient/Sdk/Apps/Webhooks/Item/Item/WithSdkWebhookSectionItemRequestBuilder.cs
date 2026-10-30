@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Webhooks.Item.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Send the section with `Content-Type: application/jsonc` (recommended) to keep comments and formatting.`Content-Type: application/json` is accepted too and its text is kept exactly as sent, but it must be plain JSON:comments and trailing commas are not allowed, and a body with them fails with `400`.
@@ -75,6 +75,8 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Webhooks.Item.Item
             {
                 { "400", global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection400Response.CreateFromDiscriminatorValue },
                 { "415", global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection415Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsWebhooksBySdkWebhookNameBySdkWebhookSection200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

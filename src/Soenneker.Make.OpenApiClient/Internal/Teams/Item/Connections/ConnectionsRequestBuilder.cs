@@ -57,7 +57,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Teams.Item.Connections
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostInternalTeamsByTeamIdConnections200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostInternalTeamsByTeamIdConnections200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostInternalTeamsByTeamIdConnections200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostInternalTeamsByTeamIdConnections200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new team connection (TAC) for the specified team. Non-OAuth connections are automatically tested after creation via the ConnectionWorker validate/test lifecycle — on success the connection is marked as valid and credentials are persisted. If the test fails, the connection is deleted and a 422 is returned. OAuth connections are created but left unauthorized — the caller must complete the OAuth flow separately.

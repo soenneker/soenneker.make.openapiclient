@@ -82,6 +82,8 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2
                 { "400", global::Soenneker.Make.OpenApiClient.Models.ListFunctionsV2400Response.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Make.OpenApiClient.Models.ListFunctionsV2401Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.ListFunctionsV2403Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.ListFunctionsV2200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.ListFunctionsV2200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -115,6 +117,8 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2
                 { "403", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2403Response.CreateFromDiscriminatorValue },
                 { "409", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2409Response.CreateFromDiscriminatorValue },
                 { "422", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2422Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2201Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2201Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

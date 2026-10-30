@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Templates.Item.Publish
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTemplatesByTemplateIdPublish200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTemplatesByTemplateIdPublish200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTemplatesByTemplateIdPublish200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTemplatesByTemplateIdPublish200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Publishes a private template with a given ID. In the response, it returns all details of the template.

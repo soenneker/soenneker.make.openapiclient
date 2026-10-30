@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Connections.Item.Test
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdTest200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdTest200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdTest200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostConnectionsByConnectionIdTest200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Verifies the connection status. This endpoint usually communicates with the API of the app that includes the given connection and verifies if credentials saved in Make are still valid. It returns the confirmation if the connection is verified (`true`) or not (`false`).

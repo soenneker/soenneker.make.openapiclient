@@ -11,37 +11,62 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiff : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("conflictCount") is { } nullNodeConflictCount && nullNodeConflictCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConflictCount = null;
+            if (parseNode.GetChildNode("files") is { } nullNodeFiles && nullNodeFiles.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Files = null;
+            if (parseNode.GetChildNode("inSync") is { } nullNodeInSync && nullNodeInSync.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InSync = null;
+            if (parseNode.GetChildNode("localAheadCount") is { } nullNodeLocalAheadCount && nullNodeLocalAheadCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LocalAheadCount = null;
+            if (parseNode.GetChildNode("remoteAheadCount") is { } nullNodeRemoteAheadCount && nullNodeRemoteAheadCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RemoteAheadCount = null;
+            if (parseNode.GetChildNode("remoteHeadSha") is { } nullNodeRemoteHeadSha && nullNodeRemoteHeadSha.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RemoteHeadSha = null;
+            if (parseNode.GetChildNode("snapshotAvailable") is { } nullNodeSnapshotAvailable && nullNodeSnapshotAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SnapshotAvailable = null;
+            if (parseNode.GetChildNode("totalChanged") is { } nullNodeTotalChanged && nullNodeTotalChanged.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TotalChanged = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Files flagged as conflicts.</summary>
-        public int? ConflictCount { get; set; }
+        public int? ConflictCount { get => _explicitNullValueConflictCount; set { _explicitNullValueConflictCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conflictCount"); else _explicitNullProperties?.Remove("conflictCount"); } }
+        private int? _explicitNullValueConflictCount = default!;
         /// <summary>Files whose local and remote contents differ, sorted by path.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem>? Files { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem>? Files { get => _explicitNullValueFiles; set { _explicitNullValueFiles = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("files"); else _explicitNullProperties?.Remove("files"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem>? _explicitNullValueFiles = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem> Files { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem> Files { get => _explicitNullValueFiles; set { _explicitNullValueFiles = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("files"); else _explicitNullProperties?.Remove("files"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem> _explicitNullValueFiles = default!;
 #endif
         /// <summary>`true` when no file differs.</summary>
-        public bool? InSync { get; set; }
+        public bool? InSync { get => _explicitNullValueInSync; set { _explicitNullValueInSync = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inSync"); else _explicitNullProperties?.Remove("inSync"); } }
+        private bool? _explicitNullValueInSync = default!;
         /// <summary>Files whose local content moved since the snapshot.</summary>
-        public int? LocalAheadCount { get; set; }
+        public int? LocalAheadCount { get => _explicitNullValueLocalAheadCount; set { _explicitNullValueLocalAheadCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localAheadCount"); else _explicitNullProperties?.Remove("localAheadCount"); } }
+        private int? _explicitNullValueLocalAheadCount = default!;
         /// <summary>Files whose remote content moved since the snapshot.</summary>
-        public int? RemoteAheadCount { get; set; }
+        public int? RemoteAheadCount { get => _explicitNullValueRemoteAheadCount; set { _explicitNullValueRemoteAheadCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("remoteAheadCount"); else _explicitNullProperties?.Remove("remoteAheadCount"); } }
+        private int? _explicitNullValueRemoteAheadCount = default!;
         /// <summary>Current HEAD SHA of the bound branch, or `null` when the branch has no commits.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RemoteHeadSha { get; set; }
+        public string? RemoteHeadSha { get => _explicitNullValueRemoteHeadSha; set { _explicitNullValueRemoteHeadSha = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("remoteHeadSha"); else _explicitNullProperties?.Remove("remoteHeadSha"); } }
+        private string? _explicitNullValueRemoteHeadSha = default!;
 #nullable restore
 #else
-        public string RemoteHeadSha { get; set; }
+        public string RemoteHeadSha { get => _explicitNullValueRemoteHeadSha; set { _explicitNullValueRemoteHeadSha = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("remoteHeadSha"); else _explicitNullProperties?.Remove("remoteHeadSha"); } }
+        private string _explicitNullValueRemoteHeadSha = default!;
 #endif
         /// <summary>`false` until the binding&apos;s first successful push captured a snapshot.</summary>
-        public bool? SnapshotAvailable { get; set; }
+        public bool? SnapshotAvailable { get => _explicitNullValueSnapshotAvailable; set { _explicitNullValueSnapshotAvailable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("snapshotAvailable"); else _explicitNullProperties?.Remove("snapshotAvailable"); } }
+        private bool? _explicitNullValueSnapshotAvailable = default!;
         /// <summary>Number of entries in `files`.</summary>
-        public int? TotalChanged { get; set; }
+        public int? TotalChanged { get => _explicitNullValueTotalChanged; set { _explicitNullValueTotalChanged = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("totalChanged"); else _explicitNullProperties?.Remove("totalChanged"); } }
+        private int? _explicitNullValueTotalChanged = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiff"/> and sets the default values.
         /// </summary>
@@ -57,7 +82,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiff CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiff();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiff(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -92,6 +117,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("remoteHeadSha", RemoteHeadSha);
             writer.WriteBoolValue("snapshotAvailable", SnapshotAvailable);
             writer.WriteIntValue("totalChanged", TotalChanged);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

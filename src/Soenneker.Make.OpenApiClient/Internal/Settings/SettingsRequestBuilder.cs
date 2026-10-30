@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Settings
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalSettings200ResponseSchema>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalSettings200ResponseSchema.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalSettings200ResponseSchema>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalSettings200ResponseSchema.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves details for specified organizations by their IDs. You can specify which columns to return using the `cols[]` query parameter. If `cols[]` is not provided, all available details for the organizations are returned.

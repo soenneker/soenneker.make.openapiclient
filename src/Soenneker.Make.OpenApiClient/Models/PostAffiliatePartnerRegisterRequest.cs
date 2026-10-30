@@ -11,29 +11,46 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PostAffiliatePartnerRegisterRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("applyPromoToLink") is { } nullNodeApplyPromoToLink && nullNodeApplyPromoToLink.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApplyPromoToLink = null;
+            if (parseNode.GetChildNode("partnerCode") is { } nullNodePartnerCode && nullNodePartnerCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PartnerCode = null;
+            if (parseNode.GetChildNode("paypalMeLink") is { } nullNodePaypalMeLink && nullNodePaypalMeLink.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PaypalMeLink = null;
+            if (parseNode.GetChildNode("termsAndConditions") is { } nullNodeTermsAndConditions && nullNodeTermsAndConditions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TermsAndConditions = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether to automatically apply the partner&apos;s promo code to their referral link. Required — the UI form pre-ticks this checkbox, but the server does not substitute a default when the field is omitted.</summary>
-        public bool? ApplyPromoToLink { get; set; }
+        public bool? ApplyPromoToLink { get => _explicitNullValueApplyPromoToLink; set { _explicitNullValueApplyPromoToLink = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applyPromoToLink"); else _explicitNullProperties?.Remove("applyPromoToLink"); } }
+        private bool? _explicitNullValueApplyPromoToLink = default!;
         /// <summary>The partnerCode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PartnerCode { get; set; }
+        public string? PartnerCode { get => _explicitNullValuePartnerCode; set { _explicitNullValuePartnerCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partnerCode"); else _explicitNullProperties?.Remove("partnerCode"); } }
+        private string? _explicitNullValuePartnerCode = default!;
 #nullable restore
 #else
-        public string PartnerCode { get; set; }
+        public string PartnerCode { get => _explicitNullValuePartnerCode; set { _explicitNullValuePartnerCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partnerCode"); else _explicitNullProperties?.Remove("partnerCode"); } }
+        private string _explicitNullValuePartnerCode = default!;
 #endif
         /// <summary>The paypalMeLink property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PaypalMeLink { get; set; }
+        public string? PaypalMeLink { get => _explicitNullValuePaypalMeLink; set { _explicitNullValuePaypalMeLink = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paypalMeLink"); else _explicitNullProperties?.Remove("paypalMeLink"); } }
+        private string? _explicitNullValuePaypalMeLink = default!;
 #nullable restore
 #else
-        public string PaypalMeLink { get; set; }
+        public string PaypalMeLink { get => _explicitNullValuePaypalMeLink; set { _explicitNullValuePaypalMeLink = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("paypalMeLink"); else _explicitNullProperties?.Remove("paypalMeLink"); } }
+        private string _explicitNullValuePaypalMeLink = default!;
 #endif
         /// <summary>The termsAndConditions property</summary>
-        public bool? TermsAndConditions { get; set; }
+        public bool? TermsAndConditions { get => _explicitNullValueTermsAndConditions; set { _explicitNullValueTermsAndConditions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("termsAndConditions"); else _explicitNullProperties?.Remove("termsAndConditions"); } }
+        private bool? _explicitNullValueTermsAndConditions = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAffiliatePartnerRegisterRequest"/> and sets the default values.
         /// </summary>
@@ -49,7 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostAffiliatePartnerRegisterRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostAffiliatePartnerRegisterRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostAffiliatePartnerRegisterRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,6 +93,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("partnerCode", PartnerCode);
             writer.WriteStringValue("paypalMeLink", PaypalMeLink);
             writer.WriteBoolValue("termsAndConditions", TermsAndConditions);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

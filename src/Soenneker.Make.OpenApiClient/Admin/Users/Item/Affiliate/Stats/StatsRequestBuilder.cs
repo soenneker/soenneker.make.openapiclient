@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item.Affiliate.Stats
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateStats200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateStats200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateStats200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersByUserIdAffiliateStats200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves graph data for commisions in the past year for the specified user.

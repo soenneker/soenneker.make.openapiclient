@@ -11,33 +11,54 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetScenariosByScenarioIdExecutionsByExecutionId200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("error") is { } nullNodeError && nullNodeError.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Error = null;
+            if (parseNode.GetChildNode("interruptModuleId") is { } nullNodeInterruptModuleId && nullNodeInterruptModuleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InterruptModuleId = null;
+            if (parseNode.GetChildNode("interruptReason") is { } nullNodeInterruptReason && nullNodeInterruptReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InterruptReason = null;
+            if (parseNode.GetChildNode("outputs") is { } nullNodeOutputs && nullNodeOutputs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Outputs = null;
+            if (parseNode.GetChildNode("resumeAt") is { } nullNodeResumeAt && nullNodeResumeAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResumeAt = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The error property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseError? Error { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseError? Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseError? _explicitNullValueError = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseError Error { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseError Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseError _explicitNullValueError = default!;
 #endif
         /// <summary>Only present when `status` is `PAUSED`: id of the module that parked the execution.</summary>
-        public int? InterruptModuleId { get; set; }
+        public int? InterruptModuleId { get => _explicitNullValueInterruptModuleId; set { _explicitNullValueInterruptModuleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("interruptModuleId"); else _explicitNullProperties?.Remove("interruptModuleId"); } }
+        private int? _explicitNullValueInterruptModuleId = default!;
         /// <summary>Only present when `status` is `PAUSED`: why the execution parked. `sleep` = a timed wait (has `resumeAt`); `hitl` = waiting for human input (no `resumeAt`).</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseInterruptReason? InterruptReason { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseInterruptReason? InterruptReason { get => _explicitNullValueInterruptReason; set { _explicitNullValueInterruptReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("interruptReason"); else _explicitNullProperties?.Remove("interruptReason"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseInterruptReason? _explicitNullValueInterruptReason = default!;
         /// <summary>Outputs of the scenario execution. The structure of the outputs depends on the scenario configuration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseOutputs? Outputs { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseOutputs? Outputs { get => _explicitNullValueOutputs; set { _explicitNullValueOutputs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outputs"); else _explicitNullProperties?.Remove("outputs"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseOutputs? _explicitNullValueOutputs = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseOutputs Outputs { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseOutputs Outputs { get => _explicitNullValueOutputs; set { _explicitNullValueOutputs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outputs"); else _explicitNullProperties?.Remove("outputs"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseOutputs _explicitNullValueOutputs = default!;
 #endif
         /// <summary>Only present when `status` is `PAUSED` and the wait is time-based: the ISO-8601 timestamp the execution is scheduled to resume. Absent for waits on an external signal (e.g. human-in-the-loop).</summary>
-        public DateTimeOffset? ResumeAt { get; set; }
+        public DateTimeOffset? ResumeAt { get => _explicitNullValueResumeAt; set { _explicitNullValueResumeAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resumeAt"); else _explicitNullProperties?.Remove("resumeAt"); } }
+        private DateTimeOffset? _explicitNullValueResumeAt = default!;
         /// <summary>Status of the scenario execution:- RUNNING - SUCCESS - WARNING - ERROR - PAUSED — the execution is parked (interrupted) and waiting to resume </summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseStatus? Status { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200Response"/> and sets the default values.
         /// </summary>
@@ -53,7 +74,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,6 +105,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseOutputs>("outputs", Outputs);
             writer.WriteDateTimeOffsetValue("resumeAt", ResumeAt);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdExecutionsByExecutionId200ResponseStatus>("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

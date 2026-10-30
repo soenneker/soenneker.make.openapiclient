@@ -11,24 +11,37 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferences : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("marketing") is { } nullNodeMarketing && nullNodeMarketing.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Marketing = null;
+            if (parseNode.GetChildNode("native") is { } nullNodeNative && nullNodeNative.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Native = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The marketing property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesMarketingItem>? Marketing { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesMarketingItem>? Marketing { get => _explicitNullValueMarketing; set { _explicitNullValueMarketing = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("marketing"); else _explicitNullProperties?.Remove("marketing"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesMarketingItem>? _explicitNullValueMarketing = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesMarketingItem> Marketing { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesMarketingItem> Marketing { get => _explicitNullValueMarketing; set { _explicitNullValueMarketing = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("marketing"); else _explicitNullProperties?.Remove("marketing"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesMarketingItem> _explicitNullValueMarketing = default!;
 #endif
         /// <summary>The native property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesNativeItem>? Native { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesNativeItem>? Native { get => _explicitNullValueNative; set { _explicitNullValueNative = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("native"); else _explicitNullProperties?.Remove("native"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesNativeItem>? _explicitNullValueNative = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesNativeItem> Native { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesNativeItem> Native { get => _explicitNullValueNative; set { _explicitNullValueNative = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("native"); else _explicitNullProperties?.Remove("native"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesNativeItem> _explicitNullValueNative = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferences"/> and sets the default values.
@@ -45,7 +58,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferences CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferences();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferences(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +81,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesMarketingItem>("marketing", Marketing);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdPreferences200ResponseTeamPreferencesNativeItem>("native", Native);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

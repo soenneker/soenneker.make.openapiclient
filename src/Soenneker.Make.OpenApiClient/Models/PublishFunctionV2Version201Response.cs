@@ -11,14 +11,24 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PublishFunctionV2Version201Response : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("functionVersion") is { } nullNodeFunctionVersion && nullNodeFunctionVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FunctionVersion = null;
+        }
+
         /// <summary>The functionVersion property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201ResponseFunctionVersion? FunctionVersion { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201ResponseFunctionVersion? FunctionVersion { get => _explicitNullValueFunctionVersion; set { _explicitNullValueFunctionVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("functionVersion"); else _explicitNullProperties?.Remove("functionVersion"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201ResponseFunctionVersion? _explicitNullValueFunctionVersion = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201ResponseFunctionVersion FunctionVersion { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201ResponseFunctionVersion FunctionVersion { get => _explicitNullValueFunctionVersion; set { _explicitNullValueFunctionVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("functionVersion"); else _explicitNullProperties?.Remove("functionVersion"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201ResponseFunctionVersion _explicitNullValueFunctionVersion = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +38,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -48,7 +58,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201ResponseFunctionVersion>("functionVersion", FunctionVersion);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201ResponseFunctionVersion>("functionVersion", FunctionVersion);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

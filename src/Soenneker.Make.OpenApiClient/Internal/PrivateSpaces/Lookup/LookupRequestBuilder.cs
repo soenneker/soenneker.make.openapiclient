@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.PrivateSpaces.Lookup
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalPrivateSpacesLookup200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalPrivateSpacesLookup200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalPrivateSpacesLookup200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalPrivateSpacesLookup200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Finds the private space (single-user team) a user owns within an organization. When `accountName` is given, `hasAccount` in the response reports whether the space already has a `users.companyAccount` row with that `account_name` — this lets a caller avoid re-creating a connection that already exists. When `accountName` is omitted, `hasAccount` is `null` (&quot;not evaluated&quot;), not `false` — a caller that doesn&apos;t ask for the check should not read `false` as &quot;checked and absent&quot;.

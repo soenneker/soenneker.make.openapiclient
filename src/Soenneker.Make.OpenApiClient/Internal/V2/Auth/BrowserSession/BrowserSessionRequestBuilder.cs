@@ -53,6 +53,8 @@ namespace Soenneker.Make.OpenApiClient.Internal.V2.Auth.BrowserSession
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "401", global::Soenneker.Make.OpenApiClient.Models.GetInternalV2AuthBrowserSession401Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalV2AuthBrowserSession200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalV2AuthBrowserSession200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

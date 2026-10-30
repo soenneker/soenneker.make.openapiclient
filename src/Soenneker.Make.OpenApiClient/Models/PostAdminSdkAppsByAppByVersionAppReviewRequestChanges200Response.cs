@@ -11,16 +11,26 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("review") is { } nullNodeReview && nullNodeReview.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Review = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>State of the new SDK app review flow for one app version. The lifecycle phase either comes from the new flow&apos;s own storage or, while the new flow has never touched the app (`derivedFromLegacy: true`), is derived from the legacy review state (`approved`/`in_review` flags and the legacy review status). Every lifecycle step is traced to Trackman with the legacy event closest to it: the submission that requests the review as `apps_review_requested`, every other step (including the reviewer&apos;s) as `apps_review_form_updated`, whose `review_form.event` is the timeline event the step appended. Auto-saving the draft (`PUT …/app-review/form`) is not a step and is not traced.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReview? Review { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReview? Review { get => _explicitNullValueReview; set { _explicitNullValueReview = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("review"); else _explicitNullProperties?.Remove("review"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReview? _explicitNullValueReview = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReview Review { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReview Review { get => _explicitNullValueReview; set { _explicitNullValueReview = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("review"); else _explicitNullProperties?.Remove("review"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReview _explicitNullValueReview = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200Response"/> and sets the default values.
@@ -37,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -58,6 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200ResponseReview>("review", Review);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

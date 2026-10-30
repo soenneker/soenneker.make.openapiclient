@@ -74,7 +74,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenarioLabels200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenarioLabels200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenarioLabels200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenarioLabels200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new team label. Requires `scenario edit` on the team. Label names are unique (case-insensitive) within a team.
@@ -94,7 +94,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabels200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabels200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabels200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabels200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the colour-coded labels owned by a team, sorted by name (case-insensitive) ascending. Each label carries a `scenariosCount` — the number of non-trashed scenarios in the team that currently carry it.

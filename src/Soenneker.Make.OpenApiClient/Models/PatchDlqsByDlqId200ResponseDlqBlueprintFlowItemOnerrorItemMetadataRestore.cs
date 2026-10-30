@@ -11,16 +11,26 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemOnerrorItemMetadataRestore : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("retry") is { } nullNodeRetry && nullNodeRetry.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Retry = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The retry property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemOnerrorItemMetadataRestoreRetry? Retry { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemOnerrorItemMetadataRestoreRetry? Retry { get => _explicitNullValueRetry; set { _explicitNullValueRetry = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("retry"); else _explicitNullProperties?.Remove("retry"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemOnerrorItemMetadataRestoreRetry? _explicitNullValueRetry = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemOnerrorItemMetadataRestoreRetry Retry { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemOnerrorItemMetadataRestoreRetry Retry { get => _explicitNullValueRetry; set { _explicitNullValueRetry = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("retry"); else _explicitNullProperties?.Remove("retry"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemOnerrorItemMetadataRestoreRetry _explicitNullValueRetry = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemOnerrorItemMetadataRestore"/> and sets the default values.
@@ -37,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemOnerrorItemMetadataRestore CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemOnerrorItemMetadataRestore();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemOnerrorItemMetadataRestore(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -58,6 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchDlqsByDlqId200ResponseDlqBlueprintFlowItemOnerrorItemMetadataRestoreRetry>("retry", Retry);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

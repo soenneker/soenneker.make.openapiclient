@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Item.UserOrganizationRoles.Item.Tra
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserOrganizationRolesByOrganizationIdTransfer200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserOrganizationRolesByOrganizationIdTransfer200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserOrganizationRolesByOrganizationIdTransfer200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserOrganizationRolesByOrganizationIdTransfer200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Transfer organization ownership to the user with the specified `userId`. Only organization owner can transfer their ownership to another user.

@@ -57,6 +57,8 @@ namespace Soenneker.Make.OpenApiClient.Admin.Functions.V2.Item.Restore
                 { "401", global::Soenneker.Make.OpenApiClient.Models.PostAdminFunctionsV2ByFunctionIdRestore401Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PostAdminFunctionsV2ByFunctionIdRestore403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.PostAdminFunctionsV2ByFunctionIdRestore404Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAdminFunctionsV2ByFunctionIdRestore200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAdminFunctionsV2ByFunctionIdRestore200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

@@ -55,6 +55,8 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher.Logo
             {
                 { "403", global::Soenneker.Make.OpenApiClient.Models.DeleteAdminSdkAppsByAppByVersionPublisherLogo403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.DeleteAdminSdkAppsByAppByVersionPublisherLogo404Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteAdminSdkAppsByAppByVersionPublisherLogo200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteAdminSdkAppsByAppByVersionPublisherLogo200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -80,6 +82,8 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher.Logo
             {
                 { "403", global::Soenneker.Make.OpenApiClient.Models.GetAdminSdkAppsByAppByVersionPublisherLogo403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.GetAdminSdkAppsByAppByVersionPublisherLogo404Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -111,6 +115,8 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher.Logo
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo404Response.CreateFromDiscriminatorValue },
                 { "413", global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo413ResponseSchema.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

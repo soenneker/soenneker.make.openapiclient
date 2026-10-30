@@ -64,7 +64,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Connections.Item.AccessList.Us
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdConnectionsByConnectionIdAccessListUsers200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Adds a user to a connection&apos;s access list (entity ACL) with a role.Requires `entity manage` on the connection, and the target user must already be a member of the connection&apos;s team. Returns `409` when the user is already on the access list and `400` when they are not a team member or the feature is disabled.

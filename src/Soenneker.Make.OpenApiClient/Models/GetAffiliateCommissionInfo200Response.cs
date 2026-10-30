@@ -11,65 +11,123 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetAffiliateCommissionInfo200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("availablePayout") is { } nullNodeAvailablePayout && nullNodeAvailablePayout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AvailablePayout = null;
+            if (parseNode.GetChildNode("availablePayoutDistinctOrgs") is { } nullNodeAvailablePayoutDistinctOrgs && nullNodeAvailablePayoutDistinctOrgs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AvailablePayoutDistinctOrgs = null;
+            if (parseNode.GetChildNode("conversionRateOrgsAllRange") is { } nullNodeConversionRateOrgsAllRange && nullNodeConversionRateOrgsAllRange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConversionRateOrgsAllRange = null;
+            if (parseNode.GetChildNode("conversionRateOrgsAllTotal") is { } nullNodeConversionRateOrgsAllTotal && nullNodeConversionRateOrgsAllTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConversionRateOrgsAllTotal = null;
+            if (parseNode.GetChildNode("conversionRateOrgsPayingRange") is { } nullNodeConversionRateOrgsPayingRange && nullNodeConversionRateOrgsPayingRange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConversionRateOrgsPayingRange = null;
+            if (parseNode.GetChildNode("conversionRateOrgsPayingTotal") is { } nullNodeConversionRateOrgsPayingTotal && nullNodeConversionRateOrgsPayingTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConversionRateOrgsPayingTotal = null;
+            if (parseNode.GetChildNode("conversionRateUsersAllRange") is { } nullNodeConversionRateUsersAllRange && nullNodeConversionRateUsersAllRange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConversionRateUsersAllRange = null;
+            if (parseNode.GetChildNode("conversionRateUsersAllTotal") is { } nullNodeConversionRateUsersAllTotal && nullNodeConversionRateUsersAllTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConversionRateUsersAllTotal = null;
+            if (parseNode.GetChildNode("conversionRateUsersPayingRange") is { } nullNodeConversionRateUsersPayingRange && nullNodeConversionRateUsersPayingRange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConversionRateUsersPayingRange = null;
+            if (parseNode.GetChildNode("conversionRateUsersPayingTotal") is { } nullNodeConversionRateUsersPayingTotal && nullNodeConversionRateUsersPayingTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConversionRateUsersPayingTotal = null;
+            if (parseNode.GetChildNode("earningsRange") is { } nullNodeEarningsRange && nullNodeEarningsRange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EarningsRange = null;
+            if (parseNode.GetChildNode("earningsTotal") is { } nullNodeEarningsTotal && nullNodeEarningsTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EarningsTotal = null;
+            if (parseNode.GetChildNode("isPayoutAvailable") is { } nullNodeIsPayoutAvailable && nullNodeIsPayoutAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsPayoutAvailable = null;
+            if (parseNode.GetChildNode("isPayoutRequested") is { } nullNodeIsPayoutRequested && nullNodeIsPayoutRequested.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsPayoutRequested = null;
+            if (parseNode.GetChildNode("minimumOrganizations") is { } nullNodeMinimumOrganizations && nullNodeMinimumOrganizations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MinimumOrganizations = null;
+            if (parseNode.GetChildNode("minimumPayout") is { } nullNodeMinimumPayout && nullNodeMinimumPayout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MinimumPayout = null;
+            if (parseNode.GetChildNode("orgsBroughtAllRange") is { } nullNodeOrgsBroughtAllRange && nullNodeOrgsBroughtAllRange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrgsBroughtAllRange = null;
+            if (parseNode.GetChildNode("orgsBroughtAllTotal") is { } nullNodeOrgsBroughtAllTotal && nullNodeOrgsBroughtAllTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrgsBroughtAllTotal = null;
+            if (parseNode.GetChildNode("orgsBroughtPayingRange") is { } nullNodeOrgsBroughtPayingRange && nullNodeOrgsBroughtPayingRange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrgsBroughtPayingRange = null;
+            if (parseNode.GetChildNode("orgsBroughtPayingTotal") is { } nullNodeOrgsBroughtPayingTotal && nullNodeOrgsBroughtPayingTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrgsBroughtPayingTotal = null;
+            if (parseNode.GetChildNode("partnerCode") is { } nullNodePartnerCode && nullNodePartnerCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PartnerCode = null;
+            if (parseNode.GetChildNode("usersBroughtAllRange") is { } nullNodeUsersBroughtAllRange && nullNodeUsersBroughtAllRange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsersBroughtAllRange = null;
+            if (parseNode.GetChildNode("usersBroughtAllTotal") is { } nullNodeUsersBroughtAllTotal && nullNodeUsersBroughtAllTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsersBroughtAllTotal = null;
+            if (parseNode.GetChildNode("usersBroughtPayingRange") is { } nullNodeUsersBroughtPayingRange && nullNodeUsersBroughtPayingRange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsersBroughtPayingRange = null;
+            if (parseNode.GetChildNode("usersBroughtPayingTotal") is { } nullNodeUsersBroughtPayingTotal && nullNodeUsersBroughtPayingTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsersBroughtPayingTotal = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The availablePayout property</summary>
-        public double? AvailablePayout { get; set; }
+        public double? AvailablePayout { get => _explicitNullValueAvailablePayout; set { _explicitNullValueAvailablePayout = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("availablePayout"); else _explicitNullProperties?.Remove("availablePayout"); } }
+        private double? _explicitNullValueAvailablePayout = default!;
         /// <summary>The availablePayoutDistinctOrgs property</summary>
-        public int? AvailablePayoutDistinctOrgs { get; set; }
+        public int? AvailablePayoutDistinctOrgs { get => _explicitNullValueAvailablePayoutDistinctOrgs; set { _explicitNullValueAvailablePayoutDistinctOrgs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("availablePayoutDistinctOrgs"); else _explicitNullProperties?.Remove("availablePayoutDistinctOrgs"); } }
+        private int? _explicitNullValueAvailablePayoutDistinctOrgs = default!;
         /// <summary>The conversionRateOrgsAllRange property</summary>
-        public double? ConversionRateOrgsAllRange { get; set; }
+        public double? ConversionRateOrgsAllRange { get => _explicitNullValueConversionRateOrgsAllRange; set { _explicitNullValueConversionRateOrgsAllRange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conversionRateOrgsAllRange"); else _explicitNullProperties?.Remove("conversionRateOrgsAllRange"); } }
+        private double? _explicitNullValueConversionRateOrgsAllRange = default!;
         /// <summary>The conversionRateOrgsAllTotal property</summary>
-        public double? ConversionRateOrgsAllTotal { get; set; }
+        public double? ConversionRateOrgsAllTotal { get => _explicitNullValueConversionRateOrgsAllTotal; set { _explicitNullValueConversionRateOrgsAllTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conversionRateOrgsAllTotal"); else _explicitNullProperties?.Remove("conversionRateOrgsAllTotal"); } }
+        private double? _explicitNullValueConversionRateOrgsAllTotal = default!;
         /// <summary>The conversionRateOrgsPayingRange property</summary>
-        public double? ConversionRateOrgsPayingRange { get; set; }
+        public double? ConversionRateOrgsPayingRange { get => _explicitNullValueConversionRateOrgsPayingRange; set { _explicitNullValueConversionRateOrgsPayingRange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conversionRateOrgsPayingRange"); else _explicitNullProperties?.Remove("conversionRateOrgsPayingRange"); } }
+        private double? _explicitNullValueConversionRateOrgsPayingRange = default!;
         /// <summary>The conversionRateOrgsPayingTotal property</summary>
-        public double? ConversionRateOrgsPayingTotal { get; set; }
+        public double? ConversionRateOrgsPayingTotal { get => _explicitNullValueConversionRateOrgsPayingTotal; set { _explicitNullValueConversionRateOrgsPayingTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conversionRateOrgsPayingTotal"); else _explicitNullProperties?.Remove("conversionRateOrgsPayingTotal"); } }
+        private double? _explicitNullValueConversionRateOrgsPayingTotal = default!;
         /// <summary>The conversionRateUsersAllRange property</summary>
-        public double? ConversionRateUsersAllRange { get; set; }
+        public double? ConversionRateUsersAllRange { get => _explicitNullValueConversionRateUsersAllRange; set { _explicitNullValueConversionRateUsersAllRange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conversionRateUsersAllRange"); else _explicitNullProperties?.Remove("conversionRateUsersAllRange"); } }
+        private double? _explicitNullValueConversionRateUsersAllRange = default!;
         /// <summary>The conversionRateUsersAllTotal property</summary>
-        public double? ConversionRateUsersAllTotal { get; set; }
+        public double? ConversionRateUsersAllTotal { get => _explicitNullValueConversionRateUsersAllTotal; set { _explicitNullValueConversionRateUsersAllTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conversionRateUsersAllTotal"); else _explicitNullProperties?.Remove("conversionRateUsersAllTotal"); } }
+        private double? _explicitNullValueConversionRateUsersAllTotal = default!;
         /// <summary>The conversionRateUsersPayingRange property</summary>
-        public double? ConversionRateUsersPayingRange { get; set; }
+        public double? ConversionRateUsersPayingRange { get => _explicitNullValueConversionRateUsersPayingRange; set { _explicitNullValueConversionRateUsersPayingRange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conversionRateUsersPayingRange"); else _explicitNullProperties?.Remove("conversionRateUsersPayingRange"); } }
+        private double? _explicitNullValueConversionRateUsersPayingRange = default!;
         /// <summary>The conversionRateUsersPayingTotal property</summary>
-        public double? ConversionRateUsersPayingTotal { get; set; }
+        public double? ConversionRateUsersPayingTotal { get => _explicitNullValueConversionRateUsersPayingTotal; set { _explicitNullValueConversionRateUsersPayingTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conversionRateUsersPayingTotal"); else _explicitNullProperties?.Remove("conversionRateUsersPayingTotal"); } }
+        private double? _explicitNullValueConversionRateUsersPayingTotal = default!;
         /// <summary>The earningsRange property</summary>
-        public double? EarningsRange { get; set; }
+        public double? EarningsRange { get => _explicitNullValueEarningsRange; set { _explicitNullValueEarningsRange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("earningsRange"); else _explicitNullProperties?.Remove("earningsRange"); } }
+        private double? _explicitNullValueEarningsRange = default!;
         /// <summary>The earningsTotal property</summary>
-        public double? EarningsTotal { get; set; }
+        public double? EarningsTotal { get => _explicitNullValueEarningsTotal; set { _explicitNullValueEarningsTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("earningsTotal"); else _explicitNullProperties?.Remove("earningsTotal"); } }
+        private double? _explicitNullValueEarningsTotal = default!;
         /// <summary>The isPayoutAvailable property</summary>
-        public bool? IsPayoutAvailable { get; set; }
+        public bool? IsPayoutAvailable { get => _explicitNullValueIsPayoutAvailable; set { _explicitNullValueIsPayoutAvailable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isPayoutAvailable"); else _explicitNullProperties?.Remove("isPayoutAvailable"); } }
+        private bool? _explicitNullValueIsPayoutAvailable = default!;
         /// <summary>The isPayoutRequested property</summary>
-        public bool? IsPayoutRequested { get; set; }
+        public bool? IsPayoutRequested { get => _explicitNullValueIsPayoutRequested; set { _explicitNullValueIsPayoutRequested = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isPayoutRequested"); else _explicitNullProperties?.Remove("isPayoutRequested"); } }
+        private bool? _explicitNullValueIsPayoutRequested = default!;
         /// <summary>The minimumOrganizations property</summary>
-        public int? MinimumOrganizations { get; set; }
+        public int? MinimumOrganizations { get => _explicitNullValueMinimumOrganizations; set { _explicitNullValueMinimumOrganizations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("minimumOrganizations"); else _explicitNullProperties?.Remove("minimumOrganizations"); } }
+        private int? _explicitNullValueMinimumOrganizations = default!;
         /// <summary>The minimumPayout property</summary>
-        public double? MinimumPayout { get; set; }
+        public double? MinimumPayout { get => _explicitNullValueMinimumPayout; set { _explicitNullValueMinimumPayout = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("minimumPayout"); else _explicitNullProperties?.Remove("minimumPayout"); } }
+        private double? _explicitNullValueMinimumPayout = default!;
         /// <summary>The orgsBroughtAllRange property</summary>
-        public int? OrgsBroughtAllRange { get; set; }
+        public int? OrgsBroughtAllRange { get => _explicitNullValueOrgsBroughtAllRange; set { _explicitNullValueOrgsBroughtAllRange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orgsBroughtAllRange"); else _explicitNullProperties?.Remove("orgsBroughtAllRange"); } }
+        private int? _explicitNullValueOrgsBroughtAllRange = default!;
         /// <summary>The orgsBroughtAllTotal property</summary>
-        public int? OrgsBroughtAllTotal { get; set; }
+        public int? OrgsBroughtAllTotal { get => _explicitNullValueOrgsBroughtAllTotal; set { _explicitNullValueOrgsBroughtAllTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orgsBroughtAllTotal"); else _explicitNullProperties?.Remove("orgsBroughtAllTotal"); } }
+        private int? _explicitNullValueOrgsBroughtAllTotal = default!;
         /// <summary>The orgsBroughtPayingRange property</summary>
-        public int? OrgsBroughtPayingRange { get; set; }
+        public int? OrgsBroughtPayingRange { get => _explicitNullValueOrgsBroughtPayingRange; set { _explicitNullValueOrgsBroughtPayingRange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orgsBroughtPayingRange"); else _explicitNullProperties?.Remove("orgsBroughtPayingRange"); } }
+        private int? _explicitNullValueOrgsBroughtPayingRange = default!;
         /// <summary>The orgsBroughtPayingTotal property</summary>
-        public int? OrgsBroughtPayingTotal { get; set; }
+        public int? OrgsBroughtPayingTotal { get => _explicitNullValueOrgsBroughtPayingTotal; set { _explicitNullValueOrgsBroughtPayingTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("orgsBroughtPayingTotal"); else _explicitNullProperties?.Remove("orgsBroughtPayingTotal"); } }
+        private int? _explicitNullValueOrgsBroughtPayingTotal = default!;
         /// <summary>The partnerCode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PartnerCode { get; set; }
+        public string? PartnerCode { get => _explicitNullValuePartnerCode; set { _explicitNullValuePartnerCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partnerCode"); else _explicitNullProperties?.Remove("partnerCode"); } }
+        private string? _explicitNullValuePartnerCode = default!;
 #nullable restore
 #else
-        public string PartnerCode { get; set; }
+        public string PartnerCode { get => _explicitNullValuePartnerCode; set { _explicitNullValuePartnerCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partnerCode"); else _explicitNullProperties?.Remove("partnerCode"); } }
+        private string _explicitNullValuePartnerCode = default!;
 #endif
         /// <summary>The usersBroughtAllRange property</summary>
-        public int? UsersBroughtAllRange { get; set; }
+        public int? UsersBroughtAllRange { get => _explicitNullValueUsersBroughtAllRange; set { _explicitNullValueUsersBroughtAllRange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersBroughtAllRange"); else _explicitNullProperties?.Remove("usersBroughtAllRange"); } }
+        private int? _explicitNullValueUsersBroughtAllRange = default!;
         /// <summary>The usersBroughtAllTotal property</summary>
-        public int? UsersBroughtAllTotal { get; set; }
+        public int? UsersBroughtAllTotal { get => _explicitNullValueUsersBroughtAllTotal; set { _explicitNullValueUsersBroughtAllTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersBroughtAllTotal"); else _explicitNullProperties?.Remove("usersBroughtAllTotal"); } }
+        private int? _explicitNullValueUsersBroughtAllTotal = default!;
         /// <summary>The usersBroughtPayingRange property</summary>
-        public int? UsersBroughtPayingRange { get; set; }
+        public int? UsersBroughtPayingRange { get => _explicitNullValueUsersBroughtPayingRange; set { _explicitNullValueUsersBroughtPayingRange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersBroughtPayingRange"); else _explicitNullProperties?.Remove("usersBroughtPayingRange"); } }
+        private int? _explicitNullValueUsersBroughtPayingRange = default!;
         /// <summary>The usersBroughtPayingTotal property</summary>
-        public int? UsersBroughtPayingTotal { get; set; }
+        public int? UsersBroughtPayingTotal { get => _explicitNullValueUsersBroughtPayingTotal; set { _explicitNullValueUsersBroughtPayingTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersBroughtPayingTotal"); else _explicitNullProperties?.Remove("usersBroughtPayingTotal"); } }
+        private int? _explicitNullValueUsersBroughtPayingTotal = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissionInfo200Response"/> and sets the default values.
         /// </summary>
@@ -85,7 +143,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissionInfo200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissionInfo200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetAffiliateCommissionInfo200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -154,6 +212,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("usersBroughtAllTotal", UsersBroughtAllTotal);
             writer.WriteIntValue("usersBroughtPayingRange", UsersBroughtPayingRange);
             writer.WriteIntValue("usersBroughtPayingTotal", UsersBroughtPayingTotal);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

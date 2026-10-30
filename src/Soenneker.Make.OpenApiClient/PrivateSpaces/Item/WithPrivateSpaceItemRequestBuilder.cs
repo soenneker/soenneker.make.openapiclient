@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetPrivateSpacesByPrivateSpaceId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a private space. Currently supports changing the operations limit (credit limit). Requires the `personal team manage` organization permission (admins: `organization edit`) and the `private-spaces:write` scope.
@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.PrivateSpaces.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesByPrivateSpaceId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns the details of a single private space. Requires the `private-spaces:read` scope. Users with the `personal team manage` organization permission can get any private space in the organization (admins: `organization view`). Other users need the `personal team own view` organization permission and can only get their own private space: callers lacking the permission receive `403` (`IM002`), and anyone else&apos;s private space returns `404`. When called with an API token or OAuth, the caller must also be a member of the private space (its owner or an observer); otherwise the API responds with `403`.

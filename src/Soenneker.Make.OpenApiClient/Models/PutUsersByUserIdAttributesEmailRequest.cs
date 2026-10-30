@@ -11,32 +11,48 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PutUsersByUserIdAttributesEmailRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("currentEmailAddress") is { } nullNodeCurrentEmailAddress && nullNodeCurrentEmailAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentEmailAddress = null;
+            if (parseNode.GetChildNode("currentPassword") is { } nullNodeCurrentPassword && nullNodeCurrentPassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentPassword = null;
+            if (parseNode.GetChildNode("newEmailAddress") is { } nullNodeNewEmailAddress && nullNodeNewEmailAddress.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewEmailAddress = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>User&apos;s current email address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CurrentEmailAddress { get; set; }
+        public string? CurrentEmailAddress { get => _explicitNullValueCurrentEmailAddress; set { _explicitNullValueCurrentEmailAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentEmailAddress"); else _explicitNullProperties?.Remove("currentEmailAddress"); } }
+        private string? _explicitNullValueCurrentEmailAddress = default!;
 #nullable restore
 #else
-        public string CurrentEmailAddress { get; set; }
+        public string CurrentEmailAddress { get => _explicitNullValueCurrentEmailAddress; set { _explicitNullValueCurrentEmailAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentEmailAddress"); else _explicitNullProperties?.Remove("currentEmailAddress"); } }
+        private string _explicitNullValueCurrentEmailAddress = default!;
 #endif
         /// <summary>User&apos;s current password.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CurrentPassword { get; set; }
+        public string? CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
+        private string? _explicitNullValueCurrentPassword = default!;
 #nullable restore
 #else
-        public string CurrentPassword { get; set; }
+        public string CurrentPassword { get => _explicitNullValueCurrentPassword; set { _explicitNullValueCurrentPassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentPassword"); else _explicitNullProperties?.Remove("currentPassword"); } }
+        private string _explicitNullValueCurrentPassword = default!;
 #endif
         /// <summary>User&apos;s new email address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NewEmailAddress { get; set; }
+        public string? NewEmailAddress { get => _explicitNullValueNewEmailAddress; set { _explicitNullValueNewEmailAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newEmailAddress"); else _explicitNullProperties?.Remove("newEmailAddress"); } }
+        private string? _explicitNullValueNewEmailAddress = default!;
 #nullable restore
 #else
-        public string NewEmailAddress { get; set; }
+        public string NewEmailAddress { get => _explicitNullValueNewEmailAddress; set { _explicitNullValueNewEmailAddress = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newEmailAddress"); else _explicitNullProperties?.Remove("newEmailAddress"); } }
+        private string _explicitNullValueNewEmailAddress = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmailRequest"/> and sets the default values.
@@ -53,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmailRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmailRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmailRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,6 +94,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("currentEmailAddress", CurrentEmailAddress);
             writer.WriteStringValue("currentPassword", CurrentPassword);
             writer.WriteStringValue("newEmailAddress", NewEmailAddress);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

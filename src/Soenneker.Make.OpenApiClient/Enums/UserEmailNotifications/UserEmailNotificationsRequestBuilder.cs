@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Enums.UserEmailNotifications
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserEmailNotifications200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserEmailNotifications200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserEmailNotifications200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserEmailNotifications200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the list of available email notification settings and their `notificationId` values. The language of the notification settings descriptions is set according to user language settings by default. You can specify a different language for the notification settings descriptions with the `language` parameter.

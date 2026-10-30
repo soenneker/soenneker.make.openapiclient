@@ -54,6 +54,8 @@ namespace Soenneker.Make.OpenApiClient.Imt.Apps.Item.Item.ModulesWithCredentials
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "404", global::Soenneker.Make.OpenApiClient.Models.GetImtAppsByNameByVersionModulesWithCredentials404Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetImtAppsByNameByVersionModulesWithCredentials200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetImtAppsByNameByVersionModulesWithCredentials200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

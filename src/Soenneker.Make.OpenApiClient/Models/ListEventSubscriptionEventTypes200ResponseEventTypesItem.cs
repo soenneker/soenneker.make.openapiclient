@@ -11,28 +11,45 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ListEventSubscriptionEventTypes200ResponseEventTypesItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("defaultPayloadVersion") is { } nullNodeDefaultPayloadVersion && nullNodeDefaultPayloadVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DefaultPayloadVersion = null;
+            if (parseNode.GetChildNode("payloads") is { } nullNodePayloads && nullNodePayloads.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Payloads = null;
+            if (parseNode.GetChildNode("supportsTeamSelection") is { } nullNodeSupportsTeamSelection && nullNodeSupportsTeamSelection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SupportsTeamSelection = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The version new subscriptions receive. Existing subscriptions keep their version.</summary>
-        public int? DefaultPayloadVersion { get; set; }
+        public int? DefaultPayloadVersion { get => _explicitNullValueDefaultPayloadVersion; set { _explicitNullValueDefaultPayloadVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("defaultPayloadVersion"); else _explicitNullProperties?.Remove("defaultPayloadVersion"); } }
+        private int? _explicitNullValueDefaultPayloadVersion = default!;
         /// <summary>The payloads property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionEventTypes200ResponseEventTypesItemPayloadsItem>? Payloads { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionEventTypes200ResponseEventTypesItemPayloadsItem>? Payloads { get => _explicitNullValuePayloads; set { _explicitNullValuePayloads = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("payloads"); else _explicitNullProperties?.Remove("payloads"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionEventTypes200ResponseEventTypesItemPayloadsItem>? _explicitNullValuePayloads = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionEventTypes200ResponseEventTypesItemPayloadsItem> Payloads { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionEventTypes200ResponseEventTypesItemPayloadsItem> Payloads { get => _explicitNullValuePayloads; set { _explicitNullValuePayloads = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("payloads"); else _explicitNullProperties?.Remove("payloads"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionEventTypes200ResponseEventTypesItemPayloadsItem> _explicitNullValuePayloads = default!;
 #endif
         /// <summary>If `true`, a subscription&apos;s `teams` selection filters this event type.</summary>
-        public bool? SupportsTeamSelection { get; set; }
+        public bool? SupportsTeamSelection { get => _explicitNullValueSupportsTeamSelection; set { _explicitNullValueSupportsTeamSelection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportsTeamSelection"); else _explicitNullProperties?.Remove("supportsTeamSelection"); } }
+        private bool? _explicitNullValueSupportsTeamSelection = default!;
         /// <summary>The type property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Type { get; set; }
+        public string? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private string? _explicitNullValueType = default!;
 #nullable restore
 #else
-        public string Type { get; set; }
+        public string Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private string _explicitNullValueType = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionEventTypes200ResponseEventTypesItem"/> and sets the default values.
@@ -49,7 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionEventTypes200ResponseEventTypesItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionEventTypes200ResponseEventTypesItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionEventTypes200ResponseEventTypesItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,6 +93,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionEventTypes200ResponseEventTypesItemPayloadsItem>("payloads", Payloads);
             writer.WriteBoolValue("supportsTeamSelection", SupportsTeamSelection);
             writer.WriteStringValue("type", Type);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

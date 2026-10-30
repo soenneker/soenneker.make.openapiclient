@@ -175,7 +175,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves all available properties of a scenario with a given ID. The returned details do not include a scenario blueprint. If you want to get a scenario blueprint, refer to the [Get scenario blueprint](./blueprints/get--scenarios--scenarioid--blueprint.md) endpoint.
@@ -193,7 +193,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a scenario with a given ID by passing new values in the request body. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated scenario including properties that were not changed.
@@ -217,6 +217,8 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "409", global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId409Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosByScenarioId200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

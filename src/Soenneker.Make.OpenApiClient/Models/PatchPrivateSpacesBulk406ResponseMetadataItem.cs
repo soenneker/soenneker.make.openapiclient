@@ -11,29 +11,46 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PatchPrivateSpacesBulk406ResponseMetadataItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("data") is { } nullNodeData && nullNodeData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Data = null;
+            if (parseNode.GetChildNode("normalTextFormat") is { } nullNodeNormalTextFormat && nullNodeNormalTextFormat.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NormalTextFormat = null;
+            if (parseNode.GetChildNode("textdata") is { } nullNodeTextdata && nullNodeTextdata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Textdata = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemDataItem>? Data { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemDataItem>? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemDataItem>? _explicitNullValueData = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemDataItem> Data { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemDataItem> Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemDataItem> _explicitNullValueData = default!;
 #endif
         /// <summary>The normalTextFormat property</summary>
-        public bool? NormalTextFormat { get; set; }
+        public bool? NormalTextFormat { get => _explicitNullValueNormalTextFormat; set { _explicitNullValueNormalTextFormat = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("normalTextFormat"); else _explicitNullProperties?.Remove("normalTextFormat"); } }
+        private bool? _explicitNullValueNormalTextFormat = default!;
         /// <summary>The textdata property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemTextdata? Textdata { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemTextdata? Textdata { get => _explicitNullValueTextdata; set { _explicitNullValueTextdata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("textdata"); else _explicitNullProperties?.Remove("textdata"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemTextdata? _explicitNullValueTextdata = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemTextdata Textdata { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemTextdata Textdata { get => _explicitNullValueTextdata; set { _explicitNullValueTextdata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("textdata"); else _explicitNullProperties?.Remove("textdata"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemTextdata _explicitNullValueTextdata = default!;
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.BulkSettingLowLimitType? Type { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.BulkSettingLowLimitType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.BulkSettingLowLimitType? _explicitNullValueType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItem"/> and sets the default values.
         /// </summary>
@@ -49,7 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,6 +93,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("normalTextFormat", NormalTextFormat);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchPrivateSpacesBulk406ResponseMetadataItemTextdata>("textdata", Textdata);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.BulkSettingLowLimitType>("type", Type);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

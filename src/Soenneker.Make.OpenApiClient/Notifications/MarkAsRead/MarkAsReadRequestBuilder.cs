@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Notifications.MarkAsRead
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostNotificationsMarkAsRead200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Marks all notifications as read and returns the IDs of the updated notifications in the response.

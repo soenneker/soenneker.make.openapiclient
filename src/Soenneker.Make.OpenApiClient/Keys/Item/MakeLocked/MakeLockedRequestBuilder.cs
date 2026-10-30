@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Keys.Item.MakeLocked
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeLocked200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeLocked200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeLocked200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostKeysByKeyIdMakeLocked200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Restricts the key&apos;s visibility to its access list (`visibility: locked`). The caller becomes the sole adminof the locked key.Caller rule: only the key&apos;s author can lock it, and that author must still be a member of the key&apos;steam. A key without an author cannot be locked.The operation is idempotent — locking an already locked key succeeds without any change; the caller ruleabove still applies.Requires the *Locked connections* feature to be enabled for the organization.

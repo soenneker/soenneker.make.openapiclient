@@ -68,7 +68,7 @@ namespace Soenneker.Make.OpenApiClient.CustomPropertyStructures
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCustomPropertyStructures200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a custom properties structure. You can have only one custom properties structure for each combination of `associatedType`, `belongerType`and `belongerId` values.For example, you can create only one custom properties structure for scenarios in a specific organization.To create a structure for custom scenario properties, fill in the request body:- `associatedType`: `scenario`- `belongerType`: `organization`Check out the example API call.To define the custom properties structure items, use the API call [to create custom properties structure item](./structure-items/post--custom-property-structures--custompropertystructureid--custom-property-structure-items.md).
@@ -88,7 +88,7 @@ namespace Soenneker.Make.OpenApiClient.CustomPropertyStructures
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCustomPropertyStructures200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets a list of custom properties structures in the organization.

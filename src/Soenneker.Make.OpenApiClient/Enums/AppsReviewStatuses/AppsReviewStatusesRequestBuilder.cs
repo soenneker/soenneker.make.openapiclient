@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Enums.AppsReviewStatuses
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetEnumsAppsReviewStatuses200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the list of statuses that Make assigns to custom apps.  - `requestAccepted`: Make has received the request for a custom app review. - `inProgress`: The custom app review is in progress. - `feedbackSent`: The Make app developers have sent their feedback to the developer of the custom app. - `completed`: - `waitingForRelease`: - `declined`: The custom app publishing has been declined by Make. The reasons for that could be: 

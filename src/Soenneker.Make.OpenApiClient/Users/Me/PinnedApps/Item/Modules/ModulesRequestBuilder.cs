@@ -64,7 +64,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.Item.Modules
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedAppsByAppNameModules200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedAppsByAppNameModules200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedAppsByAppNameModules200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostUsersMePinnedAppsByAppNameModules200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Pins a module under the specified `appName` for the current user in the specified organization. Pins are version-agnostic — the UI always renders the latest available version. The module must belong to the app; otherwise a 404 is returned. Idempotent — pinning an already-pinned module is a no-op.

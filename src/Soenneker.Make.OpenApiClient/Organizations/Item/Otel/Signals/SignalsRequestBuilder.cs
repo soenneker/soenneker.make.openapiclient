@@ -65,6 +65,8 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Otel.Signals
                 { "422", global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelSignals422Response.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelSignals500Response.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelSignals503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             var collectionResult = await RequestAdapter.SendPrimitiveCollectionAsync<global::Soenneker.Make.OpenApiClient.Models.TracesItem?>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();

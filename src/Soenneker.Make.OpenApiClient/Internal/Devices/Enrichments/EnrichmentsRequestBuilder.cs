@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Devices.Enrichments
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalDevicesEnrichments200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves basic enrichment data for a list of device IDs. This endpoint is designed for internal servicesthat need to enrich their data with device information including device ID, UDID, and associated team ID.

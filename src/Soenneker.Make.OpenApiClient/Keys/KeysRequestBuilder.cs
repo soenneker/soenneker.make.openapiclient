@@ -68,7 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Keys
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetKeys200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetKeys200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetKeys200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetKeys200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a key in your keychain. Use the [list of key types](./get--keys--types.md) API call to get a list of available key types for the `typeName` parameter. Specify additional parameters in the `parameters` object based on the key type.
@@ -88,7 +88,7 @@ namespace Soenneker.Make.OpenApiClient.Keys
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostKeys200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostKeys200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostKeys200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostKeys200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the list of keys in your custom keychain. You can use the `typeName` query parameter to filter your keys based on their type. Run the [list of key types](./get--keys--types.md) API call to get a list of available key types.

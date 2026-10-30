@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.LearnStart
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdLearnStart200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdLearnStart200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdLearnStart200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdLearnStart200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Starts the process of learning the request body structure by a hook with a given ID. When you send to the hook address a request with data in its body, you can use this endpoint to force the hook to start determining the payload data structure which will later be suggested in the scenario as the output of the hook. The data structure learning process also starts automatically when a new hook is created and stops once the data structure is determined. If you want to stop this process, you can use the [Learn stop](./post--hooks--hookid--learn-stop.md) endpoint.

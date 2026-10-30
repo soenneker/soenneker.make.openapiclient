@@ -51,7 +51,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.SetData
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdSetData200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdSetData200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdSetData200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdSetData200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Sets data for a hook with a given ID. Data differ depending on the hook type. It returns the confirmation if the hook data was changed (`true`) or not (`false`).

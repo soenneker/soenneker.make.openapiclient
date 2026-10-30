@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdRecovery200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdRecovery200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdRecovery200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosByScenarioIdRecovery200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a scenario recovery snapshot if it exists for a given scenario. scenarioId = 0 is a sentinel for unsaved draft scenarios (no ownership check required). Uses team-scoped storage for cross-team draft isolation.
@@ -67,7 +67,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosByScenarioIdRecovery200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Saves a scenario recovery snapshot for a given scenario and removes the present one if it exists. scenarioId = 0 is a sentinel for unsaved draft scenarios (no ownership check required). Uses team-scoped storage for cross-team draft isolation.
@@ -87,7 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Recovery
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecovery200ResponseSchema>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecovery200ResponseSchema.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecovery200ResponseSchema>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutScenariosByScenarioIdRecovery200ResponseSchema.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Discards a scenario recovery snapshot for a given scenario. scenarioId = 0 is a sentinel for unsaved draft scenarios (no ownership check required). Deletes the team-scoped recovery key.

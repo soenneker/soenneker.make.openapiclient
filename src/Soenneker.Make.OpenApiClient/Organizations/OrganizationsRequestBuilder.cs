@@ -78,6 +78,8 @@ namespace Soenneker.Make.OpenApiClient.Organizations
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "401", global::Soenneker.Make.OpenApiClient.Models.GetOrganizations401Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizations200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -99,7 +101,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizations200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all organizations, in which the user has membership. The response contains information about the organization `name`, `organizationId` and `timezoneId`. You can get more data about the user organizations with specifying the `cols[]` query parameter.However, the values for parameters `license`, `serviceName` and `isPaused` are returned only for organizations in your current Make zone.The `privateSpaces` column lists the private spaces the caller is a member of in each organization (own private spaces only; app zones only). It needs no organization permission, unlike `GET /private-spaces`.Returned organizations are sorted by the organization name in ascending order by default. You can specify sorting order with the query parameter `pg[sortBy].`

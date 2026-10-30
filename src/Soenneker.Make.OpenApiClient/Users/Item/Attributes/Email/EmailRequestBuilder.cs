@@ -51,7 +51,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Item.Attributes.Email
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmail200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmail200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmail200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutUsersByUserIdAttributesEmail200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates an email for a user with a given ID by passing new data in the request body. It replaces the entire resource with the new values. In the response, it returns the confirmation if the email was changed.

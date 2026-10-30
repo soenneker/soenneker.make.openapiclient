@@ -11,46 +11,68 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class CreateInlineFunctionV2RunRequestContent : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("connections") is { } nullNodeConnections && nullNodeConnections.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Connections = null;
+            if (parseNode.GetChildNode("endpoints") is { } nullNodeEndpoints && nullNodeEndpoints.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Endpoints = null;
+            if (parseNode.GetChildNode("inputSchema") is { } nullNodeInputSchema && nullNodeInputSchema.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InputSchema = null;
+            if (parseNode.GetChildNode("outputSchema") is { } nullNodeOutputSchema && nullNodeOutputSchema.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OutputSchema = null;
+            if (parseNode.GetChildNode("source") is { } nullNodeSource && nullNodeSource.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Source = null;
+        }
+
         /// <summary>Connection label to Make connection ID used by this version.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentConnections? Connections { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentConnections? Connections { get => _explicitNullValueConnections; set { _explicitNullValueConnections = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connections"); else _explicitNullProperties?.Remove("connections"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentConnections? _explicitNullValueConnections = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentConnections Connections { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentConnections Connections { get => _explicitNullValueConnections; set { _explicitNullValueConnections = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connections"); else _explicitNullProperties?.Remove("connections"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentConnections _explicitNullValueConnections = default!;
 #endif
         /// <summary>App endpoints the Function source may call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentEndpointsItem>? Endpoints { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentEndpointsItem>? Endpoints { get => _explicitNullValueEndpoints; set { _explicitNullValueEndpoints = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpoints"); else _explicitNullProperties?.Remove("endpoints"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentEndpointsItem>? _explicitNullValueEndpoints = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentEndpointsItem> Endpoints { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentEndpointsItem> Endpoints { get => _explicitNullValueEndpoints; set { _explicitNullValueEndpoints = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endpoints"); else _explicitNullProperties?.Remove("endpoints"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentEndpointsItem> _explicitNullValueEndpoints = default!;
 #endif
         /// <summary>Authoritative client-authored JSON Schema using the bounded Make Functions subset of Draft2020-12. `{}` is the explicit permissive schema. Each side is limited to 64 KiB canonicalUTF-8, 32 expanded levels, 1,000 schema nodes, 500 named properties, 32 total compositionbranches, and 256 enum values. Schema literals are limited to 32 JSON levels and 10,000 JSON nodes.Remote, dynamic, recursive, and non-fragment references are rejected.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentInputSchema? InputSchema { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentInputSchema? InputSchema { get => _explicitNullValueInputSchema; set { _explicitNullValueInputSchema = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inputSchema"); else _explicitNullProperties?.Remove("inputSchema"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentInputSchema? _explicitNullValueInputSchema = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentInputSchema InputSchema { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentInputSchema InputSchema { get => _explicitNullValueInputSchema; set { _explicitNullValueInputSchema = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inputSchema"); else _explicitNullProperties?.Remove("inputSchema"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentInputSchema _explicitNullValueInputSchema = default!;
 #endif
         /// <summary>Optional authoritative output contract. Omission is equivalent to `{}` and is normalizedbefore validation, hashing, persistence, declaration generation, and execution.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentOutputSchema? OutputSchema { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentOutputSchema? OutputSchema { get => _explicitNullValueOutputSchema; set { _explicitNullValueOutputSchema = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outputSchema"); else _explicitNullProperties?.Remove("outputSchema"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentOutputSchema? _explicitNullValueOutputSchema = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentOutputSchema OutputSchema { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentOutputSchema OutputSchema { get => _explicitNullValueOutputSchema; set { _explicitNullValueOutputSchema = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outputSchema"); else _explicitNullProperties?.Remove("outputSchema"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentOutputSchema _explicitNullValueOutputSchema = default!;
 #endif
         /// <summary>UTF-8 TypeScript source. The server enforces the documented source byte limit.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Source { get; set; }
+        public string? Source { get => _explicitNullValueSource; set { _explicitNullValueSource = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source"); else _explicitNullProperties?.Remove("source"); } }
+        private string? _explicitNullValueSource = default!;
 #nullable restore
 #else
-        public string Source { get; set; }
+        public string Source { get => _explicitNullValueSource; set { _explicitNullValueSource = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("source"); else _explicitNullProperties?.Remove("source"); } }
+        private string _explicitNullValueSource = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -60,7 +82,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContent CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContent();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContent(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,7 +110,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentEndpointsItem>("endpoints", Endpoints);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentInputSchema>("inputSchema", InputSchema);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequestContentOutputSchema>("outputSchema", OutputSchema);
-            writer.WriteStringValue("source", Source);
+            writer.WriteStringValue("source", Source);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

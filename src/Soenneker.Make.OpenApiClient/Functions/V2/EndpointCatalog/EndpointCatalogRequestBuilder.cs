@@ -63,6 +63,8 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.EndpointCatalog
                 { "400", global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointCatalog400Response.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointCatalog401Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointCatalog403Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointCatalog200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetFunctionEndpointCatalog200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

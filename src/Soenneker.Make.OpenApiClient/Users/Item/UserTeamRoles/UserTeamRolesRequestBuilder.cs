@@ -62,7 +62,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Item.UserTeamRoles
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamRoles200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamRoles200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamRoles200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamRoles200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets team roles of the user with the specified `userId`. The response contains user&apos;s team role ID for all teams the user is part of. Get the mapping of the `userRoleId` and the user role `name` with the API call `GET /users/roles`.

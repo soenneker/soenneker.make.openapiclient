@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Replaces the scopes of the currently authenticated user&apos;s API token with the specified creation timestamp. The `scope` array replaces the token&apos;s current scopes completely; it is not merged with them. The token value, its `label` and its `organizationId` stay unchanged, and requests authenticated with the token use the new scopes right away. Get the API token creation timestamp with the API call `GET /users/me/api-tokens` in the parameter value `created` and copy it to the API call path. The token is matched with a precision of one second. This call is rejected for an API token that is itself scoped to an organization.
@@ -77,6 +77,8 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item
                 { "400", global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp400Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp404Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

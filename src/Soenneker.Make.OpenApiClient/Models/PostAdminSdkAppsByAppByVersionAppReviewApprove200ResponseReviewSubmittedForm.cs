@@ -12,136 +12,203 @@ namespace Soenneker.Make.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("apiDocsUrl") is { } nullNodeApiDocsUrl && nullNodeApiDocsUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ApiDocsUrl = null;
+            if (parseNode.GetChildNode("appDocsUrl") is { } nullNodeAppDocsUrl && nullNodeAppDocsUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppDocsUrl = null;
+            if (parseNode.GetChildNode("categories") is { } nullNodeCategories && nullNodeCategories.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Categories = null;
+            if (parseNode.GetChildNode("contactsConfirmed") is { } nullNodeContactsConfirmed && nullNodeContactsConfirmed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ContactsConfirmed = null;
+            if (parseNode.GetChildNode("dataProcessingDescription") is { } nullNodeDataProcessingDescription && nullNodeDataProcessingDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataProcessingDescription = null;
+            if (parseNode.GetChildNode("errorHandlingScenarioUrl") is { } nullNodeErrorHandlingScenarioUrl && nullNodeErrorHandlingScenarioUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorHandlingScenarioUrl = null;
+            if (parseNode.GetChildNode("externalTcConsent") is { } nullNodeExternalTcConsent && nullNodeExternalTcConsent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExternalTcConsent = null;
+            if (parseNode.GetChildNode("homepageUrl") is { } nullNodeHomepageUrl && nullNodeHomepageUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HomepageUrl = null;
+            if (parseNode.GetChildNode("landingPageUrl") is { } nullNodeLandingPageUrl && nullNodeLandingPageUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LandingPageUrl = null;
+            if (parseNode.GetChildNode("listingType") is { } nullNodeListingType && nullNodeListingType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ListingType = null;
+            if (parseNode.GetChildNode("partnerProgramApplication") is { } nullNodePartnerProgramApplication && nullNodePartnerProgramApplication.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PartnerProgramApplication = null;
+            if (parseNode.GetChildNode("pricing") is { } nullNodePricing && nullNodePricing.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pricing = null;
+            if (parseNode.GetChildNode("reRunConfirmed") is { } nullNodeReRunConfirmed && nullNodeReRunConfirmed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReRunConfirmed = null;
+            if (parseNode.GetChildNode("shortDescription") is { } nullNodeShortDescription && nullNodeShortDescription.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ShortDescription = null;
+            if (parseNode.GetChildNode("subcategories") is { } nullNodeSubcategories && nullNodeSubcategories.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Subcategories = null;
+            if (parseNode.GetChildNode("supportContactEmail") is { } nullNodeSupportContactEmail && nullNodeSupportContactEmail.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SupportContactEmail = null;
+            if (parseNode.GetChildNode("supportContactName") is { } nullNodeSupportContactName && nullNodeSupportContactName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SupportContactName = null;
+            if (parseNode.GetChildNode("termsConsent") is { } nullNodeTermsConsent && nullNodeTermsConsent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TermsConsent = null;
+            if (parseNode.GetChildNode("testScenarioUrls") is { } nullNodeTestScenarioUrls && nullNodeTestScenarioUrls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TestScenarioUrls = null;
+            if (parseNode.GetChildNode("trademarkConsent") is { } nullNodeTrademarkConsent && nullNodeTrademarkConsent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TrademarkConsent = null;
+            if (parseNode.GetChildNode("updatedScenarioUrls") is { } nullNodeUpdatedScenarioUrls && nullNodeUpdatedScenarioUrls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedScenarioUrls = null;
+            if (parseNode.GetChildNode("vendorRelationship") is { } nullNodeVendorRelationship && nullNodeVendorRelationship.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VendorRelationship = null;
+            if (parseNode.GetChildNode("whatChanged") is { } nullNodeWhatChanged && nullNodeWhatChanged.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WhatChanged = null;
+        }
+
         /// <summary>Documentation of the API the app calls. Must be an `http(s)` URL when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ApiDocsUrl { get; set; }
+        public string? ApiDocsUrl { get => _explicitNullValueApiDocsUrl; set { _explicitNullValueApiDocsUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apiDocsUrl"); else _explicitNullProperties?.Remove("apiDocsUrl"); } }
+        private string? _explicitNullValueApiDocsUrl = default!;
 #nullable restore
 #else
-        public string ApiDocsUrl { get; set; }
+        public string ApiDocsUrl { get => _explicitNullValueApiDocsUrl; set { _explicitNullValueApiDocsUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("apiDocsUrl"); else _explicitNullProperties?.Remove("apiDocsUrl"); } }
+        private string _explicitNullValueApiDocsUrl = default!;
 #endif
         /// <summary>Community listing only — the app&apos;s documentation. Must be an `http(s)` URL when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AppDocsUrl { get; set; }
+        public string? AppDocsUrl { get => _explicitNullValueAppDocsUrl; set { _explicitNullValueAppDocsUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appDocsUrl"); else _explicitNullProperties?.Remove("appDocsUrl"); } }
+        private string? _explicitNullValueAppDocsUrl = default!;
 #nullable restore
 #else
-        public string AppDocsUrl { get; set; }
+        public string AppDocsUrl { get => _explicitNullValueAppDocsUrl; set { _explicitNullValueAppDocsUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appDocsUrl"); else _explicitNullProperties?.Remove("appDocsUrl"); } }
+        private string _explicitNullValueAppDocsUrl = default!;
 #endif
         /// <summary>Marketplace categories the app belongs to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Categories { get; set; }
+        public List<string>? Categories { get => _explicitNullValueCategories; set { _explicitNullValueCategories = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categories"); else _explicitNullProperties?.Remove("categories"); } }
+        private List<string>? _explicitNullValueCategories = default!;
 #nullable restore
 #else
-        public List<string> Categories { get; set; }
+        public List<string> Categories { get => _explicitNullValueCategories; set { _explicitNullValueCategories = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categories"); else _explicitNullProperties?.Remove("categories"); } }
+        private List<string> _explicitNullValueCategories = default!;
 #endif
         /// <summary>Update/re-review only — confirmation that the developer and support contacts are up to date.</summary>
-        public bool? ContactsConfirmed { get; set; }
+        public bool? ContactsConfirmed { get => _explicitNullValueContactsConfirmed; set { _explicitNullValueContactsConfirmed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("contactsConfirmed"); else _explicitNullProperties?.Remove("contactsConfirmed"); } }
+        private bool? _explicitNullValueContactsConfirmed = default!;
         /// <summary>Community listing only — how the app processes data. The developer is liable for this text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DataProcessingDescription { get; set; }
+        public string? DataProcessingDescription { get => _explicitNullValueDataProcessingDescription; set { _explicitNullValueDataProcessingDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataProcessingDescription"); else _explicitNullProperties?.Remove("dataProcessingDescription"); } }
+        private string? _explicitNullValueDataProcessingDescription = default!;
 #nullable restore
 #else
-        public string DataProcessingDescription { get; set; }
+        public string DataProcessingDescription { get => _explicitNullValueDataProcessingDescription; set { _explicitNullValueDataProcessingDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataProcessingDescription"); else _explicitNullProperties?.Remove("dataProcessingDescription"); } }
+        private string _explicitNullValueDataProcessingDescription = default!;
 #endif
         /// <summary>Scenario that fails on purpose, demonstrating how the app surfaces an API error. Must be a scenario link of this zone when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ErrorHandlingScenarioUrl { get; set; }
+        public string? ErrorHandlingScenarioUrl { get => _explicitNullValueErrorHandlingScenarioUrl; set { _explicitNullValueErrorHandlingScenarioUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorHandlingScenarioUrl"); else _explicitNullProperties?.Remove("errorHandlingScenarioUrl"); } }
+        private string? _explicitNullValueErrorHandlingScenarioUrl = default!;
 #nullable restore
 #else
-        public string ErrorHandlingScenarioUrl { get; set; }
+        public string ErrorHandlingScenarioUrl { get => _explicitNullValueErrorHandlingScenarioUrl; set { _explicitNullValueErrorHandlingScenarioUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorHandlingScenarioUrl"); else _explicitNullProperties?.Remove("errorHandlingScenarioUrl"); } }
+        private string _explicitNullValueErrorHandlingScenarioUrl = default!;
 #endif
         /// <summary>External service terms compliance declaration.</summary>
-        public bool? ExternalTcConsent { get; set; }
+        public bool? ExternalTcConsent { get => _explicitNullValueExternalTcConsent; set { _explicitNullValueExternalTcConsent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("externalTcConsent"); else _explicitNullProperties?.Remove("externalTcConsent"); } }
+        private bool? _explicitNullValueExternalTcConsent = default!;
         /// <summary>Homepage of the integrated software, shown on the app&apos;s landing page. Must be an `http(s)` URL when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? HomepageUrl { get; set; }
+        public string? HomepageUrl { get => _explicitNullValueHomepageUrl; set { _explicitNullValueHomepageUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("homepageUrl"); else _explicitNullProperties?.Remove("homepageUrl"); } }
+        private string? _explicitNullValueHomepageUrl = default!;
 #nullable restore
 #else
-        public string HomepageUrl { get; set; }
+        public string HomepageUrl { get => _explicitNullValueHomepageUrl; set { _explicitNullValueHomepageUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("homepageUrl"); else _explicitNullProperties?.Remove("homepageUrl"); } }
+        private string _explicitNullValueHomepageUrl = default!;
 #endif
         /// <summary>Community listing only — the app&apos;s own landing page. Must be an `http(s)` URL when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LandingPageUrl { get; set; }
+        public string? LandingPageUrl { get => _explicitNullValueLandingPageUrl; set { _explicitNullValueLandingPageUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("landingPageUrl"); else _explicitNullProperties?.Remove("landingPageUrl"); } }
+        private string? _explicitNullValueLandingPageUrl = default!;
 #nullable restore
 #else
-        public string LandingPageUrl { get; set; }
+        public string LandingPageUrl { get => _explicitNullValueLandingPageUrl; set { _explicitNullValueLandingPageUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("landingPageUrl"); else _explicitNullProperties?.Remove("landingPageUrl"); } }
+        private string _explicitNullValueLandingPageUrl = default!;
 #endif
         /// <summary>Requested Marketplace listing type. The choice is only offered to Solution Partners without a vendor agreement.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1ListingType? ListingType { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1ListingType? ListingType { get => _explicitNullValueListingType; set { _explicitNullValueListingType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("listingType"); else _explicitNullProperties?.Remove("listingType"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1ListingType? _explicitNullValueListingType = default!;
         /// <summary>Make partner program the developer applies for together with this review, agreeing to the Make terms and conditions; omitted when not applying. Offered only to developers who are not Make partners yet, for the program their vendor relationship makes them eligible for: `none` → `solution`, otherwise `technology`.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1PartnerProgramApplication? PartnerProgramApplication { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1PartnerProgramApplication? PartnerProgramApplication { get => _explicitNullValuePartnerProgramApplication; set { _explicitNullValuePartnerProgramApplication = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("partnerProgramApplication"); else _explicitNullProperties?.Remove("partnerProgramApplication"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1PartnerProgramApplication? _explicitNullValuePartnerProgramApplication = default!;
         /// <summary>Community listing only — whether the app itself is free or paid.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Pricing? Pricing { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Pricing? Pricing { get => _explicitNullValuePricing; set { _explicitNullValuePricing = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pricing"); else _explicitNullProperties?.Remove("pricing"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Pricing? _explicitNullValuePricing = default!;
         /// <summary>Update/re-review only — confirmation that every scenario was re-run on the current app version.</summary>
-        public bool? ReRunConfirmed { get; set; }
+        public bool? ReRunConfirmed { get => _explicitNullValueReRunConfirmed; set { _explicitNullValueReRunConfirmed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reRunConfirmed"); else _explicitNullProperties?.Remove("reRunConfirmed"); } }
+        private bool? _explicitNullValueReRunConfirmed = default!;
         /// <summary>Community listing only — short description of the app.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ShortDescription { get; set; }
+        public string? ShortDescription { get => _explicitNullValueShortDescription; set { _explicitNullValueShortDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("shortDescription"); else _explicitNullProperties?.Remove("shortDescription"); } }
+        private string? _explicitNullValueShortDescription = default!;
 #nullable restore
 #else
-        public string ShortDescription { get; set; }
+        public string ShortDescription { get => _explicitNullValueShortDescription; set { _explicitNullValueShortDescription = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("shortDescription"); else _explicitNullProperties?.Remove("shortDescription"); } }
+        private string _explicitNullValueShortDescription = default!;
 #endif
         /// <summary>Selected subcategories, keyed by category.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Subcategories? Subcategories { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Subcategories? Subcategories { get => _explicitNullValueSubcategories; set { _explicitNullValueSubcategories = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subcategories"); else _explicitNullProperties?.Remove("subcategories"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Subcategories? _explicitNullValueSubcategories = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Subcategories Subcategories { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Subcategories Subcategories { get => _explicitNullValueSubcategories; set { _explicitNullValueSubcategories = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subcategories"); else _explicitNullProperties?.Remove("subcategories"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1Subcategories _explicitNullValueSubcategories = default!;
 #endif
         /// <summary>Email Make forwards support and maintenance requests to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SupportContactEmail { get; set; }
+        public string? SupportContactEmail { get => _explicitNullValueSupportContactEmail; set { _explicitNullValueSupportContactEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportContactEmail"); else _explicitNullProperties?.Remove("supportContactEmail"); } }
+        private string? _explicitNullValueSupportContactEmail = default!;
 #nullable restore
 #else
-        public string SupportContactEmail { get; set; }
+        public string SupportContactEmail { get => _explicitNullValueSupportContactEmail; set { _explicitNullValueSupportContactEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportContactEmail"); else _explicitNullProperties?.Remove("supportContactEmail"); } }
+        private string _explicitNullValueSupportContactEmail = default!;
 #endif
         /// <summary>Name Make forwards support and maintenance requests to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SupportContactName { get; set; }
+        public string? SupportContactName { get => _explicitNullValueSupportContactName; set { _explicitNullValueSupportContactName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportContactName"); else _explicitNullProperties?.Remove("supportContactName"); } }
+        private string? _explicitNullValueSupportContactName = default!;
 #nullable restore
 #else
-        public string SupportContactName { get; set; }
+        public string SupportContactName { get => _explicitNullValueSupportContactName; set { _explicitNullValueSupportContactName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("supportContactName"); else _explicitNullProperties?.Remove("supportContactName"); } }
+        private string _explicitNullValueSupportContactName = default!;
 #endif
         /// <summary>Community listing only — consent to the Make Apps Marketplace terms and conditions.</summary>
-        public bool? TermsConsent { get; set; }
+        public bool? TermsConsent { get => _explicitNullValueTermsConsent; set { _explicitNullValueTermsConsent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("termsConsent"); else _explicitNullProperties?.Remove("termsConsent"); } }
+        private bool? _explicitNullValueTermsConsent = default!;
         /// <summary>Scenarios where the review team can see every module of the app run successfully. Each must be a scenario link of this zone when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? TestScenarioUrls { get; set; }
+        public List<string>? TestScenarioUrls { get => _explicitNullValueTestScenarioUrls; set { _explicitNullValueTestScenarioUrls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("testScenarioUrls"); else _explicitNullProperties?.Remove("testScenarioUrls"); } }
+        private List<string>? _explicitNullValueTestScenarioUrls = default!;
 #nullable restore
 #else
-        public List<string> TestScenarioUrls { get; set; }
+        public List<string> TestScenarioUrls { get => _explicitNullValueTestScenarioUrls; set { _explicitNullValueTestScenarioUrls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("testScenarioUrls"); else _explicitNullProperties?.Remove("testScenarioUrls"); } }
+        private List<string> _explicitNullValueTestScenarioUrls = default!;
 #endif
         /// <summary>Trademark compliance declaration.</summary>
-        public bool? TrademarkConsent { get; set; }
+        public bool? TrademarkConsent { get => _explicitNullValueTrademarkConsent; set { _explicitNullValueTrademarkConsent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("trademarkConsent"); else _explicitNullProperties?.Remove("trademarkConsent"); } }
+        private bool? _explicitNullValueTrademarkConsent = default!;
         /// <summary>Update/re-review only — the test scenarios for the change, seeded from the approved submission. Each must be a scenario link of this zone when submitting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? UpdatedScenarioUrls { get; set; }
+        public List<string>? UpdatedScenarioUrls { get => _explicitNullValueUpdatedScenarioUrls; set { _explicitNullValueUpdatedScenarioUrls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedScenarioUrls"); else _explicitNullProperties?.Remove("updatedScenarioUrls"); } }
+        private List<string>? _explicitNullValueUpdatedScenarioUrls = default!;
 #nullable restore
 #else
-        public List<string> UpdatedScenarioUrls { get; set; }
+        public List<string> UpdatedScenarioUrls { get => _explicitNullValueUpdatedScenarioUrls; set { _explicitNullValueUpdatedScenarioUrls = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedScenarioUrls"); else _explicitNullProperties?.Remove("updatedScenarioUrls"); } }
+        private List<string> _explicitNullValueUpdatedScenarioUrls = default!;
 #endif
         /// <summary>The developer&apos;s relationship to the vendor of the integrated software.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1VendorRelationship? VendorRelationship { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1VendorRelationship? VendorRelationship { get => _explicitNullValueVendorRelationship; set { _explicitNullValueVendorRelationship = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vendorRelationship"); else _explicitNullProperties?.Remove("vendorRelationship"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1VendorRelationship? _explicitNullValueVendorRelationship = default!;
         /// <summary>Update/re-review only — what changed in this version, or what was changed in response to the reviewer.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WhatChanged { get; set; }
+        public string? WhatChanged { get => _explicitNullValueWhatChanged; set { _explicitNullValueWhatChanged = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whatChanged"); else _explicitNullProperties?.Remove("whatChanged"); } }
+        private string? _explicitNullValueWhatChanged = default!;
 #nullable restore
 #else
-        public string WhatChanged { get; set; }
+        public string WhatChanged { get => _explicitNullValueWhatChanged; set { _explicitNullValueWhatChanged = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("whatChanged"); else _explicitNullProperties?.Remove("whatChanged"); } }
+        private string _explicitNullValueWhatChanged = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -151,7 +218,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -215,7 +282,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("trademarkConsent", TrademarkConsent);
             writer.WriteCollectionOfPrimitiveValues<string>("updatedScenarioUrls", UpdatedScenarioUrls);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedFormAllOf1VendorRelationship>("vendorRelationship", VendorRelationship);
-            writer.WriteStringValue("whatChanged", WhatChanged);
+            writer.WriteStringValue("whatChanged", WhatChanged);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

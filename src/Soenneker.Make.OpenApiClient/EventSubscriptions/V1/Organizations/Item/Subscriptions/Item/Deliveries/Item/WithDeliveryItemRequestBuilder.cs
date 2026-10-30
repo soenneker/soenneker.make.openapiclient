@@ -69,6 +69,8 @@ namespace Soenneker.Make.OpenApiClient.EventSubscriptions.V1.Organizations.Item.
                 { "404", global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery404Response.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery500Response.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetEventSubscriptionDelivery200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

@@ -68,7 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Roles
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersRoles200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets list of all existing user role names and IDs. Optionally filter by `category`, a specific `roleId`, or pass `organizationId`/`teamId` to include custom roles for that organization. Set the user roles in an organization with the `POST /users/{userId}/user-organization-roles/{organizationId}` API call. Use the `POST /users/{userId}/user-team-roles/{teamId}` API call to set user roles in a team.

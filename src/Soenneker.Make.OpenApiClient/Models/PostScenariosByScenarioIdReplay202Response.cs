@@ -11,32 +11,48 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PostScenariosByScenarioIdReplay202Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("executionId") is { } nullNodeExecutionId && nullNodeExecutionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionId = null;
+            if (parseNode.GetChildNode("failed") is { } nullNodeFailed && nullNodeFailed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Failed = null;
+            if (parseNode.GetChildNode("replayed") is { } nullNodeReplayed && nullNodeReplayed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Replayed = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>ID of the first replay execution that was queued. Kept for backward compatibility; use `replayed` to map every original execution to its replay.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExecutionId { get; set; }
+        public string? ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
+        private string? _explicitNullValueExecutionId = default!;
 #nullable restore
 #else
-        public string ExecutionId { get; set; }
+        public string ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
+        private string _explicitNullValueExecutionId = default!;
 #endif
         /// <summary>Executions that could not be queued, in the order of the request. Empty when every execution was queued.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseFailedItem>? Failed { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseFailedItem>? Failed { get => _explicitNullValueFailed; set { _explicitNullValueFailed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failed"); else _explicitNullProperties?.Remove("failed"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseFailedItem>? _explicitNullValueFailed = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseFailedItem> Failed { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseFailedItem> Failed { get => _explicitNullValueFailed; set { _explicitNullValueFailed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failed"); else _explicitNullProperties?.Remove("failed"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseFailedItem> _explicitNullValueFailed = default!;
 #endif
         /// <summary>Executions that were queued for replay, in the order of the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseReplayedItem>? Replayed { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseReplayedItem>? Replayed { get => _explicitNullValueReplayed; set { _explicitNullValueReplayed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("replayed"); else _explicitNullProperties?.Remove("replayed"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseReplayedItem>? _explicitNullValueReplayed = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseReplayedItem> Replayed { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseReplayedItem> Replayed { get => _explicitNullValueReplayed; set { _explicitNullValueReplayed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("replayed"); else _explicitNullProperties?.Remove("replayed"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseReplayedItem> _explicitNullValueReplayed = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202Response"/> and sets the default values.
@@ -53,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,6 +94,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("executionId", ExecutionId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseFailedItem>("failed", Failed);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdReplay202ResponseReplayedItem>("replayed", Replayed);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

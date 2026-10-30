@@ -11,32 +11,48 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetOrganizationsInvitation200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("organization") is { } nullNodeOrganization && nullNodeOrganization.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Organization = null;
+            if (parseNode.GetChildNode("user") is { } nullNodeUser && nullNodeUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) User = null;
+            if (parseNode.GetChildNode("userOrganizationRole") is { } nullNodeUserOrganizationRole && nullNodeUserOrganizationRole.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserOrganizationRole = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The organization property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseOrganization? Organization { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseOrganization? Organization { get => _explicitNullValueOrganization; set { _explicitNullValueOrganization = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organization"); else _explicitNullProperties?.Remove("organization"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseOrganization? _explicitNullValueOrganization = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseOrganization Organization { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseOrganization Organization { get => _explicitNullValueOrganization; set { _explicitNullValueOrganization = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organization"); else _explicitNullProperties?.Remove("organization"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseOrganization _explicitNullValueOrganization = default!;
 #endif
         /// <summary>The user property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUser? User { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUser? User { get => _explicitNullValueUser; set { _explicitNullValueUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("user"); else _explicitNullProperties?.Remove("user"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUser? _explicitNullValueUser = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUser User { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUser User { get => _explicitNullValueUser; set { _explicitNullValueUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("user"); else _explicitNullProperties?.Remove("user"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUser _explicitNullValueUser = default!;
 #endif
         /// <summary>The userOrganizationRole property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserOrganizationRole? UserOrganizationRole { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserOrganizationRole? UserOrganizationRole { get => _explicitNullValueUserOrganizationRole; set { _explicitNullValueUserOrganizationRole = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userOrganizationRole"); else _explicitNullProperties?.Remove("userOrganizationRole"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserOrganizationRole? _explicitNullValueUserOrganizationRole = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserOrganizationRole UserOrganizationRole { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserOrganizationRole UserOrganizationRole { get => _explicitNullValueUserOrganizationRole; set { _explicitNullValueUserOrganizationRole = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userOrganizationRole"); else _explicitNullProperties?.Remove("userOrganizationRole"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserOrganizationRole _explicitNullValueUserOrganizationRole = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200Response"/> and sets the default values.
@@ -53,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,6 +94,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseOrganization>("organization", Organization);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUser>("user", User);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsInvitation200ResponseUserOrganizationRole>("userOrganizationRole", UserOrganizationRole);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

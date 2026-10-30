@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Ping
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdPing200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Determines if a hook with a given ID is active and retrieves its properties that provide you with the address of the hook and inform if the hook is attached, what is its learning status, and if it was not used for a long time.

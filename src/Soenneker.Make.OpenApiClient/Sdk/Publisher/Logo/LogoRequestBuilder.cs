@@ -48,7 +48,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Publisher.Logo
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            await RequestAdapter.SendNoContentAsync(requestInfo, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Serves the calling user&apos;s stored company logo as a PNG image, or `404` when no logo is stored. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
@@ -70,6 +70,8 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Publisher.Logo
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "404", global::Soenneker.Make.OpenApiClient.Models.GetSdkPublisherLogo404ResponseSchema.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -97,6 +99,8 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Publisher.Logo
             {
                 { "400", global::Soenneker.Make.OpenApiClient.Models.PutSdkPublisherLogo400ResponseSchema.CreateFromDiscriminatorValue },
                 { "413", global::Soenneker.Make.OpenApiClient.Models.PutSdkPublisherLogo413ResponseSchema.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutSdkPublisherLogo200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutSdkPublisherLogo200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

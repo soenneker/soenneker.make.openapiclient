@@ -53,6 +53,8 @@ namespace Soenneker.Make.OpenApiClient.Admin.Experiments.Organization.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "404", global::Soenneker.Make.OpenApiClient.Models.GetAdminExperimentsOrganizationByOrganizationId404Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminExperimentsOrganizationByOrganizationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminExperimentsOrganizationByOrganizationId200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

@@ -24134,7 +24134,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateFunctionV2Run200Response"
+                  "$ref": "#/components/schemas/CreateFunctionV2RunSuccessResponse"
                 },
                 "examples": {
                   "completed": {
@@ -24167,6 +24167,9 @@
                       }
                     }
                   }
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/CreateFunctionV2Run200Response"
                 }
               }
             }
@@ -24212,7 +24215,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateFunctionV2Run202Response"
+                  "$ref": "#/components/schemas/CreateFunctionV2RunSuccessResponse"
                 },
                 "examples": {
                   "accepted": {
@@ -24238,6 +24241,9 @@
                       }
                     }
                   }
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/CreateFunctionV2Run202Response"
                 }
               }
             }
@@ -24551,7 +24557,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateInlineFunctionV2Run200Response"
+                  "$ref": "#/components/schemas/CreateInlineFunctionV2RunSuccessResponse"
                 },
                 "examples": {
                   "completed": {
@@ -24584,6 +24590,9 @@
                       }
                     }
                   }
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/CreateInlineFunctionV2Run200Response"
                 }
               }
             }
@@ -24629,7 +24638,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateInlineFunctionV2Run202Response"
+                  "$ref": "#/components/schemas/CreateInlineFunctionV2RunSuccessResponse"
                 },
                 "examples": {
                   "accepted": {
@@ -24653,6 +24662,9 @@
                       }
                     }
                   }
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/CreateInlineFunctionV2Run202Response"
                 }
               }
             }
@@ -25085,7 +25097,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CancelFunctionV2Run200Response"
+                  "$ref": "#/components/schemas/CancelFunctionV2RunSuccessResponse"
                 },
                 "examples": {
                   "cancelled": {
@@ -25113,6 +25125,9 @@
                       }
                     }
                   }
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/CancelFunctionV2Run200Response"
                 }
               }
             }
@@ -25151,7 +25166,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CancelFunctionV2Run202Response"
+                  "$ref": "#/components/schemas/CancelFunctionV2RunSuccessResponse"
                 },
                 "examples": {
                   "pending": {
@@ -25178,6 +25193,9 @@
                       }
                     }
                   }
+                },
+                "x-client-original-success-schema": {
+                  "$ref": "#/components/schemas/CancelFunctionV2Run202Response"
                 }
               }
             }
@@ -219915,6 +219933,36 @@
       "PatchTeamsByTeamIdVariablesByVariableName200ResponseTeamVariableValueOneOf4": {
         "type": "object",
         "additionalProperties": {}
+      },
+      "CreateFunctionV2RunSuccessResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/CreateFunctionV2Run200Response"
+          },
+          {
+            "$ref": "#/components/schemas/CreateFunctionV2Run202Response"
+          }
+        ]
+      },
+      "CreateInlineFunctionV2RunSuccessResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/CreateInlineFunctionV2Run200Response"
+          },
+          {
+            "$ref": "#/components/schemas/CreateInlineFunctionV2Run202Response"
+          }
+        ]
+      },
+      "CancelFunctionV2RunSuccessResponse": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/CancelFunctionV2Run200Response"
+          },
+          {
+            "$ref": "#/components/schemas/CancelFunctionV2Run202Response"
+          }
+        ]
       }
     },
     "parameters": {

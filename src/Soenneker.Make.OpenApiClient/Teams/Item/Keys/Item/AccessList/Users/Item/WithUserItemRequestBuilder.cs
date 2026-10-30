@@ -48,7 +48,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Keys.Item.AccessList.Users.Ite
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            await RequestAdapter.SendNoContentAsync(requestInfo, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Changes the entity-tier role of a user already on a key&apos;s access list.Requires `entity manage`. Returns `404` if the user is not on the access list, and `409` if the change would demote the key&apos;s last Entity Admin.
@@ -68,7 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Keys.Item.AccessList.Users.Ite
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchTeamsByTeamIdKeysByKeyIdAccessListUsersByUserId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Removes a user from a key&apos;s access list.Requires `entity manage`. Returns `404` if the user is not on the access list, and `409` if removing them would leave the key without an Entity Admin.

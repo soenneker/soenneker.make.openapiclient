@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Users.ByPermission
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersByPermission200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns users who have a specific permission within an organization or team.Use `type: organization` with `organizationId` to find users that hold a given organization-level permission.Use `type: company` with `teamId` to find users that hold a given team-level permission.Requires the `organization users view` permission on the resolved organization.When `type` is `company`, additionally requires the `team view` permission on the specified team.

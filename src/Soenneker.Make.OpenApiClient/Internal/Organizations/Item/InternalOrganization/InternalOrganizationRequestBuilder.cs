@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Organizations.Item.InternalOrgan
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns the canonical execution-time organization projection used by scenario blueprint finalization and RPC workers. Values are derived from `users.organization.license` and `users.organization.product_flags` via `scenarios.blueprint_finalize_internal_organization`.

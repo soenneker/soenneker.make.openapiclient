@@ -62,7 +62,7 @@ namespace Soenneker.Make.OpenApiClient.OutboundWebhooks.Organizations.Item.Webho
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Registers a new outbound webhook subscription for the organization. The response includes a one-time `signingSecret` that is not retrievable later. Endpoint is proxy for the Outbound Webhooks service. Full schema documentation is available at https://github.com/integromat/outbound-webhooks/blob/master/openapi/openapi.json
@@ -81,7 +81,7 @@ namespace Soenneker.Make.OpenApiClient.OutboundWebhooks.Organizations.Item.Webho
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            await RequestAdapter.SendNoContentAsync(requestInfo, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns the outbound webhook subscriptions belonging to the given organization. Endpoint is proxy for the Outbound Webhooks service. Full schema documentation is available at https://github.com/integromat/outbound-webhooks/blob/master/openapi/openapi.json

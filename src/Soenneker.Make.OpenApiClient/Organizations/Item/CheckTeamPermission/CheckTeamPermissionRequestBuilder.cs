@@ -57,6 +57,8 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.CheckTeamPermission
                 { "400", global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdCheckTeamPermission400Response.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdCheckTeamPermission401Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdCheckTeamPermission403Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdCheckTeamPermission200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdCheckTeamPermission200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

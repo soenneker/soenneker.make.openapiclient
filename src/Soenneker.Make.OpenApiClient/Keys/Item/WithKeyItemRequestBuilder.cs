@@ -61,7 +61,7 @@ namespace Soenneker.Make.OpenApiClient.Keys.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteKeysByKeyId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteKeysByKeyId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteKeysByKeyId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteKeysByKeyId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets details of the specified key.
@@ -79,7 +79,7 @@ namespace Soenneker.Make.OpenApiClient.Keys.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a key `name`, connection parameters, or both with the data specified in the request body. If you don&apos;t specify a parameter, Make keeps the original value.Use the `GET /key-types` API call to find out which parameters you need to specify in the `parameters` object based on the key type.
@@ -99,7 +99,7 @@ namespace Soenneker.Make.OpenApiClient.Keys.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes the specified key. Use the `confirmed` parameter to confirm deleting the key. Otherwise, you get an error and the key is not deleted.

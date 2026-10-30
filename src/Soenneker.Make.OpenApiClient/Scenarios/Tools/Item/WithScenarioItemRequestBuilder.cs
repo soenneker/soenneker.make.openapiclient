@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Tools.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsByScenarioId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosToolsByScenarioId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a tool configuration with a given scenario ID by passing new values in the request body. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated tool configuration of the underlying scenario, including properties that were not changed.
@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Tools.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosToolsByScenarioId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the tool configuration from the underlying scenario.

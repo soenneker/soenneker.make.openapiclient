@@ -51,7 +51,7 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Credentials.Item.Decli
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdDecline200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdDecline200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdDecline200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsCredentialsByCredentialIdDecline200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Declines a credential by setting its state to declined and recording the reason. This endpoint is idempotent and can be used to update the decline reason of an already declined credential.

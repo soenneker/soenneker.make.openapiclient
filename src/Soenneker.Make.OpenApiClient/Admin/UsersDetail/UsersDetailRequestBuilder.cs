@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.UsersDetail
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsersDetail200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all users in your Make White Label instance. Use the API call query parameters to limit the results to a user name or user email.

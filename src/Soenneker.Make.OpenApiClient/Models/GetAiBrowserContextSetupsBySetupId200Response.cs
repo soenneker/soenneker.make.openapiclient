@@ -11,35 +11,53 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetAiBrowserContextSetupsBySetupId200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("liveViewUrl") is { } nullNodeLiveViewUrl && nullNodeLiveViewUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LiveViewUrl = null;
+            if (parseNode.GetChildNode("pages") is { } nullNodePages && nullNodePages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pages = null;
+            if (parseNode.GetChildNode("pagesVersion") is { } nullNodePagesVersion && nullNodePagesVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PagesVersion = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>URL of the live view of the session&apos;s first page; kept as a fallback for `pages`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LiveViewUrl { get; set; }
+        public string? LiveViewUrl { get => _explicitNullValueLiveViewUrl; set { _explicitNullValueLiveViewUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("liveViewUrl"); else _explicitNullProperties?.Remove("liveViewUrl"); } }
+        private string? _explicitNullValueLiveViewUrl = default!;
 #nullable restore
 #else
-        public string LiveViewUrl { get; set; }
+        public string LiveViewUrl { get => _explicitNullValueLiveViewUrl; set { _explicitNullValueLiveViewUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("liveViewUrl"); else _explicitNullProperties?.Remove("liveViewUrl"); } }
+        private string _explicitNullValueLiveViewUrl = default!;
 #endif
         /// <summary>Every open page (tab or popup) of the remote browser, each with its own live view. Match pages by `id`: a page keeps its `id` for its lifetime, while its title, URL and live-view URL change. The list is empty when no page is open.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200ResponsePagesItem>? Pages { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200ResponsePagesItem>? Pages { get => _explicitNullValuePages; set { _explicitNullValuePages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pages"); else _explicitNullProperties?.Remove("pages"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200ResponsePagesItem>? _explicitNullValuePages = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200ResponsePagesItem> Pages { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200ResponsePagesItem> Pages { get => _explicitNullValuePages; set { _explicitNullValuePages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pages"); else _explicitNullProperties?.Remove("pages"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200ResponsePagesItem> _explicitNullValuePages = default!;
 #endif
         /// <summary>Identifies the current set of open pages: it changes whenever a page opens, closes, navigates or changes its title or favicon. Live-view URLs are left out because they are re-signed on every response. Send it back as the `pagesVersion` query parameter to wait for the next change.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PagesVersion { get; set; }
+        public string? PagesVersion { get => _explicitNullValuePagesVersion; set { _explicitNullValuePagesVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pagesVersion"); else _explicitNullProperties?.Remove("pagesVersion"); } }
+        private string? _explicitNullValuePagesVersion = default!;
 #nullable restore
 #else
-        public string PagesVersion { get; set; }
+        public string PagesVersion { get => _explicitNullValuePagesVersion; set { _explicitNullValuePagesVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pagesVersion"); else _explicitNullProperties?.Remove("pagesVersion"); } }
+        private string _explicitNullValuePagesVersion = default!;
 #endif
         /// <summary>A readable flow is always pending; finished flows respond with `404`.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PendingStatus? Status { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PendingStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PendingStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response"/> and sets the default values.
         /// </summary>
@@ -55,7 +73,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,6 +100,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200ResponsePagesItem>("pages", Pages);
             writer.WriteStringValue("pagesVersion", PagesVersion);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PendingStatus>("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

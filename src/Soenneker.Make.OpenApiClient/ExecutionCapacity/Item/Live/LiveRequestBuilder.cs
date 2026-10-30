@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.ExecutionCapacity.Item.Live
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationIdLive200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationIdLive200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationIdLive200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationIdLive200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns a single, real-time snapshot of parallel execution slot usage for an Organization — how many execution slots are currently acquired per scenario, the total slots in use, and the Organization&apos;s slot limit. Unlike the historical metrics endpoint, this reflects the live state at the moment of the request.

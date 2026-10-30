@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Subscription.PaymentMe
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationIdSubscriptionPaymentMethodsByPaymentMethodId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationIdSubscriptionPaymentMethodsByPaymentMethodId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationIdSubscriptionPaymentMethodsByPaymentMethodId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteOrganizationsByOrganizationIdSubscriptionPaymentMethodsByPaymentMethodId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes a payment method from the organization&apos;s subscription.

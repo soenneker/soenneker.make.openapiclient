@@ -78,6 +78,8 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "400", global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsConnectionsBySdkConnectionName400ResponseSchema.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsConnectionsBySdkConnectionName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteSdkAppsConnectionsBySdkConnectionName200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -97,7 +99,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionName200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionName200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Update Connection
@@ -117,7 +119,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Connections.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsConnectionsBySdkConnectionName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsConnectionsBySdkConnectionName200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsConnectionsBySdkConnectionName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsConnectionsBySdkConnectionName200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes a connection. The connection must not be in use (e.g. referenced by a webhook/module/RPC or attached to an endpoint), otherwise the request is rejected.

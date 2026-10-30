@@ -51,7 +51,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.CheckEmailIsMember
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMember200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMember200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMember200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostTeamsByTeamIdCheckEmailIsMember200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Checks if every given e-mail is an active member of the team. Evaluates to false if any of the input e-mails are not part of the team. This endpoint uses JWT authorization.Please note that JWT authorization is not available in our open API, use tools like Postman for testing.

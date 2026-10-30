@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item.Complete
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetupsBySetupIdComplete200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetupsBySetupIdComplete200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetupsBySetupIdComplete200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetupsBySetupIdComplete200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Completes a browser context setup flow after the user has finished logging in. Releases the remotebrowser session, waits for the browser state to be written back into the context, and then — for acreate flow — creates the `ai-browser-context` key, or — for a refresh flow — returns the existingkey. A flow can be completed exactly once; only the user who started it can complete it.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.

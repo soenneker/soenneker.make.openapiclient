@@ -12,7 +12,12 @@ namespace Soenneker.Make.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PostInternalEntityPlacementsCheckRequest : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -54,11 +59,22 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequest();
-            result.PostInternalEntityPlacementsCheckRequestAnyOf1 = new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf1();
-            result.PostInternalEntityPlacementsCheckRequestAnyOf2 = new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf2();
-            result.PostInternalEntityPlacementsCheckRequestAnyOf3 = new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3();
-            result.PostInternalEntityPlacementsCheckRequestAnyOf4 = new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf4();
-            return result;
+            
+            
+            
+            
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("userId") != null && parseNode.GetChildNode("blueprint") != null && parseNode.GetChildNode("scenarioId") != null))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("userId") != null && parseNode.GetChildNode("blueprint") != null && parseNode.GetChildNode("dlqId") != null))();
+            bool matchesUnionBranch2 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("userId") != null && parseNode.GetChildNode("blueprint") != null && parseNode.GetChildNode("templateId") != null))();
+            bool matchesUnionBranch3 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("userId") != null && parseNode.GetChildNode("blueprint") != null && parseNode.GetChildNode("teamId") != null))();
+            if (result.PostInternalEntityPlacementsCheckRequestAnyOf1 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf2 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf3 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf4 == null && matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2 && !matchesUnionBranch3) result.PostInternalEntityPlacementsCheckRequestAnyOf1 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf1(), parseNode);
+            if (result.PostInternalEntityPlacementsCheckRequestAnyOf1 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf2 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf3 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf4 == null && matchesUnionBranch1 && !matchesUnionBranch0 && !matchesUnionBranch2 && !matchesUnionBranch3) result.PostInternalEntityPlacementsCheckRequestAnyOf2 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf2(), parseNode);
+            if (result.PostInternalEntityPlacementsCheckRequestAnyOf1 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf2 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf3 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf4 == null && matchesUnionBranch2 && !matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch3) result.PostInternalEntityPlacementsCheckRequestAnyOf3 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf3(), parseNode);
+            if (result.PostInternalEntityPlacementsCheckRequestAnyOf1 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf2 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf3 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf4 == null && matchesUnionBranch3 && !matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2) result.PostInternalEntityPlacementsCheckRequestAnyOf4 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf4(), parseNode);
+            if (result.PostInternalEntityPlacementsCheckRequestAnyOf1 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf2 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf3 == null && result.PostInternalEntityPlacementsCheckRequestAnyOf4 == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,6 +94,13 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (PostInternalEntityPlacementsCheckRequestAnyOf1 == null && PostInternalEntityPlacementsCheckRequestAnyOf2 == null && PostInternalEntityPlacementsCheckRequestAnyOf3 == null && PostInternalEntityPlacementsCheckRequestAnyOf4 == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (PostInternalEntityPlacementsCheckRequestAnyOf1 != null && PostInternalEntityPlacementsCheckRequestAnyOf2 == null && PostInternalEntityPlacementsCheckRequestAnyOf3 == null && PostInternalEntityPlacementsCheckRequestAnyOf4 == null) { if (PostInternalEntityPlacementsCheckRequestAnyOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostInternalEntityPlacementsCheckRequestAnyOf1); return; }
+            if (PostInternalEntityPlacementsCheckRequestAnyOf2 != null && PostInternalEntityPlacementsCheckRequestAnyOf1 == null && PostInternalEntityPlacementsCheckRequestAnyOf3 == null && PostInternalEntityPlacementsCheckRequestAnyOf4 == null) { if (PostInternalEntityPlacementsCheckRequestAnyOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostInternalEntityPlacementsCheckRequestAnyOf2); return; }
+            if (PostInternalEntityPlacementsCheckRequestAnyOf3 != null && PostInternalEntityPlacementsCheckRequestAnyOf1 == null && PostInternalEntityPlacementsCheckRequestAnyOf2 == null && PostInternalEntityPlacementsCheckRequestAnyOf4 == null) { if (PostInternalEntityPlacementsCheckRequestAnyOf3 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostInternalEntityPlacementsCheckRequestAnyOf3); return; }
+            if (PostInternalEntityPlacementsCheckRequestAnyOf4 != null && PostInternalEntityPlacementsCheckRequestAnyOf1 == null && PostInternalEntityPlacementsCheckRequestAnyOf2 == null && PostInternalEntityPlacementsCheckRequestAnyOf3 == null) { if (PostInternalEntityPlacementsCheckRequestAnyOf4 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostInternalEntityPlacementsCheckRequestAnyOf4); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheckRequestAnyOf1>(null, PostInternalEntityPlacementsCheckRequestAnyOf1, PostInternalEntityPlacementsCheckRequestAnyOf2, PostInternalEntityPlacementsCheckRequestAnyOf3, PostInternalEntityPlacementsCheckRequestAnyOf4);
         }

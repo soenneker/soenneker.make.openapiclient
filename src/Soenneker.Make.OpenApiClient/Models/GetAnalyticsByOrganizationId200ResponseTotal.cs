@@ -11,35 +11,63 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetAnalyticsByOrganizationId200ResponseTotal : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("centicredits") is { } nullNodeCenticredits && nullNodeCenticredits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Centicredits = null;
+            if (parseNode.GetChildNode("centicreditsChange") is { } nullNodeCenticreditsChange && nullNodeCenticreditsChange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsChange = null;
+            if (parseNode.GetChildNode("errorRate") is { } nullNodeErrorRate && nullNodeErrorRate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorRate = null;
+            if (parseNode.GetChildNode("errorRateChange") is { } nullNodeErrorRateChange && nullNodeErrorRateChange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorRateChange = null;
+            if (parseNode.GetChildNode("errors") is { } nullNodeErrors && nullNodeErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Errors = null;
+            if (parseNode.GetChildNode("errorsChange") is { } nullNodeErrorsChange && nullNodeErrorsChange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorsChange = null;
+            if (parseNode.GetChildNode("executions") is { } nullNodeExecutions && nullNodeExecutions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Executions = null;
+            if (parseNode.GetChildNode("executionsChange") is { } nullNodeExecutionsChange && nullNodeExecutionsChange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionsChange = null;
+            if (parseNode.GetChildNode("operations") is { } nullNodeOperations && nullNodeOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operations = null;
+            if (parseNode.GetChildNode("operationsChange") is { } nullNodeOperationsChange && nullNodeOperationsChange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperationsChange = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Bigint number as a string to avoid precision issues in JavaScript.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Centicredits { get; set; }
+        public string? Centicredits { get => _explicitNullValueCenticredits; set { _explicitNullValueCenticredits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicredits"); else _explicitNullProperties?.Remove("centicredits"); } }
+        private string? _explicitNullValueCenticredits = default!;
 #nullable restore
 #else
-        public string Centicredits { get; set; }
+        public string Centicredits { get => _explicitNullValueCenticredits; set { _explicitNullValueCenticredits = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicredits"); else _explicitNullProperties?.Remove("centicredits"); } }
+        private string _explicitNullValueCenticredits = default!;
 #endif
         /// <summary>Percentage. Available only when it can be calculated.</summary>
-        public double? CenticreditsChange { get; set; }
+        public double? CenticreditsChange { get => _explicitNullValueCenticreditsChange; set { _explicitNullValueCenticreditsChange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsChange"); else _explicitNullProperties?.Remove("centicreditsChange"); } }
+        private double? _explicitNullValueCenticreditsChange = default!;
         /// <summary>Percentage. Available only when it can be calculated.</summary>
-        public double? ErrorRate { get; set; }
+        public double? ErrorRate { get => _explicitNullValueErrorRate; set { _explicitNullValueErrorRate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorRate"); else _explicitNullProperties?.Remove("errorRate"); } }
+        private double? _explicitNullValueErrorRate = default!;
         /// <summary>Percentage. Available only when it can be calculated.</summary>
-        public double? ErrorRateChange { get; set; }
+        public double? ErrorRateChange { get => _explicitNullValueErrorRateChange; set { _explicitNullValueErrorRateChange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorRateChange"); else _explicitNullProperties?.Remove("errorRateChange"); } }
+        private double? _explicitNullValueErrorRateChange = default!;
         /// <summary>The errors property</summary>
-        public int? Errors { get; set; }
+        public int? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private int? _explicitNullValueErrors = default!;
         /// <summary>Percentage. Available only when it can be calculated.</summary>
-        public double? ErrorsChange { get; set; }
+        public double? ErrorsChange { get => _explicitNullValueErrorsChange; set { _explicitNullValueErrorsChange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorsChange"); else _explicitNullProperties?.Remove("errorsChange"); } }
+        private double? _explicitNullValueErrorsChange = default!;
         /// <summary>The executions property</summary>
-        public int? Executions { get; set; }
+        public int? Executions { get => _explicitNullValueExecutions; set { _explicitNullValueExecutions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executions"); else _explicitNullProperties?.Remove("executions"); } }
+        private int? _explicitNullValueExecutions = default!;
         /// <summary>Percentage. Available only when it can be calculated.</summary>
-        public double? ExecutionsChange { get; set; }
+        public double? ExecutionsChange { get => _explicitNullValueExecutionsChange; set { _explicitNullValueExecutionsChange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionsChange"); else _explicitNullProperties?.Remove("executionsChange"); } }
+        private double? _explicitNullValueExecutionsChange = default!;
         /// <summary>The operations property</summary>
-        public int? Operations { get; set; }
+        public int? Operations { get => _explicitNullValueOperations; set { _explicitNullValueOperations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operations"); else _explicitNullProperties?.Remove("operations"); } }
+        private int? _explicitNullValueOperations = default!;
         /// <summary>Percentage. Available only when it can be calculated.</summary>
-        public double? OperationsChange { get; set; }
+        public double? OperationsChange { get => _explicitNullValueOperationsChange; set { _explicitNullValueOperationsChange = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operationsChange"); else _explicitNullProperties?.Remove("operationsChange"); } }
+        private double? _explicitNullValueOperationsChange = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsByOrganizationId200ResponseTotal"/> and sets the default values.
         /// </summary>
@@ -55,7 +83,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsByOrganizationId200ResponseTotal CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsByOrganizationId200ResponseTotal();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetAnalyticsByOrganizationId200ResponseTotal(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -94,6 +122,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteDoubleValue("executionsChange", ExecutionsChange);
             writer.WriteIntValue("operations", Operations);
             writer.WriteDoubleValue("operationsChange", OperationsChange);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

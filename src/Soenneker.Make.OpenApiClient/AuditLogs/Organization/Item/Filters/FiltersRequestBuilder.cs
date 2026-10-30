@@ -50,7 +50,7 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Organization.Item.Filters
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogsFilters200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogsFilters200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogsFilters200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationAuditLogsFilters200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets available audit logs filters for the organization.You can use the data in the response to filter audit log entries you get from the `GET /audit-logs/organization/{organizationId}` endpoint.**Deprecated.** Use `GET /audit-logs/v2/organization/{organizationId}/filters` instead. That endpoint requires the`audit-logs:read` scope on the API token.

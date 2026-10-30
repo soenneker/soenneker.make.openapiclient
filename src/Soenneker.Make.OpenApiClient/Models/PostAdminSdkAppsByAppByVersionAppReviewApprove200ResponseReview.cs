@@ -12,55 +12,88 @@ namespace Soenneker.Make.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReview : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("appName") is { } nullNodeAppName && nullNodeAppName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppName = null;
+            if (parseNode.GetChildNode("appVersion") is { } nullNodeAppVersion && nullNodeAppVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppVersion = null;
+            if (parseNode.GetChildNode("derivedFromLegacy") is { } nullNodeDerivedFromLegacy && nullNodeDerivedFromLegacy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DerivedFromLegacy = null;
+            if (parseNode.GetChildNode("draftForm") is { } nullNodeDraftForm && nullNodeDraftForm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DraftForm = null;
+            if (parseNode.GetChildNode("events") is { } nullNodeEvents && nullNodeEvents.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Events = null;
+            if (parseNode.GetChildNode("phase") is { } nullNodePhase && nullNodePhase.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Phase = null;
+            if (parseNode.GetChildNode("rereviewOrigin") is { } nullNodeRereviewOrigin && nullNodeRereviewOrigin.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RereviewOrigin = null;
+            if (parseNode.GetChildNode("reviewStep") is { } nullNodeReviewStep && nullNodeReviewStep.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReviewStep = null;
+            if (parseNode.GetChildNode("submittedAt") is { } nullNodeSubmittedAt && nullNodeSubmittedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubmittedAt = null;
+            if (parseNode.GetChildNode("submittedForm") is { } nullNodeSubmittedForm && nullNodeSubmittedForm.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubmittedForm = null;
+            if (parseNode.GetChildNode("updatedAt") is { } nullNodeUpdatedAt && nullNodeUpdatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedAt = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Name of the SDK app.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AppName { get; set; }
+        public string? AppName { get => _explicitNullValueAppName; set { _explicitNullValueAppName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appName"); else _explicitNullProperties?.Remove("appName"); } }
+        private string? _explicitNullValueAppName = default!;
 #nullable restore
 #else
-        public string AppName { get; set; }
+        public string AppName { get => _explicitNullValueAppName; set { _explicitNullValueAppName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appName"); else _explicitNullProperties?.Remove("appName"); } }
+        private string _explicitNullValueAppName = default!;
 #endif
         /// <summary>Major version of the SDK app.</summary>
-        public int? AppVersion { get; set; }
+        public int? AppVersion { get => _explicitNullValueAppVersion; set { _explicitNullValueAppVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appVersion"); else _explicitNullProperties?.Remove("appVersion"); } }
+        private int? _explicitNullValueAppVersion = default!;
         /// <summary>`true` when `phase` was derived from legacy review state instead of stored new-flow state.</summary>
-        public bool? DerivedFromLegacy { get; set; }
+        public bool? DerivedFromLegacy { get => _explicitNullValueDerivedFromLegacy; set { _explicitNullValueDerivedFromLegacy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("derivedFromLegacy"); else _explicitNullProperties?.Remove("derivedFromLegacy"); } }
+        private bool? _explicitNullValueDerivedFromLegacy = default!;
         /// <summary>The new review form. Every field is optional — any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be `http(s)` URLs and scenario links must point at a scenario of this zone (`https://&lt;zone web domain&gt;/&lt;teamId&gt;/scenarios/&lt;scenarioId&gt;/edit`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewDraftForm? DraftForm { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewDraftForm? DraftForm { get => _explicitNullValueDraftForm; set { _explicitNullValueDraftForm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("draftForm"); else _explicitNullProperties?.Remove("draftForm"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewDraftForm? _explicitNullValueDraftForm = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewDraftForm DraftForm { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewDraftForm DraftForm { get => _explicitNullValueDraftForm; set { _explicitNullValueDraftForm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("draftForm"); else _explicitNullProperties?.Remove("draftForm"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewDraftForm _explicitNullValueDraftForm = default!;
 #endif
         /// <summary>Review history timeline, oldest first.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewEventsItem>? Events { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewEventsItem>? Events { get => _explicitNullValueEvents; set { _explicitNullValueEvents = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("events"); else _explicitNullProperties?.Remove("events"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewEventsItem>? _explicitNullValueEvents = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewEventsItem> Events { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewEventsItem> Events { get => _explicitNullValueEvents; set { _explicitNullValueEvents = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("events"); else _explicitNullProperties?.Remove("events"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewEventsItem> _explicitNullValueEvents = default!;
 #endif
         /// <summary>Lifecycle phase of the review. `dormant` → `start` → `preparing` → `submit` → `review`; a reviewer then approves (`approved`) or requests changes (`changes_required`, reopened with `start-rereview` → `rereview` → `submit` back to `review`). An approved listing is updated through `start-update` → `updating` → `submit` → `update_review`, whose outcomes are `approved` or `changes_required_update` (re-reviewed through `rereview` back to `update_review`). `cancel` steps back one phase on every track.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewPhase? Phase { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewPhase? Phase { get => _explicitNullValuePhase; set { _explicitNullValuePhase = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phase"); else _explicitNullProperties?.Remove("phase"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewPhase? _explicitNullValuePhase = default!;
         /// <summary>While `phase` is `rereview`, the phase the re-review was started from. `null` otherwise.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewRereviewOrigin? RereviewOrigin { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewRereviewOrigin? RereviewOrigin { get => _explicitNullValueRereviewOrigin; set { _explicitNullValueRereviewOrigin = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rereviewOrigin"); else _explicitNullProperties?.Remove("rereviewOrigin"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewRereviewOrigin? _explicitNullValueRereviewOrigin = default!;
         /// <summary>Sub-step while `phase` is `review`/`update_review` — `manual` means the submission waits with Make (where every submission starts), `auto` means Make sent the automatic-review notes and waits on the developer to implement and confirm them. `null` in every other phase.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewReviewStep? ReviewStep { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewReviewStep? ReviewStep { get => _explicitNullValueReviewStep; set { _explicitNullValueReviewStep = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reviewStep"); else _explicitNullProperties?.Remove("reviewStep"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewReviewStep? _explicitNullValueReviewStep = default!;
         /// <summary>Timestamp of the last submit.</summary>
-        public DateTimeOffset? SubmittedAt { get; set; }
+        public DateTimeOffset? SubmittedAt { get => _explicitNullValueSubmittedAt; set { _explicitNullValueSubmittedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("submittedAt"); else _explicitNullProperties?.Remove("submittedAt"); } }
+        private DateTimeOffset? _explicitNullValueSubmittedAt = default!;
         /// <summary>Snapshot of `draftForm` taken at the last submit. Later draft edits do not change it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm? SubmittedForm { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm? SubmittedForm { get => _explicitNullValueSubmittedForm; set { _explicitNullValueSubmittedForm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("submittedForm"); else _explicitNullProperties?.Remove("submittedForm"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm? _explicitNullValueSubmittedForm = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm SubmittedForm { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm SubmittedForm { get => _explicitNullValueSubmittedForm; set { _explicitNullValueSubmittedForm = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("submittedForm"); else _explicitNullProperties?.Remove("submittedForm"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm _explicitNullValueSubmittedForm = default!;
 #endif
         /// <summary>Last modification of the new-flow state. `null` while no new-flow row exists.</summary>
-        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get => _explicitNullValueUpdatedAt; set { _explicitNullValueUpdatedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedAt"); else _explicitNullProperties?.Remove("updatedAt"); } }
+        private DateTimeOffset? _explicitNullValueUpdatedAt = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReview"/> and sets the default values.
         /// </summary>
@@ -76,7 +109,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReview CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReview();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReview(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -117,6 +150,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("submittedAt", SubmittedAt);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewApprove200ResponseReviewSubmittedForm>("submittedForm", SubmittedForm);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

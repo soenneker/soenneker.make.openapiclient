@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Publisher
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkPublisher200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkPublisher200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetSdkPublisher200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetSdkPublisher200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates or updates the calling user&apos;s publisher profile with the provided fields (at least one is required; omitted fields keep their value, `null` clears a field). The partner program (`partnerType`) is not among them — Make administrators assign it through `PATCH /admin/sdk/apps/{app}/{version}/publisher`. Available only while the `is_sdk_app_review_enabled` feature flag is on, otherwise responds with `400` (IM903).
@@ -79,6 +79,8 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Publisher
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "400", global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher400ResponseSchema.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchSdkPublisher200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

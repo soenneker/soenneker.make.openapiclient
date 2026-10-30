@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.CredentialRequests.Requests.Item.Detail
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequestsByRequestIdDetail200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequestsByRequestIdDetail200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequestsByRequestIdDetail200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequestsByRequestIdDetail200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves detail of a single Credential Request with associated credentials.This endpoint has been enhanced to include all credentials associated with the request in a single response,eliminating the need for additional API calls.

@@ -61,7 +61,7 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteAiBrowserContextSetupsBySetupId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteAiBrowserContextSetupsBySetupId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteAiBrowserContextSetupsBySetupId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteAiBrowserContextSetupsBySetupId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Polls the status of a running browser context setup flow. Only the user who started the flowcan read it. A flow that has expired, completed, or been cancelled responds with `404`.`pages` lists every open page (tab or popup) of the remote browser, each with its own live view,so a sign-in popup opened by the site can be shown as soon as it appears. The session-level`liveViewUrl` shows the first page and remains as a fallback. Live-view URLs are re-signed onevery response: match pages by `id` and detect changes with `pagesVersion`. A page the user nolonger needs can be closed with `DELETE /ai-browser/context-setups/{setupId}/pages/{pageId}`.To wait for a change instead of polling in a tight loop, send `waitForChange` (1–20 seconds)together with the `pagesVersion` of the previous response. The request is then held and answeredas soon as the open pages differ from that version (they are re-checked about once per second);if nothing changes, the unchanged status is returned once `waitForChange` seconds have passed. Arequest without `pagesVersion`, or with one that no longer matches, is answered right away. Sendthe next request after each response. A flow that ends while a request is held responds with `404`.Available only when the `is_ai_browser_contexts_enabled` feature flag is enabled.
@@ -85,6 +85,8 @@ namespace Soenneker.Make.OpenApiClient.AiBrowser.ContextSetups.Item
             {
                 { "400", global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId400Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId404Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAiBrowserContextSetupsBySetupId200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

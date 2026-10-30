@@ -11,64 +11,92 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetSdkAppsBySdkAppNameBySdkAppVersionReview200ResponseReview : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("codeStatus") is { } nullNodeCodeStatus && nullNodeCodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CodeStatus = null;
+            if (parseNode.GetChildNode("contactEmail") is { } nullNodeContactEmail && nullNodeContactEmail.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ContactEmail = null;
+            if (parseNode.GetChildNode("contactName") is { } nullNodeContactName && nullNodeContactName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ContactName = null;
+            if (parseNode.GetChildNode("docsStatus") is { } nullNodeDocsStatus && nullNodeDocsStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DocsStatus = null;
+            if (parseNode.GetChildNode("reviewerEmail") is { } nullNodeReviewerEmail && nullNodeReviewerEmail.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReviewerEmail = null;
+            if (parseNode.GetChildNode("reviewerName") is { } nullNodeReviewerName && nullNodeReviewerName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReviewerName = null;
+            if (parseNode.GetChildNode("testStatus") is { } nullNodeTestStatus && nullNodeTestStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TestStatus = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The codeStatus property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CodeStatus { get; set; }
+        public string? CodeStatus { get => _explicitNullValueCodeStatus; set { _explicitNullValueCodeStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("codeStatus"); else _explicitNullProperties?.Remove("codeStatus"); } }
+        private string? _explicitNullValueCodeStatus = default!;
 #nullable restore
 #else
-        public string CodeStatus { get; set; }
+        public string CodeStatus { get => _explicitNullValueCodeStatus; set { _explicitNullValueCodeStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("codeStatus"); else _explicitNullProperties?.Remove("codeStatus"); } }
+        private string _explicitNullValueCodeStatus = default!;
 #endif
         /// <summary>The contactEmail property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ContactEmail { get; set; }
+        public string? ContactEmail { get => _explicitNullValueContactEmail; set { _explicitNullValueContactEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("contactEmail"); else _explicitNullProperties?.Remove("contactEmail"); } }
+        private string? _explicitNullValueContactEmail = default!;
 #nullable restore
 #else
-        public string ContactEmail { get; set; }
+        public string ContactEmail { get => _explicitNullValueContactEmail; set { _explicitNullValueContactEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("contactEmail"); else _explicitNullProperties?.Remove("contactEmail"); } }
+        private string _explicitNullValueContactEmail = default!;
 #endif
         /// <summary>The contactName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ContactName { get; set; }
+        public string? ContactName { get => _explicitNullValueContactName; set { _explicitNullValueContactName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("contactName"); else _explicitNullProperties?.Remove("contactName"); } }
+        private string? _explicitNullValueContactName = default!;
 #nullable restore
 #else
-        public string ContactName { get; set; }
+        public string ContactName { get => _explicitNullValueContactName; set { _explicitNullValueContactName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("contactName"); else _explicitNullProperties?.Remove("contactName"); } }
+        private string _explicitNullValueContactName = default!;
 #endif
         /// <summary>The docsStatus property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DocsStatus { get; set; }
+        public string? DocsStatus { get => _explicitNullValueDocsStatus; set { _explicitNullValueDocsStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("docsStatus"); else _explicitNullProperties?.Remove("docsStatus"); } }
+        private string? _explicitNullValueDocsStatus = default!;
 #nullable restore
 #else
-        public string DocsStatus { get; set; }
+        public string DocsStatus { get => _explicitNullValueDocsStatus; set { _explicitNullValueDocsStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("docsStatus"); else _explicitNullProperties?.Remove("docsStatus"); } }
+        private string _explicitNullValueDocsStatus = default!;
 #endif
         /// <summary>The reviewerEmail property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ReviewerEmail { get; set; }
+        public string? ReviewerEmail { get => _explicitNullValueReviewerEmail; set { _explicitNullValueReviewerEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reviewerEmail"); else _explicitNullProperties?.Remove("reviewerEmail"); } }
+        private string? _explicitNullValueReviewerEmail = default!;
 #nullable restore
 #else
-        public string ReviewerEmail { get; set; }
+        public string ReviewerEmail { get => _explicitNullValueReviewerEmail; set { _explicitNullValueReviewerEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reviewerEmail"); else _explicitNullProperties?.Remove("reviewerEmail"); } }
+        private string _explicitNullValueReviewerEmail = default!;
 #endif
         /// <summary>The reviewerName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ReviewerName { get; set; }
+        public string? ReviewerName { get => _explicitNullValueReviewerName; set { _explicitNullValueReviewerName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reviewerName"); else _explicitNullProperties?.Remove("reviewerName"); } }
+        private string? _explicitNullValueReviewerName = default!;
 #nullable restore
 #else
-        public string ReviewerName { get; set; }
+        public string ReviewerName { get => _explicitNullValueReviewerName; set { _explicitNullValueReviewerName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reviewerName"); else _explicitNullProperties?.Remove("reviewerName"); } }
+        private string _explicitNullValueReviewerName = default!;
 #endif
         /// <summary>The testStatus property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TestStatus { get; set; }
+        public string? TestStatus { get => _explicitNullValueTestStatus; set { _explicitNullValueTestStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("testStatus"); else _explicitNullProperties?.Remove("testStatus"); } }
+        private string? _explicitNullValueTestStatus = default!;
 #nullable restore
 #else
-        public string TestStatus { get; set; }
+        public string TestStatus { get => _explicitNullValueTestStatus; set { _explicitNullValueTestStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("testStatus"); else _explicitNullProperties?.Remove("testStatus"); } }
+        private string _explicitNullValueTestStatus = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionReview200ResponseReview"/> and sets the default values.
@@ -85,7 +113,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionReview200ResponseReview CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionReview200ResponseReview();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionReview200ResponseReview(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -118,6 +146,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("reviewerEmail", ReviewerEmail);
             writer.WriteStringValue("reviewerName", ReviewerName);
             writer.WriteStringValue("testStatus", TestStatus);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

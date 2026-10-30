@@ -11,40 +11,59 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadata : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("designer") is { } nullNodeDesigner && nullNodeDesigner.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Designer = null;
+            if (parseNode.GetChildNode("expect") is { } nullNodeExpect && nullNodeExpect.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Expect = null;
+            if (parseNode.GetChildNode("parameters") is { } nullNodeParameters && nullNodeParameters.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Parameters = null;
+            if (parseNode.GetChildNode("restore") is { } nullNodeRestore && nullNodeRestore.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Restore = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The designer property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataDesigner? Designer { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataDesigner? Designer { get => _explicitNullValueDesigner; set { _explicitNullValueDesigner = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("designer"); else _explicitNullProperties?.Remove("designer"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataDesigner? _explicitNullValueDesigner = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataDesigner Designer { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataDesigner Designer { get => _explicitNullValueDesigner; set { _explicitNullValueDesigner = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("designer"); else _explicitNullProperties?.Remove("designer"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataDesigner _explicitNullValueDesigner = default!;
 #endif
         /// <summary>The expect property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataExpectItem>? Expect { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataExpectItem>? Expect { get => _explicitNullValueExpect; set { _explicitNullValueExpect = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expect"); else _explicitNullProperties?.Remove("expect"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataExpectItem>? _explicitNullValueExpect = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataExpectItem> Expect { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataExpectItem> Expect { get => _explicitNullValueExpect; set { _explicitNullValueExpect = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expect"); else _explicitNullProperties?.Remove("expect"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataExpectItem> _explicitNullValueExpect = default!;
 #endif
         /// <summary>The parameters property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataParametersItem>? Parameters { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataParametersItem>? Parameters { get => _explicitNullValueParameters; set { _explicitNullValueParameters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parameters"); else _explicitNullProperties?.Remove("parameters"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataParametersItem>? _explicitNullValueParameters = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataParametersItem> Parameters { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataParametersItem> Parameters { get => _explicitNullValueParameters; set { _explicitNullValueParameters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parameters"); else _explicitNullProperties?.Remove("parameters"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataParametersItem> _explicitNullValueParameters = default!;
 #endif
         /// <summary>The restore property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataRestore? Restore { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataRestore? Restore { get => _explicitNullValueRestore; set { _explicitNullValueRestore = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restore"); else _explicitNullProperties?.Remove("restore"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataRestore? _explicitNullValueRestore = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataRestore Restore { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataRestore Restore { get => _explicitNullValueRestore; set { _explicitNullValueRestore = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restore"); else _explicitNullProperties?.Remove("restore"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataRestore _explicitNullValueRestore = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadata"/> and sets the default values.
@@ -61,7 +80,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadata CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadata();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadata(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,6 +107,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataExpectItem>("expect", Expect);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataParametersItem>("parameters", Parameters);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetDlqsByDlqIdBlueprint200ResponseResponseBlueprintFlowItemMetadataRestore>("restore", Restore);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

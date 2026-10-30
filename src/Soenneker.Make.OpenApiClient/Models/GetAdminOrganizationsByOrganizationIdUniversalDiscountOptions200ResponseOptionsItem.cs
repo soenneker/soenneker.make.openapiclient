@@ -11,44 +11,67 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetAdminOrganizationsByOrganizationIdUniversalDiscountOptions200ResponseOptionsItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("defaultBannerText") is { } nullNodeDefaultBannerText && nullNodeDefaultBannerText.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DefaultBannerText = null;
+            if (parseNode.GetChildNode("defaultPercentOff") is { } nullNodeDefaultPercentOff && nullNodeDefaultPercentOff.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DefaultPercentOff = null;
+            if (parseNode.GetChildNode("defaultPostClaimText") is { } nullNodeDefaultPostClaimText && nullNodeDefaultPostClaimText.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DefaultPostClaimText = null;
+            if (parseNode.GetChildNode("forceActivateImmediately") is { } nullNodeForceActivateImmediately && nullNodeForceActivateImmediately.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ForceActivateImmediately = null;
+            if (parseNode.GetChildNode("label") is { } nullNodeLabel && nullNodeLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Label = null;
+            if (parseNode.GetChildNode("value") is { } nullNodeValue && nullNodeValue.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Value = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Default banner text for this discount type</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DefaultBannerText { get; set; }
+        public string? DefaultBannerText { get => _explicitNullValueDefaultBannerText; set { _explicitNullValueDefaultBannerText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("defaultBannerText"); else _explicitNullProperties?.Remove("defaultBannerText"); } }
+        private string? _explicitNullValueDefaultBannerText = default!;
 #nullable restore
 #else
-        public string DefaultBannerText { get; set; }
+        public string DefaultBannerText { get => _explicitNullValueDefaultBannerText; set { _explicitNullValueDefaultBannerText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("defaultBannerText"); else _explicitNullProperties?.Remove("defaultBannerText"); } }
+        private string _explicitNullValueDefaultBannerText = default!;
 #endif
         /// <summary>Default discount percentage for this type</summary>
-        public double? DefaultPercentOff { get; set; }
+        public double? DefaultPercentOff { get => _explicitNullValueDefaultPercentOff; set { _explicitNullValueDefaultPercentOff = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("defaultPercentOff"); else _explicitNullProperties?.Remove("defaultPercentOff"); } }
+        private double? _explicitNullValueDefaultPercentOff = default!;
         /// <summary>Default post-claim text for this discount type</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DefaultPostClaimText { get; set; }
+        public string? DefaultPostClaimText { get => _explicitNullValueDefaultPostClaimText; set { _explicitNullValueDefaultPostClaimText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("defaultPostClaimText"); else _explicitNullProperties?.Remove("defaultPostClaimText"); } }
+        private string? _explicitNullValueDefaultPostClaimText = default!;
 #nullable restore
 #else
-        public string DefaultPostClaimText { get; set; }
+        public string DefaultPostClaimText { get => _explicitNullValueDefaultPostClaimText; set { _explicitNullValueDefaultPostClaimText = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("defaultPostClaimText"); else _explicitNullProperties?.Remove("defaultPostClaimText"); } }
+        private string _explicitNullValueDefaultPostClaimText = default!;
 #endif
         /// <summary>Whether this discount type must be activated immediately (not redeemable by users)</summary>
-        public bool? ForceActivateImmediately { get; set; }
+        public bool? ForceActivateImmediately { get => _explicitNullValueForceActivateImmediately; set { _explicitNullValueForceActivateImmediately = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("forceActivateImmediately"); else _explicitNullProperties?.Remove("forceActivateImmediately"); } }
+        private bool? _explicitNullValueForceActivateImmediately = default!;
         /// <summary>Display label for the discount option</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Label { get; set; }
+        public string? Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
+        private string? _explicitNullValueLabel = default!;
 #nullable restore
 #else
-        public string Label { get; set; }
+        public string Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
+        private string _explicitNullValueLabel = default!;
 #endif
         /// <summary>Value identifier for the discount option</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Value { get; set; }
+        public string? Value { get => _explicitNullValueValue; set { _explicitNullValueValue = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("value"); else _explicitNullProperties?.Remove("value"); } }
+        private string? _explicitNullValueValue = default!;
 #nullable restore
 #else
-        public string Value { get; set; }
+        public string Value { get => _explicitNullValueValue; set { _explicitNullValueValue = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("value"); else _explicitNullProperties?.Remove("value"); } }
+        private string _explicitNullValueValue = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAdminOrganizationsByOrganizationIdUniversalDiscountOptions200ResponseOptionsItem"/> and sets the default values.
@@ -65,7 +88,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetAdminOrganizationsByOrganizationIdUniversalDiscountOptions200ResponseOptionsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetAdminOrganizationsByOrganizationIdUniversalDiscountOptions200ResponseOptionsItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetAdminOrganizationsByOrganizationIdUniversalDiscountOptions200ResponseOptionsItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -96,6 +119,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("forceActivateImmediately", ForceActivateImmediately);
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("value", Value);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

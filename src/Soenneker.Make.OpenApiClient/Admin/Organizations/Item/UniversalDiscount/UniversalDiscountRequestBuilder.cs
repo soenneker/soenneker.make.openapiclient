@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Organizations.Item.UniversalDiscoun
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteAdminOrganizationsByOrganizationIdUniversalDiscount200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteAdminOrganizationsByOrganizationIdUniversalDiscount200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteAdminOrganizationsByOrganizationIdUniversalDiscount200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteAdminOrganizationsByOrganizationIdUniversalDiscount200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Removes the active or dormant universal discount from the organization. Active discounts are terminated and the Stripe coupon is removed. Dormant discounts are expired.

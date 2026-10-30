@@ -70,7 +70,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDlqs200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves the list of incomplete executions of the specified scenario. Supports optional server-side filters — combine any of them to narrow down the results.
@@ -88,7 +88,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDlqs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDlqs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDlqs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDlqs200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes incomplete executions of the specified scenario. Specify the incomplete execution ID values in the `ids` array in the request body to delete the specified incomplete executions.You can set the `&quot;all&quot;: true` pair to delete all incomplete executions of the specified scenario. If you use the `&quot;all&quot;: true` parameter, you have to specify the `confirmed=true` query parameter to confirm the deletion. Otherwise, the API call returns the error IM004 (406).Add the `exceptIds` array to the request body to specify items you don&apos;t want to delete.You get an error if you try to delete incomplete executions which are being processed. The rest of the specified items is still deleted.

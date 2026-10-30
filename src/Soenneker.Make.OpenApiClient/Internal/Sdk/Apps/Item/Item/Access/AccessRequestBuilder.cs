@@ -55,6 +55,8 @@ namespace Soenneker.Make.OpenApiClient.Internal.Sdk.Apps.Item.Item.Access
             {
                 { "400", global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionAccess400Response.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionAccess401Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionAccess200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionAccess200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

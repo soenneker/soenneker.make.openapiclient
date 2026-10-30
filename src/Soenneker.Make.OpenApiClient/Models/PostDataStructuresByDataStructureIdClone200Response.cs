@@ -11,19 +11,31 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PostDataStructuresByDataStructureIdClone200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("dataStructure") is { } nullNodeDataStructure && nullNodeDataStructure.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataStructure = null;
+            if (parseNode.GetChildNode("differentTeam") is { } nullNodeDifferentTeam && nullNodeDifferentTeam.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DifferentTeam = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The dataStructure property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructure? DataStructure { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructure? DataStructure { get => _explicitNullValueDataStructure; set { _explicitNullValueDataStructure = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStructure"); else _explicitNullProperties?.Remove("dataStructure"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructure? _explicitNullValueDataStructure = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructure DataStructure { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructure DataStructure { get => _explicitNullValueDataStructure; set { _explicitNullValueDataStructure = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataStructure"); else _explicitNullProperties?.Remove("dataStructure"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructure _explicitNullValueDataStructure = default!;
 #endif
         /// <summary>The differentTeam property</summary>
-        public bool? DifferentTeam { get; set; }
+        public bool? DifferentTeam { get => _explicitNullValueDifferentTeam; set { _explicitNullValueDifferentTeam = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("differentTeam"); else _explicitNullProperties?.Remove("differentTeam"); } }
+        private bool? _explicitNullValueDifferentTeam = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response"/> and sets the default values.
         /// </summary>
@@ -39,7 +51,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,6 +74,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructure>("dataStructure", DataStructure);
             writer.WriteBoolValue("differentTeam", DifferentTeam);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

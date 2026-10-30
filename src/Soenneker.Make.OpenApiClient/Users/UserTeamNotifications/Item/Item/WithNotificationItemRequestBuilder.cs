@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Users.UserTeamNotifications.Item.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersUserTeamNotificationsByTeamIdByNotificationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersUserTeamNotificationsByTeamIdByNotificationId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersUserTeamNotificationsByTeamIdByNotificationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersUserTeamNotificationsByTeamIdByNotificationId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates the authenticated user&apos;s notification settings for the team and notification type specified by the `teamId` and `notificationId`.Get the mapping of the `notificationId` and the team notification setting type with the API call `GET /enums/user-email-notifications`.Note that you can only update notification settings for the user associated with the API key used for authentication.Some notification types require a specific team permission. Enabling such a type for a user who does not hold the requiredpermission fails with `403`. Disabling a notification type is always allowed, regardless of permissions or feature flags.
@@ -73,6 +73,8 @@ namespace Soenneker.Make.OpenApiClient.Users.UserTeamNotifications.Item.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PutUsersUserTeamNotificationsByTeamIdByNotificationId403Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutUsersUserTeamNotificationsByTeamIdByNotificationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutUsersUserTeamNotificationsByTeamIdByNotificationId200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

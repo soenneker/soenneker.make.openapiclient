@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.Item.Modules.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppNameModulesByModuleName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppNameModulesByModuleName200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppNameModulesByModuleName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppNameModulesByModuleName200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Removes the user&apos;s module pin in the specified organization. Does not affect the parent app pin. Idempotent — unpinning a non-pinned module is a no-op.

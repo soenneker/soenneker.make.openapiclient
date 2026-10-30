@@ -62,7 +62,7 @@ namespace Soenneker.Make.OpenApiClient.Users.UserTeamNotifications.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersUserTeamNotificationsByTeamId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersUserTeamNotificationsByTeamId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersUserTeamNotificationsByTeamId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersUserTeamNotificationsByTeamId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the authenticated user&apos;s notification settings for a team specified by the `teamId`. Get the mapping of the `notificationId` and the team notification setting type with the API call `GET /enums/user-email-notifications`.The response only contains the notification types available to the user. Some notification types require a specific teampermission — types whose permission the user does not hold are omitted from the response.

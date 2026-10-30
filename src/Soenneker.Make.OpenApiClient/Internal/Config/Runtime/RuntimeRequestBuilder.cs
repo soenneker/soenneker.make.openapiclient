@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Config.Runtime
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalConfigRuntime200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns the runtime configuration derived from the current zone and API configuration: the host to use, the OAuth redirect base, redirect/static domains, default locale, support contact, and brand.

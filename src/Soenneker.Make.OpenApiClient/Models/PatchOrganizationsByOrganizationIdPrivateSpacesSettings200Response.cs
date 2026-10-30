@@ -11,56 +11,81 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PatchOrganizationsByOrganizationIdPrivateSpacesSettings200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("bulkCreatedTeamIds") is { } nullNodeBulkCreatedTeamIds && nullNodeBulkCreatedTeamIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BulkCreatedTeamIds = null;
+            if (parseNode.GetChildNode("bulkDeletedTeamIds") is { } nullNodeBulkDeletedTeamIds && nullNodeBulkDeletedTeamIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BulkDeletedTeamIds = null;
+            if (parseNode.GetChildNode("bulkUpdatedTeamIds") is { } nullNodeBulkUpdatedTeamIds && nullNodeBulkUpdatedTeamIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BulkUpdatedTeamIds = null;
+            if (parseNode.GetChildNode("observersAddedTeamIds") is { } nullNodeObserversAddedTeamIds && nullNodeObserversAddedTeamIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ObserversAddedTeamIds = null;
+            if (parseNode.GetChildNode("observersRemovedTeamIds") is { } nullNodeObserversRemovedTeamIds && nullNodeObserversRemovedTeamIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ObserversRemovedTeamIds = null;
+            if (parseNode.GetChildNode("privateSpacesSettings") is { } nullNodePrivateSpacesSettings && nullNodePrivateSpacesSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrivateSpacesSettings = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>IDs of private-space teams created by enabling auto-creation. Empty unless `privateSpacesAutoCreationEnabled` was set to `true`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? BulkCreatedTeamIds { get; set; }
+        public List<int?>? BulkCreatedTeamIds { get => _explicitNullValueBulkCreatedTeamIds; set { _explicitNullValueBulkCreatedTeamIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bulkCreatedTeamIds"); else _explicitNullProperties?.Remove("bulkCreatedTeamIds"); } }
+        private List<int?>? _explicitNullValueBulkCreatedTeamIds = default!;
 #nullable restore
 #else
-        public List<int?> BulkCreatedTeamIds { get; set; }
+        public List<int?> BulkCreatedTeamIds { get => _explicitNullValueBulkCreatedTeamIds; set { _explicitNullValueBulkCreatedTeamIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bulkCreatedTeamIds"); else _explicitNullProperties?.Remove("bulkCreatedTeamIds"); } }
+        private List<int?> _explicitNullValueBulkCreatedTeamIds = default!;
 #endif
         /// <summary>IDs of private-space teams that were deleted as part of disabling auto-creation. Empty unless `privateSpacesAutoCreationEnabled` was set to `false`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? BulkDeletedTeamIds { get; set; }
+        public List<int?>? BulkDeletedTeamIds { get => _explicitNullValueBulkDeletedTeamIds; set { _explicitNullValueBulkDeletedTeamIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bulkDeletedTeamIds"); else _explicitNullProperties?.Remove("bulkDeletedTeamIds"); } }
+        private List<int?>? _explicitNullValueBulkDeletedTeamIds = default!;
 #nullable restore
 #else
-        public List<int?> BulkDeletedTeamIds { get; set; }
+        public List<int?> BulkDeletedTeamIds { get => _explicitNullValueBulkDeletedTeamIds; set { _explicitNullValueBulkDeletedTeamIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bulkDeletedTeamIds"); else _explicitNullProperties?.Remove("bulkDeletedTeamIds"); } }
+        private List<int?> _explicitNullValueBulkDeletedTeamIds = default!;
 #endif
         /// <summary>IDs of private-space teams whose limits were overwritten by the bulk update. Empty unless `bulkUpdateExistingLimits` was set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? BulkUpdatedTeamIds { get; set; }
+        public List<int?>? BulkUpdatedTeamIds { get => _explicitNullValueBulkUpdatedTeamIds; set { _explicitNullValueBulkUpdatedTeamIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bulkUpdatedTeamIds"); else _explicitNullProperties?.Remove("bulkUpdatedTeamIds"); } }
+        private List<int?>? _explicitNullValueBulkUpdatedTeamIds = default!;
 #nullable restore
 #else
-        public List<int?> BulkUpdatedTeamIds { get; set; }
+        public List<int?> BulkUpdatedTeamIds { get => _explicitNullValueBulkUpdatedTeamIds; set { _explicitNullValueBulkUpdatedTeamIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bulkUpdatedTeamIds"); else _explicitNullProperties?.Remove("bulkUpdatedTeamIds"); } }
+        private List<int?> _explicitNullValueBulkUpdatedTeamIds = default!;
 #endif
         /// <summary>IDs of private-space teams that gained admin `Team Observer` memberships. Empty unless `addAdminsAsObservers` was set to `true`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? ObserversAddedTeamIds { get; set; }
+        public List<int?>? ObserversAddedTeamIds { get => _explicitNullValueObserversAddedTeamIds; set { _explicitNullValueObserversAddedTeamIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("observersAddedTeamIds"); else _explicitNullProperties?.Remove("observersAddedTeamIds"); } }
+        private List<int?>? _explicitNullValueObserversAddedTeamIds = default!;
 #nullable restore
 #else
-        public List<int?> ObserversAddedTeamIds { get; set; }
+        public List<int?> ObserversAddedTeamIds { get => _explicitNullValueObserversAddedTeamIds; set { _explicitNullValueObserversAddedTeamIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("observersAddedTeamIds"); else _explicitNullProperties?.Remove("observersAddedTeamIds"); } }
+        private List<int?> _explicitNullValueObserversAddedTeamIds = default!;
 #endif
         /// <summary>IDs of private-space teams that had admin `Team Observer` memberships removed. Empty unless `addAdminsAsObservers` was set to `false`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<int?>? ObserversRemovedTeamIds { get; set; }
+        public List<int?>? ObserversRemovedTeamIds { get => _explicitNullValueObserversRemovedTeamIds; set { _explicitNullValueObserversRemovedTeamIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("observersRemovedTeamIds"); else _explicitNullProperties?.Remove("observersRemovedTeamIds"); } }
+        private List<int?>? _explicitNullValueObserversRemovedTeamIds = default!;
 #nullable restore
 #else
-        public List<int?> ObserversRemovedTeamIds { get; set; }
+        public List<int?> ObserversRemovedTeamIds { get => _explicitNullValueObserversRemovedTeamIds; set { _explicitNullValueObserversRemovedTeamIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("observersRemovedTeamIds"); else _explicitNullProperties?.Remove("observersRemovedTeamIds"); } }
+        private List<int?> _explicitNullValueObserversRemovedTeamIds = default!;
 #endif
         /// <summary>The privateSpacesSettings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings? PrivateSpacesSettings { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings? PrivateSpacesSettings { get => _explicitNullValuePrivateSpacesSettings; set { _explicitNullValuePrivateSpacesSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpacesSettings"); else _explicitNullProperties?.Remove("privateSpacesSettings"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings? _explicitNullValuePrivateSpacesSettings = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings PrivateSpacesSettings { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings PrivateSpacesSettings { get => _explicitNullValuePrivateSpacesSettings; set { _explicitNullValuePrivateSpacesSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpacesSettings"); else _explicitNullProperties?.Remove("privateSpacesSettings"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings _explicitNullValuePrivateSpacesSettings = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200Response"/> and sets the default values.
@@ -77,7 +102,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -108,6 +133,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<int?>("observersAddedTeamIds", ObserversAddedTeamIds);
             writer.WriteCollectionOfPrimitiveValues<int?>("observersRemovedTeamIds", ObserversRemovedTeamIds);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings>("privateSpacesSettings", PrivateSpacesSettings);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

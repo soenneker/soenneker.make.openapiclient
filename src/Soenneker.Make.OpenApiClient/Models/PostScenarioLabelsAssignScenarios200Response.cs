@@ -11,32 +11,48 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PostScenarioLabelsAssignScenarios200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("rejectedLabels") is { } nullNodeRejectedLabels && nullNodeRejectedLabels.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RejectedLabels = null;
+            if (parseNode.GetChildNode("rejectedScenarios") is { } nullNodeRejectedScenarios && nullNodeRejectedScenarios.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RejectedScenarios = null;
+            if (parseNode.GetChildNode("summary") is { } nullNodeSummary && nullNodeSummary.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Summary = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Rejected distinct label IDs in first-occurrence request order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedLabelsItem>? RejectedLabels { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedLabelsItem>? RejectedLabels { get => _explicitNullValueRejectedLabels; set { _explicitNullValueRejectedLabels = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rejectedLabels"); else _explicitNullProperties?.Remove("rejectedLabels"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedLabelsItem>? _explicitNullValueRejectedLabels = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedLabelsItem> RejectedLabels { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedLabelsItem> RejectedLabels { get => _explicitNullValueRejectedLabels; set { _explicitNullValueRejectedLabels = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rejectedLabels"); else _explicitNullProperties?.Remove("rejectedLabels"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedLabelsItem> _explicitNullValueRejectedLabels = default!;
 #endif
         /// <summary>Rejected distinct scenario IDs in first-occurrence request order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedScenariosItem>? RejectedScenarios { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedScenariosItem>? RejectedScenarios { get => _explicitNullValueRejectedScenarios; set { _explicitNullValueRejectedScenarios = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rejectedScenarios"); else _explicitNullProperties?.Remove("rejectedScenarios"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedScenariosItem>? _explicitNullValueRejectedScenarios = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedScenariosItem> RejectedScenarios { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedScenariosItem> RejectedScenarios { get => _explicitNullValueRejectedScenarios; set { _explicitNullValueRejectedScenarios = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rejectedScenarios"); else _explicitNullProperties?.Remove("rejectedScenarios"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedScenariosItem> _explicitNullValueRejectedScenarios = default!;
 #endif
         /// <summary>The summary property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummary? Summary { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummary? Summary { get => _explicitNullValueSummary; set { _explicitNullValueSummary = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("summary"); else _explicitNullProperties?.Remove("summary"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummary? _explicitNullValueSummary = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummary Summary { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummary Summary { get => _explicitNullValueSummary; set { _explicitNullValueSummary = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("summary"); else _explicitNullProperties?.Remove("summary"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummary _explicitNullValueSummary = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200Response"/> and sets the default values.
@@ -53,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,6 +94,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedLabelsItem>("rejectedLabels", RejectedLabels);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseRejectedScenariosItem>("rejectedScenarios", RejectedScenarios);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsAssignScenarios200ResponseSummary>("summary", Summary);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

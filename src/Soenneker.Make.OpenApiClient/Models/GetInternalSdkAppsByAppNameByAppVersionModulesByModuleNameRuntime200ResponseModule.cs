@@ -11,95 +11,140 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModule : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("allowedAccountNames") is { } nullNodeAllowedAccountNames && nullNodeAllowedAccountNames.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowedAccountNames = null;
+            if (parseNode.GetChildNode("api") is { } nullNodeApi && nullNodeApi.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Api = null;
+            if (parseNode.GetChildNode("appVersionFull") is { } nullNodeAppVersionFull && nullNodeAppVersionFull.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppVersionFull = null;
+            if (parseNode.GetChildNode("billable") is { } nullNodeBillable && nullNodeBillable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Billable = null;
+            if (parseNode.GetChildNode("centicreditsFormula") is { } nullNodeCenticreditsFormula && nullNodeCenticreditsFormula.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsFormula = null;
+            if (parseNode.GetChildNode("centicreditsFormulaMeta") is { } nullNodeCenticreditsFormulaMeta && nullNodeCenticreditsFormulaMeta.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsFormulaMeta = null;
+            if (parseNode.GetChildNode("common") is { } nullNodeCommon && nullNodeCommon.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Common = null;
+            if (parseNode.GetChildNode("debug") is { } nullNodeDebug && nullNodeDebug.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Debug = null;
+            if (parseNode.GetChildNode("expect") is { } nullNodeExpect && nullNodeExpect.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Expect = null;
+            if (parseNode.GetChildNode("flags") is { } nullNodeFlags && nullNodeFlags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Flags = null;
+            if (parseNode.GetChildNode("interface") is { } nullNodeInterface && nullNodeInterface.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Interface = null;
+            if (parseNode.GetChildNode("manifestVersion") is { } nullNodeManifestVersion && nullNodeManifestVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ManifestVersion = null;
+            if (parseNode.GetChildNode("parameters") is { } nullNodeParameters && nullNodeParameters.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Parameters = null;
+            if (parseNode.GetChildNode("typeId") is { } nullNodeTypeId && nullNodeTypeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TypeId = null;
+        }
+
         /// <summary>Normalized connection aliases accepted by the module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AllowedAccountNames { get; set; }
+        public List<string>? AllowedAccountNames { get => _explicitNullValueAllowedAccountNames; set { _explicitNullValueAllowedAccountNames = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedAccountNames"); else _explicitNullProperties?.Remove("allowedAccountNames"); } }
+        private List<string>? _explicitNullValueAllowedAccountNames = default!;
 #nullable restore
 #else
-        public List<string> AllowedAccountNames { get; set; }
+        public List<string> AllowedAccountNames { get => _explicitNullValueAllowedAccountNames; set { _explicitNullValueAllowedAccountNames = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowedAccountNames"); else _explicitNullProperties?.Remove("allowedAccountNames"); } }
+        private List<string> _explicitNullValueAllowedAccountNames = default!;
 #endif
         /// <summary>App base and module API merged with the app&apos;s custom IML functions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Api { get; set; }
+        public UntypedNode? Api { get => _explicitNullValueApi; set { _explicitNullValueApi = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("api"); else _explicitNullProperties?.Remove("api"); } }
+        private UntypedNode? _explicitNullValueApi = default!;
 #nullable restore
 #else
-        public UntypedNode Api { get; set; }
+        public UntypedNode Api { get => _explicitNullValueApi; set { _explicitNullValueApi = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("api"); else _explicitNullProperties?.Remove("api"); } }
+        private UntypedNode _explicitNullValueApi = default!;
 #endif
         /// <summary>The appVersionFull property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AppVersionFull { get; set; }
+        public string? AppVersionFull { get => _explicitNullValueAppVersionFull; set { _explicitNullValueAppVersionFull = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appVersionFull"); else _explicitNullProperties?.Remove("appVersionFull"); } }
+        private string? _explicitNullValueAppVersionFull = default!;
 #nullable restore
 #else
-        public string AppVersionFull { get; set; }
+        public string AppVersionFull { get => _explicitNullValueAppVersionFull; set { _explicitNullValueAppVersionFull = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("appVersionFull"); else _explicitNullProperties?.Remove("appVersionFull"); } }
+        private string _explicitNullValueAppVersionFull = default!;
 #endif
         /// <summary>The billable property</summary>
-        public bool? Billable { get; set; }
+        public bool? Billable { get => _explicitNullValueBillable; set { _explicitNullValueBillable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("billable"); else _explicitNullProperties?.Remove("billable"); } }
+        private bool? _explicitNullValueBillable = default!;
         /// <summary>The centicreditsFormula property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CenticreditsFormula { get; set; }
+        public string? CenticreditsFormula { get => _explicitNullValueCenticreditsFormula; set { _explicitNullValueCenticreditsFormula = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormula"); else _explicitNullProperties?.Remove("centicreditsFormula"); } }
+        private string? _explicitNullValueCenticreditsFormula = default!;
 #nullable restore
 #else
-        public string CenticreditsFormula { get; set; }
+        public string CenticreditsFormula { get => _explicitNullValueCenticreditsFormula; set { _explicitNullValueCenticreditsFormula = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormula"); else _explicitNullProperties?.Remove("centicreditsFormula"); } }
+        private string _explicitNullValueCenticreditsFormula = default!;
 #endif
         /// <summary>The centicreditsFormulaMeta property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CenticreditsFormulaMeta { get; set; }
+        public string? CenticreditsFormulaMeta { get => _explicitNullValueCenticreditsFormulaMeta; set { _explicitNullValueCenticreditsFormulaMeta = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaMeta"); else _explicitNullProperties?.Remove("centicreditsFormulaMeta"); } }
+        private string? _explicitNullValueCenticreditsFormulaMeta = default!;
 #nullable restore
 #else
-        public string CenticreditsFormulaMeta { get; set; }
+        public string CenticreditsFormulaMeta { get => _explicitNullValueCenticreditsFormulaMeta; set { _explicitNullValueCenticreditsFormulaMeta = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsFormulaMeta"); else _explicitNullProperties?.Remove("centicreditsFormulaMeta"); } }
+        private string _explicitNullValueCenticreditsFormulaMeta = default!;
 #endif
         /// <summary>Decrypted app common data used by the module runtime.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Common { get; set; }
+        public UntypedNode? Common { get => _explicitNullValueCommon; set { _explicitNullValueCommon = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("common"); else _explicitNullProperties?.Remove("common"); } }
+        private UntypedNode? _explicitNullValueCommon = default!;
 #nullable restore
 #else
-        public UntypedNode Common { get; set; }
+        public UntypedNode Common { get => _explicitNullValueCommon; set { _explicitNullValueCommon = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("common"); else _explicitNullProperties?.Remove("common"); } }
+        private UntypedNode _explicitNullValueCommon = default!;
 #endif
         /// <summary>Whether the caller receives the author&apos;s draft runtime.</summary>
-        public bool? Debug { get; set; }
+        public bool? Debug { get => _explicitNullValueDebug; set { _explicitNullValueDebug = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("debug"); else _explicitNullProperties?.Remove("debug"); } }
+        private bool? _explicitNullValueDebug = default!;
         /// <summary>Module expectation definition.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Expect { get; set; }
+        public UntypedNode? Expect { get => _explicitNullValueExpect; set { _explicitNullValueExpect = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expect"); else _explicitNullProperties?.Remove("expect"); } }
+        private UntypedNode? _explicitNullValueExpect = default!;
 #nullable restore
 #else
-        public UntypedNode Expect { get; set; }
+        public UntypedNode Expect { get => _explicitNullValueExpect; set { _explicitNullValueExpect = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expect"); else _explicitNullProperties?.Remove("expect"); } }
+        private UntypedNode _explicitNullValueExpect = default!;
 #endif
         /// <summary>Deep merge of app-level and module-level runtime flags.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Flags { get; set; }
+        public UntypedNode? Flags { get => _explicitNullValueFlags; set { _explicitNullValueFlags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("flags"); else _explicitNullProperties?.Remove("flags"); } }
+        private UntypedNode? _explicitNullValueFlags = default!;
 #nullable restore
 #else
-        public UntypedNode Flags { get; set; }
+        public UntypedNode Flags { get => _explicitNullValueFlags; set { _explicitNullValueFlags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("flags"); else _explicitNullProperties?.Remove("flags"); } }
+        private UntypedNode _explicitNullValueFlags = default!;
 #endif
         /// <summary>Module output interface definition.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Interface { get; set; }
+        public UntypedNode? Interface { get => _explicitNullValueInterface; set { _explicitNullValueInterface = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("interface"); else _explicitNullProperties?.Remove("interface"); } }
+        private UntypedNode? _explicitNullValueInterface = default!;
 #nullable restore
 #else
-        public UntypedNode Interface { get; set; }
+        public UntypedNode Interface { get => _explicitNullValueInterface; set { _explicitNullValueInterface = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("interface"); else _explicitNullProperties?.Remove("interface"); } }
+        private UntypedNode _explicitNullValueInterface = default!;
 #endif
         /// <summary>The manifestVersion property</summary>
-        public int? ManifestVersion { get; set; }
+        public int? ManifestVersion { get => _explicitNullValueManifestVersion; set { _explicitNullValueManifestVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("manifestVersion"); else _explicitNullProperties?.Remove("manifestVersion"); } }
+        private int? _explicitNullValueManifestVersion = default!;
         /// <summary>Module input parameters, including the generated `__IMTCONN__` parameter when connections are attached.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? Parameters { get; set; }
+        public UntypedNode? Parameters { get => _explicitNullValueParameters; set { _explicitNullValueParameters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parameters"); else _explicitNullProperties?.Remove("parameters"); } }
+        private UntypedNode? _explicitNullValueParameters = default!;
 #nullable restore
 #else
-        public UntypedNode Parameters { get; set; }
+        public UntypedNode Parameters { get => _explicitNullValueParameters; set { _explicitNullValueParameters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parameters"); else _explicitNullProperties?.Remove("parameters"); } }
+        private UntypedNode _explicitNullValueParameters = default!;
 #endif
         /// <summary>Module type. `4` is Action and `9` is Search.</summary>
-        public int? TypeId { get; set; }
+        public int? TypeId { get => _explicitNullValueTypeId; set { _explicitNullValueTypeId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("typeId"); else _explicitNullProperties?.Remove("typeId"); } }
+        private int? _explicitNullValueTypeId = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -108,7 +153,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModule();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200ResponseModule(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -154,7 +199,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteObjectValue<UntypedNode>("interface", Interface);
             writer.WriteIntValue("manifestVersion", ManifestVersion);
             writer.WriteObjectValue<UntypedNode>("parameters", Parameters);
-            writer.WriteIntValue("typeId", TypeId);
+            writer.WriteIntValue("typeId", TypeId);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

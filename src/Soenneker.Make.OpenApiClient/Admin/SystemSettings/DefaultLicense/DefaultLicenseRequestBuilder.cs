@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.SystemSettings.DefaultLicense
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminSystemSettingsDefaultLicense200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminSystemSettingsDefaultLicense200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminSystemSettingsDefaultLicense200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminSystemSettingsDefaultLicense200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the default organization license for your Make White Label instance. Make uses the default organization license when you create a new organization without specifying the organization&apos;s license.

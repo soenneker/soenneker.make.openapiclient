@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosShared.Item.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosSharedByScenarioIdBySharedScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosSharedByScenarioIdBySharedScenarioId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosSharedByScenarioIdBySharedScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosSharedByScenarioIdBySharedScenarioId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Get shared scenario detail by ID.
@@ -67,7 +67,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosShared.Item.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosSharedByScenarioIdBySharedScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosSharedByScenarioIdBySharedScenarioId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosSharedByScenarioIdBySharedScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosSharedByScenarioIdBySharedScenarioId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a shared scenario by ID by passing new values in the request body. Any property that is not provided will be left unchanged.
@@ -87,7 +87,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosShared.Item.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosSharedByScenarioIdBySharedScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosSharedByScenarioIdBySharedScenarioId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosSharedByScenarioIdBySharedScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosSharedByScenarioIdBySharedScenarioId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes a shared scenario and returns the ID in the response.

@@ -50,7 +50,7 @@ namespace Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdGetResponse>(requestInfo, global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdGetResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdGetResponse>(requestInfo, global::Soenneker.Make.OpenApiClient.Consumptions.Reports.Item.WithTeamId.WithTeamIdGetResponse.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// List consumption reports for specified time range and organization. Endpoint is proxy for the Pacman API. Documentation is available at https://github.com/integromat/make-pacman/blob/master/openapi/openapi.json

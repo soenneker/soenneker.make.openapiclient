@@ -12,7 +12,12 @@ namespace Soenneker.Make.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PostDataStructuresRequestSpecItem : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -81,33 +86,50 @@ namespace Soenneker.Make.OpenApiClient.Models
             var result = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItem();
             if("boolean".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.PostDataStructuresRequestSpecItemOneOf1 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf1();
+                
             }
             else if("text".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.PostDataStructuresRequestSpecItemOneOf2 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf2();
+                
             }
             else if("number".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.PostDataStructuresRequestSpecItemOneOf3 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf3();
+                
             }
             else if("date".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.PostDataStructuresRequestSpecItemOneOf4 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf4();
+                
             }
             else if("buffer".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.PostDataStructuresRequestSpecItemOneOf5 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf5();
+                
             }
             else if("collection".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.PostDataStructuresRequestSpecItemOneOf6 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf6();
+                
             }
             else if("array".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.PostDataStructuresRequestSpecItemOneOf7 = new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf7();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("name") != null && parseNode.GetChildNode("type") != null && (parseNode.GetChildNode("type")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("boolean".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal)))))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("name") != null && parseNode.GetChildNode("type") != null && (parseNode.GetChildNode("type")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("text".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal)))))();
+            bool matchesUnionBranch2 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("name") != null && parseNode.GetChildNode("type") != null && (parseNode.GetChildNode("type")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("number".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal)))))();
+            bool matchesUnionBranch3 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("name") != null && parseNode.GetChildNode("type") != null && (parseNode.GetChildNode("type")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("date".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal)))))();
+            bool matchesUnionBranch4 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("name") != null && parseNode.GetChildNode("type") != null && (parseNode.GetChildNode("type")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("buffer".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal))) && (parseNode.GetChildNode("codepage") == null || (parseNode.GetChildNode("codepage")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString optionalTag3 && ("binary".Equals(optionalTag3.GetValue(), global::System.StringComparison.Ordinal) || "utf8".Equals(optionalTag3.GetValue(), global::System.StringComparison.Ordinal))))))();
+            bool matchesUnionBranch5 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("name") != null && parseNode.GetChildNode("type") != null && (parseNode.GetChildNode("type")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("collection".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal)))))();
+            bool matchesUnionBranch6 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("name") != null && parseNode.GetChildNode("type") != null && (parseNode.GetChildNode("type")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("array".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal)))))();
+            if (result.PostDataStructuresRequestSpecItemOneOf1 == null && result.PostDataStructuresRequestSpecItemOneOf2 == null && result.PostDataStructuresRequestSpecItemOneOf3 == null && result.PostDataStructuresRequestSpecItemOneOf4 == null && result.PostDataStructuresRequestSpecItemOneOf5 == null && result.PostDataStructuresRequestSpecItemOneOf6 == null && result.PostDataStructuresRequestSpecItemOneOf7 == null && matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2 && !matchesUnionBranch3 && !matchesUnionBranch4 && !matchesUnionBranch5 && !matchesUnionBranch6) result.PostDataStructuresRequestSpecItemOneOf1 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf1(), parseNode);
+            if (result.PostDataStructuresRequestSpecItemOneOf1 == null && result.PostDataStructuresRequestSpecItemOneOf2 == null && result.PostDataStructuresRequestSpecItemOneOf3 == null && result.PostDataStructuresRequestSpecItemOneOf4 == null && result.PostDataStructuresRequestSpecItemOneOf5 == null && result.PostDataStructuresRequestSpecItemOneOf6 == null && result.PostDataStructuresRequestSpecItemOneOf7 == null && matchesUnionBranch1 && !matchesUnionBranch0 && !matchesUnionBranch2 && !matchesUnionBranch3 && !matchesUnionBranch4 && !matchesUnionBranch5 && !matchesUnionBranch6) result.PostDataStructuresRequestSpecItemOneOf2 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf2(), parseNode);
+            if (result.PostDataStructuresRequestSpecItemOneOf1 == null && result.PostDataStructuresRequestSpecItemOneOf2 == null && result.PostDataStructuresRequestSpecItemOneOf3 == null && result.PostDataStructuresRequestSpecItemOneOf4 == null && result.PostDataStructuresRequestSpecItemOneOf5 == null && result.PostDataStructuresRequestSpecItemOneOf6 == null && result.PostDataStructuresRequestSpecItemOneOf7 == null && matchesUnionBranch2 && !matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch3 && !matchesUnionBranch4 && !matchesUnionBranch5 && !matchesUnionBranch6) result.PostDataStructuresRequestSpecItemOneOf3 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf3(), parseNode);
+            if (result.PostDataStructuresRequestSpecItemOneOf1 == null && result.PostDataStructuresRequestSpecItemOneOf2 == null && result.PostDataStructuresRequestSpecItemOneOf3 == null && result.PostDataStructuresRequestSpecItemOneOf4 == null && result.PostDataStructuresRequestSpecItemOneOf5 == null && result.PostDataStructuresRequestSpecItemOneOf6 == null && result.PostDataStructuresRequestSpecItemOneOf7 == null && matchesUnionBranch3 && !matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2 && !matchesUnionBranch4 && !matchesUnionBranch5 && !matchesUnionBranch6) result.PostDataStructuresRequestSpecItemOneOf4 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf4(), parseNode);
+            if (result.PostDataStructuresRequestSpecItemOneOf1 == null && result.PostDataStructuresRequestSpecItemOneOf2 == null && result.PostDataStructuresRequestSpecItemOneOf3 == null && result.PostDataStructuresRequestSpecItemOneOf4 == null && result.PostDataStructuresRequestSpecItemOneOf5 == null && result.PostDataStructuresRequestSpecItemOneOf6 == null && result.PostDataStructuresRequestSpecItemOneOf7 == null && matchesUnionBranch4 && !matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2 && !matchesUnionBranch3 && !matchesUnionBranch5 && !matchesUnionBranch6) result.PostDataStructuresRequestSpecItemOneOf5 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf5(), parseNode);
+            if (result.PostDataStructuresRequestSpecItemOneOf1 == null && result.PostDataStructuresRequestSpecItemOneOf2 == null && result.PostDataStructuresRequestSpecItemOneOf3 == null && result.PostDataStructuresRequestSpecItemOneOf4 == null && result.PostDataStructuresRequestSpecItemOneOf5 == null && result.PostDataStructuresRequestSpecItemOneOf6 == null && result.PostDataStructuresRequestSpecItemOneOf7 == null && matchesUnionBranch5 && !matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2 && !matchesUnionBranch3 && !matchesUnionBranch4 && !matchesUnionBranch6) result.PostDataStructuresRequestSpecItemOneOf6 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf6(), parseNode);
+            if (result.PostDataStructuresRequestSpecItemOneOf1 == null && result.PostDataStructuresRequestSpecItemOneOf2 == null && result.PostDataStructuresRequestSpecItemOneOf3 == null && result.PostDataStructuresRequestSpecItemOneOf4 == null && result.PostDataStructuresRequestSpecItemOneOf5 == null && result.PostDataStructuresRequestSpecItemOneOf6 == null && result.PostDataStructuresRequestSpecItemOneOf7 == null && matchesUnionBranch6 && !matchesUnionBranch0 && !matchesUnionBranch1 && !matchesUnionBranch2 && !matchesUnionBranch3 && !matchesUnionBranch4 && !matchesUnionBranch5) result.PostDataStructuresRequestSpecItemOneOf7 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf7(), parseNode);
+            if (result.PostDataStructuresRequestSpecItemOneOf1 == null && result.PostDataStructuresRequestSpecItemOneOf2 == null && result.PostDataStructuresRequestSpecItemOneOf3 == null && result.PostDataStructuresRequestSpecItemOneOf4 == null && result.PostDataStructuresRequestSpecItemOneOf5 == null && result.PostDataStructuresRequestSpecItemOneOf6 == null && result.PostDataStructuresRequestSpecItemOneOf7 == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -151,33 +173,50 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (PostDataStructuresRequestSpecItemOneOf1 == null && PostDataStructuresRequestSpecItemOneOf2 == null && PostDataStructuresRequestSpecItemOneOf3 == null && PostDataStructuresRequestSpecItemOneOf4 == null && PostDataStructuresRequestSpecItemOneOf5 == null && PostDataStructuresRequestSpecItemOneOf6 == null && PostDataStructuresRequestSpecItemOneOf7 == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (PostDataStructuresRequestSpecItemOneOf1 != null && PostDataStructuresRequestSpecItemOneOf2 == null && PostDataStructuresRequestSpecItemOneOf3 == null && PostDataStructuresRequestSpecItemOneOf4 == null && PostDataStructuresRequestSpecItemOneOf5 == null && PostDataStructuresRequestSpecItemOneOf6 == null && PostDataStructuresRequestSpecItemOneOf7 == null) { if (PostDataStructuresRequestSpecItemOneOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostDataStructuresRequestSpecItemOneOf1); return; }
+            if (PostDataStructuresRequestSpecItemOneOf2 != null && PostDataStructuresRequestSpecItemOneOf1 == null && PostDataStructuresRequestSpecItemOneOf3 == null && PostDataStructuresRequestSpecItemOneOf4 == null && PostDataStructuresRequestSpecItemOneOf5 == null && PostDataStructuresRequestSpecItemOneOf6 == null && PostDataStructuresRequestSpecItemOneOf7 == null) { if (PostDataStructuresRequestSpecItemOneOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostDataStructuresRequestSpecItemOneOf2); return; }
+            if (PostDataStructuresRequestSpecItemOneOf3 != null && PostDataStructuresRequestSpecItemOneOf1 == null && PostDataStructuresRequestSpecItemOneOf2 == null && PostDataStructuresRequestSpecItemOneOf4 == null && PostDataStructuresRequestSpecItemOneOf5 == null && PostDataStructuresRequestSpecItemOneOf6 == null && PostDataStructuresRequestSpecItemOneOf7 == null) { if (PostDataStructuresRequestSpecItemOneOf3 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostDataStructuresRequestSpecItemOneOf3); return; }
+            if (PostDataStructuresRequestSpecItemOneOf4 != null && PostDataStructuresRequestSpecItemOneOf1 == null && PostDataStructuresRequestSpecItemOneOf2 == null && PostDataStructuresRequestSpecItemOneOf3 == null && PostDataStructuresRequestSpecItemOneOf5 == null && PostDataStructuresRequestSpecItemOneOf6 == null && PostDataStructuresRequestSpecItemOneOf7 == null) { if (PostDataStructuresRequestSpecItemOneOf4 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostDataStructuresRequestSpecItemOneOf4); return; }
+            if (PostDataStructuresRequestSpecItemOneOf5 != null && PostDataStructuresRequestSpecItemOneOf1 == null && PostDataStructuresRequestSpecItemOneOf2 == null && PostDataStructuresRequestSpecItemOneOf3 == null && PostDataStructuresRequestSpecItemOneOf4 == null && PostDataStructuresRequestSpecItemOneOf6 == null && PostDataStructuresRequestSpecItemOneOf7 == null) { if (PostDataStructuresRequestSpecItemOneOf5 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostDataStructuresRequestSpecItemOneOf5); return; }
+            if (PostDataStructuresRequestSpecItemOneOf6 != null && PostDataStructuresRequestSpecItemOneOf1 == null && PostDataStructuresRequestSpecItemOneOf2 == null && PostDataStructuresRequestSpecItemOneOf3 == null && PostDataStructuresRequestSpecItemOneOf4 == null && PostDataStructuresRequestSpecItemOneOf5 == null && PostDataStructuresRequestSpecItemOneOf7 == null) { if (PostDataStructuresRequestSpecItemOneOf6 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostDataStructuresRequestSpecItemOneOf6); return; }
+            if (PostDataStructuresRequestSpecItemOneOf7 != null && PostDataStructuresRequestSpecItemOneOf1 == null && PostDataStructuresRequestSpecItemOneOf2 == null && PostDataStructuresRequestSpecItemOneOf3 == null && PostDataStructuresRequestSpecItemOneOf4 == null && PostDataStructuresRequestSpecItemOneOf5 == null && PostDataStructuresRequestSpecItemOneOf6 == null) { if (PostDataStructuresRequestSpecItemOneOf7 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostDataStructuresRequestSpecItemOneOf7); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(PostDataStructuresRequestSpecItemOneOf1 != null)
             {
+                if (PostDataStructuresRequestSpecItemOneOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf1>(null, PostDataStructuresRequestSpecItemOneOf1);
             }
             else if(PostDataStructuresRequestSpecItemOneOf2 != null)
             {
+                if (PostDataStructuresRequestSpecItemOneOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf2>(null, PostDataStructuresRequestSpecItemOneOf2);
             }
             else if(PostDataStructuresRequestSpecItemOneOf3 != null)
             {
+                if (PostDataStructuresRequestSpecItemOneOf3 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf3>(null, PostDataStructuresRequestSpecItemOneOf3);
             }
             else if(PostDataStructuresRequestSpecItemOneOf4 != null)
             {
+                if (PostDataStructuresRequestSpecItemOneOf4 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf4>(null, PostDataStructuresRequestSpecItemOneOf4);
             }
             else if(PostDataStructuresRequestSpecItemOneOf5 != null)
             {
+                if (PostDataStructuresRequestSpecItemOneOf5 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf5>(null, PostDataStructuresRequestSpecItemOneOf5);
             }
             else if(PostDataStructuresRequestSpecItemOneOf6 != null)
             {
+                if (PostDataStructuresRequestSpecItemOneOf6 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf6>(null, PostDataStructuresRequestSpecItemOneOf6);
             }
             else if(PostDataStructuresRequestSpecItemOneOf7 != null)
             {
+                if (PostDataStructuresRequestSpecItemOneOf7 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf7>(null, PostDataStructuresRequestSpecItemOneOf7);
             }
         }

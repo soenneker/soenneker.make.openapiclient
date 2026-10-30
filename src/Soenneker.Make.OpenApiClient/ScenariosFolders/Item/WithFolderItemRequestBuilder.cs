@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersByFolderId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersByFolderId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersByFolderId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenariosFoldersByFolderId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a scenario folder with a given ID by passing a new name, a new parent folder, or both in the request body. Use parentId null to move the folder to the top level. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated folder including properties that were not changed.
@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.ScenariosFolders.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenariosFoldersByFolderId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes a scenario folder with a given ID and returns the ID in the response. Scenarios in the deleted folder and its subfolders are moved to the deleted folder&apos;s parent, or uncategorized when deleting a top-level folder. Descendant folders are deleted.

@@ -11,38 +11,57 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAllOf1 : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("authHeaders") is { } nullNodeAuthHeaders && nullNodeAuthHeaders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AuthHeaders = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("signals") is { } nullNodeSignals && nullNodeSignals.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Signals = null;
+            if (parseNode.GetChildNode("url") is { } nullNodeUrl && nullNodeUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Url = null;
+        }
+
         /// <summary>Authentication headers for the collector. On update, omitting this field preserves the saved set; supplying it replaces the whole set. An empty array is rejected. Names must be valid HTTP tokens and unique ignoring case. Reserved names such as Host and Content-Type are rejected.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAllOf1AuthHeadersItem>? AuthHeaders { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAllOf1AuthHeadersItem>? AuthHeaders { get => _explicitNullValueAuthHeaders; set { _explicitNullValueAuthHeaders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authHeaders"); else _explicitNullProperties?.Remove("authHeaders"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAllOf1AuthHeadersItem>? _explicitNullValueAuthHeaders = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAllOf1AuthHeadersItem> AuthHeaders { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAllOf1AuthHeadersItem> AuthHeaders { get => _explicitNullValueAuthHeaders; set { _explicitNullValueAuthHeaders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authHeaders"); else _explicitNullProperties?.Remove("authHeaders"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAllOf1AuthHeadersItem> _explicitNullValueAuthHeaders = default!;
 #endif
         /// <summary>A destination name containing at least one non-whitespace character. Leading and trailing whitespace is removed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>The signals property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.TracesItem?>? Signals { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.TracesItem?>? Signals { get => _explicitNullValueSignals; set { _explicitNullValueSignals = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("signals"); else _explicitNullProperties?.Remove("signals"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.TracesItem?>? _explicitNullValueSignals = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.TracesItem?> Signals { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.TracesItem?> Signals { get => _explicitNullValueSignals; set { _explicitNullValueSignals = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("signals"); else _explicitNullProperties?.Remove("signals"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.TracesItem?> _explicitNullValueSignals = default!;
 #endif
         /// <summary>An HTTPS collector endpoint. Localhost, private addresses, credentials in the URL, and redirects are not allowed. The hostname is resolved and checked when written.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Url { get; set; }
+        public string? Url { get => _explicitNullValueUrl; set { _explicitNullValueUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("url"); else _explicitNullProperties?.Remove("url"); } }
+        private string? _explicitNullValueUrl = default!;
 #nullable restore
 #else
-        public string Url { get; set; }
+        public string Url { get => _explicitNullValueUrl; set { _explicitNullValueUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("url"); else _explicitNullProperties?.Remove("url"); } }
+        private string _explicitNullValueUrl = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -52,7 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAllOf1 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAllOf1();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAllOf1(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,7 +97,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdRequestAllOf1AuthHeadersItem>("authHeaders", AuthHeaders);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Make.OpenApiClient.Models.TracesItem>("signals", Signals);
-            writer.WriteStringValue("url", Url);
+            writer.WriteStringValue("url", Url);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

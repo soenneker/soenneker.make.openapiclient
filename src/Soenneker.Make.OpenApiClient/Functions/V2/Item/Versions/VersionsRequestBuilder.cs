@@ -70,6 +70,8 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Item.Versions
                 { "401", global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Versions401Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Versions403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Versions404Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Versions200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Versions200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
@@ -107,6 +109,8 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Item.Versions
                 { "409", global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version409Response.CreateFromDiscriminatorValue },
                 { "422", global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version422Response.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2Version201Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

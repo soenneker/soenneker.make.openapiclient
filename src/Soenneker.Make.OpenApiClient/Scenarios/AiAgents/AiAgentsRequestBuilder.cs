@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.AiAgents
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosAiAgents200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosAiAgents200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosAiAgents200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosAiAgents200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves scenarios that contain at least one AI agent module for the specified team. Results are sorted by last edit date in descending order.

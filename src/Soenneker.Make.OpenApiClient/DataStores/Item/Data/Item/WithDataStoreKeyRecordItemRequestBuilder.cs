@@ -51,7 +51,7 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a data store record with a given key by passing new data in the request body. It replaces the entire resource with the new values. In the response, this endpoint returns all details of the updated data.
@@ -71,7 +71,7 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a data store record with a given key by passing new data in the request body. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated data including properties that were not changed.

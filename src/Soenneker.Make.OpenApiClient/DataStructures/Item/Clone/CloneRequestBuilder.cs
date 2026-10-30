@@ -51,7 +51,7 @@ namespace Soenneker.Make.OpenApiClient.DataStructures.Item.Clone
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Clones the specified data structure. Use the `targetTeamId` to clone the data structure to the specified team.The response contains all details of the data structure clone with data structure full specification.

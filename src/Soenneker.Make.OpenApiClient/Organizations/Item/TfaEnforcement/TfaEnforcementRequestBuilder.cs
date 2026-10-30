@@ -59,6 +59,8 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.TfaEnforcement
                 { "400", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement400Response.CreateFromDiscriminatorValue },
                 { "402", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement402Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement403Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdTfaEnforcement200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

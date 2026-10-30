@@ -12,16 +12,26 @@ namespace Soenneker.Make.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PostCredentialRequestsRequestsRequestProviderOneOf2 : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("newUser") is { } nullNodeNewUser && nullNodeNewUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewUser = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>New user to invite to the organization and add to the team.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequestProviderOneOf2NewUser? NewUser { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequestProviderOneOf2NewUser? NewUser { get => _explicitNullValueNewUser; set { _explicitNullValueNewUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newUser"); else _explicitNullProperties?.Remove("newUser"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequestProviderOneOf2NewUser? _explicitNullValueNewUser = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequestProviderOneOf2NewUser NewUser { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequestProviderOneOf2NewUser NewUser { get => _explicitNullValueNewUser; set { _explicitNullValueNewUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newUser"); else _explicitNullProperties?.Remove("newUser"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequestProviderOneOf2NewUser _explicitNullValueNewUser = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequestProviderOneOf2"/> and sets the default values.
@@ -38,7 +48,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequestProviderOneOf2 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequestProviderOneOf2();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequestProviderOneOf2(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,6 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostCredentialRequestsRequestsRequestProviderOneOf2NewUser>("newUser", NewUser);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

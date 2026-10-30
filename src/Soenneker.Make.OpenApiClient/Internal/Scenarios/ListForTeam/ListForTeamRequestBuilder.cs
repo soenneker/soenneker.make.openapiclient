@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Scenarios.ListForTeam
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalScenariosListForTeam200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalScenariosListForTeam200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalScenariosListForTeam200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalScenariosListForTeam200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns a list of scenarios belonging to a team for ISC consumers (e.g. make-adapter). Requires a valid ISC JWT signed by the caller&apos;s shared secret.**Full mode** (no `updatedSince`): returns all non-deleted, non-tool scenarios.**Delta mode** (`updatedSince` provided as epoch-ms): returns every scenario whose `lastEdit` is &gt;= that timestamp, including soft-deleted ones (`isDeleted: true`). Soft-deletes bump `lastEdit`, so deletions ride the same delta response without a separate reconcile pass.

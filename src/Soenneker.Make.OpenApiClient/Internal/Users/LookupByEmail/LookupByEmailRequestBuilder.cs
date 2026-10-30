@@ -55,6 +55,8 @@ namespace Soenneker.Make.OpenApiClient.Internal.Users.LookupByEmail
             {
                 { "400", global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersLookupByEmail400Response.CreateFromDiscriminatorValue },
                 { "401", global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersLookupByEmail401Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersLookupByEmail200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalUsersLookupByEmail200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

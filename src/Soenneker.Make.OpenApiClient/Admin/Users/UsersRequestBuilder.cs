@@ -74,7 +74,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminUsers200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new user. Specify the user&apos;s `name` and `email` in the request body.You have to either send an invitation mail to the user with the `sendEmail: true` or you have to specify the user password in the `password` field in the request body. If you send the invitation mail, the mail contains automatically generated password. The user has to change their password right after logging in.You can also set the user&apos;s country, locale and timezone with the request body parameters. If you don&apos;t specify the user&apos;s country, locale or timezone Make uses your account&apos;s country, locale or timezone.
@@ -94,7 +94,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAdminUsers200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the list of users in a team or an organization.

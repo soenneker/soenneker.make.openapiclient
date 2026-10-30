@@ -57,7 +57,7 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Team.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamAuditLogs200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets a list of all audit log entries for the specified team.The audit log entries in the response are sorted by the `triggeredAt` property in descending order by default. You can use pagination to navigate through a large number of entries.You can get the audit log entries only for teams in which you have the &quot;Team Admin&quot; role. Otherwise, you get the 403 error.**Deprecated.** Use `GET /audit-logs/v2/team/{teamId}` instead. That endpoint requires the`audit-logs:read` scope on the API token.

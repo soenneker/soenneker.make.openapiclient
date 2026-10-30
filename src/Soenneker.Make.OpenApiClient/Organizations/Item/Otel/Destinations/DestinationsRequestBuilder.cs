@@ -78,6 +78,8 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Otel.Destinations
                 { "422", global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelDestinations422Response.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelDestinations500Response.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelDestinations503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelDestinations200ResponseSchemaItem>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdOtelDestinations200ResponseSchemaItem.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
@@ -116,6 +118,8 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Otel.Destinations
                 { "422", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinations422Response.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinations500Response.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinations503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinations201Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdOtelDestinations201Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

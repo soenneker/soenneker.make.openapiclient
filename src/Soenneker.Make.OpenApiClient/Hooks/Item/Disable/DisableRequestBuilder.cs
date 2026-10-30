@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Disable
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdDisable200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdDisable200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdDisable200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostHooksByHookIdDisable200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Disables a hook with a given ID. Newly created hooks are enabled by default which means they are ready to accept data. The disabled hook does not accept any data. This endpoint can be useful when you want to debug the scenario functionality. In response, this endpoint returns the confirmation that the hook was successfully disabled.

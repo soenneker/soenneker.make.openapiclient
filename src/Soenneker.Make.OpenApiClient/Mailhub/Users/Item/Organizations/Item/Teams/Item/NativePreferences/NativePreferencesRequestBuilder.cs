@@ -59,6 +59,8 @@ namespace Soenneker.Make.OpenApiClient.Mailhub.Users.Item.Organizations.Item.Tea
                 { "400", global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences400Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences403Response.CreateFromDiscriminatorValue },
                 { "502", global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences502Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchMailhubUsersByUserIdOrganizationsByOrganizationIdTeamsByTeamIdNativePreferences200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

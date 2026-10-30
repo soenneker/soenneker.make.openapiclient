@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.Preferences
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePreferences200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersMePreferences200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersMePreferences200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersMePreferences200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Applies an RFC 7396 JSON Merge Patch to the authenticated user&apos;s preferences. The request body isa `{ [namespace]: object | null }` envelope: `null` deletes the namespace, an object is mergedrecursively into the stored namespace payload (`null` on any leaf deletes that leaf; other valuesreplace).Behaviour by deployment mode:- **Private zones**: the merge happens locally against `users.user_preference`.- **Public zones**: the envelope is forwarded to HQ via swarm; HQ writes and replicates the row  back to the local database.Validation is two-stage: `validatePreferencePatch` from `@integromat/shared-preferences` checksthe envelope shape, namespace key format, and total byte size, then each non-`null` namespacepatch is validated by its own parser registered by the API layer. Unknown namespaces are rejected.
@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.Preferences
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchUsersMePreferences200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns the authenticated user&apos;s preference tree. The tree is a `{ [namespace]: value }` objectwhere each top-level key is an independently managed namespace (e.g. `ui`) defined by theshared-preferences library. A user who has never written preferences returns an empty tree.

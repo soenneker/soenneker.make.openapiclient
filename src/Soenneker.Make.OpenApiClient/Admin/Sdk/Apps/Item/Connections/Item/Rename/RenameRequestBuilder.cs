@@ -59,6 +59,8 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Connections.Item.Rena
                 { "400", global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppConnectionsByConnectionRename400Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppConnectionsByConnectionRename403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppConnectionsByConnectionRename404Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppConnectionsByConnectionRename200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppConnectionsByConnectionRename200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.DataStructures.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresByDataStructureId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresByDataStructureId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresByDataStructureId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDataStructuresByDataStructureId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a data structure with a given ID
@@ -73,7 +73,7 @@ namespace Soenneker.Make.OpenApiClient.DataStructures.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates the specified data structure. Make updates only parameters you send in the request body.Note that when you update the data structure specification with the `spec` parameter, you have to provide all structure fields you want to use. Make replaces the old structure specification with the new one.The response contains all details about the updated data structure.
@@ -93,7 +93,7 @@ namespace Soenneker.Make.OpenApiClient.DataStructures.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes a data structure with a given ID and returns the ID in the response.

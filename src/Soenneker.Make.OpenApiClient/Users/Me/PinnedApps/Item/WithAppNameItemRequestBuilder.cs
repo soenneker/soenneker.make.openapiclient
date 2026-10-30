@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.PinnedApps.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMePinnedAppsByAppName200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Removes the user&apos;s app pin in the specified organization. Does NOT delete the user&apos;s module pins under this app — those rows survive so re-pinning the app restores them. Idempotent — unpinning a non-pinned app is a no-op.

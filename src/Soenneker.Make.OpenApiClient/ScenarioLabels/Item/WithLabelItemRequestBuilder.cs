@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenarioLabelsByLabelId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenarioLabelsByLabelId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenarioLabelsByLabelId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenarioLabelsByLabelId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Renames, re-colours, or re-describes a team label. Requires `scenario edit` on the label&apos;s team. Every chip using the label updates at once.
@@ -75,7 +75,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenarioLabelsByLabelId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenarioLabelsByLabelId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchScenarioLabelsByLabelId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchScenarioLabelsByLabelId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes a team label. Requires `scenario edit` on the label&apos;s team. Removes the label from every scenario it was assigned to.

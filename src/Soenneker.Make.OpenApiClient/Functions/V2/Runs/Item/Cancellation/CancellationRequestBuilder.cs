@@ -36,7 +36,7 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Runs.Item.Cancellation
         /// <summary>
         /// Requests cancellation idempotently. Queued work is stopped, new Endpoint calls are blocked,running code is asked to stop, and the active sandbox is terminated. Cancellation cannotundo an external change already accepted by another system.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run200Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2RunSuccessResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run401Response">When receiving a 401 status code</exception>
@@ -45,11 +45,11 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Runs.Item.Cancellation
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run409Response">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run200Response?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2RunSuccessResponse?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run200Response> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2RunSuccessResponse> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
@@ -59,8 +59,10 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Runs.Item.Cancellation
                 { "403", global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run404Response.CreateFromDiscriminatorValue },
                 { "409", global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run409Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2RunSuccessResponse>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2RunSuccessResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Requests cancellation idempotently. Queued work is stopped, new Endpoint calls are blocked,running code is asked to stop, and the active sandbox is terminated. Cancellation cannotundo an external change already accepted by another system.

@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs.Item.Retry
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDlqsByDlqIdRetry200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDlqsByDlqIdRetry200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDlqsByDlqIdRetry200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDlqsByDlqIdRetry200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Triggers a retry of the specified incomplete execution. The incomplete execution runs with the blueprint from when the error happened.If you need to update the blueprint first, use the endpoint `PATCH /dlqs/{dlqId}`.

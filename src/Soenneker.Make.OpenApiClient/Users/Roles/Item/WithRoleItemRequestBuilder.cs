@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Roles.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesByRoleId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesByRoleId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesByRoleId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesByRoleId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns the detail of a single role by its ID. For custom-managed roles, requires the `customRoles` license and `ORGANIZATION_USERS_VIEW` permission on the role&apos;s organization.

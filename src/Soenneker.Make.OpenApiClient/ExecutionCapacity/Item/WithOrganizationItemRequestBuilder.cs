@@ -59,6 +59,8 @@ namespace Soenneker.Make.OpenApiClient.ExecutionCapacity.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "422", global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationId422Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetExecutionCapacityByOrganizationId200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

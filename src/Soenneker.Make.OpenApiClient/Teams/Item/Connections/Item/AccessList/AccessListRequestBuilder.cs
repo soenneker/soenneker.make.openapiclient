@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.Connections.Item.AccessList
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdConnectionsByConnectionIdAccessList200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdConnectionsByConnectionIdAccessList200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdConnectionsByConnectionIdAccessList200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdConnectionsByConnectionIdAccessList200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns the access list (entity ACL) of a connection — the principals granted a role on it.A caller holding the `entity use` permission on the connection sees every member; any other member of the connection&apos;s team sees only the Entity Admins. The connection must belong to the team in the path.Requires the locked connections feature to be enabled for the organization the team belongs to; otherwise the endpoint returns `400` (`IM903`).

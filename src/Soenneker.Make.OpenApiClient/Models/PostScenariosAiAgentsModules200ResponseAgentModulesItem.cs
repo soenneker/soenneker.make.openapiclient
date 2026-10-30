@@ -11,38 +11,60 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PostScenariosAiAgentsModules200ResponseAgentModulesItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("evaluationMode") is { } nullNodeEvaluationMode && nullNodeEvaluationMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EvaluationMode = null;
+            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("module") is { } nullNodeModule && nullNodeModule.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Module = null;
+            if (parseNode.GetChildNode("scenarioId") is { } nullNodeScenarioId && nullNodeScenarioId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioId = null;
+            if (parseNode.GetChildNode("tools") is { } nullNodeTools && nullNodeTools.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tools = null;
+            if (parseNode.GetChildNode("userLabel") is { } nullNodeUserLabel && nullNodeUserLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserLabel = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The evaluation mode set in the agent module&apos;s `metrics` setting - `disabled`, `measured` (measured tags only) or `measuredAndInferred` (measured tags plus LLM-inferred tags). A missing value, or one mapped from another module, falls back to the legacy `inferredTagsEnabled` flag, at the top level of the module or inside its old `evaluations` collection (`true` meant `measuredAndInferred`), and otherwise reads as `measured`.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode? EvaluationMode { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode? EvaluationMode { get => _explicitNullValueEvaluationMode; set { _explicitNullValueEvaluationMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("evaluationMode"); else _explicitNullProperties?.Remove("evaluationMode"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemEvaluationMode? _explicitNullValueEvaluationMode = default!;
         /// <summary>The unique ID of the agent module within the scenario&apos;s blueprint.</summary>
-        public int? Id { get; set; }
+        public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private int? _explicitNullValueId = default!;
         /// <summary>The app:module identifier of the agent module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Module { get; set; }
+        public string? Module { get => _explicitNullValueModule; set { _explicitNullValueModule = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("module"); else _explicitNullProperties?.Remove("module"); } }
+        private string? _explicitNullValueModule = default!;
 #nullable restore
 #else
-        public string Module { get; set; }
+        public string Module { get => _explicitNullValueModule; set { _explicitNullValueModule = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("module"); else _explicitNullProperties?.Remove("module"); } }
+        private string _explicitNullValueModule = default!;
 #endif
         /// <summary>The unique ID of the scenario the agent module belongs to.</summary>
-        public int? ScenarioId { get; set; }
+        public int? ScenarioId { get => _explicitNullValueScenarioId; set { _explicitNullValueScenarioId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioId"); else _explicitNullProperties?.Remove("scenarioId"); } }
+        private int? _explicitNullValueScenarioId = default!;
         /// <summary>The tools available to the agent module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem>? Tools { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem>? Tools { get => _explicitNullValueTools; set { _explicitNullValueTools = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tools"); else _explicitNullProperties?.Remove("tools"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem>? _explicitNullValueTools = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem> Tools { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem> Tools { get => _explicitNullValueTools; set { _explicitNullValueTools = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tools"); else _explicitNullProperties?.Remove("tools"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem> _explicitNullValueTools = default!;
 #endif
         /// <summary>The user-defined label of the agent module, if set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UserLabel { get; set; }
+        public string? UserLabel { get => _explicitNullValueUserLabel; set { _explicitNullValueUserLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userLabel"); else _explicitNullProperties?.Remove("userLabel"); } }
+        private string? _explicitNullValueUserLabel = default!;
 #nullable restore
 #else
-        public string UserLabel { get; set; }
+        public string UserLabel { get => _explicitNullValueUserLabel; set { _explicitNullValueUserLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userLabel"); else _explicitNullProperties?.Remove("userLabel"); } }
+        private string _explicitNullValueUserLabel = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItem"/> and sets the default values.
@@ -59,7 +81,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -90,6 +112,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("scenarioId", ScenarioId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostScenariosAiAgentsModules200ResponseAgentModulesItemToolsItem>("tools", Tools);
             writer.WriteStringValue("userLabel", UserLabel);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

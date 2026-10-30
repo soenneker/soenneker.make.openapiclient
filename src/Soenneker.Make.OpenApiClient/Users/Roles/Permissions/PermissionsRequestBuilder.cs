@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Roles.Permissions
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersRolesPermissions200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets a list of all available permissions that can be assigned to user roles. Use the `roleCategory` parameter to filter permissions by team or organization roles.

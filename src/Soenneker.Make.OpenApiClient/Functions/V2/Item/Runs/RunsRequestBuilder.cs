@@ -59,13 +59,15 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Item.Runs
                 { "401", global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs401Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs404Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Admits a Run from the latest or explicitly selected published version. By default the responseis asynchronous. Set `responsive` to wait for terminal observation for at most`maxWaitSeconds` (maximum 60); wait expiry returns `202` and the Run continues.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunSuccessResponse"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -79,11 +81,11 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Item.Runs
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run503Response">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunSuccessResponse?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunSuccessResponse> PostAsync(global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -98,8 +100,10 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Item.Runs
                 { "422", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run422Response.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run429Response.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunSuccessResponse>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunSuccessResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Lists bounded Run summaries without source, Run input/output, or provider details.

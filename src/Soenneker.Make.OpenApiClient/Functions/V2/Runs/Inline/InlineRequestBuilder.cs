@@ -36,7 +36,7 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Runs.Inline
         /// <summary>
         /// Shared arbitrary-code admission route for authorized browser-session and API-token callers;it is not restricted to internal products. API tokens require `functions:write`.Session-authenticated mutations require the corresponding product authorization and CSRF.Admission creates an immutable, Run-owned snapshot of the submitted source, schemas,Connection selections, and Endpoint declarations without publishing a Function version.Optional `functionId` associates the Run with an authorized Function in the requested Team;associated Runs appear in that Function&apos;s history, while unassociated Runs remain accessibleby Run ID. The server treats all submitted source as hostile and applies authorization,source bounds, and Run-admission quotas.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunSuccessResponse"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -49,11 +49,11 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Runs.Inline
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run503Response">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.V2.Runs.Inline.InlineRequestBuilder.InlineRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunSuccessResponse?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.V2.Runs.Inline.InlineRequestBuilder.InlineRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.V2.Runs.Inline.InlineRequestBuilder.InlineRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunSuccessResponse> PostAsync(global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Functions.V2.Runs.Inline.InlineRequestBuilder.InlineRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -67,8 +67,10 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Runs.Inline
                 { "422", global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run422Response.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run429Response.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunSuccessResponse>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2RunSuccessResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Shared arbitrary-code admission route for authorized browser-session and API-token callers;it is not restricted to internal products. API tokens require `functions:write`.Session-authenticated mutations require the corresponding product authorization and CSRF.Admission creates an immutable, Run-owned snapshot of the submitted source, schemas,Connection selections, and Endpoint declarations without publishing a Function version.Optional `functionId` associates the Run with an authorized Function in the requested Team;associated Runs appear in that Function&apos;s history, while unassociated Runs remain accessibleby Run ID. The server treats all submitted source as hostile and applies authorization,source bounds, and Run-admission quotas.

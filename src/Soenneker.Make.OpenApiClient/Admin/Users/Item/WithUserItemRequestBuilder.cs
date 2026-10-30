@@ -79,7 +79,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteAdminUsersByUserId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteAdminUsersByUserId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteAdminUsersByUserId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteAdminUsersByUserId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates user information. Make updates only the specified information. In addition, you can set the user admin roles in the `usersAdminsRoleId`. Check the available roles with the API call `GET /admin/users/admins-roles`. Refer to the [user admin roles documentation](https://www.make.com/en/help/white-label/manage-organizations#instance-level-roles-1628394) for the full breakdown of the user admin roles permissions.
@@ -99,7 +99,7 @@ namespace Soenneker.Make.OpenApiClient.Admin.Users.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchAdminUsersByUserId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchAdminUsersByUserId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchAdminUsersByUserId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchAdminUsersByUserId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes the user with the specified `userId`. Use the `deleteConnections` query parameter to delete the user&apos;s connections too.

@@ -11,24 +11,37 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PostScenariosByScenarioIdRestore200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("scenario") is { } nullNodeScenario && nullNodeScenario.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scenario = null;
+            if (parseNode.GetChildNode("strippedModules") is { } nullNodeStrippedModules && nullNodeStrippedModules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StrippedModules = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The scenario property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseScenario? Scenario { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseScenario? Scenario { get => _explicitNullValueScenario; set { _explicitNullValueScenario = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenario"); else _explicitNullProperties?.Remove("scenario"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseScenario? _explicitNullValueScenario = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseScenario Scenario { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseScenario Scenario { get => _explicitNullValueScenario; set { _explicitNullValueScenario = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenario"); else _explicitNullProperties?.Remove("scenario"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseScenario _explicitNullValueScenario = default!;
 #endif
         /// <summary>The modules a locked connection or key was cleared from, empty when nothing was cleared. A module listed here has no connection selected until the user picks one.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem>? StrippedModules { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem>? StrippedModules { get => _explicitNullValueStrippedModules; set { _explicitNullValueStrippedModules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("strippedModules"); else _explicitNullProperties?.Remove("strippedModules"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem>? _explicitNullValueStrippedModules = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem> StrippedModules { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem> StrippedModules { get => _explicitNullValueStrippedModules; set { _explicitNullValueStrippedModules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("strippedModules"); else _explicitNullProperties?.Remove("strippedModules"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem> _explicitNullValueStrippedModules = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200Response"/> and sets the default values.
@@ -45,7 +58,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +81,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseScenario>("scenario", Scenario);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostScenariosByScenarioIdRestore200ResponseStrippedModulesItem>("strippedModules", StrippedModules);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

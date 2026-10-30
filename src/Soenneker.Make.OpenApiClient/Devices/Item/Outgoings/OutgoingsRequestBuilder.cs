@@ -64,7 +64,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Outgoings
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDevicesByDeviceIdOutgoings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDevicesByDeviceIdOutgoings200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDevicesByDeviceIdOutgoings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDevicesByDeviceIdOutgoings200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Required scope: devices:read
@@ -82,7 +82,7 @@ namespace Soenneker.Make.OpenApiClient.Devices.Item.Outgoings
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdOutgoings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdOutgoings200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdOutgoings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdOutgoings200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// &quot;ids&quot; and &quot;all&quot; can no be used together&lt;br /&gt;&quot;ids&quot; or &quot;all&quot; has to be set&lt;br /&gt;&quot;exceptIds&quot; is possible to use only with &quot;all&quot;&lt;br /&gt;It could happen, that some incoming messages are deleted and others not. In this case, the API returns a successful status code, and the response additionally contains an error object with a error description.

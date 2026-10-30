@@ -11,15 +11,28 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("addAdminsAsObservers") is { } nullNodeAddAdminsAsObservers && nullNodeAddAdminsAsObservers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AddAdminsAsObservers = null;
+            if (parseNode.GetChildNode("defaultOperationsLimit") is { } nullNodeDefaultOperationsLimit && nullNodeDefaultOperationsLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DefaultOperationsLimit = null;
+            if (parseNode.GetChildNode("privateSpacesAutoCreationEnabled") is { } nullNodePrivateSpacesAutoCreationEnabled && nullNodePrivateSpacesAutoCreationEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PrivateSpacesAutoCreationEnabled = null;
+        }
+
         /// <summary>When `true`, organization admins and the owner are added as `Team Observer` to private spaces. Defaults to `false`.</summary>
-        public bool? AddAdminsAsObservers { get; set; }
+        public bool? AddAdminsAsObservers { get => _explicitNullValueAddAdminsAsObservers; set { _explicitNullValueAddAdminsAsObservers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("addAdminsAsObservers"); else _explicitNullProperties?.Remove("addAdminsAsObservers"); } }
+        private bool? _explicitNullValueAddAdminsAsObservers = default!;
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Default operations limit applied when a private space is auto-created. `null` means unlimited. Defaults to `1000` when never configured.</summary>
-        public int? DefaultOperationsLimit { get; set; }
+        public int? DefaultOperationsLimit { get => _explicitNullValueDefaultOperationsLimit; set { _explicitNullValueDefaultOperationsLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("defaultOperationsLimit"); else _explicitNullProperties?.Remove("defaultOperationsLimit"); } }
+        private int? _explicitNullValueDefaultOperationsLimit = default!;
         /// <summary>When `true`, a private space is automatically created for each new member of the organization.</summary>
-        public bool? PrivateSpacesAutoCreationEnabled { get; set; }
+        public bool? PrivateSpacesAutoCreationEnabled { get => _explicitNullValuePrivateSpacesAutoCreationEnabled; set { _explicitNullValuePrivateSpacesAutoCreationEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("privateSpacesAutoCreationEnabled"); else _explicitNullProperties?.Remove("privateSpacesAutoCreationEnabled"); } }
+        private bool? _explicitNullValuePrivateSpacesAutoCreationEnabled = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings"/> and sets the default values.
         /// </summary>
@@ -35,7 +48,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPrivateSpacesSettings200ResponsePrivateSpacesSettings(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,6 +73,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("addAdminsAsObservers", AddAdminsAsObservers);
             writer.WriteIntValue("defaultOperationsLimit", DefaultOperationsLimit);
             writer.WriteBoolValue("privateSpacesAutoCreationEnabled", PrivateSpacesAutoCreationEnabled);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

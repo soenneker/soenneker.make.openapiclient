@@ -11,27 +11,52 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetOrganizationsByOrganizationIdUniversalDiscount200ResponseUniversalDiscountRules : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("applies_to_extras") is { } nullNodeAppliesToExtras && nullNodeAppliesToExtras.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AppliesToExtras = null;
+            if (parseNode.GetChildNode("lost_on_cancel") is { } nullNodeLostOnCancel && nullNodeLostOnCancel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LostOnCancel = null;
+            if (parseNode.GetChildNode("lost_on_other_discount") is { } nullNodeLostOnOtherDiscount && nullNodeLostOnOtherDiscount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LostOnOtherDiscount = null;
+            if (parseNode.GetChildNode("lost_on_price_downgrade") is { } nullNodeLostOnPriceDowngrade && nullNodeLostOnPriceDowngrade.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LostOnPriceDowngrade = null;
+            if (parseNode.GetChildNode("lost_on_price_upgrade") is { } nullNodeLostOnPriceUpgrade && nullNodeLostOnPriceUpgrade.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LostOnPriceUpgrade = null;
+            if (parseNode.GetChildNode("lost_on_product_downgrade") is { } nullNodeLostOnProductDowngrade && nullNodeLostOnProductDowngrade.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LostOnProductDowngrade = null;
+            if (parseNode.GetChildNode("lost_on_product_upgrade") is { } nullNodeLostOnProductUpgrade && nullNodeLostOnProductUpgrade.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LostOnProductUpgrade = null;
+            if (parseNode.GetChildNode("redeemable_by_admin") is { } nullNodeRedeemableByAdmin && nullNodeRedeemableByAdmin.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RedeemableByAdmin = null;
+            if (parseNode.GetChildNode("redeemable_by_user") is { } nullNodeRedeemableByUser && nullNodeRedeemableByUser.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RedeemableByUser = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The applies_to_extras property</summary>
-        public bool? AppliesToExtras { get; set; }
+        public bool? AppliesToExtras { get => _explicitNullValueAppliesToExtras; set { _explicitNullValueAppliesToExtras = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("applies_to_extras"); else _explicitNullProperties?.Remove("applies_to_extras"); } }
+        private bool? _explicitNullValueAppliesToExtras = default!;
         /// <summary>The lost_on_cancel property</summary>
-        public bool? LostOnCancel { get; set; }
+        public bool? LostOnCancel { get => _explicitNullValueLostOnCancel; set { _explicitNullValueLostOnCancel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lost_on_cancel"); else _explicitNullProperties?.Remove("lost_on_cancel"); } }
+        private bool? _explicitNullValueLostOnCancel = default!;
         /// <summary>The lost_on_other_discount property</summary>
-        public bool? LostOnOtherDiscount { get; set; }
+        public bool? LostOnOtherDiscount { get => _explicitNullValueLostOnOtherDiscount; set { _explicitNullValueLostOnOtherDiscount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lost_on_other_discount"); else _explicitNullProperties?.Remove("lost_on_other_discount"); } }
+        private bool? _explicitNullValueLostOnOtherDiscount = default!;
         /// <summary>The lost_on_price_downgrade property</summary>
-        public bool? LostOnPriceDowngrade { get; set; }
+        public bool? LostOnPriceDowngrade { get => _explicitNullValueLostOnPriceDowngrade; set { _explicitNullValueLostOnPriceDowngrade = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lost_on_price_downgrade"); else _explicitNullProperties?.Remove("lost_on_price_downgrade"); } }
+        private bool? _explicitNullValueLostOnPriceDowngrade = default!;
         /// <summary>The lost_on_price_upgrade property</summary>
-        public bool? LostOnPriceUpgrade { get; set; }
+        public bool? LostOnPriceUpgrade { get => _explicitNullValueLostOnPriceUpgrade; set { _explicitNullValueLostOnPriceUpgrade = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lost_on_price_upgrade"); else _explicitNullProperties?.Remove("lost_on_price_upgrade"); } }
+        private bool? _explicitNullValueLostOnPriceUpgrade = default!;
         /// <summary>The lost_on_product_downgrade property</summary>
-        public bool? LostOnProductDowngrade { get; set; }
+        public bool? LostOnProductDowngrade { get => _explicitNullValueLostOnProductDowngrade; set { _explicitNullValueLostOnProductDowngrade = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lost_on_product_downgrade"); else _explicitNullProperties?.Remove("lost_on_product_downgrade"); } }
+        private bool? _explicitNullValueLostOnProductDowngrade = default!;
         /// <summary>The lost_on_product_upgrade property</summary>
-        public bool? LostOnProductUpgrade { get; set; }
+        public bool? LostOnProductUpgrade { get => _explicitNullValueLostOnProductUpgrade; set { _explicitNullValueLostOnProductUpgrade = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lost_on_product_upgrade"); else _explicitNullProperties?.Remove("lost_on_product_upgrade"); } }
+        private bool? _explicitNullValueLostOnProductUpgrade = default!;
         /// <summary>The redeemable_by_admin property</summary>
-        public bool? RedeemableByAdmin { get; set; }
+        public bool? RedeemableByAdmin { get => _explicitNullValueRedeemableByAdmin; set { _explicitNullValueRedeemableByAdmin = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redeemable_by_admin"); else _explicitNullProperties?.Remove("redeemable_by_admin"); } }
+        private bool? _explicitNullValueRedeemableByAdmin = default!;
         /// <summary>The redeemable_by_user property</summary>
-        public bool? RedeemableByUser { get; set; }
+        public bool? RedeemableByUser { get => _explicitNullValueRedeemableByUser; set { _explicitNullValueRedeemableByUser = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redeemable_by_user"); else _explicitNullProperties?.Remove("redeemable_by_user"); } }
+        private bool? _explicitNullValueRedeemableByUser = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdUniversalDiscount200ResponseUniversalDiscountRules"/> and sets the default values.
         /// </summary>
@@ -47,7 +72,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdUniversalDiscount200ResponseUniversalDiscountRules CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdUniversalDiscount200ResponseUniversalDiscountRules();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdUniversalDiscount200ResponseUniversalDiscountRules(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,6 +109,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("lost_on_product_upgrade", LostOnProductUpgrade);
             writer.WriteBoolValue("redeemable_by_admin", RedeemableByAdmin);
             writer.WriteBoolValue("redeemable_by_user", RedeemableByUser);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

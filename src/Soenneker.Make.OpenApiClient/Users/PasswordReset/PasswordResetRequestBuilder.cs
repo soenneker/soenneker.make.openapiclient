@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Users.PasswordReset
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersPasswordReset200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersPasswordReset200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersPasswordReset200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersPasswordReset200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a password for a user based on the session created when calling the [Prepare session for password reset](./get--users--password-reset.md) endpoint. This endpoint corresponds to setting a new password on the **Lost password** page in the Make interface.
@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Users.PasswordReset
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostUsersPasswordReset200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostUsersPasswordReset200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostUsersPasswordReset200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostUsersPasswordReset200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Checks a hash and sets a session for the [Reset lost password](./post--users--password-reset.md) endpoint. This endpoint corresponds to clicking the **Reset password** link in the **Password reset** email.

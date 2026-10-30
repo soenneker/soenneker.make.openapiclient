@@ -11,16 +11,29 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetTemplatesPublicByTemplateUrlBlueprint200ResponseBlueprintMetadataScenario : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("autoCommit") is { } nullNodeAutoCommit && nullNodeAutoCommit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoCommit = null;
+            if (parseNode.GetChildNode("maxErrors") is { } nullNodeMaxErrors && nullNodeMaxErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxErrors = null;
+            if (parseNode.GetChildNode("roundtrips") is { } nullNodeRoundtrips && nullNodeRoundtrips.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Roundtrips = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The autoCommit property</summary>
-        public bool? AutoCommit { get; set; }
+        public bool? AutoCommit { get => _explicitNullValueAutoCommit; set { _explicitNullValueAutoCommit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("autoCommit"); else _explicitNullProperties?.Remove("autoCommit"); } }
+        private bool? _explicitNullValueAutoCommit = default!;
         /// <summary>The maxErrors property</summary>
-        public int? MaxErrors { get; set; }
+        public int? MaxErrors { get => _explicitNullValueMaxErrors; set { _explicitNullValueMaxErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxErrors"); else _explicitNullProperties?.Remove("maxErrors"); } }
+        private int? _explicitNullValueMaxErrors = default!;
         /// <summary>This property is deprecated. Any value sent in a request is ignored: it is always stored and returned as `1`, and every execution runs a single cycle.</summary>
         [Obsolete("")]
-        public int? Roundtrips { get; set; }
+        public int? Roundtrips { get => _explicitNullValueRoundtrips; set { _explicitNullValueRoundtrips = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("roundtrips"); else _explicitNullProperties?.Remove("roundtrips"); } }
+        private int? _explicitNullValueRoundtrips = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrlBlueprint200ResponseBlueprintMetadataScenario"/> and sets the default values.
         /// </summary>
@@ -36,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrlBlueprint200ResponseBlueprintMetadataScenario CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrlBlueprint200ResponseBlueprintMetadataScenario();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetTemplatesPublicByTemplateUrlBlueprint200ResponseBlueprintMetadataScenario(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,6 +74,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("autoCommit", AutoCommit);
             writer.WriteIntValue("maxErrors", MaxErrors);
             writer.WriteIntValue("roundtrips", Roundtrips);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

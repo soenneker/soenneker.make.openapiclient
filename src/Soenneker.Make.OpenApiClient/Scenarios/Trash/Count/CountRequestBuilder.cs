@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Trash.Count
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosTrashCount200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosTrashCount200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetScenariosTrashCount200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetScenariosTrashCount200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns the number of scenarios currently in the trash for a team — scenarios that weredeleted and are still within the 30-day recovery window. Useful for rendering a trash badgecount. The count respects the same permissions as listing scenarios.

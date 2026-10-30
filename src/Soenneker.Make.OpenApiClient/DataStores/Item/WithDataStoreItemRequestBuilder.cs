@@ -55,7 +55,7 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates properties of a data store with a given ID in a team with a given ID by passing new values in the request body. In the response, it returns all details of the updated data store including properties that were not changed. Any property that is not provided will be left unchanged. This endpoint cannot be used to update data included in the data store - for this use the [endpoints for managing data stores data](./data/get--data-stores--datastoreid--data.md).
@@ -75,7 +75,7 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves details of a data store with a given ID.

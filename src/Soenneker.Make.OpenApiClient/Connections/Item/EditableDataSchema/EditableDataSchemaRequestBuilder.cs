@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Connections.Item.EditableDataSchema
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetConnectionsByConnectionIdEditableDataSchema200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetConnectionsByConnectionIdEditableDataSchema200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetConnectionsByConnectionIdEditableDataSchema200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetConnectionsByConnectionIdEditableDataSchema200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets a list of connection parameters that can be updated. You can update a connection with the API call `POST /connections/{connectionId}/set-data`.If the connection cannot be updated then the API call returns the error message &quot;Cannot edit this connection.&quot; When this happens, create a new connection instead.

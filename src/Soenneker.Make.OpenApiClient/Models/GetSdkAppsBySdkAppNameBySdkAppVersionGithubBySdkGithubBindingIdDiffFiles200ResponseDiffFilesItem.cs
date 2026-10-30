@@ -11,85 +11,128 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("binary") is { } nullNodeBinary && nullNodeBinary.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Binary = null;
+            if (parseNode.GetChildNode("conflict") is { } nullNodeConflict && nullNodeConflict.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Conflict = null;
+            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("localChangedSinceSnapshot") is { } nullNodeLocalChangedSinceSnapshot && nullNodeLocalChangedSinceSnapshot.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LocalChangedSinceSnapshot = null;
+            if (parseNode.GetChildNode("localContent") is { } nullNodeLocalContent && nullNodeLocalContent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LocalContent = null;
+            if (parseNode.GetChildNode("localSha") is { } nullNodeLocalSha && nullNodeLocalSha.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LocalSha = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("path") is { } nullNodePath && nullNodePath.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Path = null;
+            if (parseNode.GetChildNode("remoteChangedSinceSnapshot") is { } nullNodeRemoteChangedSinceSnapshot && nullNodeRemoteChangedSinceSnapshot.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RemoteChangedSinceSnapshot = null;
+            if (parseNode.GetChildNode("remoteContent") is { } nullNodeRemoteContent && nullNodeRemoteContent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RemoteContent = null;
+            if (parseNode.GetChildNode("remoteSha") is { } nullNodeRemoteSha && nullNodeRemoteSha.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RemoteSha = null;
+            if (parseNode.GetChildNode("section") is { } nullNodeSection && nullNodeSection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Section = null;
+            if (parseNode.GetChildNode("snapshotSha") is { } nullNodeSnapshotSha && nullNodeSnapshotSha.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SnapshotSha = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>`true` for binary files (icons); their contents are omitted.</summary>
-        public bool? Binary { get; set; }
+        public bool? Binary { get => _explicitNullValueBinary; set { _explicitNullValueBinary = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("binary"); else _explicitNullProperties?.Remove("binary"); } }
+        private bool? _explicitNullValueBinary = default!;
         /// <summary>`true` when both sides moved away from the snapshot to different contents — pushing would overwrite remote edits. `null` when no snapshot is available.</summary>
-        public bool? Conflict { get; set; }
+        public bool? Conflict { get => _explicitNullValueConflict; set { _explicitNullValueConflict = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conflict"); else _explicitNullProperties?.Remove("conflict"); } }
+        private bool? _explicitNullValueConflict = default!;
         /// <summary>Component kind the file belongs to, or `null` when unattributable.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind? Kind { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind? _explicitNullValueKind = default!;
         /// <summary>`null` when no snapshot is available.</summary>
-        public bool? LocalChangedSinceSnapshot { get; set; }
+        public bool? LocalChangedSinceSnapshot { get => _explicitNullValueLocalChangedSinceSnapshot; set { _explicitNullValueLocalChangedSinceSnapshot = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localChangedSinceSnapshot"); else _explicitNullProperties?.Remove("localChangedSinceSnapshot"); } }
+        private bool? _explicitNullValueLocalChangedSinceSnapshot = default!;
         /// <summary>Local file content; `null` for binary files or when the file only exists remotely.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LocalContent { get; set; }
+        public string? LocalContent { get => _explicitNullValueLocalContent; set { _explicitNullValueLocalContent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localContent"); else _explicitNullProperties?.Remove("localContent"); } }
+        private string? _explicitNullValueLocalContent = default!;
 #nullable restore
 #else
-        public string LocalContent { get; set; }
+        public string LocalContent { get => _explicitNullValueLocalContent; set { _explicitNullValueLocalContent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localContent"); else _explicitNullProperties?.Remove("localContent"); } }
+        private string _explicitNullValueLocalContent = default!;
 #endif
         /// <summary>Git blob SHA of the local content, or `null` when the file only exists remotely.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LocalSha { get; set; }
+        public string? LocalSha { get => _explicitNullValueLocalSha; set { _explicitNullValueLocalSha = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localSha"); else _explicitNullProperties?.Remove("localSha"); } }
+        private string? _explicitNullValueLocalSha = default!;
 #nullable restore
 #else
-        public string LocalSha { get; set; }
+        public string LocalSha { get => _explicitNullValueLocalSha; set { _explicitNullValueLocalSha = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localSha"); else _explicitNullProperties?.Remove("localSha"); } }
+        private string _explicitNullValueLocalSha = default!;
 #endif
         /// <summary>Live entity name (connections/webhooks translated back from their repository folder names); `null` for app-level files.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>Repository path of the file (local casing preferred).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Path { get; set; }
+        public string? Path { get => _explicitNullValuePath; set { _explicitNullValuePath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("path"); else _explicitNullProperties?.Remove("path"); } }
+        private string? _explicitNullValuePath = default!;
 #nullable restore
 #else
-        public string Path { get; set; }
+        public string Path { get => _explicitNullValuePath; set { _explicitNullValuePath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("path"); else _explicitNullProperties?.Remove("path"); } }
+        private string _explicitNullValuePath = default!;
 #endif
         /// <summary>`null` when no snapshot is available.</summary>
-        public bool? RemoteChangedSinceSnapshot { get; set; }
+        public bool? RemoteChangedSinceSnapshot { get => _explicitNullValueRemoteChangedSinceSnapshot; set { _explicitNullValueRemoteChangedSinceSnapshot = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("remoteChangedSinceSnapshot"); else _explicitNullProperties?.Remove("remoteChangedSinceSnapshot"); } }
+        private bool? _explicitNullValueRemoteChangedSinceSnapshot = default!;
         /// <summary>Remote file content; `null` for binary files or when the file only exists locally.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RemoteContent { get; set; }
+        public string? RemoteContent { get => _explicitNullValueRemoteContent; set { _explicitNullValueRemoteContent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("remoteContent"); else _explicitNullProperties?.Remove("remoteContent"); } }
+        private string? _explicitNullValueRemoteContent = default!;
 #nullable restore
 #else
-        public string RemoteContent { get; set; }
+        public string RemoteContent { get => _explicitNullValueRemoteContent; set { _explicitNullValueRemoteContent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("remoteContent"); else _explicitNullProperties?.Remove("remoteContent"); } }
+        private string _explicitNullValueRemoteContent = default!;
 #endif
         /// <summary>Git blob SHA of the remote content, or `null` when the file only exists locally.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RemoteSha { get; set; }
+        public string? RemoteSha { get => _explicitNullValueRemoteSha; set { _explicitNullValueRemoteSha = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("remoteSha"); else _explicitNullProperties?.Remove("remoteSha"); } }
+        private string? _explicitNullValueRemoteSha = default!;
 #nullable restore
 #else
-        public string RemoteSha { get; set; }
+        public string RemoteSha { get => _explicitNullValueRemoteSha; set { _explicitNullValueRemoteSha = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("remoteSha"); else _explicitNullProperties?.Remove("remoteSha"); } }
+        private string _explicitNullValueRemoteSha = default!;
 #endif
         /// <summary>Section identifier of the file (e.g. `api`, `metadata`, `readme`), or `null`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Section { get; set; }
+        public string? Section { get => _explicitNullValueSection; set { _explicitNullValueSection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("section"); else _explicitNullProperties?.Remove("section"); } }
+        private string? _explicitNullValueSection = default!;
 #nullable restore
 #else
-        public string Section { get; set; }
+        public string Section { get => _explicitNullValueSection; set { _explicitNullValueSection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("section"); else _explicitNullProperties?.Remove("section"); } }
+        private string _explicitNullValueSection = default!;
 #endif
         /// <summary>Git blob SHA recorded at the last push, or `null` when the path wasn&apos;t in the snapshot.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SnapshotSha { get; set; }
+        public string? SnapshotSha { get => _explicitNullValueSnapshotSha; set { _explicitNullValueSnapshotSha = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("snapshotSha"); else _explicitNullProperties?.Remove("snapshotSha"); } }
+        private string? _explicitNullValueSnapshotSha = default!;
 #nullable restore
 #else
-        public string SnapshotSha { get; set; }
+        public string SnapshotSha { get => _explicitNullValueSnapshotSha; set { _explicitNullValueSnapshotSha = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("snapshotSha"); else _explicitNullProperties?.Remove("snapshotSha"); } }
+        private string _explicitNullValueSnapshotSha = default!;
 #endif
         /// <summary>Local state relative to the remote — `added` = local only, `deleted` = remote only.</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemStatus? Status { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem"/> and sets the default values.
         /// </summary>
@@ -105,7 +148,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -152,6 +195,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("section", Section);
             writer.WriteStringValue("snapshotSha", SnapshotSha);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemStatus>("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -73,6 +73,8 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.AppReview
             {
                 { "403", global::Soenneker.Make.OpenApiClient.Models.GetAdminSdkAppsByAppByVersionAppReview403ResponseSchema.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.GetAdminSdkAppsByAppByVersionAppReview404ResponseSchema.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAdminSdkAppsByAppByVersionAppReview200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAdminSdkAppsByAppByVersionAppReview200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

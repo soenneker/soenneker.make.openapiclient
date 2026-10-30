@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Enums.UserApiTokenScopes
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserApiTokenScopes200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserApiTokenScopes200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserApiTokenScopes200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetEnumsUserApiTokenScopes200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets the list of all of the existing user API token scopes. For more information about the user API scopes refer to the [Authentication section](../../authentication/api-scopes-overview.md).

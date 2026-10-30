@@ -11,29 +11,51 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetCashierPricesByPriceId200ResponseConfig : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("dlqStorage") is { } nullNodeDlqStorage && nullNodeDlqStorage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DlqStorage = null;
+            if (parseNode.GetChildNode("dslimit") is { } nullNodeDslimit && nullNodeDslimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dslimit = null;
+            if (parseNode.GetChildNode("dsslimit") is { } nullNodeDsslimit && nullNodeDsslimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dsslimit = null;
+            if (parseNode.GetChildNode("iolimit") is { } nullNodeIolimit && nullNodeIolimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Iolimit = null;
+            if (parseNode.GetChildNode("operations") is { } nullNodeOperations && nullNodeOperations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Operations = null;
+            if (parseNode.GetChildNode("restartPeriod") is { } nullNodeRestartPeriod && nullNodeRestartPeriod.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RestartPeriod = null;
+            if (parseNode.GetChildNode("transfer") is { } nullNodeTransfer && nullNodeTransfer.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Transfer = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The dlqStorage property</summary>
-        public double? DlqStorage { get; set; }
+        public double? DlqStorage { get => _explicitNullValueDlqStorage; set { _explicitNullValueDlqStorage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dlqStorage"); else _explicitNullProperties?.Remove("dlqStorage"); } }
+        private double? _explicitNullValueDlqStorage = default!;
         /// <summary>The dslimit property</summary>
-        public double? Dslimit { get; set; }
+        public double? Dslimit { get => _explicitNullValueDslimit; set { _explicitNullValueDslimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dslimit"); else _explicitNullProperties?.Remove("dslimit"); } }
+        private double? _explicitNullValueDslimit = default!;
         /// <summary>The dsslimit property</summary>
-        public double? Dsslimit { get; set; }
+        public double? Dsslimit { get => _explicitNullValueDsslimit; set { _explicitNullValueDsslimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dsslimit"); else _explicitNullProperties?.Remove("dsslimit"); } }
+        private double? _explicitNullValueDsslimit = default!;
         /// <summary>The iolimit property</summary>
-        public double? Iolimit { get; set; }
+        public double? Iolimit { get => _explicitNullValueIolimit; set { _explicitNullValueIolimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("iolimit"); else _explicitNullProperties?.Remove("iolimit"); } }
+        private double? _explicitNullValueIolimit = default!;
         /// <summary>The operations property</summary>
-        public double? Operations { get; set; }
+        public double? Operations { get => _explicitNullValueOperations; set { _explicitNullValueOperations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operations"); else _explicitNullProperties?.Remove("operations"); } }
+        private double? _explicitNullValueOperations = default!;
         /// <summary>The restartPeriod property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RestartPeriod { get; set; }
+        public string? RestartPeriod { get => _explicitNullValueRestartPeriod; set { _explicitNullValueRestartPeriod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restartPeriod"); else _explicitNullProperties?.Remove("restartPeriod"); } }
+        private string? _explicitNullValueRestartPeriod = default!;
 #nullable restore
 #else
-        public string RestartPeriod { get; set; }
+        public string RestartPeriod { get => _explicitNullValueRestartPeriod; set { _explicitNullValueRestartPeriod = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("restartPeriod"); else _explicitNullProperties?.Remove("restartPeriod"); } }
+        private string _explicitNullValueRestartPeriod = default!;
 #endif
         /// <summary>The transfer property</summary>
-        public double? Transfer { get; set; }
+        public double? Transfer { get => _explicitNullValueTransfer; set { _explicitNullValueTransfer = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transfer"); else _explicitNullProperties?.Remove("transfer"); } }
+        private double? _explicitNullValueTransfer = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCashierPricesByPriceId200ResponseConfig"/> and sets the default values.
         /// </summary>
@@ -49,7 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetCashierPricesByPriceId200ResponseConfig CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetCashierPricesByPriceId200ResponseConfig();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetCashierPricesByPriceId200ResponseConfig(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,6 +104,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteDoubleValue("operations", Operations);
             writer.WriteStringValue("restartPeriod", RestartPeriod);
             writer.WriteDoubleValue("transfer", Transfer);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Hooks.Item.Incomings.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomingsByIncomingId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomingsByIncomingId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomingsByIncomingId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetHooksByHookIdIncomingsByIncomingId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves detail information about the specified webhook queue item. You can get the webhook queue item ID value with the API call `GET /hooks/{hookId}/incomings`.

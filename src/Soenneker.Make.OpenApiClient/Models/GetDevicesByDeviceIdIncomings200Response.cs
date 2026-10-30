@@ -11,24 +11,37 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetDevicesByDeviceIdIncomings200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("incomings") is { } nullNodeIncomings && nullNodeIncomings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Incomings = null;
+            if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The incomings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponseIncomingsItem>? Incomings { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponseIncomingsItem>? Incomings { get => _explicitNullValueIncomings; set { _explicitNullValueIncomings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incomings"); else _explicitNullProperties?.Remove("incomings"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponseIncomingsItem>? _explicitNullValueIncomings = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponseIncomingsItem> Incomings { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponseIncomingsItem> Incomings { get => _explicitNullValueIncomings; set { _explicitNullValueIncomings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incomings"); else _explicitNullProperties?.Remove("incomings"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponseIncomingsItem> _explicitNullValueIncomings = default!;
 #endif
         /// <summary>The pg property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponsePg? Pg { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponsePg? Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponsePg? _explicitNullValuePg = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponsePg Pg { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponsePg _explicitNullValuePg = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200Response"/> and sets the default values.
@@ -45,7 +58,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +81,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponseIncomingsItem>("incomings", Incomings);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetDevicesByDeviceIdIncomings200ResponsePg>("pg", Pg);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -50,7 +50,7 @@ namespace Soenneker.Make.OpenApiClient.AuditLogs.Item.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAuditLogDetail200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Gets details of the audit log entry with the specified UUID.**Deprecated.** Use `GET /audit-logs/v2/{organizationId}/{uuid}` instead. That endpoint requires the`audit-logs:read` scope on the API token.

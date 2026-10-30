@@ -11,37 +11,62 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetOrganizationsByOrganizationIdManagedOrganizationsConsumption200ResponseManagedOrganizationsConsumptionItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("centicreditsConsumed") is { } nullNodeCenticreditsConsumed && nullNodeCenticreditsConsumed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsConsumed = null;
+            if (parseNode.GetChildNode("centicreditsExtra") is { } nullNodeCenticreditsExtra && nullNodeCenticreditsExtra.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsExtra = null;
+            if (parseNode.GetChildNode("lastReset") is { } nullNodeLastReset && nullNodeLastReset.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastReset = null;
+            if (parseNode.GetChildNode("operationsConsumed") is { } nullNodeOperationsConsumed && nullNodeOperationsConsumed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperationsConsumed = null;
+            if (parseNode.GetChildNode("operationsExtra") is { } nullNodeOperationsExtra && nullNodeOperationsExtra.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OperationsExtra = null;
+            if (parseNode.GetChildNode("organizationId") is { } nullNodeOrganizationId && nullNodeOrganizationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationId = null;
+            if (parseNode.GetChildNode("transferConsumed") is { } nullNodeTransferConsumed && nullNodeTransferConsumed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TransferConsumed = null;
+            if (parseNode.GetChildNode("transferExtra") is { } nullNodeTransferExtra && nullNodeTransferExtra.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TransferExtra = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The centicreditsConsumed property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CenticreditsConsumed { get; set; }
+        public string? CenticreditsConsumed { get => _explicitNullValueCenticreditsConsumed; set { _explicitNullValueCenticreditsConsumed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsConsumed"); else _explicitNullProperties?.Remove("centicreditsConsumed"); } }
+        private string? _explicitNullValueCenticreditsConsumed = default!;
 #nullable restore
 #else
-        public string CenticreditsConsumed { get; set; }
+        public string CenticreditsConsumed { get => _explicitNullValueCenticreditsConsumed; set { _explicitNullValueCenticreditsConsumed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsConsumed"); else _explicitNullProperties?.Remove("centicreditsConsumed"); } }
+        private string _explicitNullValueCenticreditsConsumed = default!;
 #endif
         /// <summary>The centicreditsExtra property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CenticreditsExtra { get; set; }
+        public string? CenticreditsExtra { get => _explicitNullValueCenticreditsExtra; set { _explicitNullValueCenticreditsExtra = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsExtra"); else _explicitNullProperties?.Remove("centicreditsExtra"); } }
+        private string? _explicitNullValueCenticreditsExtra = default!;
 #nullable restore
 #else
-        public string CenticreditsExtra { get; set; }
+        public string CenticreditsExtra { get => _explicitNullValueCenticreditsExtra; set { _explicitNullValueCenticreditsExtra = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsExtra"); else _explicitNullProperties?.Remove("centicreditsExtra"); } }
+        private string _explicitNullValueCenticreditsExtra = default!;
 #endif
         /// <summary>The lastReset property</summary>
-        public DateTimeOffset? LastReset { get; set; }
+        public DateTimeOffset? LastReset { get => _explicitNullValueLastReset; set { _explicitNullValueLastReset = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastReset"); else _explicitNullProperties?.Remove("lastReset"); } }
+        private DateTimeOffset? _explicitNullValueLastReset = default!;
         /// <summary>The operationsConsumed property</summary>
-        public double? OperationsConsumed { get; set; }
+        public double? OperationsConsumed { get => _explicitNullValueOperationsConsumed; set { _explicitNullValueOperationsConsumed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operationsConsumed"); else _explicitNullProperties?.Remove("operationsConsumed"); } }
+        private double? _explicitNullValueOperationsConsumed = default!;
         /// <summary>The operationsExtra property</summary>
-        public double? OperationsExtra { get; set; }
+        public double? OperationsExtra { get => _explicitNullValueOperationsExtra; set { _explicitNullValueOperationsExtra = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("operationsExtra"); else _explicitNullProperties?.Remove("operationsExtra"); } }
+        private double? _explicitNullValueOperationsExtra = default!;
         /// <summary>The organizationId property</summary>
-        public int? OrganizationId { get; set; }
+        public int? OrganizationId { get => _explicitNullValueOrganizationId; set { _explicitNullValueOrganizationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("organizationId"); else _explicitNullProperties?.Remove("organizationId"); } }
+        private int? _explicitNullValueOrganizationId = default!;
         /// <summary>The transferConsumed property</summary>
-        public double? TransferConsumed { get; set; }
+        public double? TransferConsumed { get => _explicitNullValueTransferConsumed; set { _explicitNullValueTransferConsumed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transferConsumed"); else _explicitNullProperties?.Remove("transferConsumed"); } }
+        private double? _explicitNullValueTransferConsumed = default!;
         /// <summary>The transferExtra property</summary>
-        public double? TransferExtra { get; set; }
+        public double? TransferExtra { get => _explicitNullValueTransferExtra; set { _explicitNullValueTransferExtra = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("transferExtra"); else _explicitNullProperties?.Remove("transferExtra"); } }
+        private double? _explicitNullValueTransferExtra = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdManagedOrganizationsConsumption200ResponseManagedOrganizationsConsumptionItem"/> and sets the default values.
         /// </summary>
@@ -57,7 +82,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdManagedOrganizationsConsumption200ResponseManagedOrganizationsConsumptionItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdManagedOrganizationsConsumption200ResponseManagedOrganizationsConsumptionItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdManagedOrganizationsConsumption200ResponseManagedOrganizationsConsumptionItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -92,6 +117,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("organizationId", OrganizationId);
             writer.WriteDoubleValue("transferConsumed", TransferConsumed);
             writer.WriteDoubleValue("transferExtra", TransferExtra);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Scenarios.Item.Credentials
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalScenariosByScenarioIdCredentials200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalScenariosByScenarioIdCredentials200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetInternalScenariosByScenarioIdCredentials200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetInternalScenariosByScenarioIdCredentials200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves all credentials (connections and keys) used in a scenario with a given ID. Returns the list of accounts and keys along with their author information.

@@ -11,17 +11,32 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("isEnterprise") is { } nullNodeIsEnterprise && nullNodeIsEnterprise.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsEnterprise = null;
+            if (parseNode.GetChildNode("isFreePlan") is { } nullNodeIsFreePlan && nullNodeIsFreePlan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsFreePlan = null;
+            if (parseNode.GetChildNode("isPromo") is { } nullNodeIsPromo && nullNodeIsPromo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsPromo = null;
+            if (parseNode.GetChildNode("isTrial") is { } nullNodeIsTrial && nullNodeIsTrial.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsTrial = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The isEnterprise property</summary>
-        public bool? IsEnterprise { get; set; }
+        public bool? IsEnterprise { get => _explicitNullValueIsEnterprise; set { _explicitNullValueIsEnterprise = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isEnterprise"); else _explicitNullProperties?.Remove("isEnterprise"); } }
+        private bool? _explicitNullValueIsEnterprise = default!;
         /// <summary>The isFreePlan property</summary>
-        public bool? IsFreePlan { get; set; }
+        public bool? IsFreePlan { get => _explicitNullValueIsFreePlan; set { _explicitNullValueIsFreePlan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isFreePlan"); else _explicitNullProperties?.Remove("isFreePlan"); } }
+        private bool? _explicitNullValueIsFreePlan = default!;
         /// <summary>The isPromo property</summary>
-        public bool? IsPromo { get; set; }
+        public bool? IsPromo { get => _explicitNullValueIsPromo; set { _explicitNullValueIsPromo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isPromo"); else _explicitNullProperties?.Remove("isPromo"); } }
+        private bool? _explicitNullValueIsPromo = default!;
         /// <summary>The isTrial property</summary>
-        public bool? IsTrial { get; set; }
+        public bool? IsTrial { get => _explicitNullValueIsTrial; set { _explicitNullValueIsTrial = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isTrial"); else _explicitNullProperties?.Remove("isTrial"); } }
+        private bool? _explicitNullValueIsTrial = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags"/> and sets the default values.
         /// </summary>
@@ -37,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.GetInternalOrganizationsByOrganizationIdInternalOrganization200ResponseOrganizationProductFlags(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,6 +79,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteBoolValue("isFreePlan", IsFreePlan);
             writer.WriteBoolValue("isPromo", IsPromo);
             writer.WriteBoolValue("isTrial", IsTrial);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

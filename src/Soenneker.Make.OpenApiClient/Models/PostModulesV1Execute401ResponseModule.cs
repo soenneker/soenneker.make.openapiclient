@@ -11,66 +11,98 @@ namespace Soenneker.Make.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PostModulesV1Execute401ResponseModule : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("code") is { } nullNodeCode && nullNodeCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Code = null;
+            if (parseNode.GetChildNode("errors") is { } nullNodeErrors && nullNodeErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Errors = null;
+            if (parseNode.GetChildNode("executionStarted") is { } nullNodeExecutionStarted && nullNodeExecutionStarted.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionStarted = null;
+            if (parseNode.GetChildNode("output") is { } nullNodeOutput && nullNodeOutput.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Output = null;
+            if (parseNode.GetChildNode("phase") is { } nullNodePhase && nullNodePhase.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Phase = null;
+            if (parseNode.GetChildNode("sideEffects") is { } nullNodeSideEffects && nullNodeSideEffects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SideEffects = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("usage") is { } nullNodeUsage && nullNodeUsage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Usage = null;
+            if (parseNode.GetChildNode("warnings") is { } nullNodeWarnings && nullNodeWarnings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Warnings = null;
+        }
+
         /// <summary>The code property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Code { get; set; }
+        public string? Code { get => _explicitNullValueCode; set { _explicitNullValueCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("code"); else _explicitNullProperties?.Remove("code"); } }
+        private string? _explicitNullValueCode = default!;
 #nullable restore
 #else
-        public string Code { get; set; }
+        public string Code { get => _explicitNullValueCode; set { _explicitNullValueCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("code"); else _explicitNullProperties?.Remove("code"); } }
+        private string _explicitNullValueCode = default!;
 #endif
         /// <summary>Module field errors for `MAPPING_FAILED` (one entry) and `VALIDATION_FAILED` (one per diagnostic). Messages are not localized.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleErrorsItem>? Errors { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleErrorsItem>? Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleErrorsItem>? _explicitNullValueErrors = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleErrorsItem> Errors { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleErrorsItem> Errors { get => _explicitNullValueErrors; set { _explicitNullValueErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errors"); else _explicitNullProperties?.Remove("errors"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleErrorsItem> _explicitNullValueErrors = default!;
 #endif
         /// <summary>The executionStarted property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleExecutionStarted? ExecutionStarted { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleExecutionStarted? ExecutionStarted { get => _explicitNullValueExecutionStarted; set { _explicitNullValueExecutionStarted = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionStarted"); else _explicitNullProperties?.Remove("executionStarted"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleExecutionStarted? _explicitNullValueExecutionStarted = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleExecutionStarted ExecutionStarted { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleExecutionStarted ExecutionStarted { get => _explicitNullValueExecutionStarted; set { _explicitNullValueExecutionStarted = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionStarted"); else _explicitNullProperties?.Remove("executionStarted"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleExecutionStarted _explicitNullValueExecutionStarted = default!;
 #endif
         /// <summary>The output property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleOutput? Output { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleOutput? Output { get => _explicitNullValueOutput; set { _explicitNullValueOutput = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("output"); else _explicitNullProperties?.Remove("output"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleOutput? _explicitNullValueOutput = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleOutput Output { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleOutput Output { get => _explicitNullValueOutput; set { _explicitNullValueOutput = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("output"); else _explicitNullProperties?.Remove("output"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleOutput _explicitNullValueOutput = default!;
 #endif
         /// <summary>The phase property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Phase { get; set; }
+        public string? Phase { get => _explicitNullValuePhase; set { _explicitNullValuePhase = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phase"); else _explicitNullProperties?.Remove("phase"); } }
+        private string? _explicitNullValuePhase = default!;
 #nullable restore
 #else
-        public string Phase { get; set; }
+        public string Phase { get => _explicitNullValuePhase; set { _explicitNullValuePhase = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("phase"); else _explicitNullProperties?.Remove("phase"); } }
+        private string _explicitNullValuePhase = default!;
 #endif
         /// <summary>The sideEffects property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleSideEffects? SideEffects { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleSideEffects? SideEffects { get => _explicitNullValueSideEffects; set { _explicitNullValueSideEffects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sideEffects"); else _explicitNullProperties?.Remove("sideEffects"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleSideEffects? _explicitNullValueSideEffects = default!;
         /// <summary>The status property</summary>
-        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleStatus? Status { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleStatus? _explicitNullValueStatus = default!;
         /// <summary>The usage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleUsage? Usage { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleUsage? Usage { get => _explicitNullValueUsage; set { _explicitNullValueUsage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usage"); else _explicitNullProperties?.Remove("usage"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleUsage? _explicitNullValueUsage = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleUsage Usage { get; set; }
+        public global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleUsage Usage { get => _explicitNullValueUsage; set { _explicitNullValueUsage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usage"); else _explicitNullProperties?.Remove("usage"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleUsage _explicitNullValueUsage = default!;
 #endif
         /// <summary>The warnings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleWarningsItem>? Warnings { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleWarningsItem>? Warnings { get => _explicitNullValueWarnings; set { _explicitNullValueWarnings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warnings"); else _explicitNullProperties?.Remove("warnings"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleWarningsItem>? _explicitNullValueWarnings = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleWarningsItem> Warnings { get; set; }
+        public List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleWarningsItem> Warnings { get => _explicitNullValueWarnings; set { _explicitNullValueWarnings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warnings"); else _explicitNullProperties?.Remove("warnings"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleWarningsItem> _explicitNullValueWarnings = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -80,7 +112,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public static global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModule CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModule();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModule(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -116,7 +148,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleSideEffects>("sideEffects", SideEffects);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleStatus>("status", Status);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleUsage>("usage", Usage);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleWarningsItem>("warnings", Warnings);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PostModulesV1Execute401ResponseModuleWarningsItem>("warnings", Warnings);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

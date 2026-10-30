@@ -63,6 +63,8 @@ namespace Soenneker.Make.OpenApiClient.Internal.EntityPlacements.Check
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck403Response.CreateFromDiscriminatorValue },
                 { "422", global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck422Response.CreateFromDiscriminatorValue },
                 { "500", global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck500Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostInternalEntityPlacementsCheck200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Item.UserTeamRoles.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamRolesByTeamId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamRolesByTeamId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamRolesByTeamId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersByUserIdUserTeamRolesByTeamId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates the user role in the team with the specified `teamId`. Get the mapping of the `userRoleId` and the user role `name` with the API call `GET /users/roles`. Organizations limited to a single team cannot assign team roles; such requests are rejected with `SC402`. Removing a user&apos;s role (omitting `usersRoleId` or sending `null`) remains available on those plans.
@@ -73,6 +73,8 @@ namespace Soenneker.Make.OpenApiClient.Users.Item.UserTeamRoles.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "402", global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserTeamRolesByTeamId402Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserTeamRolesByTeamId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostUsersByUserIdUserTeamRolesByTeamId200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

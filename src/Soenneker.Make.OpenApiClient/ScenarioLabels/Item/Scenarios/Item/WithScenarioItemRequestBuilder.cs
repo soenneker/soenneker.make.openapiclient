@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels.Item.Scenarios.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenarioLabelsByLabelIdScenariosByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenarioLabelsByLabelIdScenariosByScenarioId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteScenarioLabelsByLabelIdScenariosByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteScenarioLabelsByLabelIdScenariosByScenarioId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Assigns a team label to a single scenario. A team label may only be applied to scenarios in that same team. Idempotent.
@@ -67,7 +67,7 @@ namespace Soenneker.Make.OpenApiClient.ScenarioLabels.Item.Scenarios.Item
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenariosByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenariosByScenarioId200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenariosByScenarioId200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostScenarioLabelsByLabelIdScenariosByScenarioId200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Removes a team label from a single scenario. Idempotent.
