@@ -97,7 +97,7 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts.ContextsRequestBuilder.ContextsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve("{+baseurl}/ai-agents/v1/contexts?agentId={agentId}&teamId={teamId}", RequestAdapter.BaseUrl, "https://eu1.make.com/api/v2", "/ai-agents/v1/contexts", PathParameters.ContainsKey("request-raw-url")), PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/ai-agents/v1/contexts?agentId={agentId}&teamId={teamId}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             return requestInfo;
         }
@@ -117,7 +117,7 @@ namespace Soenneker.Make.OpenApiClient.AiAgents.V1.Contexts
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://eu1.make.com/api/v2", "/ai-agents/v1/contexts", PathParameters.ContainsKey("request-raw-url")), PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.SetContentFromParsable(RequestAdapter, "multipart/form-data", body);
             return requestInfo;
