@@ -61,12 +61,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The error property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf2? Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
-        private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf2? _explicitNullValueError = default!;
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError? Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError? _explicitNullValueError = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf2 Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
-        private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf2 _explicitNullValueError = default!;
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError _explicitNullValueError = default!;
 #endif
         /// <summary>Key expiration time for refresh triggers</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -151,12 +151,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The type property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf1? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
-        private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf1? _explicitNullValueType = default!;
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseType? _explicitNullValueType = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf1 Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
-        private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf1 _explicitNullValueType = default!;
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseType Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseType _explicitNullValueType = default!;
 #endif
         /// <summary>User remote service ID</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -213,7 +213,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseDataProperty>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseDataProperty.CreateFromDiscriminatorValue); } },
-                { "error", n => { Error = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf2>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf2.CreateFromDiscriminatorValue); } },
+                { "error", n => { Error = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError.CreateFromDiscriminatorValue); } },
                 { "expires", n => { Expires = n.GetStringValue(); } },
                 { "iterate", n => { Iterate = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseIterate>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseIterate.CreateFromDiscriminatorValue); } },
                 { "limit", n => { Limit = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
@@ -222,7 +222,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "output", n => { Output = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ResponseOutput>(global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ResponseOutput.CreateFromDiscriminatorValue); } },
                 { "temp", n => { Temp = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTempProperty>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTempProperty.CreateFromDiscriminatorValue); } },
                 { "trigger", n => { Trigger = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTrigger>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTrigger.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf1>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf1.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseType>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseType.CreateFromDiscriminatorValue); } },
                 { "uid", n => { Uid = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
                 { "valid", n => { Valid = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseValid>(global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseValid.CreateFromDiscriminatorValue); } },
                 { "wrapper", n => { Wrapper = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ResponseWrapper>(global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ResponseWrapper.CreateFromDiscriminatorValue); } },
@@ -236,7 +236,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseDataProperty>("data", Data);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf2>("error", Error);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError>("error", Error);
             writer.WriteStringValue("expires", Expires);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseIterate>("iterate", Iterate);
             writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("limit", Limit);
@@ -245,7 +245,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ResponseOutput>("output", Output);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTempProperty>("temp", Temp);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTrigger>("trigger", Trigger);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf1>("type", Type);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseType>("type", Type);
             writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("uid", Uid);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseValid>("valid", Valid);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CustomAppBaseAnyOf1ResponseWrapper>("wrapper", Wrapper);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

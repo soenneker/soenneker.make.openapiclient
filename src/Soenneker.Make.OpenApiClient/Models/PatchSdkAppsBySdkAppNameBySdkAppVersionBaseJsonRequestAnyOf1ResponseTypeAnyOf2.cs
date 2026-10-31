@@ -9,7 +9,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PostAdminScenariosReactivateRequestOneOf1 : IAdditionalDataHolder, IParsable
+    public partial class PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf2 : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
         // Track explicitly assigned nulls separately from absent properties.
@@ -17,31 +17,26 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("reanalyze") is null) { _explicitNullValueReanalyze = default!; _explicitNullProperties?.Remove("reanalyze"); }
-            else if (parseNode.GetChildNode("reanalyze") is { } nullNodeReanalyze && nullNodeReanalyze.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reanalyze = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The reanalyze property</summary>
-        public bool? Reanalyze { get => _explicitNullValueReanalyze; set { _explicitNullValueReanalyze = value; AdditionalData?.Remove("reanalyze"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reanalyze"); else _explicitNullProperties?.Remove("reanalyze"); } }
-        private bool? _explicitNullValueReanalyze = default!;
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivateRequestOneOf1"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf2"/> and sets the default values.
         /// </summary>
-        public PostAdminScenariosReactivateRequestOneOf1()
+        public PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf2()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivateRequestOneOf1"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf2"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivateRequestOneOf1 CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf2 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostAdminScenariosReactivateRequestOneOf1(), parseNode);
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf2(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -51,7 +46,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "reanalyze", n => { Reanalyze = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -61,7 +55,6 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteBoolValue("reanalyze", Reanalyze);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

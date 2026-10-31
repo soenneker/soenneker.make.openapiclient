@@ -6264,6 +6264,17 @@
                 }
               }
             }
+          },
+          "200": {
+            "description": "Agent created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAiAgentsV1Agents201Response"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "security": [
@@ -22504,6 +22515,93 @@
                 }
               }
             }
+          },
+          "200": {
+            "description": "Function and version \u00601\u0060 published.",
+            "headers": {
+              "Location": {
+                "description": "Public URL of the created resource.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "/api/v2/functions/v2/741"
+              },
+              "ETag": {
+                "description": "Strong validator for returned mutable Function metadata.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "\u0022function-741-5\u0022"
+              },
+              "Cache-Control": {
+                "description": "Prevents storage of source-bearing or user-specific responses.",
+                "schema": {
+                  "enum": [
+                    "no-store"
+                  ],
+                  "type": "string",
+                  "x-ms-enum": {
+                    "name": "CacheControl",
+                    "modelAsString": false,
+                    "values": [
+                      {
+                        "value": "no-store",
+                        "name": "NoStore"
+                      }
+                    ]
+                  }
+                },
+                "example": "no-store"
+              },
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateFunctionV2201Response"
+                },
+                "examples": {
+                  "created": {
+                    "value": {
+                      "function": {
+                        "id": 741,
+                        "teamId": 42,
+                        "name": "normalizeInvoices",
+                        "description": "Normalizes invoice records.",
+                        "active": false,
+                        "latestVersion": {
+                          "version": 1,
+                          "inputSchema": {},
+                          "outputSchema": {},
+                          "connections": {
+                            "crm": 22019
+                          },
+                          "endpoints": [
+                            {
+                              "alias": "Get customer",
+                              "appName": "salesforce",
+                              "appVersion": 4,
+                              "endpointName": "getCustomer",
+                              "connectionKey": "crm"
+                            }
+                          ],
+                          "createdAt": "2026-09-21T12:15:00.000Z"
+                        },
+                        "createdAt": "2026-09-21T12:15:00.000Z",
+                        "updatedAt": "2026-09-21T12:15:00.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "security": [
@@ -23598,6 +23696,77 @@
                 }
               }
             }
+          },
+          "200": {
+            "description": "Next immutable version published as latest.",
+            "headers": {
+              "Location": {
+                "description": "Public URL of the created resource.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "/api/v2/functions/v2/741"
+              },
+              "Cache-Control": {
+                "description": "Prevents storage of source-bearing or user-specific responses.",
+                "schema": {
+                  "enum": [
+                    "no-store"
+                  ],
+                  "type": "string",
+                  "x-ms-enum": {
+                    "name": "CacheControl",
+                    "modelAsString": false,
+                    "values": [
+                      {
+                        "value": "no-store",
+                        "name": "NoStore"
+                      }
+                    ]
+                  }
+                },
+                "example": "no-store"
+              },
+              "X-Request-ID": {
+                "description": "Correlation identifier for the request.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "01J8G4M8Z2KJ5N6Q7R8S9T0VWX"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishFunctionV2Version201Response"
+                },
+                "examples": {
+                  "published": {
+                    "value": {
+                      "functionVersion": {
+                        "version": 3,
+                        "inputSchema": {},
+                        "outputSchema": {},
+                        "connections": {
+                          "crm": 22019
+                        },
+                        "endpoints": [
+                          {
+                            "alias": "Get customer",
+                            "appName": "salesforce",
+                            "appVersion": 4,
+                            "endpointName": "getCustomer",
+                            "connectionKey": "crm"
+                          }
+                        ],
+                        "createdAt": "2026-09-20T10:30:00.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "security": [
@@ -31544,6 +31713,36 @@
                 }
               }
             }
+          },
+          "200": {
+            "description": "Create a telemetry destination.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdOtelDestinations201Response"
+                },
+                "examples": {
+                  "collector": {
+                    "value": {
+                      "id": "539a60e2-36b1-42c0-8bb0-761bf8b56caa",
+                      "name": "Grafana Cloud",
+                      "url": "https://collector.example.com/v1/traces",
+                      "status": "active",
+                      "signals": [
+                        "traces"
+                      ],
+                      "headerNames": [
+                        "Authorization"
+                      ],
+                      "organizationId": 12345,
+                      "createdAt": "2026-10-22T00:00:00.000Z",
+                      "updatedAt": "2026-10-22T00:00:00.000Z"
+                    }
+                  }
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "security": [
@@ -38929,6 +39128,55 @@
           },
           "503": {
             "description": "503 Service Unavailable - execution replays are temporarily unavailable (\u0060SC503\u0060)"
+          },
+          "200": {
+            "description": "202 Accepted - at least one execution was queued for replay",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostScenariosByScenarioIdReplay202Response"
+                },
+                "examples": {
+                  "single": {
+                    "summary": "One execution replayed",
+                    "value": {
+                      "executionId": "9c4874979d974c3ebdef1e8aaa7dc452",
+                      "replayed": [
+                        {
+                          "executionId": "509f0457d2804ba7b115faf1637beea6",
+                          "replayExecutionId": "9c4874979d974c3ebdef1e8aaa7dc452"
+                        }
+                      ],
+                      "failed": []
+                    }
+                  },
+                  "partialFailure": {
+                    "summary": "Some executions could not be replayed",
+                    "value": {
+                      "executionId": "9c4874979d974c3ebdef1e8aaa7dc452",
+                      "replayed": [
+                        {
+                          "executionId": "509f0457d2804ba7b115faf1637beea6",
+                          "replayExecutionId": "9c4874979d974c3ebdef1e8aaa7dc452"
+                        },
+                        {
+                          "executionId": "a07e16f2ad134bf49cf83a00aa95c0a5",
+                          "replayExecutionId": "1f0c3b7d2e4a4c8f9b6d5e7a8c9d0e1f"
+                        }
+                      ],
+                      "failed": [
+                        {
+                          "executionId": "d949cee5ac204fddb833041a3b4169cc",
+                          "code": "SC422",
+                          "message": "Execution is not replayable"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "x-client-success-response-status": "202"
           }
         },
         "security": [
@@ -40378,6 +40626,20 @@
           },
           "503": {
             "description": "503 Service Unavailable - execution replays are temporarily unavailable (\u0060SC503\u0060)"
+          },
+          "200": {
+            "description": "202 Accepted - the replay was queued",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostScenariosByScenarioIdExecutionsByExecutionIdReplay202Response"
+                },
+                "example": {
+                  "executionId": "9c4874979d974c3ebdef1e8aaa7dc452"
+                }
+              }
+            },
+            "x-client-success-response-status": "202"
           }
         },
         "security": [
@@ -66435,6 +66697,28 @@
                 }
               }
             }
+          },
+          "200": {
+            "description": "The resend was accepted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResendEventSubscriptionDelivery202Response"
+                },
+                "examples": {
+                  "default": {
+                    "summary": "The resend was accepted",
+                    "value": {
+                      "resend": {
+                        "deliveryId": "9a7c1b2d-3e4f-4a6b-8c1d-2e3f4a5b6c7d",
+                        "subscriptionId": "3f2b8c1e-6a4d-4e2f-9b7a-1c5d8e9f0a12"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "x-client-success-response-status": "202"
           }
         },
         "security": [
@@ -71568,63 +71852,7 @@
             "$ref": "#/components/schemas/CustomAppModuleEpochResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "CustomAppModuleEpochResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/CustomAppModuleEpochResponseTypeAnyOf2"
           }
         ]
       },
@@ -71645,16 +71873,7 @@
       "CustomAppModuleEpochResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/CustomAppModuleEpochResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/CustomAppModuleEpochResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/CustomAppModuleEpochResponseErrorAnyOf2"
@@ -72920,63 +73139,7 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseTypeAnyOf2"
           }
         ]
       },
@@ -72997,16 +73160,7 @@
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseErrorAnyOf2"
@@ -73390,63 +73544,7 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseTypeAnyOf2"
           }
         ]
       },
@@ -73467,16 +73565,7 @@
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseErrorAnyOf2"
@@ -74509,63 +74598,7 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "CustomAppBaseAnyOf1ResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseTypeAnyOf2"
           }
         ]
       },
@@ -74586,16 +74619,7 @@
       "CustomAppBaseAnyOf1ResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseErrorAnyOf2"
@@ -75069,63 +75093,7 @@
             "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "CustomAppBaseAnyOf2ItemResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseTypeAnyOf2"
           }
         ]
       },
@@ -75146,16 +75114,7 @@
       "CustomAppBaseAnyOf2ItemResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseErrorAnyOf2"
@@ -75629,63 +75588,7 @@
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "CustomAppModuleApiAnyOf1ResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseTypeAnyOf2"
           }
         ]
       },
@@ -75706,16 +75609,7 @@
       "CustomAppModuleApiAnyOf1ResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseErrorAnyOf2"
@@ -76391,63 +76285,7 @@
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "CustomAppModuleApiAnyOf2ItemResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseTypeAnyOf2"
           }
         ]
       },
@@ -76468,16 +76306,7 @@
       "CustomAppModuleApiAnyOf2ItemResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseErrorAnyOf2"
@@ -78034,63 +77863,7 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf2"
           }
         ]
       },
@@ -78111,16 +77884,7 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf2"
@@ -78594,63 +78358,7 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseTypeAnyOf2"
           }
         ]
       },
@@ -78671,16 +78379,7 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf2"
@@ -79154,63 +78853,7 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseTypeAnyOf2"
           }
         ]
       },
@@ -79231,16 +78874,7 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseErrorAnyOf2"
@@ -79714,63 +79348,7 @@
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseTypeAnyOf2"
           }
         ]
       },
@@ -79791,16 +79369,7 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseErrorAnyOf2"
@@ -80274,63 +79843,7 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf2"
           }
         ]
       },
@@ -80351,16 +79864,7 @@
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf2"
@@ -80834,63 +80338,7 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseTypeAnyOf2"
           }
         ]
       },
@@ -80911,16 +80359,7 @@
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf2"
@@ -81394,63 +80833,7 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseTypeAnyOf2"
           }
         ]
       },
@@ -81471,16 +80854,7 @@
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseErrorAnyOf2"
@@ -81954,63 +81328,7 @@
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseTypeAnyOf2"
           }
         ]
       },
@@ -82031,16 +81349,7 @@
       "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseErrorAnyOf2"
@@ -82514,63 +81823,7 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseTypeAnyOf2"
           }
         ]
       },
@@ -82591,16 +81844,7 @@
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseErrorAnyOf2"
@@ -83276,63 +82520,7 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseTypeAnyOf2"
           }
         ]
       },
@@ -83353,16 +82541,7 @@
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseErrorAnyOf2"
@@ -84038,63 +83217,7 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseTypeAnyOf2"
           }
         ]
       },
@@ -84115,16 +83238,7 @@
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseErrorAnyOf2"
@@ -84800,63 +83914,7 @@
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseTypeAnyOf1"
           },
           {
-            "anyOf": [
-              {
-                "enum": [
-                  "automatic",
-                  "json",
-                  "urlencoded",
-                  "text",
-                  "raw",
-                  "string",
-                  "binary",
-                  "xml"
-                ],
-                "type": "string",
-                "x-ms-enum": {
-                  "name": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseType",
-                  "modelAsString": false,
-                  "values": [
-                    {
-                      "value": "automatic",
-                      "name": "Automatic"
-                    },
-                    {
-                      "value": "json",
-                      "name": "Json"
-                    },
-                    {
-                      "value": "urlencoded",
-                      "name": "Urlencoded"
-                    },
-                    {
-                      "value": "text",
-                      "name": "Text"
-                    },
-                    {
-                      "value": "raw",
-                      "name": "Raw"
-                    },
-                    {
-                      "value": "string",
-                      "name": "StringValue"
-                    },
-                    {
-                      "value": "binary",
-                      "name": "Binary"
-                    },
-                    {
-                      "value": "xml",
-                      "name": "Xml"
-                    }
-                  ]
-                }
-              },
-              {
-                "pattern": "^.*[{][{].*[}][}].*$",
-                "type": "string"
-              }
-            ]
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseTypeAnyOf2"
           }
         ]
       },
@@ -84877,16 +83935,7 @@
       "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseError": {
         "anyOf": [
           {
-            "anyOf": [
-              {
-                "maxLength": 1024,
-                "type": "string"
-              },
-              {
-                "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseErrorAnyOf1AnyOf2"
-              }
-            ],
-            "description": "The error directive specifies the error type and the error message to show the user."
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseErrorAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseErrorAnyOf2"
@@ -105851,47 +104900,14 @@
         }
       },
       "PostAdminScenariosReactivateRequest": {
-        "required": [
-          "scenarioIds"
-        ],
-        "type": "object",
         "oneOf": [
           {
-            "$ref": "#/components/schemas/PostAdminScenariosReactivateRequestOneOf1"
+            "$ref": "#/components/schemas/PostAdminScenariosReactivateRequestOneOf1Branch"
           },
           {
-            "$ref": "#/components/schemas/PostAdminScenariosReactivateRequestOneOf2"
+            "$ref": "#/components/schemas/PostAdminScenariosReactivateRequestOneOf2Branch"
           }
-        ],
-        "properties": {
-          "scenarioIds": {
-            "maxItems": 10000,
-            "minItems": 1,
-            "type": "array",
-            "items": {
-              "maximum": 2147483647,
-              "minimum": 1,
-              "type": "integer",
-              "format": "int32"
-            },
-            "description": "Scenario IDs in the current zone. Duplicates are removed before processing. With reanalyze enabled, at most 20 IDs may be submitted (before deduplication), including dry runs."
-          },
-          "dryRun": {
-            "type": "boolean",
-            "description": "Return predicted results. With reanalyze, perform the real operation in a transaction and roll it back; this has the same database cost and the same 20-ID limit as execution.",
-            "default": false
-          },
-          "forceIfActive": {
-            "type": "boolean",
-            "description": "Reset state and scheduling even for already active scenarios.",
-            "default": false
-          },
-          "reanalyze": {
-            "type": "boolean",
-            "description": "Rebuild bindings to existing resources before reactivation; also analyze already active scenarios.",
-            "default": false
-          }
-        }
+        ]
       },
       "PostAdminScenariosReactivate200Response": {
         "required": [
@@ -121054,20 +120070,7 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200Response": {
         "anyOf": [
           {
-            "x-client-original-anyOf": [
-              {
-                "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1AnyOf1"
-              },
-              {
-                "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1AnyOf2"
-              }
-            ],
-            "type": "object",
-            "properties": {
-              "changed": {
-                "type": "boolean"
-              }
-            }
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2"
@@ -121466,20 +120469,7 @@
       "PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200Response": {
         "anyOf": [
           {
-            "x-client-original-anyOf": [
-              {
-                "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseAnyOf1AnyOf1"
-              },
-              {
-                "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseAnyOf1AnyOf2"
-              }
-            ],
-            "type": "object",
-            "properties": {
-              "changed": {
-                "type": "boolean"
-              }
-            }
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseAnyOf1"
           },
           {
             "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseAnyOf2"
@@ -218065,6 +217055,1467 @@
               "name": "Desc"
             }
           ]
+        }
+      },
+      "CustomAppModuleEpochResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "CustomAppModuleEpochResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "CustomAppModuleEpochResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/CustomAppModuleEpochResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsoncRequestResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "CustomAppBaseAnyOf1ResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "CustomAppBaseAnyOf1ResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "CustomAppBaseAnyOf1ResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/CustomAppBaseAnyOf1ResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "CustomAppBaseAnyOf2ItemResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "CustomAppBaseAnyOf2ItemResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "CustomAppBaseAnyOf2ItemResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/CustomAppBaseAnyOf2ItemResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "CustomAppModuleApiAnyOf1ResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "CustomAppModuleApiAnyOf1ResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "CustomAppModuleApiAnyOf1ResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf1ResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "CustomAppModuleApiAnyOf2ItemResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "CustomAppModuleApiAnyOf2ItemResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "CustomAppModuleApiAnyOf2ItemResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/CustomAppModuleApiAnyOf2ItemResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf1ResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsonRequestAnyOf2ItemResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf1ResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PatchSdkAppsBySdkAppNameBySdkAppVersionBaseJsoncRequestAnyOf2ItemResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf1ResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsonRequestAnyOf2ItemResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf1ResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseTypeAnyOf2": {
+        "anyOf": [
+          {
+            "enum": [
+              "automatic",
+              "json",
+              "urlencoded",
+              "text",
+              "raw",
+              "string",
+              "binary",
+              "xml"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseTypeAnyOf2",
+              "modelAsString": false,
+              "values": [
+                {
+                  "value": "automatic",
+                  "name": "Automatic"
+                },
+                {
+                  "value": "json",
+                  "name": "Json"
+                },
+                {
+                  "value": "urlencoded",
+                  "name": "Urlencoded"
+                },
+                {
+                  "value": "text",
+                  "name": "Text"
+                },
+                {
+                  "value": "raw",
+                  "name": "Raw"
+                },
+                {
+                  "value": "string",
+                  "name": "StringValue"
+                },
+                {
+                  "value": "binary",
+                  "name": "Binary"
+                },
+                {
+                  "value": "xml",
+                  "name": "Xml"
+                }
+              ]
+            }
+          },
+          {
+            "pattern": "^.*[{][{].*[}][}].*$",
+            "type": "string"
+          }
+        ]
+      },
+      "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseErrorAnyOf1": {
+        "anyOf": [
+          {
+            "maxLength": 1024,
+            "type": "string"
+          },
+          {
+            "$ref": "#/components/schemas/PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameApiJsoncRequestAnyOf2ItemResponseErrorAnyOf1AnyOf2"
+          }
+        ],
+        "description": "The error directive specifies the error type and the error message to show the user."
+      },
+      "PostAdminScenariosReactivateRequestOneOf1Branch": {
+        "type": "object",
+        "properties": {
+          "reanalyze": {
+            "enum": [
+              false
+            ],
+            "type": "boolean"
+          },
+          "scenarioIds": {
+            "maxItems": 10000,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Scenario IDs in the current zone. Duplicates are removed before processing. With reanalyze enabled, at most 20 IDs may be submitted (before deduplication), including dry runs."
+          },
+          "dryRun": {
+            "type": "boolean",
+            "description": "Return predicted results. With reanalyze, perform the real operation in a transaction and roll it back; this has the same database cost and the same 20-ID limit as execution.",
+            "default": false
+          },
+          "forceIfActive": {
+            "type": "boolean",
+            "description": "Reset state and scheduling even for already active scenarios.",
+            "default": false
+          }
+        },
+        "required": [
+          "scenarioIds"
+        ]
+      },
+      "PostAdminScenariosReactivateRequestOneOf2Branch": {
+        "type": "object",
+        "properties": {
+          "reanalyze": {
+            "enum": [
+              true
+            ],
+            "type": "boolean"
+          },
+          "scenarioIds": {
+            "allOf": [
+              {
+                "maxItems": 20
+              },
+              {
+                "maxItems": 10000,
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "Scenario IDs in the current zone. Duplicates are removed before processing. With reanalyze enabled, at most 20 IDs may be submitted (before deduplication), including dry runs."
+              }
+            ]
+          },
+          "dryRun": {
+            "type": "boolean",
+            "description": "Return predicted results. With reanalyze, perform the real operation in a transaction and roll it back; this has the same database cost and the same 20-ID limit as execution.",
+            "default": false
+          },
+          "forceIfActive": {
+            "type": "boolean",
+            "description": "Reset state and scheduling even for already active scenarios.",
+            "default": false
+          }
+        },
+        "required": [
+          "reanalyze",
+          "scenarioIds"
+        ]
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1": {
+        "x-client-original-anyOf": [
+          {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1AnyOf1"
+          },
+          {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1AnyOf2"
+          }
+        ],
+        "type": "object",
+        "properties": {
+          "changed": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseAnyOf1": {
+        "x-client-original-anyOf": [
+          {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseAnyOf1AnyOf1"
+          },
+          {
+            "$ref": "#/components/schemas/PostSdkAppsBySdkAppNameBySdkAppVersionEndpointsBySdkEndpointNameBySdkEndpointSection200ResponseAnyOf1AnyOf2"
+          }
+        ],
+        "type": "object",
+        "properties": {
+          "changed": {
+            "type": "boolean"
+          }
         }
       },
       "HookLogDetailDataRequestBodyOneOf2": {

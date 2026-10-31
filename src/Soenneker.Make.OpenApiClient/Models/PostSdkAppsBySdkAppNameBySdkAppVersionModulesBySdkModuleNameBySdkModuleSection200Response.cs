@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.Make.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1"/>, <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200Response : IComposedTypeWrapper, IParsable
@@ -18,6 +18,14 @@ namespace Soenneker.Make.OpenApiClient.Models
         public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1? PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1 PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1 { get; set; }
+#endif
         /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -25,14 +33,6 @@ namespace Soenneker.Make.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1? PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1 PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1 { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -48,11 +48,14 @@ namespace Soenneker.Make.OpenApiClient.Models
             
             var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
             bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => ((unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject)) && (unionPayload is not global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject shapeObject0 || (shapeObject0.GetValue() is var shapeMembers1 && ((!shapeMembers1.ContainsKey("changed") || (((shapeMembers1["changed"] is global::Microsoft.Kiota.Abstractions.Serialization.UntypedBoolean)))))))))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => ((unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject)) && (unionPayload is not global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject shapeObject0 || (shapeObject0.GetValue() is var shapeMembers1 && ((!shapeMembers1.ContainsKey("changed") || (((shapeMembers1["changed"] is global::Microsoft.Kiota.Abstractions.Serialization.UntypedBoolean)))))))))();
             int matchingUnionBranches = 0;
             if (matchesUnionBranch0) matchingUnionBranches++;
-            bool noSelectedUnionBranch = result.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 == null && result.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1 == null;
-            if (noSelectedUnionBranch && matchesUnionBranch0 && matchingUnionBranches == 1) result.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2(), parseNode);
-            if (result.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 == null && result.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1 == null) result.UnrecognizedValue = unionPayload;
+            if (matchesUnionBranch1) matchingUnionBranches++;
+            bool noSelectedUnionBranch = result.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1 == null && result.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 == null;
+            if (noSelectedUnionBranch && matchesUnionBranch0 && matchingUnionBranches == 1) result.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1(), parseNode);
+            if (noSelectedUnionBranch && matchesUnionBranch1 && matchingUnionBranches == 1) result.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2(), parseNode);
+            if (result.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1 == null && result.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 == null) result.UnrecognizedValue = unionPayload;
 return result;
         }
         /// <summary>
@@ -63,9 +66,9 @@ return result;
         {
             if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawFields) { var fields = new global::System.Collections.Generic.Dictionary<string, global::System.Action<IParseNode>>(); foreach (var entry in rawFields.GetValue()) fields[entry.Key] = _ => { }; return fields; }
 
-            if(PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 != null || PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1 != null)
+            if(PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1 != null || PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 != null)
             {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2, PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1);
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1, PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2);
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -76,15 +79,15 @@ return result;
         public virtual void Serialize(ISerializationWriter writer)
         {
             if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
-            if (PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 == null && PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1 == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1 == null && PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
             int selectedUnionBranches = 0;
+            if (PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1 != null) selectedUnionBranches++;
             if (PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 != null) selectedUnionBranches++;
-            if (PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1 != null) selectedUnionBranches++;
+            if (PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1 != null && selectedUnionBranches == 1) { if (PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1); return; }
             if (PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 != null && selectedUnionBranches == 1) { if (PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2); return; }
-            if (PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1 != null && selectedUnionBranches == 1) { if (PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1); return; }
 
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2>(null, PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2, PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseMember1);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1>(null, PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf1, PostSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameBySdkModuleSection200ResponseAnyOf2);
         }
     }
 }

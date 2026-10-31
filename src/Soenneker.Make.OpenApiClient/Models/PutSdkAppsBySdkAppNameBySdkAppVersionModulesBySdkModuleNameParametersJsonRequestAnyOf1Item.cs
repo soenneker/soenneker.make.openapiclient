@@ -240,6 +240,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "closable", n => { Closable = n.GetBoolValue(); } },
                 { "theme", n => { Theme = n.GetStringValue(); } },
                 { "badge", n => { Badge = n.GetStringValue(); } },
+
             };
         }
         /// <summary>
