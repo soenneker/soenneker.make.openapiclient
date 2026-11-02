@@ -51,13 +51,13 @@ namespace Soenneker.Make.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             return mappingValue switch
             {
-                "array" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7(),
-                "boolean" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1(),
-                "buffer" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5(),
-                "collection" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6(),
-                "date" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4(),
-                "number" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3(),
-                "text" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2(),
+                "array" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7Variant(),
+                "boolean" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1Variant(),
+                "buffer" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5Variant(),
+                "collection" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6Variant(),
+                "date" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4Variant(),
+                "number" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3Variant(),
+                "text" => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2Variant(),
                 _ => new global::Soenneker.Make.OpenApiClient.Models.GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem(),
             };
         }

@@ -51,13 +51,13 @@ namespace Soenneker.Make.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             return mappingValue switch
             {
-                "array" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf7(),
-                "boolean" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf1(),
-                "buffer" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf5(),
-                "collection" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf6(),
-                "date" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf4(),
-                "number" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf3(),
-                "text" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf2(),
+                "array" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf7Variant(),
+                "boolean" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf1Variant(),
+                "buffer" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf5Variant(),
+                "collection" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf6Variant(),
+                "date" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf4Variant(),
+                "number" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf3Variant(),
+                "text" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItemOneOf2Variant(),
                 _ => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresRequestSpecItem(),
             };
         }

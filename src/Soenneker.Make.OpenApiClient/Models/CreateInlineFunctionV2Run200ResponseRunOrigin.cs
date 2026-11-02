@@ -51,8 +51,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             return mappingValue switch
             {
-                "inline" => new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginCreateInlineFunctionV2Run200ResponseRunOriginOneOf2(),
-                "version" => new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginCreateInlineFunctionV2Run200ResponseRunOriginOneOf1(),
+                "inline" => new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf2Variant(),
+                "version" => new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOriginOneOf1Variant(),
                 _ => new global::Soenneker.Make.OpenApiClient.Models.CreateInlineFunctionV2Run200ResponseRunOrigin(),
             };
         }

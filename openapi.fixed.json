@@ -106522,8 +106522,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "text": "#/components/schemas/PostAiAgentsV1AgentsRequestOutputParserFormatPostAiAgentsV1AgentsRequestOutputParserFormatOneOf1",
-            "make-schema": "#/components/schemas/PostAiAgentsV1AgentsRequestOutputParserFormatPostAiAgentsV1AgentsRequestOutputParserFormatOneOf2"
+            "text": "#/components/schemas/PostAiAgentsV1AgentsRequestOutputParserFormatOneOf1Variant",
+            "make-schema": "#/components/schemas/PostAiAgentsV1AgentsRequestOutputParserFormatOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -106557,8 +106557,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "text": "#/components/schemas/GetAiAgentsV1Agents200ResponseOutputParserGetAiAgentsV1Agents200ResponseOutputParserOneOf1",
-            "make-schema": "#/components/schemas/GetAiAgentsV1Agents200ResponseOutputParserGetAiAgentsV1Agents200ResponseOutputParserOneOf2"
+            "text": "#/components/schemas/GetAiAgentsV1Agents200ResponseOutputParserOneOf1Variant",
+            "make-schema": "#/components/schemas/GetAiAgentsV1Agents200ResponseOutputParserOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -106592,8 +106592,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "text": "#/components/schemas/GetAiAgentsV1AgentsByAgentId200ResponseOutputParserGetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf1",
-            "make-schema": "#/components/schemas/GetAiAgentsV1AgentsByAgentId200ResponseOutputParserGetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2"
+            "text": "#/components/schemas/GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf1Variant",
+            "make-schema": "#/components/schemas/GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -106627,8 +106627,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "text": "#/components/schemas/PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatPatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1",
-            "make-schema": "#/components/schemas/PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatPatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2"
+            "text": "#/components/schemas/PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1Variant",
+            "make-schema": "#/components/schemas/PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -106662,8 +106662,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "text": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserPostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserOneOf1",
-            "make-schema": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserPostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserOneOf2"
+            "text": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserOneOf1Variant",
+            "make-schema": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -106697,8 +106697,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "text": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserPostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserOneOf1",
-            "make-schema": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserPostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserOneOf2"
+            "text": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserOneOf1Variant",
+            "make-schema": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -106844,13 +106844,13 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "boolean": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf1",
-            "text": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf2",
-            "number": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf3",
-            "date": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf4",
-            "buffer": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf5",
-            "collection": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf6",
-            "array": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf7"
+            "boolean": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemOneOf1Variant",
+            "text": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemOneOf2Variant",
+            "number": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemOneOf3Variant",
+            "date": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemOneOf4Variant",
+            "buffer": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemOneOf5Variant",
+            "collection": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemOneOf6Variant",
+            "array": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItemOneOf7Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -106904,13 +106904,13 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "boolean": "#/components/schemas/PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf1",
-            "text": "#/components/schemas/PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf2",
-            "number": "#/components/schemas/PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf3",
-            "date": "#/components/schemas/PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf4",
-            "buffer": "#/components/schemas/PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf5",
-            "collection": "#/components/schemas/PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf6",
-            "array": "#/components/schemas/PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf7"
+            "boolean": "#/components/schemas/PostDataStructuresRequestSpecItemOneOf1Variant",
+            "text": "#/components/schemas/PostDataStructuresRequestSpecItemOneOf2Variant",
+            "number": "#/components/schemas/PostDataStructuresRequestSpecItemOneOf3Variant",
+            "date": "#/components/schemas/PostDataStructuresRequestSpecItemOneOf4Variant",
+            "buffer": "#/components/schemas/PostDataStructuresRequestSpecItemOneOf5Variant",
+            "collection": "#/components/schemas/PostDataStructuresRequestSpecItemOneOf6Variant",
+            "array": "#/components/schemas/PostDataStructuresRequestSpecItemOneOf7Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -106964,13 +106964,13 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "boolean": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf1",
-            "text": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf2",
-            "number": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf3",
-            "date": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf4",
-            "buffer": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf5",
-            "collection": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf6",
-            "array": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf7"
+            "boolean": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemOneOf1Variant",
+            "text": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemOneOf2Variant",
+            "number": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemOneOf3Variant",
+            "date": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemOneOf4Variant",
+            "buffer": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemOneOf5Variant",
+            "collection": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemOneOf6Variant",
+            "array": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItemOneOf7Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -107024,13 +107024,13 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "boolean": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1",
-            "text": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2",
-            "number": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3",
-            "date": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4",
-            "buffer": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5",
-            "collection": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6",
-            "array": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7"
+            "boolean": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1Variant",
+            "text": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2Variant",
+            "number": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3Variant",
+            "date": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4Variant",
+            "buffer": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5Variant",
+            "collection": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6Variant",
+            "array": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -107084,13 +107084,13 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "boolean": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf1",
-            "text": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf2",
-            "number": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf3",
-            "date": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf4",
-            "buffer": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf5",
-            "collection": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf6",
-            "array": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf7"
+            "boolean": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemOneOf1Variant",
+            "text": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemOneOf2Variant",
+            "number": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemOneOf3Variant",
+            "date": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemOneOf4Variant",
+            "buffer": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemOneOf5Variant",
+            "collection": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemOneOf6Variant",
+            "array": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItemOneOf7Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -107144,13 +107144,13 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "boolean": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1",
-            "text": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2",
-            "number": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3",
-            "date": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4",
-            "buffer": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5",
-            "collection": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6",
-            "array": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7"
+            "boolean": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1Variant",
+            "text": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2Variant",
+            "number": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3Variant",
+            "date": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4Variant",
+            "buffer": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5Variant",
+            "collection": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6Variant",
+            "array": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -107204,13 +107204,13 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "boolean": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf1",
-            "text": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf2",
-            "number": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf3",
-            "date": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf4",
-            "buffer": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf5",
-            "collection": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf6",
-            "array": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf7"
+            "boolean": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf1Variant",
+            "text": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf2Variant",
+            "number": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf3Variant",
+            "date": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf4Variant",
+            "buffer": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf5Variant",
+            "collection": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf6Variant",
+            "array": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf7Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -107379,8 +107379,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "version": "#/components/schemas/ListFunctionV2Runs200ResponseRunsItemOriginListFunctionV2Runs200ResponseRunsItemOriginOneOf1",
-            "inline": "#/components/schemas/ListFunctionV2Runs200ResponseRunsItemOriginListFunctionV2Runs200ResponseRunsItemOriginOneOf2"
+            "version": "#/components/schemas/ListFunctionV2Runs200ResponseRunsItemOriginOneOf1Variant",
+            "inline": "#/components/schemas/ListFunctionV2Runs200ResponseRunsItemOriginOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -107425,8 +107425,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "version": "#/components/schemas/CreateFunctionV2Run200ResponseRunOriginCreateFunctionV2Run200ResponseRunOriginOneOf1",
-            "inline": "#/components/schemas/CreateFunctionV2Run200ResponseRunOriginCreateFunctionV2Run200ResponseRunOriginOneOf2"
+            "version": "#/components/schemas/CreateFunctionV2Run200ResponseRunOriginOneOf1Variant",
+            "inline": "#/components/schemas/CreateFunctionV2Run200ResponseRunOriginOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -107460,8 +107460,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "version": "#/components/schemas/CreateFunctionV2Run202ResponseRunOriginCreateFunctionV2Run202ResponseRunOriginOneOf1",
-            "inline": "#/components/schemas/CreateFunctionV2Run202ResponseRunOriginCreateFunctionV2Run202ResponseRunOriginOneOf2"
+            "version": "#/components/schemas/CreateFunctionV2Run202ResponseRunOriginOneOf1Variant",
+            "inline": "#/components/schemas/CreateFunctionV2Run202ResponseRunOriginOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -107511,8 +107511,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "version": "#/components/schemas/CreateInlineFunctionV2Run200ResponseRunOriginCreateInlineFunctionV2Run200ResponseRunOriginOneOf1",
-            "inline": "#/components/schemas/CreateInlineFunctionV2Run200ResponseRunOriginCreateInlineFunctionV2Run200ResponseRunOriginOneOf2"
+            "version": "#/components/schemas/CreateInlineFunctionV2Run200ResponseRunOriginOneOf1Variant",
+            "inline": "#/components/schemas/CreateInlineFunctionV2Run200ResponseRunOriginOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -107546,8 +107546,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "version": "#/components/schemas/CreateInlineFunctionV2Run202ResponseRunOriginCreateInlineFunctionV2Run202ResponseRunOriginOneOf1",
-            "inline": "#/components/schemas/CreateInlineFunctionV2Run202ResponseRunOriginCreateInlineFunctionV2Run202ResponseRunOriginOneOf2"
+            "version": "#/components/schemas/CreateInlineFunctionV2Run202ResponseRunOriginOneOf1Variant",
+            "inline": "#/components/schemas/CreateInlineFunctionV2Run202ResponseRunOriginOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -107581,8 +107581,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "version": "#/components/schemas/GetFunctionV2Run200ResponseRunOriginGetFunctionV2Run200ResponseRunOriginOneOf1",
-            "inline": "#/components/schemas/GetFunctionV2Run200ResponseRunOriginGetFunctionV2Run200ResponseRunOriginOneOf2"
+            "version": "#/components/schemas/GetFunctionV2Run200ResponseRunOriginOneOf1Variant",
+            "inline": "#/components/schemas/GetFunctionV2Run200ResponseRunOriginOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -107616,8 +107616,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "version": "#/components/schemas/CancelFunctionV2Run200ResponseRunOriginCancelFunctionV2Run200ResponseRunOriginOneOf1",
-            "inline": "#/components/schemas/CancelFunctionV2Run200ResponseRunOriginCancelFunctionV2Run200ResponseRunOriginOneOf2"
+            "version": "#/components/schemas/CancelFunctionV2Run200ResponseRunOriginOneOf1Variant",
+            "inline": "#/components/schemas/CancelFunctionV2Run200ResponseRunOriginOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -107651,8 +107651,8 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "version": "#/components/schemas/CancelFunctionV2Run202ResponseRunOriginCancelFunctionV2Run202ResponseRunOriginOneOf1",
-            "inline": "#/components/schemas/CancelFunctionV2Run202ResponseRunOriginCancelFunctionV2Run202ResponseRunOriginOneOf2"
+            "version": "#/components/schemas/CancelFunctionV2Run202ResponseRunOriginOneOf1Variant",
+            "inline": "#/components/schemas/CancelFunctionV2Run202ResponseRunOriginOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -109155,8 +109155,8 @@
         "discriminator": {
           "propertyName": "mode",
           "mapping": {
-            "all": "#/components/schemas/CreateEventSubscriptionRequestEventsCreateEventSubscriptionRequestEventsOneOf1",
-            "selected": "#/components/schemas/CreateEventSubscriptionRequestEventsCreateEventSubscriptionRequestEventsOneOf2"
+            "all": "#/components/schemas/CreateEventSubscriptionRequestEventsOneOf1Variant",
+            "selected": "#/components/schemas/CreateEventSubscriptionRequestEventsOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -109192,8 +109192,8 @@
         "discriminator": {
           "propertyName": "mode",
           "mapping": {
-            "all": "#/components/schemas/CreateEventSubscriptionRequestTeamsCreateEventSubscriptionRequestTeamsOneOf1",
-            "selected": "#/components/schemas/CreateEventSubscriptionRequestTeamsCreateEventSubscriptionRequestTeamsOneOf2"
+            "all": "#/components/schemas/CreateEventSubscriptionRequestTeamsOneOf1Variant",
+            "selected": "#/components/schemas/CreateEventSubscriptionRequestTeamsOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -109229,8 +109229,8 @@
         "discriminator": {
           "propertyName": "mode",
           "mapping": {
-            "all": "#/components/schemas/UpdateEventSubscriptionRequestEventsUpdateEventSubscriptionRequestEventsOneOf1",
-            "selected": "#/components/schemas/UpdateEventSubscriptionRequestEventsUpdateEventSubscriptionRequestEventsOneOf2"
+            "all": "#/components/schemas/UpdateEventSubscriptionRequestEventsOneOf1Variant",
+            "selected": "#/components/schemas/UpdateEventSubscriptionRequestEventsOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -109266,8 +109266,8 @@
         "discriminator": {
           "propertyName": "mode",
           "mapping": {
-            "all": "#/components/schemas/UpdateEventSubscriptionRequestTeamsUpdateEventSubscriptionRequestTeamsOneOf1",
-            "selected": "#/components/schemas/UpdateEventSubscriptionRequestTeamsUpdateEventSubscriptionRequestTeamsOneOf2"
+            "all": "#/components/schemas/UpdateEventSubscriptionRequestTeamsOneOf1Variant",
+            "selected": "#/components/schemas/UpdateEventSubscriptionRequestTeamsOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -175041,7 +175041,7 @@
           }
         ]
       },
-      "PostAiAgentsV1AgentsRequestOutputParserFormatPostAiAgentsV1AgentsRequestOutputParserFormatOneOf1": {
+      "PostAiAgentsV1AgentsRequestOutputParserFormatOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsRequestOutputParserFormat"
@@ -175059,7 +175059,7 @@
           }
         ]
       },
-      "PostAiAgentsV1AgentsRequestOutputParserFormatPostAiAgentsV1AgentsRequestOutputParserFormatOneOf2": {
+      "PostAiAgentsV1AgentsRequestOutputParserFormatOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsRequestOutputParserFormat"
@@ -175085,7 +175085,7 @@
           }
         ]
       },
-      "GetAiAgentsV1Agents200ResponseOutputParserGetAiAgentsV1Agents200ResponseOutputParserOneOf1": {
+      "GetAiAgentsV1Agents200ResponseOutputParserOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetAiAgentsV1Agents200ResponseOutputParser"
@@ -175103,7 +175103,7 @@
           }
         ]
       },
-      "GetAiAgentsV1Agents200ResponseOutputParserGetAiAgentsV1Agents200ResponseOutputParserOneOf2": {
+      "GetAiAgentsV1Agents200ResponseOutputParserOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetAiAgentsV1Agents200ResponseOutputParser"
@@ -175131,7 +175131,7 @@
           }
         ]
       },
-      "GetAiAgentsV1AgentsByAgentId200ResponseOutputParserGetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf1": {
+      "GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetAiAgentsV1AgentsByAgentId200ResponseOutputParser"
@@ -175149,7 +175149,7 @@
           }
         ]
       },
-      "GetAiAgentsV1AgentsByAgentId200ResponseOutputParserGetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2": {
+      "GetAiAgentsV1AgentsByAgentId200ResponseOutputParserOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetAiAgentsV1AgentsByAgentId200ResponseOutputParser"
@@ -175175,7 +175175,7 @@
           }
         ]
       },
-      "PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatPatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1": {
+      "PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormat"
@@ -175193,7 +175193,7 @@
           }
         ]
       },
-      "PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatPatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2": {
+      "PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormatOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchAiAgentsV1AgentsByAgentIdRequestOutputParserFormat"
@@ -175219,7 +175219,7 @@
           }
         ]
       },
-      "PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserPostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserOneOf1": {
+      "PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParser"
@@ -175237,7 +175237,7 @@
           }
         ]
       },
-      "PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserPostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserOneOf2": {
+      "PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParserOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunRequestConfigOutputParser"
@@ -175263,7 +175263,7 @@
           }
         ]
       },
-      "PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserPostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserOneOf1": {
+      "PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParser"
@@ -175281,7 +175281,7 @@
           }
         ]
       },
-      "PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserPostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserOneOf2": {
+      "PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParserOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigOutputParser"
@@ -175307,7 +175307,7 @@
           }
         ]
       },
-      "GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf1": {
+      "GetDataStructures200ResponseDataStructuresItemSpecItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItem"
@@ -175338,7 +175338,7 @@
           }
         ]
       },
-      "GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf2": {
+      "GetDataStructures200ResponseDataStructuresItemSpecItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItem"
@@ -175372,7 +175372,7 @@
           }
         ]
       },
-      "GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf3": {
+      "GetDataStructures200ResponseDataStructuresItemSpecItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItem"
@@ -175403,7 +175403,7 @@
           }
         ]
       },
-      "GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf4": {
+      "GetDataStructures200ResponseDataStructuresItemSpecItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItem"
@@ -175428,7 +175428,7 @@
           }
         ]
       },
-      "GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf5": {
+      "GetDataStructures200ResponseDataStructuresItemSpecItemOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItem"
@@ -175459,7 +175459,7 @@
           }
         ]
       },
-      "GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf6": {
+      "GetDataStructures200ResponseDataStructuresItemSpecItemOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItem"
@@ -175493,7 +175493,7 @@
           }
         ]
       },
-      "GetDataStructures200ResponseDataStructuresItemSpecItemGetDataStructures200ResponseDataStructuresItemSpecItemOneOf7": {
+      "GetDataStructures200ResponseDataStructuresItemSpecItemOneOf7Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructures200ResponseDataStructuresItemSpecItem"
@@ -175524,7 +175524,7 @@
           }
         ]
       },
-      "PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf1": {
+      "PostDataStructuresRequestSpecItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresRequestSpecItem"
@@ -175555,7 +175555,7 @@
           }
         ]
       },
-      "PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf2": {
+      "PostDataStructuresRequestSpecItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresRequestSpecItem"
@@ -175589,7 +175589,7 @@
           }
         ]
       },
-      "PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf3": {
+      "PostDataStructuresRequestSpecItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresRequestSpecItem"
@@ -175620,7 +175620,7 @@
           }
         ]
       },
-      "PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf4": {
+      "PostDataStructuresRequestSpecItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresRequestSpecItem"
@@ -175645,7 +175645,7 @@
           }
         ]
       },
-      "PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf5": {
+      "PostDataStructuresRequestSpecItemOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresRequestSpecItem"
@@ -175676,7 +175676,7 @@
           }
         ]
       },
-      "PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf6": {
+      "PostDataStructuresRequestSpecItemOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresRequestSpecItem"
@@ -175710,7 +175710,7 @@
           }
         ]
       },
-      "PostDataStructuresRequestSpecItemPostDataStructuresRequestSpecItemOneOf7": {
+      "PostDataStructuresRequestSpecItemOneOf7Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresRequestSpecItem"
@@ -175741,7 +175741,7 @@
           }
         ]
       },
-      "PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf1": {
+      "PostDataStructures200ResponseDataStructureSpecItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItem"
@@ -175772,7 +175772,7 @@
           }
         ]
       },
-      "PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf2": {
+      "PostDataStructures200ResponseDataStructureSpecItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItem"
@@ -175806,7 +175806,7 @@
           }
         ]
       },
-      "PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf3": {
+      "PostDataStructures200ResponseDataStructureSpecItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItem"
@@ -175837,7 +175837,7 @@
           }
         ]
       },
-      "PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf4": {
+      "PostDataStructures200ResponseDataStructureSpecItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItem"
@@ -175862,7 +175862,7 @@
           }
         ]
       },
-      "PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf5": {
+      "PostDataStructures200ResponseDataStructureSpecItemOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItem"
@@ -175893,7 +175893,7 @@
           }
         ]
       },
-      "PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf6": {
+      "PostDataStructures200ResponseDataStructureSpecItemOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItem"
@@ -175927,7 +175927,7 @@
           }
         ]
       },
-      "PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf7": {
+      "PostDataStructures200ResponseDataStructureSpecItemOneOf7Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructures200ResponseDataStructureSpecItem"
@@ -175958,7 +175958,7 @@
           }
         ]
       },
-      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1": {
+      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -175989,7 +175989,7 @@
           }
         ]
       },
-      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2": {
+      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176023,7 +176023,7 @@
           }
         ]
       },
-      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3": {
+      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176054,7 +176054,7 @@
           }
         ]
       },
-      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4": {
+      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176079,7 +176079,7 @@
           }
         ]
       },
-      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5": {
+      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176110,7 +176110,7 @@
           }
         ]
       },
-      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6": {
+      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176144,7 +176144,7 @@
           }
         ]
       },
-      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemGetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7": {
+      "GetDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176175,7 +176175,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf1": {
+      "PatchDataStructuresByDataStructureIdRequestSpecItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItem"
@@ -176206,7 +176206,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf2": {
+      "PatchDataStructuresByDataStructureIdRequestSpecItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItem"
@@ -176240,7 +176240,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf3": {
+      "PatchDataStructuresByDataStructureIdRequestSpecItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItem"
@@ -176271,7 +176271,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf4": {
+      "PatchDataStructuresByDataStructureIdRequestSpecItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItem"
@@ -176296,7 +176296,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf5": {
+      "PatchDataStructuresByDataStructureIdRequestSpecItemOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItem"
@@ -176327,7 +176327,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf6": {
+      "PatchDataStructuresByDataStructureIdRequestSpecItemOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItem"
@@ -176361,7 +176361,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf7": {
+      "PatchDataStructuresByDataStructureIdRequestSpecItemOneOf7Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureIdRequestSpecItem"
@@ -176392,7 +176392,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1": {
+      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176423,7 +176423,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2": {
+      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176457,7 +176457,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3": {
+      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176488,7 +176488,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4": {
+      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176513,7 +176513,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5": {
+      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176544,7 +176544,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6": {
+      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176578,7 +176578,7 @@
           }
         ]
       },
-      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemPatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7": {
+      "PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItemOneOf7Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PatchDataStructuresByDataStructureId200ResponseDataStructureSpecItem"
@@ -176609,7 +176609,7 @@
           }
         ]
       },
-      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf1": {
+      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItem"
@@ -176640,7 +176640,7 @@
           }
         ]
       },
-      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf2": {
+      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItem"
@@ -176674,7 +176674,7 @@
           }
         ]
       },
-      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf3": {
+      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItem"
@@ -176705,7 +176705,7 @@
           }
         ]
       },
-      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf4": {
+      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItem"
@@ -176730,7 +176730,7 @@
           }
         ]
       },
-      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf5": {
+      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItem"
@@ -176761,7 +176761,7 @@
           }
         ]
       },
-      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf6": {
+      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItem"
@@ -176795,7 +176795,7 @@
           }
         ]
       },
-      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf7": {
+      "PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf7Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItem"
@@ -176826,7 +176826,7 @@
           }
         ]
       },
-      "ListFunctionV2Runs200ResponseRunsItemOriginListFunctionV2Runs200ResponseRunsItemOriginOneOf1": {
+      "ListFunctionV2Runs200ResponseRunsItemOriginOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ListFunctionV2Runs200ResponseRunsItemOrigin"
@@ -176851,7 +176851,7 @@
           }
         ]
       },
-      "ListFunctionV2Runs200ResponseRunsItemOriginListFunctionV2Runs200ResponseRunsItemOriginOneOf2": {
+      "ListFunctionV2Runs200ResponseRunsItemOriginOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ListFunctionV2Runs200ResponseRunsItemOrigin"
@@ -176870,7 +176870,7 @@
           }
         ]
       },
-      "CreateFunctionV2Run200ResponseRunOriginCreateFunctionV2Run200ResponseRunOriginOneOf1": {
+      "CreateFunctionV2Run200ResponseRunOriginOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateFunctionV2Run200ResponseRunOrigin"
@@ -176895,7 +176895,7 @@
           }
         ]
       },
-      "CreateFunctionV2Run200ResponseRunOriginCreateFunctionV2Run200ResponseRunOriginOneOf2": {
+      "CreateFunctionV2Run200ResponseRunOriginOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateFunctionV2Run200ResponseRunOrigin"
@@ -176914,7 +176914,7 @@
           }
         ]
       },
-      "CreateFunctionV2Run202ResponseRunOriginCreateFunctionV2Run202ResponseRunOriginOneOf1": {
+      "CreateFunctionV2Run202ResponseRunOriginOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateFunctionV2Run202ResponseRunOrigin"
@@ -176939,7 +176939,7 @@
           }
         ]
       },
-      "CreateFunctionV2Run202ResponseRunOriginCreateFunctionV2Run202ResponseRunOriginOneOf2": {
+      "CreateFunctionV2Run202ResponseRunOriginOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateFunctionV2Run202ResponseRunOrigin"
@@ -176958,7 +176958,7 @@
           }
         ]
       },
-      "CreateInlineFunctionV2Run200ResponseRunOriginCreateInlineFunctionV2Run200ResponseRunOriginOneOf1": {
+      "CreateInlineFunctionV2Run200ResponseRunOriginOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateInlineFunctionV2Run200ResponseRunOrigin"
@@ -176983,7 +176983,7 @@
           }
         ]
       },
-      "CreateInlineFunctionV2Run200ResponseRunOriginCreateInlineFunctionV2Run200ResponseRunOriginOneOf2": {
+      "CreateInlineFunctionV2Run200ResponseRunOriginOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateInlineFunctionV2Run200ResponseRunOrigin"
@@ -177002,7 +177002,7 @@
           }
         ]
       },
-      "CreateInlineFunctionV2Run202ResponseRunOriginCreateInlineFunctionV2Run202ResponseRunOriginOneOf1": {
+      "CreateInlineFunctionV2Run202ResponseRunOriginOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateInlineFunctionV2Run202ResponseRunOrigin"
@@ -177027,7 +177027,7 @@
           }
         ]
       },
-      "CreateInlineFunctionV2Run202ResponseRunOriginCreateInlineFunctionV2Run202ResponseRunOriginOneOf2": {
+      "CreateInlineFunctionV2Run202ResponseRunOriginOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateInlineFunctionV2Run202ResponseRunOrigin"
@@ -177046,7 +177046,7 @@
           }
         ]
       },
-      "GetFunctionV2Run200ResponseRunOriginGetFunctionV2Run200ResponseRunOriginOneOf1": {
+      "GetFunctionV2Run200ResponseRunOriginOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetFunctionV2Run200ResponseRunOrigin"
@@ -177071,7 +177071,7 @@
           }
         ]
       },
-      "GetFunctionV2Run200ResponseRunOriginGetFunctionV2Run200ResponseRunOriginOneOf2": {
+      "GetFunctionV2Run200ResponseRunOriginOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetFunctionV2Run200ResponseRunOrigin"
@@ -177090,7 +177090,7 @@
           }
         ]
       },
-      "CancelFunctionV2Run200ResponseRunOriginCancelFunctionV2Run200ResponseRunOriginOneOf1": {
+      "CancelFunctionV2Run200ResponseRunOriginOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CancelFunctionV2Run200ResponseRunOrigin"
@@ -177115,7 +177115,7 @@
           }
         ]
       },
-      "CancelFunctionV2Run200ResponseRunOriginCancelFunctionV2Run200ResponseRunOriginOneOf2": {
+      "CancelFunctionV2Run200ResponseRunOriginOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CancelFunctionV2Run200ResponseRunOrigin"
@@ -177134,7 +177134,7 @@
           }
         ]
       },
-      "CancelFunctionV2Run202ResponseRunOriginCancelFunctionV2Run202ResponseRunOriginOneOf1": {
+      "CancelFunctionV2Run202ResponseRunOriginOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CancelFunctionV2Run202ResponseRunOrigin"
@@ -177159,7 +177159,7 @@
           }
         ]
       },
-      "CancelFunctionV2Run202ResponseRunOriginCancelFunctionV2Run202ResponseRunOriginOneOf2": {
+      "CancelFunctionV2Run202ResponseRunOriginOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CancelFunctionV2Run202ResponseRunOrigin"
@@ -177178,7 +177178,7 @@
           }
         ]
       },
-      "CreateEventSubscriptionRequestEventsCreateEventSubscriptionRequestEventsOneOf1": {
+      "CreateEventSubscriptionRequestEventsOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateEventSubscriptionRequestEvents"
@@ -177197,7 +177197,7 @@
           }
         ]
       },
-      "CreateEventSubscriptionRequestEventsCreateEventSubscriptionRequestEventsOneOf2": {
+      "CreateEventSubscriptionRequestEventsOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateEventSubscriptionRequestEvents"
@@ -177228,7 +177228,7 @@
           }
         ]
       },
-      "CreateEventSubscriptionRequestTeamsCreateEventSubscriptionRequestTeamsOneOf1": {
+      "CreateEventSubscriptionRequestTeamsOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateEventSubscriptionRequestTeams"
@@ -177247,7 +177247,7 @@
           }
         ]
       },
-      "CreateEventSubscriptionRequestTeamsCreateEventSubscriptionRequestTeamsOneOf2": {
+      "CreateEventSubscriptionRequestTeamsOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateEventSubscriptionRequestTeams"
@@ -177278,7 +177278,7 @@
           }
         ]
       },
-      "UpdateEventSubscriptionRequestEventsUpdateEventSubscriptionRequestEventsOneOf1": {
+      "UpdateEventSubscriptionRequestEventsOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdateEventSubscriptionRequestEvents"
@@ -177297,7 +177297,7 @@
           }
         ]
       },
-      "UpdateEventSubscriptionRequestEventsUpdateEventSubscriptionRequestEventsOneOf2": {
+      "UpdateEventSubscriptionRequestEventsOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdateEventSubscriptionRequestEvents"
@@ -177328,7 +177328,7 @@
           }
         ]
       },
-      "UpdateEventSubscriptionRequestTeamsUpdateEventSubscriptionRequestTeamsOneOf1": {
+      "UpdateEventSubscriptionRequestTeamsOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdateEventSubscriptionRequestTeams"
@@ -177347,7 +177347,7 @@
           }
         ]
       },
-      "UpdateEventSubscriptionRequestTeamsUpdateEventSubscriptionRequestTeamsOneOf2": {
+      "UpdateEventSubscriptionRequestTeamsOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdateEventSubscriptionRequestTeams"
@@ -178563,13 +178563,13 @@
       "discriminator": {
         "propertyName": "type",
         "mapping": {
-          "boolean": "#/components/schemas/DataStructureSpecDataStructureSpecOneOf1",
-          "text": "#/components/schemas/DataStructureSpecDataStructureSpecOneOf2",
-          "number": "#/components/schemas/DataStructureSpecDataStructureSpecOneOf3",
-          "date": "#/components/schemas/DataStructureSpecDataStructureSpecOneOf4",
-          "buffer": "#/components/schemas/DataStructureSpecDataStructureSpecOneOf5",
-          "collection": "#/components/schemas/DataStructureSpecDataStructureSpecOneOf6",
-          "array": "#/components/schemas/DataStructureSpecDataStructureSpecOneOf7"
+          "boolean": "#/components/schemas/DataStructureSpecOneOf1Variant",
+          "text": "#/components/schemas/DataStructureSpecOneOf2Variant",
+          "number": "#/components/schemas/DataStructureSpecOneOf3Variant",
+          "date": "#/components/schemas/DataStructureSpecOneOf4Variant",
+          "buffer": "#/components/schemas/DataStructureSpecOneOf5Variant",
+          "collection": "#/components/schemas/DataStructureSpecOneOf6Variant",
+          "array": "#/components/schemas/DataStructureSpecOneOf7Variant"
         }
       },
       "x-client-original-tagged-union": {
@@ -181705,13 +181705,13 @@
       "discriminator": {
         "propertyName": "type",
         "mapping": {
-          "boolean": "#/components/schemas/DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf1",
-          "text": "#/components/schemas/DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf2",
-          "number": "#/components/schemas/DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf3",
-          "date": "#/components/schemas/DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf4",
-          "buffer": "#/components/schemas/DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf5",
-          "collection": "#/components/schemas/DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf6",
-          "array": "#/components/schemas/DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf7"
+          "boolean": "#/components/schemas/DataStructureWholeSpecItemOneOf1Variant",
+          "text": "#/components/schemas/DataStructureWholeSpecItemOneOf2Variant",
+          "number": "#/components/schemas/DataStructureWholeSpecItemOneOf3Variant",
+          "date": "#/components/schemas/DataStructureWholeSpecItemOneOf4Variant",
+          "buffer": "#/components/schemas/DataStructureWholeSpecItemOneOf5Variant",
+          "collection": "#/components/schemas/DataStructureWholeSpecItemOneOf6Variant",
+          "array": "#/components/schemas/DataStructureWholeSpecItemOneOf7Variant"
         }
       },
       "x-client-original-tagged-union": {
@@ -181765,13 +181765,13 @@
       "discriminator": {
         "propertyName": "type",
         "mapping": {
-          "boolean": "#/components/schemas/DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf1",
-          "text": "#/components/schemas/DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf2",
-          "number": "#/components/schemas/DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf3",
-          "date": "#/components/schemas/DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf4",
-          "buffer": "#/components/schemas/DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf5",
-          "collection": "#/components/schemas/DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf6",
-          "array": "#/components/schemas/DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf7"
+          "boolean": "#/components/schemas/DataStructureCreateSpecItemOneOf1Variant",
+          "text": "#/components/schemas/DataStructureCreateSpecItemOneOf2Variant",
+          "number": "#/components/schemas/DataStructureCreateSpecItemOneOf3Variant",
+          "date": "#/components/schemas/DataStructureCreateSpecItemOneOf4Variant",
+          "buffer": "#/components/schemas/DataStructureCreateSpecItemOneOf5Variant",
+          "collection": "#/components/schemas/DataStructureCreateSpecItemOneOf6Variant",
+          "array": "#/components/schemas/DataStructureCreateSpecItemOneOf7Variant"
         }
       },
       "x-client-original-tagged-union": {
@@ -181825,13 +181825,13 @@
       "discriminator": {
         "propertyName": "type",
         "mapping": {
-          "boolean": "#/components/schemas/DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf1",
-          "text": "#/components/schemas/DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf2",
-          "number": "#/components/schemas/DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf3",
-          "date": "#/components/schemas/DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf4",
-          "buffer": "#/components/schemas/DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf5",
-          "collection": "#/components/schemas/DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf6",
-          "array": "#/components/schemas/DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf7"
+          "boolean": "#/components/schemas/DataStructurePatchSpecItemOneOf1Variant",
+          "text": "#/components/schemas/DataStructurePatchSpecItemOneOf2Variant",
+          "number": "#/components/schemas/DataStructurePatchSpecItemOneOf3Variant",
+          "date": "#/components/schemas/DataStructurePatchSpecItemOneOf4Variant",
+          "buffer": "#/components/schemas/DataStructurePatchSpecItemOneOf5Variant",
+          "collection": "#/components/schemas/DataStructurePatchSpecItemOneOf6Variant",
+          "array": "#/components/schemas/DataStructurePatchSpecItemOneOf7Variant"
         }
       },
       "x-client-original-tagged-union": {
@@ -225017,7 +225017,7 @@
         }
       }
     },
-    "DataStructureSpecDataStructureSpecOneOf1": {
+    "DataStructureSpecOneOf1Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureSpec"
@@ -225048,7 +225048,7 @@
         }
       ]
     },
-    "DataStructureSpecDataStructureSpecOneOf2": {
+    "DataStructureSpecOneOf2Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureSpec"
@@ -225082,7 +225082,7 @@
         }
       ]
     },
-    "DataStructureSpecDataStructureSpecOneOf3": {
+    "DataStructureSpecOneOf3Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureSpec"
@@ -225113,7 +225113,7 @@
         }
       ]
     },
-    "DataStructureSpecDataStructureSpecOneOf4": {
+    "DataStructureSpecOneOf4Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureSpec"
@@ -225138,7 +225138,7 @@
         }
       ]
     },
-    "DataStructureSpecDataStructureSpecOneOf5": {
+    "DataStructureSpecOneOf5Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureSpec"
@@ -225169,7 +225169,7 @@
         }
       ]
     },
-    "DataStructureSpecDataStructureSpecOneOf6": {
+    "DataStructureSpecOneOf6Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureSpec"
@@ -225203,7 +225203,7 @@
         }
       ]
     },
-    "DataStructureSpecDataStructureSpecOneOf7": {
+    "DataStructureSpecOneOf7Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureSpec"
@@ -225234,7 +225234,7 @@
         }
       ]
     },
-    "DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf1": {
+    "DataStructureWholeSpecItemOneOf1Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureWholeSpecItem"
@@ -225265,7 +225265,7 @@
         }
       ]
     },
-    "DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf2": {
+    "DataStructureWholeSpecItemOneOf2Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureWholeSpecItem"
@@ -225299,7 +225299,7 @@
         }
       ]
     },
-    "DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf3": {
+    "DataStructureWholeSpecItemOneOf3Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureWholeSpecItem"
@@ -225330,7 +225330,7 @@
         }
       ]
     },
-    "DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf4": {
+    "DataStructureWholeSpecItemOneOf4Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureWholeSpecItem"
@@ -225355,7 +225355,7 @@
         }
       ]
     },
-    "DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf5": {
+    "DataStructureWholeSpecItemOneOf5Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureWholeSpecItem"
@@ -225386,7 +225386,7 @@
         }
       ]
     },
-    "DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf6": {
+    "DataStructureWholeSpecItemOneOf6Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureWholeSpecItem"
@@ -225420,7 +225420,7 @@
         }
       ]
     },
-    "DataStructureWholeSpecItemDataStructureWholeSpecItemOneOf7": {
+    "DataStructureWholeSpecItemOneOf7Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureWholeSpecItem"
@@ -225451,7 +225451,7 @@
         }
       ]
     },
-    "DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf1": {
+    "DataStructureCreateSpecItemOneOf1Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureCreateSpecItem"
@@ -225482,7 +225482,7 @@
         }
       ]
     },
-    "DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf2": {
+    "DataStructureCreateSpecItemOneOf2Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureCreateSpecItem"
@@ -225516,7 +225516,7 @@
         }
       ]
     },
-    "DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf3": {
+    "DataStructureCreateSpecItemOneOf3Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureCreateSpecItem"
@@ -225547,7 +225547,7 @@
         }
       ]
     },
-    "DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf4": {
+    "DataStructureCreateSpecItemOneOf4Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureCreateSpecItem"
@@ -225572,7 +225572,7 @@
         }
       ]
     },
-    "DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf5": {
+    "DataStructureCreateSpecItemOneOf5Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureCreateSpecItem"
@@ -225603,7 +225603,7 @@
         }
       ]
     },
-    "DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf6": {
+    "DataStructureCreateSpecItemOneOf6Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureCreateSpecItem"
@@ -225637,7 +225637,7 @@
         }
       ]
     },
-    "DataStructureCreateSpecItemDataStructureCreateSpecItemOneOf7": {
+    "DataStructureCreateSpecItemOneOf7Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructureCreateSpecItem"
@@ -225668,7 +225668,7 @@
         }
       ]
     },
-    "DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf1": {
+    "DataStructurePatchSpecItemOneOf1Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructurePatchSpecItem"
@@ -225699,7 +225699,7 @@
         }
       ]
     },
-    "DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf2": {
+    "DataStructurePatchSpecItemOneOf2Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructurePatchSpecItem"
@@ -225733,7 +225733,7 @@
         }
       ]
     },
-    "DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf3": {
+    "DataStructurePatchSpecItemOneOf3Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructurePatchSpecItem"
@@ -225764,7 +225764,7 @@
         }
       ]
     },
-    "DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf4": {
+    "DataStructurePatchSpecItemOneOf4Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructurePatchSpecItem"
@@ -225789,7 +225789,7 @@
         }
       ]
     },
-    "DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf5": {
+    "DataStructurePatchSpecItemOneOf5Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructurePatchSpecItem"
@@ -225820,7 +225820,7 @@
         }
       ]
     },
-    "DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf6": {
+    "DataStructurePatchSpecItemOneOf6Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructurePatchSpecItem"
@@ -225854,7 +225854,7 @@
         }
       ]
     },
-    "DataStructurePatchSpecItemDataStructurePatchSpecItemOneOf7": {
+    "DataStructurePatchSpecItemOneOf7Variant": {
       "allOf": [
         {
           "$ref": "#/components/schemas/DataStructurePatchSpecItem"

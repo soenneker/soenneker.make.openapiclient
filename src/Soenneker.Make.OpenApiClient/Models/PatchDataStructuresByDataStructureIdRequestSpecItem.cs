@@ -51,13 +51,13 @@ namespace Soenneker.Make.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             return mappingValue switch
             {
-                "array" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf7(),
-                "boolean" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf1(),
-                "buffer" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf5(),
-                "collection" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf6(),
-                "date" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf4(),
-                "number" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf3(),
-                "text" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemPatchDataStructuresByDataStructureIdRequestSpecItemOneOf2(),
+                "array" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemOneOf7Variant(),
+                "boolean" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemOneOf1Variant(),
+                "buffer" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemOneOf5Variant(),
+                "collection" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemOneOf6Variant(),
+                "date" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemOneOf4Variant(),
+                "number" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemOneOf3Variant(),
+                "text" => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItemOneOf2Variant(),
                 _ => new global::Soenneker.Make.OpenApiClient.Models.PatchDataStructuresByDataStructureIdRequestSpecItem(),
             };
         }

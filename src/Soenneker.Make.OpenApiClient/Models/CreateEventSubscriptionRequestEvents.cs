@@ -52,8 +52,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("mode")?.GetStringValue();
             return mappingValue switch
             {
-                "all" => new global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsCreateEventSubscriptionRequestEventsOneOf1(),
-                "selected" => new global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsCreateEventSubscriptionRequestEventsOneOf2(),
+                "all" => new global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf1Variant(),
+                "selected" => new global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEventsOneOf2Variant(),
                 _ => new global::Soenneker.Make.OpenApiClient.Models.CreateEventSubscriptionRequestEvents(),
             };
         }

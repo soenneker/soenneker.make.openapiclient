@@ -51,13 +51,13 @@ namespace Soenneker.Make.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             return mappingValue switch
             {
-                "array" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf7(),
-                "boolean" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf1(),
-                "buffer" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf5(),
-                "collection" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf6(),
-                "date" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf4(),
-                "number" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf3(),
-                "text" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemPostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf2(),
+                "array" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf7Variant(),
+                "boolean" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf1Variant(),
+                "buffer" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf5Variant(),
+                "collection" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf6Variant(),
+                "date" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf4Variant(),
+                "number" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf3Variant(),
+                "text" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItemOneOf2Variant(),
                 _ => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructuresByDataStructureIdClone200ResponseDataStructureSpecItem(),
             };
         }

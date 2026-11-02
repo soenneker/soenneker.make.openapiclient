@@ -51,13 +51,13 @@ namespace Soenneker.Make.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             return mappingValue switch
             {
-                "array" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf7(),
-                "boolean" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf1(),
-                "buffer" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf5(),
-                "collection" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf6(),
-                "date" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf4(),
-                "number" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf3(),
-                "text" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemPostDataStructures200ResponseDataStructureSpecItemOneOf2(),
+                "array" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemOneOf7Variant(),
+                "boolean" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemOneOf1Variant(),
+                "buffer" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemOneOf5Variant(),
+                "collection" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemOneOf6Variant(),
+                "date" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemOneOf4Variant(),
+                "number" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemOneOf3Variant(),
+                "text" => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItemOneOf2Variant(),
                 _ => new global::Soenneker.Make.OpenApiClient.Models.PostDataStructures200ResponseDataStructureSpecItem(),
             };
         }
