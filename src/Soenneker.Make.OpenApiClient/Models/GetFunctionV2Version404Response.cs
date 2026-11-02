@@ -39,12 +39,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Human-readable or structured error details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run401ResponseDetail? Detail { get => _explicitNullValueDetail; set { _explicitNullValueDetail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detail"); else _explicitNullProperties?.Remove("detail"); } }
-        private global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run401ResponseDetail? _explicitNullValueDetail = default!;
+        public global::Soenneker.Make.OpenApiClient.Models.ActivateFunctionV2400ResponseDetail? Detail { get => _explicitNullValueDetail; set { _explicitNullValueDetail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detail"); else _explicitNullProperties?.Remove("detail"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.ActivateFunctionV2400ResponseDetail? _explicitNullValueDetail = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run401ResponseDetail Detail { get => _explicitNullValueDetail; set { _explicitNullValueDetail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detail"); else _explicitNullProperties?.Remove("detail"); } }
-        private global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run401ResponseDetail _explicitNullValueDetail = default!;
+        public global::Soenneker.Make.OpenApiClient.Models.ActivateFunctionV2400ResponseDetail Detail { get => _explicitNullValueDetail; set { _explicitNullValueDetail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detail"); else _explicitNullProperties?.Remove("detail"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.ActivateFunctionV2400ResponseDetail _explicitNullValueDetail = default!;
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => MessageEscaped ?? string.Empty; }
@@ -77,7 +77,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "code", n => { Code = n.GetStringValue(); } },
-                { "detail", n => { Detail = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run401ResponseDetail>(global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run401ResponseDetail.CreateFromDiscriminatorValue); } },
+                { "detail", n => { Detail = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.ActivateFunctionV2400ResponseDetail>(global::Soenneker.Make.OpenApiClient.Models.ActivateFunctionV2400ResponseDetail.CreateFromDiscriminatorValue); } },
                 { "message", n => { MessageEscaped = n.GetStringValue(); } },
             };
         }
@@ -89,7 +89,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.CancelFunctionV2Run401ResponseDetail>("detail", Detail);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.ActivateFunctionV2400ResponseDetail>("detail", Detail);
             writer.WriteStringValue("message", MessageEscaped);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             
         }

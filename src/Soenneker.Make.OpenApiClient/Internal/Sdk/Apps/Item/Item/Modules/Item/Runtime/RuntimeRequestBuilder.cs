@@ -43,6 +43,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Sdk.Apps.Item.Item.Modules.Item.
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime401Response">When receiving a 401 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime403Response">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime404Response">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime422Response">When receiving a 422 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Internal.Sdk.Apps.Item.Item.Modules.Item.Runtime.RuntimeRequestBuilder.RuntimeRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -59,6 +60,7 @@ namespace Soenneker.Make.OpenApiClient.Internal.Sdk.Apps.Item.Item.Modules.Item.
                 { "401", global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime401Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime404Response.CreateFromDiscriminatorValue },
+                { "422", global::Soenneker.Make.OpenApiClient.Models.GetInternalSdkAppsByAppNameByAppVersionModulesByModuleNameRuntime422Response.CreateFromDiscriminatorValue },
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };

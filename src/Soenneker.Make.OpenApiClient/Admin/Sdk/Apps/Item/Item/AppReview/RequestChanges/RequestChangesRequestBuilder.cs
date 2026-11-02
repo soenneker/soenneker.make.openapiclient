@@ -40,9 +40,9 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.AppReview.Reques
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges400ResponseSchema">When receiving a 400 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges403ResponseSchema">When receiving a 403 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges409ResponseSchema">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges400ResponseSchemaError">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges403ResponseSchemaError">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges409ResponseSchemaError">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChangesRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -56,9 +56,9 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.AppReview.Reques
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges400ResponseSchema.CreateFromDiscriminatorValue },
-                { "403", global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges403ResponseSchema.CreateFromDiscriminatorValue },
-                { "409", global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges409ResponseSchema.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges400ResponseSchemaError.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges403ResponseSchemaError.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.Make.OpenApiClient.Models.PostAdminSdkAppsByAppByVersionAppReviewRequestChanges409ResponseSchemaError.CreateFromDiscriminatorValue },
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };

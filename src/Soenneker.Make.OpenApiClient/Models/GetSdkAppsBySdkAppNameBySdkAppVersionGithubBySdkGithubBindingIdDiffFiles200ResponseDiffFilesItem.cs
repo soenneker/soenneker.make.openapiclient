@@ -56,8 +56,15 @@ namespace Soenneker.Make.OpenApiClient.Models
         public bool? Conflict { get => _explicitNullValueConflict; set { _explicitNullValueConflict = value; AdditionalData?.Remove("conflict"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conflict"); else _explicitNullProperties?.Remove("conflict"); } }
         private bool? _explicitNullValueConflict = default!;
         /// <summary>Component kind the file belongs to, or `null` when unattributable.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
         public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; AdditionalData?.Remove("kind"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind? _explicitNullValueKind = default!;
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; AdditionalData?.Remove("kind"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind _explicitNullValueKind = default!;
+#endif
         /// <summary>`null` when no snapshot is available.</summary>
         public bool? LocalChangedSinceSnapshot { get => _explicitNullValueLocalChangedSinceSnapshot; set { _explicitNullValueLocalChangedSinceSnapshot = value; AdditionalData?.Remove("localChangedSinceSnapshot"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localChangedSinceSnapshot"); else _explicitNullProperties?.Remove("localChangedSinceSnapshot"); } }
         private bool? _explicitNullValueLocalChangedSinceSnapshot = default!;
@@ -174,7 +181,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "binary", n => { Binary = n.GetBoolValue(); } },
                 { "conflict", n => { Conflict = n.GetBoolValue(); } },
-                { "kind", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueKind = default; _explicitNullProperties?.Remove("kind"); AdditionalData["kind"] = unknown; } else { Kind = parsed; AdditionalData.Remove("kind"); } } },
+                { "kind", n => { Kind = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind>(global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind.CreateFromDiscriminatorValue); } },
                 { "localChangedSinceSnapshot", n => { LocalChangedSinceSnapshot = n.GetBoolValue(); } },
                 { "localContent", n => { LocalContent = n.GetStringValue(); } },
                 { "localSha", n => { LocalSha = n.GetStringValue(); } },
@@ -197,7 +204,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("binary", Binary);
             writer.WriteBoolValue("conflict", Conflict);
-            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind>("kind", Kind);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsBySdkAppNameBySdkAppVersionGithubBySdkGithubBindingIdDiffFiles200ResponseDiffFilesItemKind>("kind", Kind);
             writer.WriteBoolValue("localChangedSinceSnapshot", LocalChangedSinceSnapshot);
             writer.WriteStringValue("localContent", LocalContent);
             writer.WriteStringValue("localSha", LocalSha);

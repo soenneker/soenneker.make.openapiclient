@@ -40,7 +40,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Form
         /// <param name="body">The new review form. Every field is optional — any partial state is a valid auto-save; completeness is enforced by the client before submitting, not by the server. Link formats are checked when submitting: documentation links must be `http(s)` URLs and scenario links must point at a scenario of this zone (`https://&lt;zone web domain&gt;/&lt;teamId&gt;/scenarios/&lt;scenarioId&gt;/edit`).</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm409ResponseSchema">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm409ResponseSchemaError">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm200Response?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewFormRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -54,7 +54,7 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.AppReview.Form
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "409", global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm409ResponseSchema.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.Make.OpenApiClient.Models.PutSdkAppsBySdkAppNameBySdkAppVersionAppReviewForm409ResponseSchemaError.CreateFromDiscriminatorValue },
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };

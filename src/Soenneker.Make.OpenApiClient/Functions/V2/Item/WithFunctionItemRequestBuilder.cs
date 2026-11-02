@@ -3,6 +3,8 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Functions.V2.Item.Activate;
+using Soenneker.Make.OpenApiClient.Functions.V2.Item.Deactivate;
 using Soenneker.Make.OpenApiClient.Functions.V2.Item.Runs;
 using Soenneker.Make.OpenApiClient.Functions.V2.Item.Versions;
 using Soenneker.Make.OpenApiClient.Models;
@@ -19,6 +21,16 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithFunctionItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The activate property</summary>
+        public global::Soenneker.Make.OpenApiClient.Functions.V2.Item.Activate.ActivateRequestBuilder Activate
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Functions.V2.Item.Activate.ActivateRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The deactivate property</summary>
+        public global::Soenneker.Make.OpenApiClient.Functions.V2.Item.Deactivate.DeactivateRequestBuilder Deactivate
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Functions.V2.Item.Deactivate.DeactivateRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The runs property</summary>
         public global::Soenneker.Make.OpenApiClient.Functions.V2.Item.Runs.RunsRequestBuilder Runs
         {

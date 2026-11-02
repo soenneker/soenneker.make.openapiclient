@@ -94,10 +94,10 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher.Logo
         /// <param name="body">Binary request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo400ResponseSchema">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo400ResponseSchemaError">When receiving a 400 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo403Response">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo404Response">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo413ResponseSchema">When receiving a 413 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo413ResponseSchemaError">When receiving a 413 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo200Response?> PutAsync(Stream body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher.Logo.LogoRequestBuilder.LogoRequestBuilderPutQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -111,10 +111,10 @@ namespace Soenneker.Make.OpenApiClient.Admin.Sdk.Apps.Item.Item.Publisher.Logo
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo400ResponseSchema.CreateFromDiscriminatorValue },
+                { "400", global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo400ResponseSchemaError.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo404Response.CreateFromDiscriminatorValue },
-                { "413", global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo413ResponseSchema.CreateFromDiscriminatorValue },
+                { "413", global::Soenneker.Make.OpenApiClient.Models.PutAdminSdkAppsByAppByVersionPublisherLogo413ResponseSchemaError.CreateFromDiscriminatorValue },
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };

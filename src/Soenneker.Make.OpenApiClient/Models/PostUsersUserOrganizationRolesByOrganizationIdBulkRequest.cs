@@ -38,12 +38,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Removal-only for now, so this must be `null` or omitted — the listed users are removed from the organization. Bulk role assignment is not yet supported; a non-null value is rejected with HTTP 400.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? UsersRoleId { get => _explicitNullValueUsersRoleId; set { _explicitNullValueUsersRoleId = value; AdditionalData?.Remove("usersRoleId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRoleId"); else _explicitNullProperties?.Remove("usersRoleId"); } }
-        private UntypedNode? _explicitNullValueUsersRoleId = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? UsersRoleId { get => _explicitNullValueUsersRoleId; set { _explicitNullValueUsersRoleId = value; AdditionalData?.Remove("usersRoleId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRoleId"); else _explicitNullProperties?.Remove("usersRoleId"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode? _explicitNullValueUsersRoleId = default!;
 #nullable restore
 #else
-        public UntypedNode UsersRoleId { get => _explicitNullValueUsersRoleId; set { _explicitNullValueUsersRoleId = value; AdditionalData?.Remove("usersRoleId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRoleId"); else _explicitNullProperties?.Remove("usersRoleId"); } }
-        private UntypedNode _explicitNullValueUsersRoleId = default!;
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UsersRoleId { get => _explicitNullValueUsersRoleId; set { _explicitNullValueUsersRoleId = value; AdditionalData?.Remove("usersRoleId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usersRoleId"); else _explicitNullProperties?.Remove("usersRoleId"); } }
+        private global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode _explicitNullValueUsersRoleId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersUserOrganizationRolesByOrganizationIdBulkRequest"/> and sets the default values.
@@ -71,7 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "userIds", n => { UserIds = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
-                { "usersRoleId", n => { UsersRoleId = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
+                { "usersRoleId", n => { UsersRoleId = n.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -82,7 +82,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<int?>("userIds", UserIds);
-            writer.WriteObjectValue<UntypedNode>("usersRoleId", UsersRoleId);
+            writer.WriteObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>("usersRoleId", UsersRoleId);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
