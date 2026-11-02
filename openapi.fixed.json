@@ -70258,7 +70258,9 @@
             "type": "string",
             "format": "uuid"
           },
-          "file": {}
+          "file": {
+            "nullable": true
+          }
         },
         "description": "Schema for uploading a file.",
         "example": {
@@ -106817,7 +106819,8 @@
       },
       "PostAiAgentsV1AgentsByAgentIdRunStream200EventStreamResponse": {
         "description": "Server-Sent Events stream (text/event-stream)",
-        "example": "event:step\nid:4ebb9c59-ab75-41d5-8146-7407ce71f484\ndata:{\u0022role\u0022:\u0022system\u0022,\u0022content\u0022:\u0022do what user says\\nCurrent time (ISO): 2025-06-26T01:42:30.080-06:00\u0022,\u0022id\u0022:\u0022445431dd-c20e-4a58-a043-ca9c131d4010\u0022,\u0022agentIterationId\u0022:\u0022a132ced5-4afd-4444-ac9d-330cc99c4986\u0022}\n"
+        "example": "event:step\nid:4ebb9c59-ab75-41d5-8146-7407ce71f484\ndata:{\u0022role\u0022:\u0022system\u0022,\u0022content\u0022:\u0022do what user says\\nCurrent time (ISO): 2025-06-26T01:42:30.080-06:00\u0022,\u0022id\u0022:\u0022445431dd-c20e-4a58-a043-ca9c131d4010\u0022,\u0022agentIterationId\u0022:\u0022a132ced5-4afd-4444-ac9d-330cc99c4986\u0022}\n",
+        "nullable": true
       },
       "GetAiAgentsV1LlmProviders200Response": {
         "type": "array",
@@ -111699,7 +111702,8 @@
         ],
         "properties": {
           "data": {
-            "description": "Optional argument validated against the selected published version\u0027s input contract."
+            "description": "Optional argument validated against the selected published version\u0027s input contract.",
+            "nullable": true
           },
           "version": {
             "minimum": 1,
@@ -111975,7 +111979,8 @@
             "$ref": "#/components/schemas/CreateInlineFunctionV2RunRequestContent"
           },
           "data": {
-            "description": "Optional argument passed to \u0060main()\u0060."
+            "description": "Optional argument passed to \u0060main()\u0060.",
+            "nullable": true
           },
           "timeoutSeconds": {
             "maximum": 300,
@@ -125339,7 +125344,8 @@
       },
       "PostAiAgentsV1AgentsByAgentIdRunStream200EventStreamResponseSchema": {
         "description": "Server-Sent Events stream (text/event-stream)",
-        "example": "event:step\nid:4ebb9c59-ab75-41d5-8146-7407ce71f484\ndata:{\u0022role\u0022:\u0022system\u0022,\u0022content\u0022:\u0022do what user says\\nCurrent time (ISO): 2025-06-26T01:42:30.080-06:00\u0022,\u0022id\u0022:\u0022445431dd-c20e-4a58-a043-ca9c131d4010\u0022,\u0022agentIterationId\u0022:\u0022a132ced5-4afd-4444-ac9d-330cc99c4986\u0022}\n"
+        "example": "event:step\nid:4ebb9c59-ab75-41d5-8146-7407ce71f484\ndata:{\u0022role\u0022:\u0022system\u0022,\u0022content\u0022:\u0022do what user says\\nCurrent time (ISO): 2025-06-26T01:42:30.080-06:00\u0022,\u0022id\u0022:\u0022445431dd-c20e-4a58-a043-ca9c131d4010\u0022,\u0022agentIterationId\u0022:\u0022a132ced5-4afd-4444-ac9d-330cc99c4986\u0022}\n",
+        "nullable": true
       },
       "GetAiAgentsV1LlmProviders200ResponseSchema": {
         "type": "array",
@@ -136424,7 +136430,8 @@
             "description": "When the profile was last updated.",
             "format": "date-time"
           }
-        }
+        },
+        "nullable": true
       },
       "PutAdminSdkAppsByAppByVersionPublisherLogo200ResponsePublisher": {
         "type": "object",
@@ -136519,7 +136526,8 @@
             "description": "When the profile was last updated.",
             "format": "date-time"
           }
-        }
+        },
+        "nullable": true
       },
       "GetAdminUsersDetail200ResponseUsersItem": {
         "type": "object",
@@ -137601,7 +137609,9 @@
       },
       "PostAiAgentsV1AgentsByAgentIdRun200ResponseJsonResponse": {
         "type": "object",
-        "additionalProperties": {}
+        "additionalProperties": {
+          "nullable": true
+        }
       },
       "PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItem": {
         "required": [
@@ -137625,7 +137635,9 @@
           "executionTimeMs": {
             "type": "number"
           },
-          "tokenUsage": {},
+          "tokenUsage": {
+            "nullable": true
+          },
           "toolCalls": {
             "type": "array",
             "items": {
@@ -142525,7 +142537,8 @@
             }
           },
           "output": {
-            "description": "Validated JSON returned by a succeeded Run."
+            "description": "Validated JSON returned by a succeeded Run.",
+            "nullable": true
           }
         }
       },
@@ -142724,7 +142737,8 @@
             }
           },
           "output": {
-            "description": "Validated JSON returned by a succeeded Run."
+            "description": "Validated JSON returned by a succeeded Run.",
+            "nullable": true
           }
         }
       },
@@ -142891,7 +142905,8 @@
             }
           },
           "output": {
-            "description": "Validated JSON returned by a succeeded Run."
+            "description": "Validated JSON returned by a succeeded Run.",
+            "nullable": true
           }
         }
       },
@@ -153169,7 +153184,8 @@
             "description": "When the profile was last updated.",
             "format": "date-time"
           }
-        }
+        },
+        "nullable": true
       },
       "GetSdkAppReviewCategories200ResponseCategoriesItem": {
         "type": "object",
@@ -153272,7 +153288,8 @@
             "description": "When the profile was last updated.",
             "format": "date-time"
           }
-        }
+        },
+        "nullable": true
       },
       "PatchSdkPublisher200ResponsePublisher": {
         "type": "object",
@@ -158852,7 +158869,9 @@
           "name": {
             "type": "string"
           },
-          "result": {},
+          "result": {
+            "nullable": true
+          },
           "status": {
             "$ref": "#/components/schemas/PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolResponseStatus"
           },
@@ -163415,7 +163434,8 @@
             "description": "ID of the HTTP request that made the change."
           }
         },
-        "description": "How the version was saved. \u0060null\u0060 for versions saved before it was recorded and for system saves."
+        "description": "How the version was saved. \u0060null\u0060 for versions saved before it was recorded and for system saves.",
+        "nullable": true
       },
       "PostScenariosTools200ResponseToolModule": {
         "type": "object",
@@ -167084,7 +167104,9 @@
       },
       "PostAiAgentsV1AgentsByAgentIdRun200ResponseExecutionStepsItemToolCallsItemArguments": {
         "type": "object",
-        "additionalProperties": {}
+        "additionalProperties": {
+          "nullable": true
+        }
       },
       "PostAiAgentsV1AgentsByAgentIdRunStreamRequestConfigLlmConfigSettings": {
         "type": "object",
