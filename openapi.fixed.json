@@ -32051,7 +32051,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "post": {
         "tags": [
@@ -32299,7 +32300,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/otel/destinations/{destinationId}": {
@@ -32504,7 +32506,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "patch": {
         "tags": [
@@ -32727,7 +32730,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "delete": {
         "tags": [
@@ -32921,7 +32925,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/otel/destinations/{destinationId}/activate": {
@@ -33129,7 +33134,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/otel/destinations/{destinationId}/deactivate": {
@@ -33337,7 +33343,8 @@
               "organizations:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/otel/signals": {
@@ -33518,7 +33525,8 @@
               "organizations:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/organizations": {
@@ -46704,6 +46712,162 @@
             ]
           }
         ]
+      }
+    },
+    "/sdk/apps/{sdkAppName}/{sdkAppVersion}/source": {
+      "get": {
+        "tags": [
+          "SDK Apps"
+        ],
+        "summary": "Get app source",
+        "description": "Returns the whole source of the app version in one call, as files. \u0060files\u0060 is the app\u0027s source tree in the layout the GitHub sync commits: app-level sections (\u0060base.imljson\u0060, \u0060common.json\u0060, \u0060groups.imljson\u0060, \u0060install.imljson\u0060, \u0060install-spec.imljson\u0060, \u0060readme.md\u0060, \u0060metadata.json\u0060, \u0060icon.png\u0060, \u0060icon-color.png\u0060) plus one folder per module, RPC, function, webhook, connection and endpoint (\u0060modules/\u003Cname\u003E/communication.imljson\u0060, \u0060modules/\u003Cname\u003E/metadata.json\u0060, ...). A section that is empty in the app has no file. Text files carry their content verbatim (\u0060encoding: utf8\u0060); the icons are base64 (\u0060encoding: base64\u0060). Every file names the entity it belongs to (\u0060group\u0060, \u0060item\u0060) and its section (\u0060code\u0060).\n\n\u0060changes\u0060 lists the pending changes of the version: edits of an approved app that are kept aside until they are committed. The readers already overlay them, so \u0060files\u0060 is the draft the author sees in the editor, and each change names the entity and section it modifies with the same \u0060group\u0060 / \u0060item\u0060 / \u0060code\u0060 vocabulary as the files (a change of a metadata column such as \u0060label\u0060 or \u0060attached_accounts\u0060 is reflected in the entity\u0027s \u0060metadata.json\u0060). The list is empty for an app that is not approved yet, because its edits are written straight into the app.\n\nConnection \u0060common\u0060 data is never part of the tree. The app-level \u0060common.json\u0060 is only included for the author. Only the app\u0027s author, or an administrator holding \u0060apps get\u0060, may read the source; there is no open-source read access.",
+        "operationId": "GetSdkAppsBySdkAppNameBySdkAppVersionSource",
+        "parameters": [
+          {
+            "name": "sdkAppName",
+            "in": "path",
+            "description": "Name of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "my-first-app"
+          },
+          {
+            "name": "sdkAppVersion",
+            "in": "path",
+            "description": "Major version of the SDK app.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionSource200Response"
+                },
+                "examples": {
+                  "approved-app-with-a-pending-edit": {
+                    "summary": "Approved app whose module was edited but not committed yet",
+                    "value": {
+                      "files": [
+                        {
+                          "path": "readme.md",
+                          "content": "# My first app",
+                          "encoding": "utf8",
+                          "group": "app",
+                          "item": "my-first-app",
+                          "code": "readme"
+                        },
+                        {
+                          "path": "metadata.json",
+                          "content": "{\n\t\u0022description\u0022: \u0022Connects to my service\u0022,\n\t\u0022language\u0022: \u0022en\u0022,\n\t\u0022theme\u0022: \u0022#1e90ff\u0022\n}\n",
+                          "encoding": "utf8",
+                          "group": "app",
+                          "item": "my-first-app",
+                          "code": "metadata"
+                        },
+                        {
+                          "path": "icon.png",
+                          "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wQAAwAB/7BnEQAAAABJRU5ErkJggg==",
+                          "encoding": "base64",
+                          "group": "app",
+                          "item": "my-first-app",
+                          "code": "icon"
+                        },
+                        {
+                          "path": "modules/listContacts/communication.imljson",
+                          "content": "{\n\t// Pending edit, not committed yet\n\t\u0022url\u0022: \u0022/contacts\u0022,\n\t\u0022method\u0022: \u0022GET\u0022\n}",
+                          "encoding": "utf8",
+                          "group": "module",
+                          "item": "listContacts",
+                          "code": "api"
+                        },
+                        {
+                          "path": "modules/listContacts/metadata.json",
+                          "content": "{\n\t\u0022attachedAccounts\u0022: [],\n\t\u0022crud\u0022: \u0022read\u0022,\n\t\u0022label\u0022: \u0022List Contacts\u0022,\n\t\u0022typeId\u0022: 9\n}\n",
+                          "encoding": "utf8",
+                          "group": "module",
+                          "item": "listContacts",
+                          "code": "metadata"
+                        },
+                        {
+                          "path": "connections/my-first-app/communication.imljson",
+                          "content": "{\n\t\u0022url\u0022: \u0022/me\u0022\n}",
+                          "encoding": "utf8",
+                          "group": "account",
+                          "item": "my-first-app",
+                          "code": "api"
+                        }
+                      ],
+                      "changes": [
+                        {
+                          "id": 512,
+                          "group": "module",
+                          "item": "listContacts",
+                          "code": "api",
+                          "created": "2026-11-02T09:15:21.000Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is neither the app\u0027s author nor an administrator holding \u0060apps get\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionSource403ResponseSchemaError"
+                },
+                "examples": {
+                  "not-the-author": {
+                    "summary": "Not the author",
+                    "value": {
+                      "detail": "Access denied.",
+                      "code": "IM002"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The app version does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionSource404ResponseSchemaError"
+                },
+                "examples": {
+                  "app-not-found": {
+                    "summary": "App not found",
+                    "value": {
+                      "detail": "SDK app not found.",
+                      "code": "IM013"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "sdk-apps:read"
+            ]
+          }
+        ],
+        "x-internal": true
       }
     },
     "/sdk/apps/{sdkAppName}/{sdkAppVersion}/icon/{sdkAppIconSize}": {
@@ -99716,6 +99880,25 @@
           }
         }
       },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionSource200Response": {
+        "type": "object",
+        "properties": {
+          "files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseFilesItem"
+            },
+            "description": "The app\u0027s source tree. App-level files first, then the sub-entities grouped by kind."
+          },
+          "changes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseChangesItem"
+            },
+            "description": "Pending changes of the version, oldest first."
+          }
+        }
+      },
       "PutSdkAppsBySdkAppNameBySdkAppVersionIcon200Response": {
         "type": "object",
         "properties": {
@@ -105605,6 +105788,12 @@
       "PutSdkAppsBySdkAppNameBySdkAppVersionInstallJsoncRequestRequestBody": {},
       "PostSdkAppsBySdkAppNameBySdkAppVersionCommit200PlainResponseSchema": {
         "type": "boolean"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionSource403ResponseSchema": {
+        "type": "object"
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionSource404ResponseSchema": {
+        "type": "object"
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionIconBySdkAppIconSize200PngResponseSchema": {
         "type": "string",
@@ -125543,6 +125732,57 @@
           },
           "newValue": {
             "type": "string"
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseFilesItem": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Relative, \u0060/\u0060-separated path of the file in the tree."
+          },
+          "content": {
+            "type": "string",
+            "description": "File content; the raw text for \u0060utf8\u0060 files, base64-encoded bytes for \u0060base64\u0060 files."
+          },
+          "encoding": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseFilesItemEncoding"
+          },
+          "group": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseFilesItemGroup"
+          },
+          "item": {
+            "type": "string",
+            "description": "Name of the entity the file belongs to; the app name for app-level files."
+          },
+          "code": {
+            "type": "string",
+            "description": "Section the file holds (\u0060api\u0060, \u0060parameters\u0060, \u0060code\u0060, \u0060readme\u0060, \u0060metadata\u0060, \u0060icon\u0060, ...)."
+          }
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseChangesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "group": {
+            "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseChangesItemGroup"
+          },
+          "item": {
+            "type": "string",
+            "description": "Name of the entity the change modifies; \u0060null\u0060 for app-level changes.",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "description": "Column the change modifies (\u0060api\u0060, \u0060parameters\u0060, \u0060label\u0060, \u0060attached_accounts\u0060, ...)."
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -159537,6 +159777,121 @@
           ]
         }
       },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseFilesItemEncoding": {
+        "enum": [
+          "utf8",
+          "base64"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseFilesItemEncoding",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "utf8",
+              "name": "Utf8"
+            },
+            {
+              "value": "base64",
+              "name": "Base64"
+            }
+          ]
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseFilesItemGroup": {
+        "enum": [
+          "app",
+          "module",
+          "rpc",
+          "function",
+          "hook",
+          "account",
+          "endpoint"
+        ],
+        "type": "string",
+        "description": "Kind of the entity the file belongs to.",
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseFilesItemGroup",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "app",
+              "name": "App"
+            },
+            {
+              "value": "module",
+              "name": "Module"
+            },
+            {
+              "value": "rpc",
+              "name": "Rpc"
+            },
+            {
+              "value": "function",
+              "name": "Function"
+            },
+            {
+              "value": "hook",
+              "name": "Hook"
+            },
+            {
+              "value": "account",
+              "name": "Account"
+            },
+            {
+              "value": "endpoint",
+              "name": "Endpoint"
+            }
+          ]
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseChangesItemGroup": {
+        "enum": [
+          "app",
+          "module",
+          "rpc",
+          "function",
+          "hook",
+          "account",
+          "endpoint"
+        ],
+        "type": "string",
+        "description": "Kind of the entity the change modifies.",
+        "x-ms-enum": {
+          "name": "GetSdkAppsBySdkAppNameBySdkAppVersionSource200ResponseChangesItemGroup",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "app",
+              "name": "App"
+            },
+            {
+              "value": "module",
+              "name": "Module"
+            },
+            {
+              "value": "rpc",
+              "name": "Rpc"
+            },
+            {
+              "value": "function",
+              "name": "Function"
+            },
+            {
+              "value": "hook",
+              "name": "Hook"
+            },
+            {
+              "value": "account",
+              "name": "Account"
+            },
+            {
+              "value": "endpoint",
+              "name": "Endpoint"
+            }
+          ]
+        }
+      },
       "GetSdkAppsBySdkAppNameBySdkAppVersionGithub200ResponseBindingsItemSyncStatus": {
         "enum": [
           "idle",
@@ -173941,6 +174296,36 @@
         },
         "x-client-original-error-schema": {
           "$ref": "#/components/schemas/PutAdminSdkAppsByAppByVersionPublisherLogo413ResponseSchema"
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionSource403ResponseSchemaError": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "x-client-untyped-value": true
+          }
+        },
+        "x-client-raw-error-media-type": "application/json",
+        "x-client-raw-error-schema": {
+          "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionSource403ResponseSchema"
+        },
+        "x-client-original-error-schema": {
+          "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionSource403ResponseSchema"
+        }
+      },
+      "GetSdkAppsBySdkAppNameBySdkAppVersionSource404ResponseSchemaError": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "x-client-untyped-value": true
+          }
+        },
+        "x-client-raw-error-media-type": "application/json",
+        "x-client-raw-error-schema": {
+          "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionSource404ResponseSchema"
+        },
+        "x-client-original-error-schema": {
+          "$ref": "#/components/schemas/GetSdkAppsBySdkAppNameBySdkAppVersionSource404ResponseSchema"
         }
       },
       "PostSdkAppsBySdkAppNameBySdkAppVersionEndpoints400ResponseSchemaError": {
@@ -198339,6 +198724,12 @@
     },
     "PostSdkAppsBySdkAppNameBySdkAppVersionCommit200PlainResponse": {
       "type": "boolean"
+    },
+    "GetSdkAppsBySdkAppNameBySdkAppVersionSource403Response": {
+      "type": "object"
+    },
+    "GetSdkAppsBySdkAppNameBySdkAppVersionSource404Response": {
+      "type": "object"
     },
     "GetSdkAppsBySdkAppNameBySdkAppVersionIconBySdkAppIconSize200PngResponse": {
       "type": "string",

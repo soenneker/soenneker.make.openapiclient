@@ -27,6 +27,7 @@ using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Readme;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Review;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Rollback;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Rpcs;
+using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Source;
 using Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Uninstall;
 using System.Collections.Generic;
 using System.IO;
@@ -150,6 +151,11 @@ namespace Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Rpcs.RpcsRequestBuilder Rpcs
         {
             get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Rpcs.RpcsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The source property</summary>
+        public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Source.SourceRequestBuilder Source
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Source.SourceRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The uninstall property</summary>
         public global::Soenneker.Make.OpenApiClient.Sdk.Apps.Item.Item.Uninstall.UninstallRequestBuilder Uninstall
