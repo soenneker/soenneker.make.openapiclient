@@ -21,6 +21,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("deliveries") is { } nullNodeDeliveries && nullNodeDeliveries.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Deliveries = null;
             if (parseNode.GetChildNode("pg") is null) { _explicitNullValuePg = default!; _explicitNullProperties?.Remove("pg"); }
             else if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
+            if (parseNode.GetChildNode("truncated") is null) { _explicitNullValueTruncated = default!; _explicitNullProperties?.Remove("truncated"); }
+            else if (parseNode.GetChildNode("truncated") is { } nullNodeTruncated && nullNodeTruncated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Truncated = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -45,6 +47,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         public global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; AdditionalData?.Remove("pg"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
         private global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponsePg _explicitNullValuePg = default!;
 #endif
+        /// <summary>`true` when the response stopped before the page was full. This only happens when you filter by `status` or `httpStatus`: each request examines a limited number of deliveries, so the page can be short or even empty, and that doesn&apos;t mean the list has ended. To continue, repeat the request with the same filters, `pg[limit]` and `pg[sortDir]`, set `pg[last]` to this response&apos;s `pg.last`, and leave `pg[showLast]` unset or `false`. Stop when `truncated` is `false` and the page holds fewer than `pg[limit]` deliveries.</summary>
+        public bool? Truncated { get => _explicitNullValueTruncated; set { _explicitNullValueTruncated = value; AdditionalData?.Remove("truncated"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("truncated"); else _explicitNullProperties?.Remove("truncated"); } }
+        private bool? _explicitNullValueTruncated = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200Response"/> and sets the default values.
         /// </summary>
@@ -72,6 +77,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "deliveries", n => { Deliveries = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponseDeliveriesItem>(global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponseDeliveriesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "pg", n => { Pg = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponsePg>(global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponsePg.CreateFromDiscriminatorValue); } },
+                { "truncated", n => { Truncated = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -83,6 +89,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponseDeliveriesItem>("deliveries", Deliveries);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200ResponsePg>("pg", Pg);
+            writer.WriteBoolValue("truncated", Truncated);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

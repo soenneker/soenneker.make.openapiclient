@@ -35,7 +35,7 @@ namespace Soenneker.Make.OpenApiClient.EventSubscriptions.V1.Organizations.Item.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DeliveriesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/event-subscriptions/v1/organizations/{organizationId}/subscriptions/{subscriptionId}/deliveries{?createdFrom*,createdTo*,eventType*,pg%5Blast%5D*,pg%5Blimit%5D*,pg%5BshowLast%5D*,pg%5BsortDir%5D*}", pathParameters)
+        public DeliveriesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/event-subscriptions/v1/organizations/{organizationId}/subscriptions/{subscriptionId}/deliveries{?createdFrom*,createdTo*,eventType*,httpStatus*,pg%5Blast%5D*,pg%5Blimit%5D*,pg%5BshowLast%5D*,pg%5BsortDir%5D*,status*,teamId*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,11 +43,11 @@ namespace Soenneker.Make.OpenApiClient.EventSubscriptions.V1.Organizations.Item.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DeliveriesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/event-subscriptions/v1/organizations/{organizationId}/subscriptions/{subscriptionId}/deliveries{?createdFrom*,createdTo*,eventType*,pg%5Blast%5D*,pg%5Blimit%5D*,pg%5BshowLast%5D*,pg%5BsortDir%5D*}", rawUrl)
+        public DeliveriesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/event-subscriptions/v1/organizations/{organizationId}/subscriptions/{subscriptionId}/deliveries{?createdFrom*,createdTo*,eventType*,httpStatus*,pg%5Blast%5D*,pg%5Blimit%5D*,pg%5BshowLast%5D*,pg%5BsortDir%5D*,status*,teamId*}", rawUrl)
         {
         }
         /// <summary>
-        /// Lists the deliveries of an event subscription, newest first by default.To get the next page, set `pg[last]` to the `id` of the last delivery on the current page.Requires the `event-subscriptions:read` scope.
+        /// Lists the deliveries of an event subscription, newest first by default.To get the next page, set `pg[last]` to the `id` of the last delivery on the current page. Use `pg.last` from the response instead when `truncated` is true.Filter with `eventType`, `teamId`, `status` and `httpStatus`. Repeat a parameter to match several values. A delivery is returned if it matches any value of each filter you send, and all of the filters. When you filter by `status` or `httpStatus`, a page can be short or empty while `truncated` is `true`.Requires the `event-subscriptions:read` scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -82,7 +82,7 @@ namespace Soenneker.Make.OpenApiClient.EventSubscriptions.V1.Organizations.Item.
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveries200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Lists the deliveries of an event subscription, newest first by default.To get the next page, set `pg[last]` to the `id` of the last delivery on the current page.Requires the `event-subscriptions:read` scope.
+        /// Lists the deliveries of an event subscription, newest first by default.To get the next page, set `pg[last]` to the `id` of the last delivery on the current page. Use `pg.last` from the response instead when `truncated` is true.Filter with `eventType`, `teamId`, `status` and `httpStatus`. Repeat a parameter to match several values. A delivery is returned if it matches any value of each filter you send, and all of the filters. When you filter by `status` or `httpStatus`, a page can be short or empty while `truncated` is `true`.Requires the `event-subscriptions:read` scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -110,7 +110,7 @@ namespace Soenneker.Make.OpenApiClient.EventSubscriptions.V1.Organizations.Item.
             return new global::Soenneker.Make.OpenApiClient.EventSubscriptions.V1.Organizations.Item.Subscriptions.Item.Deliveries.DeliveriesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Lists the deliveries of an event subscription, newest first by default.To get the next page, set `pg[last]` to the `id` of the last delivery on the current page.Requires the `event-subscriptions:read` scope.
+        /// Lists the deliveries of an event subscription, newest first by default.To get the next page, set `pg[last]` to the `id` of the last delivery on the current page. Use `pg.last` from the response instead when `truncated` is true.Filter with `eventType`, `teamId`, `status` and `httpStatus`. Repeat a parameter to match several values. A delivery is returned if it matches any value of each filter you send, and all of the filters. When you filter by `status` or `httpStatus`, a page can be short or empty while `truncated` is `true`.Requires the `event-subscriptions:read` scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DeliveriesRequestBuilderGetQueryParameters 
@@ -121,17 +121,27 @@ namespace Soenneker.Make.OpenApiClient.EventSubscriptions.V1.Organizations.Item.
             /// <summary>Return only deliveries created before this time (exclusive).</summary>
             [QueryParameter("createdTo")]
             public DateTimeOffset? CreatedTo { get; set; }
-            /// <summary>Return only deliveries of this event type.</summary>
+            /// <summary>Return only deliveries of these event types. Repeat the parameter to match several (`eventType=scenario.created&amp;eventType=scenario.updated`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("eventType")]
-            public string? EventType { get; set; }
+            public string[]? EventType { get; set; }
 #nullable restore
 #else
             [QueryParameter("eventType")]
-            public string EventType { get; set; }
+            public string[] EventType { get; set; }
 #endif
-            /// <summary>The ID of the last delivery on the previous page. The response starts after it. Must be a delivery of this subscription.</summary>
+            /// <summary>Return only deliveries whose `status.httpStatus` is one of these codes: the HTTP status your endpoint returned on the latest attempt. Deliveries where your endpoint never responded (`httpStatus: null`) never match. Repeat the parameter to match several (`httpStatus=500&amp;httpStatus=502`). A filtered page can be short or empty while `truncated` is `true`; see `truncated`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("httpStatus")]
+            public int?[]? HttpStatus { get; set; }
+#nullable restore
+#else
+            [QueryParameter("httpStatus")]
+            public int?[] HttpStatus { get; set; }
+#endif
+            /// <summary>The ID of the last delivery on the previous page. The response starts after it. Must be a delivery of this subscription. When the previous response had `truncated` set to true, send its `pg.last` here, even if the page was short or empty.</summary>
             [QueryParameter("pg%5Blast%5D")]
             public Guid? Pglast { get; set; }
             /// <summary>The maximum number of deliveries to return.</summary>
@@ -143,6 +153,26 @@ namespace Soenneker.Make.OpenApiClient.EventSubscriptions.V1.Organizations.Item.
             /// <summary>The sort direction.</summary>
             [QueryParameter("pg%5BsortDir%5D")]
             public global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveriesPgSortDirParameter? PgsortDir { get; set; }
+            /// <summary>Return only deliveries whose `status.state` is one of these values. Repeat the parameter to match several (`status=failed&amp;status=pending`). A delivery whose latest attempt failed counts as `failed`, even while it is queued for retry. A filtered page can be short or empty while `truncated` is `true`; see `truncated`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("status")]
+            public global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveriesStatusParameterItem[]? Status { get; set; }
+#nullable restore
+#else
+            [QueryParameter("status")]
+            public global::Soenneker.Make.OpenApiClient.Models.ListEventSubscriptionDeliveriesStatusParameterItem[] Status { get; set; }
+#endif
+            /// <summary>Return only deliveries for these team IDs. Repeat the parameter to match several (`teamId=12&amp;teamId=34`). Organization-level deliveries (`teamId: null`) never match.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("teamId")]
+            public int?[]? TeamId { get; set; }
+#nullable restore
+#else
+            [QueryParameter("teamId")]
+            public int?[] TeamId { get; set; }
+#endif
         }
     }
 }

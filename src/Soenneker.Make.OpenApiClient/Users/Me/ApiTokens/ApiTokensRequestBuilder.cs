@@ -47,11 +47,12 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens
         {
         }
         /// <summary>
-        /// Gets the API tokens of the currently authenticated user, newest first. The token values are masked except for their first 8 characters. `organizationId` shows the organization a token is scoped to, or `null` for a token that works in every organization of the user. This call is rejected for an API token that is itself scoped to an organization.
+        /// Gets the API tokens of the currently authenticated user, newest first. The token values are masked except for their first 8 characters. `organizationId` shows the organization a token is scoped to, or `null` for a token that works in every organization of the user. This call is rejected for an API token that is itself scoped to an organization. Requires the `api-tokens:read` scope. The `user:read` scope still grants access for now but is deprecated for this endpoint; add `api-tokens:read` to your API tokens.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens401Response">When receiving a 401 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens403Response">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -65,6 +66,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
+                { "401", global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens401Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens403Response.CreateFromDiscriminatorValue },
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
@@ -72,7 +74,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersMeApiTokens200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Create a new API token for the currently authenticated user. Specify the API token scopes in the `scope` array parameter. Optionally pass `organizationId` to scope the token to one organization the user is an accepted member of; the token then works only within that organization. Omit `organizationId` or send `null` for a token that works in every organization of the user. A user can have at most 100 API tokens. This call is rejected for an API token that is itself scoped to an organization.
+        /// Create a new API token for the currently authenticated user. Specify the API token scopes in the `scope` array parameter. Optionally pass `organizationId` to scope the token to one organization the user is an accepted member of; the token then works only within that organization. Omit `organizationId` or send `null` for a token that works in every organization of the user. A user can have at most 100 API tokens. This call is rejected for an API token that is itself scoped to an organization. Requires the `api-tokens:write` scope. The `user:write` scope still grants access for now but is deprecated for this endpoint; add `api-tokens:write` to your API tokens.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostUsersMeApiTokens200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -103,7 +105,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostUsersMeApiTokens200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostUsersMeApiTokens200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Gets the API tokens of the currently authenticated user, newest first. The token values are masked except for their first 8 characters. `organizationId` shows the organization a token is scoped to, or `null` for a token that works in every organization of the user. This call is rejected for an API token that is itself scoped to an organization.
+        /// Gets the API tokens of the currently authenticated user, newest first. The token values are masked except for their first 8 characters. `organizationId` shows the organization a token is scoped to, or `null` for a token that works in every organization of the user. This call is rejected for an API token that is itself scoped to an organization. Requires the `api-tokens:read` scope. The `user:read` scope still grants access for now but is deprecated for this endpoint; add `api-tokens:read` to your API tokens.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -122,7 +124,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens
             return requestInfo;
         }
         /// <summary>
-        /// Create a new API token for the currently authenticated user. Specify the API token scopes in the `scope` array parameter. Optionally pass `organizationId` to scope the token to one organization the user is an accepted member of; the token then works only within that organization. Omit `organizationId` or send `null` for a token that works in every organization of the user. A user can have at most 100 API tokens. This call is rejected for an API token that is itself scoped to an organization.
+        /// Create a new API token for the currently authenticated user. Specify the API token scopes in the `scope` array parameter. Optionally pass `organizationId` to scope the token to one organization the user is an accepted member of; the token then works only within that organization. Omit `organizationId` or send `null` for a token that works in every organization of the user. A user can have at most 100 API tokens. This call is rejected for an API token that is itself scoped to an organization. Requires the `api-tokens:write` scope. The `user:write` scope still grants access for now but is deprecated for this endpoint; add `api-tokens:write` to your API tokens.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

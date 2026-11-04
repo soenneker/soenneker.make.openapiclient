@@ -34,11 +34,12 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item
         {
         }
         /// <summary>
-        /// Deletes currently authenticated user&apos;s API token with the specified creation timestamp. Get the API token creation timestamp with the API call `GET /users/me/api-tokens` in the parameter value `created`. Copy the timestamp string to the API call path to delete the API token.
+        /// Deletes currently authenticated user&apos;s API token with the specified creation timestamp. Get the API token creation timestamp with the API call `GET /users/me/api-tokens` in the parameter value `created`. Copy the timestamp string to the API call path to delete the API token. Requires the `api-tokens:write` scope. The `user:write` scope still grants access for now but is deprecated for this endpoint; add `api-tokens:write` to your API tokens.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401Response">When receiving a 401 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp200Response?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -49,16 +50,23 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "401", global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Replaces the scopes of the currently authenticated user&apos;s API token with the specified creation timestamp. The `scope` array replaces the token&apos;s current scopes completely; it is not merged with them. The token value, its `label` and its `organizationId` stay unchanged, and requests authenticated with the token use the new scopes right away. Get the API token creation timestamp with the API call `GET /users/me/api-tokens` in the parameter value `created` and copy it to the API call path. The token is matched with a precision of one second. This call is rejected for an API token that is itself scoped to an organization.
+        /// Replaces the scopes of the currently authenticated user&apos;s API token with the specified creation timestamp. The `scope` array replaces the token&apos;s current scopes completely; it is not merged with them. The token value, its `label` and its `organizationId` stay unchanged, and requests authenticated with the token use the new scopes right away. Get the API token creation timestamp with the API call `GET /users/me/api-tokens` in the parameter value `created` and copy it to the API call path. The token is matched with a precision of one second. This call is rejected for an API token that is itself scoped to an organization. Requires the `api-tokens:write` scope. The `user:write` scope still grants access for now but is deprecated for this endpoint; add `api-tokens:write` to your API tokens.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp400Response">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp401Response">When receiving a 401 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp403Response">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp404Response">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -75,6 +83,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "400", global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp400Response.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp401Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp404Response.CreateFromDiscriminatorValue },
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
@@ -83,7 +92,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchUsersMeApiTokensByApiTokenTimestamp200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deletes currently authenticated user&apos;s API token with the specified creation timestamp. Get the API token creation timestamp with the API call `GET /users/me/api-tokens` in the parameter value `created`. Copy the timestamp string to the API call path to delete the API token.
+        /// Deletes currently authenticated user&apos;s API token with the specified creation timestamp. Get the API token creation timestamp with the API call `GET /users/me/api-tokens` in the parameter value `created`. Copy the timestamp string to the API call path to delete the API token. Requires the `api-tokens:write` scope. The `user:write` scope still grants access for now but is deprecated for this endpoint; add `api-tokens:write` to your API tokens.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -102,7 +111,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.ApiTokens.Item
             return requestInfo;
         }
         /// <summary>
-        /// Replaces the scopes of the currently authenticated user&apos;s API token with the specified creation timestamp. The `scope` array replaces the token&apos;s current scopes completely; it is not merged with them. The token value, its `label` and its `organizationId` stay unchanged, and requests authenticated with the token use the new scopes right away. Get the API token creation timestamp with the API call `GET /users/me/api-tokens` in the parameter value `created` and copy it to the API call path. The token is matched with a precision of one second. This call is rejected for an API token that is itself scoped to an organization.
+        /// Replaces the scopes of the currently authenticated user&apos;s API token with the specified creation timestamp. The `scope` array replaces the token&apos;s current scopes completely; it is not merged with them. The token value, its `label` and its `organizationId` stay unchanged, and requests authenticated with the token use the new scopes right away. Get the API token creation timestamp with the API call `GET /users/me/api-tokens` in the parameter value `created` and copy it to the API call path. The token is matched with a precision of one second. This call is rejected for an API token that is itself scoped to an organization. Requires the `api-tokens:write` scope. The `user:write` scope still grants access for now but is deprecated for this endpoint; add `api-tokens:write` to your API tokens.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

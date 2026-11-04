@@ -61486,7 +61486,7 @@
           "Users / API Tokens"
         ],
         "summary": "List users API tokens",
-        "description": "Gets the API tokens of the currently authenticated user, newest first. The token values are masked except for their first 8 characters. \u0060organizationId\u0060 shows the organization a token is scoped to, or \u0060null\u0060 for a token that works in every organization of the user. This call is rejected for an API token that is itself scoped to an organization.",
+        "description": "Gets the API tokens of the currently authenticated user, newest first. The token values are masked except for their first 8 characters. \u0060organizationId\u0060 shows the organization a token is scoped to, or \u0060null\u0060 for a token that works in every organization of the user. This call is rejected for an API token that is itself scoped to an organization. Requires the \u0060api-tokens:read\u0060 scope. The \u0060user:read\u0060 scope still grants access for now but is deprecated for this endpoint; add \u0060api-tokens:read\u0060 to your API tokens.",
         "operationId": "GetUsersMeApiTokens",
         "responses": {
           "200": {
@@ -61526,6 +61526,27 @@
               }
             }
           },
+          "401": {
+            "description": "The API token or OAuth credential lacks the \u0060api-tokens:read\u0060 scope (\u0060IM001\u0060). A token holding only the deprecated \u0060user:read\u0060 scope gets this error too when it is no longer accepted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUsersMeApiTokens401Response"
+                },
+                "examples": {
+                  "missing-scope": {
+                    "summary": "Missing api-tokens:read scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: api-tokens:read",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
           "403": {
             "description": "The request is authenticated with an API token that is scoped to an organization; such tokens cannot list or create API tokens.",
             "content": {
@@ -61550,7 +61571,7 @@
         "security": [
           {
             "token": [
-              "user:read"
+              "api-tokens:read"
             ]
           }
         ]
@@ -61560,7 +61581,7 @@
           "Users / API Tokens"
         ],
         "summary": "Create new API token",
-        "description": "Create a new API token for the currently authenticated user. Specify the API token scopes in the \u0060scope\u0060 array parameter. Optionally pass \u0060organizationId\u0060 to scope the token to one organization the user is an accepted member of; the token then works only within that organization. Omit \u0060organizationId\u0060 or send \u0060null\u0060 for a token that works in every organization of the user. A user can have at most 100 API tokens. This call is rejected for an API token that is itself scoped to an organization.",
+        "description": "Create a new API token for the currently authenticated user. Specify the API token scopes in the \u0060scope\u0060 array parameter. Optionally pass \u0060organizationId\u0060 to scope the token to one organization the user is an accepted member of; the token then works only within that organization. Omit \u0060organizationId\u0060 or send \u0060null\u0060 for a token that works in every organization of the user. A user can have at most 100 API tokens. This call is rejected for an API token that is itself scoped to an organization. Requires the \u0060api-tokens:write\u0060 scope. The \u0060user:write\u0060 scope still grants access for now but is deprecated for this endpoint; add \u0060api-tokens:write\u0060 to your API tokens.",
         "operationId": "PostUsersMeApiTokens",
         "requestBody": {
           "content": {
@@ -61664,7 +61685,7 @@
             }
           },
           "401": {
-            "description": "The token cannot be scoped to the organization: the user is not an accepted member of it, or it does not exist or is deleted.",
+            "description": "The token cannot be scoped to the organization: the user is not an accepted member of it, or it does not exist or is deleted. Or the API token or OAuth credential lacks the \u0060api-tokens:write\u0060 scope (\u0060IM001\u0060); a token holding only the deprecated \u0060user:write\u0060 scope gets this error too when it is no longer accepted.",
             "content": {
               "application/json": {
                 "schema": {
@@ -61677,6 +61698,15 @@
                       "message": "Access denied",
                       "code": "IM001",
                       "detail": "You cannot create a token scoped to this organization."
+                    }
+                  },
+                  "missing-scope": {
+                    "summary": "Missing api-tokens:write scope",
+                    "value": {
+                      "message": "Access denied",
+                      "code": "IM001",
+                      "detail": "Required scope: api-tokens:write",
+                      "suberrors": []
                     }
                   }
                 }
@@ -61707,7 +61737,7 @@
         "security": [
           {
             "token": [
-              "user:write"
+              "api-tokens:write"
             ]
           }
         ]
@@ -61773,7 +61803,7 @@
           "Users / API Tokens"
         ],
         "summary": "Update API token scopes",
-        "description": "Replaces the scopes of the currently authenticated user\u0027s API token with the specified creation timestamp. The \u0060scope\u0060 array replaces the token\u0027s current scopes completely; it is not merged with them. The token value, its \u0060label\u0060 and its \u0060organizationId\u0060 stay unchanged, and requests authenticated with the token use the new scopes right away. Get the API token creation timestamp with the API call \u0060GET /users/me/api-tokens\u0060 in the parameter value \u0060created\u0060 and copy it to the API call path. The token is matched with a precision of one second. This call is rejected for an API token that is itself scoped to an organization.",
+        "description": "Replaces the scopes of the currently authenticated user\u0027s API token with the specified creation timestamp. The \u0060scope\u0060 array replaces the token\u0027s current scopes completely; it is not merged with them. The token value, its \u0060label\u0060 and its \u0060organizationId\u0060 stay unchanged, and requests authenticated with the token use the new scopes right away. Get the API token creation timestamp with the API call \u0060GET /users/me/api-tokens\u0060 in the parameter value \u0060created\u0060 and copy it to the API call path. The token is matched with a precision of one second. This call is rejected for an API token that is itself scoped to an organization. Requires the \u0060api-tokens:write\u0060 scope. The \u0060user:write\u0060 scope still grants access for now but is deprecated for this endpoint; add \u0060api-tokens:write\u0060 to your API tokens.",
         "operationId": "PatchUsersMeApiTokensByApiTokenTimestamp",
         "parameters": [
           {
@@ -61853,6 +61883,27 @@
               }
             }
           },
+          "401": {
+            "description": "The API token or OAuth credential lacks the \u0060api-tokens:write\u0060 scope (\u0060IM001\u0060). A token holding only the deprecated \u0060user:write\u0060 scope gets this error too when it is no longer accepted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchUsersMeApiTokensByApiTokenTimestamp401Response"
+                },
+                "examples": {
+                  "missing-scope": {
+                    "summary": "Missing api-tokens:write scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: api-tokens:write",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
+          },
           "403": {
             "description": "The request is authenticated with an API token that is scoped to an organization; such tokens cannot update API tokens.",
             "content": {
@@ -61897,7 +61948,7 @@
         "security": [
           {
             "token": [
-              "user:write"
+              "api-tokens:write"
             ]
           }
         ]
@@ -61907,7 +61958,7 @@
           "Users / API Tokens"
         ],
         "summary": "Delete API token",
-        "description": "Deletes currently authenticated user\u0027s API token with the specified creation timestamp. Get the API token creation timestamp with the API call \u0060GET /users/me/api-tokens\u0060 in the parameter value \u0060created\u0060. Copy the timestamp string to the API call path to delete the API token.",
+        "description": "Deletes currently authenticated user\u0027s API token with the specified creation timestamp. Get the API token creation timestamp with the API call \u0060GET /users/me/api-tokens\u0060 in the parameter value \u0060created\u0060. Copy the timestamp string to the API call path to delete the API token. Requires the \u0060api-tokens:write\u0060 scope. The \u0060user:write\u0060 scope still grants access for now but is deprecated for this endpoint; add \u0060api-tokens:write\u0060 to your API tokens.",
         "operationId": "DeleteUsersMeApiTokensByApiTokenTimestamp",
         "parameters": [
           {
@@ -61935,12 +61986,33 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "The API token or OAuth credential lacks the \u0060api-tokens:write\u0060 scope (\u0060IM001\u0060). A token holding only the deprecated \u0060user:write\u0060 scope gets this error too when it is no longer accepted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteUsersMeApiTokensByApiTokenTimestamp401Response"
+                },
+                "examples": {
+                  "missing-scope": {
+                    "summary": "Missing api-tokens:write scope",
+                    "value": {
+                      "code": "IM001",
+                      "message": "Access denied",
+                      "detail": "Required scope: api-tokens:write",
+                      "suberrors": []
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
           {
             "token": [
-              "user:write"
+              "api-tokens:write"
             ]
           }
         ]
@@ -66287,7 +66359,7 @@
           "Event subscriptions"
         ],
         "summary": "List deliveries",
-        "description": "Lists the deliveries of an event subscription, newest first by default.\n\nTo get the next page, set \u0060pg[last]\u0060 to the \u0060id\u0060 of the last delivery on the current page.\n\nRequires the \u0060event-subscriptions:read\u0060 scope.\n",
+        "description": "Lists the deliveries of an event subscription, newest first by default.\n\nTo get the next page, set \u0060pg[last]\u0060 to the \u0060id\u0060 of the last delivery on the current page. Use \u0060pg.last\u0060 from the response instead when \u0060truncated\u0060 is true.\n\nFilter with \u0060eventType\u0060, \u0060teamId\u0060, \u0060status\u0060 and \u0060httpStatus\u0060. Repeat a parameter to match several values. A delivery is returned if it matches any value of each filter you send, and all of the filters. When you filter by \u0060status\u0060 or \u0060httpStatus\u0060, a page can be short or empty while \u0060truncated\u0060 is \u0060true\u0060.\n\nRequires the \u0060event-subscriptions:read\u0060 scope.\n",
         "operationId": "ListEventSubscriptionDeliveries",
         "parameters": [
           {
@@ -66336,7 +66408,7 @@
           {
             "name": "pg[last]",
             "in": "query",
-            "description": "The ID of the last delivery on the previous page. The response starts after it. Must be a delivery of this subscription.",
+            "description": "The ID of the last delivery on the previous page. The response starts after it. Must be a delivery of this subscription. When the previous response had \u0060truncated\u0060 set to true, send its \u0060pg.last\u0060 here, even if the page was short or empty.",
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -66356,12 +66428,75 @@
           {
             "name": "eventType",
             "in": "query",
-            "description": "Return only deliveries of this event type.",
+            "description": "Return only deliveries of these event types. Repeat the parameter to match several (\u0060eventType=scenario.created\u0026eventType=scenario.updated\u0060).",
             "schema": {
-              "minLength": 1,
-              "type": "string"
+              "maxItems": 100,
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              }
             },
-            "example": "scenario.created"
+            "example": [
+              "scenario.created",
+              "scenario.updated"
+            ]
+          },
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "Return only deliveries for these team IDs. Repeat the parameter to match several (\u0060teamId=12\u0026teamId=34\u0060). Organization-level deliveries (\u0060teamId: null\u0060) never match.",
+            "schema": {
+              "maxItems": 100,
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "example": [
+              12,
+              34
+            ]
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Return only deliveries whose \u0060status.state\u0060 is one of these values. Repeat the parameter to match several (\u0060status=failed\u0026status=pending\u0060). A delivery whose latest attempt failed counts as \u0060failed\u0060, even while it is queued for retry. A filtered page can be short or empty while \u0060truncated\u0060 is \u0060true\u0060; see \u0060truncated\u0060.",
+            "schema": {
+              "maxItems": 3,
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ListEventSubscriptionDeliveriesStatusParameterItem"
+              }
+            },
+            "example": [
+              "failed",
+              "pending"
+            ]
+          },
+          {
+            "name": "httpStatus",
+            "in": "query",
+            "description": "Return only deliveries whose \u0060status.httpStatus\u0060 is one of these codes: the HTTP status your endpoint returned on the latest attempt. Deliveries where your endpoint never responded (\u0060httpStatus: null\u0060) never match. Repeat the parameter to match several (\u0060httpStatus=500\u0026httpStatus=502\u0060). A filtered page can be short or empty while \u0060truncated\u0060 is \u0060true\u0060; see \u0060truncated\u0060.",
+            "schema": {
+              "maxItems": 20,
+              "uniqueItems": true,
+              "type": "array",
+              "items": {
+                "maximum": 599,
+                "minimum": 100,
+                "type": "integer"
+              }
+            },
+            "example": [
+              500,
+              502
+            ]
           },
           {
             "name": "createdFrom",
@@ -66413,9 +66548,23 @@
                           "createdAt": "2026-10-21T10:15:01.870Z"
                         }
                       ],
+                      "truncated": false,
                       "pg": {
                         "limit": 20,
                         "sortDir": "desc"
+                      }
+                    }
+                  },
+                  "truncated": {
+                    "summary": "A filtered page that stopped before it was full",
+                    "description": "Returned for a request with \u0060status=failed\u0060. The page is empty, but the list hasn\u0027t ended. Send the next request with the same filters and \u0060pg[last]=9a7c1b2d-3e4f-4a6b-8c1d-2e3f4a5b6c7d\u0060.",
+                    "value": {
+                      "deliveries": [],
+                      "truncated": true,
+                      "pg": {
+                        "limit": 20,
+                        "sortDir": "desc",
+                        "last": "9a7c1b2d-3e4f-4a6b-8c1d-2e3f4a5b6c7d"
                       }
                     }
                   }
@@ -102811,6 +102960,33 @@
           }
         }
       },
+      "GetUsersMeApiTokens401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetUsersMeApiTokens401ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
       "GetUsersMeApiTokens403Response": {
         "type": "object",
         "properties": {
@@ -102960,6 +103136,33 @@
           }
         }
       },
+      "PatchUsersMeApiTokensByApiTokenTimestamp401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem"
+            }
+          }
+        }
+      },
       "PatchUsersMeApiTokensByApiTokenTimestamp403Response": {
         "type": "object",
         "properties": {
@@ -102994,6 +103197,33 @@
           "apiToken": {
             "type": "string",
             "format": "date-time"
+          }
+        }
+      },
+      "DeleteUsersMeApiTokensByApiTokenTimestamp401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "suberrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeleteUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem"
+            }
           }
         }
       },
@@ -104716,7 +104946,8 @@
       "ListEventSubscriptionDeliveries200Response": {
         "required": [
           "deliveries",
-          "pg"
+          "pg",
+          "truncated"
         ],
         "type": "object",
         "properties": {
@@ -104725,6 +104956,10 @@
             "items": {
               "$ref": "#/components/schemas/ListEventSubscriptionDeliveries200ResponseDeliveriesItem"
             }
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when the response stopped before the page was full. This only happens when you filter by \u0060status\u0060 or \u0060httpStatus\u0060: each request examines a limited number of deliveries, so the page can be short or even empty, and that doesn\u0027t mean the list has ended. To continue, repeat the request with the same filters, \u0060pg[limit]\u0060 and \u0060pg[sortDir]\u0060, set \u0060pg[last]\u0060 to this response\u0027s \u0060pg.last\u0060, and leave \u0060pg[showLast]\u0060 unset or \u0060false\u0060. Stop when \u0060truncated\u0060 is \u0060false\u0060 and the page holds fewer than \u0060pg[limit]\u0060 deliveries."
           },
           "pg": {
             "$ref": "#/components/schemas/ListEventSubscriptionDeliveries200ResponsePg"
@@ -130387,6 +130622,9 @@
           }
         }
       },
+      "GetUsersMeApiTokens401ResponseSuberrorsItem": {
+        "type": "object"
+      },
       "PostUsersMeApiTokens200ResponseApiToken": {
         "type": "object",
         "properties": {
@@ -130474,6 +130712,12 @@
             "nullable": true
           }
         }
+      },
+      "PatchUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem": {
+        "type": "object"
+      },
+      "DeleteUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem": {
+        "type": "object"
       },
       "GetUsersByUserIdUserTeamRoles200ResponseUserTeamRolesItem": {
         "type": "object",
@@ -131502,6 +131746,7 @@
           },
           "last": {
             "type": "string",
+            "description": "The cursor to continue from. When \u0060truncated\u0060 is \u0060true\u0060, this is the last delivery the request examined, which may not be in \u0060deliveries\u0060; send it as \u0060pg[last]\u0060 in the next request. Otherwise it repeats the \u0060pg[last]\u0060 you sent, and is omitted if you didn\u0027t send one.",
             "format": "uuid"
           },
           "showLast": {
@@ -172405,6 +172650,32 @@
             {
               "value": "desc",
               "name": "Desc"
+            }
+          ]
+        }
+      },
+      "ListEventSubscriptionDeliveriesStatusParameterItem": {
+        "enum": [
+          "pending",
+          "succeeded",
+          "failed"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "ListEventSubscriptionDeliveriesStatusParameterItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "pending",
+              "name": "Pending"
+            },
+            {
+              "value": "succeeded",
+              "name": "Succeeded"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
             }
           ]
         }

@@ -29,7 +29,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The last property</summary>
+        /// <summary>The cursor to continue from. When `truncated` is `true`, this is the last delivery the request examined, which may not be in `deliveries`; send it as `pg[last]` in the next request. Otherwise it repeats the `pg[last]` you sent, and is omitted if you didn&apos;t send one.</summary>
         public Guid? Last { get => _explicitNullValueLast; set { _explicitNullValueLast = value; AdditionalData?.Remove("last"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("last"); else _explicitNullProperties?.Remove("last"); } }
         private Guid? _explicitNullValueLast = default!;
         /// <summary>The limit property</summary>
