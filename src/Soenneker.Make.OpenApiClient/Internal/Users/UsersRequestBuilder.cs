@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Internal.Users.Item;
 using Soenneker.Make.OpenApiClient.Internal.Users.LookupByEmail;
+using Soenneker.Make.OpenApiClient.Internal.Users.LookupByIds;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -20,6 +21,11 @@ namespace Soenneker.Make.OpenApiClient.Internal.Users
         public global::Soenneker.Make.OpenApiClient.Internal.Users.LookupByEmail.LookupByEmailRequestBuilder LookupByEmail
         {
             get => new global::Soenneker.Make.OpenApiClient.Internal.Users.LookupByEmail.LookupByEmailRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The lookupByIds property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Users.LookupByIds.LookupByIdsRequestBuilder LookupByIds
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Users.LookupByIds.LookupByIdsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.internal.users.item collection</summary>
         /// <param name="position">The ID of the user.</param>

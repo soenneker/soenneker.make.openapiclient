@@ -2163,64 +2163,6 @@
         "x-private": true
       }
     },
-    "/admin/experiments/organization/{organizationId}": {
-      "get": {
-        "tags": [
-          "Admin / Experiments"
-        ],
-        "summary": "Get experiments for organization",
-        "description": "Returns the active experiments configuration for the specified organization, as provided by the cashier service.",
-        "operationId": "GetAdminExperimentsOrganizationByOrganizationId",
-        "parameters": [
-          {
-            "name": "organizationId",
-            "in": "path",
-            "description": "The ID of the organization.",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "example": 10
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetAdminExperimentsOrganizationByOrganizationId200Response"
-                },
-                "examples": {
-                  "default": {
-                    "summary": "Organization experiments",
-                    "value": {
-                      "experiments": {
-                        "isMakePlanExperiment": true
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "No experiments found for the organization.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetAdminExperimentsOrganizationByOrganizationId404Response"
-                },
-                "example": {
-                  "message": "Not Found"
-                }
-              }
-            }
-          }
-        },
-        "x-internal": true
-      }
-    },
     "/admin/install/apps/{app}/logs": {
       "get": {
         "tags": [
@@ -28668,6 +28610,70 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetInternalUsersLookupByEmail401Response"
+                }
+              }
+            }
+          }
+        },
+        "x-internal": true
+      }
+    },
+    "/internal/users/lookup-by-ids": {
+      "get": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Look up active users by ids",
+        "description": "Returns the id and email of each given Make user id that belongs to an active user, for internal service-to-service communication using ISC authorization. Soft-deleted, suspended and unknown ids are left out of \u0060users\u0060 (not 404) \u2014 an inactive id is an expected outcome, not an error.",
+        "operationId": "GetInternalUsersLookupByIds",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "The Make user ids to check (1\u2013100).",
+            "required": true,
+            "schema": {
+              "maxItems": 100,
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "example": [
+              123,
+              456
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalUsersLookupByIds200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing, empty, oversized or non-integer \u0060ids\u0060",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalUsersLookupByIds400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Missing or invalid ISC authorization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalUsersLookupByIds401Response"
                 }
               }
             }
@@ -85388,22 +85394,6 @@
           }
         }
       },
-      "GetAdminExperimentsOrganizationByOrganizationId200Response": {
-        "type": "object",
-        "properties": {
-          "experiments": {
-            "$ref": "#/components/schemas/GetAdminExperimentsOrganizationByOrganizationId200ResponseExperiments"
-          }
-        }
-      },
-      "GetAdminExperimentsOrganizationByOrganizationId404Response": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          }
-        }
-      },
       "GetAdminInstallAppsByAppLogs200Response": {
         "type": "object",
         "properties": {
@@ -93252,6 +93242,47 @@
         }
       },
       "GetInternalUsersLookupByEmail401Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "IM001"
+          },
+          "message": {
+            "type": "string",
+            "example": "Access denied."
+          }
+        }
+      },
+      "GetInternalUsersLookupByIds200Response": {
+        "required": [
+          "users"
+        ],
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetInternalUsersLookupByIds200ResponseUsersItem"
+            },
+            "description": "The active Make users among the given ids. Order is not guaranteed."
+          }
+        }
+      },
+      "GetInternalUsersLookupByIds400Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "IM003"
+          },
+          "message": {
+            "type": "string",
+            "example": "Validation failed."
+          }
+        }
+      },
+      "GetInternalUsersLookupByIds401Response": {
         "type": "object",
         "properties": {
           "code": {
@@ -111039,11 +111070,6 @@
           }
         }
       },
-      "GetAdminExperimentsOrganizationByOrganizationId200ResponseExperiments": {
-        "type": "object",
-        "additionalProperties": {},
-        "description": "Experiments configuration for the organization."
-      },
       "GetAdminInstallAppsByAppLogs200ResponseLogsItem": {
         "type": "object",
         "properties": {
@@ -119099,6 +119125,24 @@
         "example": {
           "local_access": true,
           "allow_apps": true
+        }
+      },
+      "GetInternalUsersLookupByIds200ResponseUsersItem": {
+        "required": [
+          "id",
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 123
+          },
+          "email": {
+            "type": "string",
+            "example": "user@example.com",
+            "x-client-original-format": "email"
+          }
         }
       },
       "GetInternalConfigRuntime200ResponseConfig": {

@@ -3,7 +3,6 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Admin.Apps;
-using Soenneker.Make.OpenApiClient.Admin.Experiments;
 using Soenneker.Make.OpenApiClient.Admin.Functions;
 using Soenneker.Make.OpenApiClient.Admin.Hooks;
 using Soenneker.Make.OpenApiClient.Admin.Install;
@@ -31,11 +30,6 @@ namespace Soenneker.Make.OpenApiClient.Admin
         public global::Soenneker.Make.OpenApiClient.Admin.Apps.AppsRequestBuilder Apps
         {
             get => new global::Soenneker.Make.OpenApiClient.Admin.Apps.AppsRequestBuilder(PathParameters, RequestAdapter);
-        }
-        /// <summary>The experiments property</summary>
-        public global::Soenneker.Make.OpenApiClient.Admin.Experiments.ExperimentsRequestBuilder Experiments
-        {
-            get => new global::Soenneker.Make.OpenApiClient.Admin.Experiments.ExperimentsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The functions property</summary>
         public global::Soenneker.Make.OpenApiClient.Admin.Functions.FunctionsRequestBuilder Functions
