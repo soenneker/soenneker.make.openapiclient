@@ -31,6 +31,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("signals") is { } nullNodeSignals && nullNodeSignals.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Signals = null;
             if (parseNode.GetChildNode("status") is null) { _explicitNullValueStatus = default!; _explicitNullProperties?.Remove("status"); }
             else if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("statusChangeReason") is null) { _explicitNullValueStatusChangeReason = default!; _explicitNullProperties?.Remove("statusChangeReason"); }
+            else if (parseNode.GetChildNode("statusChangeReason") is { } nullNodeStatusChangeReason && nullNodeStatusChangeReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StatusChangeReason = null;
             if (parseNode.GetChildNode("updatedAt") is null) { _explicitNullValueUpdatedAt = default!; _explicitNullProperties?.Remove("updatedAt"); }
             else if (parseNode.GetChildNode("updatedAt") is { } nullNodeUpdatedAt && nullNodeUpdatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedAt = null;
             if (parseNode.GetChildNode("url") is null) { _explicitNullValueUrl = default!; _explicitNullProperties?.Remove("url"); }
@@ -81,6 +83,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The status property</summary>
         public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatus? _explicitNullValueStatus = default!;
+        /// <summary>Why the status last changed. `user` means it was set through the API. `delivery_failed` means Make deactivated the destination after repeated failed deliveries.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatusChangeReason? StatusChangeReason { get => _explicitNullValueStatusChangeReason; set { _explicitNullValueStatusChangeReason = value; AdditionalData?.Remove("statusChangeReason"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("statusChangeReason"); else _explicitNullProperties?.Remove("statusChangeReason"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatusChangeReason? _explicitNullValueStatusChangeReason = default!;
         /// <summary>The updatedAt property</summary>
         public DateTimeOffset? UpdatedAt { get => _explicitNullValueUpdatedAt; set { _explicitNullValueUpdatedAt = value; AdditionalData?.Remove("updatedAt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedAt"); else _explicitNullProperties?.Remove("updatedAt"); } }
         private DateTimeOffset? _explicitNullValueUpdatedAt = default!;
@@ -126,6 +131,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "organizationId", n => { OrganizationId = n.GetIntValue(); } },
                 { "signals", n => { Signals = n.GetCollectionOfEnumValues<global::Soenneker.Make.OpenApiClient.Models.TracesItem>()?.AsList(); } },
                 { "status", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatus>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueStatus = default; _explicitNullProperties?.Remove("status"); AdditionalData["status"] = unknown; } else { Status = parsed; AdditionalData.Remove("status"); } } },
+                { "statusChangeReason", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatusChangeReason>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueStatusChangeReason = default; _explicitNullProperties?.Remove("statusChangeReason"); AdditionalData["statusChangeReason"] = unknown; } else { StatusChangeReason = parsed; AdditionalData.Remove("statusChangeReason"); } } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
             };
@@ -144,6 +150,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("organizationId", OrganizationId);
             writer.WriteCollectionOfEnumValues<global::Soenneker.Make.OpenApiClient.Models.TracesItem>("signals", Signals);
             writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatus>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatusChangeReason>("statusChangeReason", StatusChangeReason);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteStringValue("url", Url);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

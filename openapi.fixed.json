@@ -31915,7 +31915,8 @@
                         "id": "539a60e2-36b1-42c0-8bb0-761bf8b56caa",
                         "name": "Grafana Cloud",
                         "url": "https://collector.example.com/v1/traces",
-                        "status": "active"
+                        "status": "active",
+                        "statusChangeReason": "user"
                       }
                     ]
                   }
@@ -32127,6 +32128,7 @@
                       "name": "Grafana Cloud",
                       "url": "https://collector.example.com/v1/traces",
                       "status": "active",
+                      "statusChangeReason": "user",
                       "signals": [
                         "traces"
                       ],
@@ -32283,6 +32285,7 @@
                       "name": "Grafana Cloud",
                       "url": "https://collector.example.com/v1/traces",
                       "status": "active",
+                      "statusChangeReason": "user",
                       "signals": [
                         "traces"
                       ],
@@ -32366,6 +32369,7 @@
                       "name": "Grafana Cloud",
                       "url": "https://collector.example.com/v1/traces",
                       "status": "active",
+                      "statusChangeReason": "user",
                       "signals": [
                         "traces"
                       ],
@@ -32587,6 +32591,7 @@
                       "name": "Updated collector",
                       "url": "https://collector.example.com/v1/traces",
                       "status": "active",
+                      "statusChangeReason": "user",
                       "signals": [
                         "traces"
                       ],
@@ -32991,6 +32996,7 @@
                       "name": "Grafana Cloud",
                       "url": "https://collector.example.com/v1/traces",
                       "status": "active",
+                      "statusChangeReason": "user",
                       "signals": [
                         "traces"
                       ],
@@ -33200,6 +33206,7 @@
                       "name": "Grafana Cloud",
                       "url": "https://collector.example.com/v1/traces",
                       "status": "inactive",
+                      "statusChangeReason": "user",
                       "signals": [
                         "traces"
                       ],
@@ -94469,6 +94476,7 @@
           "name",
           "url",
           "status",
+          "statusChangeReason",
           "signals",
           "headerNames",
           "organizationId",
@@ -94490,6 +94498,9 @@
           },
           "status": {
             "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdOtelDestinations201ResponseStatus"
+          },
+          "statusChangeReason": {
+            "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdOtelDestinations201ResponseStatusChangeReason"
           },
           "signals": {
             "type": "array",
@@ -94691,6 +94702,7 @@
           "name",
           "url",
           "status",
+          "statusChangeReason",
           "signals",
           "headerNames"
         ],
@@ -94709,6 +94721,9 @@
           },
           "status": {
             "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatus"
+          },
+          "statusChangeReason": {
+            "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatusChangeReason"
           },
           "signals": {
             "type": "array",
@@ -94911,6 +94926,7 @@
           "name",
           "url",
           "status",
+          "statusChangeReason",
           "signals",
           "headerNames",
           "organizationId",
@@ -94932,6 +94948,9 @@
           },
           "status": {
             "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatus"
+          },
+          "statusChangeReason": {
+            "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatusChangeReason"
           },
           "signals": {
             "type": "array",
@@ -95312,6 +95331,7 @@
           "name",
           "url",
           "status",
+          "statusChangeReason",
           "signals",
           "headerNames",
           "organizationId",
@@ -95333,6 +95353,9 @@
           },
           "status": {
             "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdActivate200ResponseStatus"
+          },
+          "statusChangeReason": {
+            "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdActivate200ResponseStatusChangeReason"
           },
           "signals": {
             "type": "array",
@@ -95534,6 +95557,7 @@
           "name",
           "url",
           "status",
+          "statusChangeReason",
           "signals",
           "headerNames",
           "organizationId",
@@ -95555,6 +95579,9 @@
           },
           "status": {
             "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdDeactivate200ResponseStatus"
+          },
+          "statusChangeReason": {
+            "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdDeactivate200ResponseStatusChangeReason"
           },
           "signals": {
             "type": "array",
@@ -131972,7 +131999,8 @@
           "id",
           "name",
           "url",
-          "status"
+          "status",
+          "statusChangeReason"
         ],
         "type": "object",
         "properties": {
@@ -131989,6 +132017,9 @@
           },
           "status": {
             "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdOtelDestinations200ResponseItemStatus"
+          },
+          "statusChangeReason": {
+            "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdOtelDestinations200ResponseItemStatusChangeReason"
           }
         }
       },
@@ -153207,6 +153238,28 @@
           ]
         }
       },
+      "PostOrganizationsByOrganizationIdOtelDestinations201ResponseStatusChangeReason": {
+        "enum": [
+          "user",
+          "delivery_failed"
+        ],
+        "type": "string",
+        "description": "Why the status last changed. \u0060user\u0060 means it was set through the API. \u0060delivery_failed\u0060 means Make deactivated the destination after repeated failed deliveries.",
+        "x-ms-enum": {
+          "name": "PostOrganizationsByOrganizationIdOtelDestinations201ResponseStatusChangeReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "delivery_failed",
+              "name": "DeliveryFailed"
+            }
+          ]
+        }
+      },
       "TracesItem": {
         "enum": [
           "traces"
@@ -153244,6 +153297,28 @@
           ]
         }
       },
+      "GetOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatusChangeReason": {
+        "enum": [
+          "user",
+          "delivery_failed"
+        ],
+        "type": "string",
+        "description": "Why the status last changed. \u0060user\u0060 means it was set through the API. \u0060delivery_failed\u0060 means Make deactivated the destination after repeated failed deliveries.",
+        "x-ms-enum": {
+          "name": "GetOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatusChangeReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "delivery_failed",
+              "name": "DeliveryFailed"
+            }
+          ]
+        }
+      },
       "PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatus": {
         "enum": [
           "active",
@@ -153261,6 +153336,28 @@
             {
               "value": "inactive",
               "name": "Inactive"
+            }
+          ]
+        }
+      },
+      "PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatusChangeReason": {
+        "enum": [
+          "user",
+          "delivery_failed"
+        ],
+        "type": "string",
+        "description": "Why the status last changed. \u0060user\u0060 means it was set through the API. \u0060delivery_failed\u0060 means Make deactivated the destination after repeated failed deliveries.",
+        "x-ms-enum": {
+          "name": "PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationId200ResponseStatusChangeReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "delivery_failed",
+              "name": "DeliveryFailed"
             }
           ]
         }
@@ -153302,6 +153399,28 @@
           ]
         }
       },
+      "PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdActivate200ResponseStatusChangeReason": {
+        "enum": [
+          "user",
+          "delivery_failed"
+        ],
+        "type": "string",
+        "description": "Why the status last changed. \u0060user\u0060 means it was set through the API. \u0060delivery_failed\u0060 means Make deactivated the destination after repeated failed deliveries.",
+        "x-ms-enum": {
+          "name": "PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdActivate200ResponseStatusChangeReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "delivery_failed",
+              "name": "DeliveryFailed"
+            }
+          ]
+        }
+      },
       "PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdDeactivate200ResponseStatus": {
         "enum": [
           "active",
@@ -153319,6 +153438,28 @@
             {
               "value": "inactive",
               "name": "Inactive"
+            }
+          ]
+        }
+      },
+      "PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdDeactivate200ResponseStatusChangeReason": {
+        "enum": [
+          "user",
+          "delivery_failed"
+        ],
+        "type": "string",
+        "description": "Why the status last changed. \u0060user\u0060 means it was set through the API. \u0060delivery_failed\u0060 means Make deactivated the destination after repeated failed deliveries.",
+        "x-ms-enum": {
+          "name": "PatchOrganizationsByOrganizationIdOtelDestinationsByDestinationIdDeactivate200ResponseStatusChangeReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "delivery_failed",
+              "name": "DeliveryFailed"
             }
           ]
         }
@@ -158963,6 +159104,28 @@
             {
               "value": "inactive",
               "name": "Inactive"
+            }
+          ]
+        }
+      },
+      "GetOrganizationsByOrganizationIdOtelDestinations200ResponseItemStatusChangeReason": {
+        "enum": [
+          "user",
+          "delivery_failed"
+        ],
+        "type": "string",
+        "description": "Why the status last changed. \u0060user\u0060 means it was set through the API. \u0060delivery_failed\u0060 means Make deactivated the destination after repeated failed deliveries.",
+        "x-ms-enum": {
+          "name": "GetOrganizationsByOrganizationIdOtelDestinations200ResponseItemStatusChangeReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "delivery_failed",
+              "name": "DeliveryFailed"
             }
           ]
         }
@@ -204613,7 +204776,8 @@
         "id",
         "name",
         "url",
-        "status"
+        "status",
+        "statusChangeReason"
       ],
       "type": "object",
       "properties": {
@@ -204630,6 +204794,9 @@
         },
         "status": {
           "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdOtelDestinations200ResponseItemStatus"
+        },
+        "statusChangeReason": {
+          "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdOtelDestinations200ResponseItemStatusChangeReason"
         }
       }
     },
