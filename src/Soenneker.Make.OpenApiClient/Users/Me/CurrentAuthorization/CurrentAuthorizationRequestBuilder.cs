@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.CurrentAuthorization
         {
         }
         /// <summary>
-        /// Returns current authorization information for the authenticated user including scope and authentication method used.
+        /// Returns current authorization information for the authenticated user including scope, authentication method used and the organization the authorization is bound to.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersMeCurrentAuthorization200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.CurrentAuthorization
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeCurrentAuthorization200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersMeCurrentAuthorization200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns current authorization information for the authenticated user including scope and authentication method used.
+        /// Returns current authorization information for the authenticated user including scope, authentication method used and the organization the authorization is bound to.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

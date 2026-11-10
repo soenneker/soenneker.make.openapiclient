@@ -10729,7 +10729,9 @@
                   "editable",
                   "uid",
                   "connectedSystemId",
-                  "organizationId"
+                  "organizationId",
+                  "scenarioUsages",
+                  "hookUsages"
                 ]
               },
               "id-name": {
@@ -10774,7 +10776,9 @@
                           "editable": false,
                           "uid": null,
                           "connectedSystemId": "c5d8e134-d2f8-480d-9838-119a54f65d3e",
-                          "organizationId": 3
+                          "organizationId": 3,
+                          "scenarioUsages": [],
+                          "hookUsages": []
                         },
                         {
                           "id": 15,
@@ -10796,7 +10800,19 @@
                           "editable": false,
                           "uid": 225874569526501080000,
                           "connectedSystemId": "4244156b-88cc-43cf-a5e9-e94bd0304745",
-                          "organizationId": 2343
+                          "organizationId": 2343,
+                          "scenarioUsages": [
+                            {
+                              "id": 112,
+                              "name": "Sync Google Contacts"
+                            }
+                          ],
+                          "hookUsages": [
+                            {
+                              "id": 58,
+                              "name": "Watch Google Drive files"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -26528,7 +26544,9 @@
                         "stringify": false
                       },
                       "scenarioId": 1,
-                      "url": "https://local.make.cloud/wh/1gqnexkk1vwxg2wpj39kg30pzp6uhe7h"
+                      "url": "https://local.make.cloud/wh/1gqnexkk1vwxg2wpj39kg30pzp6uhe7h",
+                      "connectionId": null,
+                      "connectionName": null
                     },
                     {
                       "id": 58,
@@ -26553,7 +26571,9 @@
                         "teamId": 4
                       },
                       "scenarioId": 112,
-                      "url": "https://local.make.cloud/wh/d4ezzfwgyav7qaukv8dbh3l21eru0fld"
+                      "url": "https://local.make.cloud/wh/d4ezzfwgyav7qaukv8dbh3l21eru0fld",
+                      "connectionId": null,
+                      "connectionName": null
                     }
                   ]
                 }
@@ -61125,7 +61145,7 @@
           "Users / Me"
         ],
         "summary": "Current user authorization",
-        "description": "Returns current authorization information for the authenticated user including scope and authentication method used.",
+        "description": "Returns current authorization information for the authenticated user including scope, authentication method used and the organization the authorization is bound to.",
         "operationId": "GetUsersMeCurrentAuthorization",
         "responses": {
           "200": {
@@ -61145,7 +61165,8 @@
                           "read:user",
                           "write:scenario"
                         ],
-                        "authUsed": "token"
+                        "authUsed": "token",
+                        "organizationId": 11
                       }
                     }
                   }
@@ -113796,6 +113817,20 @@
           },
           "visibility": {
             "$ref": "#/components/schemas/GetConnections200ResponseConnectionsItemVisibility"
+          },
+          "scenarioUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetConnections200ResponseConnectionsItemScenarioUsagesItem"
+            },
+            "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+          },
+          "hookUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetConnections200ResponseConnectionsItemHookUsagesItem"
+            },
+            "description": "Webhooks that depend on this connection (instant triggers Make registered through it). Only returned by \u0060GET /connections\u0060."
           }
         }
       },
@@ -113857,6 +113892,20 @@
           },
           "visibility": {
             "$ref": "#/components/schemas/PostConnections200ResponseConnectionVisibility"
+          },
+          "scenarioUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostConnections200ResponseConnectionScenarioUsagesItem"
+            },
+            "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+          },
+          "hookUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostConnections200ResponseConnectionHookUsagesItem"
+            },
+            "description": "Webhooks that depend on this connection (instant triggers Make registered through it). Only returned by \u0060GET /connections\u0060."
           }
         }
       },
@@ -113918,6 +113967,20 @@
           },
           "visibility": {
             "$ref": "#/components/schemas/GetConnectionsByConnectionId200ResponseConnectionVisibility"
+          },
+          "scenarioUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem"
+            },
+            "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+          },
+          "hookUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetConnectionsByConnectionId200ResponseConnectionHookUsagesItem"
+            },
+            "description": "Webhooks that depend on this connection (instant triggers Make registered through it). Only returned by \u0060GET /connections\u0060."
           },
           "scopes": {
             "type": "array",
@@ -113985,6 +114048,20 @@
           },
           "visibility": {
             "$ref": "#/components/schemas/PatchConnectionsByConnectionId200ResponseConnectionVisibility"
+          },
+          "scenarioUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem"
+            },
+            "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+          },
+          "hookUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchConnectionsByConnectionId200ResponseConnectionHookUsagesItem"
+            },
+            "description": "Webhooks that depend on this connection (instant triggers Make registered through it). Only returned by \u0060GET /connections\u0060."
           }
         }
       },
@@ -118358,6 +118435,16 @@
           "url": {
             "type": "string",
             "x-client-original-format": "uri"
+          },
+          "connectionId": {
+            "type": "integer",
+            "description": "ID of the connection the webhook was registered through, or \u0060null\u0060 when it has no valid connection link. Make stores the link for app webhooks it registers via the app\u0027s attach RPC (instant triggers). Only returned by \u0060GET /hooks\u0060.",
+            "nullable": true
+          },
+          "connectionName": {
+            "type": "string",
+            "description": "Name of the connection referenced by \u0060connectionId\u0060; \u0060null\u0060 when \u0060connectionId\u0060 is \u0060null\u0060. Only returned by \u0060GET /hooks\u0060.",
+            "nullable": true
           }
         }
       },
@@ -118416,6 +118503,16 @@
           "url": {
             "type": "string",
             "x-client-original-format": "uri"
+          },
+          "connectionId": {
+            "type": "integer",
+            "description": "ID of the connection the webhook was registered through, or \u0060null\u0060 when it has no valid connection link. Make stores the link for app webhooks it registers via the app\u0027s attach RPC (instant triggers). Only returned by \u0060GET /hooks\u0060.",
+            "nullable": true
+          },
+          "connectionName": {
+            "type": "string",
+            "description": "Name of the connection referenced by \u0060connectionId\u0060; \u0060null\u0060 when \u0060connectionId\u0060 is \u0060null\u0060. Only returned by \u0060GET /hooks\u0060.",
+            "nullable": true
           }
         }
       },
@@ -118483,6 +118580,16 @@
           "url": {
             "type": "string",
             "x-client-original-format": "uri"
+          },
+          "connectionId": {
+            "type": "integer",
+            "description": "ID of the connection the webhook was registered through, or \u0060null\u0060 when it has no valid connection link. Make stores the link for app webhooks it registers via the app\u0027s attach RPC (instant triggers). Only returned by \u0060GET /hooks\u0060.",
+            "nullable": true
+          },
+          "connectionName": {
+            "type": "string",
+            "description": "Name of the connection referenced by \u0060connectionId\u0060; \u0060null\u0060 when \u0060connectionId\u0060 is \u0060null\u0060. Only returned by \u0060GET /hooks\u0060.",
+            "nullable": true
           }
         }
       },
@@ -118541,6 +118648,16 @@
           "url": {
             "type": "string",
             "x-client-original-format": "uri"
+          },
+          "connectionId": {
+            "type": "integer",
+            "description": "ID of the connection the webhook was registered through, or \u0060null\u0060 when it has no valid connection link. Make stores the link for app webhooks it registers via the app\u0027s attach RPC (instant triggers). Only returned by \u0060GET /hooks\u0060.",
+            "nullable": true
+          },
+          "connectionName": {
+            "type": "string",
+            "description": "Name of the connection referenced by \u0060connectionId\u0060; \u0060null\u0060 when \u0060connectionId\u0060 is \u0060null\u0060. Only returned by \u0060GET /hooks\u0060.",
+            "nullable": true
           }
         }
       },
@@ -130597,6 +130714,11 @@
           "authUsed": {
             "type": "string",
             "description": "The authentication method that was used"
+          },
+          "organizationId": {
+            "type": "integer",
+            "description": "The ID of the organization the authorization is bound to (an organization-scoped API token or an organization-bound OAuth token). \u0060null\u0060 when the authorization can be used in every organization of the user.",
+            "nullable": true
           }
         }
       },
@@ -134257,6 +134379,28 @@
           }
         }
       },
+      "GetConnections200ResponseConnectionsItemScenarioUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetConnections200ResponseConnectionsItemHookUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
       "PostConnections200ResponseConnectionMetadata": {
         "type": "object",
         "properties": {
@@ -134268,6 +134412,28 @@
           }
         }
       },
+      "PostConnections200ResponseConnectionScenarioUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "PostConnections200ResponseConnectionHookUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
       "GetConnectionsByConnectionId200ResponseConnectionMetadata": {
         "type": "object",
         "properties": {
@@ -134276,6 +134442,28 @@
           },
           "type": {
             "$ref": "#/components/schemas/GetConnectionsByConnectionId200ResponseConnectionMetadataType"
+          }
+        }
+      },
+      "GetConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetConnectionsByConnectionId200ResponseConnectionHookUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -134301,6 +134489,28 @@
           },
           "type": {
             "$ref": "#/components/schemas/PatchConnectionsByConnectionId200ResponseConnectionMetadataType"
+          }
+        }
+      },
+      "PatchConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchConnectionsByConnectionId200ResponseConnectionHookUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -167562,7 +167772,9 @@
           "editable",
           "uid",
           "connectedSystemId",
-          "organizationId"
+          "organizationId",
+          "scenarioUsages",
+          "hookUsages"
         ],
         "type": "string",
         "x-ms-enum": {
@@ -167636,6 +167848,14 @@
             {
               "value": "organizationId",
               "name": "OrganizationId"
+            },
+            {
+              "value": "scenarioUsages",
+              "name": "ScenarioUsages"
+            },
+            {
+              "value": "hookUsages",
+              "name": "HookUsages"
             }
           ]
         }
@@ -178944,6 +179164,16 @@
         "url": {
           "type": "string",
           "x-client-original-format": "uri"
+        },
+        "connectionId": {
+          "type": "integer",
+          "description": "ID of the connection the webhook was registered through, or \u0060null\u0060 when it has no valid connection link. Make stores the link for app webhooks it registers via the app\u0027s attach RPC (instant triggers). Only returned by \u0060GET /hooks\u0060.",
+          "nullable": true
+        },
+        "connectionName": {
+          "type": "string",
+          "description": "Name of the connection referenced by \u0060connectionId\u0060; \u0060null\u0060 when \u0060connectionId\u0060 is \u0060null\u0060. Only returned by \u0060GET /hooks\u0060.",
+          "nullable": true
         }
       }
     },
@@ -179281,6 +179511,20 @@
         },
         "visibility": {
           "$ref": "#/components/schemas/ConnectionVisibility"
+        },
+        "scenarioUsages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ConnectionScenarioUsagesItem"
+          },
+          "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+        },
+        "hookUsages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ConnectionHookUsagesItem"
+          },
+          "description": "Webhooks that depend on this connection (instant triggers Make registered through it). Only returned by \u0060GET /connections\u0060."
         }
       }
     },
@@ -179342,6 +179586,20 @@
         },
         "visibility": {
           "$ref": "#/components/schemas/ConnectionAllVisibility"
+        },
+        "scenarioUsages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ConnectionAllAllOf1ScenarioUsagesItem"
+          },
+          "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+        },
+        "hookUsages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ConnectionAllAllOf1HookUsagesItem"
+          },
+          "description": "Webhooks that depend on this connection (instant triggers Make registered through it). Only returned by \u0060GET /connections\u0060."
         },
         "scopes": {
           "type": "array",
@@ -182172,6 +182430,20 @@
         },
         "visibility": {
           "$ref": "#/components/schemas/ConnectionAllVisibility"
+        },
+        "scenarioUsages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ConnectionAllAllOf1ScenarioUsagesItem"
+          },
+          "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+        },
+        "hookUsages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ConnectionAllAllOf1HookUsagesItem"
+          },
+          "description": "Webhooks that depend on this connection (instant triggers Make registered through it). Only returned by \u0060GET /connections\u0060."
         }
       }
     },
@@ -193018,6 +193290,28 @@
         }
       }
     },
+    "ConnectionScenarioUsagesItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "ConnectionHookUsagesItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "SdkAppModulesItem": {
       "type": "object",
       "properties": {
@@ -194240,6 +194534,28 @@
         },
         "type": {
           "$ref": "#/components/schemas/ConnectionAllAllOf1MetadataType"
+        }
+      }
+    },
+    "ConnectionAllAllOf1ScenarioUsagesItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "ConnectionAllAllOf1HookUsagesItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
         }
       }
     },

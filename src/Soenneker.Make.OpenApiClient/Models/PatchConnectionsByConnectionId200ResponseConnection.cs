@@ -29,6 +29,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("editable") is { } nullNodeEditable && nullNodeEditable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Editable = null;
             if (parseNode.GetChildNode("expire") is null) { _explicitNullValueExpire = default!; _explicitNullProperties?.Remove("expire"); }
             else if (parseNode.GetChildNode("expire") is { } nullNodeExpire && nullNodeExpire.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Expire = null;
+            if (parseNode.GetChildNode("hookUsages") is null) { _explicitNullValueHookUsages = default!; _explicitNullProperties?.Remove("hookUsages"); }
+            else if (parseNode.GetChildNode("hookUsages") is { } nullNodeHookUsages && nullNodeHookUsages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HookUsages = null;
             if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
             else if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
             if (parseNode.GetChildNode("metadata") is null) { _explicitNullValueMetadata = default!; _explicitNullProperties?.Remove("metadata"); }
@@ -39,6 +41,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("organizationId") is { } nullNodeOrganizationId && nullNodeOrganizationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OrganizationId = null;
             if (parseNode.GetChildNode("packageName") is null) { _explicitNullValuePackageName = default!; _explicitNullProperties?.Remove("packageName"); }
             else if (parseNode.GetChildNode("packageName") is { } nullNodePackageName && nullNodePackageName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PackageName = null;
+            if (parseNode.GetChildNode("scenarioUsages") is null) { _explicitNullValueScenarioUsages = default!; _explicitNullProperties?.Remove("scenarioUsages"); }
+            else if (parseNode.GetChildNode("scenarioUsages") is { } nullNodeScenarioUsages && nullNodeScenarioUsages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScenarioUsages = null;
             if (parseNode.GetChildNode("scoped") is null) { _explicitNullValueScoped = default!; _explicitNullProperties?.Remove("scoped"); }
             else if (parseNode.GetChildNode("scoped") is { } nullNodeScoped && nullNodeScoped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scoped = null;
             if (parseNode.GetChildNode("scopesCnt") is null) { _explicitNullValueScopesCnt = default!; _explicitNullProperties?.Remove("scopesCnt"); }
@@ -103,6 +107,16 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The expire property</summary>
         public DateTimeOffset? Expire { get => _explicitNullValueExpire; set { _explicitNullValueExpire = value; AdditionalData?.Remove("expire"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expire"); else _explicitNullProperties?.Remove("expire"); } }
         private DateTimeOffset? _explicitNullValueExpire = default!;
+        /// <summary>Webhooks that depend on this connection (instant triggers Make registered through it). Only returned by `GET /connections`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionHookUsagesItem>? HookUsages { get => _explicitNullValueHookUsages; set { _explicitNullValueHookUsages = value; AdditionalData?.Remove("hookUsages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hookUsages"); else _explicitNullProperties?.Remove("hookUsages"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionHookUsagesItem>? _explicitNullValueHookUsages = default!;
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionHookUsagesItem> HookUsages { get => _explicitNullValueHookUsages; set { _explicitNullValueHookUsages = value; AdditionalData?.Remove("hookUsages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hookUsages"); else _explicitNullProperties?.Remove("hookUsages"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionHookUsagesItem> _explicitNullValueHookUsages = default!;
+#endif
         /// <summary>The id property</summary>
         public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private int? _explicitNullValueId = default!;
@@ -138,6 +152,16 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string PackageName { get => _explicitNullValuePackageName; set { _explicitNullValuePackageName = value; AdditionalData?.Remove("packageName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packageName"); else _explicitNullProperties?.Remove("packageName"); } }
         private string _explicitNullValuePackageName = default!;
+#endif
+        /// <summary>Scenarios that use this connection. Only returned by `GET /connections`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem>? ScenarioUsages { get => _explicitNullValueScenarioUsages; set { _explicitNullValueScenarioUsages = value; AdditionalData?.Remove("scenarioUsages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioUsages"); else _explicitNullProperties?.Remove("scenarioUsages"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem>? _explicitNullValueScenarioUsages = default!;
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem> ScenarioUsages { get => _explicitNullValueScenarioUsages; set { _explicitNullValueScenarioUsages = value; AdditionalData?.Remove("scenarioUsages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioUsages"); else _explicitNullProperties?.Remove("scenarioUsages"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem> _explicitNullValueScenarioUsages = default!;
 #endif
         /// <summary>The scoped property</summary>
         public bool? Scoped { get => _explicitNullValueScoped; set { _explicitNullValueScoped = value; AdditionalData?.Remove("scoped"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scoped"); else _explicitNullProperties?.Remove("scoped"); } }
@@ -205,11 +229,13 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "connectedSystemId", n => { ConnectedSystemId = n.GetStringValue(); } },
                 { "editable", n => { Editable = n.GetBoolValue(); } },
                 { "expire", n => { Expire = n.GetDateTimeOffsetValue(); } },
+                { "hookUsages", n => { HookUsages = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionHookUsagesItem>(global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionHookUsagesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "metadata", n => { Metadata = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionMetadata>(global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionMetadata.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "organizationId", n => { OrganizationId = n.GetIntValue(); } },
                 { "packageName", n => { PackageName = n.GetStringValue(); } },
+                { "scenarioUsages", n => { ScenarioUsages = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem>(global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "scoped", n => { Scoped = n.GetBoolValue(); } },
                 { "scopesCnt", n => { ScopesCnt = n.GetIntValue(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
@@ -232,11 +258,13 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("connectedSystemId", ConnectedSystemId);
             writer.WriteBoolValue("editable", Editable);
             writer.WriteDateTimeOffsetValue("expire", Expire);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionHookUsagesItem>("hookUsages", HookUsages);
             writer.WriteIntValue("id", Id);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionMetadata>("metadata", Metadata);
             writer.WriteStringValue("name", Name);
             writer.WriteIntValue("organizationId", OrganizationId);
             writer.WriteStringValue("packageName", PackageName);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem>("scenarioUsages", ScenarioUsages);
             writer.WriteBoolValue("scoped", Scoped);
             writer.WriteIntValue("scopesCnt", ScopesCnt);
             writer.WriteIntValue("teamId", TeamId);
