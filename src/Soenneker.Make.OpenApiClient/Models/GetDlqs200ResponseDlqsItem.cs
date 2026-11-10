@@ -21,6 +21,10 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("attempts") is { } nullNodeAttempts && nullNodeAttempts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Attempts = null;
             if (parseNode.GetChildNode("created") is null) { _explicitNullValueCreated = default!; _explicitNullProperties?.Remove("created"); }
             else if (parseNode.GetChildNode("created") is { } nullNodeCreated && nullNodeCreated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Created = null;
+            if (parseNode.GetChildNode("executionId") is null) { _explicitNullValueExecutionId = default!; _explicitNullProperties?.Remove("executionId"); }
+            else if (parseNode.GetChildNode("executionId") is { } nullNodeExecutionId && nullNodeExecutionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionId = null;
+            if (parseNode.GetChildNode("executionName") is null) { _explicitNullValueExecutionName = default!; _explicitNullProperties?.Remove("executionName"); }
+            else if (parseNode.GetChildNode("executionName") is { } nullNodeExecutionName && nullNodeExecutionName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionName = null;
             if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
             else if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
             if (parseNode.GetChildNode("reason") is null) { _explicitNullValueReason = default!; _explicitNullProperties?.Remove("reason"); }
@@ -41,6 +45,26 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The created property</summary>
         public DateTimeOffset? Created { get => _explicitNullValueCreated; set { _explicitNullValueCreated = value; AdditionalData?.Remove("created"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("created"); else _explicitNullProperties?.Remove("created"); } }
         private DateTimeOffset? _explicitNullValueCreated = default!;
+        /// <summary>The ID of the original execution that created the incomplete execution.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; AdditionalData?.Remove("executionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
+        private string? _explicitNullValueExecutionId = default!;
+#nullable restore
+#else
+        public string ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; AdditionalData?.Remove("executionId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
+        private string _explicitNullValueExecutionId = default!;
+#endif
+        /// <summary>The run name of the original execution, or `null` if the run has no custom name.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExecutionName { get => _explicitNullValueExecutionName; set { _explicitNullValueExecutionName = value; AdditionalData?.Remove("executionName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionName"); else _explicitNullProperties?.Remove("executionName"); } }
+        private string? _explicitNullValueExecutionName = default!;
+#nullable restore
+#else
+        public string ExecutionName { get => _explicitNullValueExecutionName; set { _explicitNullValueExecutionName = value; AdditionalData?.Remove("executionName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionName"); else _explicitNullProperties?.Remove("executionName"); } }
+        private string _explicitNullValueExecutionName = default!;
+#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -97,6 +121,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "attempts", n => { Attempts = n.GetIntValue(); } },
                 { "created", n => { Created = n.GetDateTimeOffsetValue(); } },
+                { "executionId", n => { ExecutionId = n.GetStringValue(); } },
+                { "executionName", n => { ExecutionName = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "reason", n => { Reason = n.GetStringValue(); } },
                 { "resolved", n => { Resolved = n.GetBoolValue(); } },
@@ -113,6 +139,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("attempts", Attempts);
             writer.WriteDateTimeOffsetValue("created", Created);
+            writer.WriteStringValue("executionId", ExecutionId);
+            writer.WriteStringValue("executionName", ExecutionName);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("reason", Reason);
             writer.WriteBoolValue("resolved", Resolved);

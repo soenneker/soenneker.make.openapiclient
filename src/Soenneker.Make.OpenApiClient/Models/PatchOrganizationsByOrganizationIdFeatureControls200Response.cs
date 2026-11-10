@@ -17,21 +17,21 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("featureControls") is null) { _explicitNullValueFeatureControls = default!; _explicitNullProperties?.Remove("featureControls"); }
-            else if (parseNode.GetChildNode("featureControls") is { } nullNodeFeatureControls && nullNodeFeatureControls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FeatureControls = null;
+            if (parseNode.GetChildNode("featureControl") is null) { _explicitNullValueFeatureControl = default!; _explicitNullProperties?.Remove("featureControl"); }
+            else if (parseNode.GetChildNode("featureControl") is { } nullNodeFeatureControl && nullNodeFeatureControl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FeatureControl = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The featureControls property</summary>
+        /// <summary>The featureControl property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControls? FeatureControls { get => _explicitNullValueFeatureControls; set { _explicitNullValueFeatureControls = value; AdditionalData?.Remove("featureControls"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureControls"); else _explicitNullProperties?.Remove("featureControls"); } }
-        private global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControls? _explicitNullValueFeatureControls = default!;
+        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControl? FeatureControl { get => _explicitNullValueFeatureControl; set { _explicitNullValueFeatureControl = value; AdditionalData?.Remove("featureControl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureControl"); else _explicitNullProperties?.Remove("featureControl"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControl? _explicitNullValueFeatureControl = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControls FeatureControls { get => _explicitNullValueFeatureControls; set { _explicitNullValueFeatureControls = value; AdditionalData?.Remove("featureControls"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureControls"); else _explicitNullProperties?.Remove("featureControls"); } }
-        private global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControls _explicitNullValueFeatureControls = default!;
+        public global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControl FeatureControl { get => _explicitNullValueFeatureControl; set { _explicitNullValueFeatureControl = value; AdditionalData?.Remove("featureControl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("featureControl"); else _explicitNullProperties?.Remove("featureControl"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControl _explicitNullValueFeatureControl = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200Response"/> and sets the default values.
@@ -58,7 +58,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "featureControls", n => { FeatureControls = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControls>(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControls.CreateFromDiscriminatorValue); } },
+                { "featureControl", n => { FeatureControl = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControl>(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControl.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -68,7 +68,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControls>("featureControls", FeatureControls);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControl>("featureControl", FeatureControl);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

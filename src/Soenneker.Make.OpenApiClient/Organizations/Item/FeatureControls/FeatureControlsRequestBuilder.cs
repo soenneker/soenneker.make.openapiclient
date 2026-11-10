@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public FeatureControlsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/organizations/{organizationId}/feature-controls{?cols*,featureControlName*}", pathParameters)
+        public FeatureControlsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/organizations/{organizationId}/feature-controls{?cols*,confirmed*,featureControlName*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,15 +30,16 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public FeatureControlsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/organizations/{organizationId}/feature-controls{?cols*,featureControlName*}", rawUrl)
+        public FeatureControlsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/organizations/{organizationId}/feature-controls{?cols*,confirmed*,featureControlName*}", rawUrl)
         {
         }
         /// <summary>
-        /// Retrieves all feature controls for the specified organization. Response order of the feature controls is by descending ID.
+        /// Retrieves all feature controls for the specified organization. Response order of the feature controls is by descending ID.The `enabled` value of each feature control is its effective state: the organization&apos;s override when one exists, otherwise the default registered for the feature control.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls402Response">When receiving a 402 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls.FeatureControlsRequestBuilder.FeatureControlsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -49,30 +50,47 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "402", global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls402Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Enable or disable feature control for the specified organization.
+        /// Sets a feature control of the specified organization to the requested state. The request is absolute, not a toggle: repeating it gives the same result.Disabling a feature control requires confirmation. Without `confirmed=true`, the request returns `406` with the error code `IM004` and the localized warning, and changes nothing. This applies even when the feature control is already disabled.A request for the state the organization already has changes nothing. A request for the default registered for the feature control removes the organization&apos;s override. Any other request stores an override with the requested state.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls400Response">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls402Response">When receiving a 402 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls406Response">When receiving a 406 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControlsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControlsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls.FeatureControlsRequestBuilder.FeatureControlsRequestBuilderPatchQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControlsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControlsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls.FeatureControlsRequestBuilder.FeatureControlsRequestBuilderPatchQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls400Response.CreateFromDiscriminatorValue },
+                { "402", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls402Response.CreateFromDiscriminatorValue },
+                { "406", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls406Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControls200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves all feature controls for the specified organization. Response order of the feature controls is by descending ID.
+        /// Retrieves all feature controls for the specified organization. Response order of the feature controls is by descending ID.The `enabled` value of each feature control is its effective state: the organization&apos;s override when one exists, otherwise the default registered for the feature control.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -91,18 +109,18 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls
             return requestInfo;
         }
         /// <summary>
-        /// Enable or disable feature control for the specified organization.
+        /// Sets a feature control of the specified organization to the requested state. The request is absolute, not a toggle: repeating it gives the same result.Disabling a feature control requires confirmation. Without `confirmed=true`, the request returns `406` with the error code `IM004` and the localized warning, and changes nothing. This applies even when the feature control is already disabled.A request for the state the organization already has changes nothing. A request for the default registered for the feature control removes the organization&apos;s override. Any other request stores an override with the requested state.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControlsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControlsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls.FeatureControlsRequestBuilder.FeatureControlsRequestBuilderPatchQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControlsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdFeatureControlsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls.FeatureControlsRequestBuilder.FeatureControlsRequestBuilderPatchQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -122,7 +140,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls
             return new global::Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls.FeatureControlsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieves all feature controls for the specified organization. Response order of the feature controls is by descending ID.
+        /// Retrieves all feature controls for the specified organization. Response order of the feature controls is by descending ID.The `enabled` value of each feature control is its effective state: the organization&apos;s override when one exists, otherwise the default registered for the feature control.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class FeatureControlsRequestBuilderGetQueryParameters 
@@ -147,6 +165,16 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.FeatureControls
             [QueryParameter("featureControlName")]
             public string FeatureControlName { get; set; }
 #endif
+        }
+        /// <summary>
+        /// Sets a feature control of the specified organization to the requested state. The request is absolute, not a toggle: repeating it gives the same result.Disabling a feature control requires confirmation. Without `confirmed=true`, the request returns `406` with the error code `IM004` and the localized warning, and changes nothing. This applies even when the feature control is already disabled.A request for the state the organization already has changes nothing. A request for the default registered for the feature control removes the organization&apos;s override. Any other request stores an override with the requested state.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class FeatureControlsRequestBuilderPatchQueryParameters 
+        {
+            /// <summary>Confirms disabling the feature control. Required when `enabled` is `false`.</summary>
+            [QueryParameter("confirmed")]
+            public bool? Confirmed { get; set; }
         }
     }
 }

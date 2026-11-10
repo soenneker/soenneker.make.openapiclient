@@ -17,17 +17,17 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("enableAllControlFeatures") is null) { _explicitNullValueEnableAllControlFeatures = default!; _explicitNullProperties?.Remove("enableAllControlFeatures"); }
-            else if (parseNode.GetChildNode("enableAllControlFeatures") is { } nullNodeEnableAllControlFeatures && nullNodeEnableAllControlFeatures.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EnableAllControlFeatures = null;
+            if (parseNode.GetChildNode("enabledAllFeatureControls") is null) { _explicitNullValueEnabledAllFeatureControls = default!; _explicitNullProperties?.Remove("enabledAllFeatureControls"); }
+            else if (parseNode.GetChildNode("enabledAllFeatureControls") is { } nullNodeEnabledAllFeatureControls && nullNodeEnabledAllFeatureControls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EnabledAllFeatureControls = null;
             if (parseNode.GetChildNode("featureControls") is null) { _explicitNullValueFeatureControls = default!; _explicitNullProperties?.Remove("featureControls"); }
             else if (parseNode.GetChildNode("featureControls") is { } nullNodeFeatureControls && nullNodeFeatureControls.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FeatureControls = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The enableAllControlFeatures property</summary>
-        public bool? EnableAllControlFeatures { get => _explicitNullValueEnableAllControlFeatures; set { _explicitNullValueEnableAllControlFeatures = value; AdditionalData?.Remove("enableAllControlFeatures"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enableAllControlFeatures"); else _explicitNullProperties?.Remove("enableAllControlFeatures"); } }
-        private bool? _explicitNullValueEnableAllControlFeatures = default!;
+        /// <summary>`true` when every feature control in the returned list is enabled, and `true` for an empty list. It is calculated from the effective states of the controls selected by `featureControlName`, regardless of `cols[]`.</summary>
+        public bool? EnabledAllFeatureControls { get => _explicitNullValueEnabledAllFeatureControls; set { _explicitNullValueEnabledAllFeatureControls = value; AdditionalData?.Remove("enabledAllFeatureControls"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enabledAllFeatureControls"); else _explicitNullProperties?.Remove("enabledAllFeatureControls"); } }
+        private bool? _explicitNullValueEnabledAllFeatureControls = default!;
         /// <summary>The featureControls property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -63,7 +63,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "enableAllControlFeatures", n => { EnableAllControlFeatures = n.GetBoolValue(); } },
+                { "enabledAllFeatureControls", n => { EnabledAllFeatureControls = n.GetBoolValue(); } },
                 { "featureControls", n => { FeatureControls = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem>(global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -74,7 +74,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteBoolValue("enableAllControlFeatures", EnableAllControlFeatures);
+            writer.WriteBoolValue("enabledAllFeatureControls", EnabledAllFeatureControls);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem>("featureControls", FeatureControls);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

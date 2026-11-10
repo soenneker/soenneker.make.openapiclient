@@ -21,6 +21,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("centicredits") is { } nullNodeCenticredits && nullNodeCenticredits.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Centicredits = null;
             if (parseNode.GetChildNode("centicreditsChange") is null) { _explicitNullValueCenticreditsChange = default!; _explicitNullProperties?.Remove("centicreditsChange"); }
             else if (parseNode.GetChildNode("centicreditsChange") is { } nullNodeCenticreditsChange && nullNodeCenticreditsChange.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CenticreditsChange = null;
+            if (parseNode.GetChildNode("deletedAt") is null) { _explicitNullValueDeletedAt = default!; _explicitNullProperties?.Remove("deletedAt"); }
+            else if (parseNode.GetChildNode("deletedAt") is { } nullNodeDeletedAt && nullNodeDeletedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeletedAt = null;
             if (parseNode.GetChildNode("errorRate") is null) { _explicitNullValueErrorRate = default!; _explicitNullProperties?.Remove("errorRate"); }
             else if (parseNode.GetChildNode("errorRate") is { } nullNodeErrorRate && nullNodeErrorRate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorRate = null;
             if (parseNode.GetChildNode("errorRateChange") is null) { _explicitNullValueErrorRateChange = default!; _explicitNullProperties?.Remove("errorRateChange"); }
@@ -66,6 +68,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>Percentage. Available only when it can be calculated.</summary>
         public double? CenticreditsChange { get => _explicitNullValueCenticreditsChange; set { _explicitNullValueCenticreditsChange = value; AdditionalData?.Remove("centicreditsChange"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("centicreditsChange"); else _explicitNullProperties?.Remove("centicreditsChange"); } }
         private double? _explicitNullValueCenticreditsChange = default!;
+        /// <summary>When the scenario was deleted. Only on scenarios with the `deleted` status.</summary>
+        public DateTimeOffset? DeletedAt { get => _explicitNullValueDeletedAt; set { _explicitNullValueDeletedAt = value; AdditionalData?.Remove("deletedAt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deletedAt"); else _explicitNullProperties?.Remove("deletedAt"); } }
+        private DateTimeOffset? _explicitNullValueDeletedAt = default!;
         /// <summary>Percentage. Available only when it can be calculated.</summary>
         public double? ErrorRate { get => _explicitNullValueErrorRate; set { _explicitNullValueErrorRate = value; AdditionalData?.Remove("errorRate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorRate"); else _explicitNullProperties?.Remove("errorRate"); } }
         private double? _explicitNullValueErrorRate = default!;
@@ -156,6 +161,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "centicredits", n => { Centicredits = n.GetStringValue(); } },
                 { "centicreditsChange", n => { CenticreditsChange = n.GetDoubleValue(); } },
+                { "deletedAt", n => { DeletedAt = n.GetDateTimeOffsetValue(); } },
                 { "errorRate", n => { ErrorRate = n.GetDoubleValue(); } },
                 { "errorRateChange", n => { ErrorRateChange = n.GetDoubleValue(); } },
                 { "errors", n => { Errors = n.GetIntValue(); } },
@@ -181,6 +187,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("centicredits", Centicredits);
             writer.WriteDoubleValue("centicreditsChange", CenticreditsChange);
+            writer.WriteDateTimeOffsetValue("deletedAt", DeletedAt);
             writer.WriteDoubleValue("errorRate", ErrorRate);
             writer.WriteDoubleValue("errorRateChange", ErrorRateChange);
             writer.WriteIntValue("errors", Errors);

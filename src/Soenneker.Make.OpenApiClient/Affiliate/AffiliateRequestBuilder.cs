@@ -6,6 +6,7 @@ using Soenneker.Make.OpenApiClient.Affiliate.CommissionInfo;
 using Soenneker.Make.OpenApiClient.Affiliate.Commissions;
 using Soenneker.Make.OpenApiClient.Affiliate.PartnerRegister;
 using Soenneker.Make.OpenApiClient.Affiliate.PayoutRequest;
+using Soenneker.Make.OpenApiClient.Affiliate.Recipient;
 using Soenneker.Make.OpenApiClient.Affiliate.Stats;
 using System.Collections.Generic;
 using System.IO;
@@ -38,6 +39,11 @@ namespace Soenneker.Make.OpenApiClient.Affiliate
         public global::Soenneker.Make.OpenApiClient.Affiliate.PayoutRequest.PayoutRequestRequestBuilder PayoutRequest
         {
             get => new global::Soenneker.Make.OpenApiClient.Affiliate.PayoutRequest.PayoutRequestRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The recipient property</summary>
+        public global::Soenneker.Make.OpenApiClient.Affiliate.Recipient.RecipientRequestBuilder Recipient
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Affiliate.Recipient.RecipientRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The stats property</summary>
         public global::Soenneker.Make.OpenApiClient.Affiliate.Stats.StatsRequestBuilder Stats

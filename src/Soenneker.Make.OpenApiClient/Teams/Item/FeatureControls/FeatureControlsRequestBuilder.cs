@@ -34,11 +34,12 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.FeatureControls
         {
         }
         /// <summary>
-        /// Retrieves all feature controls for the specified organization which the team belongs to.
+        /// Retrieves all feature controls for the specified organization which the team belongs to.The `enabled` value of each feature control is its effective state: the organization&apos;s override when one exists, otherwise the default registered for the feature control.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls402Response">When receiving a 402 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Teams.Item.FeatureControls.FeatureControlsRequestBuilder.FeatureControlsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -49,10 +50,16 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.FeatureControls
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "402", global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls402Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetTeamsByTeamIdFeatureControls200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves all feature controls for the specified organization which the team belongs to.
+        /// Retrieves all feature controls for the specified organization which the team belongs to.The `enabled` value of each feature control is its effective state: the organization&apos;s override when one exists, otherwise the default registered for the feature control.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -80,7 +87,7 @@ namespace Soenneker.Make.OpenApiClient.Teams.Item.FeatureControls
             return new global::Soenneker.Make.OpenApiClient.Teams.Item.FeatureControls.FeatureControlsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieves all feature controls for the specified organization which the team belongs to.
+        /// Retrieves all feature controls for the specified organization which the team belongs to.The `enabled` value of each feature control is its effective state: the organization&apos;s override when one exists, otherwise the default registered for the feature control.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class FeatureControlsRequestBuilderGetQueryParameters 

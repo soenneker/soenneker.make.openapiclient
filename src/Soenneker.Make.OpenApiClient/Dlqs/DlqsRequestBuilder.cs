@@ -41,7 +41,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DlqsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/dlqs?scenarioId={scenarioId}{&attemptsFrom*,attemptsTo*,confirmed*,createdFrom*,createdTo*,idSearch*,scheduledInFrom*,scheduledInTo*,sizeFrom*,sizeTo*,status*}", pathParameters)
+        public DlqsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/dlqs?scenarioId={scenarioId}{&attemptsFrom*,attemptsTo*,confirmed*,createdFrom*,createdTo*,executionName*,idSearch*,scheduledInFrom*,scheduledInTo*,sizeFrom*,sizeTo*,status*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DlqsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/dlqs?scenarioId={scenarioId}{&attemptsFrom*,attemptsTo*,confirmed*,createdFrom*,createdTo*,idSearch*,scheduledInFrom*,scheduledInTo*,sizeFrom*,sizeTo*,status*}", rawUrl)
+        public DlqsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/dlqs?scenarioId={scenarioId}{&attemptsFrom*,attemptsTo*,confirmed*,createdFrom*,createdTo*,executionName*,idSearch*,scheduledInFrom*,scheduledInTo*,sizeFrom*,sizeTo*,status*}", rawUrl)
         {
         }
         /// <summary>
@@ -171,6 +171,16 @@ namespace Soenneker.Make.OpenApiClient.Dlqs
             /// <summary>Filters the incomplete executions created on or before this Unix timestamp (in milliseconds).</summary>
             [QueryParameter("createdTo")]
             public int? CreatedTo { get; set; }
+            /// <summary>Filters the incomplete executions by the run name of their original execution. Matches the phrase anywhere in the run name, the same way as the scenario history filter. An empty value applies no filter. Only the 10,000 newest runs that match the phrase are considered.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("executionName")]
+            public string? ExecutionName { get; set; }
+#nullable restore
+#else
+            [QueryParameter("executionName")]
+            public string ExecutionName { get; set; }
+#endif
             /// <summary>Filters the incomplete executions by a substring of their ID value (case-insensitive).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

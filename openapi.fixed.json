@@ -8038,6 +8038,152 @@
         ]
       }
     },
+    "/affiliate/recipient/onboarding-link": {
+      "post": {
+        "tags": [
+          "Affiliate"
+        ],
+        "summary": "Create Stripe onboarding link",
+        "description": "Creates a single-use, Stripe-hosted link where an affiliate partner paid out through Stripe enters or updates\ntheir payout details. The link expires shortly after creation, at the time given in \u0060expiresAt\u0060, so request it\nright before opening it and do not store it.\n\nErrors come from the billing service unchanged:\n- \u0060404\u0060 when the user is not an affiliate partner, or the feature is disabled.\n- \u0060400\u0060 when the partner is paid out through Wise, or \u0060useCase\u0060 is not one of the allowed values.\n- \u0060409\u0060 when the partner\u0027s payout recipient has not been created yet.\n- \u0060502\u0060 when Stripe fails to create the link.\n",
+        "operationId": "PostAffiliateRecipientOnboardingLink",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostAffiliateRecipientOnboardingLinkRequest"
+              },
+              "examples": {
+                "onboarding": {
+                  "summary": "First-time onboarding",
+                  "value": {
+                    "useCase": "account_onboarding"
+                  }
+                },
+                "update": {
+                  "summary": "Update existing payout details",
+                  "value": {
+                    "useCase": "account_update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAffiliateRecipientOnboardingLink200Response"
+                },
+                "examples": {
+                  "onboarding": {
+                    "value": {
+                      "url": "https://connect.stripe.com/setup/e/acct_1Nv0FGQ9RKHgCVdK/AbCdEfGhIjKl",
+                      "expiresAt": "2026-10-26T12:10:00.000Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid \u0060useCase\u0060, or the partner is paid out through Wise.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAffiliateRecipientOnboardingLink400Response"
+                },
+                "examples": {
+                  "invalid-use-case": {
+                    "value": {
+                      "message": "Bad Request",
+                      "code": "SC400",
+                      "detail": "Expected union value at /useCase"
+                    }
+                  }
+                },
+                "x-schema-inferred-from-examples": true
+              }
+            }
+          },
+          "404": {
+            "description": "The user is not an affiliate partner, or Stripe payouts are disabled.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAffiliateRecipientOnboardingLink404Response"
+                },
+                "examples": {
+                  "not-a-partner": {
+                    "value": {
+                      "message": "Resource not found",
+                      "code": "SC404",
+                      "detail": "Affiliate partner not found"
+                    }
+                  },
+                  "disabled": {
+                    "value": {
+                      "message": "Resource not found",
+                      "code": "SC404",
+                      "detail": "Stripe payouts are disabled"
+                    }
+                  }
+                },
+                "x-schema-inferred-from-examples": true
+              }
+            }
+          },
+          "409": {
+            "description": "The partner\u0027s Stripe payout recipient has not been created yet.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAffiliateRecipientOnboardingLink409Response"
+                },
+                "examples": {
+                  "recipient-missing": {
+                    "value": {
+                      "message": "Unexpected error occurred",
+                      "code": "SC409",
+                      "detail": "Stripe payout account not created yet"
+                    }
+                  }
+                },
+                "x-schema-inferred-from-examples": true
+              }
+            }
+          },
+          "502": {
+            "description": "Stripe failed to create the link.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAffiliateRecipientOnboardingLink502Response"
+                },
+                "examples": {
+                  "stripe-failure": {
+                    "value": {
+                      "message": "Bad Gateway",
+                      "code": "SC502"
+                    }
+                  }
+                },
+                "x-schema-inferred-from-examples": true
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "user:write"
+            ]
+          }
+        ]
+      }
+    },
     "/audit-logs/organization/{organizationId}": {
       "get": {
         "tags": [
@@ -10225,7 +10371,7 @@
           {
             "name": "status",
             "in": "query",
-            "description": "You can use the \u0060status\u0060 parameter to get analytics data about scenarios with specific scenario statuses. The available scenario statuses are:\n\n- \u0060active\u0060: scenario is enabled\n- \u0060inactive\u0060: scenario is disabled\n- \u0060invalid\u0060: scenario is disabled due to errors\n",
+            "description": "You can use the \u0060status\u0060 parameter to get analytics data about scenarios with specific scenario statuses. The available scenario statuses are:\n\n- \u0060active\u0060: scenario is enabled\n- \u0060inactive\u0060: scenario is disabled\n- \u0060invalid\u0060: scenario is disabled due to errors\n- \u0060deleted\u0060: scenario is in the trash, deleted in the last 30 days. Returned only where Analytics shows deleted scenarios.\n",
             "schema": {
               "oneOf": [
                 {
@@ -10237,7 +10383,8 @@
                     "enum": [
                       "active",
                       "invalid",
-                      "inactive"
+                      "inactive",
+                      "deleted"
                     ],
                     "type": "string",
                     "x-ms-enum": {
@@ -10255,6 +10402,10 @@
                         {
                           "value": "inactive",
                           "name": "Inactive"
+                        },
+                        {
+                          "value": "deleted",
+                          "name": "Deleted"
                         }
                       ]
                     }
@@ -15509,6 +15660,16 @@
               "type": "integer"
             },
             "example": 5
+          },
+          {
+            "name": "executionName",
+            "in": "query",
+            "description": "Filters the incomplete executions by the run name of their original execution. Matches the phrase anywhere in the run name, the same way as the scenario history filter. An empty value applies no filter. Only the 10,000 newest runs that match the phrase are considered.",
+            "schema": {
+              "maxLength": 512,
+              "type": "string"
+            },
+            "example": "Order 1024"
           }
         ],
         "responses": {
@@ -15528,7 +15689,9 @@
                       "size": 5,
                       "resolved": false,
                       "retry": true,
-                      "attempts": 1
+                      "attempts": 1,
+                      "executionId": "1d1fd8c1fbd04e4e8c3e9a2b7c0d5f61",
+                      "executionName": "Order 1024"
                     },
                     {
                       "id": "c29c4bf027c74bfc848e1803bf764447",
@@ -15537,7 +15700,9 @@
                       "size": 5,
                       "resolved": false,
                       "retry": true,
-                      "attempts": 0
+                      "attempts": 0,
+                      "executionId": "5b0e2f7a9c6d4e3f8a1b2c3d4e5f6a7b",
+                      "executionName": null
                     }
                   ]
                 }
@@ -36518,7 +36683,7 @@
           "Organizations"
         ],
         "summary": "Full-text search scenario IO data",
-        "description": "Searches the module input/output (IO) data produced by scenario executions across the organization (or a specific team) using a free-text \u0060query\u0060. Matches are grouped by execution: each result contains up to 5 IO-data records that matched the query together with the metadata of the parent execution.\n\nUse the optional filters to restrict the search to specific teams, scenarios, apps, modules, or a time window.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. IO-data records earlier or later within the same UTC day as a supplied bound may still appear in the results, and the execution metadata attached to each match may include executions from the immediately adjacent UTC days.\n",
+        "description": "Searches the module input/output (IO) data produced by scenario executions across the organization (or a specific team) using a free-text \u0060query\u0060. Matches are grouped by execution: each result contains up to 5 IO-data records that matched the query together with the metadata of the parent execution.\n\nUse the optional filters to restrict the search to specific teams, scenarios, apps, modules, or a time window.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. IO-data records earlier or later within the same UTC day as a supplied bound may still appear in the results, and the execution metadata attached to each match may include executions from the immediately adjacent UTC days.\n\nThis feature is available on the Pro plan and above. Organizations without the \u0060fulltext\u0060 license parameter receive a \u0060402\u0060 response.\n",
         "operationId": "PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch",
         "parameters": [
           {
@@ -36610,6 +36775,20 @@
                 }
               }
             }
+          },
+          "402": {
+            "description": "Payment required - The organization\u0027s plan does not include full-text search of scenario run data (Pro plan and above)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch402Response"
+                },
+                "example": {
+                  "message": "Full-text search of scenario run data is available on the Pro plan and above.",
+                  "code": "SC402"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -36618,8 +36797,7 @@
               "organizations:read"
             ]
           }
-        ],
-        "x-internal": true
+        ]
       }
     },
     "/organizations/{organizationId}/scenarios/{scenarioId}/executions/{executionId}/io-data/search": {
@@ -36894,7 +37072,7 @@
           "Organizations"
         ],
         "summary": "Get organization feature controls",
-        "description": "Retrieves all feature controls for the specified organization. Response order of the feature controls is by descending ID.\n",
+        "description": "Retrieves all feature controls for the specified organization. Response order of the feature controls is by descending ID.\n\nThe \u0060enabled\u0060 value of each feature control is its effective state: the organization\u0027s override when one exists, otherwise the default registered for the feature control.\n",
         "operationId": "GetOrganizationsByOrganizationIdFeatureControls",
         "parameters": [
           {
@@ -36937,7 +37115,7 @@
                   "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdFeatureControls200Response"
                 },
                 "example": {
-                  "enableAllControlFeatures": false,
+                  "enabledAllFeatureControls": false,
                   "featureControls": [
                     {
                       "id": 2,
@@ -36948,10 +37126,10 @@
                       "description": {
                         "en": "Access to Make AI Tools"
                       },
-                      "tags": [
+                      "tag": [
                         "Beta"
                       ],
-                      "warning_message": {
+                      "warningMessage": {
                         "en": "This feature is in beta."
                       },
                       "enabled": true
@@ -36965,15 +37143,30 @@
                       "description": {
                         "en": "Enhanced security features for your organization"
                       },
-                      "tags": [
+                      "tag": [
                         "AI"
                       ],
-                      "warning_message": {
+                      "warningMessage": {
                         "en": "This feature uses AI."
                       },
                       "enabled": false
                     }
                   ]
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The organization license does not include feature controls.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdFeatureControls402Response"
+                },
+                "example": {
+                  "message": "Subscription required",
+                  "code": "SC402",
+                  "detail": "You need an Enterprise plan to control features."
                 }
               }
             }
@@ -36985,7 +37178,7 @@
           "Organizations"
         ],
         "summary": "Patch organization feature controls",
-        "description": "Enable or disable feature control for the specified organization.\n",
+        "description": "Sets a feature control of the specified organization to the requested state. The request is absolute, not a toggle: repeating it gives the same result.\n\nDisabling a feature control requires confirmation. Without \u0060confirmed=true\u0060, the request returns \u0060406\u0060 with the error code \u0060IM004\u0060 and the localized warning, and changes nothing. This applies even when the feature control is already disabled.\n\nA request for the state the organization already has changes nothing. A request for the default registered for the feature control removes the organization\u0027s override. Any other request stores an override with the requested state.\n",
         "operationId": "PatchOrganizationsByOrganizationIdFeatureControls",
         "parameters": [
           {
@@ -36997,6 +37190,15 @@
               "type": "integer"
             },
             "example": 11
+          },
+          {
+            "name": "confirmed",
+            "in": "query",
+            "description": "Confirms disabling the feature control. Required when \u0060enabled\u0060 is \u0060false\u0060.",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": true
           }
         ],
         "requestBody": {
@@ -37014,7 +37216,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful response. The returned \u0060enabled\u0060 is the effective state after the change.",
             "content": {
               "application/json": {
                 "schema": {
@@ -37025,6 +37227,58 @@
                     "id": 1,
                     "enabled": true
                   }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body or query (\u0060SC400\u0060, \u0022Bad Request\u0022) or the feature control does not exist (\u0060IM005\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdFeatureControls400Response"
+                },
+                "example": {
+                  "message": "Feature control does not exist.",
+                  "code": "IM005"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The organization license does not include feature controls.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdFeatureControls402Response"
+                },
+                "example": {
+                  "message": "Subscription required",
+                  "code": "SC402",
+                  "detail": "You need an Enterprise plan to control features."
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Confirmation required (\u0060IM004\u0060). Disabling a feature control requires \u0060confirmed=true\u0060. The localized warning is returned in \u0060metadata\u0060.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdFeatureControls406Response"
+                },
+                "example": {
+                  "message": "Confirmation required.",
+                  "code": "IM004",
+                  "metadata": [
+                    {
+                      "type": "featureControlDisable",
+                      "data": {
+                        "label": "Make AI Tools",
+                        "bodyText": "This feature is in beta."
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -42840,7 +43094,7 @@
           "Scenarios"
         ],
         "summary": "Get AI agent module details for scenarios",
-        "description": "Retrieves local AI agent module and tool details for scenarios belonging to the specified team. The underlying query recursively walks each scenario\u0027s blueprint and is expensive, so requests are hard-capped at 100 scenarios.\n\nProvide \u0060scenarioIds\u0060 in the request body to look up specific scenarios - all of them must belong to \u0060teamId\u0060, or the request fails with a 403. Omit \u0060scenarioIds\u0060 to page through the team\u0027s own AI agent scenarios instead, using \u0060pg[limit]\u0060/\u0060pg[offset]\u0060 (same scenarios and ordering as \u0060GET /scenarios/ai-agents\u0060); the response then also includes a \u0060pg\u0060 object so you can request the next page. \u0060pg\u0060 parameters are ignored when \u0060scenarioIds\u0060 is provided.\n\nAgents nested as another agent\u0027s own tool are not included - only agents found directly in a scenario\u0027s flow (including inside routes, branches, and error handlers).",
+        "description": "Retrieves local AI agent module and tool details for scenarios belonging to the specified team. The underlying query recursively walks each scenario\u0027s blueprint and is expensive, so requests are hard-capped at 100 scenarios.\n\nProvide \u0060scenarioIds\u0060 in the request body to look up specific scenarios - all of them must belong to \u0060teamId\u0060, or the request fails with a 403. Omit \u0060scenarioIds\u0060 to page through the team\u0027s own AI agent scenarios instead, using \u0060pg[limit]\u0060/\u0060pg[offset]\u0060 (same scenarios and ordering as \u0060GET /scenarios/ai-agents\u0060); the response then also includes a \u0060pg\u0060 object so you can request the next page. \u0060pg\u0060 parameters are ignored when \u0060scenarioIds\u0060 is provided.\n\nAgents are found anywhere in a scenario\u0027s flow, including inside routes, branches, error handlers, notification flows, and as another agent\u0027s own tool. Agents on disabled routes, branches, tools, or notifications are not included.",
         "operationId": "PostScenariosAiAgentsModules",
         "parameters": [
           {
@@ -58390,7 +58644,7 @@
           "Teams"
         ],
         "summary": "Get feature controls of an organization which the team belongs to",
-        "description": "Retrieves all feature controls for the specified organization which the team belongs to.\n",
+        "description": "Retrieves all feature controls for the specified organization which the team belongs to.\n\nThe \u0060enabled\u0060 value of each feature control is its effective state: the organization\u0027s override when one exists, otherwise the default registered for the feature control.\n",
         "operationId": "GetTeamsByTeamIdFeatureControls",
         "parameters": [
           {
@@ -58433,7 +58687,7 @@
                   "$ref": "#/components/schemas/GetTeamsByTeamIdFeatureControls200Response"
                 },
                 "example": {
-                  "enableAllControlFeatures": false,
+                  "enabledAllFeatureControls": false,
                   "featureControls": [
                     {
                       "id": 2,
@@ -58444,10 +58698,10 @@
                       "description": {
                         "en": "Access to Make AI Tools"
                       },
-                      "tags": [
+                      "tag": [
                         "Beta"
                       ],
-                      "warning_message": {
+                      "warningMessage": {
                         "en": "This feature is in beta."
                       },
                       "enabled": true
@@ -58461,15 +58715,30 @@
                       "description": {
                         "en": "Enhanced security features for your organization"
                       },
-                      "tags": [
+                      "tag": [
                         "AI"
                       ],
-                      "warning_message": {
+                      "warningMessage": {
                         "en": "This feature uses AI."
                       },
                       "enabled": false
                     }
                   ]
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The organization license does not include feature controls.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamsByTeamIdFeatureControls402Response"
+                },
+                "example": {
+                  "message": "Subscription required",
+                  "code": "SC402",
+                  "detail": "You need an Enterprise plan to control features."
                 }
               }
             }
@@ -87396,6 +87665,86 @@
           }
         }
       },
+      "PostAffiliateRecipientOnboardingLinkRequest": {
+        "type": "object",
+        "properties": {
+          "useCase": {
+            "$ref": "#/components/schemas/PostAffiliateRecipientOnboardingLinkRequestUseCase"
+          }
+        }
+      },
+      "PostAffiliateRecipientOnboardingLink200Response": {
+        "required": [
+          "url",
+          "expiresAt"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Single-use Stripe-hosted onboarding URL.",
+            "x-client-original-format": "uri"
+          },
+          "expiresAt": {
+            "type": "string",
+            "description": "When the link stops working.",
+            "format": "date-time"
+          }
+        }
+      },
+      "PostAffiliateRecipientOnboardingLink400Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostAffiliateRecipientOnboardingLink404Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostAffiliateRecipientOnboardingLink409Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostAffiliateRecipientOnboardingLink502Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
       "GetOrganizationAuditLogs200Response": {
         "type": "object",
         "properties": {
@@ -96805,6 +97154,17 @@
           }
         }
       },
+      "PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch402Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
       "PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearchRequest": {
         "required": [
           "query"
@@ -97032,14 +97392,29 @@
       "GetOrganizationsByOrganizationIdFeatureControls200Response": {
         "type": "object",
         "properties": {
-          "enableAllControlFeatures": {
-            "type": "boolean"
+          "enabledAllFeatureControls": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when every feature control in the returned list is enabled, and \u0060true\u0060 for an empty list. It is calculated from the effective states of the controls selected by \u0060featureControlName\u0060, regardless of \u0060cols[]\u0060.\n"
           },
           "featureControls": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItem"
             }
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdFeatureControls402Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
           }
         }
       },
@@ -97052,15 +97427,57 @@
           },
           "enabled": {
             "type": "boolean",
-            "description": "Indicates whether the feature control is enabled (true) or disabled (false)."
+            "description": "The requested state, \u0060true\u0060 to enable the feature control or \u0060false\u0060 to disable it."
           }
         }
       },
       "PatchOrganizationsByOrganizationIdFeatureControls200Response": {
         "type": "object",
         "properties": {
-          "featureControls": {
-            "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControls"
+          "featureControl": {
+            "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControl"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdFeatureControls400Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdFeatureControls402Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdFeatureControls406Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdFeatureControls406ResponseMetadataItem"
+            }
           }
         }
       },
@@ -102330,14 +102747,29 @@
       "GetTeamsByTeamIdFeatureControls200Response": {
         "type": "object",
         "properties": {
-          "enableAllControlFeatures": {
-            "type": "boolean"
+          "enabledAllFeatureControls": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when every feature control in the returned list is enabled, and \u0060true\u0060 for an empty list. It is calculated from the effective states of the controls selected by \u0060featureControlName\u0060, regardless of \u0060cols[]\u0060.\n"
           },
           "featureControls": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItem"
             }
+          }
+        }
+      },
+      "GetTeamsByTeamIdFeatureControls402Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
           }
         }
       },
@@ -113691,6 +114123,11 @@
           },
           "teamName": {
             "type": "string"
+          },
+          "deletedAt": {
+            "type": "string",
+            "description": "When the scenario was deleted. Only on scenarios with the \u0060deleted\u0060 status.",
+            "format": "date-time"
           }
         }
       },
@@ -115882,6 +116319,15 @@
           },
           "attempts": {
             "type": "integer"
+          },
+          "executionId": {
+            "type": "string",
+            "description": "The ID of the original execution that created the incomplete execution."
+          },
+          "executionName": {
+            "type": "string",
+            "description": "The run name of the original execution, or \u0060null\u0060 if the run has no custom name.",
+            "nullable": true
           }
         }
       },
@@ -122212,21 +122658,22 @@
           "description": {
             "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemDescription"
           },
-          "tags": {
+          "tag": {
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "warning_message": {
+          "warningMessage": {
             "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage"
           },
           "enabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "The effective state. It is the organization\u0027s override when one exists, otherwise the default registered for the feature control."
           }
         }
       },
-      "PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControls": {
+      "PatchOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControl": {
         "type": "object",
         "properties": {
           "id": {
@@ -122234,6 +122681,17 @@
           },
           "enabled": {
             "type": "boolean"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdFeatureControls406ResponseMetadataItem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdFeatureControls406ResponseMetadataItemData"
           }
         }
       },
@@ -129524,17 +129982,18 @@
           "description": {
             "$ref": "#/components/schemas/GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItemDescription"
           },
-          "tags": {
+          "tag": {
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "warning_message": {
+          "warningMessage": {
             "$ref": "#/components/schemas/GetTeamsByTeamIdFeatureControls200ResponseFeatureControlsItemWarningMessage"
           },
           "enabled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "The effective state. It is the organization\u0027s override when one exists, otherwise the default registered for the feature control."
           }
         }
       },
@@ -137734,6 +138193,17 @@
       },
       "GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage": {
         "type": "object"
+      },
+      "PatchOrganizationsByOrganizationIdFeatureControls406ResponseMetadataItemData": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "bodyText": {
+            "type": "string"
+          }
+        }
       },
       "GetScenarios200ResponseScenariosItemDevicesItem": {
         "type": "object",
@@ -153172,6 +153642,28 @@
           ]
         }
       },
+      "PostAffiliateRecipientOnboardingLinkRequestUseCase": {
+        "enum": [
+          "account_onboarding",
+          "account_update"
+        ],
+        "type": "string",
+        "description": "\u0060account_onboarding\u0060 collects the details Stripe still requires; \u0060account_update\u0060 lets the partner\nchange details they already provided.\n",
+        "x-ms-enum": {
+          "name": "PostAffiliateRecipientOnboardingLinkRequestUseCase",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "account_onboarding",
+              "name": "AccountOnboarding"
+            },
+            {
+              "value": "account_update",
+              "name": "AccountUpdate"
+            }
+          ]
+        }
+      },
       "PostConnectionsRequestAccountVisibility": {
         "enum": [
           "team",
@@ -157317,7 +157809,8 @@
         "enum": [
           "active",
           "invalid",
-          "inactive"
+          "inactive",
+          "deleted"
         ],
         "type": "string",
         "x-ms-enum": {
@@ -157335,6 +157828,10 @@
             {
               "value": "inactive",
               "name": "Inactive"
+            },
+            {
+              "value": "deleted",
+              "name": "Deleted"
             }
           ]
         }
@@ -167623,7 +168120,8 @@
         "enum": [
           "active",
           "invalid",
-          "inactive"
+          "inactive",
+          "deleted"
         ],
         "type": "string",
         "example": "active",
@@ -167642,6 +168140,10 @@
             {
               "value": "inactive",
               "name": "Inactive"
+            },
+            {
+              "value": "deleted",
+              "name": "Deleted"
             }
           ]
         }
@@ -179001,6 +179503,15 @@
         },
         "attempts": {
           "type": "integer"
+        },
+        "executionId": {
+          "type": "string",
+          "description": "The ID of the original execution that created the incomplete execution."
+        },
+        "executionName": {
+          "type": "string",
+          "description": "The run name of the original execution, or \u0060null\u0060 if the run has no custom name.",
+          "nullable": true
         }
       }
     },
@@ -224808,7 +225319,8 @@
       "enum": [
         "active",
         "invalid",
-        "inactive"
+        "inactive",
+        "deleted"
       ],
       "type": "string",
       "x-ms-enum": {
@@ -224826,6 +225338,10 @@
           {
             "value": "inactive",
             "name": "Inactive"
+          },
+          {
+            "value": "deleted",
+            "name": "Deleted"
           }
         ]
       }

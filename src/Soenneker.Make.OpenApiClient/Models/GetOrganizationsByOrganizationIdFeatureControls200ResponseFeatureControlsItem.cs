@@ -27,10 +27,10 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("label") is { } nullNodeLabel && nullNodeLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Label = null;
             if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
             else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
-            if (parseNode.GetChildNode("tags") is null) { _explicitNullValueTags = default!; _explicitNullProperties?.Remove("tags"); }
-            else if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
-            if (parseNode.GetChildNode("warning_message") is null) { _explicitNullValueWarningMessage = default!; _explicitNullProperties?.Remove("warning_message"); }
-            else if (parseNode.GetChildNode("warning_message") is { } nullNodeWarningMessage && nullNodeWarningMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WarningMessage = null;
+            if (parseNode.GetChildNode("tag") is null) { _explicitNullValueTag = default!; _explicitNullProperties?.Remove("tag"); }
+            else if (parseNode.GetChildNode("tag") is { } nullNodeTag && nullNodeTag.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tag = null;
+            if (parseNode.GetChildNode("warningMessage") is null) { _explicitNullValueWarningMessage = default!; _explicitNullProperties?.Remove("warningMessage"); }
+            else if (parseNode.GetChildNode("warningMessage") is { } nullNodeWarningMessage && nullNodeWarningMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WarningMessage = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -45,7 +45,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemDescription Description { get => _explicitNullValueDescription; set { _explicitNullValueDescription = value; AdditionalData?.Remove("description"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("description"); else _explicitNullProperties?.Remove("description"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemDescription _explicitNullValueDescription = default!;
 #endif
-        /// <summary>The enabled property</summary>
+        /// <summary>The effective state. It is the organization&apos;s override when one exists, otherwise the default registered for the feature control.</summary>
         public bool? Enabled { get => _explicitNullValueEnabled; set { _explicitNullValueEnabled = value; AdditionalData?.Remove("enabled"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enabled"); else _explicitNullProperties?.Remove("enabled"); } }
         private bool? _explicitNullValueEnabled = default!;
         /// <summary>The id property</summary>
@@ -71,24 +71,24 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
-        /// <summary>The tags property</summary>
+        /// <summary>The tag property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
-        private List<string>? _explicitNullValueTags = default!;
+        public List<string>? Tag { get => _explicitNullValueTag; set { _explicitNullValueTag = value; AdditionalData?.Remove("tag"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tag"); else _explicitNullProperties?.Remove("tag"); } }
+        private List<string>? _explicitNullValueTag = default!;
 #nullable restore
 #else
-        public List<string> Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
-        private List<string> _explicitNullValueTags = default!;
+        public List<string> Tag { get => _explicitNullValueTag; set { _explicitNullValueTag = value; AdditionalData?.Remove("tag"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tag"); else _explicitNullProperties?.Remove("tag"); } }
+        private List<string> _explicitNullValueTag = default!;
 #endif
-        /// <summary>The warning_message property</summary>
+        /// <summary>The warningMessage property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage? WarningMessage { get => _explicitNullValueWarningMessage; set { _explicitNullValueWarningMessage = value; AdditionalData?.Remove("warning_message"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warning_message"); else _explicitNullProperties?.Remove("warning_message"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage? WarningMessage { get => _explicitNullValueWarningMessage; set { _explicitNullValueWarningMessage = value; AdditionalData?.Remove("warningMessage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warningMessage"); else _explicitNullProperties?.Remove("warningMessage"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage? _explicitNullValueWarningMessage = default!;
 #nullable restore
 #else
-        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage WarningMessage { get => _explicitNullValueWarningMessage; set { _explicitNullValueWarningMessage = value; AdditionalData?.Remove("warning_message"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warning_message"); else _explicitNullProperties?.Remove("warning_message"); } }
+        public global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage WarningMessage { get => _explicitNullValueWarningMessage; set { _explicitNullValueWarningMessage = value; AdditionalData?.Remove("warningMessage"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warningMessage"); else _explicitNullProperties?.Remove("warningMessage"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage _explicitNullValueWarningMessage = default!;
 #endif
         /// <summary>
@@ -121,8 +121,8 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "label", n => { Label = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemLabel>(global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemLabel.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "warning_message", n => { WarningMessage = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage>(global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage.CreateFromDiscriminatorValue); } },
+                { "tag", n => { Tag = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "warningMessage", n => { WarningMessage = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage>(global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -137,8 +137,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteIntValue("id", Id);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemLabel>("label", Label);
             writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
-            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage>("warning_message", WarningMessage);
+            writer.WriteCollectionOfPrimitiveValues<string>("tag", Tag);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdFeatureControls200ResponseFeatureControlsItemWarningMessage>("warningMessage", WarningMessage);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

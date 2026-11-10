@@ -20,5 +20,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         Inactive,
         #pragma warning restore CS1591
+        [EnumMember(Value = "deleted")]
+        #pragma warning disable CS1591
+        Deleted,
+        #pragma warning restore CS1591
     }
 }
