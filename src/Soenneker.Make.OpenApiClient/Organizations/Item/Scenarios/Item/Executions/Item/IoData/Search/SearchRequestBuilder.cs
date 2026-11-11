@@ -34,12 +34,13 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Item.Executi
         {
         }
         /// <summary>
-        /// Searches the module input/output (IO) data produced by a single scenario execution using a free-text `query`, and returns **every** matching IO-data record for that execution — no grouping and no pagination.The scenario&apos;s team is resolved from `scenarioId`; the caller must hold the scenario-logs read permission on that team.**The `from` and `to` bounds are applied at UTC-day granularity** — only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 UTC days, so supply a window that covers the execution&apos;s timestamp to search older executions.
+        /// Searches the module input/output (IO) data produced by a single scenario execution using a free-text `query`, and returns **every** matching IO-data record for that execution — no grouping and no pagination.The scenario&apos;s team is resolved from `scenarioId`; the caller must hold the scenario-logs read permission on that team.**The `from` and `to` bounds are applied at UTC-day granularity** — only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 UTC days, so supply a window that covers the execution&apos;s timestamp to search older executions.This feature is available on the Pro plan and above. Organizations without the `fulltext` license parameter receive a `402` response.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch402Response">When receiving a 402 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearchRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -51,10 +52,16 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Item.Executi
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "402", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch402Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Searches the module input/output (IO) data produced by a single scenario execution using a free-text `query`, and returns **every** matching IO-data record for that execution — no grouping and no pagination.The scenario&apos;s team is resolved from `scenarioId`; the caller must hold the scenario-logs read permission on that team.**The `from` and `to` bounds are applied at UTC-day granularity** — only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 UTC days, so supply a window that covers the execution&apos;s timestamp to search older executions.
+        /// Searches the module input/output (IO) data produced by a single scenario execution using a free-text `query`, and returns **every** matching IO-data record for that execution — no grouping and no pagination.The scenario&apos;s team is resolved from `scenarioId`; the caller must hold the scenario-logs read permission on that team.**The `from` and `to` bounds are applied at UTC-day granularity** — only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 UTC days, so supply a window that covers the execution&apos;s timestamp to search older executions.This feature is available on the Pro plan and above. Organizations without the `fulltext` license parameter receive a `402` response.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

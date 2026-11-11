@@ -36673,8 +36673,7 @@
               "organizations:read"
             ]
           }
-        ],
-        "x-internal": true
+        ]
       }
     },
     "/organizations/{organizationId}/scenarios/executions/io-data/search": {
@@ -36806,7 +36805,7 @@
           "Organizations"
         ],
         "summary": "Full-text search IO data for a single scenario execution",
-        "description": "Searches the module input/output (IO) data produced by a single scenario execution using a free-text \u0060query\u0060, and returns **every** matching IO-data record for that execution \u2014 no grouping and no pagination.\n\nThe scenario\u0027s team is resolved from \u0060scenarioId\u0060; the caller must hold the scenario-logs read permission on that team.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 UTC days, so supply a window that covers the execution\u0027s timestamp to search older executions.\n",
+        "description": "Searches the module input/output (IO) data produced by a single scenario execution using a free-text \u0060query\u0060, and returns **every** matching IO-data record for that execution \u2014 no grouping and no pagination.\n\nThe scenario\u0027s team is resolved from \u0060scenarioId\u0060; the caller must hold the scenario-logs read permission on that team.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 UTC days, so supply a window that covers the execution\u0027s timestamp to search older executions.\n\nThis feature is available on the Pro plan and above. Organizations without the \u0060fulltext\u0060 license parameter receive a \u0060402\u0060 response.\n",
         "operationId": "PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch",
         "parameters": [
           {
@@ -36912,6 +36911,20 @@
                 }
               }
             }
+          },
+          "402": {
+            "description": "Payment required - The organization\u0027s plan does not include full-text search of scenario run data (Pro plan and above)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch402Response"
+                },
+                "example": {
+                  "message": "Full-text search of scenario run data is available on the Pro plan and above.",
+                  "code": "SC402"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -36920,8 +36933,7 @@
               "organizations:read"
             ]
           }
-        ],
-        "x-internal": true
+        ]
       }
     },
     "/organizations/{organizationId}/scenarios/executions/io-data/counts": {
@@ -36993,8 +37005,7 @@
               "organizations:read"
             ]
           }
-        ],
-        "x-internal": true
+        ]
       }
     },
     "/organizations/{organizationId}/scenarios/executions/modules/io-data/counts": {
@@ -97241,6 +97252,17 @@
           },
           "execution": {
             "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch200ResponseExecution"
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch402Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
           }
         }
       },
