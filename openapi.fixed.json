@@ -7640,12 +7640,75 @@
       }
     },
     "/affiliate/partner-register": {
+      "get": {
+        "tags": [
+          "Affiliate"
+        ],
+        "summary": "Get partner registration data",
+        "description": "Returns what the affiliate partner registration form needs. \u0060payoutMethod\u0060 says which form variant to show;\nthe server decides it, the client never chooses.\n\nFor \u0060wise\u0060, \u0060currencies\u0060 lists the payout currencies; \u0060partnerCode\u0060 and \u0060paypalMeLink\u0060 prefill the form for a\nmigrated legacy partner. For \u0060stripe\u0060, only \u0060partnerCode\u0060 is prefilled and there are no currencies.\n",
+        "operationId": "GetAffiliatePartnerRegister",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAffiliatePartnerRegister200Response"
+                },
+                "examples": {
+                  "new-partner": {
+                    "value": {
+                      "payoutMethod": "wise",
+                      "currencies": [
+                        {
+                          "value": "USD",
+                          "label": "USD"
+                        },
+                        {
+                          "value": "EUR",
+                          "label": "EUR"
+                        }
+                      ]
+                    }
+                  },
+                  "legacy-partner": {
+                    "value": {
+                      "payoutMethod": "wise",
+                      "partnerCode": "mypartnercode",
+                      "paypalMeLink": "payouts@example.com",
+                      "currencies": [
+                        {
+                          "value": "USD",
+                          "label": "USD"
+                        }
+                      ]
+                    }
+                  },
+                  "stripe-partner": {
+                    "value": {
+                      "payoutMethod": "stripe",
+                      "partnerCode": "mypartnercode"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "user:read"
+            ]
+          }
+        ]
+      },
       "post": {
         "tags": [
           "Affiliate"
         ],
         "summary": "Register partner",
-        "description": "Registers the user as a partner in the affiliate program.",
+        "description": "Registers the user as a partner in the affiliate program. Send the variant matching the \u0060payoutMethod\u0060 returned by\n\u0060GET /affiliate/partner-register\u0060.\n\nA \u0060wise\u0060 partner sends the Wise payout details. A \u0060stripe\u0060 partner sends a country instead; a Stripe recipient\naccount is created with the partner. Request the link to Stripe onboarding with\n\u0060POST /affiliate/recipient/onboarding-link\u0060.\n",
         "operationId": "PostAffiliatePartnerRegister",
         "requestBody": {
           "content": {
@@ -7653,14 +7716,50 @@
               "schema": {
                 "$ref": "#/components/schemas/PostAffiliatePartnerRegisterRequest"
               },
-              "example": {
-                "partnerCode": "mypartnercode",
-                "paypalMeLink": "paypal.me/mypaypallink69",
-                "applyPromoToLink": true,
-                "termsAndConditions": true
+              "examples": {
+                "wise": {
+                  "value": {
+                    "payoutMethod": "wise",
+                    "partnerCode": "mypartnercode",
+                    "partnerType": "Person",
+                    "paypalMeLink": "payouts@example.com",
+                    "currency": "USD",
+                    "survey_promotion_method": [
+                      "blogging"
+                    ],
+                    "survey_audience": [
+                      "marketing"
+                    ],
+                    "survey_reference": [
+                      "social_media"
+                    ],
+                    "applyPromoToLink": true,
+                    "termsAndConditions": true
+                  }
+                },
+                "stripe": {
+                  "value": {
+                    "payoutMethod": "stripe",
+                    "partnerCode": "mypartnercode",
+                    "partnerType": "Business",
+                    "countryId": 42,
+                    "survey_promotion_method": [
+                      "blogging"
+                    ],
+                    "survey_audience": [
+                      "marketing"
+                    ],
+                    "survey_reference": [
+                      "social_media"
+                    ],
+                    "applyPromoToLink": true,
+                    "termsAndConditions": true
+                  }
+                }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -7670,9 +7769,162 @@
                 "schema": {
                   "$ref": "#/components/schemas/PostAffiliatePartnerRegister200Response"
                 },
+                "examples": {
+                  "wise": {
+                    "value": {
+                      "ok": 1
+                    }
+                  },
+                  "stripe": {
+                    "value": {
+                      "ok": 1,
+                      "stripeRecipientStatus": "pending"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The body is invalid, the terms were not confirmed, or the body is for Stripe while Stripe payouts are not available."
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "user:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/affiliate/partner-settings": {
+      "get": {
+        "tags": [
+          "Affiliate"
+        ],
+        "summary": "Get partner settings",
+        "description": "Returns the payout settings of the user\u0027s affiliate partner. \u0060payoutMethod\u0060 says which settings apply.\n\n- \u0060wise\u0060: \u0060paypalMeLink\u0060, \u0060partnerType\u0060 and \u0060currency\u0060 can be changed with \u0060POST /affiliate/partner-settings\u0060;\n  \u0060currencies\u0060 lists the allowed currencies.\n- \u0060stripe\u0060: payout details are managed in Stripe, see \u0060POST /affiliate/recipient/onboarding-link\u0060;\n  \u0060stripeRecipientStatus\u0060 is the state of the Stripe payout recipient.\n",
+        "operationId": "GetAffiliatePartnerSettings",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAffiliatePartnerSettings200Response"
+                },
+                "examples": {
+                  "wise": {
+                    "value": {
+                      "payoutMethod": "wise",
+                      "paypalMeLink": "payouts@example.com",
+                      "partnerType": "Person",
+                      "currency": "USD",
+                      "currencies": [
+                        {
+                          "value": "USD",
+                          "label": "USD"
+                        },
+                        {
+                          "value": "EUR",
+                          "label": "EUR"
+                        }
+                      ]
+                    }
+                  },
+                  "stripe": {
+                    "value": {
+                      "payoutMethod": "stripe",
+                      "partnerType": "Business",
+                      "stripeRecipientStatus": "pending"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The user is not an affiliate partner.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAffiliatePartnerSettings404Response"
+                },
+                "examples": {
+                  "not-a-partner": {
+                    "value": {
+                      "message": "Resource not found",
+                      "code": "SC404",
+                      "detail": "Affiliate partner not found"
+                    }
+                  }
+                },
+                "x-schema-inferred-from-examples": true
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "user:read"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Affiliate"
+        ],
+        "summary": "Update partner settings",
+        "description": "Updates the Wise payout settings of the user\u0027s affiliate partner. A Stripe partner cannot use it.",
+        "operationId": "PostAffiliatePartnerSettings",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostAffiliatePartnerSettingsRequest"
+              },
+              "example": {
+                "paypalMeLink": "payouts@example.com",
+                "partnerType": "Person",
+                "currency": "EUR"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAffiliatePartnerSettings200Response"
+                },
                 "example": {
                   "ok": 1
                 }
+              }
+            }
+          },
+          "400": {
+            "description": "The body is invalid, or the partner is paid out through Stripe.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostAffiliatePartnerSettings400Response"
+                },
+                "examples": {
+                  "stripe-partner": {
+                    "value": {
+                      "message": "Wise payout details cannot be set for a Stripe partner.",
+                      "code": "IM005"
+                    }
+                  }
+                },
+                "x-schema-inferred-from-examples": true
               }
             }
           }
@@ -87534,35 +87786,151 @@
           }
         }
       },
-      "PostAffiliatePartnerRegisterRequest": {
+      "GetAffiliatePartnerRegister200Response": {
         "required": [
-          "partnerCode",
-          "paypalMeLink",
-          "applyPromoToLink",
-          "termsAndConditions"
+          "payoutMethod",
+          "currencies"
         ],
         "type": "object",
         "properties": {
+          "payoutMethod": {
+            "$ref": "#/components/schemas/WisePayoutMethod"
+          },
           "partnerCode": {
-            "type": "string"
+            "type": "string",
+            "description": "Partner code of a migrated legacy partner. Omitted otherwise."
           },
           "paypalMeLink": {
-            "type": "string"
+            "type": "string",
+            "description": "Payout e-mail of a migrated legacy partner. Omitted otherwise."
           },
-          "applyPromoToLink": {
-            "type": "boolean",
-            "description": "Whether to automatically apply the partner\u0027s promo code to their referral link. Required \u2014 the UI form pre-ticks this checkbox, but the server does not substitute a default when the field is omitted."
+          "currencies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAffiliatePartnerRegister200ResponseCurrenciesItem"
+            },
+            "description": "Present for \u0060wise\u0060 only."
+          }
+        }
+      },
+      "PostAffiliatePartnerRegisterRequest": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/PostAffiliatePartnerRegisterRequestWise"
           },
-          "termsAndConditions": {
-            "type": "boolean"
+          {
+            "$ref": "#/components/schemas/PostAffiliatePartnerRegisterRequestStripe"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "payoutMethod",
+          "mapping": {
+            "wise": "#/components/schemas/PostAffiliatePartnerRegisterRequestWise",
+            "stripe": "#/components/schemas/PostAffiliatePartnerRegisterRequestStripe"
           }
         }
       },
       "PostAffiliatePartnerRegister200Response": {
+        "required": [
+          "ok"
+        ],
         "type": "object",
         "properties": {
           "ok": {
             "type": "integer"
+          },
+          "stripeRecipientStatus": {
+            "type": "string",
+            "description": "Status of the created Stripe recipient account. \u0060stripe\u0060 only."
+          }
+        }
+      },
+      "GetAffiliatePartnerSettings200Response": {
+        "required": [
+          "payoutMethod"
+        ],
+        "type": "object",
+        "properties": {
+          "payoutMethod": {
+            "$ref": "#/components/schemas/GetAffiliatePartnerSettings200ResponsePayoutMethod"
+          },
+          "paypalMeLink": {
+            "type": "string",
+            "description": "Only for \u0060wise\u0060."
+          },
+          "partnerType": {
+            "$ref": "#/components/schemas/GetAffiliatePartnerSettings200ResponsePartnerType"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Only for \u0060wise\u0060."
+          },
+          "currencies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAffiliatePartnerSettings200ResponseCurrenciesItem"
+            },
+            "description": "Payout currencies."
+          },
+          "stripeRecipientStatus": {
+            "type": "string",
+            "description": "Only for \u0060stripe\u0060."
+          }
+        }
+      },
+      "GetAffiliatePartnerSettings404Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostAffiliatePartnerSettingsRequest": {
+        "required": [
+          "paypalMeLink",
+          "partnerType",
+          "currency"
+        ],
+        "type": "object",
+        "properties": {
+          "paypalMeLink": {
+            "pattern": "^\\S\u002B@\\S\u002B\\.\\w{2,}$",
+            "type": "string",
+            "description": "E-mail address payouts are sent to."
+          },
+          "partnerType": {
+            "$ref": "#/components/schemas/PostAffiliatePartnerSettingsRequestPartnerType"
+          },
+          "currency": {
+            "pattern": "^[A-Z]{3}$",
+            "type": "string",
+            "description": "Payout currency, one of the \u0060currencies\u0060 returned with the form data."
+          }
+        }
+      },
+      "PostAffiliatePartnerSettings200Response": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "integer"
+          }
+        }
+      },
+      "PostAffiliatePartnerSettings400Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
           }
         }
       },
@@ -107057,6 +107425,142 @@
           "type"
         ]
       },
+      "PostAffiliatePartnerRegisterRequestWise": {
+        "title": "Wise",
+        "required": [
+          "partnerCode",
+          "partnerType",
+          "paypalMeLink",
+          "currency",
+          "survey_promotion_method",
+          "survey_audience",
+          "survey_reference",
+          "applyPromoToLink",
+          "termsAndConditions"
+        ],
+        "type": "object",
+        "properties": {
+          "payoutMethod": {
+            "$ref": "#/components/schemas/WisePayoutMethod"
+          },
+          "partnerCode": {
+            "maxLength": 20,
+            "minLength": 5,
+            "pattern": "^[a-z][a-z0-9]\u002B$",
+            "type": "string"
+          },
+          "partnerType": {
+            "$ref": "#/components/schemas/PostAffiliatePartnerRegisterRequestWisePartnerType"
+          },
+          "paypalMeLink": {
+            "pattern": "^\\S\u002B@\\S\u002B\\.\\w{2,}$",
+            "type": "string",
+            "description": "E-mail address payouts are sent to."
+          },
+          "currency": {
+            "pattern": "^[A-Z]{3}$",
+            "type": "string",
+            "description": "Payout currency, one of the \u0060currencies\u0060 returned with the form data."
+          },
+          "survey_promotion_method": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "survey_audience": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "survey_reference": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "applyPromoToLink": {
+            "type": "boolean",
+            "description": "Whether to automatically apply the partner\u0027s promo code to their referral link. Required \u2014 the UI form pre-ticks this checkbox, but the server does not substitute a default when the field is omitted."
+          },
+          "termsAndConditions": {
+            "$ref": "#/components/schemas/PostAffiliatePartnerRegisterRequestWiseTermsAndConditions"
+          }
+        }
+      },
+      "PostAffiliatePartnerRegisterRequestStripe": {
+        "title": "Stripe",
+        "required": [
+          "payoutMethod",
+          "partnerCode",
+          "partnerType",
+          "countryId",
+          "survey_promotion_method",
+          "survey_audience",
+          "survey_reference",
+          "applyPromoToLink",
+          "termsAndConditions"
+        ],
+        "type": "object",
+        "properties": {
+          "payoutMethod": {
+            "$ref": "#/components/schemas/StripePayoutMethod"
+          },
+          "partnerCode": {
+            "maxLength": 20,
+            "minLength": 5,
+            "pattern": "^[a-z][a-z0-9]\u002B$",
+            "type": "string"
+          },
+          "partnerType": {
+            "$ref": "#/components/schemas/PostAffiliatePartnerRegisterRequestStripePartnerType"
+          },
+          "countryId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "description": "Country of the Stripe recipient account."
+          },
+          "survey_promotion_method": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "survey_audience": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "survey_reference": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "applyPromoToLink": {
+            "type": "boolean",
+            "description": "Whether to automatically apply the partner\u0027s promo code to their referral link. Required \u2014 the UI form pre-ticks this checkbox, but the server does not substitute a default when the field is omitted."
+          },
+          "termsAndConditions": {
+            "$ref": "#/components/schemas/PostAffiliatePartnerRegisterRequestStripeTermsAndConditions"
+          }
+        }
+      },
       "GetAuditLogDetail200ResponseAllOf1": {
         "type": "object",
         "properties": {
@@ -113460,6 +113964,36 @@
           }
         },
         "description": "AI-generated analysis of the error."
+      },
+      "GetAffiliatePartnerRegister200ResponseCurrenciesItem": {
+        "required": [
+          "value",
+          "label"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAffiliatePartnerSettings200ResponseCurrenciesItem": {
+        "required": [
+          "value",
+          "label"
+        ],
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
       },
       "GetAffiliateStats200ResponseStatsItem": {
         "type": "object",
@@ -153664,6 +154198,57 @@
           ]
         }
       },
+      "WisePayoutMethod": {
+        "enum": [
+          "wise"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "WisePayoutMethod",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "wise",
+              "name": "Wise"
+            }
+          ]
+        }
+      },
+      "GetAffiliatePartnerSettings200ResponsePayoutMethod": {
+        "enum": [
+          "wise",
+          "stripe"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetAffiliatePartnerSettings200ResponsePayoutMethod",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "wise",
+              "name": "Wise"
+            },
+            {
+              "value": "stripe",
+              "name": "Stripe"
+            }
+          ]
+        }
+      },
+      "GetAffiliatePartnerSettings200ResponsePartnerType": {
+        "enum": [
+          "Person",
+          "Business"
+        ],
+        "type": "string"
+      },
+      "PostAffiliatePartnerSettingsRequestPartnerType": {
+        "enum": [
+          "Person",
+          "Business"
+        ],
+        "type": "string"
+      },
       "PostAffiliateRecipientOnboardingLinkRequestUseCase": {
         "enum": [
           "account_onboarding",
@@ -154777,6 +155362,50 @@
             }
           ]
         }
+      },
+      "PostAffiliatePartnerRegisterRequestWisePartnerType": {
+        "enum": [
+          "Person",
+          "Business"
+        ],
+        "type": "string"
+      },
+      "PostAffiliatePartnerRegisterRequestWiseTermsAndConditions": {
+        "enum": [
+          true
+        ],
+        "type": "boolean",
+        "description": "Confirmation of the affiliate program terms. Must be \u0060true\u0060."
+      },
+      "StripePayoutMethod": {
+        "enum": [
+          "stripe"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "StripePayoutMethod",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "stripe",
+              "name": "Stripe"
+            }
+          ]
+        }
+      },
+      "PostAffiliatePartnerRegisterRequestStripePartnerType": {
+        "enum": [
+          "Person",
+          "Business"
+        ],
+        "type": "string"
+      },
+      "PostAffiliatePartnerRegisterRequestStripeTermsAndConditions": {
+        "enum": [
+          true
+        ],
+        "type": "boolean",
+        "description": "Confirmation of the affiliate program terms. Must be \u0060true\u0060."
       },
       "PostModulesV1Execute400ResponseModuleExecutionStartedOneOf2": {
         "enum": [

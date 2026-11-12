@@ -19,6 +19,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if (parseNode.GetChildNode("ok") is null) { _explicitNullValueOk = default!; _explicitNullProperties?.Remove("ok"); }
             else if (parseNode.GetChildNode("ok") is { } nullNodeOk && nullNodeOk.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Ok = null;
+            if (parseNode.GetChildNode("stripeRecipientStatus") is null) { _explicitNullValueStripeRecipientStatus = default!; _explicitNullProperties?.Remove("stripeRecipientStatus"); }
+            else if (parseNode.GetChildNode("stripeRecipientStatus") is { } nullNodeStripeRecipientStatus && nullNodeStripeRecipientStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StripeRecipientStatus = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,6 +28,16 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The ok property</summary>
         public int? Ok { get => _explicitNullValueOk; set { _explicitNullValueOk = value; AdditionalData?.Remove("ok"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ok"); else _explicitNullProperties?.Remove("ok"); } }
         private int? _explicitNullValueOk = default!;
+        /// <summary>Status of the created Stripe recipient account. `stripe` only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? StripeRecipientStatus { get => _explicitNullValueStripeRecipientStatus; set { _explicitNullValueStripeRecipientStatus = value; AdditionalData?.Remove("stripeRecipientStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stripeRecipientStatus"); else _explicitNullProperties?.Remove("stripeRecipientStatus"); } }
+        private string? _explicitNullValueStripeRecipientStatus = default!;
+#nullable restore
+#else
+        public string StripeRecipientStatus { get => _explicitNullValueStripeRecipientStatus; set { _explicitNullValueStripeRecipientStatus = value; AdditionalData?.Remove("stripeRecipientStatus"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stripeRecipientStatus"); else _explicitNullProperties?.Remove("stripeRecipientStatus"); } }
+        private string _explicitNullValueStripeRecipientStatus = default!;
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAffiliatePartnerRegister200Response"/> and sets the default values.
         /// </summary>
@@ -52,6 +64,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "ok", n => { Ok = n.GetIntValue(); } },
+                { "stripeRecipientStatus", n => { StripeRecipientStatus = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -62,6 +75,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("ok", Ok);
+            writer.WriteStringValue("stripeRecipientStatus", StripeRecipientStatus);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

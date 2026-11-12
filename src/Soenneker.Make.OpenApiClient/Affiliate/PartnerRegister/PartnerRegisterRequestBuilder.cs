@@ -34,7 +34,25 @@ namespace Soenneker.Make.OpenApiClient.Affiliate.PartnerRegister
         {
         }
         /// <summary>
-        /// Registers the user as a partner in the affiliate program.
+        /// Returns what the affiliate partner registration form needs. `payoutMethod` says which form variant to show;the server decides it, the client never chooses.For `wise`, `currencies` lists the payout currencies; `partnerCode` and `paypalMeLink` prefill the form for amigrated legacy partner. For `stripe`, only `partnerCode` is prefilled and there are no currencies.
+        /// </summary>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAffiliatePartnerRegister200Response"/></returns>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAffiliatePartnerRegister200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.GetAffiliatePartnerRegister200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToGetRequestInformation(requestConfiguration);
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetAffiliatePartnerRegister200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetAffiliatePartnerRegister200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
+        /// Registers the user as a partner in the affiliate program. Send the variant matching the `payoutMethod` returned by`GET /affiliate/partner-register`.A `wise` partner sends the Wise payout details. A `stripe` partner sends a country instead; a Stripe recipientaccount is created with the partner. Request the link to Stripe onboarding with`POST /affiliate/recipient/onboarding-link`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAffiliatePartnerRegister200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -54,7 +72,26 @@ namespace Soenneker.Make.OpenApiClient.Affiliate.PartnerRegister
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAffiliatePartnerRegister200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAffiliatePartnerRegister200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Registers the user as a partner in the affiliate program.
+        /// Returns what the affiliate partner registration form needs. `payoutMethod` says which form variant to show;the server decides it, the client never chooses.For `wise`, `currencies` lists the payout currencies; `partnerCode` and `paypalMeLink` prefill the form for amigrated legacy partner. For `stripe`, only `partnerCode` is prefilled and there are no currencies.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// Registers the user as a partner in the affiliate program. Send the variant matching the `payoutMethod` returned by`GET /affiliate/partner-register`.A `wise` partner sends the Wise payout details. A `stripe` partner sends a country instead; a Stripe recipientaccount is created with the partner. Request the link to Stripe onboarding with`POST /affiliate/recipient/onboarding-link`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

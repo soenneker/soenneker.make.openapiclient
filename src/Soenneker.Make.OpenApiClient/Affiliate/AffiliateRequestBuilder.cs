@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Affiliate.CommissionInfo;
 using Soenneker.Make.OpenApiClient.Affiliate.Commissions;
 using Soenneker.Make.OpenApiClient.Affiliate.PartnerRegister;
+using Soenneker.Make.OpenApiClient.Affiliate.PartnerSettings;
 using Soenneker.Make.OpenApiClient.Affiliate.PayoutRequest;
 using Soenneker.Make.OpenApiClient.Affiliate.Recipient;
 using Soenneker.Make.OpenApiClient.Affiliate.Stats;
@@ -34,6 +35,11 @@ namespace Soenneker.Make.OpenApiClient.Affiliate
         public global::Soenneker.Make.OpenApiClient.Affiliate.PartnerRegister.PartnerRegisterRequestBuilder PartnerRegister
         {
             get => new global::Soenneker.Make.OpenApiClient.Affiliate.PartnerRegister.PartnerRegisterRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The partnerSettings property</summary>
+        public global::Soenneker.Make.OpenApiClient.Affiliate.PartnerSettings.PartnerSettingsRequestBuilder PartnerSettings
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Affiliate.PartnerSettings.PartnerSettingsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The payoutRequest property</summary>
         public global::Soenneker.Make.OpenApiClient.Affiliate.PayoutRequest.PayoutRequestRequestBuilder PayoutRequest
