@@ -65,7 +65,7 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Item.Runs
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Admits a Run from the latest or explicitly selected published version. By default the responseis asynchronous. Set `responsive` to wait for terminal observation for at most`maxWaitSeconds` (maximum 60); wait expiry returns `202` and the Run continues.
+        /// Runs the current version of an enabled Function. Disabled Functions reject new runs.If `version` is provided, it must match the current version; otherwise, the API returnsHTTP 409 with `metadata.reason: FUNCTION_VERSION_NOT_CURRENT`. Saving a new versionaffects future runs only.By default the responseis asynchronous. Set `responsive` to wait for terminal observation for at most`maxWaitSeconds` (maximum 60); wait expiry returns `202` and the Run continues.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2RunSuccessResponse"/></returns>
         /// <param name="body">The request body</param>
@@ -75,7 +75,7 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Item.Runs
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run401Response">When receiving a 401 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run403Response">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run404Response">When receiving a 404 status code</exception>
-        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run409Response">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run409ResponseError">When receiving a 409 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run422Response">When receiving a 422 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run429Response">When receiving a 429 status code</exception>
         /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run503Response">When receiving a 503 status code</exception>
@@ -96,7 +96,7 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Item.Runs
                 { "401", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run401Response.CreateFromDiscriminatorValue },
                 { "403", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run403Response.CreateFromDiscriminatorValue },
                 { "404", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run404Response.CreateFromDiscriminatorValue },
-                { "409", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run409Response.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run409ResponseError.CreateFromDiscriminatorValue },
                 { "422", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run422Response.CreateFromDiscriminatorValue },
                 { "429", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run429Response.CreateFromDiscriminatorValue },
                 { "503", global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run503Response.CreateFromDiscriminatorValue },
@@ -125,7 +125,7 @@ namespace Soenneker.Make.OpenApiClient.Functions.V2.Item.Runs
             return requestInfo;
         }
         /// <summary>
-        /// Admits a Run from the latest or explicitly selected published version. By default the responseis asynchronous. Set `responsive` to wait for terminal observation for at most`maxWaitSeconds` (maximum 60); wait expiry returns `202` and the Run continues.
+        /// Runs the current version of an enabled Function. Disabled Functions reject new runs.If `version` is provided, it must match the current version; otherwise, the API returnsHTTP 409 with `metadata.reason: FUNCTION_VERSION_NOT_CURRENT`. Saving a new versionaffects future runs only.By default the responseis asynchronous. Set `responsive` to wait for terminal observation for at most`maxWaitSeconds` (maximum 60); wait expiry returns `202` and the Run continues.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

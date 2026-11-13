@@ -25144,7 +25144,7 @@
           "Functions V2 / Runs"
         ],
         "summary": "Create a published Function Run",
-        "description": "Admits a Run from the latest or explicitly selected published version. By default the response\nis asynchronous. Set \u0060responsive\u0060 to wait for terminal observation for at most\n\u0060maxWaitSeconds\u0060 (maximum 60); wait expiry returns \u0060202\u0060 and the Run continues.\n",
+        "description": "Runs the current version of an enabled Function. Disabled Functions reject new runs.\nIf \u0060version\u0060 is provided, it must match the current version; otherwise, the API returns\nHTTP 409 with \u0060metadata.reason: FUNCTION_VERSION_NOT_CURRENT\u0060. Saving a new version\naffects future runs only.\nBy default the response\nis asynchronous. Set \u0060responsive\u0060 to wait for terminal observation for at most\n\u0060maxWaitSeconds\u0060 (maximum 60); wait expiry returns \u0060202\u0060 and the Run continues.\n",
         "operationId": "CreateFunctionV2Run",
         "requestBody": {
           "content": {
@@ -25158,7 +25158,6 @@
                     "data": {
                       "invoiceId": "INV-2026-0042"
                     },
-                    "version": 3,
                     "timeoutSeconds": 60,
                     "responsive": true,
                     "maxWaitSeconds": 10
@@ -25418,7 +25417,7 @@
             }
           },
           "409": {
-            "description": "The request conflicts with current resource state.",
+            "description": "The Function is Off or the requested version is no longer current.",
             "headers": {
               "X-Request-ID": {
                 "description": "Correlation identifier for the request.",
@@ -25431,11 +25430,30 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateFunctionV2Run409Response"
+                  "$ref": "#/components/schemas/CreateFunctionV2Run409ResponseError"
                 },
-                "example": {
-                  "code": "SC409",
-                  "message": "The request conflicts with the current Function state."
+                "examples": {
+                  "stateConflict": {
+                    "value": {
+                      "code": "SC409",
+                      "name": "Conflict",
+                      "message": "Function is not active.",
+                      "details": []
+                    }
+                  },
+                  "versionConflict": {
+                    "value": {
+                      "code": "SC409",
+                      "name": "Conflict",
+                      "message": "Function version 1 is no longer current. Current version is 2. Reopen and save the module to use the current version, or omit version in the API request.",
+                      "details": [],
+                      "metadata": {
+                        "reason": "FUNCTION_VERSION_NOT_CURRENT",
+                        "requestedVersion": 1,
+                        "currentVersion": 2
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -92714,13 +92732,13 @@
         ],
         "properties": {
           "data": {
-            "description": "Optional argument validated against the selected published version\u0027s input contract.",
+            "description": "Optional argument validated against the current version\u0027s input contract atomically at admission.",
             "nullable": true
           },
           "version": {
             "minimum": 1,
             "type": "integer",
-            "description": "Omit to use the latest published version.",
+            "description": "Optional assertion of the current version. Omit to use current. An explicit non-current version returns HTTP 409 with metadata.reason FUNCTION_VERSION_NOT_CURRENT; it is never silently substituted.",
             "format": "int32"
           },
           "timeoutSeconds": {
@@ -92864,28 +92882,14 @@
         }
       },
       "CreateFunctionV2Run409Response": {
-        "required": [
-          "code",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string"
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CreateFunctionV2Run409ResponseOneOf1"
           },
-          "message": {
-            "type": "string"
-          },
-          "detail": {
-            "$ref": "#/components/schemas/ActivateFunctionV2400ResponseDetail"
+          {
+            "$ref": "#/components/schemas/CreateFunctionV2Run409ResponseOneOf2"
           }
-        },
-        "additionalProperties": false,
-        "example": {
-          "detail": "Function resource not found.",
-          "code": "SC404",
-          "message": "Function resource not found."
-        }
+        ]
       },
       "CreateFunctionV2Run422Response": {
         "required": [
@@ -108323,6 +108327,63 @@
         "required": [
           "type"
         ]
+      },
+      "CreateFunctionV2Run409ResponseOneOf1": {
+        "required": [
+          "code",
+          "name",
+          "message",
+          "details"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/Sc409Code"
+          },
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateFunctionV2Run409ResponseOneOf2": {
+        "required": [
+          "code",
+          "message",
+          "details",
+          "metadata"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/Sc409Code"
+          },
+          "name": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/CreateFunctionV2Run409ResponseOneOf2Metadata"
+          }
+        },
+        "additionalProperties": false
       },
       "CreateInlineFunctionV2RunRequestContentOutputSchema": {
         "maxProperties": 64,
@@ -133243,6 +133304,26 @@
           }
         }
       },
+      "CreateFunctionV2Run409ResponseOneOf2Metadata": {
+        "required": [
+          "reason",
+          "requestedVersion",
+          "currentVersion"
+        ],
+        "type": "object",
+        "properties": {
+          "reason": {
+            "$ref": "#/components/schemas/FunctionVersionNotCurrentReason"
+          },
+          "requestedVersion": {
+            "type": "integer"
+          },
+          "currentVersion": {
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      },
       "PostInternalEntityPlacementsCheckRequestAnyOf1Blueprint": {
         "type": "object",
         "description": "The blueprint about to be executed."
@@ -155557,6 +155638,22 @@
         ],
         "type": "boolean"
       },
+      "Sc409Code": {
+        "enum": [
+          "SC409"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "Sc409Code",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "SC409",
+              "name": "Sc409"
+            }
+          ]
+        }
+      },
       "CreateInlineFunctionV2RunRequestAllOf1AnyOf1Responsive": {
         "enum": [
           true
@@ -163325,6 +163422,22 @@
             {
               "value": "desc",
               "name": "Desc"
+            }
+          ]
+        }
+      },
+      "FunctionVersionNotCurrentReason": {
+        "enum": [
+          "FUNCTION_VERSION_NOT_CURRENT"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "FunctionVersionNotCurrentReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "FUNCTION_VERSION_NOT_CURRENT",
+              "name": "FunctionVersionNotCurrent"
             }
           ]
         }
@@ -175708,6 +175821,21 @@
         },
         "x-client-original-error-schema": {
           "$ref": "#/components/schemas/PutAdminSdkAppsByAppByVersionPublisherLogo413ResponseSchema"
+        }
+      },
+      "CreateFunctionV2Run409ResponseError": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "x-client-untyped-value": true
+          }
+        },
+        "x-client-raw-error-media-type": "application/json",
+        "x-client-raw-error-schema": {
+          "$ref": "#/components/schemas/CreateFunctionV2Run409Response"
+        },
+        "x-client-original-error-schema": {
+          "$ref": "#/components/schemas/CreateFunctionV2Run409Response"
         }
       },
       "GetSdkAppsBySdkAppNameBySdkAppVersionSource403ResponseSchemaError": {
@@ -201440,21 +201568,6 @@
       "description": "Human-readable or structured error details."
     },
     "CreateFunctionV2Run404ResponseDetail": {
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "object"
-        },
-        {
-          "type": "array",
-          "items": {}
-        }
-      ],
-      "description": "Human-readable or structured error details."
-    },
-    "CreateFunctionV2Run409ResponseDetail": {
       "oneOf": [
         {
           "type": "string"
