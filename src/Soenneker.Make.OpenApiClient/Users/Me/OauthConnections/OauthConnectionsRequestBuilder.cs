@@ -47,7 +47,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.OauthConnections
         {
         }
         /// <summary>
-        /// Gets the OAuth connections for the currently authenticated user.
+        /// Gets the OAuth connections for the currently authenticated user.Connections that aren&apos;t used for 90 days are removed automatically and are no longer listed. To use the appagain, the user connects it again.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOAuthConnections200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace Soenneker.Make.OpenApiClient.Users.Me.OauthConnections
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOAuthConnections200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetUsersMeOAuthConnections200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Gets the OAuth connections for the currently authenticated user.
+        /// Gets the OAuth connections for the currently authenticated user.Connections that aren&apos;t used for 90 days are removed automatically and are no longer listed. To use the appagain, the user connects it again.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

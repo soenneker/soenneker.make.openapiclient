@@ -153,7 +153,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string PackageName { get => _explicitNullValuePackageName; set { _explicitNullValuePackageName = value; AdditionalData?.Remove("packageName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packageName"); else _explicitNullProperties?.Remove("packageName"); } }
         private string _explicitNullValuePackageName = default!;
 #endif
-        /// <summary>Scenarios that use this connection. Only returned by `GET /connections`.</summary>
+        /// <summary>Scenarios that use this connection, including scenarios triggered by a webhook that depends on it. Only returned by `GET /connections`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Make.OpenApiClient.Models.PatchConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem>? ScenarioUsages { get => _explicitNullValueScenarioUsages; set { _explicitNullValueScenarioUsages = value; AdditionalData?.Remove("scenarioUsages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarioUsages"); else _explicitNullProperties?.Remove("scenarioUsages"); } }

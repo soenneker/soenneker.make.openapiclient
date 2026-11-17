@@ -62333,7 +62333,7 @@
           "Users / OAuth connections"
         ],
         "summary": "List OAuth connections",
-        "description": "Gets the OAuth connections for the currently authenticated user.",
+        "description": "Gets the OAuth connections for the currently authenticated user.\n\nConnections that aren\u0027t used for 90 days are removed automatically and are no longer listed. To use the app\nagain, the user connects it again.",
         "operationId": "GetUsersMeOAuthConnections",
         "responses": {
           "200": {
@@ -114877,7 +114877,7 @@
             "items": {
               "$ref": "#/components/schemas/GetConnections200ResponseConnectionsItemScenarioUsagesItem"
             },
-            "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+            "description": "Scenarios that use this connection, including scenarios triggered by a webhook that depends on it. Only returned by \u0060GET /connections\u0060."
           },
           "hookUsages": {
             "type": "array",
@@ -114952,7 +114952,7 @@
             "items": {
               "$ref": "#/components/schemas/PostConnections200ResponseConnectionScenarioUsagesItem"
             },
-            "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+            "description": "Scenarios that use this connection, including scenarios triggered by a webhook that depends on it. Only returned by \u0060GET /connections\u0060."
           },
           "hookUsages": {
             "type": "array",
@@ -115027,7 +115027,7 @@
             "items": {
               "$ref": "#/components/schemas/GetConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem"
             },
-            "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+            "description": "Scenarios that use this connection, including scenarios triggered by a webhook that depends on it. Only returned by \u0060GET /connections\u0060."
           },
           "hookUsages": {
             "type": "array",
@@ -115108,7 +115108,7 @@
             "items": {
               "$ref": "#/components/schemas/PatchConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem"
             },
-            "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+            "description": "Scenarios that use this connection, including scenarios triggered by a webhook that depends on it. Only returned by \u0060GET /connections\u0060."
           },
           "hookUsages": {
             "type": "array",
@@ -180807,7 +180807,7 @@
           "items": {
             "$ref": "#/components/schemas/ConnectionScenarioUsagesItem"
           },
-          "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+          "description": "Scenarios that use this connection, including scenarios triggered by a webhook that depends on it. Only returned by \u0060GET /connections\u0060."
         },
         "hookUsages": {
           "type": "array",
@@ -180882,7 +180882,7 @@
           "items": {
             "$ref": "#/components/schemas/ConnectionAllAllOf1ScenarioUsagesItem"
           },
-          "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+          "description": "Scenarios that use this connection, including scenarios triggered by a webhook that depends on it. Only returned by \u0060GET /connections\u0060."
         },
         "hookUsages": {
           "type": "array",
@@ -183726,7 +183726,7 @@
           "items": {
             "$ref": "#/components/schemas/ConnectionAllAllOf1ScenarioUsagesItem"
           },
-          "description": "Scenarios that use this connection. Only returned by \u0060GET /connections\u0060."
+          "description": "Scenarios that use this connection, including scenarios triggered by a webhook that depends on it. Only returned by \u0060GET /connections\u0060."
         },
         "hookUsages": {
           "type": "array",
