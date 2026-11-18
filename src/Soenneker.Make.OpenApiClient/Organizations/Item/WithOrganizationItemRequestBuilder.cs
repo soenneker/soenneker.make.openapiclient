@@ -15,6 +15,7 @@ using Soenneker.Make.OpenApiClient.Organizations.Item.ManagedOrganizations;
 using Soenneker.Make.OpenApiClient.Organizations.Item.ManagedOrganizationsConsumption;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Otel;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Payments;
+using Soenneker.Make.OpenApiClient.Organizations.Item.Policies;
 using Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings;
 using Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios;
 using Soenneker.Make.OpenApiClient.Organizations.Item.SsoCertificates;
@@ -94,6 +95,11 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.Payments.PaymentsRequestBuilder Payments
         {
             get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.Payments.PaymentsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The policies property</summary>
+        public global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.PoliciesRequestBuilder Policies
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.PoliciesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The privateSpacesSettings property</summary>
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.PrivateSpacesSettings.PrivateSpacesSettingsRequestBuilder PrivateSpacesSettings

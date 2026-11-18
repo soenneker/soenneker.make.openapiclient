@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Affiliate.CommissionInfo;
 using Soenneker.Make.OpenApiClient.Affiliate.Commissions;
+using Soenneker.Make.OpenApiClient.Affiliate.Partner;
 using Soenneker.Make.OpenApiClient.Affiliate.PartnerRegister;
 using Soenneker.Make.OpenApiClient.Affiliate.PartnerSettings;
 using Soenneker.Make.OpenApiClient.Affiliate.PayoutRequest;
@@ -30,6 +31,11 @@ namespace Soenneker.Make.OpenApiClient.Affiliate
         public global::Soenneker.Make.OpenApiClient.Affiliate.Commissions.CommissionsRequestBuilder Commissions
         {
             get => new global::Soenneker.Make.OpenApiClient.Affiliate.Commissions.CommissionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The partner property</summary>
+        public global::Soenneker.Make.OpenApiClient.Affiliate.Partner.PartnerRequestBuilder Partner
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Affiliate.Partner.PartnerRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The partnerRegister property</summary>
         public global::Soenneker.Make.OpenApiClient.Affiliate.PartnerRegister.PartnerRegisterRequestBuilder PartnerRegister

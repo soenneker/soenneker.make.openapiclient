@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "currencies", n => { Currencies = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetAffiliatePartnerRegister200ResponseCurrenciesItem>(global::Soenneker.Make.OpenApiClient.Models.GetAffiliatePartnerRegister200ResponseCurrenciesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "partnerCode", n => { PartnerCode = n.GetStringValue(); } },

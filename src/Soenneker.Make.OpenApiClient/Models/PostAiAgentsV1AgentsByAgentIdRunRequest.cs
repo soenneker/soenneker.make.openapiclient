@@ -94,7 +94,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "callbackUrl", n => { CallbackUrl = n.GetStringValue(); } },
                 { "config", n => { Config = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunRequestConfig>(global::Soenneker.Make.OpenApiClient.Models.PostAiAgentsV1AgentsByAgentIdRunRequestConfig.CreateFromDiscriminatorValue); } },

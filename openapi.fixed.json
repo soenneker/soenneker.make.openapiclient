@@ -7804,7 +7804,7 @@
           "Affiliate"
         ],
         "summary": "Get partner settings",
-        "description": "Returns the payout settings of the user\u0027s affiliate partner. \u0060payoutMethod\u0060 says which settings apply.\n\n- \u0060wise\u0060: \u0060paypalMeLink\u0060, \u0060partnerType\u0060 and \u0060currency\u0060 can be changed with \u0060POST /affiliate/partner-settings\u0060;\n  \u0060currencies\u0060 lists the allowed currencies.\n- \u0060stripe\u0060: payout details are managed in Stripe, see \u0060POST /affiliate/recipient/onboarding-link\u0060;\n  \u0060stripeRecipientStatus\u0060 is the state of the Stripe payout recipient.\n",
+        "description": "Returns the payout settings of the user\u0027s affiliate partner. \u0060payoutMethod\u0060 says which settings apply.\n\n- \u0060wise\u0060: \u0060paypalMeLink\u0060, \u0060partnerType\u0060 and \u0060currency\u0060 can be changed with \u0060POST /affiliate/partner-settings\u0060;\n  \u0060currencies\u0060 lists the allowed currencies.\n- \u0060stripe\u0060: payout details are managed in Stripe, see \u0060POST /affiliate/recipient/onboarding-link\u0060;\n  \u0060stripeRecipientStatus\u0060 is the state of the Stripe payout recipient.\n\nThis endpoint can be remove once the \u0060wise\u0060 partner is deprecated and all partner are migrated to Stripe.\n",
         "operationId": "GetAffiliatePartnerSettings",
         "responses": {
           "200": {
@@ -7933,6 +7933,70 @@
           {
             "token": [
               "user:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/affiliate/partner": {
+      "get": {
+        "tags": [
+          "Affiliate"
+        ],
+        "summary": "Get partner",
+        "description": "Returns the user\u0027s affiliate partner, mainly the status of its Stripe payout recipient. Fields the partner has\nnot filled in are left out.\n\nFor \u0060stripe\u0060 partners, \u0060stripeRecipientStatus\u0060 is the state of the Stripe payout recipient; payout details are\nmanaged in Stripe, see \u0060POST /affiliate/recipient/onboarding-link\u0060.\n",
+        "operationId": "GetAffiliatePartner",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAffiliatePartner200Response"
+                },
+                "examples": {
+                  "stripe": {
+                    "value": {
+                      "payoutMethod": "stripe",
+                      "partnerType": "Business",
+                      "stripeRecipientStatus": "pending"
+                    }
+                  },
+                  "wise": {
+                    "value": {
+                      "payoutMethod": "wise",
+                      "partnerType": "Person"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The user is not an affiliate partner.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAffiliatePartner404Response"
+                },
+                "examples": {
+                  "not-a-partner": {
+                    "value": {
+                      "message": "Resource not found",
+                      "code": "SC404",
+                      "detail": "Affiliate partner not found"
+                    }
+                  }
+                },
+                "x-schema-inferred-from-examples": true
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "user:read"
             ]
           }
         ]
@@ -31712,11 +31776,13 @@
                       "type": 1
                     }
                   ],
-                  "userUnreadNotifications": 4,
+                  "hasUnreadNotifications": true,
+                  "userUnreadNotifications": 2,
                   "userZoneNotifications": [
                     {
                       "imtZoneId": 1,
-                      "unreadNotifications": 4
+                      "hasUnreadNotifications": true,
+                      "unreadNotifications": 2
                     }
                   ],
                   "pg": {
@@ -37565,6 +37631,216 @@
             }
           }
         }
+      }
+    },
+    "/organizations/{organizationId}/policies/apps": {
+      "get": {
+        "tags": [
+          "Organizations"
+        ],
+        "summary": "List organization app policies",
+        "description": "Returns the organization\u0027s app policies as policy-manager stores them. Version 1 keeps at most one policy per organization, so the list holds zero or one item. A policy is a mode and a list of app keys: an \u0060allowlist\u0060 allows only the named apps, a \u0060blocklist\u0060 blocks only the named apps. Each app carries how many of the organization\u0027s active scenarios use it. Requires the \u0060app-governance-be\u0060 feature flag for the organization, the \u0060hasAppPolicies\u0060 license parameter and the \u0060organization view\u0060 permission. When policy-manager cannot be reached the request fails with 503, when it refuses the request with 502, and nothing is assumed about the policy.",
+        "operationId": "GetOrganizationsByOrganizationIdPoliciesApps",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "The organization whose app policy is read.",
+            "required": true,
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "allowlist": {
+                "value": 12345
+              },
+              "blocklist": {
+                "value": 12345
+              },
+              "none": {
+                "value": 12345
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The organization\u0027s app policies.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdPoliciesApps200Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "appPolicies": [
+                        {
+                          "id": "0192f3a1-7c2e-7d3a-9b1f-3e5a8c4d2b10",
+                          "mode": "allowlist",
+                          "apps": [
+                            {
+                              "name": "slack",
+                              "scenarioCount": 12
+                            },
+                            {
+                              "name": "app#jotform",
+                              "scenarioCount": 0
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "blocklist": {
+                    "value": {
+                      "appPolicies": [
+                        {
+                          "id": "0192f3a1-7c2e-7d3a-9b1f-3e5a8c4d2b11",
+                          "mode": "blocklist",
+                          "apps": [
+                            {
+                              "name": "openai",
+                              "scenarioCount": 3
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "none": {
+                    "value": {
+                      "appPolicies": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The \u0060app-governance-be\u0060 feature flag is off for the organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdPoliciesApps400Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "IM903",
+                      "message": "Feature flag is disabled",
+                      "detail": "App governance is not enabled for this organization."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The caller is not logged in.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdPoliciesApps401Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "IM015",
+                      "message": "User is not logged in."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The organization\u0027s license lacks \u0060hasAppPolicies\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdPoliciesApps402Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "SC402",
+                      "message": "Subscription required",
+                      "detail": "You need an Enterprise plan to use app policies."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is not a member of the organization or lacks the required organization permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdPoliciesApps403Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "IM002",
+                      "message": "Insufficient rights",
+                      "detail": "organization permission \u0022organization view\u0022 is needed."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "policy-manager answered with something other than a list of policies, or refused the request (a 4xx).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdPoliciesApps502Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "SC502",
+                      "message": "Bad Gateway",
+                      "detail": "Unexpected policy manager response."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "policy-manager is not configured in this zone, did not answer, or answered with a 5xx.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdPoliciesApps503Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "SC503",
+                      "message": "Service Unavailable",
+                      "detail": "Policy manager request failed."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "organizations:read"
+            ]
+          }
+        ],
+        "x-internal": true
       }
     },
     "/organizations/{organizationId}/tfa-enforcement": {
@@ -64465,7 +64741,7 @@
           "Users / Unread notifications"
         ],
         "summary": "Unread notifications",
-        "description": "Gets the number of unread notifications for the currently authenticated user.",
+        "description": "Gets whether the currently authenticated user has unread notifications in any of their zones. The numeric \u0060userUnreadNotifications\u0060 is deprecated and will be removed; use \u0060hasUnreadNotifications\u0060.",
         "operationId": "GetUsersUnreadNotifications",
         "responses": {
           "200": {
@@ -64476,6 +64752,7 @@
                   "$ref": "#/components/schemas/GetUsersUnreadNotifications200Response"
                 },
                 "example": {
+                  "hasUnreadNotifications": true,
                   "userUnreadNotifications": 2
                 }
               }
@@ -87952,6 +88229,37 @@
           }
         }
       },
+      "GetAffiliatePartner200Response": {
+        "required": [
+          "payoutMethod"
+        ],
+        "type": "object",
+        "properties": {
+          "payoutMethod": {
+            "$ref": "#/components/schemas/GetAffiliatePartner200ResponsePayoutMethod"
+          },
+          "partnerType": {
+            "$ref": "#/components/schemas/GetAffiliatePartner200ResponsePartnerType"
+          },
+          "stripeRecipientStatus": {
+            "$ref": "#/components/schemas/GetAffiliatePartner200ResponseStripeRecipientStatus"
+          }
+        }
+      },
+      "GetAffiliatePartner404Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
       "GetAffiliateStats200Response": {
         "type": "object",
         "properties": {
@@ -94930,14 +95238,21 @@
               "$ref": "#/components/schemas/GetNotifications200ResponseNotificationsItem"
             }
           },
+          "hasUnreadNotifications": {
+            "type": "boolean",
+            "description": "Whether the user has at least one unread notification in any of their zones."
+          },
           "userUnreadNotifications": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The number of unread notifications across the user\u0027s zones. Deprecated, use \u0060hasUnreadNotifications\u0060.",
+            "deprecated": true
           },
           "userZoneNotifications": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/GetNotifications200ResponseUserZoneNotificationsItem"
-            }
+            },
+            "description": "The user\u0027s zones and whether each of them has unread notifications. Returned only by zone instances."
           },
           "pg": {
             "$ref": "#/components/schemas/GetNotifications200ResponsePg"
@@ -97872,6 +98187,128 @@
             "items": {
               "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdFeatureControls406ResponseMetadataItem"
             }
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdPoliciesApps200Response": {
+        "required": [
+          "appPolicies"
+        ],
+        "type": "object",
+        "properties": {
+          "appPolicies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdPoliciesApps200ResponseAppPoliciesItem"
+            }
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdPoliciesApps400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdPoliciesApps401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdPoliciesApps402Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdPoliciesApps403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdPoliciesApps502Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdPoliciesApps503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
           }
         }
       },
@@ -104508,14 +104945,14 @@
       "GetUsersUnreadNotifications200Response": {
         "type": "object",
         "properties": {
-          "userUnreadNotifications": {
-            "type": "integer"
+          "hasUnreadNotifications": {
+            "type": "boolean",
+            "description": "Whether the user has at least one unread notification in any of their zones."
           },
-          "userZoneUnreadNotifications": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem"
-            }
+          "userUnreadNotifications": {
+            "type": "integer",
+            "description": "The number of unread notifications across the user\u0027s zones. Deprecated, use \u0060hasUnreadNotifications\u0060.",
+            "deprecated": true
           }
         }
       },
@@ -120980,8 +121417,14 @@
           "imtZoneId": {
             "type": "integer"
           },
+          "hasUnreadNotifications": {
+            "type": "boolean",
+            "description": "Whether the user has at least one unread notification in this zone."
+          },
           "unreadNotifications": {
-            "type": "integer"
+            "type": "integer",
+            "description": "The number of unread notifications in this zone. Deprecated, use \u0060hasUnreadNotifications\u0060.",
+            "deprecated": true
           }
         }
       },
@@ -123309,6 +123752,31 @@
           },
           "data": {
             "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdFeatureControls406ResponseMetadataItemData"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdPoliciesApps200ResponseAppPoliciesItem": {
+        "required": [
+          "id",
+          "mode",
+          "apps"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifies this version of the policy; a change to the mode or the apps yields a new id.",
+            "format": "uuid"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdPoliciesApps200ResponseAppPoliciesItemMode"
+          },
+          "apps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdPoliciesApps200ResponseAppPoliciesItemAppsItem"
+            },
+            "description": "The apps the list names, in the order they were written, each with its scenario usage."
           }
         }
       },
@@ -132464,17 +132932,6 @@
           }
         }
       },
-      "GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem": {
-        "type": "object",
-        "properties": {
-          "zoneId": {
-            "type": "integer"
-          },
-          "unreadNotifications": {
-            "type": "integer"
-          }
-        }
-      },
       "GetUsersRedirectAction200ResponseRedirectAction": {
         "type": "object",
         "properties": {
@@ -138839,6 +139296,27 @@
           },
           "bodyText": {
             "type": "string"
+          }
+        }
+      },
+      "GetOrganizationsByOrganizationIdPoliciesApps200ResponseAppPoliciesItemAppsItem": {
+        "required": [
+          "name",
+          "scenarioCount"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "minLength": 1,
+            "type": "string",
+            "description": "A canonical app key, \u0060slack\u0060 for a native app or \u0060app#myapp\u0060 for an SDK app.",
+            "example": "slack"
+          },
+          "scenarioCount": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "How many of the organization\u0027s active scenarios use the app; inactive, invalid and deleted scenarios do not count.",
+            "example": 12
           }
         }
       },
@@ -154330,6 +154808,71 @@
         ],
         "type": "string"
       },
+      "GetAffiliatePartner200ResponsePayoutMethod": {
+        "enum": [
+          "wise",
+          "stripe"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetAffiliatePartner200ResponsePayoutMethod",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "wise",
+              "name": "Wise"
+            },
+            {
+              "value": "stripe",
+              "name": "Stripe"
+            }
+          ]
+        }
+      },
+      "GetAffiliatePartner200ResponsePartnerType": {
+        "enum": [
+          "Person",
+          "Business"
+        ],
+        "type": "string"
+      },
+      "GetAffiliatePartner200ResponseStripeRecipientStatus": {
+        "enum": [
+          "pending",
+          "active",
+          "restricted",
+          "unsupported",
+          "rejected"
+        ],
+        "type": "string",
+        "description": "State of the Stripe payout recipient. Only for \u0060stripe\u0060.",
+        "x-ms-enum": {
+          "name": "GetAffiliatePartner200ResponseStripeRecipientStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "pending",
+              "name": "Pending"
+            },
+            {
+              "value": "active",
+              "name": "Active"
+            },
+            {
+              "value": "restricted",
+              "name": "Restricted"
+            },
+            {
+              "value": "unsupported",
+              "name": "Unsupported"
+            },
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            }
+          ]
+        }
+      },
       "PostAffiliateRecipientOnboardingLinkRequestUseCase": {
         "enum": [
           "account_onboarding",
@@ -160658,6 +161201,28 @@
         ],
         "type": "integer",
         "description": "The execution status. \u00601\u0060 is for success, \u00602\u0060 is for warning, and \u00603\u0060 is for error."
+      },
+      "GetOrganizationsByOrganizationIdPoliciesApps200ResponseAppPoliciesItemMode": {
+        "enum": [
+          "allowlist",
+          "blocklist"
+        ],
+        "type": "string",
+        "description": "How the policy\u0027s list is read: an \u0060allowlist\u0060 allows the named apps and blocks every other app, a \u0060blocklist\u0060 blocks the named apps and allows every other app.",
+        "x-ms-enum": {
+          "name": "GetOrganizationsByOrganizationIdPoliciesApps200ResponseAppPoliciesItemMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "allowlist",
+              "name": "Allowlist"
+            },
+            {
+              "value": "blocklist",
+              "name": "Blocklist"
+            }
+          ]
+        }
       },
       "GetScenarios200ResponseScenariosItemType": {
         "enum": [

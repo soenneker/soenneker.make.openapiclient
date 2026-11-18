@@ -34,7 +34,7 @@ namespace Soenneker.Make.OpenApiClient.Affiliate.PartnerSettings
         {
         }
         /// <summary>
-        /// Returns the payout settings of the user&apos;s affiliate partner. `payoutMethod` says which settings apply.- `wise`: `paypalMeLink`, `partnerType` and `currency` can be changed with `POST /affiliate/partner-settings`;  `currencies` lists the allowed currencies.- `stripe`: payout details are managed in Stripe, see `POST /affiliate/recipient/onboarding-link`;  `stripeRecipientStatus` is the state of the Stripe payout recipient.
+        /// Returns the payout settings of the user&apos;s affiliate partner. `payoutMethod` says which settings apply.- `wise`: `paypalMeLink`, `partnerType` and `currency` can be changed with `POST /affiliate/partner-settings`;  `currencies` lists the allowed currencies.- `stripe`: payout details are managed in Stripe, see `POST /affiliate/recipient/onboarding-link`;  `stripeRecipientStatus` is the state of the Stripe payout recipient.This endpoint can be remove once the `wise` partner is deprecated and all partner are migrated to Stripe.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetAffiliatePartnerSettings200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -86,7 +86,7 @@ namespace Soenneker.Make.OpenApiClient.Affiliate.PartnerSettings
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostAffiliatePartnerSettings200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostAffiliatePartnerSettings200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the payout settings of the user&apos;s affiliate partner. `payoutMethod` says which settings apply.- `wise`: `paypalMeLink`, `partnerType` and `currency` can be changed with `POST /affiliate/partner-settings`;  `currencies` lists the allowed currencies.- `stripe`: payout details are managed in Stripe, see `POST /affiliate/recipient/onboarding-link`;  `stripeRecipientStatus` is the state of the Stripe payout recipient.
+        /// Returns the payout settings of the user&apos;s affiliate partner. `payoutMethod` says which settings apply.- `wise`: `paypalMeLink`, `partnerType` and `currency` can be changed with `POST /affiliate/partner-settings`;  `currencies` lists the allowed currencies.- `stripe`: payout details are managed in Stripe, see `POST /affiliate/recipient/onboarding-link`;  `stripeRecipientStatus` is the state of the Stripe payout recipient.This endpoint can be remove once the `wise` partner is deprecated and all partner are migrated to Stripe.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

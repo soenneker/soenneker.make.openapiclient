@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "buttons", n => { Buttons = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseButtonsItem>(global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseButtonsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "config", n => { Config = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseConfigItem>(global::Soenneker.Make.OpenApiClient.Models.GetKeyCreateForm200ResponseConfigItem.CreateFromDiscriminatorValue)?.AsList(); } },

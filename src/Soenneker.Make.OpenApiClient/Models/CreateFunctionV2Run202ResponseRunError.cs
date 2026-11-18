@@ -69,7 +69,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "category", n => { Category = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.CreateFunctionV2Run202ResponseRunErrorCategory>(); } },
                 { "code", n => { Code = n.GetStringValue(); } },

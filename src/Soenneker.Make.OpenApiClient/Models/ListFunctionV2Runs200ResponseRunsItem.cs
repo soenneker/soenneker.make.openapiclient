@@ -147,7 +147,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(15)
             {
                 { "attemptCount", n => { AttemptCount = n.GetIntValue(); } },
                 { "caller", n => { Caller = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemCaller>(global::Soenneker.Make.OpenApiClient.Models.ListFunctionV2Runs200ResponseRunsItemCaller.CreateFromDiscriminatorValue); } },

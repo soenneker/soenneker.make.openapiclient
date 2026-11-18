@@ -78,7 +78,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "actor", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostSdkAppsBySdkAppNameBySdkAppVersionAppReviewStartRereview200ResponseReviewEventsItemActor>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueActor = default; _explicitNullProperties?.Remove("actor"); AdditionalData["actor"] = unknown; } else { Actor = parsed; AdditionalData.Remove("actor"); } } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },

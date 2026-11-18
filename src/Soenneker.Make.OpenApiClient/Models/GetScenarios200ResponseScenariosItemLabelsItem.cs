@@ -103,7 +103,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(9)
             {
                 { "colour", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponseScenariosItemLabelsItemColour>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueColour = default; _explicitNullProperties?.Remove("colour"); AdditionalData["colour"] = unknown; } else { Colour = parsed; AdditionalData.Remove("colour"); } } },
                 { "created", n => { Created = n.GetDateTimeOffsetValue(); } },

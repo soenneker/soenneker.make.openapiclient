@@ -71,7 +71,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "model", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemModel>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueModel = default; _explicitNullProperties?.Remove("model"); AdditionalData["model"] = unknown; } else { Model = parsed; AdditionalData.Remove("model"); } } },
                 { "provider", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.GetAiAgentsV1LlmProvidersByProviderIdModels200ResponseItemProvider>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueProvider = default; _explicitNullProperties?.Remove("provider"); AdditionalData["provider"] = unknown; } else { Provider = parsed; AdditionalData.Remove("provider"); } } },

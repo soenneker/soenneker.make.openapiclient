@@ -116,7 +116,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(6)
             {
                 { "body", n => { Body = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseTokenBody>(global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseTokenBody.CreateFromDiscriminatorValue); } },
                 { "log", n => { Log = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseTokenLog>(global::Soenneker.Make.OpenApiClient.Models.GetSdkAppsConnectionsBySdkConnectionNameBySdkConnectionSection200ResponseTokenLog.CreateFromDiscriminatorValue); } },

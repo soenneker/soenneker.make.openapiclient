@@ -17,27 +17,21 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
+            if (parseNode.GetChildNode("hasUnreadNotifications") is null) { _explicitNullValueHasUnreadNotifications = default!; _explicitNullProperties?.Remove("hasUnreadNotifications"); }
+            else if (parseNode.GetChildNode("hasUnreadNotifications") is { } nullNodeHasUnreadNotifications && nullNodeHasUnreadNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasUnreadNotifications = null;
             if (parseNode.GetChildNode("userUnreadNotifications") is null) { _explicitNullValueUserUnreadNotifications = default!; _explicitNullProperties?.Remove("userUnreadNotifications"); }
             else if (parseNode.GetChildNode("userUnreadNotifications") is { } nullNodeUserUnreadNotifications && nullNodeUserUnreadNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserUnreadNotifications = null;
-            if (parseNode.GetChildNode("userZoneUnreadNotifications") is null) { _explicitNullValueUserZoneUnreadNotifications = default!; _explicitNullProperties?.Remove("userZoneUnreadNotifications"); }
-            else if (parseNode.GetChildNode("userZoneUnreadNotifications") is { } nullNodeUserZoneUnreadNotifications && nullNodeUserZoneUnreadNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserZoneUnreadNotifications = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The userUnreadNotifications property</summary>
+        /// <summary>Whether the user has at least one unread notification in any of their zones.</summary>
+        public bool? HasUnreadNotifications { get => _explicitNullValueHasUnreadNotifications; set { _explicitNullValueHasUnreadNotifications = value; AdditionalData?.Remove("hasUnreadNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasUnreadNotifications"); else _explicitNullProperties?.Remove("hasUnreadNotifications"); } }
+        private bool? _explicitNullValueHasUnreadNotifications = default!;
+        /// <summary>The number of unread notifications across the user&apos;s zones. Deprecated, use `hasUnreadNotifications`.</summary>
+        [Obsolete("")]
         public int? UserUnreadNotifications { get => _explicitNullValueUserUnreadNotifications; set { _explicitNullValueUserUnreadNotifications = value; AdditionalData?.Remove("userUnreadNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userUnreadNotifications"); else _explicitNullProperties?.Remove("userUnreadNotifications"); } }
         private int? _explicitNullValueUserUnreadNotifications = default!;
-        /// <summary>The userZoneUnreadNotifications property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem>? UserZoneUnreadNotifications { get => _explicitNullValueUserZoneUnreadNotifications; set { _explicitNullValueUserZoneUnreadNotifications = value; AdditionalData?.Remove("userZoneUnreadNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userZoneUnreadNotifications"); else _explicitNullProperties?.Remove("userZoneUnreadNotifications"); } }
-        private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem>? _explicitNullValueUserZoneUnreadNotifications = default!;
-#nullable restore
-#else
-        public List<global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem> UserZoneUnreadNotifications { get => _explicitNullValueUserZoneUnreadNotifications; set { _explicitNullValueUserZoneUnreadNotifications = value; AdditionalData?.Remove("userZoneUnreadNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userZoneUnreadNotifications"); else _explicitNullProperties?.Remove("userZoneUnreadNotifications"); } }
-        private List<global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem> _explicitNullValueUserZoneUnreadNotifications = default!;
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200Response"/> and sets the default values.
         /// </summary>
@@ -63,8 +57,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "hasUnreadNotifications", n => { HasUnreadNotifications = n.GetBoolValue(); } },
                 { "userUnreadNotifications", n => { UserUnreadNotifications = n.GetIntValue(); } },
-                { "userZoneUnreadNotifications", n => { UserZoneUnreadNotifications = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem>(global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -74,8 +68,8 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("hasUnreadNotifications", HasUnreadNotifications);
             writer.WriteIntValue("userUnreadNotifications", UserUnreadNotifications);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetUsersUnreadNotifications200ResponseUserZoneUnreadNotificationsItem>("userZoneUnreadNotifications", UserZoneUnreadNotifications);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }

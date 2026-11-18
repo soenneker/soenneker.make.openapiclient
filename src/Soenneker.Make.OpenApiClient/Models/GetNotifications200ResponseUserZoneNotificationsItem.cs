@@ -17,6 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
+            if (parseNode.GetChildNode("hasUnreadNotifications") is null) { _explicitNullValueHasUnreadNotifications = default!; _explicitNullProperties?.Remove("hasUnreadNotifications"); }
+            else if (parseNode.GetChildNode("hasUnreadNotifications") is { } nullNodeHasUnreadNotifications && nullNodeHasUnreadNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasUnreadNotifications = null;
             if (parseNode.GetChildNode("imtZoneId") is null) { _explicitNullValueImtZoneId = default!; _explicitNullProperties?.Remove("imtZoneId"); }
             else if (parseNode.GetChildNode("imtZoneId") is { } nullNodeImtZoneId && nullNodeImtZoneId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ImtZoneId = null;
             if (parseNode.GetChildNode("unreadNotifications") is null) { _explicitNullValueUnreadNotifications = default!; _explicitNullProperties?.Remove("unreadNotifications"); }
@@ -25,10 +27,14 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Whether the user has at least one unread notification in this zone.</summary>
+        public bool? HasUnreadNotifications { get => _explicitNullValueHasUnreadNotifications; set { _explicitNullValueHasUnreadNotifications = value; AdditionalData?.Remove("hasUnreadNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasUnreadNotifications"); else _explicitNullProperties?.Remove("hasUnreadNotifications"); } }
+        private bool? _explicitNullValueHasUnreadNotifications = default!;
         /// <summary>The imtZoneId property</summary>
         public int? ImtZoneId { get => _explicitNullValueImtZoneId; set { _explicitNullValueImtZoneId = value; AdditionalData?.Remove("imtZoneId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("imtZoneId"); else _explicitNullProperties?.Remove("imtZoneId"); } }
         private int? _explicitNullValueImtZoneId = default!;
-        /// <summary>The unreadNotifications property</summary>
+        /// <summary>The number of unread notifications in this zone. Deprecated, use `hasUnreadNotifications`.</summary>
+        [Obsolete("")]
         public int? UnreadNotifications { get => _explicitNullValueUnreadNotifications; set { _explicitNullValueUnreadNotifications = value; AdditionalData?.Remove("unreadNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unreadNotifications"); else _explicitNullProperties?.Remove("unreadNotifications"); } }
         private int? _explicitNullValueUnreadNotifications = default!;
         /// <summary>
@@ -56,6 +62,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "hasUnreadNotifications", n => { HasUnreadNotifications = n.GetBoolValue(); } },
                 { "imtZoneId", n => { ImtZoneId = n.GetIntValue(); } },
                 { "unreadNotifications", n => { UnreadNotifications = n.GetIntValue(); } },
             };
@@ -67,6 +74,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("hasUnreadNotifications", HasUnreadNotifications);
             writer.WriteIntValue("imtZoneId", ImtZoneId);
             writer.WriteIntValue("unreadNotifications", UnreadNotifications);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

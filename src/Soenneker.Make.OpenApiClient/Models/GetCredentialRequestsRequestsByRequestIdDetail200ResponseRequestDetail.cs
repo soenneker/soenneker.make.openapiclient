@@ -165,7 +165,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(17)
             {
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "credentials", n => { Credentials = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequestsByRequestIdDetail200ResponseRequestDetailCredentialsItem>(global::Soenneker.Make.OpenApiClient.Models.GetCredentialRequestsRequestsByRequestIdDetail200ResponseRequestDetailCredentialsItem.CreateFromDiscriminatorValue)?.AsList(); } },

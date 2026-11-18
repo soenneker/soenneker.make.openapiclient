@@ -95,7 +95,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(5)
             {
                 { "connections", n => { Connections = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2VersionRequestContentConnections>(global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2VersionRequestContentConnections.CreateFromDiscriminatorValue); } },
                 { "endpoints", n => { Endpoints = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2VersionRequestContentEndpointsItem>(global::Soenneker.Make.OpenApiClient.Models.PublishFunctionV2VersionRequestContentEndpointsItem.CreateFromDiscriminatorValue)?.AsList(); } },

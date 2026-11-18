@@ -17,6 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
+            if (parseNode.GetChildNode("hasUnreadNotifications") is null) { _explicitNullValueHasUnreadNotifications = default!; _explicitNullProperties?.Remove("hasUnreadNotifications"); }
+            else if (parseNode.GetChildNode("hasUnreadNotifications") is { } nullNodeHasUnreadNotifications && nullNodeHasUnreadNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasUnreadNotifications = null;
             if (parseNode.GetChildNode("notifications") is null) { _explicitNullValueNotifications = default!; _explicitNullProperties?.Remove("notifications"); }
             else if (parseNode.GetChildNode("notifications") is { } nullNodeNotifications && nullNodeNotifications.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Notifications = null;
             if (parseNode.GetChildNode("pg") is null) { _explicitNullValuePg = default!; _explicitNullProperties?.Remove("pg"); }
@@ -29,6 +31,9 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Whether the user has at least one unread notification in any of their zones.</summary>
+        public bool? HasUnreadNotifications { get => _explicitNullValueHasUnreadNotifications; set { _explicitNullValueHasUnreadNotifications = value; AdditionalData?.Remove("hasUnreadNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasUnreadNotifications"); else _explicitNullProperties?.Remove("hasUnreadNotifications"); } }
+        private bool? _explicitNullValueHasUnreadNotifications = default!;
         /// <summary>The notifications property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,10 +54,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         public global::Soenneker.Make.OpenApiClient.Models.GetNotifications200ResponsePg Pg { get => _explicitNullValuePg; set { _explicitNullValuePg = value; AdditionalData?.Remove("pg"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("pg"); else _explicitNullProperties?.Remove("pg"); } }
         private global::Soenneker.Make.OpenApiClient.Models.GetNotifications200ResponsePg _explicitNullValuePg = default!;
 #endif
-        /// <summary>The userUnreadNotifications property</summary>
+        /// <summary>The number of unread notifications across the user&apos;s zones. Deprecated, use `hasUnreadNotifications`.</summary>
+        [Obsolete("")]
         public int? UserUnreadNotifications { get => _explicitNullValueUserUnreadNotifications; set { _explicitNullValueUserUnreadNotifications = value; AdditionalData?.Remove("userUnreadNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userUnreadNotifications"); else _explicitNullProperties?.Remove("userUnreadNotifications"); } }
         private int? _explicitNullValueUserUnreadNotifications = default!;
-        /// <summary>The userZoneNotifications property</summary>
+        /// <summary>The user&apos;s zones and whether each of them has unread notifications. Returned only by zone instances.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Make.OpenApiClient.Models.GetNotifications200ResponseUserZoneNotificationsItem>? UserZoneNotifications { get => _explicitNullValueUserZoneNotifications; set { _explicitNullValueUserZoneNotifications = value; AdditionalData?.Remove("userZoneNotifications"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userZoneNotifications"); else _explicitNullProperties?.Remove("userZoneNotifications"); } }
@@ -85,8 +91,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(5)
             {
+                { "hasUnreadNotifications", n => { HasUnreadNotifications = n.GetBoolValue(); } },
                 { "notifications", n => { Notifications = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetNotifications200ResponseNotificationsItem>(global::Soenneker.Make.OpenApiClient.Models.GetNotifications200ResponseNotificationsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "pg", n => { Pg = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetNotifications200ResponsePg>(global::Soenneker.Make.OpenApiClient.Models.GetNotifications200ResponsePg.CreateFromDiscriminatorValue); } },
                 { "userUnreadNotifications", n => { UserUnreadNotifications = n.GetIntValue(); } },
@@ -100,6 +107,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("hasUnreadNotifications", HasUnreadNotifications);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetNotifications200ResponseNotificationsItem>("notifications", Notifications);
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetNotifications200ResponsePg>("pg", Pg);
             writer.WriteIntValue("userUnreadNotifications", UserUnreadNotifications);
