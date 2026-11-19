@@ -59361,7 +59361,8 @@
               "connections:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/teams/{teamId}/keys/{keyId}/access-list": {
@@ -59422,7 +59423,8 @@
               "keys:read"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/teams/{teamId}/connections/{connectionId}/access-list/users": {
@@ -59509,7 +59511,8 @@
               "connections:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/teams/{teamId}/keys/{keyId}/access-list/users": {
@@ -59596,7 +59599,8 @@
               "keys:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/teams/{teamId}/connections/{connectionId}/access-list/users/{userId}": {
@@ -59693,7 +59697,8 @@
               "connections:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "delete": {
         "tags": [
@@ -59759,7 +59764,8 @@
               "connections:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/teams/{teamId}/keys/{keyId}/access-list/users/{userId}": {
@@ -59856,7 +59862,8 @@
               "keys:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       },
       "delete": {
         "tags": [
@@ -59922,7 +59929,8 @@
               "keys:write"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/teams/{teamId}/locked-entities": {
