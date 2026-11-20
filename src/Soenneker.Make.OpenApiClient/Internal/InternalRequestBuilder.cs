@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Internal.Config;
+using Soenneker.Make.OpenApiClient.Internal.DataStoreDefinitions;
 using Soenneker.Make.OpenApiClient.Internal.DataStructures;
 using Soenneker.Make.OpenApiClient.Internal.Devices;
 using Soenneker.Make.OpenApiClient.Internal.EntityPlacements;
@@ -31,6 +32,11 @@ namespace Soenneker.Make.OpenApiClient.Internal
         public global::Soenneker.Make.OpenApiClient.Internal.Config.ConfigRequestBuilder Config
         {
             get => new global::Soenneker.Make.OpenApiClient.Internal.Config.ConfigRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The dataStoreDefinitions property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.DataStoreDefinitions.DataStoreDefinitionsRequestBuilder DataStoreDefinitions
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.DataStoreDefinitions.DataStoreDefinitionsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The dataStructures property</summary>
         public global::Soenneker.Make.OpenApiClient.Internal.DataStructures.DataStructuresRequestBuilder DataStructures

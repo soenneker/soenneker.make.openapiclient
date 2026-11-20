@@ -36,5 +36,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         #pragma warning disable CS1591
         ScenarioUsages,
         #pragma warning restore CS1591
+        [EnumMember(Value = "hookUsages")]
+        #pragma warning disable CS1591
+        HookUsages,
+        #pragma warning restore CS1591
     }
 }

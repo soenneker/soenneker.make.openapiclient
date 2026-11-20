@@ -33,6 +33,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("gone") is { } nullNodeGone && nullNodeGone.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Gone = null;
             if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
             else if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("keys") is null) { _explicitNullValueKeys = default!; _explicitNullProperties?.Remove("keys"); }
+            else if (parseNode.GetChildNode("keys") is { } nullNodeKeys && nullNodeKeys.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Keys = null;
             if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
             else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
             if (parseNode.GetChildNode("packageName") is null) { _explicitNullValuePackageName = default!; _explicitNullProperties?.Remove("packageName"); }
@@ -104,6 +106,16 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The id property</summary>
         public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private int? _explicitNullValueId = default!;
+        /// <summary>Keys the webhook uses for API key authentication; empty when it has none. Only returned by `GET /hooks`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHookKeysItem>? Keys { get => _explicitNullValueKeys; set { _explicitNullValueKeys = value; AdditionalData?.Remove("keys"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keys"); else _explicitNullProperties?.Remove("keys"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHookKeysItem>? _explicitNullValueKeys = default!;
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHookKeysItem> Keys { get => _explicitNullValueKeys; set { _explicitNullValueKeys = value; AdditionalData?.Remove("keys"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keys"); else _explicitNullProperties?.Remove("keys"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHookKeysItem> _explicitNullValueKeys = default!;
+#endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -209,7 +221,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(19)
+            return new Dictionary<string, Action<IParseNode>>(20)
             {
                 { "connectionId", n => { ConnectionId = n.GetIntValue(); } },
                 { "connectionName", n => { ConnectionName = n.GetStringValue(); } },
@@ -219,6 +231,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "flags", n => { Flags = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHookFlags>(global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHookFlags.CreateFromDiscriminatorValue); } },
                 { "gone", n => { Gone = n.GetBoolValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
+                { "keys", n => { Keys = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHookKeysItem>(global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHookKeysItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "packageName", n => { PackageName = n.GetStringValue(); } },
                 { "queueCount", n => { QueueCount = n.GetIntValue(); } },
@@ -247,6 +260,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHookFlags>("flags", Flags);
             writer.WriteBoolValue("gone", Gone);
             writer.WriteIntValue("id", Id);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchHooksByHookId200ResponseHookKeysItem>("keys", Keys);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("packageName", PackageName);
             writer.WriteIntValue("queueCount", QueueCount);

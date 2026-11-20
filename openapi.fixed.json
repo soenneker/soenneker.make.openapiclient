@@ -27045,7 +27045,13 @@
                       "scenarioId": 1,
                       "url": "https://local.make.cloud/wh/1gqnexkk1vwxg2wpj39kg30pzp6uhe7h",
                       "connectionId": null,
-                      "connectionName": null
+                      "connectionName": null,
+                      "keys": [
+                        {
+                          "id": 1,
+                          "name": "My API key"
+                        }
+                      ]
                     },
                     {
                       "id": 58,
@@ -27072,7 +27078,8 @@
                       "scenarioId": 112,
                       "url": "https://local.make.cloud/wh/d4ezzfwgyav7qaukv8dbh3l21eru0fld",
                       "connectionId": null,
-                      "connectionName": null
+                      "connectionName": null,
+                      "keys": []
                     }
                   ]
                 }
@@ -29679,6 +29686,111 @@
         "x-internal": true
       }
     },
+    "/internal/data-store-definitions": {
+      "get": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Internal - List data store definitions",
+        "description": "Lists the data stores of the zone with their data structures, for the Data Tables migration. Keyset-paged by data store ID, ascending: pass the last ID of a page as \u0060after\u0060 to get the next one. A page shorter than \u0060limit\u0060 is the last. ISC only; there is no permission check, and nothing is written.",
+        "operationId": "GetInternalDataStoreDefinitions",
+        "parameters": [
+          {
+            "name": "after",
+            "in": "query",
+            "description": "Return only data stores with an ID greater than this one. Defaults to 0.",
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The page size.",
+            "schema": {
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer",
+              "default": 200
+            }
+          },
+          {
+            "name": "organizationId",
+            "in": "query",
+            "description": "Return only the data stores of this organization.",
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalDataStoreDefinitions200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "An invalid \u0060after\u0060, \u0060limit\u0060 or \u0060organizationId\u0060."
+          },
+          "401": {
+            "description": "Missing or invalid ISC authorization."
+          }
+        },
+        "x-internal": true
+      }
+    },
+    "/internal/data-store-definitions/{dataStoreId}": {
+      "get": {
+        "tags": [
+          "Internal"
+        ],
+        "summary": "Internal - Get a data store definition",
+        "description": "Returns one data store with its data structure, for the Data Tables migration. ISC only; there is no permission check, and nothing is written. The team-scoped, permission-checked variant is \u0060GET /data-stores/{dataStoreId}\u0060.",
+        "operationId": "GetInternalDataStoreDefinitionsByDataStoreId",
+        "parameters": [
+          {
+            "name": "dataStoreId",
+            "in": "path",
+            "description": "The data store ID.",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalDataStoreDefinitionsByDataStoreId200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The data store ID is not a positive integer."
+          },
+          "401": {
+            "description": "Missing or invalid ISC authorization."
+          },
+          "404": {
+            "description": "The data store does not exist (\u0060IM501\u0060)."
+          }
+        },
+        "x-internal": true
+      }
+    },
     "/internal/hooks/register": {
       "post": {
         "tags": [
@@ -30773,7 +30885,8 @@
                   "teamId",
                   "packageName",
                   "theme",
-                  "scenarioUsages"
+                  "scenarioUsages",
+                  "hookUsages"
                 ]
               }
             }
@@ -30821,6 +30934,12 @@
                               "id": 123,
                               "name": "My Scenario"
                             }
+                          ],
+                          "hookUsages": [
+                            {
+                              "id": 58,
+                              "name": "My webhook"
+                            }
                           ]
                         },
                         {
@@ -30830,7 +30949,8 @@
                           "teamId": 4,
                           "packageName": null,
                           "theme": "#007ee5",
-                          "scenarioUsages": []
+                          "scenarioUsages": [],
+                          "hookUsages": []
                         }
                       ]
                     }
@@ -94510,6 +94630,31 @@
           }
         }
       },
+      "GetInternalDataStoreDefinitions200Response": {
+        "required": [
+          "dataStores"
+        ],
+        "type": "object",
+        "properties": {
+          "dataStores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetInternalDataStoreDefinitions200ResponseDataStoresItem"
+            }
+          }
+        }
+      },
+      "GetInternalDataStoreDefinitionsByDataStoreId200Response": {
+        "required": [
+          "dataStore"
+        ],
+        "type": "object",
+        "properties": {
+          "dataStore": {
+            "$ref": "#/components/schemas/GetInternalDataStoreDefinitionsByDataStoreId200ResponseDataStore"
+          }
+        }
+      },
       "PostInternalHooksRegisterRequest": {
         "required": [
           "hookName",
@@ -119953,6 +120098,13 @@
             "type": "string",
             "description": "Name of the connection referenced by \u0060connectionId\u0060; \u0060null\u0060 when \u0060connectionId\u0060 is \u0060null\u0060. Only returned by \u0060GET /hooks\u0060.",
             "nullable": true
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetHooks200ResponseHooksItemKeysItem"
+            },
+            "description": "Keys the webhook uses for API key authentication; empty when it has none. Only returned by \u0060GET /hooks\u0060."
           }
         }
       },
@@ -120021,6 +120173,13 @@
             "type": "string",
             "description": "Name of the connection referenced by \u0060connectionId\u0060; \u0060null\u0060 when \u0060connectionId\u0060 is \u0060null\u0060. Only returned by \u0060GET /hooks\u0060.",
             "nullable": true
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostHooks200ResponseHookKeysItem"
+            },
+            "description": "Keys the webhook uses for API key authentication; empty when it has none. Only returned by \u0060GET /hooks\u0060."
           }
         }
       },
@@ -120098,6 +120257,13 @@
             "type": "string",
             "description": "Name of the connection referenced by \u0060connectionId\u0060; \u0060null\u0060 when \u0060connectionId\u0060 is \u0060null\u0060. Only returned by \u0060GET /hooks\u0060.",
             "nullable": true
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetHooksByHookId200ResponseHookKeysItem"
+            },
+            "description": "Keys the webhook uses for API key authentication; empty when it has none. Only returned by \u0060GET /hooks\u0060."
           }
         }
       },
@@ -120166,6 +120332,13 @@
             "type": "string",
             "description": "Name of the connection referenced by \u0060connectionId\u0060; \u0060null\u0060 when \u0060connectionId\u0060 is \u0060null\u0060. Only returned by \u0060GET /hooks\u0060.",
             "nullable": true
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchHooksByHookId200ResponseHookKeysItem"
+            },
+            "description": "Keys the webhook uses for API key authentication; empty when it has none. Only returned by \u0060GET /hooks\u0060."
           }
         }
       },
@@ -120957,6 +121130,174 @@
           "strict": true
         }
       },
+      "GetInternalDataStoreDefinitions200ResponseDataStoresItem": {
+        "required": [
+          "id",
+          "name",
+          "teamId",
+          "organizationId",
+          "maxSize",
+          "records",
+          "size",
+          "dataStructure"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The data store ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "The data store name."
+          },
+          "teamId": {
+            "type": "integer",
+            "description": "The team that owns the data store."
+          },
+          "organizationId": {
+            "type": "integer",
+            "description": "The organization of that team."
+          },
+          "maxSize": {
+            "type": "integer",
+            "description": "The data store\u0027s byte quota (\u0060max_size\u0060)."
+          },
+          "records": {
+            "type": "integer",
+            "description": "The record count that web-api keeps for the data store."
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size in bytes that web-api keeps for the data store."
+          },
+          "dataStructure": {
+            "$ref": "#/components/schemas/GetInternalDataStoreDefinitions200ResponseDataStoresItemDataStructure"
+          }
+        },
+        "description": "A data store\u0027s definition and its data structure, for the Data Tables migration.",
+        "example": {
+          "id": 42,
+          "name": "Customers",
+          "teamId": 7,
+          "organizationId": 3,
+          "maxSize": 1048576,
+          "records": 120,
+          "size": 20480,
+          "dataStructure": {
+            "id": 11,
+            "strict": true,
+            "spec": [
+              {
+                "name": "email",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "tags",
+                "type": "array",
+                "spec": {
+                  "type": "text"
+                }
+              },
+              {
+                "name": "address",
+                "type": "collection",
+                "spec": [
+                  {
+                    "name": "city",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "GetInternalDataStoreDefinitionsByDataStoreId200ResponseDataStore": {
+        "required": [
+          "id",
+          "name",
+          "teamId",
+          "organizationId",
+          "maxSize",
+          "records",
+          "size",
+          "dataStructure"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The data store ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "The data store name."
+          },
+          "teamId": {
+            "type": "integer",
+            "description": "The team that owns the data store."
+          },
+          "organizationId": {
+            "type": "integer",
+            "description": "The organization of that team."
+          },
+          "maxSize": {
+            "type": "integer",
+            "description": "The data store\u0027s byte quota (\u0060max_size\u0060)."
+          },
+          "records": {
+            "type": "integer",
+            "description": "The record count that web-api keeps for the data store."
+          },
+          "size": {
+            "type": "integer",
+            "description": "The size in bytes that web-api keeps for the data store."
+          },
+          "dataStructure": {
+            "$ref": "#/components/schemas/GetInternalDataStoreDefinitionsByDataStoreId200ResponseDataStoreDataStructure"
+          }
+        },
+        "description": "A data store\u0027s definition and its data structure, for the Data Tables migration.",
+        "example": {
+          "id": 42,
+          "name": "Customers",
+          "teamId": 7,
+          "organizationId": 3,
+          "maxSize": 1048576,
+          "records": 120,
+          "size": 20480,
+          "dataStructure": {
+            "id": 11,
+            "strict": true,
+            "spec": [
+              {
+                "name": "email",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "tags",
+                "type": "array",
+                "spec": {
+                  "type": "text"
+                }
+              },
+              {
+                "name": "address",
+                "type": "collection",
+                "spec": [
+                  {
+                    "name": "city",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
       "PostInternalHooksRegisterRequestData": {
         "type": "object",
         "description": "Arbitrary hook data, stored encrypted.",
@@ -121215,6 +121556,13 @@
               "$ref": "#/components/schemas/GetKeys200ResponseKeysItemScenarioUsagesItem"
             },
             "description": "Scenarios that use this key. Only returned when explicitly requested via \u0060cols[]=scenarioUsages\u0060."
+          },
+          "hookUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetKeys200ResponseKeysItemHookUsagesItem"
+            },
+            "description": "Webhooks that use this key for API key authentication. Only returned when explicitly requested via \u0060cols[]=hookUsages\u0060."
           }
         }
       },
@@ -121253,6 +121601,13 @@
               "$ref": "#/components/schemas/PostKeys200ResponseKeyScenarioUsagesItem"
             },
             "description": "Scenarios that use this key. Only returned when explicitly requested via \u0060cols[]=scenarioUsages\u0060."
+          },
+          "hookUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostKeys200ResponseKeyHookUsagesItem"
+            },
+            "description": "Webhooks that use this key for API key authentication. Only returned when explicitly requested via \u0060cols[]=hookUsages\u0060."
           }
         }
       },
@@ -121327,6 +121682,13 @@
               "$ref": "#/components/schemas/GetKeysByKeyId200ResponseKeyScenarioUsagesItem"
             },
             "description": "Scenarios that use this key. Only returned when explicitly requested via \u0060cols[]=scenarioUsages\u0060."
+          },
+          "hookUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetKeysByKeyId200ResponseKeyHookUsagesItem"
+            },
+            "description": "Webhooks that use this key for API key authentication. Only returned when explicitly requested via \u0060cols[]=hookUsages\u0060."
           }
         }
       },
@@ -121361,6 +121723,13 @@
               "$ref": "#/components/schemas/PatchKeysByKeyId200ResponseKeyScenarioUsagesItem"
             },
             "description": "Scenarios that use this key. Only returned when explicitly requested via \u0060cols[]=scenarioUsages\u0060."
+          },
+          "hookUsages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchKeysByKeyId200ResponseKeyHookUsagesItem"
+            },
+            "description": "Webhooks that use this key for API key authentication. Only returned when explicitly requested via \u0060cols[]=hookUsages\u0060."
           }
         }
       },
@@ -138392,6 +138761,17 @@
           }
         }
       },
+      "GetHooks200ResponseHooksItemKeysItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
       "PostHooks200ResponseHookFlags": {
         "type": "object",
         "properties": {
@@ -138421,6 +138801,17 @@
           },
           "udt": {
             "type": "integer"
+          }
+        }
+      },
+      "PostHooks200ResponseHookKeysItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -138456,6 +138847,17 @@
           }
         }
       },
+      "GetHooksByHookId200ResponseHookKeysItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
       "PatchHooksByHookId200ResponseHookFlags": {
         "type": "object",
         "properties": {
@@ -138485,6 +138887,17 @@
           },
           "udt": {
             "type": "integer"
+          }
+        }
+      },
+      "PatchHooksByHookId200ResponseHookKeysItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -138636,6 +139049,60 @@
       "GetInternalDataStructuresByDataStructureId200ResponseDataStructureSpecItem": {
         "type": "object"
       },
+      "GetInternalDataStoreDefinitions200ResponseDataStoresItemDataStructure": {
+        "required": [
+          "id",
+          "strict",
+          "spec"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The data structure ID."
+          },
+          "strict": {
+            "type": "boolean",
+            "description": "Whether a record with fields the structure does not declare is rejected."
+          },
+          "spec": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetInternalDataStoreDefinitions200ResponseDataStoresItemDataStructureSpecItem"
+            },
+            "description": "The stored field list, unchanged. Each field has \u0060name\u0060 and \u0060type\u0060, and may have \u0060label\u0060, \u0060required\u0060, \u0060default\u0060, \u0060multiline\u0060, \u0060codepage\u0060, \u0060sequence\u0060, and a nested \u0060spec\u0060: a field list for a \u0060collection\u0060, and the item definition for an \u0060array\u0060."
+          }
+        },
+        "description": "The data store\u0027s data structure, or \u0060null\u0060 when it has none. A data structure shared by several data stores is repeated in each of them.",
+        "nullable": true
+      },
+      "GetInternalDataStoreDefinitionsByDataStoreId200ResponseDataStoreDataStructure": {
+        "required": [
+          "id",
+          "strict",
+          "spec"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The data structure ID."
+          },
+          "strict": {
+            "type": "boolean",
+            "description": "Whether a record with fields the structure does not declare is rejected."
+          },
+          "spec": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetInternalDataStoreDefinitionsByDataStoreId200ResponseDataStoreDataStructureSpecItem"
+            },
+            "description": "The stored field list, unchanged. Each field has \u0060name\u0060 and \u0060type\u0060, and may have \u0060label\u0060, \u0060required\u0060, \u0060default\u0060, \u0060multiline\u0060, \u0060codepage\u0060, \u0060sequence\u0060, and a nested \u0060spec\u0060: a field list for a \u0060collection\u0060, and the item definition for an \u0060array\u0060."
+          }
+        },
+        "description": "The data store\u0027s data structure, or \u0060null\u0060 when it has none. A data structure shared by several data stores is repeated in each of them.",
+        "nullable": true
+      },
       "PostInternalHooksRegister200ResponseHookData": {
         "type": "object",
         "example": {
@@ -138680,7 +139147,29 @@
           }
         }
       },
+      "GetKeys200ResponseKeysItemHookUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
       "PostKeys200ResponseKeyScenarioUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "PostKeys200ResponseKeyHookUsagesItem": {
         "type": "object",
         "properties": {
           "id": {
@@ -138733,7 +139222,29 @@
           }
         }
       },
+      "GetKeysByKeyId200ResponseKeyHookUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
       "PatchKeysByKeyId200ResponseKeyScenarioUsagesItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchKeysByKeyId200ResponseKeyHookUsagesItem": {
         "type": "object",
         "properties": {
           "id": {
@@ -144563,6 +145074,12 @@
             "description": "The connections in the team that can drive this endpoint. Empty for endpoints\nthat need no connection (usable without authentication).\n"
           }
         }
+      },
+      "GetInternalDataStoreDefinitions200ResponseDataStoresItemDataStructureSpecItem": {
+        "type": "object"
+      },
+      "GetInternalDataStoreDefinitionsByDataStoreId200ResponseDataStoreDataStructureSpecItem": {
+        "type": "object"
       },
       "GetKeysTypes200ResponseKeysTypesItemCreationWindow": {
         "type": "object",
@@ -171239,7 +171756,8 @@
           "teamId",
           "packageName",
           "theme",
-          "scenarioUsages"
+          "scenarioUsages",
+          "hookUsages"
         ],
         "type": "string",
         "x-ms-enum": {
@@ -171273,6 +171791,10 @@
             {
               "value": "scenarioUsages",
               "name": "ScenarioUsages"
+            },
+            {
+              "value": "hookUsages",
+              "name": "HookUsages"
             }
           ]
         }
@@ -181037,6 +181559,13 @@
           "type": "string",
           "description": "Name of the connection referenced by \u0060connectionId\u0060; \u0060null\u0060 when \u0060connectionId\u0060 is \u0060null\u0060. Only returned by \u0060GET /hooks\u0060.",
           "nullable": true
+        },
+        "keys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/HookKeysItem"
+          },
+          "description": "Keys the webhook uses for API key authentication; empty when it has none. Only returned by \u0060GET /hooks\u0060."
         }
       }
     },
@@ -181140,6 +181669,13 @@
             "$ref": "#/components/schemas/KeyScenarioUsagesItem"
           },
           "description": "Scenarios that use this key. Only returned when explicitly requested via \u0060cols[]=scenarioUsages\u0060."
+        },
+        "hookUsages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/KeyHookUsagesItem"
+          },
+          "description": "Webhooks that use this key for API key authentication. Only returned when explicitly requested via \u0060cols[]=hookUsages\u0060."
         }
       }
     },
@@ -183753,6 +184289,90 @@
           "type": "string",
           "description": "Public URI for completing the action.",
           "x-client-original-format": "uri"
+        }
+      }
+    },
+    "InternalDataStoreDefinition": {
+      "required": [
+        "id",
+        "name",
+        "teamId",
+        "organizationId",
+        "maxSize",
+        "records",
+        "size",
+        "dataStructure"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The data store ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "The data store name."
+        },
+        "teamId": {
+          "type": "integer",
+          "description": "The team that owns the data store."
+        },
+        "organizationId": {
+          "type": "integer",
+          "description": "The organization of that team."
+        },
+        "maxSize": {
+          "type": "integer",
+          "description": "The data store\u0027s byte quota (\u0060max_size\u0060)."
+        },
+        "records": {
+          "type": "integer",
+          "description": "The record count that web-api keeps for the data store."
+        },
+        "size": {
+          "type": "integer",
+          "description": "The size in bytes that web-api keeps for the data store."
+        },
+        "dataStructure": {
+          "$ref": "#/components/schemas/InternalDataStoreDefinitionDataStructure"
+        }
+      },
+      "description": "A data store\u0027s definition and its data structure, for the Data Tables migration.",
+      "example": {
+        "id": 42,
+        "name": "Customers",
+        "teamId": 7,
+        "organizationId": 3,
+        "maxSize": 1048576,
+        "records": 120,
+        "size": 20480,
+        "dataStructure": {
+          "id": 11,
+          "strict": true,
+          "spec": [
+            {
+              "name": "email",
+              "type": "text",
+              "required": true
+            },
+            {
+              "name": "tags",
+              "type": "array",
+              "spec": {
+                "type": "text"
+              }
+            },
+            {
+              "name": "address",
+              "type": "collection",
+              "spec": [
+                {
+                  "name": "city",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
         }
       }
     },
@@ -195052,10 +195672,32 @@
         }
       }
     },
+    "HookKeysItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "HookEventIncomingData": {
       "type": "object"
     },
     "KeyScenarioUsagesItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "KeyHookUsagesItem": {
       "type": "object",
       "properties": {
         "id": {
@@ -196335,6 +196977,33 @@
         }
       },
       "description": "A credential request object."
+    },
+    "InternalDataStoreDefinitionDataStructure": {
+      "required": [
+        "id",
+        "strict",
+        "spec"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The data structure ID."
+        },
+        "strict": {
+          "type": "boolean",
+          "description": "Whether a record with fields the structure does not declare is rejected."
+        },
+        "spec": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/InternalDataStoreDefinitionDataStructureSpecItemProperty"
+          },
+          "description": "The stored field list, unchanged. Each field has \u0060name\u0060 and \u0060type\u0060, and may have \u0060label\u0060, \u0060required\u0060, \u0060default\u0060, \u0060multiline\u0060, \u0060codepage\u0060, \u0060sequence\u0060, and a nested \u0060spec\u0060: a field list for a \u0060collection\u0060, and the item definition for an \u0060array\u0060."
+        }
+      },
+      "description": "The data store\u0027s data structure, or \u0060null\u0060 when it has none. A data structure shared by several data stores is repeated in each of them.",
+      "nullable": true
     },
     "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestHeaders": {
       "type": "object",
@@ -198566,6 +199235,9 @@
       },
       "additionalProperties": false,
       "description": "Helper directive, that will simplify generating an OAuth1 Authorization headers."
+    },
+    "InternalDataStoreDefinitionDataStructureSpecItem": {
+      "type": "object"
     },
     "PutSdkAppsBySdkAppNameBySdkAppVersionModulesBySdkModuleNameEpochJsonRequestPaginationHeaders": {
       "type": "object",
@@ -206646,6 +207318,9 @@
       "type": "object",
       "additionalProperties": {},
       "description": "Temporary variables accessible during execution"
+    },
+    "InternalDataStoreDefinitionDataStructureSpecItemProperty": {
+      "type": "object"
     },
     "CustomAppBaseAnyOf1PaginationHeadersProperty": {
       "type": "object",

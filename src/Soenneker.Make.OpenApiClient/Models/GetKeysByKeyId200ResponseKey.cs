@@ -17,6 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
+            if (parseNode.GetChildNode("hookUsages") is null) { _explicitNullValueHookUsages = default!; _explicitNullProperties?.Remove("hookUsages"); }
+            else if (parseNode.GetChildNode("hookUsages") is { } nullNodeHookUsages && nullNodeHookUsages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HookUsages = null;
             if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
             else if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
             if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
@@ -37,6 +39,16 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Webhooks that use this key for API key authentication. Only returned when explicitly requested via `cols[]=hookUsages`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200ResponseKeyHookUsagesItem>? HookUsages { get => _explicitNullValueHookUsages; set { _explicitNullValueHookUsages = value; AdditionalData?.Remove("hookUsages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hookUsages"); else _explicitNullProperties?.Remove("hookUsages"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200ResponseKeyHookUsagesItem>? _explicitNullValueHookUsages = default!;
+#nullable restore
+#else
+        public List<global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200ResponseKeyHookUsagesItem> HookUsages { get => _explicitNullValueHookUsages; set { _explicitNullValueHookUsages = value; AdditionalData?.Remove("hookUsages"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hookUsages"); else _explicitNullProperties?.Remove("hookUsages"); } }
+        private List<global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200ResponseKeyHookUsagesItem> _explicitNullValueHookUsages = default!;
+#endif
         /// <summary>The id property</summary>
         public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private int? _explicitNullValueId = default!;
@@ -119,8 +131,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(8)
+            return new Dictionary<string, Action<IParseNode>>(9)
             {
+                { "hookUsages", n => { HookUsages = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200ResponseKeyHookUsagesItem>(global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200ResponseKeyHookUsagesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "packageName", n => { PackageName = n.GetStringValue(); } },
@@ -138,6 +151,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetKeysByKeyId200ResponseKeyHookUsagesItem>("hookUsages", HookUsages);
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("packageName", PackageName);
