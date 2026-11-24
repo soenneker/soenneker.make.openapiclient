@@ -35,7 +35,7 @@ namespace Soenneker.Make.OpenApiClient.Connections
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ConnectionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/connections?teamId={teamId}{&%3CconnectionType%3E%5B%5D*,cols%5B%5D*,type%5B%5D*}", pathParameters)
+        public ConnectionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/connections?teamId={teamId}{&%3CconnectionType%3E%5B%5D*,cols%5B%5D*,type%5B%5D*,usable*,visibility*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,11 +43,11 @@ namespace Soenneker.Make.OpenApiClient.Connections
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ConnectionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/connections?teamId={teamId}{&%3CconnectionType%3E%5B%5D*,cols%5B%5D*,type%5B%5D*}", rawUrl)
+        public ConnectionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/connections?teamId={teamId}{&%3CconnectionType%3E%5B%5D*,cols%5B%5D*,type%5B%5D*,usable*,visibility*}", rawUrl)
         {
         }
         /// <summary>
-        /// Retrieves a collection of all connections for a team with a given ID. Returned connections are sorted by name in ascending order.
+        /// Retrieves a collection of all connections for a team with a given ID. Returned connections are sorted by name in ascending order.Filter with `visibility` and `usable`; both can be combined and work with any `cols[]`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetConnections200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -85,7 +85,7 @@ namespace Soenneker.Make.OpenApiClient.Connections
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostConnections200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostConnections200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves a collection of all connections for a team with a given ID. Returned connections are sorted by name in ascending order.
+        /// Retrieves a collection of all connections for a team with a given ID. Returned connections are sorted by name in ascending order.Filter with `visibility` and `usable`; both can be combined and work with any `cols[]`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -135,12 +135,12 @@ namespace Soenneker.Make.OpenApiClient.Connections
             return new global::Soenneker.Make.OpenApiClient.Connections.ConnectionsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieves a collection of all connections for a team with a given ID. Returned connections are sorted by name in ascending order.
+        /// Retrieves a collection of all connections for a team with a given ID. Returned connections are sorted by name in ascending order.Filter with `visibility` and `usable`; both can be combined and work with any `cols[]`.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ConnectionsRequestBuilderGetQueryParameters 
         {
-            /// <summary>Specifies the group of values to return. For example, you may want to check which returned connections can be upgraded.</summary>
+            /// <summary>Specifies the group of values to return. For example, you may want to check which returned connections can be upgraded. Request `id` together with `visibility` to get `acl` on locked connections.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
@@ -173,6 +173,12 @@ namespace Soenneker.Make.OpenApiClient.Connections
             [QueryParameter("type%5B%5D")]
             public string[] Type { get; set; }
 #endif
+            /// <summary>`true` returns the connections you can use: team-visible ones and locked ones you hold `entity use` on. `false` returns the locked connections you cannot use. Omit to list all. Your team role is not checked. Fails with `503` if your permissions cannot be resolved.</summary>
+            [QueryParameter("usable")]
+            public global::Soenneker.Make.OpenApiClient.Models.GetConnectionsUsableParameter? Usable { get; set; }
+            /// <summary>`locked` returns the connections restricted to their access list, `team` those visible to the whole team. Without the *Locked connections* feature, every connection is team-visible.</summary>
+            [QueryParameter("visibility")]
+            public global::Soenneker.Make.OpenApiClient.Models.GetConnectionsVisibilityParameter? Visibility { get; set; }
         }
         /// <summary>
         /// Creates a new connection with data passed in the request body. In the response, it returns all details of the created connection.

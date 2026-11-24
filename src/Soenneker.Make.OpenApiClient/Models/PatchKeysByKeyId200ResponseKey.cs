@@ -17,6 +17,8 @@ namespace Soenneker.Make.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
+            if (parseNode.GetChildNode("acl") is null) { _explicitNullValueAcl = default!; _explicitNullProperties?.Remove("acl"); }
+            else if (parseNode.GetChildNode("acl") is { } nullNodeAcl && nullNodeAcl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Acl = null;
             if (parseNode.GetChildNode("hookUsages") is null) { _explicitNullValueHookUsages = default!; _explicitNullProperties?.Remove("hookUsages"); }
             else if (parseNode.GetChildNode("hookUsages") is { } nullNodeHookUsages && nullNodeHookUsages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HookUsages = null;
             if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
@@ -37,6 +39,16 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("visibility") is { } nullNodeVisibility && nullNodeVisibility.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Visibility = null;
         }
 
+        /// <summary>Your permissions on a locked key, returned when `id` and `visibility` are both requested via `cols[]`. For the full access list, see `/teams/{teamId}/keys/{keyId}/access-list`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200ResponseKeyAcl? Acl { get => _explicitNullValueAcl; set { _explicitNullValueAcl = value; AdditionalData?.Remove("acl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acl"); else _explicitNullProperties?.Remove("acl"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200ResponseKeyAcl? _explicitNullValueAcl = default!;
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200ResponseKeyAcl Acl { get => _explicitNullValueAcl; set { _explicitNullValueAcl = value; AdditionalData?.Remove("acl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acl"); else _explicitNullProperties?.Remove("acl"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200ResponseKeyAcl _explicitNullValueAcl = default!;
+#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Webhooks that use this key for API key authentication. Only returned when explicitly requested via `cols[]=hookUsages`.</summary>
@@ -131,8 +143,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(9)
+            return new Dictionary<string, Action<IParseNode>>(10)
             {
+                { "acl", n => { Acl = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200ResponseKeyAcl>(global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200ResponseKeyAcl.CreateFromDiscriminatorValue); } },
                 { "hookUsages", n => { HookUsages = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200ResponseKeyHookUsagesItem>(global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200ResponseKeyHookUsagesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -151,6 +164,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200ResponseKeyAcl>("acl", Acl);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.PatchKeysByKeyId200ResponseKeyHookUsagesItem>("hookUsages", HookUsages);
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("name", Name);

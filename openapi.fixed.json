@@ -11118,7 +11118,7 @@
           "Connections"
         ],
         "summary": "List connections",
-        "description": "Retrieves a collection of all connections for a team with a given ID. Returned connections are sorted by name in ascending order.",
+        "description": "Retrieves a collection of all connections for a team with a given ID. Returned connections are sorted by name in ascending order.\n\nFilter with \u0060visibility\u0060 and \u0060usable\u0060; both can be combined and work with any \u0060cols[]\u0060.\n",
         "operationId": "GetConnections",
         "parameters": [
           {
@@ -11167,9 +11167,40 @@
             }
           },
           {
+            "name": "visibility",
+            "in": "query",
+            "description": "\u0060locked\u0060 returns the connections restricted to their access list, \u0060team\u0060 those visible to the whole team. Without the *Locked connections* feature, every connection is team-visible.",
+            "schema": {
+              "$ref": "#/components/schemas/GetConnectionsVisibilityParameter"
+            },
+            "examples": {
+              "locked": {
+                "value": "locked"
+              }
+            }
+          },
+          {
+            "name": "usable",
+            "in": "query",
+            "description": "\u0060true\u0060 returns the connections you can use: team-visible ones and locked ones you hold \u0060entity use\u0060 on. \u0060false\u0060 returns the locked connections you cannot use. Omit to list all. Your team role is not checked. Fails with \u0060503\u0060 if your permissions cannot be resolved.",
+            "schema": {
+              "$ref": "#/components/schemas/GetConnectionsUsableParameter"
+            },
+            "examples": {
+              "usable": {
+                "summary": "Connections you can use",
+                "value": "true"
+              },
+              "not-usable": {
+                "summary": "Locked connections you cannot use",
+                "value": "false"
+              }
+            }
+          },
+          {
             "name": "cols[]",
             "in": "query",
-            "description": "Specifies the group of values to return. For example, you may want to check which returned connections can be upgraded.",
+            "description": "Specifies the group of values to return. For example, you may want to check which returned connections can be upgraded. Request \u0060id\u0060 together with \u0060visibility\u0060 to get \u0060acl\u0060 on locked connections.",
             "schema": {
               "type": "array",
               "items": {
@@ -11198,7 +11229,8 @@
                   "connectedSystemId",
                   "organizationId",
                   "scenarioUsages",
-                  "hookUsages"
+                  "hookUsages",
+                  "visibility"
                 ]
               },
               "id-name": {
@@ -11207,6 +11239,14 @@
                   "id",
                   "name",
                   "accountName"
+                ]
+              },
+              "usable": {
+                "summary": "Return the ID, name and visibility of the connections you can use",
+                "value": [
+                  "id",
+                  "name",
+                  "visibility"
                 ]
               }
             }
@@ -11245,7 +11285,8 @@
                           "connectedSystemId": "c5d8e134-d2f8-480d-9838-119a54f65d3e",
                           "organizationId": 3,
                           "scenarioUsages": [],
-                          "hookUsages": []
+                          "hookUsages": [],
+                          "visibility": "team"
                         },
                         {
                           "id": 15,
@@ -11279,7 +11320,14 @@
                               "id": 58,
                               "name": "Watch Google Drive files"
                             }
-                          ]
+                          ],
+                          "visibility": "locked",
+                          "acl": {
+                            "permissions": [
+                              "entity use"
+                            ],
+                            "isOrphaned": false
+                          }
                         }
                       ]
                     }
@@ -11296,10 +11344,40 @@
                         }
                       ]
                     }
+                  },
+                  "usable": {
+                    "summary": "Return the connections you can use",
+                    "description": "\u0060GET /connections?teamId=22\u0026usable=true\u0026cols[]=id\u0026cols[]=name\u0026cols[]=visibility\u0060 \u2014 the team-visible connections plus the locked connections you hold \u0060entity use\u0060 on.",
+                    "value": {
+                      "connections": [
+                        {
+                          "id": 2,
+                          "name": "My Airtable connection",
+                          "visibility": "team"
+                        },
+                        {
+                          "id": 15,
+                          "name": "My Google connection",
+                          "visibility": "locked",
+                          "acl": {
+                            "permissions": [
+                              "entity use"
+                            ],
+                            "isOrphaned": false
+                          }
+                        }
+                      ]
+                    }
                   }
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid query parameter (\u0060SC400\u0060), e.g. \u0060visibility\u0060 other than \u0060team\u0060/\u0060locked\u0060 or \u0060usable\u0060 other than \u0060true\u0060/\u0060false\u0060. The error names the parameter."
+          },
+          "503": {
+            "description": "\u0060usable\u0060 was requested, but your permissions could not be resolved (\u0060SC503\u0060). Retry later."
           }
         },
         "security": [
@@ -28969,6 +29047,77 @@
         "x-internal": true
       }
     },
+    "/internal/scenarios/ai-agents/plugin-usage": {
+      "get": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Scenarios using AI agent plugins",
+        "description": "For make-ai-agents-api: which of the team\u0027s scenarios attach each of the given AI agent plugin installs through a \u0060PluginsForAgent\u0060 tool in the flow of the saved blueprint (drafts and orphaned modules are not read). Every requested id is in the answer once, with no scenarios when nothing uses it; the lists are not capped. Requires a valid ISC JWT; the caller has authorized the user on the team.\n",
+        "operationId": "GetInternalScenariosAiAgentsPluginUsage",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "query",
+            "description": "Numeric ID of the team whose scenarios to search.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pluginIds",
+            "in": "query",
+            "description": "Plugin install ids to look for, 1 to 100. Repeat the parameter for each id; duplicates are ignored.",
+            "required": true,
+            "schema": {
+              "maxItems": 100,
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInternalScenariosAiAgentsPluginUsage200Response"
+                },
+                "example": {
+                  "usage": [
+                    {
+                      "pluginId": "7b6f2f3a-9c1e-4a2b-9d44-1f0a8c3e5b21",
+                      "scenarios": [
+                        {
+                          "id": 412,
+                          "name": "Weekly report"
+                        }
+                      ]
+                    },
+                    {
+                      "pluginId": "c4a7d1e2-5b60-4c8f-8f2a-3d9e7b1c0a55",
+                      "scenarios": []
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing or invalid teamId, or not 1 to 100 plugin ids."
+          },
+          "401": {
+            "description": "Missing or invalid ISC authentication."
+          }
+        },
+        "x-internal": true
+      }
+    },
     "/internal/scenarios/list-for-team": {
       "get": {
         "tags": [
@@ -30844,7 +30993,7 @@
           "Keys"
         ],
         "summary": "List keys",
-        "description": "Gets the list of keys in your custom keychain. You can use the \u0060typeName\u0060 query parameter to filter your keys based on their type. Run the [list of key types](./get--keys--types.md) API call to get a list of available key types.\n",
+        "description": "Gets the list of keys in your custom keychain. You can use the \u0060typeName\u0060 query parameter to filter your keys based on their type. Run the [list of key types](./get--keys--types.md) API call to get a list of available key types.\n\nFilter with \u0060visibility\u0060 and \u0060usable\u0060; both can be combined and work with any \u0060cols[]\u0060.\n",
         "operationId": "GetKeys",
         "parameters": [
           {
@@ -30867,9 +31016,27 @@
             "example": "basicauth"
           },
           {
+            "name": "visibility",
+            "in": "query",
+            "description": "\u0060locked\u0060 returns the keys restricted to their access list, \u0060team\u0060 those visible to the whole team. Without the *Locked connections* feature, every key is team-visible.",
+            "schema": {
+              "$ref": "#/components/schemas/GetKeysVisibilityParameter"
+            },
+            "example": "locked"
+          },
+          {
+            "name": "usable",
+            "in": "query",
+            "description": "\u0060true\u0060 returns the keys you can use: team-visible ones and locked ones you hold \u0060entity use\u0060 on. \u0060false\u0060 returns the locked keys you cannot use. Omit to list all. Your team role is not checked. Fails with \u0060503\u0060 if your permissions cannot be resolved.",
+            "schema": {
+              "$ref": "#/components/schemas/GetKeysUsableParameter"
+            },
+            "example": "true"
+          },
+          {
             "name": "cols[]",
             "in": "query",
-            "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for each column that you want included. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n",
+            "description": "Specifies columns that are returned in the response. Use the \u0060cols[]\u0060 parameter for each column that you want included. For example \u0060GET /endpoint?cols[]=key1\u0026cols[]=key2\u0060 to get both \u0060key1\u0060 and \u0060key2\u0060 columns in the response.\n\n[Check the \u0022Filtering\u0022 section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)\n\nRequest \u0060id\u0060 together with \u0060visibility\u0060 to get \u0060acl\u0060 on locked keys.\n",
             "schema": {
               "type": "array",
               "items": {
@@ -30886,7 +31053,15 @@
                   "packageName",
                   "theme",
                   "scenarioUsages",
-                  "hookUsages"
+                  "hookUsages",
+                  "visibility"
+                ]
+              },
+              "usable": {
+                "value": [
+                  "id",
+                  "name",
+                  "visibility"
                 ]
               }
             }
@@ -30940,7 +31115,8 @@
                               "id": 58,
                               "name": "My webhook"
                             }
-                          ]
+                          ],
+                          "visibility": "team"
                         },
                         {
                           "id": 2,
@@ -30950,7 +31126,38 @@
                           "packageName": null,
                           "theme": "#007ee5",
                           "scenarioUsages": [],
-                          "hookUsages": []
+                          "hookUsages": [],
+                          "visibility": "locked",
+                          "acl": {
+                            "permissions": [
+                              "entity use"
+                            ],
+                            "isOrphaned": false
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "usable": {
+                    "summary": "List the keys you can use",
+                    "description": "\u0060GET /keys?teamId=4\u0026usable=true\u0026cols[]=id\u0026cols[]=name\u0026cols[]=visibility\u0060 \u2014 the team-visible keys plus the locked keys you hold \u0060entity use\u0060 on.",
+                    "value": {
+                      "keys": [
+                        {
+                          "id": 1,
+                          "name": "My HTTP Basic Auth key",
+                          "visibility": "team"
+                        },
+                        {
+                          "id": 2,
+                          "name": "My HTTP Basic Auth key",
+                          "visibility": "locked",
+                          "acl": {
+                            "permissions": [
+                              "entity use"
+                            ],
+                            "isOrphaned": false
+                          }
                         }
                       ]
                     }
@@ -30958,6 +31165,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid query parameter (\u0060SC400\u0060), e.g. \u0060visibility\u0060 other than \u0060team\u0060/\u0060locked\u0060 or \u0060usable\u0060 other than \u0060true\u0060/\u0060false\u0060. The error names the parameter."
+          },
+          "503": {
+            "description": "\u0060usable\u0060 was requested, but your permissions could not be resolved (\u0060SC503\u0060). Retry later."
           }
         },
         "security": [
@@ -94361,6 +94574,20 @@
           }
         }
       },
+      "GetInternalScenariosAiAgentsPluginUsage200Response": {
+        "required": [
+          "usage"
+        ],
+        "type": "object",
+        "properties": {
+          "usage": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetInternalScenariosAiAgentsPluginUsage200ResponseUsageItem"
+            }
+          }
+        }
+      },
       "GetInternalScenariosListForTeam200Response": {
         "required": [
           "scenarios"
@@ -115462,6 +115689,9 @@
           "visibility": {
             "$ref": "#/components/schemas/GetConnections200ResponseConnectionsItemVisibility"
           },
+          "acl": {
+            "$ref": "#/components/schemas/GetConnections200ResponseConnectionsItemAcl"
+          },
           "scenarioUsages": {
             "type": "array",
             "items": {
@@ -115537,6 +115767,9 @@
           "visibility": {
             "$ref": "#/components/schemas/PostConnections200ResponseConnectionVisibility"
           },
+          "acl": {
+            "$ref": "#/components/schemas/PostConnections200ResponseConnectionAcl"
+          },
           "scenarioUsages": {
             "type": "array",
             "items": {
@@ -115611,6 +115844,9 @@
           },
           "visibility": {
             "$ref": "#/components/schemas/GetConnectionsByConnectionId200ResponseConnectionVisibility"
+          },
+          "acl": {
+            "$ref": "#/components/schemas/GetConnectionsByConnectionId200ResponseConnectionAcl"
           },
           "scenarioUsages": {
             "type": "array",
@@ -115692,6 +115928,9 @@
           },
           "visibility": {
             "$ref": "#/components/schemas/PatchConnectionsByConnectionId200ResponseConnectionVisibility"
+          },
+          "acl": {
+            "$ref": "#/components/schemas/PatchConnectionsByConnectionId200ResponseConnectionAcl"
           },
           "scenarioUsages": {
             "type": "array",
@@ -120908,6 +121147,24 @@
           }
         }
       },
+      "GetInternalScenariosAiAgentsPluginUsage200ResponseUsageItem": {
+        "required": [
+          "pluginId",
+          "scenarios"
+        ],
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string"
+          },
+          "scenarios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetInternalScenariosAiAgentsPluginUsage200ResponseUsageItemScenariosItem"
+            }
+          }
+        }
+      },
       "GetInternalScenariosListForTeam200ResponseScenariosItem": {
         "required": [
           "id",
@@ -121550,6 +121807,9 @@
           "visibility": {
             "$ref": "#/components/schemas/GetKeys200ResponseKeysItemVisibility"
           },
+          "acl": {
+            "$ref": "#/components/schemas/GetKeys200ResponseKeysItemAcl"
+          },
           "scenarioUsages": {
             "type": "array",
             "items": {
@@ -121594,6 +121854,9 @@
           },
           "visibility": {
             "$ref": "#/components/schemas/PostKeys200ResponseKeyVisibility"
+          },
+          "acl": {
+            "$ref": "#/components/schemas/PostKeys200ResponseKeyAcl"
           },
           "scenarioUsages": {
             "type": "array",
@@ -121676,6 +121939,9 @@
           "visibility": {
             "$ref": "#/components/schemas/GetKeysByKeyId200ResponseKeyVisibility"
           },
+          "acl": {
+            "$ref": "#/components/schemas/GetKeysByKeyId200ResponseKeyAcl"
+          },
           "scenarioUsages": {
             "type": "array",
             "items": {
@@ -121716,6 +121982,9 @@
           },
           "visibility": {
             "$ref": "#/components/schemas/PatchKeysByKeyId200ResponseKeyVisibility"
+          },
+          "acl": {
+            "$ref": "#/components/schemas/PatchKeysByKeyId200ResponseKeyAcl"
           },
           "scenarioUsages": {
             "type": "array",
@@ -136309,6 +136578,26 @@
           }
         }
       },
+      "GetConnections200ResponseConnectionsItemAcl": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetConnections200ResponseConnectionsItemAclPermissionsItem"
+            },
+            "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list.",
+            "example": [
+              "entity use"
+            ]
+          },
+          "isOrphaned": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when nobody on the access list holds \u0060entity manage\u0060; a holder of the team-level delete permission can then delete the connection."
+          }
+        },
+        "description": "Your permissions on a locked connection, returned when the response includes \u0060id\u0060 and \u0060visibility\u0060. For the full access list, see \u0060/teams/{teamId}/connections/{connectionId}/access-list\u0060."
+      },
       "GetConnections200ResponseConnectionsItemScenarioUsagesItem": {
         "type": "object",
         "properties": {
@@ -136342,6 +136631,26 @@
           }
         }
       },
+      "PostConnections200ResponseConnectionAcl": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostConnections200ResponseConnectionAclPermissionsItem"
+            },
+            "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list.",
+            "example": [
+              "entity use"
+            ]
+          },
+          "isOrphaned": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when nobody on the access list holds \u0060entity manage\u0060; a holder of the team-level delete permission can then delete the connection."
+          }
+        },
+        "description": "Your permissions on a locked connection, returned when the response includes \u0060id\u0060 and \u0060visibility\u0060. For the full access list, see \u0060/teams/{teamId}/connections/{connectionId}/access-list\u0060."
+      },
       "PostConnections200ResponseConnectionScenarioUsagesItem": {
         "type": "object",
         "properties": {
@@ -136374,6 +136683,26 @@
             "$ref": "#/components/schemas/GetConnectionsByConnectionId200ResponseConnectionMetadataType"
           }
         }
+      },
+      "GetConnectionsByConnectionId200ResponseConnectionAcl": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetConnectionsByConnectionId200ResponseConnectionAclPermissionsItem"
+            },
+            "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list.",
+            "example": [
+              "entity use"
+            ]
+          },
+          "isOrphaned": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when nobody on the access list holds \u0060entity manage\u0060; a holder of the team-level delete permission can then delete the connection."
+          }
+        },
+        "description": "Your permissions on a locked connection, returned when the response includes \u0060id\u0060 and \u0060visibility\u0060. For the full access list, see \u0060/teams/{teamId}/connections/{connectionId}/access-list\u0060."
       },
       "GetConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem": {
         "type": "object",
@@ -136421,6 +136750,26 @@
             "$ref": "#/components/schemas/PatchConnectionsByConnectionId200ResponseConnectionMetadataType"
           }
         }
+      },
+      "PatchConnectionsByConnectionId200ResponseConnectionAcl": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchConnectionsByConnectionId200ResponseConnectionAclPermissionsItem"
+            },
+            "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list.",
+            "example": [
+              "entity use"
+            ]
+          },
+          "isOrphaned": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when nobody on the access list holds \u0060entity manage\u0060; a holder of the team-level delete permission can then delete the connection."
+          }
+        },
+        "description": "Your permissions on a locked connection, returned when the response includes \u0060id\u0060 and \u0060visibility\u0060. For the full access list, see \u0060/teams/{teamId}/connections/{connectionId}/access-list\u0060."
       },
       "PatchConnectionsByConnectionId200ResponseConnectionScenarioUsagesItem": {
         "type": "object",
@@ -139027,6 +139376,21 @@
           }
         }
       },
+      "GetInternalScenariosAiAgentsPluginUsage200ResponseUsageItemScenariosItem": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
       "GetInternalConfigRuntime200ResponseConfigRedirects": {
         "type": "object",
         "properties": {
@@ -139136,6 +139500,26 @@
           }
         }
       },
+      "GetKeys200ResponseKeysItemAcl": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetKeys200ResponseKeysItemAclPermissionsItem"
+            },
+            "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list.",
+            "example": [
+              "entity use"
+            ]
+          },
+          "isOrphaned": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when nobody on the access list holds \u0060entity manage\u0060; a holder of the team-level delete permission can then delete the key."
+          }
+        },
+        "description": "Your permissions on a locked key, returned when \u0060id\u0060 and \u0060visibility\u0060 are both requested via \u0060cols[]\u0060. For the full access list, see \u0060/teams/{teamId}/keys/{keyId}/access-list\u0060."
+      },
       "GetKeys200ResponseKeysItemScenarioUsagesItem": {
         "type": "object",
         "properties": {
@@ -139157,6 +139541,26 @@
             "type": "string"
           }
         }
+      },
+      "PostKeys200ResponseKeyAcl": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostKeys200ResponseKeyAclPermissionsItem"
+            },
+            "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list.",
+            "example": [
+              "entity use"
+            ]
+          },
+          "isOrphaned": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when nobody on the access list holds \u0060entity manage\u0060; a holder of the team-level delete permission can then delete the key."
+          }
+        },
+        "description": "Your permissions on a locked key, returned when \u0060id\u0060 and \u0060visibility\u0060 are both requested via \u0060cols[]\u0060. For the full access list, see \u0060/teams/{teamId}/keys/{keyId}/access-list\u0060."
       },
       "PostKeys200ResponseKeyScenarioUsagesItem": {
         "type": "object",
@@ -139211,6 +139615,26 @@
         },
         "description": "Describes how to create a key of this managed type. Only present when \u0060managed\u0060 is true."
       },
+      "GetKeysByKeyId200ResponseKeyAcl": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetKeysByKeyId200ResponseKeyAclPermissionsItem"
+            },
+            "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list.",
+            "example": [
+              "entity use"
+            ]
+          },
+          "isOrphaned": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when nobody on the access list holds \u0060entity manage\u0060; a holder of the team-level delete permission can then delete the key."
+          }
+        },
+        "description": "Your permissions on a locked key, returned when \u0060id\u0060 and \u0060visibility\u0060 are both requested via \u0060cols[]\u0060. For the full access list, see \u0060/teams/{teamId}/keys/{keyId}/access-list\u0060."
+      },
       "GetKeysByKeyId200ResponseKeyScenarioUsagesItem": {
         "type": "object",
         "properties": {
@@ -139232,6 +139656,26 @@
             "type": "string"
           }
         }
+      },
+      "PatchKeysByKeyId200ResponseKeyAcl": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchKeysByKeyId200ResponseKeyAclPermissionsItem"
+            },
+            "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list.",
+            "example": [
+              "entity use"
+            ]
+          },
+          "isOrphaned": {
+            "type": "boolean",
+            "description": "\u0060true\u0060 when nobody on the access list holds \u0060entity manage\u0060; a holder of the team-level delete permission can then delete the key."
+          }
+        },
+        "description": "Your permissions on a locked key, returned when \u0060id\u0060 and \u0060visibility\u0060 are both requested via \u0060cols[]\u0060. For the full access list, see \u0060/teams/{teamId}/keys/{keyId}/access-list\u0060."
       },
       "PatchKeysByKeyId200ResponseKeyScenarioUsagesItem": {
         "type": "object",
@@ -166128,6 +166572,27 @@
           ]
         }
       },
+      "GetConnections200ResponseConnectionsItemAclPermissionsItem": {
+        "enum": [
+          "entity use",
+          "entity manage"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetConnections200ResponseConnectionsItemAclPermissionsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity use",
+              "name": "EntityUse"
+            },
+            {
+              "value": "entity manage",
+              "name": "EntityManage"
+            }
+          ]
+        }
+      },
       "PostConnections200ResponseConnectionMetadataType": {
         "enum": [
           "string",
@@ -166145,6 +166610,27 @@
             {
               "value": "email",
               "name": "Email"
+            }
+          ]
+        }
+      },
+      "PostConnections200ResponseConnectionAclPermissionsItem": {
+        "enum": [
+          "entity use",
+          "entity manage"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "PostConnections200ResponseConnectionAclPermissionsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity use",
+              "name": "EntityUse"
+            },
+            {
+              "value": "entity manage",
+              "name": "EntityManage"
             }
           ]
         }
@@ -166170,6 +166656,27 @@
           ]
         }
       },
+      "GetConnectionsByConnectionId200ResponseConnectionAclPermissionsItem": {
+        "enum": [
+          "entity use",
+          "entity manage"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetConnectionsByConnectionId200ResponseConnectionAclPermissionsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity use",
+              "name": "EntityUse"
+            },
+            {
+              "value": "entity manage",
+              "name": "EntityManage"
+            }
+          ]
+        }
+      },
       "PatchConnectionsByConnectionId200ResponseConnectionMetadataType": {
         "enum": [
           "string",
@@ -166187,6 +166694,27 @@
             {
               "value": "email",
               "name": "Email"
+            }
+          ]
+        }
+      },
+      "PatchConnectionsByConnectionId200ResponseConnectionAclPermissionsItem": {
+        "enum": [
+          "entity use",
+          "entity manage"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "PatchConnectionsByConnectionId200ResponseConnectionAclPermissionsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity use",
+              "name": "EntityUse"
+            },
+            {
+              "value": "entity manage",
+              "name": "EntityManage"
             }
           ]
         }
@@ -167025,6 +167553,90 @@
             {
               "value": "key",
               "name": "Key"
+            }
+          ]
+        }
+      },
+      "GetKeys200ResponseKeysItemAclPermissionsItem": {
+        "enum": [
+          "entity use",
+          "entity manage"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetKeys200ResponseKeysItemAclPermissionsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity use",
+              "name": "EntityUse"
+            },
+            {
+              "value": "entity manage",
+              "name": "EntityManage"
+            }
+          ]
+        }
+      },
+      "PostKeys200ResponseKeyAclPermissionsItem": {
+        "enum": [
+          "entity use",
+          "entity manage"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "PostKeys200ResponseKeyAclPermissionsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity use",
+              "name": "EntityUse"
+            },
+            {
+              "value": "entity manage",
+              "name": "EntityManage"
+            }
+          ]
+        }
+      },
+      "GetKeysByKeyId200ResponseKeyAclPermissionsItem": {
+        "enum": [
+          "entity use",
+          "entity manage"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetKeysByKeyId200ResponseKeyAclPermissionsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity use",
+              "name": "EntityUse"
+            },
+            {
+              "value": "entity manage",
+              "name": "EntityManage"
+            }
+          ]
+        }
+      },
+      "PatchKeysByKeyId200ResponseKeyAclPermissionsItem": {
+        "enum": [
+          "entity use",
+          "entity manage"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "PatchKeysByKeyId200ResponseKeyAclPermissionsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "entity use",
+              "name": "EntityUse"
+            },
+            {
+              "value": "entity manage",
+              "name": "EntityManage"
             }
           ]
         }
@@ -170110,6 +170722,48 @@
           ]
         }
       },
+      "GetConnectionsVisibilityParameter": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetConnectionsVisibilityParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
+      "GetConnectionsUsableParameter": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetConnectionsUsableParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
+            }
+          ]
+        }
+      },
       "GetConnectionsColsParameterItem": {
         "enum": [
           "id",
@@ -170130,7 +170784,8 @@
           "connectedSystemId",
           "organizationId",
           "scenarioUsages",
-          "hookUsages"
+          "hookUsages",
+          "visibility"
         ],
         "type": "string",
         "x-ms-enum": {
@@ -170212,6 +170867,10 @@
             {
               "value": "hookUsages",
               "name": "HookUsages"
+            },
+            {
+              "value": "visibility",
+              "name": "Visibility"
             }
           ]
         }
@@ -171748,6 +172407,48 @@
           ]
         }
       },
+      "GetKeysVisibilityParameter": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetKeysVisibilityParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
+      "GetKeysUsableParameter": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetKeysUsableParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
+            }
+          ]
+        }
+      },
       "GetKeysColsParameterItem": {
         "enum": [
           "id",
@@ -171757,7 +172458,8 @@
           "packageName",
           "theme",
           "scenarioUsages",
-          "hookUsages"
+          "hookUsages",
+          "visibility"
         ],
         "type": "string",
         "x-ms-enum": {
@@ -171795,6 +172497,10 @@
             {
               "value": "hookUsages",
               "name": "HookUsages"
+            },
+            {
+              "value": "visibility",
+              "name": "Visibility"
             }
           ]
         }
@@ -181663,6 +182369,9 @@
         "visibility": {
           "$ref": "#/components/schemas/KeyVisibility"
         },
+        "acl": {
+          "$ref": "#/components/schemas/KeyAcl"
+        },
         "scenarioUsages": {
           "type": "array",
           "items": {
@@ -181911,6 +182620,9 @@
         "visibility": {
           "$ref": "#/components/schemas/ConnectionVisibility"
         },
+        "acl": {
+          "$ref": "#/components/schemas/ConnectionAcl"
+        },
         "scenarioUsages": {
           "type": "array",
           "items": {
@@ -181985,6 +182697,9 @@
         },
         "visibility": {
           "$ref": "#/components/schemas/ConnectionAllVisibility"
+        },
+        "acl": {
+          "$ref": "#/components/schemas/ConnectionAllAllOf1Acl"
         },
         "scenarioUsages": {
           "type": "array",
@@ -184913,6 +185628,9 @@
         },
         "visibility": {
           "$ref": "#/components/schemas/ConnectionAllVisibility"
+        },
+        "acl": {
+          "$ref": "#/components/schemas/ConnectionAllAllOf1Acl"
         },
         "scenarioUsages": {
           "type": "array",
@@ -195686,6 +196404,26 @@
     "HookEventIncomingData": {
       "type": "object"
     },
+    "KeyAcl": {
+      "type": "object",
+      "properties": {
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/KeyAclPermissionsItem"
+          },
+          "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list.",
+          "example": [
+            "entity use"
+          ]
+        },
+        "isOrphaned": {
+          "type": "boolean",
+          "description": "\u0060true\u0060 when nobody on the access list holds \u0060entity manage\u0060; a holder of the team-level delete permission can then delete the key."
+        }
+      },
+      "description": "Your permissions on a locked key, returned when \u0060id\u0060 and \u0060visibility\u0060 are both requested via \u0060cols[]\u0060. For the full access list, see \u0060/teams/{teamId}/keys/{keyId}/access-list\u0060."
+    },
     "KeyScenarioUsagesItem": {
       "type": "object",
       "properties": {
@@ -195794,6 +196532,26 @@
           "$ref": "#/components/schemas/ConnectionMetadataType"
         }
       }
+    },
+    "ConnectionAcl": {
+      "type": "object",
+      "properties": {
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ConnectionAclPermissionsItem"
+          },
+          "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list.",
+          "example": [
+            "entity use"
+          ]
+        },
+        "isOrphaned": {
+          "type": "boolean",
+          "description": "\u0060true\u0060 when nobody on the access list holds \u0060entity manage\u0060; a holder of the team-level delete permission can then delete the connection."
+        }
+      },
+      "description": "Your permissions on a locked connection, returned when the response includes \u0060id\u0060 and \u0060visibility\u0060. For the full access list, see \u0060/teams/{teamId}/connections/{connectionId}/access-list\u0060."
     },
     "ConnectionScenarioUsagesItem": {
       "type": "object",
@@ -197068,6 +197826,26 @@
           "$ref": "#/components/schemas/ConnectionAllAllOf1MetadataType"
         }
       }
+    },
+    "ConnectionAllAllOf1Acl": {
+      "type": "object",
+      "properties": {
+        "permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ConnectionAllAllOf1AclPermissionsItem"
+          },
+          "description": "Entity-tier permissions. \u0060entity use\u0060 allows referencing the entity in scenarios and viewing its configuration; \u0060entity manage\u0060 additionally allows editing it and managing its access list.",
+          "example": [
+            "entity use"
+          ]
+        },
+        "isOrphaned": {
+          "type": "boolean",
+          "description": "\u0060true\u0060 when nobody on the access list holds \u0060entity manage\u0060; a holder of the team-level delete permission can then delete the connection."
+        }
+      },
+      "description": "Your permissions on a locked connection, returned when the response includes \u0060id\u0060 and \u0060visibility\u0060. For the full access list, see \u0060/teams/{teamId}/connections/{connectionId}/access-list\u0060."
     },
     "ConnectionAllAllOf1ScenarioUsagesItem": {
       "type": "object",
@@ -226876,6 +227654,27 @@
       ],
       "type": "string"
     },
+    "KeyAclPermissionsItem": {
+      "enum": [
+        "entity use",
+        "entity manage"
+      ],
+      "type": "string",
+      "x-ms-enum": {
+        "name": "KeyAclPermissionsItem",
+        "modelAsString": false,
+        "values": [
+          {
+            "value": "entity use",
+            "name": "EntityUse"
+          },
+          {
+            "value": "entity manage",
+            "name": "EntityManage"
+          }
+        ]
+      }
+    },
     "ConnectionMetadataType": {
       "enum": [
         "string",
@@ -226893,6 +227692,27 @@
           {
             "value": "email",
             "name": "Email"
+          }
+        ]
+      }
+    },
+    "ConnectionAclPermissionsItem": {
+      "enum": [
+        "entity use",
+        "entity manage"
+      ],
+      "type": "string",
+      "x-ms-enum": {
+        "name": "ConnectionAclPermissionsItem",
+        "modelAsString": false,
+        "values": [
+          {
+            "value": "entity use",
+            "name": "EntityUse"
+          },
+          {
+            "value": "entity manage",
+            "name": "EntityManage"
           }
         ]
       }
@@ -227071,6 +227891,27 @@
           {
             "value": "email",
             "name": "Email"
+          }
+        ]
+      }
+    },
+    "ConnectionAllAllOf1AclPermissionsItem": {
+      "enum": [
+        "entity use",
+        "entity manage"
+      ],
+      "type": "string",
+      "x-ms-enum": {
+        "name": "ConnectionAllAllOf1AclPermissionsItem",
+        "modelAsString": false,
+        "values": [
+          {
+            "value": "entity use",
+            "name": "EntityUse"
+          },
+          {
+            "value": "entity manage",
+            "name": "EntityManage"
           }
         ]
       }

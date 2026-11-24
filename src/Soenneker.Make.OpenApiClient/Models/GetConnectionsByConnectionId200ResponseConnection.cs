@@ -23,6 +23,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("accountName") is { } nullNodeAccountName && nullNodeAccountName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountName = null;
             if (parseNode.GetChildNode("accountType") is null) { _explicitNullValueAccountType = default!; _explicitNullProperties?.Remove("accountType"); }
             else if (parseNode.GetChildNode("accountType") is { } nullNodeAccountType && nullNodeAccountType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccountType = null;
+            if (parseNode.GetChildNode("acl") is null) { _explicitNullValueAcl = default!; _explicitNullProperties?.Remove("acl"); }
+            else if (parseNode.GetChildNode("acl") is { } nullNodeAcl && nullNodeAcl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Acl = null;
             if (parseNode.GetChildNode("connectedSystemId") is null) { _explicitNullValueConnectedSystemId = default!; _explicitNullProperties?.Remove("connectedSystemId"); }
             else if (parseNode.GetChildNode("connectedSystemId") is { } nullNodeConnectedSystemId && nullNodeConnectedSystemId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConnectedSystemId = null;
             if (parseNode.GetChildNode("editable") is null) { _explicitNullValueEditable = default!; _explicitNullProperties?.Remove("editable"); }
@@ -90,6 +92,16 @@ namespace Soenneker.Make.OpenApiClient.Models
 #else
         public string AccountType { get => _explicitNullValueAccountType; set { _explicitNullValueAccountType = value; AdditionalData?.Remove("accountType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accountType"); else _explicitNullProperties?.Remove("accountType"); } }
         private string _explicitNullValueAccountType = default!;
+#endif
+        /// <summary>Your permissions on a locked connection, returned when the response includes `id` and `visibility`. For the full access list, see `/teams/{teamId}/connections/{connectionId}/access-list`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.Make.OpenApiClient.Models.GetConnectionsByConnectionId200ResponseConnectionAcl? Acl { get => _explicitNullValueAcl; set { _explicitNullValueAcl = value; AdditionalData?.Remove("acl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acl"); else _explicitNullProperties?.Remove("acl"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetConnectionsByConnectionId200ResponseConnectionAcl? _explicitNullValueAcl = default!;
+#nullable restore
+#else
+        public global::Soenneker.Make.OpenApiClient.Models.GetConnectionsByConnectionId200ResponseConnectionAcl Acl { get => _explicitNullValueAcl; set { _explicitNullValueAcl = value; AdditionalData?.Remove("acl"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acl"); else _explicitNullProperties?.Remove("acl"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.GetConnectionsByConnectionId200ResponseConnectionAcl _explicitNullValueAcl = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -233,11 +245,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(21)
+            return new Dictionary<string, Action<IParseNode>>(22)
             {
                 { "accountLabel", n => { AccountLabel = n.GetStringValue(); } },
                 { "accountName", n => { AccountName = n.GetStringValue(); } },
                 { "accountType", n => { AccountType = n.GetStringValue(); } },
+                { "acl", n => { Acl = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetConnectionsByConnectionId200ResponseConnectionAcl>(global::Soenneker.Make.OpenApiClient.Models.GetConnectionsByConnectionId200ResponseConnectionAcl.CreateFromDiscriminatorValue); } },
                 { "connectedSystemId", n => { ConnectedSystemId = n.GetStringValue(); } },
                 { "editable", n => { Editable = n.GetBoolValue(); } },
                 { "expire", n => { Expire = n.GetDateTimeOffsetValue(); } },
@@ -268,6 +281,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("accountLabel", AccountLabel);
             writer.WriteStringValue("accountName", AccountName);
             writer.WriteStringValue("accountType", AccountType);
+            writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetConnectionsByConnectionId200ResponseConnectionAcl>("acl", Acl);
             writer.WriteStringValue("connectedSystemId", ConnectedSystemId);
             writer.WriteBoolValue("editable", Editable);
             writer.WriteDateTimeOffsetValue("expire", Expire);

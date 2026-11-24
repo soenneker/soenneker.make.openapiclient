@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Make.OpenApiClient.Internal.Scenarios.AiAgents;
 using Soenneker.Make.OpenApiClient.Internal.Scenarios.Executions;
 using Soenneker.Make.OpenApiClient.Internal.Scenarios.Item;
 using Soenneker.Make.OpenApiClient.Internal.Scenarios.ListForTeam;
@@ -17,6 +18,11 @@ namespace Soenneker.Make.OpenApiClient.Internal.Scenarios
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ScenariosRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The aiAgents property</summary>
+        public global::Soenneker.Make.OpenApiClient.Internal.Scenarios.AiAgents.AiAgentsRequestBuilder AiAgents
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Internal.Scenarios.AiAgents.AiAgentsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The executions property</summary>
         public global::Soenneker.Make.OpenApiClient.Internal.Scenarios.Executions.ExecutionsRequestBuilder Executions
         {

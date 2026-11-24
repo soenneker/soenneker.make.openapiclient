@@ -41,7 +41,7 @@ namespace Soenneker.Make.OpenApiClient.Keys
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public KeysRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/keys{?cols%5B%5D*,typeName*}", pathParameters)
+        public KeysRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/keys{?cols%5B%5D*,typeName*,usable*,visibility*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,11 +49,11 @@ namespace Soenneker.Make.OpenApiClient.Keys
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public KeysRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/keys{?cols%5B%5D*,typeName*}", rawUrl)
+        public KeysRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/keys{?cols%5B%5D*,typeName*,usable*,visibility*}", rawUrl)
         {
         }
         /// <summary>
-        /// Gets the list of keys in your custom keychain. You can use the `typeName` query parameter to filter your keys based on their type. Run the [list of key types](./get--keys--types.md) API call to get a list of available key types.
+        /// Gets the list of keys in your custom keychain. You can use the `typeName` query parameter to filter your keys based on their type. Run the [list of key types](./get--keys--types.md) API call to get a list of available key types.Filter with `visibility` and `usable`; both can be combined and work with any `cols[]`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetKeys200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -91,7 +91,7 @@ namespace Soenneker.Make.OpenApiClient.Keys
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostKeys200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostKeys200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Gets the list of keys in your custom keychain. You can use the `typeName` query parameter to filter your keys based on their type. Run the [list of key types](./get--keys--types.md) API call to get a list of available key types.
+        /// Gets the list of keys in your custom keychain. You can use the `typeName` query parameter to filter your keys based on their type. Run the [list of key types](./get--keys--types.md) API call to get a list of available key types.Filter with `visibility` and `usable`; both can be combined and work with any `cols[]`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -104,7 +104,7 @@ namespace Soenneker.Make.OpenApiClient.Keys
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Keys.KeysRequestBuilder.KeysRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/keys?teamId={teamId}{&cols%5B%5D*,typeName*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/keys?teamId={teamId}{&cols%5B%5D*,typeName*,usable*,visibility*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -141,12 +141,12 @@ namespace Soenneker.Make.OpenApiClient.Keys
             return new global::Soenneker.Make.OpenApiClient.Keys.KeysRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Gets the list of keys in your custom keychain. You can use the `typeName` query parameter to filter your keys based on their type. Run the [list of key types](./get--keys--types.md) API call to get a list of available key types.
+        /// Gets the list of keys in your custom keychain. You can use the `typeName` query parameter to filter your keys based on their type. Run the [list of key types](./get--keys--types.md) API call to get a list of available key types.Filter with `visibility` and `usable`; both can be combined and work with any `cols[]`.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class KeysRequestBuilderGetQueryParameters 
         {
-            /// <summary>Specifies columns that are returned in the response. Use the `cols[]` parameter for each column that you want included. For example `GET /endpoint?cols[]=key1&amp;cols[]=key2` to get both `key1` and `key2` columns in the response.[Check the &quot;Filtering&quot; section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)</summary>
+            /// <summary>Specifies columns that are returned in the response. Use the `cols[]` parameter for each column that you want included. For example `GET /endpoint?cols[]=key1&amp;cols[]=key2` to get both `key1` and `key2` columns in the response.[Check the &quot;Filtering&quot; section for a full example.](/api-documentation/pagination-sorting-filtering/filtering)Request `id` together with `visibility` to get `acl` on locked keys.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("cols%5B%5D")]
@@ -162,6 +162,12 @@ namespace Soenneker.Make.OpenApiClient.Keys
             /// <summary>Use the key type to get only keys with the specified type. You can use the API call `GET /keys/types` to list available key types.</summary>
             [QueryParameter("typeName")]
             public global::Soenneker.Make.OpenApiClient.Models.GetKeysTypeNameParameter? TypeName { get; set; }
+            /// <summary>`true` returns the keys you can use: team-visible ones and locked ones you hold `entity use` on. `false` returns the locked keys you cannot use. Omit to list all. Your team role is not checked. Fails with `503` if your permissions cannot be resolved.</summary>
+            [QueryParameter("usable")]
+            public global::Soenneker.Make.OpenApiClient.Models.GetKeysUsableParameter? Usable { get; set; }
+            /// <summary>`locked` returns the keys restricted to their access list, `team` those visible to the whole team. Without the *Locked connections* feature, every key is team-visible.</summary>
+            [QueryParameter("visibility")]
+            public global::Soenneker.Make.OpenApiClient.Models.GetKeysVisibilityParameter? Visibility { get; set; }
         }
     }
 }
