@@ -39202,6 +39202,15 @@
             "example": true
           },
           {
+            "name": "unsaved",
+            "in": "query",
+            "description": "Set this parameter to \u0060true\u0060 to return only scenarios for which the authenticated user has a\nrecovery snapshot \u2014 unsaved changes from the scenario builder that were not yet saved.\nComposes with other filters (e.g. \u0060id[]\u0060, \u0060folderId\u0060) using AND. Like the default listing, it returns\nscenarios only unless \u0060type\u0060 is set to \u0060tool\u0060. When the filter is applied, the response contains\n\u0060unsaved: true\u0060. Ignored when \u0060deleted\u0060 is set to \u0060true\u0060 or when scenario recovery is not enabled.\n",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": true
+          },
+          {
             "name": "name",
             "in": "query",
             "description": "Filters scenarios by name using a case-insensitive substring match.",
@@ -40743,6 +40752,140 @@
             ]
           }
         ]
+      }
+    },
+    "/scenarios/{scenarioId}/run/{executionId}": {
+      "get": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Get the status of a canvas run",
+        "description": "Returns the status of a scenario run started from the canvas. Only a user session is accepted. A call authenticated with an API token is rejected with \u0060403\u0060 (\u0060SC403\u0060).\n\n\u0060waiting\u0060 means the run has not been accepted by the engine yet. \u0060accepted\u0060 and \u0060rejected\u0060 are the engine\u0027s reply. \u0060message\u0060 is present when the run was rejected.\n",
+        "operationId": "GetScenariosByScenarioIdRunByExecutionId",
+        "parameters": [
+          {
+            "name": "scenarioId",
+            "in": "path",
+            "description": "The ID of the scenario. You can get the \u0060scenarioId\u0060 with the [List scenarios](/api-reference/scenarios/get--scenarios.md) API call.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 112
+          },
+          {
+            "name": "executionId",
+            "in": "path",
+            "description": "The unique ID of the scenario execution. It can be retrieved from the [List scenario logs](/api-reference/scenarios/logs/get--scenarios--scenarioid--logs.md) endpoint under the ID key.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "cc1c49323b344687a324888762206003"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The canvas run status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetScenariosByScenarioIdRunByExecutionId200Response"
+                },
+                "examples": {
+                  "waiting": {
+                    "summary": "Still waiting for the engine",
+                    "value": {
+                      "status": "waiting"
+                    }
+                  },
+                  "rejected": {
+                    "summary": "The engine rejected the run",
+                    "value": {
+                      "status": "rejected",
+                      "message": "The scenario could not be started."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403 Forbidden - the call was not made with a user session (\u0060SC403\u0060)"
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:run"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
+    "/scenarios/{scenarioId}/run/{executionId}/stop": {
+      "post": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Stop a canvas run",
+        "description": "Stops a scenario run started from the canvas. Only a user session is accepted. A call authenticated with an API token is rejected with \u0060403\u0060 (\u0060SC403\u0060).\n\n\u0060command\u0060 is \u0060stop\u0060 or \u0060force stop\u0060. The response is \u0060204\u0060 when the stop reached the waiting webhook or the engine. It is \u0060202\u0060 when the run is not accepted yet and the stop is stored until it is.\n",
+        "operationId": "PostScenariosByScenarioIdRunByExecutionIdStop",
+        "parameters": [
+          {
+            "name": "scenarioId",
+            "in": "path",
+            "description": "The ID of the scenario. You can get the \u0060scenarioId\u0060 with the [List scenarios](/api-reference/scenarios/get--scenarios.md) API call.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 112
+          },
+          {
+            "name": "executionId",
+            "in": "path",
+            "description": "The unique ID of the scenario execution. It can be retrieved from the [List scenario logs](/api-reference/scenarios/logs/get--scenarios--scenarioid--logs.md) endpoint under the ID key.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "cc1c49323b344687a324888762206003"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostScenariosByScenarioIdRunByExecutionIdStopRequest"
+              },
+              "example": {
+                "command": "stop"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "The run is not accepted yet. The stop is stored and sent when it is."
+          },
+          "204": {
+            "description": "The stop reached the waiting webhook or the engine."
+          },
+          "403": {
+            "description": "403 Forbidden - the call was not made with a user session (\u0060SC403\u0060)"
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:run"
+            ]
+          }
+        ],
+        "x-internal": true
       }
     },
     "/scenarios/{scenarioId}/replay": {
@@ -43071,6 +43214,785 @@
             ]
           }
         ]
+      }
+    },
+    "/scenarios/v1/scenarios/{scenarioId}/pins": {
+      "get": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "List explicit data pins",
+        "description": "Lists the active explicit data pins of a scenario. Each entry names the pinned module and whether the pin carries edits.",
+        "operationId": "ListScenarioPins",
+        "parameters": [
+          {
+            "name": "scenarioId",
+            "in": "path",
+            "description": "The ID of the scenario. You can get the \u0060scenarioId\u0060 with the [List scenarios](/api-reference/scenarios/get--scenarios.md) API call.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 112
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Active explicit pins.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListScenarioPins200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The JWT context is missing the team or organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListScenarioPins400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed or the token lacks \u0060scenarios:read\u0060 (\u0060IM001\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListScenarioPins401Response"
+                },
+                "examples": {
+                  "missingScope": {
+                    "summary": "The token lacks the required scope",
+                    "value": {
+                      "message": "Access denied",
+                      "code": "IM001",
+                      "detail": "Required scope: scenarios:read"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller cannot view the scenario\u0027s pins.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListScenarioPins403Response"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Postgres is unreachable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListScenarioPins503Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:read"
+            ]
+          }
+        ],
+        "x-internal": true
+      },
+      "post": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Create an explicit data pin",
+        "description": "Pins the data of one module of one execution, so later runs can reuse it. Only one active pin per scenario and module is allowed.",
+        "operationId": "CreateScenarioPin",
+        "parameters": [
+          {
+            "name": "scenarioId",
+            "in": "path",
+            "description": "The ID of the scenario. You can get the \u0060scenarioId\u0060 with the [List scenarios](/api-reference/scenarios/get--scenarios.md) API call.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 112
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateScenarioPinRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Created explicit pin.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateScenarioPin200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The JWT context is missing the team or organization, or the body is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateScenarioPin400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed or the token lacks \u0060scenarios:write\u0060 (\u0060IM001\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateScenarioPin401Response"
+                },
+                "examples": {
+                  "missingScope": {
+                    "summary": "The token lacks the required scope",
+                    "value": {
+                      "message": "Access denied",
+                      "code": "IM001",
+                      "detail": "Required scope: scenarios:write"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller cannot edit the scenario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateScenarioPin403Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such source execution under this scenario, or it belongs to another team or organization. An unknown scenario returns \u0060IM301\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateScenarioPin404Response"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "An active pin already exists for this scenario and module.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateScenarioPin409Response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The source execution cannot be pinned. Discriminate on \u0060details\u0060: \u0060explicit-pin-capture-unusable\u0060, \u0060explicit-pin-capture-not-v2\u0060, \u0060explicit-pin-capture-not-lossless\u0060, \u0060explicit-pin-capture-too-large\u0060, \u0060explicit-pin-attachment-malformed\u0060, \u0060explicit-pin-attachment-mismatch\u0060, \u0060explicit-pin-attachment-gap\u0060, \u0060explicit-pin-attachment-foreign\u0060, \u0060explicit-pin-source-blob-missing\u0060 and \u0060explicit-pin-data-rejected\u0060 mean the capture cannot be stored; \u0060execution-tenancy-unknown\u0060 and \u0060execution-organization-unknown\u0060 mean the execution document is wrong.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateScenarioPin422Response"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Postgres or Elasticsearch is unreachable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateScenarioPin503Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:write"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
+    "/scenarios/v1/scenarios/{scenarioId}/pins/{pinId}": {
+      "get": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Get an explicit data pin",
+        "description": "Returns the data of an active explicit pin, its files, its edits and the revision of those edits.",
+        "operationId": "GetScenarioPin",
+        "parameters": [
+          {
+            "name": "scenarioId",
+            "in": "path",
+            "description": "The ID of the scenario. You can get the \u0060scenarioId\u0060 with the [List scenarios](/api-reference/scenarios/get--scenarios.md) API call.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 112
+          },
+          {
+            "name": "pinId",
+            "in": "path",
+            "description": "The ID of the explicit data pin. It is returned when the pin is created.",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "example": "3f2a9c1e-7b4d-4e8a-9c2f-1a2b3c4d5e6f"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Explicit pin bundles.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetScenarioPin200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The JWT context is missing the team or organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetScenarioPin400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed or the token lacks \u0060scenarios:read\u0060 (\u0060IM001\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetScenarioPin401Response"
+                },
+                "examples": {
+                  "missingScope": {
+                    "summary": "The token lacks the required scope",
+                    "value": {
+                      "message": "Access denied",
+                      "code": "IM001",
+                      "detail": "Required scope: scenarios:read"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller cannot view the scenario\u0027s pins.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetScenarioPin403Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No active pin for this scenario, organization and team, or the pin ID is not a UUID (the route does not match). An unknown scenario returns \u0060IM301\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetScenarioPin404Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The pin\u0027s stored pages or edits do not decode.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetScenarioPin500Response"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Postgres is unreachable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetScenarioPin503Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:read"
+            ]
+          }
+        ],
+        "x-internal": true
+      },
+      "delete": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Delete an explicit data pin",
+        "description": "Deletes an active explicit pin together with its edits.",
+        "operationId": "DeleteScenarioPin",
+        "parameters": [
+          {
+            "name": "scenarioId",
+            "in": "path",
+            "description": "The ID of the scenario. You can get the \u0060scenarioId\u0060 with the [List scenarios](/api-reference/scenarios/get--scenarios.md) API call.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 112
+          },
+          {
+            "name": "pinId",
+            "in": "path",
+            "description": "The ID of the explicit data pin. It is returned when the pin is created.",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "example": "3f2a9c1e-7b4d-4e8a-9c2f-1a2b3c4d5e6f"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted explicit pin.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteScenarioPin200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The JWT context is missing the team or organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteScenarioPin400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed or the token lacks \u0060scenarios:write\u0060 (\u0060IM001\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteScenarioPin401Response"
+                },
+                "examples": {
+                  "missingScope": {
+                    "summary": "The token lacks the required scope",
+                    "value": {
+                      "message": "Access denied",
+                      "code": "IM001",
+                      "detail": "Required scope: scenarios:write"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller cannot edit the scenario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteScenarioPin403Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No active pin for this scenario, organization and team, or the pin ID is not a UUID (the route does not match). An unknown scenario returns \u0060IM301\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteScenarioPin404Response"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Postgres is unreachable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteScenarioPin503Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:write"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
+    "/scenarios/v1/scenarios/{scenarioId}/pins/{pinId}/edits": {
+      "put": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Replace the edits of an explicit data pin",
+        "description": "Replaces the whole set of edits of an active explicit pin. Send \u0060revision\u0060 as read from the pin; the request fails with \u0060409\u0060 when the edits have changed since then. Every successful write adds 1 to the revision.",
+        "operationId": "ReplaceScenarioPinEdits",
+        "parameters": [
+          {
+            "name": "scenarioId",
+            "in": "path",
+            "description": "The ID of the scenario. You can get the \u0060scenarioId\u0060 with the [List scenarios](/api-reference/scenarios/get--scenarios.md) API call.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 112
+          },
+          {
+            "name": "pinId",
+            "in": "path",
+            "description": "The ID of the explicit data pin. It is returned when the pin is created.",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "example": "3f2a9c1e-7b4d-4e8a-9c2f-1a2b3c4d5e6f"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReplaceScenarioPinEditsRequest"
+              },
+              "examples": {
+                "replaceEmail": {
+                  "summary": "Replace one value",
+                  "value": {
+                    "edits": [
+                      {
+                        "bundle": 0,
+                        "pointer": [
+                          "data",
+                          "email"
+                        ],
+                        "value": "jane@example.com"
+                      }
+                    ],
+                    "revision": 2
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The pin\u0027s edits as stored, at their new revision.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplaceScenarioPinEdits200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The JWT context is missing the team or organization, or the body is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplaceScenarioPinEdits400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed or the token lacks \u0060scenarios:write\u0060 (\u0060IM001\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplaceScenarioPinEdits401Response"
+                },
+                "examples": {
+                  "missingScope": {
+                    "summary": "The token lacks the required scope",
+                    "value": {
+                      "message": "Access denied",
+                      "code": "IM001",
+                      "detail": "Required scope: scenarios:write"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller cannot edit the scenario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplaceScenarioPinEdits403Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No active pin for this scenario, organization and team, or the pin ID is not a UUID (the route does not match). An unknown scenario returns \u0060IM301\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplaceScenarioPinEdits404Response"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The pin\u0027s edits moved past \u0060revision\u0060 because someone else saved edits since the caller read them. Read the pin again and retry.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplaceScenarioPinEdits409Response"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "The request body is larger than the web API accepts for JSON request bodies (1 MB by default).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplaceScenarioPinEdits413Response"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The edits do not fit the pin. Discriminate on \u0060details\u0060: \u0060explicit-pin-edit-bundle-out-of-range\u0060, \u0060explicit-pin-edit-unresolvable\u0060 (the pointer names no existing value), \u0060explicit-pin-edit-file\u0060 (the value is a file, which cannot be edited yet), \u0060explicit-pin-edit-overlap\u0060 (two edits of one bundle where one pointer contains the other), \u0060explicit-pin-edit-incompatible-pin\u0060 (the pin was captured before it could hold full data; pin the module again), \u0060explicit-pin-edit-pin-too-large\u0060 (the stored output of the pin, files included, is too large to check edits against) or \u0060explicit-pin-edit-too-large\u0060 (the edits weigh more than a pin may carry).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplaceScenarioPinEdits422Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The pin\u0027s stored row or object is corrupt. Its pages or edits do not decode, or it names an object outside its scenario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplaceScenarioPinEdits500Response"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Postgres or object storage is unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplaceScenarioPinEdits503Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:write"
+            ]
+          }
+        ],
+        "x-internal": true
+      },
+      "delete": {
+        "tags": [
+          "Scenarios"
+        ],
+        "summary": "Clear the edits of an explicit data pin",
+        "description": "Removes every edit of an active explicit pin, so the pin returns to its captured data. Send \u0060revision\u0060 as read from the pin; the request fails with \u0060409\u0060 when the edits have changed since then. The cleared state is a new revision.",
+        "operationId": "ClearScenarioPinEdits",
+        "parameters": [
+          {
+            "name": "scenarioId",
+            "in": "path",
+            "description": "The ID of the scenario. You can get the \u0060scenarioId\u0060 with the [List scenarios](/api-reference/scenarios/get--scenarios.md) API call.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 112
+          },
+          {
+            "name": "pinId",
+            "in": "path",
+            "description": "The ID of the explicit data pin. It is returned when the pin is created.",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "example": "3f2a9c1e-7b4d-4e8a-9c2f-1a2b3c4d5e6f"
+          },
+          {
+            "name": "revision",
+            "in": "query",
+            "description": "The revision of the pin\u0027s edits that you read. The request fails with \u0060409\u0060 when the edits have changed since then.",
+            "required": true,
+            "schema": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "example": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The pin without edits, at its new revision.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearScenarioPinEdits200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The JWT context is missing the team or organization, or the revision is not a non-negative integer.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearScenarioPinEdits400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication failed or the token lacks \u0060scenarios:write\u0060 (\u0060IM001\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearScenarioPinEdits401Response"
+                },
+                "examples": {
+                  "missingScope": {
+                    "summary": "The token lacks the required scope",
+                    "value": {
+                      "message": "Access denied",
+                      "code": "IM001",
+                      "detail": "Required scope: scenarios:write"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller cannot edit the scenario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearScenarioPinEdits403Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No active pin for this scenario, organization and team, or the pin ID is not a UUID (the route does not match). An unknown scenario returns \u0060IM301\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearScenarioPinEdits404Response"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The pin\u0027s edits moved past \u0060revision\u0060 because someone else saved edits since the caller read them. Read the pin again and retry.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearScenarioPinEdits409Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The pin\u0027s stored row or object is corrupt. Its pages or edits do not decode, or it names an object outside its scenario.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearScenarioPinEdits500Response"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Postgres or object storage is unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearScenarioPinEdits503Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "scenarios:write"
+            ]
+          }
+        ],
+        "x-internal": true
       }
     },
     "/scenarios/{scenarioId}/consumption-overview": {
@@ -60312,8 +61234,7 @@
               "keys:read"
             ]
           }
-        ],
-        "x-internal": true
+        ]
       }
     },
     "/templates": {
@@ -91200,7 +92121,8 @@
       },
       "PostEndpointsV1Execute200Response": {
         "required": [
-          "output"
+          "output",
+          "execution"
         ],
         "type": "object",
         "properties": {
@@ -99095,6 +100017,10 @@
           },
           "pg": {
             "$ref": "#/components/schemas/GetScenarios200ResponsePg"
+          },
+          "unsaved": {
+            "type": "boolean",
+            "description": "Present and \u0060true\u0060 only when the \u0060unsaved\u0060 filter was applied. Absent when it was ignored (scenario recovery disabled, or \u0060deleted=true\u0060), in which case the list is not filtered."
           }
         }
       },
@@ -99535,6 +100461,32 @@
           }
         }
       },
+      "GetScenariosByScenarioIdRunByExecutionId200Response": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/GetScenariosByScenarioIdRunByExecutionId200ResponseStatus"
+          },
+          "message": {
+            "type": "string",
+            "description": "Present when the run was rejected."
+          }
+        }
+      },
+      "PostScenariosByScenarioIdRunByExecutionIdStopRequest": {
+        "required": [
+          "command"
+        ],
+        "type": "object",
+        "properties": {
+          "command": {
+            "$ref": "#/components/schemas/PostScenariosByScenarioIdRunByExecutionIdStopRequestCommand"
+          }
+        }
+      },
       "PostScenariosByScenarioIdReplayRequest": {
         "required": [
           "executionIds"
@@ -99926,6 +100878,1304 @@
         "properties": {
           "id": {
             "type": "integer"
+          }
+        }
+      },
+      "ListScenarioPins200Response": {
+        "required": [
+          "pins"
+        ],
+        "type": "object",
+        "properties": {
+          "pins": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListScenarioPins200ResponsePinsItem"
+            }
+          }
+        },
+        "example": {
+          "pins": [
+            {
+              "pinId": "3f2a9c1e-7b4d-4e8a-9c2f-1a2b3c4d5e6f",
+              "moduleId": 7,
+              "edited": true
+            }
+          ]
+        }
+      },
+      "ListScenarioPins400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ListScenarioPins401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ListScenarioPins403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ListScenarioPins503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "CreateScenarioPinRequest": {
+        "required": [
+          "moduleId",
+          "executionId",
+          "operation"
+        ],
+        "type": "object",
+        "properties": {
+          "moduleId": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "executionId": {
+            "pattern": "^[0-9a-f]{32}$",
+            "type": "string",
+            "description": "The ID of the execution to pin data from."
+          },
+          "operation": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "example": {
+          "moduleId": 7,
+          "executionId": "0123456789abcdef0123456789abcdef",
+          "operation": 1
+        }
+      },
+      "CreateScenarioPin200Response": {
+        "required": [
+          "pinId",
+          "moduleId"
+        ],
+        "type": "object",
+        "properties": {
+          "pinId": {
+            "type": "string"
+          },
+          "moduleId": {
+            "type": "integer"
+          }
+        },
+        "example": {
+          "pinId": "3f2a9c1e-7b4d-4e8a-9c2f-1a2b3c4d5e6f",
+          "moduleId": 7
+        }
+      },
+      "CreateScenarioPin400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "CreateScenarioPin401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "CreateScenarioPin403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "CreateScenarioPin404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "CreateScenarioPin409Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "CreateScenarioPin422Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "CreateScenarioPin503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "GetScenarioPin200Response": {
+        "required": [
+          "moduleId",
+          "data",
+          "edits",
+          "revision"
+        ],
+        "type": "object",
+        "properties": {
+          "moduleId": {
+            "type": "integer"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The pinned bundles\u0027 inline view. A bundle too large for a page is a stub, so an edit inside a stubbed bundle does not appear here."
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetScenarioPin200ResponseFilesItem"
+            }
+          },
+          "edits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetScenarioPin200ResponseEditsItem"
+            },
+            "description": "The pin\u0027s edits. They address the full bundles."
+          },
+          "revision": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "The revision of the pin\u0027s edits. A pin never edited is at 0; every write adds 1, clearing included."
+          }
+        }
+      },
+      "GetScenarioPin400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "GetScenarioPin401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "GetScenarioPin403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "GetScenarioPin404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "GetScenarioPin500Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "GetScenarioPin503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "DeleteScenarioPin200Response": {
+        "required": [
+          "pinId",
+          "moduleId"
+        ],
+        "type": "object",
+        "properties": {
+          "pinId": {
+            "type": "string"
+          },
+          "moduleId": {
+            "type": "integer"
+          }
+        },
+        "example": {
+          "pinId": "3f2a9c1e-7b4d-4e8a-9c2f-1a2b3c4d5e6f",
+          "moduleId": 7
+        }
+      },
+      "DeleteScenarioPin400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "DeleteScenarioPin401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "DeleteScenarioPin403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "DeleteScenarioPin404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "DeleteScenarioPin503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ReplaceScenarioPinEditsRequest": {
+        "required": [
+          "edits",
+          "revision"
+        ],
+        "type": "object",
+        "properties": {
+          "edits": {
+            "maxItems": 1000,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReplaceScenarioPinEditsRequestEditsItem"
+            },
+            "description": "The whole set of edits. Each replaces an existing value of the pin; no two may overlap. To remove them all, send \u0060DELETE\u0060 on the same path."
+          },
+          "revision": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "The revision of the pin\u0027s edits that you read."
+          }
+        },
+        "example": {
+          "edits": [
+            {
+              "bundle": 0,
+              "pointer": [
+                "data",
+                "email"
+              ],
+              "value": "jane@example.com"
+            }
+          ],
+          "revision": 2
+        }
+      },
+      "ReplaceScenarioPinEdits200Response": {
+        "required": [
+          "edits",
+          "revision"
+        ],
+        "type": "object",
+        "properties": {
+          "edits": {
+            "maxItems": 1000,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReplaceScenarioPinEdits200ResponseEditsItem"
+            },
+            "description": "The whole set of the pin\u0027s edits, empty when it has none."
+          },
+          "revision": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "The revision of the pin\u0027s edits after this request."
+          }
+        },
+        "example": {
+          "edits": [
+            {
+              "bundle": 0,
+              "pointer": [
+                "data",
+                "email"
+              ],
+              "value": "jane@example.com"
+            }
+          ],
+          "revision": 3
+        }
+      },
+      "ReplaceScenarioPinEdits400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ReplaceScenarioPinEdits401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ReplaceScenarioPinEdits403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ReplaceScenarioPinEdits404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ReplaceScenarioPinEdits409Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ReplaceScenarioPinEdits413Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ReplaceScenarioPinEdits422Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ReplaceScenarioPinEdits500Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ReplaceScenarioPinEdits503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ClearScenarioPinEdits200Response": {
+        "required": [
+          "edits",
+          "revision"
+        ],
+        "type": "object",
+        "properties": {
+          "edits": {
+            "maxItems": 1000,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClearScenarioPinEdits200ResponseEditsItem"
+            },
+            "description": "The whole set of the pin\u0027s edits, empty when it has none."
+          },
+          "revision": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "The revision of the pin\u0027s edits after this request."
+          }
+        },
+        "example": {
+          "edits": [
+            {
+              "bundle": 0,
+              "pointer": [
+                "data",
+                "email"
+              ],
+              "value": "jane@example.com"
+            }
+          ],
+          "revision": 3
+        }
+      },
+      "ClearScenarioPinEdits400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ClearScenarioPinEdits401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ClearScenarioPinEdits403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ClearScenarioPinEdits404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ClearScenarioPinEdits409Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ClearScenarioPinEdits500Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
+          }
+        }
+      },
+      "ClearScenarioPinEdits503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Make API error code, for example \u0060IM001\u0060, or the scenario service error code, for example \u0060SC422\u0060."
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Additional information about the error, for example the scope the request is missing."
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Reasons for the error. On \u0060422\u0060, discriminate on these values."
           }
         }
       },
@@ -126385,6 +128635,202 @@
           "updatedByUser": {
             "$ref": "#/components/schemas/PatchScenariosByScenarioIdNotesByNoteId200ResponseNoteUpdatedByUser"
           }
+        }
+      },
+      "ListScenarioPins200ResponsePinsItem": {
+        "required": [
+          "pinId",
+          "moduleId",
+          "edited"
+        ],
+        "type": "object",
+        "properties": {
+          "pinId": {
+            "type": "string"
+          },
+          "moduleId": {
+            "type": "integer"
+          },
+          "edited": {
+            "type": "boolean",
+            "description": "Whether the pin carries edits."
+          }
+        }
+      },
+      "GetScenarioPin200ResponseFilesItem": {
+        "required": [
+          "mimetype",
+          "file_name",
+          "pointer",
+          "bundle",
+          "size",
+          "index"
+        ],
+        "type": "object",
+        "properties": {
+          "mimetype": {
+            "type": "string"
+          },
+          "file_name": {
+            "type": "string"
+          },
+          "pointer": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "bundle": {
+            "type": "integer"
+          },
+          "size": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "index": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        }
+      },
+      "GetScenarioPin200ResponseEditsItem": {
+        "required": [
+          "bundle",
+          "pointer",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "bundle": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Index into the pin\u0027s bundles. The pin stores the bundles of one operation."
+          },
+          "pointer": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Path to an existing key inside the bundle. Segments are never escaped; array indexes are decimal strings."
+          },
+          "value": {
+            "description": "The replacement JSON value."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "bundle": 0,
+          "pointer": [
+            "data",
+            "email"
+          ],
+          "value": "jane@example.com"
+        }
+      },
+      "ReplaceScenarioPinEditsRequestEditsItem": {
+        "required": [
+          "bundle",
+          "pointer",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "bundle": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Index into the pin\u0027s bundles. The pin stores the bundles of one operation."
+          },
+          "pointer": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Path to an existing key inside the bundle. Segments are never escaped; array indexes are decimal strings."
+          },
+          "value": {
+            "description": "The replacement JSON value."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "bundle": 0,
+          "pointer": [
+            "data",
+            "email"
+          ],
+          "value": "jane@example.com"
+        }
+      },
+      "ReplaceScenarioPinEdits200ResponseEditsItem": {
+        "required": [
+          "bundle",
+          "pointer",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "bundle": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Index into the pin\u0027s bundles. The pin stores the bundles of one operation."
+          },
+          "pointer": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Path to an existing key inside the bundle. Segments are never escaped; array indexes are decimal strings."
+          },
+          "value": {
+            "description": "The replacement JSON value."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "bundle": 0,
+          "pointer": [
+            "data",
+            "email"
+          ],
+          "value": "jane@example.com"
+        }
+      },
+      "ClearScenarioPinEdits200ResponseEditsItem": {
+        "required": [
+          "bundle",
+          "pointer",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "bundle": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "Index into the pin\u0027s bundles. The pin stores the bundles of one operation."
+          },
+          "pointer": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Path to an existing key inside the bundle. Segments are never escaped; array indexes are decimal strings."
+          },
+          "value": {
+            "description": "The replacement JSON value."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "bundle": 0,
+          "pointer": [
+            "data",
+            "email"
+          ],
+          "value": "jane@example.com"
         }
       },
       "GetScenariosByScenarioIdBlueprint200ResponseResponse": {
@@ -156432,6 +158878,53 @@
           3
         ],
         "type": "integer"
+      },
+      "GetScenariosByScenarioIdRunByExecutionId200ResponseStatus": {
+        "enum": [
+          "waiting",
+          "accepted",
+          "rejected"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetScenariosByScenarioIdRunByExecutionId200ResponseStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "waiting",
+              "name": "Waiting"
+            },
+            {
+              "value": "accepted",
+              "name": "Accepted"
+            },
+            {
+              "value": "rejected",
+              "name": "Rejected"
+            }
+          ]
+        }
+      },
+      "PostScenariosByScenarioIdRunByExecutionIdStopRequestCommand": {
+        "enum": [
+          "stop",
+          "force stop"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "PostScenariosByScenarioIdRunByExecutionIdStopRequestCommand",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "stop",
+              "name": "Stop"
+            },
+            {
+              "value": "force stop",
+              "name": "ForceStop"
+            }
+          ]
+        }
       },
       "GetScenariosByScenarioIdExecutionsByExecutionId200ResponseStatus": {
         "enum": [

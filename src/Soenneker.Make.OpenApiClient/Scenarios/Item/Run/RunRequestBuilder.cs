@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Models;
+using Soenneker.Make.OpenApiClient.Scenarios.Item.Run.Item;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,6 +18,18 @@ namespace Soenneker.Make.OpenApiClient.Scenarios.Item.Run
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RunRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.scenarios.item.run.item collection</summary>
+        /// <param name="position">The unique ID of the scenario execution. It can be retrieved from the [List scenario logs](/api-reference/scenarios/logs/get--scenarios--scenarioid--logs.md) endpoint under the ID key.</param>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Scenarios.Item.Run.Item.WithExecutionItemRequestBuilder"/></returns>
+        public global::Soenneker.Make.OpenApiClient.Scenarios.Item.Run.Item.WithExecutionItemRequestBuilder this[string position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("executionId", position);
+                return new global::Soenneker.Make.OpenApiClient.Scenarios.Item.Run.Item.WithExecutionItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Scenarios.Item.Run.RunRequestBuilder"/> and sets the default values.
         /// </summary>

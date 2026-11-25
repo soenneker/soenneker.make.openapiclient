@@ -13,6 +13,7 @@ using Soenneker.Make.OpenApiClient.Scenarios.MoveToTrash;
 using Soenneker.Make.OpenApiClient.Scenarios.ReplayableExecutions;
 using Soenneker.Make.OpenApiClient.Scenarios.Tools;
 using Soenneker.Make.OpenApiClient.Scenarios.Trash;
+using Soenneker.Make.OpenApiClient.Scenarios.V1;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -66,6 +67,11 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         {
             get => new global::Soenneker.Make.OpenApiClient.Scenarios.Trash.TrashRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The v1 property</summary>
+        public global::Soenneker.Make.OpenApiClient.Scenarios.V1.V1RequestBuilder V1
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Scenarios.V1.V1RequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.Make.OpenApiClient.scenarios.item collection</summary>
         /// <param name="position">The ID of the scenario. You can get the `scenarioId` with the [List scenarios](/api-reference/scenarios/get--scenarios.md) API call.</param>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Scenarios.Item.WithScenarioItemRequestBuilder"/></returns>
@@ -83,7 +89,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,search*,type*,updatedByUserName*}", pathParameters)
+        public ScenariosRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,search*,type*,unsaved*,updatedByUserName*}", pathParameters)
         {
         }
         /// <summary>
@@ -91,7 +97,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ScenariosRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,search*,type*,updatedByUserName*}", rawUrl)
+        public ScenariosRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/scenarios{?cols%5B%5D*,concept*,confirmed*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,search*,type*,unsaved*,updatedByUserName*}", rawUrl)
         {
         }
         /// <summary>
@@ -146,7 +152,7 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Scenarios.ScenariosRequestBuilder.ScenariosRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios?teamId={teamId}{&cols%5B%5D*,concept*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,search*,type*,updatedByUserName*}", PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/scenarios?teamId={teamId}{&cols%5B%5D*,concept*,createdByUserName*,deleted*,dlqCount*,folderId*,id%5B%5D*,includeSubfolders*,isActive*,isinvalid*,islinked*,islocked*,labelIds%5B%5D*,name*,organizationId*,pg%5Blimit%5D*,pg%5Boffset%5D*,pg%5BsortBy%5D*,pg%5BsortDir%5D*,search*,type*,unsaved*,updatedByUserName*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -297,6 +303,9 @@ namespace Soenneker.Make.OpenApiClient.Scenarios
             /// <summary>Limits the type of scenarios to be retrieved.</summary>
             [QueryParameter("type")]
             public global::Soenneker.Make.OpenApiClient.Models.GetScenariosTypeParameter? Type { get; set; }
+            /// <summary>Set this parameter to `true` to return only scenarios for which the authenticated user has arecovery snapshot — unsaved changes from the scenario builder that were not yet saved.Composes with other filters (e.g. `id[]`, `folderId`) using AND. Like the default listing, it returnsscenarios only unless `type` is set to `tool`. When the filter is applied, the response contains`unsaved: true`. Ignored when `deleted` is set to `true` or when scenario recovery is not enabled.</summary>
+            [QueryParameter("unsaved")]
+            public bool? Unsaved { get; set; }
             /// <summary>Filters scenarios by the name of the user who last updated them.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -21,6 +21,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("pg") is { } nullNodePg && nullNodePg.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Pg = null;
             if (parseNode.GetChildNode("scenarios") is null) { _explicitNullValueScenarios = default!; _explicitNullProperties?.Remove("scenarios"); }
             else if (parseNode.GetChildNode("scenarios") is { } nullNodeScenarios && nullNodeScenarios.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scenarios = null;
+            if (parseNode.GetChildNode("unsaved") is null) { _explicitNullValueUnsaved = default!; _explicitNullProperties?.Remove("unsaved"); }
+            else if (parseNode.GetChildNode("unsaved") is { } nullNodeUnsaved && nullNodeUnsaved.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Unsaved = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -45,6 +47,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         public List<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponseScenariosItem> Scenarios { get => _explicitNullValueScenarios; set { _explicitNullValueScenarios = value; AdditionalData?.Remove("scenarios"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scenarios"); else _explicitNullProperties?.Remove("scenarios"); } }
         private List<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponseScenariosItem> _explicitNullValueScenarios = default!;
 #endif
+        /// <summary>Present and `true` only when the `unsaved` filter was applied. Absent when it was ignored (scenario recovery disabled, or `deleted=true`), in which case the list is not filtered.</summary>
+        public bool? Unsaved { get => _explicitNullValueUnsaved; set { _explicitNullValueUnsaved = value; AdditionalData?.Remove("unsaved"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unsaved"); else _explicitNullProperties?.Remove("unsaved"); } }
+        private bool? _explicitNullValueUnsaved = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.GetScenarios200Response"/> and sets the default values.
         /// </summary>
@@ -72,6 +77,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             {
                 { "pg", n => { Pg = n.GetObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponsePg>(global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponsePg.CreateFromDiscriminatorValue); } },
                 { "scenarios", n => { Scenarios = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponseScenariosItem>(global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponseScenariosItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "unsaved", n => { Unsaved = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -83,6 +89,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponsePg>("pg", Pg);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.GetScenarios200ResponseScenariosItem>("scenarios", Scenarios);
+            writer.WriteBoolValue("unsaved", Unsaved);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
