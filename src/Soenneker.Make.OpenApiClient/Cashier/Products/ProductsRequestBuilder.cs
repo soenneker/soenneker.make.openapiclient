@@ -34,11 +34,13 @@ namespace Soenneker.Make.OpenApiClient.Cashier.Products
         {
         }
         /// <summary>
-        /// Get list of cashier products
+        /// Lists cashier products of the given `type` (default `PLAN`).Without `organizationId`, no organization permission is checked and the default price group&apos;s catalog is returned.With `organizationId`, prices follow that organization&apos;s price group, its active price is included even when hidden,and `discountedPrice` is added where its universal discount applies. The caller therefore needs the`organization view` permission in that organization; otherwise the request fails with `403` (`IM002`).
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetCashierProducts200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetCashierProducts400Response">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetCashierProducts403Response">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.GetCashierProducts200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Cashier.Products.ProductsRequestBuilder.ProductsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -49,10 +51,17 @@ namespace Soenneker.Make.OpenApiClient.Cashier.Products
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCashierProducts200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCashierProducts200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Make.OpenApiClient.Models.GetCashierProducts400Response.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Make.OpenApiClient.Models.GetCashierProducts403Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetCashierProducts200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetCashierProducts200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get list of cashier products
+        /// Lists cashier products of the given `type` (default `PLAN`).Without `organizationId`, no organization permission is checked and the default price group&apos;s catalog is returned.With `organizationId`, prices follow that organization&apos;s price group, its active price is included even when hidden,and `discountedPrice` is added where its universal discount applies. The caller therefore needs the`organization view` permission in that organization; otherwise the request fails with `403` (`IM002`).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -80,7 +89,7 @@ namespace Soenneker.Make.OpenApiClient.Cashier.Products
             return new global::Soenneker.Make.OpenApiClient.Cashier.Products.ProductsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Get list of cashier products
+        /// Lists cashier products of the given `type` (default `PLAN`).Without `organizationId`, no organization permission is checked and the default price group&apos;s catalog is returned.With `organizationId`, prices follow that organization&apos;s price group, its active price is included even when hidden,and `discountedPrice` is added where its universal discount applies. The caller therefore needs the`organization view` permission in that organization; otherwise the request fails with `403` (`IM002`).
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ProductsRequestBuilderGetQueryParameters 
@@ -89,14 +98,12 @@ namespace Soenneker.Make.OpenApiClient.Cashier.Products
             [QueryParameter("includeInvisible")]
             public bool? IncludeInvisible { get; set; }
             #pragma warning restore CS1591
-            #pragma warning disable CS1591
+            /// <summary>Returns prices for this organization. Requires the `organization view` permission in it.</summary>
             [QueryParameter("organizationId")]
             public int? OrganizationId { get; set; }
-            #pragma warning restore CS1591
-            #pragma warning disable CS1591
+            /// <summary>Required when `type` is `EXTRA`; lists the extras related to this price.</summary>
             [QueryParameter("relatedPriceId")]
             public int? RelatedPriceId { get; set; }
-            #pragma warning restore CS1591
             #pragma warning disable CS1591
             [QueryParameter("type")]
             public global::Soenneker.Make.OpenApiClient.Models.GetCashierProductsTypeParameter? Type { get; set; }

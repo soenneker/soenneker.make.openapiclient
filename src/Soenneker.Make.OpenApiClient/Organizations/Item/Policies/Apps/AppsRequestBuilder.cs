@@ -22,7 +22,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AppsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/organizations/{organizationId}/policies/apps", pathParameters)
+        public AppsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/organizations/{organizationId}/policies/apps{?confirmed*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public AppsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/organizations/{organizationId}/policies/apps", rawUrl)
+        public AppsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/organizations/{organizationId}/policies/apps{?confirmed*}", rawUrl)
         {
         }
         /// <summary>
@@ -69,6 +69,90 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps
             return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPoliciesApps200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetOrganizationsByOrganizationIdPoliciesApps200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
+        /// Names more apps in the organization&apos;s app policy, or fewer, and keeps its mode; to change the mode, replace the policy with a POST. The `remove` apps leave the list, then the `add` apps it does not name yet join its end. An app to remove that the list does not name is ignored. It never creates a policy: when the organization has none, the request fails with 404, and the policy is created with a POST. A change that leaves the list as it is writes nothing and returns the policy. Every added app the policy does not name yet must exist, as for the POST. When the change blocks an app that an active scenario uses and the current policy did not block (adding to a `blocklist`, removing from an `allowlist`), the request fails with `IM004` unless `confirmed=true` is sent. When someone else stores a policy while the request runs, the request fails with 409 and writes nothing; resending the same body is safe, as adding an app the list names, or removing one it does not, changes nothing. Requires the `app-governance-be` feature flag for the organization, the `hasAppPolicies` license parameter and the `organization policies manage` permission.
+        /// </summary>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps200Response"/></returns>
+        /// <param name="body">Properties other than `add` and `remove` are ignored. An app cannot be in both lists.</param>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps400Response">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps401Response">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps402Response">When receiving a 402 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps403Response">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps404Response">When receiving a 404 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps406Response">When receiving a 406 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps409Response">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps502Response">When receiving a 502 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps503Response">When receiving a 503 status code</exception>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesAppsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps.AppsRequestBuilder.AppsRequestBuilderPatchQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps200Response> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesAppsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps.AppsRequestBuilder.AppsRequestBuilderPatchQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps400Response.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps401Response.CreateFromDiscriminatorValue },
+                { "402", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps402Response.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps403Response.CreateFromDiscriminatorValue },
+                { "404", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps404Response.CreateFromDiscriminatorValue },
+                { "406", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps406Response.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps409Response.CreateFromDiscriminatorValue },
+                { "502", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps502Response.CreateFromDiscriminatorValue },
+                { "503", global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesApps200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
+        /// Stores the body as the organization&apos;s whole app policy, creating it or replacing the one the organization has, and returns it with every app&apos;s scenario usage. `expectedPolicyId` names the policy the change was made on, the `id` the GET returned or `null` when it returned none; when the organization&apos;s policy is not that one anymore, the request fails with 409 and writes nothing, so no one overwrites a change they did not see. Every app the current policy does not name yet must exist, named by its exact key: an enabled native app with a version not deprecated, or an SDK app, whoever authored or installed it. When the change blocks an app that an active scenario uses and the current policy did not block (a `blocklist` blocks the apps it names, an `allowlist` every other app), the request fails with `IM004` unless `confirmed=true` is sent. Requires the `app-governance-be` feature flag for the organization, the `hasAppPolicies` license parameter and the `organization policies manage` permission.
+        /// </summary>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps200Response"/></returns>
+        /// <param name="body">Properties other than `mode`, `apps` and `expectedPolicyId` are ignored.</param>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps400Response">When receiving a 400 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps401Response">When receiving a 401 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps402Response">When receiving a 402 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps403Response">When receiving a 403 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps406Response">When receiving a 406 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps409Response">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps502Response">When receiving a 502 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps503Response">When receiving a 503 status code</exception>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesAppsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps.AppsRequestBuilder.AppsRequestBuilderPostQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps200Response> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesAppsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps.AppsRequestBuilder.AppsRequestBuilderPostQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPostRequestInformation(body, requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps400Response.CreateFromDiscriminatorValue },
+                { "401", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps401Response.CreateFromDiscriminatorValue },
+                { "402", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps402Response.CreateFromDiscriminatorValue },
+                { "403", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps403Response.CreateFromDiscriminatorValue },
+                { "406", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps406Response.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps409Response.CreateFromDiscriminatorValue },
+                { "502", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps502Response.CreateFromDiscriminatorValue },
+                { "503", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesApps200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
         /// Returns the organization&apos;s app policies as policy-manager stores them. Version 1 keeps at most one policy per organization, so the list holds zero or one item. A policy is a mode and a list of app keys: an `allowlist` allows only the named apps, a `blocklist` blocks only the named apps. Each app carries how many of the organization&apos;s active scenarios use it. Requires the `app-governance-be` feature flag for the organization, the `hasAppPolicies` license parameter and the `organization view` permission. When policy-manager cannot be reached the request fails with 503, when it refuses the request with 502, and nothing is assumed about the policy.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
@@ -88,6 +172,50 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps
             return requestInfo;
         }
         /// <summary>
+        /// Names more apps in the organization&apos;s app policy, or fewer, and keeps its mode; to change the mode, replace the policy with a POST. The `remove` apps leave the list, then the `add` apps it does not name yet join its end. An app to remove that the list does not name is ignored. It never creates a policy: when the organization has none, the request fails with 404, and the policy is created with a POST. A change that leaves the list as it is writes nothing and returns the policy. Every added app the policy does not name yet must exist, as for the POST. When the change blocks an app that an active scenario uses and the current policy did not block (adding to a `blocklist`, removing from an `allowlist`), the request fails with `IM004` unless `confirmed=true` is sent. When someone else stores a policy while the request runs, the request fails with 409 and writes nothing; resending the same body is safe, as adding an app the list names, or removing one it does not, changes nothing. Requires the `app-governance-be` feature flag for the organization, the `hasAppPolicies` license parameter and the `organization policies manage` permission.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">Properties other than `add` and `remove` are ignored. An app cannot be in both lists.</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesAppsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps.AppsRequestBuilder.AppsRequestBuilderPatchQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PatchOrganizationsByOrganizationIdPoliciesAppsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps.AppsRequestBuilder.AppsRequestBuilderPatchQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
+            return requestInfo;
+        }
+        /// <summary>
+        /// Stores the body as the organization&apos;s whole app policy, creating it or replacing the one the organization has, and returns it with every app&apos;s scenario usage. `expectedPolicyId` names the policy the change was made on, the `id` the GET returned or `null` when it returned none; when the organization&apos;s policy is not that one anymore, the request fails with 409 and writes nothing, so no one overwrites a change they did not see. Every app the current policy does not name yet must exist, named by its exact key: an enabled native app with a version not deprecated, or an SDK app, whoever authored or installed it. When the change blocks an app that an active scenario uses and the current policy did not block (a `blocklist` blocks the apps it names, an `allowlist` every other app), the request fails with `IM004` unless `confirmed=true` is sent. Requires the `app-governance-be` feature flag for the organization, the `hasAppPolicies` license parameter and the `organization policies manage` permission.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">Properties other than `mode`, `apps` and `expectedPolicyId` are ignored.</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesAppsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps.AppsRequestBuilder.AppsRequestBuilderPostQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdPoliciesAppsRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps.AppsRequestBuilder.AppsRequestBuilderPostQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
+            return requestInfo;
+        }
+        /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps.AppsRequestBuilder"/></returns>
@@ -95,6 +223,26 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps
         public global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps.AppsRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Make.OpenApiClient.Organizations.Item.Policies.Apps.AppsRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Names more apps in the organization&apos;s app policy, or fewer, and keeps its mode; to change the mode, replace the policy with a POST. The `remove` apps leave the list, then the `add` apps it does not name yet join its end. An app to remove that the list does not name is ignored. It never creates a policy: when the organization has none, the request fails with 404, and the policy is created with a POST. A change that leaves the list as it is writes nothing and returns the policy. Every added app the policy does not name yet must exist, as for the POST. When the change blocks an app that an active scenario uses and the current policy did not block (adding to a `blocklist`, removing from an `allowlist`), the request fails with `IM004` unless `confirmed=true` is sent. When someone else stores a policy while the request runs, the request fails with 409 and writes nothing; resending the same body is safe, as adding an app the list names, or removing one it does not, changes nothing. Requires the `app-governance-be` feature flag for the organization, the `hasAppPolicies` license parameter and the `organization policies manage` permission.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class AppsRequestBuilderPatchQueryParameters 
+        {
+            /// <summary>Confirms a change that blocks apps active scenarios use.</summary>
+            [QueryParameter("confirmed")]
+            public bool? Confirmed { get; set; }
+        }
+        /// <summary>
+        /// Stores the body as the organization&apos;s whole app policy, creating it or replacing the one the organization has, and returns it with every app&apos;s scenario usage. `expectedPolicyId` names the policy the change was made on, the `id` the GET returned or `null` when it returned none; when the organization&apos;s policy is not that one anymore, the request fails with 409 and writes nothing, so no one overwrites a change they did not see. Every app the current policy does not name yet must exist, named by its exact key: an enabled native app with a version not deprecated, or an SDK app, whoever authored or installed it. When the change blocks an app that an active scenario uses and the current policy did not block (a `blocklist` blocks the apps it names, an `allowlist` every other app), the request fails with `IM004` unless `confirmed=true` is sent. Requires the `app-governance-be` feature flag for the organization, the `hasAppPolicies` license parameter and the `organization policies manage` permission.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class AppsRequestBuilderPostQueryParameters 
+        {
+            /// <summary>Confirms a change that blocks apps active scenarios use.</summary>
+            [QueryParameter("confirmed")]
+            public bool? Confirmed { get; set; }
         }
     }
 }

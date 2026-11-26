@@ -6970,13 +6970,13 @@
             }
           },
           "400": {
-            "description": "Validation error, or the feature flag is disabled (\u0060IM903\u0060)"
+            "description": "Validation error, the feature flag is disabled (\u0060IM903\u0060), or \u0060visibility: locked\u0060 was sent while\nlocked entities are not enabled for the organization (\u0060IM903\u0060)\n"
           },
           "401": {
             "description": "Unauthorized"
           },
           "403": {
-            "description": "Missing the \u0027key add\u0027 team permission (\u0060IM002\u0060)"
+            "description": "Missing the \u0027key add\u0027 team permission, or the \u0027key edit\u0027 one when \u0060visibility\u0060 is \u0060locked\u0060 (\u0060IM002\u0060)"
           },
           "429": {
             "description": "Too many browser context setups in progress for the user (2) or the team (5)"
@@ -7551,7 +7551,7 @@
             "description": "Unauthorized"
           },
           "403": {
-            "description": "Missing the \u0027key edit\u0027 team permission (\u0060IM002\u0060)"
+            "description": "Missing the \u0027key edit\u0027 team permission, or the context is locked and the caller lacks \u0060entity manage\u0060\non it (\u0060IM002\u0060)\n"
           },
           "404": {
             "description": "The key does not exist or is not an AI Browser context"
@@ -10874,6 +10874,7 @@
           "Cashier"
         ],
         "summary": "Get list of cashier products",
+        "description": "Lists cashier products of the given \u0060type\u0060 (default \u0060PLAN\u0060).\n\nWithout \u0060organizationId\u0060, no organization permission is checked and the default price group\u0027s catalog is returned.\n\nWith \u0060organizationId\u0060, prices follow that organization\u0027s price group, its active price is included even when hidden,\nand \u0060discountedPrice\u0060 is added where its universal discount applies. The caller therefore needs the\n\u0060organization view\u0060 permission in that organization; otherwise the request fails with \u0060403\u0060 (\u0060IM002\u0060).\n",
         "operationId": "GetCashierProducts",
         "parameters": [
           {
@@ -10895,18 +10896,23 @@
           {
             "name": "relatedPriceId",
             "in": "query",
+            "description": "Required when \u0060type\u0060 is \u0060EXTRA\u0060; lists the extras related to this price.",
             "schema": {
+              "minimum": 0,
               "type": "integer"
             },
-            "example": null
+            "example": 12
           },
           {
             "name": "organizationId",
             "in": "query",
+            "description": "Returns prices for this organization. Requires the \u0060organization view\u0060 permission in it.\n",
             "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
               "type": "integer"
             },
-            "example": null
+            "example": 11
           }
         ],
         "responses": {
@@ -11004,6 +11010,34 @@
                       ]
                     }
                   }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - \u0060organizationId\u0060 is outside 1\u20132147483647, or \u0060type\u0060 is \u0060EXTRA\u0060 without \u0060relatedPriceId\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCashierProducts400Response"
+                },
+                "example": {
+                  "message": "Validation failed for 1 parameter(s).",
+                  "code": "SC400"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - \u0060organizationId\u0060 was provided and the caller lacks the \u0060organization view\u0060 permission in it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCashierProducts403Response"
+                },
+                "example": {
+                  "message": "Insufficient rights",
+                  "code": "IM002"
                 }
               }
             }
@@ -38170,6 +38204,588 @@
           {
             "token": [
               "organizations:read"
+            ]
+          }
+        ],
+        "x-internal": true
+      },
+      "post": {
+        "tags": [
+          "Organizations"
+        ],
+        "summary": "Create or replace the organization app policy",
+        "description": "Stores the body as the organization\u0027s whole app policy, creating it or replacing the one the organization has, and returns it with every app\u0027s scenario usage. \u0060expectedPolicyId\u0060 names the policy the change was made on, the \u0060id\u0060 the GET returned or \u0060null\u0060 when it returned none; when the organization\u0027s policy is not that one anymore, the request fails with 409 and writes nothing, so no one overwrites a change they did not see. Every app the current policy does not name yet must exist, named by its exact key: an enabled native app with a version not deprecated, or an SDK app, whoever authored or installed it. When the change blocks an app that an active scenario uses and the current policy did not block (a \u0060blocklist\u0060 blocks the apps it names, an \u0060allowlist\u0060 every other app), the request fails with \u0060IM004\u0060 unless \u0060confirmed=true\u0060 is sent. Requires the \u0060app-governance-be\u0060 feature flag for the organization, the \u0060hasAppPolicies\u0060 license parameter and the \u0060organization policies manage\u0060 permission.",
+        "operationId": "PostOrganizationsByOrganizationIdPoliciesApps",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "The organization whose app policy is read.",
+            "required": true,
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "allowlist": {
+                "value": 12345
+              },
+              "blocklist": {
+                "value": 12345
+              },
+              "none": {
+                "value": 12345
+              }
+            }
+          },
+          {
+            "name": "confirmed",
+            "in": "query",
+            "description": "Confirms a change that blocks apps active scenarios use.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesAppsRequest"
+              },
+              "examples": {
+                "allowlist": {
+                  "value": {
+                    "mode": "allowlist",
+                    "apps": [
+                      "slack",
+                      "app#jotform"
+                    ],
+                    "expectedPolicyId": "0192f3a1-7c2e-7d3a-9b1f-3e5a8c4d2b0f"
+                  }
+                },
+                "blocklist": {
+                  "value": {
+                    "mode": "blocklist",
+                    "apps": [
+                      "openai"
+                    ],
+                    "expectedPolicyId": null
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The stored app policy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps200Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "appPolicy": {
+                        "id": "0192f3a1-7c2e-7d3a-9b1f-3e5a8c4d2b10",
+                        "mode": "allowlist",
+                        "apps": [
+                          {
+                            "name": "slack",
+                            "scenarioCount": 12
+                          },
+                          {
+                            "name": "app#jotform",
+                            "scenarioCount": 0
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "blocklist": {
+                    "value": {
+                      "appPolicy": {
+                        "id": "0192f3a1-7c2e-7d3a-9b1f-3e5a8c4d2b11",
+                        "mode": "blocklist",
+                        "apps": [
+                          {
+                            "name": "openai",
+                            "scenarioCount": 3
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The \u0060app-governance-be\u0060 feature flag is off for the organization (\u0060IM903\u0060), the body is not of the expected shape or names an app twice in one list (\u0060SC400\u0060), or it names an app that does not exist or an app both to add and to remove (\u0060IM005\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps400Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "IM005",
+                      "message": "These apps do not exist: Slack."
+                    }
+                  },
+                  "blocklist": {
+                    "value": {
+                      "code": "IM005",
+                      "message": "These apps do not exist: app#my-app."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The caller is not logged in.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps401Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "IM015",
+                      "message": "User is not logged in."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The organization\u0027s license lacks \u0060hasAppPolicies\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps402Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "SC402",
+                      "message": "Subscription required",
+                      "detail": "You need an Enterprise plan to use app policies."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is not a member of the organization or lacks the required organization permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps403Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "IM002",
+                      "message": "Insufficient rights",
+                      "detail": "organization permission \u0022organization view\u0022 is needed."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "The change blocks apps that active scenarios use and the current policy did not block, and \u0060confirmed=true\u0060 was not sent. \u0060metadata\u0060 carries how many active scenarios use an app the change blocks.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps406Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "IM004",
+                      "message": "Confirmation required.",
+                      "metadata": [
+                        {
+                          "type": "appPolicyBlocksActiveScenarios",
+                          "scenarioCount": 3
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The organization\u0027s app policy is not the one the change was made on anymore, or was changed by someone else while the request ran; load it again.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps409Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "SC409",
+                      "message": "Conflict",
+                      "detail": "The app policy was changed in the meantime. Load it again and retry."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "policy-manager answered with something other than a list of policies, or refused the request (a 4xx).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps502Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "SC502",
+                      "message": "Bad Gateway",
+                      "detail": "Unexpected policy manager response."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "policy-manager is not configured in this zone, did not answer, or answered with a 5xx.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps503Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "SC503",
+                      "message": "Service Unavailable",
+                      "detail": "Policy manager request failed."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "organizations:write"
+            ]
+          }
+        ],
+        "x-internal": true
+      },
+      "patch": {
+        "tags": [
+          "Organizations"
+        ],
+        "summary": "Add apps to or remove apps from the organization app policy",
+        "description": "Names more apps in the organization\u0027s app policy, or fewer, and keeps its mode; to change the mode, replace the policy with a POST. The \u0060remove\u0060 apps leave the list, then the \u0060add\u0060 apps it does not name yet join its end. An app to remove that the list does not name is ignored. It never creates a policy: when the organization has none, the request fails with 404, and the policy is created with a POST. A change that leaves the list as it is writes nothing and returns the policy. Every added app the policy does not name yet must exist, as for the POST. When the change blocks an app that an active scenario uses and the current policy did not block (adding to a \u0060blocklist\u0060, removing from an \u0060allowlist\u0060), the request fails with \u0060IM004\u0060 unless \u0060confirmed=true\u0060 is sent. When someone else stores a policy while the request runs, the request fails with 409 and writes nothing; resending the same body is safe, as adding an app the list names, or removing one it does not, changes nothing. Requires the \u0060app-governance-be\u0060 feature flag for the organization, the \u0060hasAppPolicies\u0060 license parameter and the \u0060organization policies manage\u0060 permission.",
+        "operationId": "PatchOrganizationsByOrganizationIdPoliciesApps",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "in": "path",
+            "description": "The organization whose app policy is read.",
+            "required": true,
+            "schema": {
+              "maximum": 2147483647,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "examples": {
+              "allowlist": {
+                "value": 12345
+              },
+              "blocklist": {
+                "value": 12345
+              },
+              "none": {
+                "value": 12345
+              }
+            }
+          },
+          {
+            "name": "confirmed",
+            "in": "query",
+            "description": "Confirms a change that blocks apps active scenarios use.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesAppsRequest"
+              },
+              "examples": {
+                "allowlist": {
+                  "value": {
+                    "remove": [
+                      "app#jotform"
+                    ]
+                  }
+                },
+                "blocklist": {
+                  "value": {
+                    "add": [
+                      "openai"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The stored app policy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps200Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "appPolicy": {
+                        "id": "0192f3a1-7c2e-7d3a-9b1f-3e5a8c4d2b12",
+                        "mode": "allowlist",
+                        "apps": [
+                          {
+                            "name": "slack",
+                            "scenarioCount": 12
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "blocklist": {
+                    "value": {
+                      "appPolicy": {
+                        "id": "0192f3a1-7c2e-7d3a-9b1f-3e5a8c4d2b13",
+                        "mode": "blocklist",
+                        "apps": [
+                          {
+                            "name": "openai",
+                            "scenarioCount": 3
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The \u0060app-governance-be\u0060 feature flag is off for the organization (\u0060IM903\u0060), the body is not of the expected shape or names an app twice in one list (\u0060SC400\u0060), or it names an app that does not exist or an app both to add and to remove (\u0060IM005\u0060).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps400Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "IM005",
+                      "message": "These apps do not exist: Slack."
+                    }
+                  },
+                  "blocklist": {
+                    "value": {
+                      "code": "IM005",
+                      "message": "These apps do not exist: app#my-app."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The caller is not logged in.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps401Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "IM015",
+                      "message": "User is not logged in."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The organization\u0027s license lacks \u0060hasAppPolicies\u0060.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps402Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "SC402",
+                      "message": "Subscription required",
+                      "detail": "You need an Enterprise plan to use app policies."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is not a member of the organization or lacks the required organization permission.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps403Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "IM002",
+                      "message": "Insufficient rights",
+                      "detail": "organization permission \u0022organization view\u0022 is needed."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The organization has no app policy to change; create one with a POST.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps404Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "IM013",
+                      "message": "Entity not found.",
+                      "detail": "The organization has no app policy."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "The change blocks apps that active scenarios use and the current policy did not block, and \u0060confirmed=true\u0060 was not sent. \u0060metadata\u0060 carries how many active scenarios use an app the change blocks.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps406Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "IM004",
+                      "message": "Confirmation required.",
+                      "metadata": [
+                        {
+                          "type": "appPolicyBlocksActiveScenarios",
+                          "scenarioCount": 3
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The organization\u0027s app policy is not the one the change was made on anymore, or was changed by someone else while the request ran; load it again.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps409Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "SC409",
+                      "message": "Conflict",
+                      "detail": "The app policy was changed in the meantime. Load it again and retry."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "policy-manager answered with something other than a list of policies, or refused the request (a 4xx).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps502Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "SC502",
+                      "message": "Bad Gateway",
+                      "detail": "Unexpected policy manager response."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "policy-manager is not configured in this zone, did not answer, or answered with a 5xx.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps503Response"
+                },
+                "examples": {
+                  "allowlist": {
+                    "value": {
+                      "code": "SC503",
+                      "message": "Service Unavailable",
+                      "detail": "Policy manager request failed."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "organizations:write"
             ]
           }
         ],
@@ -88971,6 +89587,9 @@
             "pattern": "^https://[^\\s@/?#]\u002B(?:[/?#]\\S*)?$",
             "type": "string",
             "description": "Website to open in the session\u0027s first page before the live view is returned. Must be an \u0060https\u0060\nURL without credentials. Best effort: if it cannot be opened, the flow still starts on a blank\npage. It is not stored.\n"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/PostAiBrowserContextSetupsRequestVisibility"
           }
         }
       },
@@ -90750,6 +91369,28 @@
             "items": {
               "$ref": "#/components/schemas/GetCashierProducts200ResponseProductsItem"
             }
+          }
+        }
+      },
+      "GetCashierProducts400Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "GetCashierProducts403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
           }
         }
       },
@@ -99597,6 +100238,405 @@
         }
       },
       "GetOrganizationsByOrganizationIdPoliciesApps503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdPoliciesAppsRequest": {
+        "required": [
+          "mode",
+          "apps",
+          "expectedPolicyId"
+        ],
+        "type": "object",
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesAppsRequestMode"
+          },
+          "apps": {
+            "maxItems": 10000,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "maxLength": 41,
+              "minLength": 1,
+              "type": "string",
+              "description": "A canonical app key, \u0060slack\u0060 for a native app or \u0060app#myapp\u0060 for an SDK app.",
+              "example": "slack"
+            },
+            "description": "The keys of the apps the policy names, each once; an empty allowlist allows no app."
+          },
+          "expectedPolicyId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The \u0060id\u0060 of the policy the change was made on, as the GET returned it; \u0060null\u0060 when the organization had none.",
+            "nullable": true
+          }
+        },
+        "description": "Properties other than \u0060mode\u0060, \u0060apps\u0060 and \u0060expectedPolicyId\u0060 are ignored."
+      },
+      "PostOrganizationsByOrganizationIdPoliciesApps200Response": {
+        "required": [
+          "appPolicy"
+        ],
+        "type": "object",
+        "properties": {
+          "appPolicy": {
+            "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicy"
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdPoliciesApps400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdPoliciesApps401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdPoliciesApps402Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdPoliciesApps403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdPoliciesApps406Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps406ResponseMetadataItem"
+            }
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdPoliciesApps409Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdPoliciesApps502Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdPoliciesApps503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesAppsRequest": {
+        "type": "object",
+        "properties": {
+          "add": {
+            "maxItems": 10000,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "maxLength": 41,
+              "minLength": 1,
+              "type": "string",
+              "description": "A canonical app key, \u0060slack\u0060 for a native app or \u0060app#myapp\u0060 for an SDK app.",
+              "example": "slack"
+            },
+            "description": "The keys of the apps the policy names from now on, each once."
+          },
+          "remove": {
+            "maxItems": 10000,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "maxLength": 41,
+              "minLength": 1,
+              "type": "string",
+              "description": "A canonical app key, \u0060slack\u0060 for a native app or \u0060app#myapp\u0060 for an SDK app.",
+              "example": "slack"
+            },
+            "description": "The keys of the apps the policy stops naming, each once."
+          }
+        },
+        "description": "Properties other than \u0060add\u0060 and \u0060remove\u0060 are ignored. An app cannot be in both lists."
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps200Response": {
+        "required": [
+          "appPolicy"
+        ],
+        "type": "object",
+        "properties": {
+          "appPolicy": {
+            "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicy"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps400Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps401Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps402Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps403Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps404Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps406Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps406ResponseMetadataItem"
+            }
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps409Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps502Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps503Response": {
         "required": [
           "code",
           "message"
@@ -126676,6 +127716,80 @@
           }
         }
       },
+      "PostOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicy": {
+        "required": [
+          "id",
+          "mode",
+          "apps"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifies this version of the policy; a change to the mode or the apps yields a new id.",
+            "format": "uuid"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicyMode"
+          },
+          "apps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicyAppsItem"
+            },
+            "description": "The apps the list names, in the order they were written, each with its scenario usage."
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdPoliciesApps406ResponseMetadataItem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/AppPolicyBlocksActiveScenariosType"
+          },
+          "scenarioCount": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicy": {
+        "required": [
+          "id",
+          "mode",
+          "apps"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifies this version of the policy; a change to the mode or the apps yields a new id.",
+            "format": "uuid"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicyMode"
+          },
+          "apps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatchOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicyAppsItem"
+            },
+            "description": "The apps the list names, in the order they were written, each with its scenario usage."
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps406ResponseMetadataItem": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/AppPolicyBlocksActiveScenariosType"
+          },
+          "scenarioCount": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        }
+      },
       "PatchOrganizationsByOrganizationIdTfaEnforcement200ResponseOrganization": {
         "type": "object",
         "properties": {
@@ -142716,6 +143830,51 @@
         "type": "object",
         "properties": {
           "name": {
+            "maxLength": 41,
+            "minLength": 1,
+            "type": "string",
+            "description": "A canonical app key, \u0060slack\u0060 for a native app or \u0060app#myapp\u0060 for an SDK app.",
+            "example": "slack"
+          },
+          "scenarioCount": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "How many of the organization\u0027s active scenarios use the app; inactive, invalid and deleted scenarios do not count.",
+            "example": 12
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicyAppsItem": {
+        "required": [
+          "name",
+          "scenarioCount"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 41,
+            "minLength": 1,
+            "type": "string",
+            "description": "A canonical app key, \u0060slack\u0060 for a native app or \u0060app#myapp\u0060 for an SDK app.",
+            "example": "slack"
+          },
+          "scenarioCount": {
+            "minimum": 0,
+            "type": "integer",
+            "description": "How many of the organization\u0027s active scenarios use the app; inactive, invalid and deleted scenarios do not count.",
+            "example": 12
+          }
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicyAppsItem": {
+        "required": [
+          "name",
+          "scenarioCount"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 41,
             "minLength": 1,
             "type": "string",
             "description": "A canonical app key, \u0060slack\u0060 for a native app or \u0060app#myapp\u0060 for an SDK app.",
@@ -158155,6 +159314,28 @@
           ]
         }
       },
+      "PostAiBrowserContextSetupsRequestVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "description": "Entity-tier visibility of the key created when the setup completes; defaults to \u0060team\u0060. With\n\u0060locked\u0060 the key is restricted to its access list, with the caller as its Entity Admin. Rejected\nup front, before any browser session starts, when the caller lacks the \u0027key edit\u0027 team permission\nor the locked-entities feature is off for the team\u0027s organization.\n",
+        "x-ms-enum": {
+          "name": "PostAiBrowserContextSetupsRequestVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
+            }
+          ]
+        }
+      },
       "PendingStatus": {
         "enum": [
           "pending"
@@ -158878,6 +160059,28 @@
           3
         ],
         "type": "integer"
+      },
+      "PostOrganizationsByOrganizationIdPoliciesAppsRequestMode": {
+        "enum": [
+          "allowlist",
+          "blocklist"
+        ],
+        "type": "string",
+        "description": "How the policy\u0027s list is read: an \u0060allowlist\u0060 allows the named apps and blocks every other app, a \u0060blocklist\u0060 blocks the named apps and allows every other app.",
+        "x-ms-enum": {
+          "name": "PostOrganizationsByOrganizationIdPoliciesAppsRequestMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "allowlist",
+              "name": "Allowlist"
+            },
+            {
+              "value": "blocklist",
+              "name": "Blocklist"
+            }
+          ]
+        }
       },
       "GetScenariosByScenarioIdRunByExecutionId200ResponseStatus": {
         "enum": [
@@ -164673,6 +165876,66 @@
         "description": "How the policy\u0027s list is read: an \u0060allowlist\u0060 allows the named apps and blocks every other app, a \u0060blocklist\u0060 blocks the named apps and allows every other app.",
         "x-ms-enum": {
           "name": "GetOrganizationsByOrganizationIdPoliciesApps200ResponseAppPoliciesItemMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "allowlist",
+              "name": "Allowlist"
+            },
+            {
+              "value": "blocklist",
+              "name": "Blocklist"
+            }
+          ]
+        }
+      },
+      "PostOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicyMode": {
+        "enum": [
+          "allowlist",
+          "blocklist"
+        ],
+        "type": "string",
+        "description": "How the policy\u0027s list is read: an \u0060allowlist\u0060 allows the named apps and blocks every other app, a \u0060blocklist\u0060 blocks the named apps and allows every other app.",
+        "x-ms-enum": {
+          "name": "PostOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicyMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "allowlist",
+              "name": "Allowlist"
+            },
+            {
+              "value": "blocklist",
+              "name": "Blocklist"
+            }
+          ]
+        }
+      },
+      "AppPolicyBlocksActiveScenariosType": {
+        "enum": [
+          "appPolicyBlocksActiveScenarios"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "AppPolicyBlocksActiveScenariosType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "appPolicyBlocksActiveScenarios",
+              "name": "AppPolicyBlocksActiveScenarios"
+            }
+          ]
+        }
+      },
+      "PatchOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicyMode": {
+        "enum": [
+          "allowlist",
+          "blocklist"
+        ],
+        "type": "string",
+        "description": "How the policy\u0027s list is read: an \u0060allowlist\u0060 allows the named apps and blocks every other app, a \u0060blocklist\u0060 blocks the named apps and allows every other app.",
+        "x-ms-enum": {
+          "name": "PatchOrganizationsByOrganizationIdPoliciesApps200ResponseAppPolicyMode",
           "modelAsString": false,
           "values": [
             {

@@ -23,6 +23,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("startUrl") is { } nullNodeStartUrl && nullNodeStartUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StartUrl = null;
             if (parseNode.GetChildNode("teamId") is null) { _explicitNullValueTeamId = default!; _explicitNullProperties?.Remove("teamId"); }
             else if (parseNode.GetChildNode("teamId") is { } nullNodeTeamId && nullNodeTeamId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TeamId = null;
+            if (parseNode.GetChildNode("visibility") is null) { _explicitNullValueVisibility = default!; _explicitNullProperties?.Remove("visibility"); }
+            else if (parseNode.GetChildNode("visibility") is { } nullNodeVisibility && nullNodeVisibility.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Visibility = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -50,6 +52,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <summary>The ID of the team the new browser context key will belong to.</summary>
         public int? TeamId { get => _explicitNullValueTeamId; set { _explicitNullValueTeamId = value; AdditionalData?.Remove("teamId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamId"); else _explicitNullProperties?.Remove("teamId"); } }
         private int? _explicitNullValueTeamId = default!;
+        /// <summary>Entity-tier visibility of the key created when the setup completes; defaults to `team`. With`locked` the key is restricted to its access list, with the caller as its Entity Admin. Rejectedup front, before any browser session starts, when the caller lacks the &apos;key edit&apos; team permissionor the locked-entities feature is off for the team&apos;s organization.</summary>
+        public global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetupsRequestVisibility? Visibility { get => _explicitNullValueVisibility; set { _explicitNullValueVisibility = value; AdditionalData?.Remove("visibility"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("visibility"); else _explicitNullProperties?.Remove("visibility"); } }
+        private global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetupsRequestVisibility? _explicitNullValueVisibility = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetupsRequest"/> and sets the default values.
         /// </summary>
@@ -73,11 +78,12 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "startUrl", n => { StartUrl = n.GetStringValue(); } },
                 { "teamId", n => { TeamId = n.GetIntValue(); } },
+                { "visibility", n => { var parsed = n.GetEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetupsRequestVisibility>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueVisibility = default; _explicitNullProperties?.Remove("visibility"); AdditionalData["visibility"] = unknown; } else { Visibility = parsed; AdditionalData.Remove("visibility"); } } },
             };
         }
         /// <summary>
@@ -90,6 +96,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("startUrl", StartUrl);
             writer.WriteIntValue("teamId", TeamId);
+            writer.WriteEnumValue<global::Soenneker.Make.OpenApiClient.Models.PostAiBrowserContextSetupsRequestVisibility>("visibility", Visibility);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
