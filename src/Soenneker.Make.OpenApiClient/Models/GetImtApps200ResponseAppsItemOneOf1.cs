@@ -30,6 +30,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("label") is { } nullNodeLabel && nullNodeLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Label = null;
             if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
             else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("policyRestricted") is null) { _explicitNullValuePolicyRestricted = default!; _explicitNullProperties?.Remove("policyRestricted"); }
+            else if (parseNode.GetChildNode("policyRestricted") is { } nullNodePolicyRestricted && nullNodePolicyRestricted.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PolicyRestricted = null;
             if (parseNode.GetChildNode("premiumTier") is null) { _explicitNullValuePremiumTier = default!; _explicitNullProperties?.Remove("premiumTier"); }
             else if (parseNode.GetChildNode("premiumTier") is { } nullNodePremiumTier && nullNodePremiumTier.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PremiumTier = null;
             if (parseNode.GetChildNode("score") is null) { _explicitNullValueScore = default!; _explicitNullProperties?.Remove("score"); }
@@ -97,6 +99,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
+        /// <summary>Present only when the organization&apos;s app policy blocks the whole app. See theendpoint description.</summary>
+        public bool? PolicyRestricted { get => _explicitNullValuePolicyRestricted; set { _explicitNullValuePolicyRestricted = value; AdditionalData?.Remove("policyRestricted"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("policyRestricted"); else _explicitNullProperties?.Remove("policyRestricted"); } }
+        private bool? _explicitNullValuePolicyRestricted = default!;
         /// <summary>Premium level [0-10]; SDK apps default to 0.</summary>
         public int? PremiumTier { get => _explicitNullValuePremiumTier; set { _explicitNullValuePremiumTier = value; AdditionalData?.Remove("premiumTier"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("premiumTier"); else _explicitNullProperties?.Remove("premiumTier"); } }
         private int? _explicitNullValuePremiumTier = default!;
@@ -149,7 +154,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(11)
+            return new Dictionary<string, Action<IParseNode>>(12)
             {
                 { "comingSoon", n => { ComingSoon = n.GetBoolValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
@@ -157,6 +162,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "keywords", n => { Keywords = n.GetStringValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "policyRestricted", n => { PolicyRestricted = n.GetBoolValue(); } },
                 { "premiumTier", n => { PremiumTier = n.GetIntValue(); } },
                 { "score", n => { Score = n.GetDoubleValue(); } },
                 { "theme", n => { Theme = n.GetStringValue(); } },
@@ -177,6 +183,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("keywords", Keywords);
             writer.WriteStringValue("label", Label);
             writer.WriteStringValue("name", Name);
+            writer.WriteBoolValue("policyRestricted", PolicyRestricted);
             writer.WriteIntValue("premiumTier", PremiumTier);
             writer.WriteDoubleValue("score", Score);
             writer.WriteStringValue("theme", Theme);

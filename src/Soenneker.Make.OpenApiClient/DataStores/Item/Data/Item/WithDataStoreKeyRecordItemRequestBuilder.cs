@@ -40,6 +40,9 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item
         /// <param name="body">The data is different for each data store so there are no predefined body properties to use. Please see the request example for more details.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord409Response">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord410Response">When receiving a 410 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord503Response">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response?> PatchAsync(global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecordRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -51,7 +54,15 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "409", global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord409Response.CreateFromDiscriminatorValue },
+                { "410", global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord410Response.CreateFromDiscriminatorValue },
+                { "503", global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a data store record with a given key by passing new data in the request body. It replaces the entire resource with the new values. In the response, this endpoint returns all details of the updated data.
@@ -60,6 +71,9 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item
         /// <param name="body">The data is different for each data store so there are no predefined body properties to use. Please see the request example for more details.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord409Response">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord410Response">When receiving a 410 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord503Response">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response?> PutAsync(global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecordRequestRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -71,7 +85,15 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "409", global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord409Response.CreateFromDiscriminatorValue },
+                { "410", global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord410Response.CreateFromDiscriminatorValue },
+                { "503", global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Updates a data store record with a given key by passing new data in the request body. Any property that is not provided will be left unchanged. In the response, it returns all details of the updated data including properties that were not changed.

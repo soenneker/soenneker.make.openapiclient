@@ -53,6 +53,9 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresByDataStoreIdData409Response">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresByDataStoreIdData410Response">When receiving a 410 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresByDataStoreIdData503Response">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresByDataStoreIdData200Response?> DeleteAsync(global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresByDataStoreIdDataRequest body, Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.Item.Data.DataRequestBuilder.DataRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -64,7 +67,15 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresByDataStoreIdData200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresByDataStoreIdData200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "409", global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresByDataStoreIdData409Response.CreateFromDiscriminatorValue },
+                { "410", global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresByDataStoreIdData410Response.CreateFromDiscriminatorValue },
+                { "503", global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresByDataStoreIdData503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresByDataStoreIdData200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.DeleteDataStoresByDataStoreIdData200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieves a collection of all records from a data store with a given ID. Each returned record consists of the `key` (custom or automatically generated) and `data`.
@@ -72,6 +83,8 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData410Response">When receiving a 410 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData503Response">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.Make.OpenApiClient.DataStores.Item.Data.DataRequestBuilder.DataRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -82,7 +95,14 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "410", global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData410Response.CreateFromDiscriminatorValue },
+                { "503", global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.GetDataStoresByDataStoreIdData200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a new record in a data store with a given ID and returns all record details.
@@ -91,6 +111,9 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStoresByDataStoreIdData409Response">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStoresByDataStoreIdData410Response">When receiving a 410 status code</exception>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostDataStoresByDataStoreIdData503Response">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PostDataStoresByDataStoreIdData200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostDataStoresByDataStoreIdDataRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -102,7 +125,15 @@ namespace Soenneker.Make.OpenApiClient.DataStores.Item.Data
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDataStoresByDataStoreIdData200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDataStoresByDataStoreIdData200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "409", global::Soenneker.Make.OpenApiClient.Models.PostDataStoresByDataStoreIdData409Response.CreateFromDiscriminatorValue },
+                { "410", global::Soenneker.Make.OpenApiClient.Models.PostDataStoresByDataStoreIdData410Response.CreateFromDiscriminatorValue },
+                { "503", global::Soenneker.Make.OpenApiClient.Models.PostDataStoresByDataStoreIdData503Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostDataStoresByDataStoreIdData200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostDataStoresByDataStoreIdData200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deletes records from the specified data store.Specify the `keys` of the records you want to delete in the `keys` array in the request body.Use the `all` parameter in the request body to delete all records from the data store. You have to add the `confirmed` parameter in the API call query to confirm deleting the data, otherwise you get an error.When you are deleting all records, you can use the `exceptKeys` parameter to specify keys of the records which you want to keep.The response contains keys of the deleted records.

@@ -34,12 +34,13 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.M
         {
         }
         /// <summary>
-        /// For a single scenario, counts how many distinct executions produced module input/output (IO) data matching a free-text `query`.**The `from` and `to` bounds are applied at UTC-day granularity** — only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 days.
+        /// For a single scenario, counts how many distinct executions produced module input/output (IO) data matching a free-text `query`.**The `from` and `to` bounds are applied at UTC-day granularity** — only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 days.**Search window:** run searches look back at most 30 days. A `from` or `to` older than 30 days is treated as exactly 30 days ago, and a `to` in the future is treated as now. Requests are never rejected for lying outside the window, they are only narrowed to it.This feature is available on the Pro plan and above. Organizations without the `fulltext` license parameter receive a `402` response.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCounts200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCounts402Response">When receiving a 402 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCounts200Response?> PostAsync(global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCountsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -51,10 +52,16 @@ namespace Soenneker.Make.OpenApiClient.Organizations.Item.Scenarios.Executions.M
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCounts200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCounts200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "402", global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCounts402Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCounts200Response>(requestInfo, global::Soenneker.Make.OpenApiClient.Models.PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCounts200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// For a single scenario, counts how many distinct executions produced module input/output (IO) data matching a free-text `query`.**The `from` and `to` bounds are applied at UTC-day granularity** — only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 days.
+        /// For a single scenario, counts how many distinct executions produced module input/output (IO) data matching a free-text `query`.**The `from` and `to` bounds are applied at UTC-day granularity** — only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 days.**Search window:** run searches look back at most 30 days. A `from` or `to` older than 30 days is treated as exactly 30 days ago, and a `to` in the future is treated as now. Requests are never rejected for lying outside the window, they are only narrowed to it.This feature is available on the Pro plan and above. Organizations without the `fulltext` license parameter receive a `402` response.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -44,6 +44,8 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("listener") is { } nullNodeListener && nullNodeListener.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Listener = null;
             if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
             else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("policyRestricted") is null) { _explicitNullValuePolicyRestricted = default!; _explicitNullProperties?.Remove("policyRestricted"); }
+            else if (parseNode.GetChildNode("policyRestricted") is { } nullNodePolicyRestricted && nullNodePolicyRestricted.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PolicyRestricted = null;
             if (parseNode.GetChildNode("public") is null) { _explicitNullValuePublic = default!; _explicitNullProperties?.Remove("public"); }
             else if (parseNode.GetChildNode("public") is { } nullNodePublic && nullNodePublic.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Public = null;
             if (parseNode.GetChildNode("score") is null) { _explicitNullValueScore = default!; _explicitNullProperties?.Remove("score"); }
@@ -160,6 +162,9 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
+        /// <summary>Present only when the organization&apos;s app policy blocks the module: its app is blocked,which for a relocated module is the source app named in `appName`. The final answer forthe module; clients need not combine it with the app&apos;s flag.</summary>
+        public bool? PolicyRestricted { get => _explicitNullValuePolicyRestricted; set { _explicitNullValuePolicyRestricted = value; AdditionalData?.Remove("policyRestricted"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("policyRestricted"); else _explicitNullProperties?.Remove("policyRestricted"); } }
+        private bool? _explicitNullValuePolicyRestricted = default!;
         /// <summary>The public property</summary>
         public bool? Public { get => _explicitNullValuePublic; set { _explicitNullValuePublic = value; AdditionalData?.Remove("public"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("public"); else _explicitNullProperties?.Remove("public"); } }
         private bool? _explicitNullValuePublic = default!;
@@ -212,7 +217,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(18)
+            return new Dictionary<string, Action<IParseNode>>(19)
             {
                 { "acid", n => { Acid = n.GetBoolValue(); } },
                 { "appName", n => { AppName = n.GetStringValue(); } },
@@ -227,6 +232,7 @@ namespace Soenneker.Make.OpenApiClient.Models
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "listener", n => { Listener = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "policyRestricted", n => { PolicyRestricted = n.GetBoolValue(); } },
                 { "public", n => { Public = n.GetBoolValue(); } },
                 { "score", n => { Score = n.GetDoubleValue(); } },
                 { "supportsAgent", n => { SupportsAgent = n.GetBoolValue(); } },
@@ -254,6 +260,7 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("label", Label);
             writer.WriteBoolValue("listener", Listener);
             writer.WriteStringValue("name", Name);
+            writer.WriteBoolValue("policyRestricted", PolicyRestricted);
             writer.WriteBoolValue("public", Public);
             writer.WriteDoubleValue("score", Score);
             writer.WriteBoolValue("supportsAgent", SupportsAgent);

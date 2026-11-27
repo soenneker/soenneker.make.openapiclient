@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.Make.OpenApiClient.Imt.Apps;
+using Soenneker.Make.OpenApiClient.Imt.AppsBulk;
 using Soenneker.Make.OpenApiClient.Imt.AppsMeta;
 using Soenneker.Make.OpenApiClient.Imt.EndpointsUsable;
 using System.Collections.Generic;
@@ -21,6 +22,11 @@ namespace Soenneker.Make.OpenApiClient.Imt
         public global::Soenneker.Make.OpenApiClient.Imt.Apps.AppsRequestBuilder Apps
         {
             get => new global::Soenneker.Make.OpenApiClient.Imt.Apps.AppsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The appsBulk property</summary>
+        public global::Soenneker.Make.OpenApiClient.Imt.AppsBulk.AppsBulkRequestBuilder AppsBulk
+        {
+            get => new global::Soenneker.Make.OpenApiClient.Imt.AppsBulk.AppsBulkRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The appsMeta property</summary>
         public global::Soenneker.Make.OpenApiClient.Imt.AppsMeta.AppsMetaRequestBuilder AppsMeta

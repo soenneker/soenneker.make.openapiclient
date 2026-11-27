@@ -479,7 +479,7 @@
           "Admin / Scenarios"
         ],
         "summary": "Reactivate scenarios",
-        "description": "Reactivates up to 10,000 scenario IDs in the current zone, or 20 with \u0060reanalyze: true\u0060 (before deduplication). Duplicate IDs are processed once.\nRequires the \u0060scenarios get\u0060 admin permission. Deleted, locked and executing scenarios are skipped.\n\nWith \u0060reanalyze: true\u0060, also requires the \u0060scenario edit\u0060 admin permission. Rebuilds derived\nbindings from the stored published blueprint and draft before activation. Existing resources can\nbe relinked; deleted resources, invalid connection credentials and gone webhooks cannot be repaired.\nUse reanalysis only to repair missing bindings, for example after restoring an accidentally deleted scenario.\nScenarios are processed sequentially within each request, each in its own atomic transaction.\nEach reanalysis database statement is limited to 5 seconds, with at most 1 second waiting for a lock.\nTimeouts roll back that scenario and return a failed result; subsequent IDs are still processed.\nResults retain input order after deduplication. A failure rolls back that scenario and does not stop other IDs.\nDeleted teams and organizations are skipped. A scenario without a published blueprint cannot be activated.\nStored blueprint JSON and versions are preserved; the draft is never published.\n\nAlready active scenarios are reanalyzed but their scheduling is reset only with \u0060forceIfActive: true\u0060.\n\u0060reanalysis\u0060 describes the analysis phase separately from the existing activation \u0060status\u0060.\nMerely reanalyzing an active scenario does not increment \u0060summary.reactivated\u0060.\n\nWith both \u0060dryRun\u0060 and \u0060reanalyze\u0060, performs the real database operation and rolls its transaction back,\nincluding derived bindings, runtime state, scheduling and scenario events.\nIt has the same database cost and locking impact as execution and the same 20-ID limit. Request auditing still applies.\nDry-run results describe the state at the time of the check and do not guarantee a later execution succeeds.\nWithout \u0060reanalyze\u0060, the existing reactivation and dry-run behavior is unchanged.\n",
+        "description": "Reactivates up to 10,000 scenario IDs in the current zone, or 20 with \u0060reanalyze: true\u0060 (before deduplication). Duplicate IDs are processed once.\nRequires the \u0060scenarios get\u0060 and \u0060scenario edit\u0060 admin permissions, including for dry runs.\nDeleted, locked and executing scenarios are skipped.\n\nWith \u0060reanalyze: true\u0060, rebuilds derived bindings from the stored published blueprint and draft\nbefore activation. Existing resources can be relinked; deleted resources, invalid connection credentials and gone webhooks cannot be repaired.\nUse reanalysis only to repair missing bindings, for example after restoring an accidentally deleted scenario.\nScenarios are processed sequentially within each request, each in its own atomic transaction.\nEach reanalysis database statement is limited to 5 seconds, with at most 1 second waiting for a lock.\nTimeouts roll back that scenario and return a failed result; subsequent IDs are still processed.\nResults retain input order after deduplication. A failure rolls back that scenario and does not stop other IDs.\nDeleted teams and organizations are skipped. A scenario without a published blueprint cannot be activated.\nStored blueprint JSON and versions are preserved; the draft is never published.\n\nAlready active scenarios are reanalyzed but their scheduling is reset only with \u0060forceIfActive: true\u0060.\n\u0060reanalysis\u0060 describes the analysis phase separately from the existing activation \u0060status\u0060.\nMerely reanalyzing an active scenario does not increment \u0060summary.reactivated\u0060.\n\nWith both \u0060dryRun\u0060 and \u0060reanalyze\u0060, performs the real database operation and rolls its transaction back,\nincluding derived bindings, runtime state, scheduling and scenario events.\nIt has the same database cost and locking impact as execution and the same 20-ID limit. Request auditing still applies.\nDry-run results describe the state at the time of the check and do not guarantee a later execution succeeds.\nWithout \u0060reanalyze\u0060, reactivation and dry-run results are unchanged.\n",
         "operationId": "PostAdminScenariosReactivate",
         "requestBody": {
           "content": {
@@ -14244,6 +14244,46 @@
                 }
               }
             }
+          },
+          "410": {
+            "description": "The organization\u0027s data stores have moved to Data tables, and their records are served there only. The move is final. \u0060metadata.dataTableId\u0060 is the ID of the data table that holds this data store\u0027s records.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDataStoresByDataStoreIdData410Response"
+                },
+                "examples": {
+                  "moved": {
+                    "value": {
+                      "code": "SC410",
+                      "message": "Content has been permanently deleted",
+                      "detail": "The data store has moved to Data tables. Its records are in the data table da7a5707-0000-8000-8000-000000000089.",
+                      "metadata": {
+                        "dataTableId": "da7a5707-0000-8000-8000-000000000089"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Make could not check whether the organization\u0027s data stores have moved to Data tables. Changes are refused until it can, and so are reads once the organization has started moving. Retry the request later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDataStoresByDataStoreIdData503Response"
+                },
+                "examples": {
+                  "unavailable": {
+                    "value": {
+                      "code": "SC503",
+                      "message": "Service unavailable"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -14300,6 +14340,65 @@
                   "key": "8f7162828bc0",
                   "data": {
                     "price": 600
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The organization\u0027s data stores are moving to Data tables right now, so records cannot be changed. Reads still work. Retry the request in a minute.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostDataStoresByDataStoreIdData409Response"
+                },
+                "examples": {
+                  "moving": {
+                    "value": {
+                      "code": "SC409",
+                      "message": "Unexpected error occurred",
+                      "detail": "The data store is moving to Data tables and cannot be changed for a moment. Try again in a minute."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "The organization\u0027s data stores have moved to Data tables, and their records are served there only. The move is final. \u0060metadata.dataTableId\u0060 is the ID of the data table that holds this data store\u0027s records.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostDataStoresByDataStoreIdData410Response"
+                },
+                "examples": {
+                  "moved": {
+                    "value": {
+                      "code": "SC410",
+                      "message": "Content has been permanently deleted",
+                      "detail": "The data store has moved to Data tables. Its records are in the data table da7a5707-0000-8000-8000-000000000089.",
+                      "metadata": {
+                        "dataTableId": "da7a5707-0000-8000-8000-000000000089"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Make could not check whether the organization\u0027s data stores have moved to Data tables. Changes are refused until it can, and so are reads once the organization has started moving. Retry the request later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostDataStoresByDataStoreIdData503Response"
+                },
+                "examples": {
+                  "unavailable": {
+                    "value": {
+                      "code": "SC503",
+                      "message": "Service unavailable"
+                    }
                   }
                 }
               }
@@ -14405,6 +14504,65 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "The organization\u0027s data stores are moving to Data tables right now, so records cannot be changed. Reads still work. Retry the request in a minute.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDataStoresByDataStoreIdData409Response"
+                },
+                "examples": {
+                  "moving": {
+                    "value": {
+                      "code": "SC409",
+                      "message": "Unexpected error occurred",
+                      "detail": "The data store is moving to Data tables and cannot be changed for a moment. Try again in a minute."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "The organization\u0027s data stores have moved to Data tables, and their records are served there only. The move is final. \u0060metadata.dataTableId\u0060 is the ID of the data table that holds this data store\u0027s records.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDataStoresByDataStoreIdData410Response"
+                },
+                "examples": {
+                  "moved": {
+                    "value": {
+                      "code": "SC410",
+                      "message": "Content has been permanently deleted",
+                      "detail": "The data store has moved to Data tables. Its records are in the data table da7a5707-0000-8000-8000-000000000089.",
+                      "metadata": {
+                        "dataTableId": "da7a5707-0000-8000-8000-000000000089"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Make could not check whether the organization\u0027s data stores have moved to Data tables. Changes are refused until it can, and so are reads once the organization has started moving. Retry the request later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDataStoresByDataStoreIdData503Response"
+                },
+                "examples": {
+                  "unavailable": {
+                    "value": {
+                      "code": "SC503",
+                      "message": "Service unavailable"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -14474,6 +14632,65 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "The organization\u0027s data stores are moving to Data tables right now, so records cannot be changed. Reads still work. Retry the request in a minute.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutDataStoresByDataStoreIdDataByDataStoreKeyRecord409Response"
+                },
+                "examples": {
+                  "moving": {
+                    "value": {
+                      "code": "SC409",
+                      "message": "Unexpected error occurred",
+                      "detail": "The data store is moving to Data tables and cannot be changed for a moment. Try again in a minute."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "The organization\u0027s data stores have moved to Data tables, and their records are served there only. The move is final. \u0060metadata.dataTableId\u0060 is the ID of the data table that holds this data store\u0027s records.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutDataStoresByDataStoreIdDataByDataStoreKeyRecord410Response"
+                },
+                "examples": {
+                  "moved": {
+                    "value": {
+                      "code": "SC410",
+                      "message": "Content has been permanently deleted",
+                      "detail": "The data store has moved to Data tables. Its records are in the data table da7a5707-0000-8000-8000-000000000089.",
+                      "metadata": {
+                        "dataTableId": "da7a5707-0000-8000-8000-000000000089"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Make could not check whether the organization\u0027s data stores have moved to Data tables. Changes are refused until it can, and so are reads once the organization has started moving. Retry the request later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutDataStoresByDataStoreIdDataByDataStoreKeyRecord503Response"
+                },
+                "examples": {
+                  "unavailable": {
+                    "value": {
+                      "code": "SC503",
+                      "message": "Service unavailable"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -14537,6 +14754,65 @@
                   "key": "8f7162828bc0",
                   "data": {
                     "price": 600
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The organization\u0027s data stores are moving to Data tables right now, so records cannot be changed. Reads still work. Retry the request in a minute.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord409Response"
+                },
+                "examples": {
+                  "moving": {
+                    "value": {
+                      "code": "SC409",
+                      "message": "Unexpected error occurred",
+                      "detail": "The data store is moving to Data tables and cannot be changed for a moment. Try again in a minute."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "The organization\u0027s data stores have moved to Data tables, and their records are served there only. The move is final. \u0060metadata.dataTableId\u0060 is the ID of the data table that holds this data store\u0027s records.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord410Response"
+                },
+                "examples": {
+                  "moved": {
+                    "value": {
+                      "code": "SC410",
+                      "message": "Content has been permanently deleted",
+                      "detail": "The data store has moved to Data tables. Its records are in the data table da7a5707-0000-8000-8000-000000000089.",
+                      "metadata": {
+                        "dataTableId": "da7a5707-0000-8000-8000-000000000089"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Make could not check whether the organization\u0027s data stores have moved to Data tables. Changes are refused until it can, and so are reads once the organization has started moving. Retry the request later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord503Response"
+                },
+                "examples": {
+                  "unavailable": {
+                    "value": {
+                      "code": "SC503",
+                      "message": "Service unavailable"
+                    }
                   }
                 }
               }
@@ -27075,7 +27351,8 @@
               }
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/hooks": {
@@ -28350,7 +28627,7 @@
           "IMT"
         ],
         "summary": "List of apps\u002Bmodules available to the current user for the scenario editor app search.",
-        "description": "Returns the apps catalog used by the scenario editor\u0027s app search. Two response shapes are\nsupported via the \u0060scoredSearch\u0060 query flag:\n\n- **Default (no \u0060scoredSearch\u0060)** \u2014 flat list of \u0060SearchAppVersion\u0060 entries (one per native/SDK\n  package) plus \u0060AddonApp\u0060 entries.\n- **\u0060scoredSearch=true\u0060** \u2014 apps are scored against zone-level and team-level usage to rank\n  common picks higher. Each app aggregates its versions and modules under\n  \u0060versions[].modules[]\u0060, and \u0060versions[].groups[]\u0060 carries the rendered grouping for the UI.\n\nThe scored response is transformed before being returned:\n\n1. **Group normalization** \u2014 \u0060versions[].groups\u0060 is normalized so the response always exposes\n   a well-formed grouping. Authored groupings with fewer than 2 groups are discarded and\n   replaced with per-type default groups (\u0060\u0027actions\u0027\u0060, \u0060\u0027triggers\u0027\u0060, \u2026); otherwise authored\n   groups are preserved and orphan modules (those not referenced by any group) are appended\n   to per-type defaults.\n2. **Module reorganization** \u2014 modules can be copied or moved across apps according to\n   product-managed rules. A relocated module appears in the target app\u0027s \u0060versions[].modules[]\u0060\n   carrying \u0060appName\u0060, \u0060appVersion\u0060, and \u0060theme\u0060 fields that point at its **source** package.\n   The frontend must use these fields (when present) to load the correct source manifest and\n   render the module in its original app\u0027s branding, because a module\u0027s unique identity is\n   \u0060(parentApp.name, module.name)\u0060.\n",
+        "description": "Returns the apps catalog used by the scenario editor\u0027s app search. Two response shapes are\nsupported via the \u0060scoredSearch\u0060 query flag:\n\n- **Default (no \u0060scoredSearch\u0060)** \u2014 flat list of \u0060SearchAppVersion\u0060 entries (one per native/SDK\n  package) plus \u0060AddonApp\u0060 entries.\n- **\u0060scoredSearch=true\u0060** \u2014 apps are scored against zone-level and team-level usage to rank\n  common picks higher. Each app aggregates its versions and modules under\n  \u0060versions[].modules[]\u0060, and \u0060versions[].groups[]\u0060 carries the rendered grouping for the UI.\n\nThe scored response is transformed before being returned:\n\n1. **Group normalization** \u2014 \u0060versions[].groups\u0060 is normalized so the response always exposes\n   a well-formed grouping. Authored groupings with fewer than 2 groups are discarded and\n   replaced with per-type default groups (\u0060\u0027actions\u0027\u0060, \u0060\u0027triggers\u0027\u0060, \u2026); otherwise authored\n   groups are preserved and orphan modules (those not referenced by any group) are appended\n   to per-type defaults.\n2. **Module reorganization** \u2014 modules can be copied or moved across apps according to\n   product-managed rules. A relocated module appears in the target app\u0027s \u0060versions[].modules[]\u0060\n   carrying \u0060appName\u0060, \u0060appVersion\u0060, and \u0060theme\u0060 fields that point at its **source** package.\n   The frontend must use these fields (when present) to load the correct source manifest and\n   render the module in its original app\u0027s branding, because a module\u0027s unique identity is\n   \u0060(parentApp.name, module.name)\u0060.\n\n**App policy flags** \u2014 when the organization\u0027s app policy blocks an app, the app and each of\nits modules carry \u0060policyRestricted: true\u0060; an app or module without the field is not\nrestricted. A module relocated from another app is restricted when its source app (\u0060appName\u0060)\nis. Restricted apps and modules are still listed. Applies to both response shapes (in the\nnon-scored one, to the modules in the per-type lists such as \u0060actions\u0060 and \u0060triggers\u0060), but\nnot to addon apps, which no policy can name, nor to an app\u0027s \u0060endpoints\u0060. The policy is the one\nof \u0060teamId\u0060 when sent (for now its organization\u0027s), else of \u0060organizationId\u0060, and applies only\nwhen that organization\u0027s license includes app policies. Then the caller must be able to view the\nteam, which must be in \u0060organizationId\u0060, or the organization; otherwise the request is refused\nwith a \u0060403\u0060. If the policy cannot be read promptly, the apps are returned without the flags.\n",
         "operationId": "GetImtApps",
         "parameters": [
           {
@@ -28402,6 +28679,52 @@
           },
           "400": {
             "description": "Invalid query parameters, or \u0060supportsEndpoints=true\u0060 while the\n\u0060is_endpoints_execution_enabled\u0060 GrowthBook flag is disabled (\u0060IM903\u0060).\n"
+          }
+        },
+        "security": [
+          {
+            "token": [
+              "apps:read"
+            ]
+          }
+        ],
+        "x-internal": true
+      }
+    },
+    "/imt/apps-bulk": {
+      "post": {
+        "tags": [
+          "IMT"
+        ],
+        "summary": "App manifests for several apps in one request.",
+        "description": "Bulk variant of \u0060GET /imt/apps/{name}/{version}\u0060, used by the scenario editor to load every app of a\nscenario. Each app is resolved on its own: an app that is not found, or that the caller may not use,\ncomes back as an item with an IM error \u0060code\u0060 instead of failing the whole request.\n\n**App policy flags** \u2014 when the app policy that applies blocks an app, its \u0060app\u0060 and every module in\nits module lists (\u0060actions\u0060, \u0060triggers\u0060, \u0060searches\u0060, \u2026) carry \u0060policyRestricted: true\u0060; an app or\nmodule without the field is not restricted. The policy is the one of \u0060teamId\u0060 (for now its\norganization\u0027s), else of \u0060organizationId\u0060, and applies only when that organization\u0027s license includes\napp policies. Then the caller must be able to view the\nteam, which must be in \u0060organizationId\u0060 when both are sent, or the organization; otherwise the request\nis refused with a \u0060403\u0060. A team that does not exist has no policy. If the policy cannot be read promptly,\nthe apps are returned without the flags.\n",
+        "operationId": "PostImtAppsBulk",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostImtAppsBulkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "One item per requested app, in the requested order.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostImtAppsBulk200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body."
+          },
+          "403": {
+            "description": "The caller cannot view the \u0060teamId\u0060 or the \u0060organizationId\u0060 whose app policy would be read, or the\nteam is not in \u0060organizationId\u0060.\n"
           }
         },
         "security": [
@@ -36108,7 +36431,7 @@
           "Organizations"
         ],
         "summary": "Get universal discount",
-        "description": "Returns the current universal discount (active or dormant) for the organization. The user must have the \u0027payment edit\u0027 organization permission or the \u0027organization view\u0027 admin permission.",
+        "description": "Returns the current universal discount (active or dormant) for the organization. The user must have the \u0027organization view\u0027 permission in the organization or the \u0027organization view\u0027 admin permission; otherwise the request fails with \u0060403\u0060 (\u0060IM002\u0060).",
         "operationId": "GetOrganizationsByOrganizationIdUniversalDiscount",
         "parameters": [
           {
@@ -36117,6 +36440,7 @@
             "description": "The ID of the organization.",
             "required": true,
             "schema": {
+              "minimum": 1,
               "type": "integer"
             },
             "example": 10
@@ -36132,6 +36456,20 @@
                 },
                 "example": {
                   "universalDiscount": null
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - the user lacks the \u0027organization view\u0027 permission in the organization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganizationsByOrganizationIdUniversalDiscount403Response"
+                },
+                "example": {
+                  "message": "organization permission \u0022organization view\u0022 is needed.",
+                  "code": "IM002"
                 }
               }
             }
@@ -36315,6 +36653,21 @@
                     "organizationTeamsCount": 2,
                     "joinedTeamsCount": 1
                   }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. For example, \u0060teamsId\u0060 contains a team that does not belong to the organization.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdInvite400Response"
+                },
+                "example": {
+                  "message": "Bad Request",
+                  "code": "SC400",
+                  "detail": "One or more teams do not belong to the organization."
                 }
               }
             }
@@ -37298,7 +37651,7 @@
           "Organizations"
         ],
         "summary": "Search organization scenario execution logs",
-        "description": "Retrieves execution logs across all scenarios in an organization (or a specific team within the organization), narrowed by \u0060from\u0060/\u0060to\u0060, execution \u0060status\u0060, \u0060scenarioIds\u0060, or a substring of the \u0060errorMessage\u0060.\n\nWhen \u0060from\u0060 or \u0060to\u0060 are omitted, the time window defaults to the last 7 days. Results are returned in reverse-chronological order.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. Executions that occurred earlier or later within the same UTC day as a supplied bound may still appear in the results.\n",
+        "description": "Retrieves execution logs across all scenarios in an organization (or a specific team within the organization), narrowed by \u0060from\u0060/\u0060to\u0060, execution \u0060status\u0060, \u0060scenarioIds\u0060, or a substring of the \u0060errorMessage\u0060.\n\nWhen \u0060from\u0060 or \u0060to\u0060 are omitted, the time window defaults to the last 7 days. Results are returned in reverse-chronological order.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. Executions that occurred earlier or later within the same UTC day as a supplied bound may still appear in the results.\n\n**Search window:** run searches look back at most 30 days. A \u0060from\u0060 or \u0060to\u0060 older than 30 days is treated as exactly 30 days ago, and a \u0060to\u0060 in the future is treated as now. Requests are never rejected for lying outside the window, they are only narrowed to it.\n\nThis feature is available on the Pro plan and above. Organizations without the \u0060fulltext\u0060 license parameter receive a \u0060402\u0060 response.\n",
         "operationId": "PostOrganizationsByOrganizationIdScenariosExecutionsSearch",
         "parameters": [
           {
@@ -37368,6 +37721,20 @@
                 }
               }
             }
+          },
+          "402": {
+            "description": "Payment required - The organization\u0027s plan does not include full-text search of scenario run data (Pro plan and above)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosExecutionsSearch402Response"
+                },
+                "example": {
+                  "message": "Full-text search of scenario run data is available on the Pro plan and above.",
+                  "code": "SC402"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -37385,7 +37752,7 @@
           "Organizations"
         ],
         "summary": "Full-text search scenario IO data",
-        "description": "Searches the module input/output (IO) data produced by scenario executions across the organization (or a specific team) using a free-text \u0060query\u0060. Matches are grouped by execution: each result contains up to 5 IO-data records that matched the query together with the metadata of the parent execution.\n\nUse the optional filters to restrict the search to specific teams, scenarios, apps, modules, or a time window.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. IO-data records earlier or later within the same UTC day as a supplied bound may still appear in the results, and the execution metadata attached to each match may include executions from the immediately adjacent UTC days.\n\nThis feature is available on the Pro plan and above. Organizations without the \u0060fulltext\u0060 license parameter receive a \u0060402\u0060 response.\n",
+        "description": "Searches the module input/output (IO) data produced by scenario executions across the organization (or a specific team) using a free-text \u0060query\u0060. Matches are grouped by execution: each result contains up to 5 IO-data records that matched the query together with the metadata of the parent execution.\n\nUse the optional filters to restrict the search to specific teams, scenarios, apps, modules, or a time window.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. IO-data records earlier or later within the same UTC day as a supplied bound may still appear in the results, and the execution metadata attached to each match may include executions from the immediately adjacent UTC days.\n\nThis feature is available on the Pro plan and above. Organizations without the \u0060fulltext\u0060 license parameter receive a \u0060402\u0060 response.\n\n**Search window:** run searches look back at most 30 days. A \u0060from\u0060 or \u0060to\u0060 older than 30 days is treated as exactly 30 days ago, and a \u0060to\u0060 in the future is treated as now. Requests are never rejected for lying outside the window, they are only narrowed to it.\n",
         "operationId": "PostOrganizationsByOrganizationIdScenariosExecutionsIoDataSearch",
         "parameters": [
           {
@@ -37508,7 +37875,7 @@
           "Organizations"
         ],
         "summary": "Full-text search IO data for a single scenario execution",
-        "description": "Searches the module input/output (IO) data produced by a single scenario execution using a free-text \u0060query\u0060, and returns **every** matching IO-data record for that execution \u2014 no grouping and no pagination.\n\nThe scenario\u0027s team is resolved from \u0060scenarioId\u0060; the caller must hold the scenario-logs read permission on that team.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 UTC days, so supply a window that covers the execution\u0027s timestamp to search older executions.\n\nThis feature is available on the Pro plan and above. Organizations without the \u0060fulltext\u0060 license parameter receive a \u0060402\u0060 response.\n",
+        "description": "Searches the module input/output (IO) data produced by a single scenario execution using a free-text \u0060query\u0060, and returns **every** matching IO-data record for that execution \u2014 no grouping and no pagination.\n\nThe scenario\u0027s team is resolved from \u0060scenarioId\u0060; the caller must hold the scenario-logs read permission on that team.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 UTC days, so supply a window that covers the execution\u0027s timestamp to search older executions.\n\nThis feature is available on the Pro plan and above. Organizations without the \u0060fulltext\u0060 license parameter receive a \u0060402\u0060 response.\n\n**Search window:** run searches look back at most 30 days. A \u0060from\u0060 or \u0060to\u0060 older than 30 days is treated as exactly 30 days ago, and a \u0060to\u0060 in the future is treated as now. Requests are never rejected for lying outside the window, they are only narrowed to it.\n",
         "operationId": "PostOrganizationsByOrganizationIdScenariosByScenarioIdExecutionsByExecutionIdIoDataSearch",
         "parameters": [
           {
@@ -37645,7 +38012,7 @@
           "Organizations"
         ],
         "summary": "Count scenarios and executions matching a full-text query",
-        "description": "Counts how many scenarios and executions across the organization (or a specific team) produced module input/output (IO) data matching a free-text \u0060query\u0060. Returns global, exact totals plus a per-scenario breakdown of how many distinct executions matched.\n\nCounts are computed over the entire match set (not a page): there is no client-facing pagination. Internally the endpoint pages through all matching \u0060(scenario, execution)\u0060 pairs using an Elasticsearch composite aggregation.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 days, mirroring the other organization scenario-log endpoints.\n",
+        "description": "Counts how many scenarios and executions across the organization (or a specific team) produced module input/output (IO) data matching a free-text \u0060query\u0060. Returns global, exact totals plus a per-scenario breakdown of how many distinct executions matched.\n\nCounts are computed over the entire match set (not a page): there is no client-facing pagination. Internally the endpoint pages through all matching \u0060(scenario, execution)\u0060 pairs using an Elasticsearch composite aggregation.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 days, mirroring the other organization scenario-log endpoints.\n\n**Search window:** run searches look back at most 30 days. A \u0060from\u0060 or \u0060to\u0060 older than 30 days is treated as exactly 30 days ago, and a \u0060to\u0060 in the future is treated as now. Requests are never rejected for lying outside the window, they are only narrowed to it.\n\nThis feature is available on the Pro plan and above. Organizations without the \u0060fulltext\u0060 license parameter receive a \u0060402\u0060 response.\n",
         "operationId": "PostOrganizationsByOrganizationIdScenariosExecutionsIoDataCounts",
         "parameters": [
           {
@@ -37700,6 +38067,20 @@
                 }
               }
             }
+          },
+          "402": {
+            "description": "Payment required - The organization\u0027s plan does not include full-text search of scenario run data (Pro plan and above)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosExecutionsIoDataCounts402Response"
+                },
+                "example": {
+                  "message": "Full-text search of scenario run data is available on the Pro plan and above.",
+                  "code": "SC402"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -37717,7 +38098,7 @@
           "Organizations"
         ],
         "summary": "Count executions by module for a full-text query within a scenario",
-        "description": "For a single scenario, counts how many distinct executions produced module input/output (IO) data matching a free-text \u0060query\u0060.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 days.\n",
+        "description": "For a single scenario, counts how many distinct executions produced module input/output (IO) data matching a free-text \u0060query\u0060.\n\n**The \u0060from\u0060 and \u0060to\u0060 bounds are applied at UTC-day granularity** \u2014 only the calendar-day portion of each timestamp is honored. When omitted, the search defaults to the last 7 days.\n\n**Search window:** run searches look back at most 30 days. A \u0060from\u0060 or \u0060to\u0060 older than 30 days is treated as exactly 30 days ago, and a \u0060to\u0060 in the future is treated as now. Requests are never rejected for lying outside the window, they are only narrowed to it.\n\nThis feature is available on the Pro plan and above. Organizations without the \u0060fulltext\u0060 license parameter receive a \u0060402\u0060 response.\n",
         "operationId": "PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCounts",
         "parameters": [
           {
@@ -37765,6 +38146,20 @@
                       "executionsCount": 14
                     }
                   ]
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required - The organization\u0027s plan does not include full-text search of scenario run data (Pro plan and above)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCounts402Response"
+                },
+                "example": {
+                  "message": "Full-text search of scenario run data is available on the Pro plan and above.",
+                  "code": "SC402"
                 }
               }
             }
@@ -43000,7 +43395,7 @@
           "Scenarios / Logs"
         ],
         "summary": "Stop scenario execution",
-        "description": "Stops a running execution. Use \u0060force: true\u0060 to immediately terminate the execution without waiting for the current module to finish.",
+        "description": "Stops a running execution. Use \u0060force: true\u0060 to immediately terminate the execution without waiting for the current module to finish. The execution must belong to the scenario; otherwise the request fails with \u0060404\u0060 (\u0060IM312\u0060).",
         "operationId": "PostScenariosByScenarioIdExecutionsByExecutionIdStop",
         "parameters": [
           {
@@ -43043,6 +43438,20 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PostScenariosByScenarioIdExecutionsByExecutionIdStop200ResponseSchema"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - the execution does not exist or does not belong to the scenario",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostScenariosByScenarioIdExecutionsByExecutionIdStop404Response"
+                },
+                "example": {
+                  "message": "Execution doesn\u0027t exist",
+                  "code": "IM312"
                 }
               }
             }
@@ -92092,6 +92501,45 @@
           }
         }
       },
+      "GetDataStoresByDataStoreIdData410Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/GetDataStoresByDataStoreIdData410ResponseMetadata"
+          }
+        }
+      },
+      "GetDataStoresByDataStoreIdData503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
       "PostDataStoresByDataStoreIdDataRequest": {
         "type": "object",
         "properties": {
@@ -92113,6 +92561,63 @@
           },
           "data": {
             "$ref": "#/components/schemas/PostDataStoresByDataStoreIdData200ResponseData"
+          }
+        }
+      },
+      "PostDataStoresByDataStoreIdData409Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PostDataStoresByDataStoreIdData410Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/PostDataStoresByDataStoreIdData410ResponseMetadata"
+          }
+        }
+      },
+      "PostDataStoresByDataStoreIdData503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
           }
         }
       },
@@ -92150,6 +92655,63 @@
           }
         }
       },
+      "DeleteDataStoresByDataStoreIdData409Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteDataStoresByDataStoreIdData410Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/DeleteDataStoresByDataStoreIdData410ResponseMetadata"
+          }
+        }
+      },
+      "DeleteDataStoresByDataStoreIdData503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
       "PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response": {
         "type": "object",
         "properties": {
@@ -92162,6 +92724,63 @@
           }
         }
       },
+      "PutDataStoresByDataStoreIdDataByDataStoreKeyRecord409Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PutDataStoresByDataStoreIdDataByDataStoreKeyRecord410Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/PutDataStoresByDataStoreIdDataByDataStoreKeyRecord410ResponseMetadata"
+          }
+        }
+      },
+      "PutDataStoresByDataStoreIdDataByDataStoreKeyRecord503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
       "PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200Response": {
         "type": "object",
         "properties": {
@@ -92171,6 +92790,63 @@
           },
           "data": {
             "$ref": "#/components/schemas/PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200ResponseData"
+          }
+        }
+      },
+      "PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord409Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord410Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord410ResponseMetadata"
+          }
+        }
+      },
+      "PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord503Response": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
           }
         }
       },
@@ -96011,6 +96687,46 @@
           }
         }
       },
+      "PostImtAppsBulkRequest": {
+        "required": [
+          "apps"
+        ],
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Organization context for custom (\u0060app#\u0060) apps, and the organization whose app policy flags\nthe apps when \u0060teamId\u0060 is not sent.\n"
+          },
+          "teamId": {
+            "minimum": 1,
+            "type": "integer",
+            "description": "Team whose app policy flags the apps (for now its organization\u0027s). Takes precedence over\n\u0060organizationId\u0060 for the policy, and must be in it when both are sent.\n"
+          },
+          "apps": {
+            "maxItems": 300,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostImtAppsBulkRequestAppsItem"
+            }
+          }
+        }
+      },
+      "PostImtAppsBulk200Response": {
+        "required": [
+          "apps"
+        ],
+        "type": "object",
+        "properties": {
+          "apps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostImtAppsBulk200ResponseAppsItem"
+            }
+          }
+        }
+      },
       "GetImtAppsMeta200Response": {
         "type": "object",
         "properties": {
@@ -99370,6 +100086,17 @@
           }
         }
       },
+      "GetOrganizationsByOrganizationIdUniversalDiscount403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
       "PostOrganizationsByOrganizationIdUniversalDiscountClaimCancellationOffer200Response": {
         "type": "object",
         "properties": {
@@ -99427,11 +100154,13 @@
             "description": "Note added to the invitation."
           },
           "teamsId": {
+            "maxItems": 1000,
             "type": "array",
             "items": {
+              "minimum": 1,
               "type": "integer"
             },
-            "description": "The list of team IDs to which the invited user will be assigned. The invited user will receive the team role **member**."
+            "description": "The list of team IDs to which the invited user will be assigned. The teams must belong to the organization. The invited user will receive the team role **member**."
           }
         }
       },
@@ -99443,6 +100172,20 @@
           },
           "userOrganizationRole": {
             "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdInvite200ResponseUserOrganizationRole"
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdInvite400Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
           }
         }
       },
@@ -99677,6 +100420,17 @@
             "items": {
               "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosExecutionsSearch200ResponseResultsItem"
             }
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdScenariosExecutionsSearch402Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
           }
         }
       },
@@ -99974,6 +100728,17 @@
           }
         }
       },
+      "PostOrganizationsByOrganizationIdScenariosExecutionsIoDataCounts402Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
       "PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCountsRequest": {
         "required": [
           "query",
@@ -100038,6 +100803,17 @@
               "$ref": "#/components/schemas/PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCounts200ResponseModulesItem"
             },
             "description": "Per-module breakdown of matching executions."
+          }
+        }
+      },
+      "PostOrganizationsByOrganizationIdScenariosExecutionsModulesIoDataCounts402Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
           }
         }
       },
@@ -101776,6 +102552,17 @@
             "type": "boolean",
             "description": "If set to \u0060true\u0060, the execution is terminated immediately. If set to \u0060false\u0060 or omitted, the execution stops after the current module finishes.",
             "default": false
+          }
+        }
+      },
+      "PostScenariosByScenarioIdExecutionsByExecutionIdStop404Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
           }
         }
       },
@@ -112704,6 +113491,16 @@
           }
         ]
       },
+      "PostImtAppsBulk200ResponseAppsItem": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/PostImtAppsBulk200ResponseAppsItemOneOf1"
+          },
+          {
+            "$ref": "#/components/schemas/PostImtAppsBulk200ResponseAppsItemOneOf2"
+          }
+        ]
+      },
       "PostInternalEntityPlacementsCheckRequestAnyOf1": {
         "required": [
           "userId",
@@ -114450,6 +115247,9 @@
             "type": "number",
             "description": "Aggregate score combining zone- and team-level usage."
           },
+          "policyRestricted": {
+            "$ref": "#/components/schemas/GetImtApps200ResponseAppsItemOneOf1PolicyRestricted"
+          },
           "versions": {
             "type": "array",
             "items": {
@@ -114458,6 +115258,52 @@
           }
         },
         "description": "A native or SDK app with version/module aggregation and zone\u002Bteam scoring applied.\nReturned only when \u0060scoredSearch=true\u0060.\n"
+      },
+      "PostImtAppsBulk200ResponseAppsItemOneOf1": {
+        "required": [
+          "name",
+          "version",
+          "app"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Resolved app name."
+          },
+          "version": {
+            "type": "string",
+            "description": "Resolved full version (e.g. \u0060\u00271.2.0\u0027\u0060)."
+          },
+          "app": {
+            "$ref": "#/components/schemas/PostImtAppsBulk200ResponseAppsItemOneOf1App"
+          }
+        }
+      },
+      "PostImtAppsBulk200ResponseAppsItemOneOf2": {
+        "required": [
+          "name",
+          "version",
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "description": "IM error code, e.g. \u0060IM900\u0060 when the app is not found."
+          },
+          "message": {
+            "type": "string"
+          }
+        }
       },
       "GetOrganizationsByOrganizationIdVariablesByVariableNameHistory200ResponseOrganizationVariableHistoryItemOneOf1": {
         "type": "object",
@@ -120598,6 +121444,16 @@
           }
         }
       },
+      "GetDataStoresByDataStoreIdData410ResponseMetadata": {
+        "type": "object",
+        "properties": {
+          "dataTableId": {
+            "type": "string",
+            "description": "The ID of the data table that holds the data store\u0027s records.",
+            "format": "uuid"
+          }
+        }
+      },
       "PostDataStoresByDataStoreIdDataRequestData": {
         "type": "object",
         "description": "The data of the data store record. The structure strictly depends on the included data structure. If no data is provided, in response the values will be set to null."
@@ -120606,13 +121462,53 @@
         "type": "object",
         "description": "The data of the data store record. The structure strictly depends on the included data structure. If no data is provided, in response the values will be set to null."
       },
+      "PostDataStoresByDataStoreIdData410ResponseMetadata": {
+        "type": "object",
+        "properties": {
+          "dataTableId": {
+            "type": "string",
+            "description": "The ID of the data table that holds the data store\u0027s records.",
+            "format": "uuid"
+          }
+        }
+      },
+      "DeleteDataStoresByDataStoreIdData410ResponseMetadata": {
+        "type": "object",
+        "properties": {
+          "dataTableId": {
+            "type": "string",
+            "description": "The ID of the data table that holds the data store\u0027s records.",
+            "format": "uuid"
+          }
+        }
+      },
       "PutDataStoresByDataStoreIdDataByDataStoreKeyRecord200ResponseData": {
         "type": "object",
         "description": "The data of the data store record. The structure strictly depends on the included data structure. If no data is provided, in response the values will be set to null."
       },
+      "PutDataStoresByDataStoreIdDataByDataStoreKeyRecord410ResponseMetadata": {
+        "type": "object",
+        "properties": {
+          "dataTableId": {
+            "type": "string",
+            "description": "The ID of the data table that holds the data store\u0027s records.",
+            "format": "uuid"
+          }
+        }
+      },
       "PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord200ResponseData": {
         "type": "object",
         "description": "The data of the data store record. The structure strictly depends on the included data structure. If no data is provided, in response the values will be set to null."
+      },
+      "PatchDataStoresByDataStoreIdDataByDataStoreKeyRecord410ResponseMetadata": {
+        "type": "object",
+        "properties": {
+          "dataTableId": {
+            "type": "string",
+            "description": "The ID of the data table that holds the data store\u0027s records.",
+            "format": "uuid"
+          }
+        }
       },
       "GetDataStructures200ResponseDataStructuresItem": {
         "required": [
@@ -124073,6 +124969,27 @@
           },
           "imtId": {
             "type": "string"
+          }
+        }
+      },
+      "PostImtAppsBulkRequestAppsItem": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "maxLength": 135,
+            "minLength": 3,
+            "pattern": "^(app#)?[a-z][0-9a-z-]\u002B[0-9a-z]$",
+            "type": "string",
+            "description": "App name, \u0060app#\u0060 prefixed for a custom (SDK) app."
+          },
+          "version": {
+            "maximum": 32767,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Major version; the latest when omitted."
           }
         }
       },
@@ -138449,6 +139366,15 @@
           }
         }
       },
+      "PostImtAppsBulk200ResponseAppsItemOneOf1App": {
+        "type": "object",
+        "properties": {
+          "policyRestricted": {
+            "$ref": "#/components/schemas/PostImtAppsBulk200ResponseAppsItemOneOf1AppPolicyRestricted"
+          }
+        },
+        "description": "The app manifest, with \u0060rpc:///\u0060 self-references resolved. Carries\n\u0060policyRestricted: true\u0060, as does each module in its module lists, when the app\npolicy blocks the app.\n"
+      },
       "GetOrganizationsByOrganizationIdVariablesByVariableNameHistory200ResponseOrganizationVariableHistoryItemOneOf1DiffObject": {
         "type": "object",
         "properties": {
@@ -148312,6 +149238,9 @@
           },
           "supportsAgent": {
             "type": "boolean"
+          },
+          "policyRestricted": {
+            "$ref": "#/components/schemas/GetImtApps200ResponseAppsItemOneOf1VersionsItemModulesItemPolicyRestricted"
           },
           "centicreditsFormula": {
             "type": "string"
@@ -161474,6 +162403,13 @@
           ]
         }
       },
+      "GetImtApps200ResponseAppsItemOneOf1PolicyRestricted": {
+        "enum": [
+          true
+        ],
+        "type": "boolean",
+        "description": "Present only when the organization\u0027s app policy blocks the whole app. See the\nendpoint description.\n"
+      },
       "GetSdkAppsBySdkAppNameBySdkAppVersionAppReview200ResponseReviewSubmittedFormAllOf1VendorRelationship": {
         "enum": [
           "direct",
@@ -169314,6 +170250,12 @@
           ]
         }
       },
+      "PostImtAppsBulk200ResponseAppsItemOneOf1AppPolicyRestricted": {
+        "enum": [
+          true
+        ],
+        "type": "boolean"
+      },
       "GetAdminSdkAppsByAppByVersionAppReview200ResponseReviewDraftFormVendorRelationship": {
         "enum": [
           "direct",
@@ -173444,6 +174386,13 @@
             }
           ]
         }
+      },
+      "GetImtApps200ResponseAppsItemOneOf1VersionsItemModulesItemPolicyRestricted": {
+        "enum": [
+          true
+        ],
+        "type": "boolean",
+        "description": "Present only when the organization\u0027s app policy blocks the module: its app is blocked,\nwhich for a relocated module is the source app named in \u0060appName\u0060. The final answer for\nthe module; clients need not combine it with the app\u0027s flag.\n"
       },
       "GetScenariosByScenarioIdLogs200ResponseScenarioLogsItemDetailProvenanceV": {
         "enum": [

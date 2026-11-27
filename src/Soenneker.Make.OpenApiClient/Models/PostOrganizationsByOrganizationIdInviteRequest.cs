@@ -61,7 +61,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string Note { get => _explicitNullValueNote; set { _explicitNullValueNote = value; AdditionalData?.Remove("note"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("note"); else _explicitNullProperties?.Remove("note"); } }
         private string _explicitNullValueNote = default!;
 #endif
-        /// <summary>The list of team IDs to which the invited user will be assigned. The invited user will receive the team role **member**.</summary>
+        /// <summary>The list of team IDs to which the invited user will be assigned. The teams must belong to the organization. The invited user will receive the team role **member**.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<int?>? TeamsId { get => _explicitNullValueTeamsId; set { _explicitNullValueTeamsId = value; AdditionalData?.Remove("teamsId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("teamsId"); else _explicitNullProperties?.Remove("teamsId"); } }
