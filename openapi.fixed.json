@@ -7275,24 +7275,31 @@
                     "summary": "Browser context key after the setup completed",
                     "value": {
                       "id": 137,
-                      "name": "My shop logins"
+                      "name": "My shop logins",
+                      "visibility": "team"
                     }
                   }
                 }
               }
             }
           },
+          "400": {
+            "description": "AI Browser is disabled, or locked entities are disabled when completing a locked create (IM903)."
+          },
           "401": {
             "description": "Unauthorized"
           },
           "403": {
-            "description": "The setup flow was started by another user, or the feature flag is disabled"
+            "description": "The setup belongs to another user (IM001), or the caller lacks key edit for a locked create (IM002)."
           },
           "404": {
             "description": "The refreshed key no longer exists"
           },
           "410": {
             "description": "Setup flow not found, expired, or already completed"
+          },
+          "422": {
+            "description": "The entity permission service could not grant the creator access to the locked key (IM016)."
           },
           "500": {
             "description": "AI Browser is not configured on this environment"
@@ -64633,7 +64640,7 @@
           "Users / API Tokens"
         ],
         "summary": "List users API tokens",
-        "description": "Gets the API tokens of the currently authenticated user, newest first. The token values are masked except for their first 8 characters. \u0060organizationId\u0060 shows the organization a token is scoped to, or \u0060null\u0060 for a token that works in every organization of the user. This call is rejected for an API token that is itself scoped to an organization. Requires the \u0060api-tokens:read\u0060 scope. The \u0060user:read\u0060 scope still grants access for now but is deprecated for this endpoint; add \u0060api-tokens:read\u0060 to your API tokens.",
+        "description": "Gets the API tokens of the currently authenticated user, newest first. The token values are masked except for their first 8 characters. \u0060organizationId\u0060 shows the organization a token is scoped to, or \u0060null\u0060 for a token that works in every organization of the user. Available only in the Make web app: a request authenticated with an API token or an OAuth credential is rejected with \u0060SC403\u0060.",
         "operationId": "GetUsersMeApiTokens",
         "responses": {
           "200": {
@@ -64673,41 +64680,20 @@
               }
             }
           },
-          "401": {
-            "description": "The API token or OAuth credential lacks the \u0060api-tokens:read\u0060 scope (\u0060IM001\u0060). A token holding only the deprecated \u0060user:read\u0060 scope gets this error too when it is no longer accepted.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetUsersMeApiTokens401Response"
-                },
-                "examples": {
-                  "missing-scope": {
-                    "summary": "Missing api-tokens:read scope",
-                    "value": {
-                      "code": "IM001",
-                      "message": "Access denied",
-                      "detail": "Required scope: api-tokens:read",
-                      "suberrors": []
-                    }
-                  }
-                }
-              }
-            }
-          },
           "403": {
-            "description": "The request is authenticated with an API token that is scoped to an organization; such tokens cannot list or create API tokens.",
+            "description": "The request is authenticated with an API token or an OAuth credential instead of a Make web app session.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetUsersMeApiTokens403Response"
                 },
                 "examples": {
-                  "organization-bound-token": {
-                    "summary": "Called with an API token scoped to an organization",
+                  "not-a-session": {
+                    "summary": "Called with an API token or an OAuth credential",
                     "value": {
                       "message": "Permission denied",
                       "code": "SC403",
-                      "detail": "Organization-bound request can\u0027t be used outside of the Organization Context."
+                      "detail": "This endpoint is only available in the Make web app."
                     }
                   }
                 }
@@ -64728,7 +64714,7 @@
           "Users / API Tokens"
         ],
         "summary": "Create new API token",
-        "description": "Create a new API token for the currently authenticated user. Specify the API token scopes in the \u0060scope\u0060 array parameter. Optionally pass \u0060organizationId\u0060 to scope the token to one organization the user is an accepted member of; the token then works only within that organization. Omit \u0060organizationId\u0060 or send \u0060null\u0060 for a token that works in every organization of the user. A user can have at most 100 API tokens. This call is rejected for an API token that is itself scoped to an organization. Requires the \u0060api-tokens:write\u0060 scope. The \u0060user:write\u0060 scope still grants access for now but is deprecated for this endpoint; add \u0060api-tokens:write\u0060 to your API tokens.",
+        "description": "Create a new API token for the currently authenticated user. Specify the API token scopes in the \u0060scope\u0060 array parameter. Optionally pass \u0060organizationId\u0060 to scope the token to one organization the user is an accepted member of; the token then works only within that organization. Omit \u0060organizationId\u0060 or send \u0060null\u0060 for a token that works in every organization of the user. A user can have at most 100 API tokens. Available only in the Make web app: a request authenticated with an API token or an OAuth credential is rejected with \u0060SC403\u0060.",
         "operationId": "PostUsersMeApiTokens",
         "requestBody": {
           "content": {
@@ -64832,7 +64818,7 @@
             }
           },
           "401": {
-            "description": "The token cannot be scoped to the organization: the user is not an accepted member of it, or it does not exist or is deleted. Or the API token or OAuth credential lacks the \u0060api-tokens:write\u0060 scope (\u0060IM001\u0060); a token holding only the deprecated \u0060user:write\u0060 scope gets this error too when it is no longer accepted.",
+            "description": "The token cannot be scoped to the organization: the user is not an accepted member of it, or it does not exist or is deleted.",
             "content": {
               "application/json": {
                 "schema": {
@@ -64846,34 +64832,25 @@
                       "code": "IM001",
                       "detail": "You cannot create a token scoped to this organization."
                     }
-                  },
-                  "missing-scope": {
-                    "summary": "Missing api-tokens:write scope",
-                    "value": {
-                      "message": "Access denied",
-                      "code": "IM001",
-                      "detail": "Required scope: api-tokens:write",
-                      "suberrors": []
-                    }
                   }
                 }
               }
             }
           },
           "403": {
-            "description": "The request is authenticated with an API token that is scoped to an organization; such tokens cannot list or create API tokens.",
+            "description": "The request is authenticated with an API token or an OAuth credential instead of a Make web app session.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PostUsersMeApiTokens403Response"
                 },
                 "examples": {
-                  "organization-bound-token": {
-                    "summary": "Called with an API token scoped to an organization",
+                  "not-a-session": {
+                    "summary": "Called with an API token or an OAuth credential",
                     "value": {
                       "message": "Permission denied",
                       "code": "SC403",
-                      "detail": "Organization-bound request can\u0027t be used outside of the Organization Context."
+                      "detail": "This endpoint is only available in the Make web app."
                     }
                   }
                 }
@@ -64950,7 +64927,7 @@
           "Users / API Tokens"
         ],
         "summary": "Update API token scopes",
-        "description": "Replaces the scopes of the currently authenticated user\u0027s API token with the specified creation timestamp. The \u0060scope\u0060 array replaces the token\u0027s current scopes completely; it is not merged with them. The token value, its \u0060label\u0060 and its \u0060organizationId\u0060 stay unchanged, and requests authenticated with the token use the new scopes right away. Get the API token creation timestamp with the API call \u0060GET /users/me/api-tokens\u0060 in the parameter value \u0060created\u0060 and copy it to the API call path. The token is matched with a precision of one second. This call is rejected for an API token that is itself scoped to an organization. Requires the \u0060api-tokens:write\u0060 scope. The \u0060user:write\u0060 scope still grants access for now but is deprecated for this endpoint; add \u0060api-tokens:write\u0060 to your API tokens.",
+        "description": "Replaces the scopes of the currently authenticated user\u0027s API token with the specified creation timestamp. The \u0060scope\u0060 array replaces the token\u0027s current scopes completely; it is not merged with them. The token value, its \u0060label\u0060 and its \u0060organizationId\u0060 stay unchanged, and requests authenticated with the token use the new scopes right away. Get the API token creation timestamp with the API call \u0060GET /users/me/api-tokens\u0060 in the parameter value \u0060created\u0060 and copy it to the API call path. The token is matched with a precision of one second. Available only in the Make web app: a request authenticated with an API token or an OAuth credential is rejected with \u0060SC403\u0060.",
         "operationId": "PatchUsersMeApiTokensByApiTokenTimestamp",
         "parameters": [
           {
@@ -65030,41 +65007,20 @@
               }
             }
           },
-          "401": {
-            "description": "The API token or OAuth credential lacks the \u0060api-tokens:write\u0060 scope (\u0060IM001\u0060). A token holding only the deprecated \u0060user:write\u0060 scope gets this error too when it is no longer accepted.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PatchUsersMeApiTokensByApiTokenTimestamp401Response"
-                },
-                "examples": {
-                  "missing-scope": {
-                    "summary": "Missing api-tokens:write scope",
-                    "value": {
-                      "code": "IM001",
-                      "message": "Access denied",
-                      "detail": "Required scope: api-tokens:write",
-                      "suberrors": []
-                    }
-                  }
-                }
-              }
-            }
-          },
           "403": {
-            "description": "The request is authenticated with an API token that is scoped to an organization; such tokens cannot update API tokens.",
+            "description": "The request is authenticated with an API token or an OAuth credential instead of a Make web app session.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PatchUsersMeApiTokensByApiTokenTimestamp403Response"
                 },
                 "examples": {
-                  "organization-bound-token": {
-                    "summary": "Called with an API token scoped to an organization",
+                  "not-a-session": {
+                    "summary": "Called with an API token or an OAuth credential",
                     "value": {
                       "message": "Permission denied",
                       "code": "SC403",
-                      "detail": "Organization-bound request can\u0027t be used outside of the Organization Context."
+                      "detail": "This endpoint is only available in the Make web app."
                     }
                   }
                 }
@@ -65105,7 +65061,7 @@
           "Users / API Tokens"
         ],
         "summary": "Delete API token",
-        "description": "Deletes currently authenticated user\u0027s API token with the specified creation timestamp. Get the API token creation timestamp with the API call \u0060GET /users/me/api-tokens\u0060 in the parameter value \u0060created\u0060. Copy the timestamp string to the API call path to delete the API token. Requires the \u0060api-tokens:write\u0060 scope. The \u0060user:write\u0060 scope still grants access for now but is deprecated for this endpoint; add \u0060api-tokens:write\u0060 to your API tokens.",
+        "description": "Deletes currently authenticated user\u0027s API token with the specified creation timestamp. Get the API token creation timestamp with the API call \u0060GET /users/me/api-tokens\u0060 in the parameter value \u0060created\u0060. Copy the timestamp string to the API call path to delete the API token. Available only in the Make web app: a request authenticated with an API token or an OAuth credential is rejected with \u0060SC403\u0060.",
         "operationId": "DeleteUsersMeApiTokensByApiTokenTimestamp",
         "parameters": [
           {
@@ -65134,21 +65090,20 @@
               }
             }
           },
-          "401": {
-            "description": "The API token or OAuth credential lacks the \u0060api-tokens:write\u0060 scope (\u0060IM001\u0060). A token holding only the deprecated \u0060user:write\u0060 scope gets this error too when it is no longer accepted.",
+          "403": {
+            "description": "The request is authenticated with an API token or an OAuth credential instead of a Make web app session.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DeleteUsersMeApiTokensByApiTokenTimestamp401Response"
+                  "$ref": "#/components/schemas/DeleteUsersMeApiTokensByApiTokenTimestamp403Response"
                 },
                 "examples": {
-                  "missing-scope": {
-                    "summary": "Missing api-tokens:write scope",
+                  "not-a-session": {
+                    "summary": "Called with an API token or an OAuth credential",
                     "value": {
-                      "code": "IM001",
-                      "message": "Access denied",
-                      "detail": "Required scope: api-tokens:write",
-                      "suberrors": []
+                      "message": "Permission denied",
+                      "code": "SC403",
+                      "detail": "This endpoint is only available in the Make web app."
                     }
                   }
                 }
@@ -90147,6 +90102,9 @@
           "name": {
             "type": "string",
             "description": "Display name of the key."
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/PostAiBrowserContextSetupsBySetupIdComplete200ResponseVisibility"
           }
         }
       },
@@ -108759,33 +108717,6 @@
           }
         }
       },
-      "GetUsersMeApiTokens401Response": {
-        "required": [
-          "code",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string",
-            "description": "Make API error code, for example \u0060IM001\u0060."
-          },
-          "message": {
-            "type": "string",
-            "description": "Human-readable error message."
-          },
-          "detail": {
-            "type": "string",
-            "description": "Additional information about the error, for example the scope the request is missing."
-          },
-          "suberrors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GetUsersMeApiTokens401ResponseSuberrorsItem"
-            }
-          }
-        }
-      },
       "GetUsersMeApiTokens403Response": {
         "type": "object",
         "properties": {
@@ -108935,33 +108866,6 @@
           }
         }
       },
-      "PatchUsersMeApiTokensByApiTokenTimestamp401Response": {
-        "required": [
-          "code",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string",
-            "description": "Make API error code, for example \u0060IM001\u0060."
-          },
-          "message": {
-            "type": "string",
-            "description": "Human-readable error message."
-          },
-          "detail": {
-            "type": "string",
-            "description": "Additional information about the error, for example the scope the request is missing."
-          },
-          "suberrors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PatchUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem"
-            }
-          }
-        }
-      },
       "PatchUsersMeApiTokensByApiTokenTimestamp403Response": {
         "type": "object",
         "properties": {
@@ -108999,30 +108903,17 @@
           }
         }
       },
-      "DeleteUsersMeApiTokensByApiTokenTimestamp401Response": {
-        "required": [
-          "code",
-          "message"
-        ],
+      "DeleteUsersMeApiTokensByApiTokenTimestamp403Response": {
         "type": "object",
         "properties": {
-          "code": {
-            "type": "string",
-            "description": "Make API error code, for example \u0060IM001\u0060."
-          },
           "message": {
-            "type": "string",
-            "description": "Human-readable error message."
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
           },
           "detail": {
-            "type": "string",
-            "description": "Additional information about the error, for example the scope the request is missing."
-          },
-          "suberrors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DeleteUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem"
-            }
+            "type": "string"
           }
         }
       },
@@ -137482,9 +137373,6 @@
           }
         }
       },
-      "GetUsersMeApiTokens401ResponseSuberrorsItem": {
-        "type": "object"
-      },
       "PostUsersMeApiTokens200ResponseApiToken": {
         "type": "object",
         "properties": {
@@ -137572,12 +137460,6 @@
             "nullable": true
           }
         }
-      },
-      "PatchUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem": {
-        "type": "object"
-      },
-      "DeleteUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem": {
-        "type": "object"
       },
       "GetUsersByUserIdUserTeamRoles200ResponseUserTeamRolesItem": {
         "type": "object",
@@ -160278,6 +160160,28 @@
             {
               "value": "pending",
               "name": "Pending"
+            }
+          ]
+        }
+      },
+      "PostAiBrowserContextSetupsBySetupIdComplete200ResponseVisibility": {
+        "enum": [
+          "team",
+          "locked"
+        ],
+        "type": "string",
+        "description": "Visibility of the newly created key. Returned for create flows.",
+        "x-ms-enum": {
+          "name": "PostAiBrowserContextSetupsBySetupIdComplete200ResponseVisibility",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "team",
+              "name": "Team"
+            },
+            {
+              "value": "locked",
+              "name": "Locked"
             }
           ]
         }

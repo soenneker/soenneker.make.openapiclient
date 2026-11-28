@@ -10,7 +10,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class DeleteUsersMeApiTokensByApiTokenTimestamp401Response : ApiException, IAdditionalDataHolder, IParsable
+    public partial class DeleteUsersMeApiTokensByApiTokenTimestamp403Response : ApiException, IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
         // Track explicitly assigned nulls separately from absent properties.
@@ -24,13 +24,11 @@ namespace Soenneker.Make.OpenApiClient.Models
             else if (parseNode.GetChildNode("detail") is { } nullNodeDetail && nullNodeDetail.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Detail = null;
             if (parseNode.GetChildNode("message") is null) { _explicitNullValueMessageEscaped = default!; _explicitNullProperties?.Remove("message"); }
             else if (parseNode.GetChildNode("message") is { } nullNodeMessageEscaped && nullNodeMessageEscaped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageEscaped = null;
-            if (parseNode.GetChildNode("suberrors") is null) { _explicitNullValueSuberrors = default!; _explicitNullProperties?.Remove("suberrors"); }
-            else if (parseNode.GetChildNode("suberrors") is { } nullNodeSuberrors && nullNodeSuberrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Suberrors = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Make API error code, for example `IM001`.</summary>
+        /// <summary>The code property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Code { get => _explicitNullValueCode; set { _explicitNullValueCode = value; AdditionalData?.Remove("code"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("code"); else _explicitNullProperties?.Remove("code"); } }
@@ -40,7 +38,7 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string Code { get => _explicitNullValueCode; set { _explicitNullValueCode = value; AdditionalData?.Remove("code"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("code"); else _explicitNullProperties?.Remove("code"); } }
         private string _explicitNullValueCode = default!;
 #endif
-        /// <summary>Additional information about the error, for example the scope the request is missing.</summary>
+        /// <summary>The detail property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Detail { get => _explicitNullValueDetail; set { _explicitNullValueDetail = value; AdditionalData?.Remove("detail"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("detail"); else _explicitNullProperties?.Remove("detail"); } }
@@ -52,7 +50,7 @@ namespace Soenneker.Make.OpenApiClient.Models
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => MessageEscaped ?? string.Empty; }
-        /// <summary>Human-readable error message.</summary>
+        /// <summary>The message property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MessageEscaped { get => _explicitNullValueMessageEscaped; set { _explicitNullValueMessageEscaped = value; AdditionalData?.Remove("message"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("message"); else _explicitNullProperties?.Remove("message"); } }
@@ -62,32 +60,22 @@ namespace Soenneker.Make.OpenApiClient.Models
         public string MessageEscaped { get => _explicitNullValueMessageEscaped; set { _explicitNullValueMessageEscaped = value; AdditionalData?.Remove("message"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("message"); else _explicitNullProperties?.Remove("message"); } }
         private string _explicitNullValueMessageEscaped = default!;
 #endif
-        /// <summary>The suberrors property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem>? Suberrors { get => _explicitNullValueSuberrors; set { _explicitNullValueSuberrors = value; AdditionalData?.Remove("suberrors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("suberrors"); else _explicitNullProperties?.Remove("suberrors"); } }
-        private List<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem>? _explicitNullValueSuberrors = default!;
-#nullable restore
-#else
-        public List<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem> Suberrors { get => _explicitNullValueSuberrors; set { _explicitNullValueSuberrors = value; AdditionalData?.Remove("suberrors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("suberrors"); else _explicitNullProperties?.Remove("suberrors"); } }
-        private List<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem> _explicitNullValueSuberrors = default!;
-#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401Response"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp403Response"/> and sets the default values.
         /// </summary>
-        public DeleteUsersMeApiTokensByApiTokenTimestamp401Response()
+        public DeleteUsersMeApiTokensByApiTokenTimestamp403Response()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp403Response"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401Response CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp403Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401Response(), parseNode);
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp403Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -95,12 +83,11 @@ namespace Soenneker.Make.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(4)
+            return new Dictionary<string, Action<IParseNode>>
             {
                 { "code", n => { Code = n.GetStringValue(); } },
                 { "detail", n => { Detail = n.GetStringValue(); } },
                 { "message", n => { MessageEscaped = n.GetStringValue(); } },
-                { "suberrors", n => { Suberrors = n.GetCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem>(global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -113,7 +100,6 @@ namespace Soenneker.Make.OpenApiClient.Models
             writer.WriteStringValue("code", Code);
             writer.WriteStringValue("detail", Detail);
             writer.WriteStringValue("message", MessageEscaped);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.Make.OpenApiClient.Models.DeleteUsersMeApiTokensByApiTokenTimestamp401ResponseSuberrorsItem>("suberrors", Suberrors);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
